@@ -1,0 +1,425 @@
+object Form2: TForm2
+  Left = 0
+  Top = 0
+  Caption = 'ControlPicker Demo'
+  ClientHeight = 475
+  ClientWidth = 620
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object TMSFNCControlPicker1: TTMSFNCControlPicker
+    Position.X = 24.000000000000000000
+    Position.Y = 56.000000000000000000
+    Size.Width = 150.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Control = TMSFNCTreeView1
+    DropDownControlHeight = 150.000000000000000000
+    DropDownControlWidth = 150.000000000000000000
+    DropDownHeightMode = chmControl
+    DropDownWidthMode = cwmControl
+    Font.Name = 'Segoe UI'
+    ItemHeight = 25.000000000000000000
+    ItemWidth = 100.000000000000000000
+    Text = 'TTMSFNCControlPicker'
+  end
+  object TMSFNCTreeView1: TTMSFNCTreeView
+    Position.X = 16.000000000000000000
+    Position.Y = 168.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 276.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    Groups = <>
+    GroupsAppearance.TopSize = 50.000000000000000000
+    GroupsAppearance.BottomSize = 50.000000000000000000
+    GroupsAppearance.TopFont.Name = 'Segoe UI'
+    GroupsAppearance.BottomFont.Name = 'Segoe UI'
+    GroupsAppearance.TopStroke.Color = claDarkgray
+    GroupsAppearance.BottomStroke.Color = claDarkgray
+    ColumnStroke.Color = claNull
+    Columns = <
+      item
+        Name = 'Column0'
+        Text = 'Model'
+        Width = 100.000000000000000000
+        Fill.Color = claNull
+        Stroke.Color = claDarkgray
+        Font.Name = 'Segoe UI'
+        TopFill.Kind = gfkNone
+        TopStroke.Color = claDarkgray
+        TopFont.Name = 'Segoe UI'
+        BottomFill.Kind = gfkNone
+        BottomStroke.Color = claDarkgray
+        BottomFont.Name = 'Segoe UI'
+      end
+      item
+        Name = 'Column1'
+        Text = 'Year'
+        Width = 100.000000000000000000
+        Fill.Color = claNull
+        Stroke.Color = claDarkgray
+        Font.Name = 'Segoe UI'
+        TopFill.Kind = gfkNone
+        TopStroke.Color = claDarkgray
+        TopFont.Name = 'Segoe UI'
+        BottomFill.Kind = gfkNone
+        BottomStroke.Color = claDarkgray
+        BottomFont.Name = 'Segoe UI'
+      end
+      item
+        Name = 'Column2'
+        Text = 'Miles'
+        Width = 100.000000000000000000
+        Fill.Color = claNull
+        Stroke.Color = claDarkgray
+        Font.Name = 'Segoe UI'
+        TopFill.Kind = gfkNone
+        TopStroke.Color = claDarkgray
+        TopFont.Name = 'Segoe UI'
+        BottomFill.Kind = gfkNone
+        BottomStroke.Color = claDarkgray
+        BottomFont.Name = 'Segoe UI'
+      end>
+    Nodes = <
+      item
+        Values = <
+          item
+            Text = 'Audi'
+          end>
+        Expanded = True
+        Extended = True
+        Tag = 0
+        Nodes = <
+          item
+            Values = <
+              item
+                Text = 'A3'
+              end
+              item
+                Text = '2010'
+              end
+              item
+                Text = '32,300'
+              end>
+            Expanded = True
+            Tag = 0
+            Nodes = <>
+          end
+          item
+            Values = <
+              item
+                Text = 'A5 series'
+              end>
+            Expanded = True
+            Tag = 0
+            Nodes = <
+              item
+                Values = <
+                  item
+                    Text = 'S5'
+                  end
+                  item
+                    Text = '2016'
+                  end
+                  item
+                    Text = '40,000'
+                  end>
+                Expanded = True
+                Tag = 0
+                Nodes = <>
+              end
+              item
+                Values = <
+                  item
+                    Text = 'RS5'
+                  end
+                  item
+                    Text = '2012'
+                  end
+                  item
+                    Text = '15,000'
+                  end>
+                Expanded = True
+                Tag = 0
+                Nodes = <>
+              end>
+          end
+          item
+            Values = <
+              item
+                Text = 'A8'
+              end
+              item
+                Text = '2005'
+              end
+              item
+                Text = '80,000'
+              end>
+            Expanded = True
+            Tag = 0
+            Nodes = <>
+          end>
+      end
+      item
+        Values = <
+          item
+            Text = 'Mercedes'
+          end>
+        Expanded = True
+        Extended = True
+        Tag = 0
+        Nodes = <
+          item
+            Values = <
+              item
+                Text = 'SLS'
+              end
+              item
+                Text = '2000'
+              end
+              item
+                Text = '300,000'
+              end>
+            Expanded = True
+            Tag = 0
+            Nodes = <>
+          end
+          item
+            Values = <
+              item
+                Text = 'SLK'
+              end
+              item
+                Text = '2010'
+              end
+              item
+                Text = '20,000'
+              end>
+            Expanded = True
+            Tag = 0
+            Nodes = <>
+          end
+          item
+            Values = <
+              item
+                Text = 'GLA'
+              end
+              item
+                Text = '2012'
+              end
+              item
+                Text = '14,500'
+              end>
+            Expanded = True
+            Tag = 0
+            Nodes = <>
+          end>
+      end>
+    ColumnsAppearance.TopSize = 25.000000000000000000
+    ColumnsAppearance.BottomSize = 25.000000000000000000
+    ColumnsAppearance.TopFont.Name = 'Segoe UI'
+    ColumnsAppearance.BottomFont.Name = 'Segoe UI'
+    ColumnsAppearance.TopStroke.Color = claDarkgray
+    ColumnsAppearance.BottomStroke.Color = claDarkgray
+    NodesAppearance.ExpandWidth = 15.000000000000000000
+    NodesAppearance.ExpandHeight = 15.000000000000000000
+    NodesAppearance.LevelIndent = 20.000000000000000000
+    NodesAppearance.FixedHeight = 25.000000000000000000
+    NodesAppearance.VariableMinimumHeight = 25.000000000000000000
+    NodesAppearance.Fill.Color = claNull
+    NodesAppearance.Stroke.Kind = gskNone
+    NodesAppearance.Stroke.Color = claDarkgray
+    NodesAppearance.ColumnStroke.Color = claNull
+    NodesAppearance.LineStroke.Kind = gskDot
+    NodesAppearance.LineStroke.Color = claDarkgray
+    NodesAppearance.Font.Name = 'Segoe UI'
+    NodesAppearance.TitleFont.Name = 'Segoe UI'
+    NodesAppearance.SelectedFill.Color = xFF1BADF8
+    NodesAppearance.SelectedStroke.Color = xFF1BADF8
+    NodesAppearance.DisabledFill.Color = claDarkgray
+    NodesAppearance.DisabledStroke.Kind = gskNone
+    NodesAppearance.DisabledStroke.Color = claDarkgray
+    NodesAppearance.ExtendedFill.Color = xFFF4F4F4
+    NodesAppearance.ExtendedStroke.Color = claDarkgray
+    NodesAppearance.ExtendedFont.Name = 'Segoe UI'
+    NodesAppearance.ExtendedSelectedFill.Color = xFF1BADF8
+    NodesAppearance.ExtendedSelectedStroke.Kind = gskNone
+    NodesAppearance.ExtendedSelectedStroke.Color = claDarkgray
+    NodesAppearance.ExtendedDisabledFill.Color = claDarkgray
+    NodesAppearance.ExtendedDisabledStroke.Kind = gskNone
+    NodesAppearance.ExtendedDisabledStroke.Color = claDarkgray
+    NodesAppearance.ExpandNodeIcon.PNG = {
+      89504E470D0A1A0A0000000D494844520000000B0000000B0806000000A9AC77
+      26000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+      004B49444154285363ACAEADFECF402C0029260680D43141F5A0006F3F6F280B
+      1560558C0B90A498054A63588DCCDFBA692B98862B860980004821321F0668E7
+      66AC8AB1390104488841060600EED939BB858B0ECD0000000049454E44AE4260
+      82}
+    NodesAppearance.CollapseNodeIcon.PNG = {
+      89504E470D0A1A0A0000000D494844520000000B0000000B0806000000A9AC77
+      26000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+      003A49444154285363ACAEADFECF402C0029260680D43141F5100568A798054A
+      8381B79F379485005B376D85B2D014234B600383C48324C420030300D49232D7
+      2010A6750000000049454E44AE426082}
+    NodesAppearance.ExpandNodeIconLarge.PNG = {
+      89504E470D0A1A0A0000000D4948445200000016000000160806000000C4B46C
+      3B000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+      006849444154484B63ACAEADFECF4003C004A5A90EE02E6E696A010B500A6AEA
+      6AC034CD5C4CB4C1DE7EDE604C2C187817930A460D860316280D0784621E97FC
+      D64D5BA12C08A09F8BD16D8601984B71C9A383D1540107C3D860506A20364580
+      00CD5C3CD4EA3C060600D2401984154F98460000000049454E44AE426082}
+    NodesAppearance.CollapseNodeIconLarge.PNG = {
+      89504E470D0A1A0A0000000D4948445200000016000000160806000000C4B46C
+      3B000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+      005149444154484B63ACAEADFECF4003C004A5A90EE02E6E696A010B500A6AEA
+      6AC034CD5C3C6A301C8C1A0C072C501A0378FB794359F8C1D64D5BA12C544033
+      178FE63C381835180E869EC143ADCE636000009C2E12F3AF5420C80000000049
+      454E44AE426082}
+  end
+  object Label1: TLabel
+    Position.X = 24.000000000000000000
+    Position.Y = 32.000000000000000000
+    Text = 'TTMSFNCTreeView:'
+    TabOrder = 7
+  end
+  object Label2: TLabel
+    Position.X = 24.000000000000000000
+    Position.Y = 96.000000000000000000
+    Text = 'TTMSFNCListEditor:'
+    TabOrder = 6
+  end
+  object TMSFNCControlPicker2: TTMSFNCControlPicker
+    Position.X = 24.000000000000000000
+    Position.Y = 120.000000000000000000
+    Size.Width = 150.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Control = TMSFNCListEditor1
+    DropDownControlHeight = 150.000000000000000000
+    DropDownControlWidth = 150.000000000000000000
+    Font.Name = 'Segoe UI'
+    Text = 'TTMSFNCControlPicker'
+  end
+  object Label3: TLabel
+    Position.X = 352.000000000000000000
+    Position.Y = 32.000000000000000000
+    Size.Width = 217.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Basic content for TListBox with events:'
+    TabOrder = 4
+  end
+  object TMSFNCControlPicker3: TTMSFNCControlPicker
+    Position.X = 352.000000000000000000
+    Position.Y = 56.000000000000000000
+    Size.Width = 150.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Control = ListBox1
+    DropDownControlHeight = 150.000000000000000000
+    DropDownControlWidth = 150.000000000000000000
+    Font.Name = 'Segoe UI'
+    Text = 'TTMSFNCControlPicker'
+    OnAdjustDropDownHeight = TMSFNCControlPicker3AdjustDropDownHeight
+    OnSetContent = TMSFNCControlPicker3SetContent
+  end
+  object TMSFNCListEditor1: TTMSFNCListEditor
+    Position.X = 352.000000000000000000
+    Position.Y = 368.000000000000000000
+    Size.Width = 145.000000000000000000
+    Size.Height = 75.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 8
+    Items = <
+      item
+        Text = 'One'
+        Tag = 0
+      end
+      item
+        Text = 'Two'
+        Tag = 0
+      end
+      item
+        Text = 'Three'
+        Tag = 0
+      end
+      item
+        Text = 'Four'
+        Tag = 0
+      end
+      item
+        Text = 'Five'
+        Tag = 0
+      end
+      item
+        Text = 'Six'
+        Tag = 0
+      end>
+    ItemAppearance.FillNormal.Kind = gfkGradient
+    ItemAppearance.FillNormal.Color = xFFDCE6F8
+    ItemAppearance.FillNormal.ColorTo = xFFBDCFF1
+    ItemAppearance.FillSelected.Kind = gfkGradient
+    ItemAppearance.FillSelected.Color = xFF73A3E6
+    ItemAppearance.FillSelected.ColorTo = xFF236ED8
+    ItemAppearance.StrokeNormal.Color = xFF7885D7
+    ItemAppearance.StrokeSelected.Color = xFF236ED8
+    ItemAppearance.Font.Name = 'Segoe UI'
+    Stroke.Color = claDarkgray
+  end
+  object ListBox1: TListBox
+    Position.X = 352.000000000000000000
+    Position.Y = 168.000000000000000000
+    Size.Width = 200.000000000000000000
+    Size.Height = 193.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 9
+    OnClick = ListBox1Click
+    DisableFocusEffect = True
+    ItemHeight = 20.000000000000000000
+    Items.Strings = (
+      'One'
+      'Two'
+      'Three'
+      'Four'
+      'Five'
+      'Six'
+      'Seven'
+      'Eight'
+      'Nine'
+      'Ten')
+    DefaultItemStyles.ItemStyle = ''
+    DefaultItemStyles.GroupHeaderStyle = ''
+    DefaultItemStyles.GroupFooterStyle = ''
+    Viewport.Width = 180.000000000000000000
+    Viewport.Height = 189.000000000000000000
+  end
+  object TMSFNCControlPicker4: TTMSFNCControlPicker
+    Position.X = 352.000000000000000000
+    Position.Y = 120.000000000000000000
+    Size.Width = 150.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 10
+    DropDownControlHeight = 150.000000000000000000
+    DropDownControlWidth = 150.000000000000000000
+    DropDownHeightMode = chmControl
+    Font.Name = 'Segoe UI'
+    Text = 'TTMSFNCControlPicker'
+  end
+  object Label4: TLabel
+    Position.X = 352.000000000000000000
+    Position.Y = 96.000000000000000000
+    Size.Width = 137.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Button Base Interface:'
+    TabOrder = 5
+  end
+end

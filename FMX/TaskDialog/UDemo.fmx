@@ -1,0 +1,596 @@
+object Form130: TForm130
+  Left = 0
+  Top = 0
+  Caption = 'TMS FNC TaskDialog Demo'
+  ClientHeight = 600
+  ClientWidth = 615
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object Panel1: TPanel
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 297.000000000000000000
+    Size.Height = 585.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object Label1: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      TextSettings.Font.Size = 15.000000000000000000
+      Text = 'Title'
+      TabOrder = 0
+    end
+    object CheckBox1: TCheckBox
+      Position.X = 8.000000000000000000
+      Position.Y = 32.000000000000000000
+      Size.Width = 73.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Default'
+    end
+    object Edit1: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 2
+      Text = 'TMS FNC TaskDialog'
+      Position.X = 80.000000000000000000
+      Position.Y = 32.000000000000000000
+      Size.Width = 209.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Label2: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 8.000000000000000000
+      Position.Y = 64.000000000000000000
+      TextSettings.Font.Size = 15.000000000000000000
+      Text = 'Instruction'
+      TabOrder = 3
+    end
+    object CheckBox2: TCheckBox
+      IsChecked = True
+      Position.X = 8.000000000000000000
+      Position.Y = 88.000000000000000000
+      Size.Width = 65.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      Text = 'Show'
+    end
+    object Edit2: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 5
+      Text = 'Do you like the task dialog?'
+      Position.X = 80.000000000000000000
+      Position.Y = 88.000000000000000000
+      Size.Width = 209.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Label3: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 8.000000000000000000
+      Position.Y = 152.000000000000000000
+      TextSettings.Font.Size = 15.000000000000000000
+      Text = 'Content'
+      TabOrder = 6
+    end
+    object Label4: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 8.000000000000000000
+      Position.Y = 256.000000000000000000
+      TextSettings.Font.Size = 15.000000000000000000
+      Text = 'Radio buttons'
+      TabOrder = 7
+    end
+    object CheckBox3: TCheckBox
+      IsChecked = True
+      Position.X = 8.000000000000000000
+      Position.Y = 120.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 8
+      Text = 'Show icon'
+    end
+    object CheckBox4: TCheckBox
+      IsChecked = True
+      Position.X = 8.000000000000000000
+      Position.Y = 176.000000000000000000
+      Size.Width = 65.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 9
+      Text = 'Show'
+    end
+    object CheckBox5: TCheckBox
+      Position.X = 8.000000000000000000
+      Position.Y = 280.000000000000000000
+      Size.Width = 57.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 10
+      Text = 'Show'
+    end
+    object Memo1: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Lines.Strings = (
+        'This is the content or description area of the task dialog.'
+        ''
+        'It supports <b><i>HTML formatting</i></b> too!')
+      TextSettings.WordWrap = True
+      Position.X = 80.000000000000000000
+      Position.Y = 176.000000000000000000
+      Size.Width = 209.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 11
+      Viewport.Width = 189.000000000000000000
+      Viewport.Height = 69.000000000000000000
+    end
+    object RadioButton1: TRadioButton
+      GroupName = 'Panel1'
+      IsChecked = True
+      Position.X = 91.000000000000000000
+      Position.Y = 120.000000000000000000
+      Size.Width = 73.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 14
+      Text = 'Question'
+    end
+    object RadioButton2: TRadioButton
+      GroupName = 'Panel1'
+      Position.X = 168.000000000000000000
+      Position.Y = 120.000000000000000000
+      Size.Width = 57.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 15
+      Text = 'Shield'
+    end
+    object RadioButton3: TRadioButton
+      GroupName = 'Panel1'
+      Position.X = 232.000000000000000000
+      Position.Y = 120.000000000000000000
+      Size.Width = 57.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 16
+      Text = 'Error'
+    end
+    object Label6: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 8.000000000000000000
+      Position.Y = 376.000000000000000000
+      TextSettings.Font.Size = 15.000000000000000000
+      Text = 'Custom buttons'
+      TabOrder = 17
+    end
+    object CheckBox10: TCheckBox
+      Position.X = 8.000000000000000000
+      Position.Y = 398.000000000000000000
+      Size.Width = 105.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 18
+      Text = 'Show'
+    end
+    object CheckBox11: TCheckBox
+      Position.X = 8.000000000000000000
+      Position.Y = 422.000000000000000000
+      Size.Width = 105.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 19
+      Text = 'Command link'
+    end
+    object Memo2: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Lines.Strings = (
+        'Radio button 1'
+        'Radio button 2')
+      Position.X = 80.000000000000000000
+      Position.Y = 280.000000000000000000
+      Size.Width = 209.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 20
+      Viewport.Width = 205.000000000000000000
+      Viewport.Height = 45.000000000000000000
+    end
+    object Label13: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 8.000000000000000000
+      Position.Y = 504.000000000000000000
+      TextSettings.Font.Size = 15.000000000000000000
+      Text = 'Input field'
+      TabOrder = 21
+    end
+    object CheckBox16: TCheckBox
+      Position.X = 8.000000000000000000
+      Position.Y = 528.000000000000000000
+      Size.Width = 65.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 22
+      Text = 'Show'
+    end
+    object Button2: TButton
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 8.000000000000000000
+      Position.Y = 336.000000000000000000
+      Size.Width = 281.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 23
+      Text = 'Show dialog with radio buttons'
+      TextSettings.Font.Size = 14.000000000000000000
+      OnClick = Button2Click
+    end
+    object Button3: TButton
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 8.000000000000000000
+      Position.Y = 464.000000000000000000
+      Size.Width = 281.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 24
+      Text = 'Show dialog with custom buttons'
+      TextSettings.Font.Size = 14.000000000000000000
+      OnClick = Button3Click
+    end
+  end
+  object Panel2: TPanel
+    Position.X = 312.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 297.000000000000000000
+    Size.Height = 409.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object Label7: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 15.000000000000000000
+      Text = 'Expanded text'
+      TabOrder = 0
+    end
+    object Label10: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 8.000000000000000000
+      Position.Y = 104.000000000000000000
+      TextSettings.Font.Size = 15.000000000000000000
+      Text = 'Verification box'
+      TabOrder = 1
+    end
+    object Memo3: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Lines.Strings = (
+        'Custom 1'
+        'Custom 2'
+        'Custom 3')
+      Position.X = -184.000000000000000000
+      Position.Y = 400.000000000000000000
+      Size.Width = 169.000000000000000000
+      Size.Height = 57.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Viewport.Width = 165.000000000000000000
+      Viewport.Height = 53.000000000000000000
+    end
+    object CheckBox12: TCheckBox
+      Position.X = 8.000000000000000000
+      Position.Y = 32.000000000000000000
+      Size.Width = 65.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Text = 'Show'
+    end
+    object CheckBox13: TCheckBox
+      Position.X = 8.000000000000000000
+      Position.Y = 128.000000000000000000
+      Size.Width = 65.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      Text = 'Show'
+    end
+    object Edit5: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 5
+      Text = 'Don'#39't show again'
+      Position.X = 80.000000000000000000
+      Position.Y = 128.000000000000000000
+      Size.Width = 209.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Label11: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 8.000000000000000000
+      Position.Y = 160.000000000000000000
+      TextSettings.Font.Size = 15.000000000000000000
+      Text = 'Footer'
+      TabOrder = 6
+    end
+    object CheckBox14: TCheckBox
+      Position.X = 8.000000000000000000
+      Position.Y = 184.000000000000000000
+      Size.Width = 65.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 7
+      Text = 'Show'
+    end
+    object Memo4: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Lines.Strings = (
+        
+          'This is the expandable text area. It also supports HTML formatti' +
+          'ng! <img src="Flag-Green.png"/>')
+      TextSettings.WordWrap = True
+      Position.X = 80.000000000000000000
+      Position.Y = 32.000000000000000000
+      Size.Width = 209.000000000000000000
+      Size.Height = 65.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 8
+      Viewport.Width = 205.000000000000000000
+      Viewport.Height = 61.000000000000000000
+    end
+    object CheckBox15: TCheckBox
+      Position.X = 8.000000000000000000
+      Position.Y = 256.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 9
+      Text = 'Show icon'
+    end
+    object RadioButton4: TRadioButton
+      GroupName = 'Panel2'
+      IsChecked = True
+      Position.X = 96.000000000000000000
+      Position.Y = 256.000000000000000000
+      Size.Width = 57.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 10
+      Text = 'About'
+    end
+    object RadioButton5: TRadioButton
+      GroupName = 'Panel2'
+      Position.X = 160.000000000000000000
+      Position.Y = 256.000000000000000000
+      Size.Width = 57.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 11
+      Text = 'Info'
+    end
+    object RadioButton6: TRadioButton
+      GroupName = 'Panel2'
+      Position.X = 216.000000000000000000
+      Position.Y = 256.000000000000000000
+      Size.Width = 73.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 12
+      Text = 'Warning'
+    end
+    object Button1: TButton
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 8.000000000000000000
+      Position.Y = 336.000000000000000000
+      Size.Width = 281.000000000000000000
+      Size.Height = 65.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 13
+      Text = 'Show dialog'
+      TextSettings.Font.Size = 20.000000000000000000
+      OnClick = Button1Click
+    end
+    object Memo5: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Lines.Strings = (
+        
+          'Brought to Delphi by <a href="https://www.tmssoftware.com/">TMS ' +
+          'Software</a>')
+      TextSettings.WordWrap = True
+      Position.X = 80.000000000000000000
+      Position.Y = 184.000000000000000000
+      Size.Width = 209.000000000000000000
+      Size.Height = 65.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 14
+      Viewport.Width = 205.000000000000000000
+      Viewport.Height = 61.000000000000000000
+    end
+    object Button4: TButton
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 8.000000000000000000
+      Position.Y = 280.000000000000000000
+      Size.Width = 281.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 15
+      Text = 'Show dialog with footer and verify box'
+      TextSettings.Font.Size = 14.000000000000000000
+      OnClick = Button4Click
+    end
+  end
+  object Panel3: TPanel
+    Position.X = 312.000000000000000000
+    Position.Y = 424.000000000000000000
+    Size.Width = 297.000000000000000000
+    Size.Height = 169.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    object Label12: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      TextSettings.Font.Size = 15.000000000000000000
+      Text = 'Results'
+      TabOrder = 0
+    end
+    object Layout1: TLayout
+      Position.X = -296.000000000000000000
+      Position.Y = 136.000000000000000000
+      Size.Width = 281.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object RadioButton7: TRadioButton
+        GroupName = 'Layout1'
+        IsChecked = True
+        Size.Width = 49.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Edit'
+      end
+      object RadioButton8: TRadioButton
+        GroupName = 'Layout1'
+        Position.X = 46.000000000000000000
+        Size.Width = 57.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Date'
+      end
+      object RadioButton9: TRadioButton
+        GroupName = 'Layout1'
+        Position.X = 96.000000000000000000
+        Size.Width = 185.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'Custom (TMSFNCColorWheel)'
+      end
+    end
+    object Label14: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 32.000000000000000000
+      Size.Width = 73.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Modal result:'
+      TabOrder = 2
+    end
+    object Label15: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 56.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Selected radio button:'
+      TabOrder = 3
+    end
+    object Label16: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 80.000000000000000000
+      Size.Width = 89.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Verify checked:'
+      TabOrder = 4
+    end
+    object Label17: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 104.000000000000000000
+      Text = 'Input result:'
+      TabOrder = 5
+    end
+    object Memo6: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      TextSettings.WordWrap = True
+      Position.X = 80.000000000000000000
+      Position.Y = 104.000000000000000000
+      Size.Width = 209.000000000000000000
+      Size.Height = 57.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 6
+      Viewport.Width = 205.000000000000000000
+      Viewport.Height = 53.000000000000000000
+    end
+    object Label18: TLabel
+      Position.X = 96.000000000000000000
+      Position.Y = 32.000000000000000000
+      Text = '-'
+      TabOrder = 7
+    end
+    object Label19: TLabel
+      Position.X = 144.000000000000000000
+      Position.Y = 56.000000000000000000
+      Text = '-'
+      TabOrder = 8
+    end
+    object Label20: TLabel
+      Position.X = 96.000000000000000000
+      Position.Y = 80.000000000000000000
+      Text = '-'
+      TabOrder = 9
+    end
+    object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
+      Size.Width = 26.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      Position.X = 264.000000000000000000
+      Position.Y = 8.000000000000000000
+      Items = <
+        item
+          Bitmap.PNG = {
+            89504E470D0A1A0A0000000D4948445200000020000000200806000000737A7A
+            F4000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+            00AB494441545847EDD2310E82401085E1C99E048E656CB024B61C600F406B2C
+            B5311C0B4EB20A845799C8ECCEA372FE84B00192F71588F7AB18E37BB99673F7
+            BA8DDD706FD617C4C276DF2D8450CD1F3FD8103500B121D900C4821403901562
+            06A052080D8072217400D2420E03683B0C90529A92C8A53F5FEBFED43EB7C75F
+            D101DA614403E40E2333A074181503ACC3281BC01A466A007B18A901EC6164FE
+            09AD39C0010E708003FE3D910F880A6F355340C83D0000000049454E44AE4260
+            82}
+          Name = 'Flag-Green.png'
+          Tag = 0
+        end>
+    end
+  end
+  object TMSFNCColorWheel1: TTMSFNCColorWheel
+    Position.X = 616.000000000000000000
+    Position.Y = 400.000000000000000000
+    Size.Width = 350.000000000000000000
+    Size.Height = 175.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    Visible = False
+  end
+  object TMSFNCTaskDialog1: TTMSFNCTaskDialog
+    Size.Width = 26.000000000000000000
+    Size.Height = 26.000000000000000000
+    Size.PlatformDefault = False
+    Position.X = 264.000000000000000000
+    Position.Y = 528.000000000000000000
+    BitmapContainer = TMSFNCBitmapContainer1
+    ButtonFont.Name = 'Segoe UI'
+    CommandLinkFont.Size = 15.000000000000000000
+    CommandLinkFont.Color = xFF0053C4
+    CommandLinkFont.Name = 'Segoe UI'
+    OnDialogResult = TMSFNCTaskDialog1DialogResult
+  end
+end

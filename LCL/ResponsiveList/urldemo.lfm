@@ -1,0 +1,103 @@
+object Form1: TForm1
+  Left = 702
+  Height = 513
+  Top = 375
+  Width = 307
+  Caption = 'Responsive List Demo'
+  ClientHeight = 513
+  ClientWidth = 307
+  OnCreate = FormCreate
+  LCLVersion = '1.6.0.4'
+  object Label2: TLabel
+    Left = 32
+    Height = 48
+    Top = 444
+    Width = 144
+    Anchors = [akLeft, akBottom]
+    AutoSize = False
+    Caption = 'Resize the form to see effect on the responsive list'
+    ParentColor = False
+    WordWrap = True
+  end
+  object Label1: TLabel
+    Left = 32
+    Height = 15
+    Top = 20
+    Width = 36
+    Caption = 'Car list'
+    ParentColor = False
+  end
+  object TMSFNCResponsiveList1: TTMSFNCResponsiveList
+    Cursor = crDefault
+    Left = 32
+    Height = 400
+    Top = 40
+    Width = 244
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    TabOrder = 0
+    BorderColor = clGray
+    Conditions = <    
+      item
+        Columns = 1
+        HeightFrom = -1
+        ItemHeight = 150
+        Margins.Left = 3
+        Margins.Top = 3
+        Margins.Right = 3
+        Margins.Bottom = 3
+        WidthTo = 250
+      end    
+      item
+        Columns = 2
+        HeightFrom = -1
+        ItemHeight = 150
+        Margins.Left = 3
+        Margins.Top = 3
+        Margins.Right = 3
+        Margins.Bottom = 3
+        WidthFrom = 250
+        WidthTo = 500
+      end    
+      item
+        Columns = 3
+        HeightFrom = -1
+        ItemHeight = 150
+        Margins.Left = 3
+        Margins.Top = 3
+        Margins.Right = 3
+        Margins.Bottom = 3
+        WidthFrom = 500
+        WidthTo = 750
+      end    
+      item
+        Columns = 4
+        HeightFrom = -1
+        ItemHeight = 150
+        Margins.Left = 3
+        Margins.Top = 3
+        Margins.Right = 3
+        Margins.Bottom = 3
+        WidthFrom = 750
+      end>
+    Items = <    
+      item
+        Content = 'item 1'
+        HeaderColor = 16436871
+        Visible = True
+        ControlName = ''
+      end    
+      item
+        Content = 'item 2'
+        HeaderColor = 16436871
+        Visible = True
+        ControlName = ''
+      end    
+      item
+        Content = 'item 3'
+        HeaderColor = 16436871
+        Visible = True
+        ControlName = ''
+      end>
+    Version = '1.2.0.0'
+  end
+end

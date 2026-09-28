@@ -1,0 +1,99 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{40734243-8540-4B3A-961B-F34D074F8C28}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Multi-Column Grouping\MultiColumnGrouping.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Non-Visual Data Export\NonVisualDataExport.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Grid in Grid\GridInGrid.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Filter Row\FilterRow.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Visual Grouping\VisualGrouping.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Renderer Source\RendererSource.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Conditional Formatting\ConditionalFormatting.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="MultiColumnGrouping">
+        <MSBuild Projects="Multi-Column Grouping\MultiColumnGrouping.dproj"/>
+    </Target>
+    <Target Name="MultiColumnGrouping:Clean">
+        <MSBuild Projects="Multi-Column Grouping\MultiColumnGrouping.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MultiColumnGrouping:Make">
+        <MSBuild Projects="Multi-Column Grouping\MultiColumnGrouping.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="NonVisualDataExport">
+        <MSBuild Projects="Non-Visual Data Export\NonVisualDataExport.dproj"/>
+    </Target>
+    <Target Name="NonVisualDataExport:Clean">
+        <MSBuild Projects="Non-Visual Data Export\NonVisualDataExport.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="NonVisualDataExport:Make">
+        <MSBuild Projects="Non-Visual Data Export\NonVisualDataExport.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="GridInGrid">
+        <MSBuild Projects="Grid in Grid\GridInGrid.dproj"/>
+    </Target>
+    <Target Name="GridInGrid:Clean">
+        <MSBuild Projects="Grid in Grid\GridInGrid.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="GridInGrid:Make">
+        <MSBuild Projects="Grid in Grid\GridInGrid.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FilterRow">
+        <MSBuild Projects="Filter Row\FilterRow.dproj"/>
+    </Target>
+    <Target Name="FilterRow:Clean">
+        <MSBuild Projects="Filter Row\FilterRow.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FilterRow:Make">
+        <MSBuild Projects="Filter Row\FilterRow.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="VisualGrouping">
+        <MSBuild Projects="Visual Grouping\VisualGrouping.dproj"/>
+    </Target>
+    <Target Name="VisualGrouping:Clean">
+        <MSBuild Projects="Visual Grouping\VisualGrouping.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VisualGrouping:Make">
+        <MSBuild Projects="Visual Grouping\VisualGrouping.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="RendererSource">
+        <MSBuild Projects="Renderer Source\RendererSource.dproj"/>
+    </Target>
+    <Target Name="RendererSource:Clean">
+        <MSBuild Projects="Renderer Source\RendererSource.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="RendererSource:Make">
+        <MSBuild Projects="Renderer Source\RendererSource.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="MultiColumnGrouping;NonVisualDataExport;GridInGrid;FilterRow;VisualGrouping;RendererSource"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="MultiColumnGrouping:Clean;NonVisualDataExport:Clean;GridInGrid:Clean;FilterRow:Clean;VisualGrouping:Clean;RendererSource:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="MultiColumnGrouping:Make;NonVisualDataExport:Make;GridInGrid:Make;FilterRow:Make;VisualGrouping:Make;RendererSource:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

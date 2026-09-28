@@ -1,0 +1,84 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{A8438658-2A78-42E5-ABEE-164CB4623A2C}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Biolife_ClientDataSet\BiolifeClientDataSet.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Biolife_ClientDataSet_Filtering_Sorting\BiolifeClientDataSetFilteringSorting.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Customers_FireDac_SQLite\CustomersFireDacSQLite.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Master_Detail_FireDac_SQLite\MasterDetailFireDacSQLite.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="StellarDS\StellarDS.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="BiolifeClientDataSet">
+        <MSBuild Projects="Biolife_ClientDataSet\BiolifeClientDataSet.dproj"/>
+    </Target>
+    <Target Name="BiolifeClientDataSet:Clean">
+        <MSBuild Projects="Biolife_ClientDataSet\BiolifeClientDataSet.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BiolifeClientDataSet:Make">
+        <MSBuild Projects="Biolife_ClientDataSet\BiolifeClientDataSet.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="BiolifeClientDataSetFilteringSorting">
+        <MSBuild Projects="Biolife_ClientDataSet_Filtering_Sorting\BiolifeClientDataSetFilteringSorting.dproj"/>
+    </Target>
+    <Target Name="BiolifeClientDataSetFilteringSorting:Clean">
+        <MSBuild Projects="Biolife_ClientDataSet_Filtering_Sorting\BiolifeClientDataSetFilteringSorting.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BiolifeClientDataSetFilteringSorting:Make">
+        <MSBuild Projects="Biolife_ClientDataSet_Filtering_Sorting\BiolifeClientDataSetFilteringSorting.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CustomersFireDacSQLite">
+        <MSBuild Projects="Customers_FireDac_SQLite\CustomersFireDacSQLite.dproj"/>
+    </Target>
+    <Target Name="CustomersFireDacSQLite:Clean">
+        <MSBuild Projects="Customers_FireDac_SQLite\CustomersFireDacSQLite.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CustomersFireDacSQLite:Make">
+        <MSBuild Projects="Customers_FireDac_SQLite\CustomersFireDacSQLite.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MasterDetailFireDacSQLite">
+        <MSBuild Projects="Master_Detail_FireDac_SQLite\MasterDetailFireDacSQLite.dproj"/>
+    </Target>
+    <Target Name="MasterDetailFireDacSQLite:Clean">
+        <MSBuild Projects="Master_Detail_FireDac_SQLite\MasterDetailFireDacSQLite.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MasterDetailFireDacSQLite:Make">
+        <MSBuild Projects="Master_Detail_FireDac_SQLite\MasterDetailFireDacSQLite.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="StellarDS">
+        <MSBuild Projects="StellarDS\StellarDS.dproj"/>
+    </Target>
+    <Target Name="StellarDS:Clean">
+        <MSBuild Projects="StellarDS\StellarDS.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="StellarDS:Make">
+        <MSBuild Projects="StellarDS\StellarDS.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="BiolifeClientDataSet;BiolifeClientDataSetFilteringSorting;CustomersFireDacSQLite;MasterDetailFireDacSQLite;StellarDS"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="BiolifeClientDataSet:Clean;BiolifeClientDataSetFilteringSorting:Clean;CustomersFireDacSQLite:Clean;MasterDetailFireDacSQLite:Clean;StellarDS:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="BiolifeClientDataSet:Make;BiolifeClientDataSetFilteringSorting:Make;CustomersFireDacSQLite:Make;MasterDetailFireDacSQLite:Make;StellarDS:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

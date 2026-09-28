@@ -1,0 +1,2321 @@
+object Form2: TForm2
+  Left = 0
+  Top = 0
+  Caption = 'TTMSFNCMemo Demo'
+  ClientHeight = 796
+  ClientWidth = 696
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object DemoPages: TTMSFNCPageControl
+    Align = Client
+    Size.Width = 696.000000000000000000
+    Size.Height = 796.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    TabAppearance.Font.Name = 'Segoe UI'
+    TabAppearance.Fill.Color = xFFF6F8FC
+    TabAppearance.DownFill.Color = xFFA8BCF0
+    TabAppearance.DownStroke.Color = xFF2D9BEF
+    TabAppearance.HoverFill.Color = xFFEEF2F9
+    TabAppearance.HoverStroke.Color = xFF2D9BEF
+    TabAppearance.TextSpacing = 0.000000000000000000
+    TabAppearance.TextColor = xFF7A7A7A
+    TabAppearance.ActiveTextColor = xFF454545
+    TabAppearance.HoverTextColor = xFF7A7A7A
+    TabAppearance.DownTextColor = xFF454545
+    TabAppearance.ShowFocus = False
+    TabAppearance.CloseStroke.Width = 2.000000000000000000
+    TabAppearance.CloseDownStroke.Width = 2.000000000000000000
+    TabAppearance.CloseHoverStroke.Width = 2.000000000000000000
+    TabAppearance.BadgeFont.Color = claDarkred
+    TabAppearance.BadgeFont.Name = 'Segoe UI'
+    TabAppearance.BadgeFont.StyleExt = {00070000000000000004000000}
+    ButtonAppearance.CloseIcon.PNG = {
+      89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+      F8000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+      008B49444154484BED94610A80200C46A543D4FDAF5307A8DB940F1C9898CD9A
+      7FCA07A3D06F6F2894EBFC9B31D41DDADC091A665F8BAF89850BD82343B66A08
+      611AF7F0CC0D11B964AA4F910AE221A5BD2A722233B9100B575F5B7837910B88
+      9023A618A2920FE1590B43CC48AF484E627EFF22CCAD3DA2247A3DA4F98746B8
+      E9AF0268D03469739D6FE2DC018E043896F1AA75F10000000049454E44AE4260
+      82}
+    ButtonAppearance.CloseIcon.SVG = {
+      3C7376672077696474683D223234707822206865696768743D22323470782220
+      76696577426F783D223020302032342032342220786D6C6E733D22687474703A
+      2F2F7777772E77332E6F72672F323030302F737667222066696C6C3D226E6F6E
+      65223E3C70617468207374726F6B653D2263757272656E74436F6C6F72222073
+      74726F6B652D6C696E656361703D22726F756E6422207374726F6B652D6C696E
+      656A6F696E3D22726F756E6422207374726F6B652D77696474683D2232222064
+      3D224D3132203132203720376D352035203520356D2D352D3520352D356D2D35
+      20352D352035222F3E3C2F7376673E0D0A}
+    ButtonAppearance.InsertIcon.PNG = {
+      89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+      F8000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+      006849444154484B631805A380EE603E10F74398C40126284D2C500062030893
+      3840AA052483A16F012394C6064091891EDE20BE00101F00F310E00110274298
+      A8009F0F400661031FA03432C0A59664B01F8A8906A3A9882020D502506AC116
+      C9A36014D00C30300000452408F0B5C16AC80000000049454E44AE426082}
+    ButtonAppearance.InsertIcon.SVG = {
+      3C3F786D6C2076657273696F6E3D22312E30223F3E0D0A3C73766720786D6C6E
+      733D22687474703A2F2F7777772E77332E6F72672F323030302F737667222078
+      6D6C6E733A786C696E6B3D22687474703A2F2F7777772E77332E6F72672F3139
+      39392F786C696E6B222077696474683D223234707822206865696768743D2232
+      347078222076696577426F783D22302030203234203234222076657273696F6E
+      3D22312E31223E0D0A093C672069643D227375726661636531223E0D0A09093C
+      70617468207374796C653D22207374726F6B653A6E6F6E653B66696C6C2D7275
+      6C653A6E6F6E7A65726F3B66696C6C3A7267622830252C30252C3025293B6669
+      6C6C2D6F7061636974793A313B2220643D224D203132203620432031322E3431
+      3430363220362031322E373520362E3333353933382031322E373520362E3735
+      204C2031322E37352031312E3235204C2031372E32352031312E323520432031
+      372E3636343036322031312E32352031382031312E3538353933382031382031
+      3220432031382031322E3431343036322031372E3636343036322031322E3735
+      2031372E32352031322E3735204C2031322E37352031322E3735204C2031322E
+      37352031372E323520432031322E37352031372E3636343036322031322E3431
+      3430363220313820313220313820432031312E3538353933382031382031312E
+      32352031372E3636343036322031312E32352031372E3235204C2031312E3235
+      2031322E3735204C20362E37352031322E3735204320362E3333353933382031
+      322E373520362031322E3431343036322036203132204320362031312E353835
+      39333820362E3333353933382031312E323520362E37352031312E3235204C20
+      31312E32352031312E3235204C2031312E323520362E373520432031312E3235
+      20362E3333353933382031312E35383539333820362031322036205A204D2031
+      32203620222F3E0D0A093C2F673E0D0A3C2F7376673E0D0A}
+    ButtonAppearance.TabListIcon.PNG = {
+      89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+      F8000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+      006B49444154484BED92510A80300C437B0ABDFF75F4C71BE9020D5499D34205
+      3FF2200CD62C615013420C995C4FBCF59DC083A5696D9A71710366F0C09B2A81
+      190F773F7B250CA727FD8B6B402C19CD52F482CAC2490CDC5C65E12496948713
+      967C124EB029E96D11E2D7981DC6E41F8160CF6B660000000049454E44AE4260
+      82}
+    ButtonAppearance.TabListIcon.SVG = {
+      3C7376672077696474683D223234707822206865696768743D22323470782220
+      76696577426F783D223020302032342032342220786D6C6E733D22687474703A
+      2F2F7777772E77332E6F72672F323030302F737667223E3C7061746820737472
+      6F6B653D2263757272656E74436F6C6F7222207374726F6B652D6C696E656361
+      703D22726F756E6422207374726F6B652D6C696E656A6F696E3D22726F756E64
+      22207374726F6B652D77696474683D22322220643D226D31372031302D352035
+      2D352D35222066696C6C3D226E6F6E65222F3E3C2F7376673E0D0A}
+    ButtonAppearance.ScrollNextIcon.PNG = {
+      89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+      F8000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+      005549444154484B631805A30006C4A098260064F029203E0DC4E220016A0390
+      0520C3FF43699A58023274D412A201C8D00B400CB3046FEA6282D28306D03488
+      86AEE134CF68342F2A40006409DEE4380A462C6060000011B11CBCDEF84E8B00
+      00000049454E44AE426082}
+    ButtonAppearance.ScrollNextIcon.SVG = {
+      3C7376672077696474683D223234707822206865696768743D22323470782220
+      76696577426F783D223020302032342032342220786D6C6E733D22687474703A
+      2F2F7777772E77332E6F72672F323030302F737667223E3C706174682066696C
+      6C3D226E6F6E6522207374726F6B653D2263757272656E74436F6C6F72222073
+      74726F6B652D6C696E656361703D22726F756E6422207374726F6B652D6C696E
+      656A6F696E3D22726F756E6422207374726F6B652D77696474683D2232222064
+      3D226D31302037203520352D352035222F3E3C2F7376673E0D0A}
+    ButtonAppearance.ScrollPreviousIcon.PNG = {
+      89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+      F8000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+      005749444154484B631805A300171083629A0071203E0DC4A78098EA96C00CFF
+      0FA5A96A01BAE1203ED5C0D0351C14C630C32F0031C9863341E90105340D2218
+      18BE96D0A4B880594293A202064006D3CCF05130A4000303000B9D1CBC49FA68
+      BA0000000049454E44AE426082}
+    ButtonAppearance.ScrollPreviousIcon.SVG = {
+      3C7376672077696474683D223234707822206865696768743D22323470782220
+      76696577426F783D223020302032342032342220786D6C6E733D22687474703A
+      2F2F7777772E77332E6F72672F323030302F737667223E3C706174682066696C
+      6C3D226E6F6E6522207374726F6B653D2263757272656E74436F6C6F72222073
+      74726F6B652D6C696E656361703D22726F756E6422207374726F6B652D6C696E
+      656A6F696E3D22726F756E6422207374726F6B652D77696474683D2232222064
+      3D226D313420372D35203520352035222F3E3C2F7376673E0D0A}
+    TabSize.Margins.Left = 8.000000000000000000
+    TabSize.Margins.Top = 8.000000000000000000
+    TabSize.Margins.Right = 8.000000000000000000
+    TabSize.Margins.Bottom = 8.000000000000000000
+    Pages = <
+      item
+        Text = 'Basic Demo'
+        Bitmaps = <>
+        DisabledBitmaps = <>
+        UseDefaultAppearance = True
+      end
+      item
+        Text = 'Code Completion'
+        Bitmaps = <>
+        DisabledBitmaps = <>
+        UseDefaultAppearance = True
+      end
+      item
+        Text = 'Breakpoints'
+        Bitmaps = <>
+        DisabledBitmaps = <>
+        UseDefaultAppearance = True
+      end>
+    OnChangePage = DemoPagesChangePage
+    object TMSFNCPageControl1Page1: TTMSFNCPageControlContainer
+      Align = Client
+      Margins.Top = 29.000000000000000000
+      Size.Width = 696.000000000000000000
+      Size.Height = 767.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      TabStop = False
+      Visible = False
+      PageIndex = 1
+      IsActive = False
+      object CodeCompletionMemo: TTMSFNCMemo
+        Tag = 9
+        Align = Client
+        Size.Width = 696.000000000000000000
+        Size.Height = 767.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Readonly = False
+        Font.Family = 'Consolas'
+        Font.Name = 'Consolas'
+        Lines.Strings = (
+          'unit Main;'
+          ''
+          'interface'
+          ''
+          'uses'
+          
+            '  System.SysUtils, System.Types, System.UITypes, System.Classes,' +
+            ' System.Variants,'
+          '  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,'
+          
+            '  FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSF' +
+            'NCGraphicsTypes,'
+          
+            '  FMX.TMSFNCCustomControl, FMX.TMSFNCWebBrowser, FMX.TMSFNCCusto' +
+            'mWEBControl,'
+          
+            '  FMX.TMSFNCMemo, FMX.TMSFNCToolBar, FMX.TMSFNCPageControl, FMX.' +
+            'TMSFNCTabSet,'
+          '  FMX.Controls.Presentation, FMX.Edit, FMX.TMSFNCComboBox,'
+          '  FMX.TMSFNCCustomPicker, FMX.TMSFNCFontSizePicker;'
+          ''
+          'type'
+          '  TForm2 = class(TForm)'
+          '    DemoPages: TTMSFNCPageControl;'
+          '    TMSFNCPageControl1Page0: TTMSFNCPageControlContainer;'
+          '    TMSFNCPageControl1Page1: TTMSFNCPageControlContainer;'
+          '    TMSFNCPageControl1Page2: TTMSFNCPageControlContainer;'
+          '    TMSFNCToolBar1: TTMSFNCToolBar;'
+          '    BasicMemo: TTMSFNCMemo;'
+          '    OpenFile: TTMSFNCToolBarButton;'
+          '    SaveFile: TTMSFNCToolBarButton;'
+          '    Search: TTMSFNCToolBarButton;'
+          '    OpenDialog1: TOpenDialog;'
+          '    FIndEdit: TEdit;'
+          '    Replace: TTMSFNCToolBarButton;'
+          '    ReplaceEdit: TEdit;'
+          '    TMSFNCToolBarFontNamePicker1: TTMSFNCToolBarFontNamePicker;'
+          '    TMSFNCFontSizePicker1: TTMSFNCFontSizePicker;'
+          '    ThemeComboBox: TTMSFNCComboBox;'
+          '    CodeCompletionMemo: TTMSFNCMemo;'
+          '    BreakpointsMemo: TTMSFNCMemo;'
+          '    TMSFNCToolBar2: TTMSFNCToolBar;'
+          '    StartDebug: TTMSFNCToolBarButton;'
+          '    StepPrevious: TTMSFNCToolBarButton;'
+          '    StepNext: TTMSFNCToolBarButton;'
+          '    SkipToBreakPoint: TTMSFNCToolBarButton;'
+          '    StopDebugging: TTMSFNCToolBarButton;'
+          '    procedure OpenFileClick(Sender: TObject);'
+          '    procedure SaveFileClick(Sender: TObject);'
+          '    procedure SearchClick(Sender: TObject);'
+          '    procedure ReplaceClick(Sender: TObject);'
+          
+            '    procedure TMSFNCToolBarFontNamePicker1FontNameSelected(Sende' +
+            'r: TObject;'
+          '      AFontName: string);'
+          
+            '    procedure TMSFNCFontSizePicker1FontSizeSelected(Sender: TObj' +
+            'ect;'
+          '      AFontSize: Single);'
+          
+            '    procedure ThemeComboBoxItemSelected(Sender: TObject; AText: ' +
+            'string;'
+          '      AItemIndex: Integer);'
+          '    procedure FormCreate(Sender: TObject);'
+          
+            '    procedure CodeCompletionMemoGetCodeCompletion(Sender: TObjec' +
+            't; Token: string;'
+          '      CustomCompletionList: TTMSFNCMemoCodeCompletion;'
+          '      Position: TTMSFNCMemoCaretPosition);'
+          
+            '    procedure BreakpointsMemoGutterClick(Sender: TObject; LineNu' +
+            'mber: Integer);'
+          
+            '    procedure BreakpointsMemoGutterRightClick(Sender: TObject; L' +
+            'ineNumber: Integer);'
+          '    procedure StartDebugClick(Sender: TObject);'
+          '    procedure StepPreviousClick(Sender: TObject);'
+          '    procedure StepNextClick(Sender: TObject);'
+          '    procedure SkipToBreakPointClick(Sender: TObject);'
+          '    procedure StopDebuggingClick(Sender: TObject);'
+          '  private'
+          '    { Private declarations }'
+          '    FActiveLine: Integer;'
+          '  public'
+          '    { Public declarations }'
+          '  end;'
+          ''
+          'var'
+          '  Form2: TForm2;'
+          ''
+          'implementation'
+          ''
+          '{$R *.fmx}'
+          ''
+          'procedure TForm2.FormCreate(Sender: TObject);'
+          'begin'
+          
+            '  TMSFNCToolBarFontNamePicker1.SelectedFontName := BasicMemo.Fon' +
+            't.Name;'
+          '  TMSFNCFontSizePicker1.SelectedFontSize := BasicMemo.Font.Size;'
+          'end;'
+          ''
+          
+            'procedure TForm2.ThemeComboBoxItemSelected(Sender: TObject; ATex' +
+            't: string;'
+          '  AItemIndex: Integer);'
+          'begin'
+          '  case AITemIndex of'
+          '    0: BasicMemo.Theme := TTMSFNCMemoTheme.mtVisualStudio;'
+          '    1: BasicMemo.Theme := TTMSFNCMemoTheme.mtVisualStudioDark;'
+          '    2: BasicMemo.Theme := TTMSFNCMemoTheme.mtHighContrastDark;'
+          '  end;'
+          'end;'
+          ''
+          
+            'procedure TForm2.TMSFNCFontSizePicker1FontSizeSelected(Sender: T' +
+            'Object;'
+          '  AFontSize: Single);'
+          'begin'
+          '  BasicMemo.Font.Size := AFontSize;'
+          'end;'
+          ''
+          
+            'procedure TForm2.CodeCompletionMemoGetCodeCompletion(Sender: TOb' +
+            'ject; Token: string;'
+          '  CustomCompletionList: TTMSFNCMemoCodeCompletion;'
+          '  Position: TTMSFNCMemoCaretPosition);'
+          'begin'
+          '  CustomCompletionList.Add('#39'console.log'#39');'
+          '  CustomCompletionList.Add('#39'IntToStr('#39');'
+          '  CustomCompletionList.Add('#39'StrToInt('#39');'
+          'end;'
+          ''
+          
+            'procedure TForm2.BreakpointsMemoGutterClick(Sender: TObject; Lin' +
+            'eNumber: Integer);'
+          'begin'
+          
+            '  BreakPointsMemo.BreakPoints[LineNumber] := not BreakPointsMemo' +
+            '.BreakPoints[LineNumber];'
+          'end;'
+          ''
+          
+            'procedure TForm2.BreakpointsMemoGutterRightClick(Sender: TObject' +
+            ';'
+          '  LineNumber: Integer);'
+          'begin'
+          
+            '  BreakPointsMemo.BookMarks[LineNumber] := not BreakPointsMemo.B' +
+            'ookMarks[LineNumber];'
+          'end;'
+          ''
+          'procedure TForm2.OpenFileClick(Sender: TObject);'
+          'begin'
+          '  if OpenDialog1.Execute then'
+          '    BasicMemo.Lines.LoadFromFile(OpenDialog1.Files[0]);'
+          'end;'
+          ''
+          'procedure TForm2.SaveFileClick(Sender: TObject);'
+          'begin'
+          '  if OpenDialog1.Files.Count > 0 then'
+          '    BasicMemo.Lines.SaveToFile(OpenDialog1.Files[0])'
+          '  else'
+          '  begin'
+          '    if OpenDialog1.Execute then'
+          '      BasicMemo.Lines.SaveToFile(OpenDialog1.Files[0]);'
+          '  end;'
+          'end;'
+          ''
+          'procedure TForm2.SearchClick(Sender: TObject);'
+          'begin'
+          '  BasicMemo.FindNext(FindEdit.Text);'
+          'end;'
+          ''
+          'procedure TForm2.ReplaceClick(Sender: TObject);'
+          'begin'
+          '  BasicMemo.ReplaceNext(FindEdit.Text, ReplaceEdit.Text);'
+          'end;'
+          ''
+          'procedure TForm2.StartDebugClick(Sender: TObject);'
+          'var'
+          '  i: Integer;'
+          'begin'
+          '  for i := 0 to BreakPointsMemo.Lines.Count -1 do'
+          '  begin'
+          '    if BreakPointsMemo.BreakPoints[i] = true then'
+          '    begin'
+          '      FActiveLine := i;'
+          '      BreakPointsMemo.LineHighlight[i] := true;'
+          '      exit;'
+          '    end;'
+          '  end;'
+          ''
+          '  TTMSFNCUtils.Message('#39'no breakpoints found'#39');'
+          'end;'
+          ''
+          'procedure TForm2.StepPreviousClick(Sender: TObject);'
+          'begin'
+          '  BreakPointsMemo.LineHighlight[FActiveLine] := false;'
+          ''
+          '  if FActiveLine = 0 then'
+          '    FActiveLine := BreakPointsMemo.Lines.Count -1'
+          '  else'
+          '    dec(FActiveLIne);'
+          '  BreakPointsMemo.LineHighlight[FActiveLine] := true;'
+          'end;'
+          ''
+          'procedure TForm2.StepNextClick(Sender: TObject);'
+          'begin'
+          '  BreakPointsMemo.LineHighlight[FActiveLine] := false;'
+          ''
+          '  if FActiveLine = BreakPointsMemo.Lines.Count -1 then'
+          '    FActiveLine := 0'
+          '  else'
+          '    inc(FActiveLIne);'
+          ''
+          '  BreakPointsMemo.LineHighlight[FActiveLine] := true;'
+          'end;'
+          ''
+          'procedure TForm2.SkipToBreakPointClick(Sender: TObject);'
+          'var'
+          '  i: Integer;'
+          'begin'
+          '  BreakPointsMemo.LineHighlight[FActiveLine] := false;'
+          '  inc(FActiveLine);'
+          '  for i := FActiveLine to BreakPointsMemo.Lines.Count -1 do'
+          '  begin'
+          '    if BreakPointsMemo.BreakPoints[i] = true then'
+          '    begin'
+          '      FActiveLine := i;'
+          '      BreakPointsMemo.LineHighlight[i] := true;'
+          '      exit;'
+          '    end;'
+          '  end;'
+          ''
+          
+            '  i := TTMSFNCUtils.Message('#39'no breakpoints found! Go to beginni' +
+            'ng of file?'#39', TMsgDlgType.mtInformation, mbYesNo, 0 );'
+          ''
+          '  if i = 6 then'
+          '  begin'
+          '    StartDebugClick(Self);'
+          '  end;'
+          ''
+          'end;'
+          ''
+          'procedure TForm2.StopDebuggingClick(Sender: TObject);'
+          'begin'
+          '  BreakPointsMemo.LineHighlight[FActiveLine] := false;'
+          'end;'
+          ''
+          
+            'procedure TForm2.TMSFNCToolBarFontNamePicker1FontNameSelected(Se' +
+            'nder: TObject;'
+          '  AFontName: string);'
+          'begin'
+          '  BasicMemo.Font.Name := AFontName;'
+          'end;'
+          ''
+          'end.')
+        CompletionList = <
+          item
+            Name = 'ifelse'
+            Kind = skSnippet
+            Documentation = 'insert if else snippet'
+            InsertText.Strings = (
+              'if ${1:condition} then'
+              'begin'
+              '  $2'
+              'end'
+              'else'
+              'begin'
+              '  $3'
+              'end;')
+            InsertTextRules = itrInsertAsSnippet
+            Preselect = False
+          end>
+        LibraryLocation = llOffline
+        OnGetCodeCompletion = CodeCompletionMemoGetCodeCompletion
+      end
+    end
+    object TMSFNCPageControl1Page2: TTMSFNCPageControlContainer
+      Align = Client
+      Margins.Top = 29.000000000000000000
+      Size.Width = 696.000000000000000000
+      Size.Height = 767.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      TabStop = False
+      Visible = False
+      PageIndex = 2
+      IsActive = False
+      object BreakpointsMemo: TTMSFNCMemo
+        Align = Client
+        Size.Width = 696.000000000000000000
+        Size.Height = 737.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Readonly = False
+        Font.Family = 'Consolas'
+        Font.Name = 'Consolas'
+        Lines.Strings = (
+          'unit Main;'
+          ''
+          'interface'
+          ''
+          'uses'
+          
+            '  System.SysUtils, System.Types, System.UITypes, System.Classes,' +
+            ' System.Variants,'
+          '  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,'
+          
+            '  FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSF' +
+            'NCGraphicsTypes,'
+          
+            '  FMX.TMSFNCCustomControl, FMX.TMSFNCWebBrowser, FMX.TMSFNCCusto' +
+            'mWEBControl,'
+          
+            '  FMX.TMSFNCMemo, FMX.TMSFNCToolBar, FMX.TMSFNCPageControl, FMX.' +
+            'TMSFNCTabSet,'
+          '  FMX.Controls.Presentation, FMX.Edit, FMX.TMSFNCComboBox,'
+          '  FMX.TMSFNCCustomPicker, FMX.TMSFNCFontSizePicker;'
+          ''
+          'type'
+          '  TForm2 = class(TForm)'
+          '    DemoPages: TTMSFNCPageControl;'
+          '    TMSFNCPageControl1Page0: TTMSFNCPageControlContainer;'
+          '    TMSFNCPageControl1Page1: TTMSFNCPageControlContainer;'
+          '    TMSFNCPageControl1Page2: TTMSFNCPageControlContainer;'
+          '    TMSFNCToolBar1: TTMSFNCToolBar;'
+          '    BasicMemo: TTMSFNCMemo;'
+          '    OpenFile: TTMSFNCToolBarButton;'
+          '    SaveFile: TTMSFNCToolBarButton;'
+          '    Search: TTMSFNCToolBarButton;'
+          '    OpenDialog1: TOpenDialog;'
+          '    FIndEdit: TEdit;'
+          '    Replace: TTMSFNCToolBarButton;'
+          '    ReplaceEdit: TEdit;'
+          '    TMSFNCToolBarFontNamePicker1: TTMSFNCToolBarFontNamePicker;'
+          '    TMSFNCFontSizePicker1: TTMSFNCFontSizePicker;'
+          '    ThemeComboBox: TTMSFNCComboBox;'
+          '    CodeCompletionMemo: TTMSFNCMemo;'
+          '    BreakpointsMemo: TTMSFNCMemo;'
+          '    TMSFNCToolBar2: TTMSFNCToolBar;'
+          '    StartDebug: TTMSFNCToolBarButton;'
+          '    StepPrevious: TTMSFNCToolBarButton;'
+          '    StepNext: TTMSFNCToolBarButton;'
+          '    SkipToBreakPoint: TTMSFNCToolBarButton;'
+          '    StopDebugging: TTMSFNCToolBarButton;'
+          '    procedure OpenFileClick(Sender: TObject);'
+          '    procedure SaveFileClick(Sender: TObject);'
+          '    procedure SearchClick(Sender: TObject);'
+          '    procedure ReplaceClick(Sender: TObject);'
+          
+            '    procedure TMSFNCToolBarFontNamePicker1FontNameSelected(Sende' +
+            'r: TObject;'
+          '      AFontName: string);'
+          
+            '    procedure TMSFNCFontSizePicker1FontSizeSelected(Sender: TObj' +
+            'ect;'
+          '      AFontSize: Single);'
+          
+            '    procedure ThemeComboBoxItemSelected(Sender: TObject; AText: ' +
+            'string;'
+          '      AItemIndex: Integer);'
+          '    procedure FormCreate(Sender: TObject);'
+          
+            '    procedure CodeCompletionMemoGetCodeCompletion(Sender: TObjec' +
+            't; Token: string;'
+          '      CustomCompletionList: TTMSFNCMemoCodeCompletion;'
+          '      Position: TTMSFNCMemoCaretPosition);'
+          
+            '    procedure BreakpointsMemoGutterClick(Sender: TObject; LineNu' +
+            'mber: Integer);'
+          
+            '    procedure BreakpointsMemoGutterRightClick(Sender: TObject; L' +
+            'ineNumber: Integer);'
+          '    procedure StartDebugClick(Sender: TObject);'
+          '    procedure StepPreviousClick(Sender: TObject);'
+          '    procedure StepNextClick(Sender: TObject);'
+          '    procedure SkipToBreakPointClick(Sender: TObject);'
+          '    procedure StopDebuggingClick(Sender: TObject);'
+          '  private'
+          '    { Private declarations }'
+          '    FActiveLine: Integer;'
+          '  public'
+          '    { Public declarations }'
+          '  end;'
+          ''
+          'var'
+          '  Form2: TForm2;'
+          ''
+          'implementation'
+          ''
+          '{$R *.fmx}'
+          ''
+          'procedure TForm2.FormCreate(Sender: TObject);'
+          'begin'
+          
+            '  TMSFNCToolBarFontNamePicker1.SelectedFontName := BasicMemo.Fon' +
+            't.Name;'
+          '  TMSFNCFontSizePicker1.SelectedFontSize := BasicMemo.Font.Size;'
+          'end;'
+          ''
+          
+            'procedure TForm2.ThemeComboBoxItemSelected(Sender: TObject; ATex' +
+            't: string;'
+          '  AItemIndex: Integer);'
+          'begin'
+          '  case AITemIndex of'
+          '    0: BasicMemo.Theme := TTMSFNCMemoTheme.mtVisualStudio;'
+          '    1: BasicMemo.Theme := TTMSFNCMemoTheme.mtVisualStudioDark;'
+          '    2: BasicMemo.Theme := TTMSFNCMemoTheme.mtHighContrastDark;'
+          '  end;'
+          'end;'
+          ''
+          
+            'procedure TForm2.TMSFNCFontSizePicker1FontSizeSelected(Sender: T' +
+            'Object;'
+          '  AFontSize: Single);'
+          'begin'
+          '  BasicMemo.Font.Size := AFontSize;'
+          'end;'
+          ''
+          
+            'procedure TForm2.CodeCompletionMemoGetCodeCompletion(Sender: TOb' +
+            'ject; Token: string;'
+          '  CustomCompletionList: TTMSFNCMemoCodeCompletion;'
+          '  Position: TTMSFNCMemoCaretPosition);'
+          'begin'
+          '  CustomCompletionList.Add('#39'console.log'#39');'
+          '  CustomCompletionList.Add('#39'IntToStr('#39');'
+          '  CustomCompletionList.Add('#39'StrToInt('#39');'
+          'end;'
+          ''
+          
+            'procedure TForm2.BreakpointsMemoGutterClick(Sender: TObject; Lin' +
+            'eNumber: Integer);'
+          'begin'
+          
+            '  BreakPointsMemo.BreakPoints[LineNumber] := not BreakPointsMemo' +
+            '.BreakPoints[LineNumber];'
+          'end;'
+          ''
+          
+            'procedure TForm2.BreakpointsMemoGutterRightClick(Sender: TObject' +
+            ';'
+          '  LineNumber: Integer);'
+          'begin'
+          
+            '  BreakPointsMemo.BookMarks[LineNumber] := not BreakPointsMemo.B' +
+            'ookMarks[LineNumber];'
+          'end;'
+          ''
+          'procedure TForm2.OpenFileClick(Sender: TObject);'
+          'begin'
+          '  if OpenDialog1.Execute then'
+          '    BasicMemo.Lines.LoadFromFile(OpenDialog1.Files[0]);'
+          'end;'
+          ''
+          'procedure TForm2.SaveFileClick(Sender: TObject);'
+          'begin'
+          '  if OpenDialog1.Files.Count > 0 then'
+          '    BasicMemo.Lines.SaveToFile(OpenDialog1.Files[0])'
+          '  else'
+          '  begin'
+          '    if OpenDialog1.Execute then'
+          '      BasicMemo.Lines.SaveToFile(OpenDialog1.Files[0]);'
+          '  end;'
+          'end;'
+          ''
+          'procedure TForm2.SearchClick(Sender: TObject);'
+          'begin'
+          '  BasicMemo.FindNext(FindEdit.Text);'
+          'end;'
+          ''
+          'procedure TForm2.ReplaceClick(Sender: TObject);'
+          'begin'
+          '  BasicMemo.ReplaceNext(FindEdit.Text, ReplaceEdit.Text);'
+          'end;'
+          ''
+          'procedure TForm2.StartDebugClick(Sender: TObject);'
+          'var'
+          '  i: Integer;'
+          'begin'
+          '  for i := 0 to BreakPointsMemo.Lines.Count -1 do'
+          '  begin'
+          '    if BreakPointsMemo.BreakPoints[i] = true then'
+          '    begin'
+          '      FActiveLine := i;'
+          '      BreakPointsMemo.LineHighlight[i] := true;'
+          '      exit;'
+          '    end;'
+          '  end;'
+          ''
+          '  TTMSFNCUtils.Message('#39'no breakpoints found'#39');'
+          'end;'
+          ''
+          'procedure TForm2.StepPreviousClick(Sender: TObject);'
+          'begin'
+          '  BreakPointsMemo.LineHighlight[FActiveLine] := false;'
+          ''
+          '  if FActiveLine = 0 then'
+          '    FActiveLine := BreakPointsMemo.Lines.Count -1'
+          '  else'
+          '    dec(FActiveLIne);'
+          '  BreakPointsMemo.LineHighlight[FActiveLine] := true;'
+          'end;'
+          ''
+          'procedure TForm2.StepNextClick(Sender: TObject);'
+          'begin'
+          '  BreakPointsMemo.LineHighlight[FActiveLine] := false;'
+          ''
+          '  if FActiveLine = BreakPointsMemo.Lines.Count -1 then'
+          '    FActiveLine := 0'
+          '  else'
+          '    inc(FActiveLIne);'
+          ''
+          '  BreakPointsMemo.LineHighlight[FActiveLine] := true;'
+          'end;'
+          ''
+          'procedure TForm2.SkipToBreakPointClick(Sender: TObject);'
+          'var'
+          '  i: Integer;'
+          'begin'
+          '  BreakPointsMemo.LineHighlight[FActiveLine] := false;'
+          '  inc(FActiveLine);'
+          '  for i := FActiveLine to BreakPointsMemo.Lines.Count -1 do'
+          '  begin'
+          '    if BreakPointsMemo.BreakPoints[i] = true then'
+          '    begin'
+          '      FActiveLine := i;'
+          '      BreakPointsMemo.LineHighlight[i] := true;'
+          '      exit;'
+          '    end;'
+          '  end;'
+          ''
+          
+            '  i := TTMSFNCUtils.Message('#39'no breakpoints found! Go to beginni' +
+            'ng of file?'#39', TMsgDlgType.mtInformation, mbYesNo, 0 );'
+          ''
+          '  if i = 6 then'
+          '  begin'
+          '    StartDebugClick(Self);'
+          '  end;'
+          ''
+          'end;'
+          ''
+          'procedure TForm2.StopDebuggingClick(Sender: TObject);'
+          'begin'
+          '  BreakPointsMemo.LineHighlight[FActiveLine] := false;'
+          'end;'
+          ''
+          
+            'procedure TForm2.TMSFNCToolBarFontNamePicker1FontNameSelected(Se' +
+            'nder: TObject;'
+          '  AFontName: string);'
+          'begin'
+          '  BasicMemo.Font.Name := AFontName;'
+          'end;'
+          ''
+          'end.')
+        Options.GlyphMargin = True
+        CompletionList = <>
+        LibraryLocation = llOffline
+        OnGutterClick = BreakpointsMemoGutterClick
+        OnGutterRightClick = BreakpointsMemoGutterRightClick
+      end
+      object TMSFNCToolBar2: TTMSFNCToolBar
+        Align = Top
+        Size.Width = 696.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        CompactBitmaps = <>
+        Font.Name = 'Segoe UI'
+        OptionsMenu.ShowButton = False
+        object StartDebug: TTMSFNCToolBarButton
+          Position.X = 9.000000000000000000
+          Position.Y = 3.000000000000000000
+          Size.Width = 24.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 4
+          OnClick = StartDebugClick
+          Font.Name = 'Segoe UI'
+          Bitmaps = <
+            item
+              Bitmap.PNG = {
+                89504E470D0A1A0A0000000D4948445200000080000000800806000000C33E61
+                CB000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                069749444154785EED9D3F6C1B5500C6DF35458848884AED40864A1543333090
+                523908904A23C486927A8205B58ECB024B331426488105C1902E8581FC69D505
+                2627868DA1050921124ACCC0900C14A9030C450A42AA44C1B9DEE7BC97988BCF
+                679FEFEEFDB9EF2745F1BDF57EFEDE7BDF9DFC0421841042082184109211A595
+                6A4D7E24867040FECF05CF1367C6EBD3EBA5DAF93139443493AB003B7863DE90
+                BF5E5A993E270788463408B083E7794BA57A754E5E124D78F27F2E8CD7ABBEFC
+                D886DFF09ACDF20FE56BBFC9019223DA12600F6FCC1F3AB81EAC0DCEC8019223
+                0608D0E25020422D9060565E939C30600A08E337FE6936277E2E5FDB92032443
+                B426C0CC93AFC84FED78630F0F1DBCCDAD623E6815E0D5275E12D74FCD8A471F
+                1A9623BB1CC256717CA572415E938CD0BE0638FED851517BF143F1F4E15139D2
+                867760AEB4327D435E910C3062118804F8F4B98BAD4408E379DE69B687D961CA
+                2EA005D6049F3C7B515EB5C3F6302B8C12009C3C322A96832901534318B687E9
+                639C006064F8486B71D8714A10E202A684676A678FC9213200460AA0C094F0CE
+                58455EB5C3F6302D8C1600BC7CF4F9561A201542B03D4C01E30500580F605DF0
+                C2E327E4483BDE254C094FD5CE0642907EB14200C547A537BBB687276BD5D372
+                80F488550200D51E769A128686C40DB687FD619D000053C2F553EFB23D4C012B
+                0500AA3D7C7D74528EECC1F6B077AC154071FEF864AB3DDCFF4069A73DE494D0
+                1DEB0500680FF140A9537BD89A12D81E46E284000009C0F6B07F9C114011D31E
+                DE667BF87F9C1300A8F6B0E39420BC1AA7843D9C1400EC6C15675B3284515302
+                DB43870550603A607B188DF30200B687D1144200C0F6B033851100C4B587C1E2
+                B070AFA3174A0045547B182C0E8F15AD3D2CA40020AE3D1CAF5797E495D31456
+                00D0AD3D0C385784F6B0D00228B04DC4CB26FB71BF3DA40012BC6E56C4F69002
+                B4D14B7BE8DA9440013AD0AD3DC4EBE82EB587142082D8F6D091D7D129401754
+                7B18F53A3ADA43DB1F28518018B055C40E21AA3DB4FDC72C28408FA03DC49410
+                6E0F03ACFE310B0AD00798125C6B0F29409FF4D21EDA3425508084609BE8C28F
+                59508001C003A5A8F6D0961FB3A00003A2DA435B5F47A700298129C1C6F69002
+                A4888DED21054819DBDA430A900136B5871420436C680F2940C6A8F630FA7574
+                BD076951801C400244FF14AEDE83B428408E98D81E52809C31AD3DA4001A1819
+                3E2C461ED9D715B4F08205629EDB440A9033B7EE6E88D7BE7D5F7CF3C7BA1CD9
+                654BF8DB33AB930B953C8FCBA1003932BF59176FFF7845FC7EEFAE1C51F88DE0
+                AFB23AB574590EE40605C881BFFFBD27DE5ABB223EDBA8B73EB7E3FBFE4D1C92
+                B53AB9B82C87728502644C5CE4DFDF6E96759E90460132E4F35FBF8E88FCE0E6
+                CBC8D77D3C1E05C800C4FC078D2531F7CB171D23DF6BFE774257E487A10029B3
+                F9D71DF1C6F71F8BAFEE7C2747F6F085B88CC837E99C640A902298E771F32141
+                88ADE09B5F599B5C9831ED44540A90028879C43D56FAE1C80FBEF70D44FEDAD4
+                E255396014146040B0C0C37C8F055F18443EB678261F8D4F0106206E8B6762E4
+                87A1000950918F2D5EA7C86F36455947AB97040AD027B8E12AF2C3375FB57AB7
+                CA0B37E590F150803E888DFCA9C509D3233F0C05E8915E5A3D796D1514200615
+                F936B47A49A0005DB0ADD54B0205880037DDB6562F09142004621E718FD80F47
+                3EB67826B77A49A0006DE0DB6E73AB97040A20C1160F916F73AB9784C20BA022
+                3FAAD5F39BDE84AD5BBC5E28B400B8E171ADDE5A79BE21879CA4B002B8D8EA25
+                A19002B8DAEA25A15002A8C877B5D54B426104C0160F91EF72AB97844208A05A
+                BD88C82FBBBAC5EB05A70540CCC7B57A458BFC30CE0A80C8C74B9A456AF592E0
+                A400AAD5FBE9CF0D39B28B530F72D2C0290154E4E3E6778A7CB47A2E3DC84903
+                6704C00D8F7C905390562F094E08C0562F39D60BC0566F30AC1540453E5BBDC1
+                B052806EAD5E70FB2F15B5D54B82750220F2BBB57AC1B7FE3DCEF7BD638D006A
+                8BC7C84F172B0440E4E35B1FD5EA31F29363BC00AAD5830421D8EAA580B102A8
+                C867AB972D460A801B1EDDEA8965B67AE9619C00F1ADDE82D6DFD5730DA30488
+                6AF582855EB0C063AB9705460880C8C7B3FBA82DDE7D6EF13243BB00AAD58B8A
+                7C6CF118F9D9E1C9FFB9305EAF0669BE074ED098DFFCB2C32A5F3EC8E1B73E73
+                B40AD00944FE81ED6685C54E3E18B50864AB973FA624005A3DBCB8C16227670C
+                4800B67A3AD12DC055B67A7AD125406B8B97F70149643F1A04D0774012D94FAE
+                02608B87C8E7FEBEA098746E3E218410420821841411211E00392A546D4DE6E8
+                0D0000000049454E44AE426082}
+              Bitmap.SVG = {
+                3C73766720786D6C6E733D22687474703A2F2F7777772E77332E6F72672F3230
+                30302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F7777772E
+                77332E6F72672F313939392F786C696E6B222077696474683D22313238222068
+                65696768743D22313238222076696577426F783D223020302031323820313238
+                223E3C646566733E3C7374796C653E2E636C732D317B66696C6C3A6E6F6E653B
+                7D2E636C732D327B66696C6C3A233336623236333B7D2E636C732D337B66696C
+                6C3A236666663B7D2E636C732D347B66696C6C3A75726C28234E65775F506174
+                7465726E5F5377617463685F3132293B7D3C2F7374796C653E3C706174746572
+                6E2069643D224E65775F5061747465726E5F5377617463685F31322220646174
+                612D6E616D653D224E6577205061747465726E20537761746368203132222077
+                696474683D22363822206865696768743D22363822207061747465726E556E69
+                74733D227573657253706163654F6E557365222076696577426F783D22302030
+                203638203638223E3C7265637420636C6173733D22636C732D31222077696474
+                683D22363822206865696768743D223638222F3E3C7265637420636C6173733D
+                22636C732D32222077696474683D22363822206865696768743D223638222F3E
+                3C2F7061747465726E3E3C2F646566733E3C7469746C653E6D6D2D506C61792D
+                323C2F7469746C653E3C672069643D2249636F6E223E3C706F6C79676F6E2063
+                6C6173733D22636C732D332220706F696E74733D223239203131203239203131
+                37203938203634203239203131222F3E3C7061746820636C6173733D22636C73
+                2D342220643D224D32372C3132312E303656362E39344C3130312E32382C3634
+                5A6D342D3130367639372E38384C39342E37322C36345A222F3E3C2F673E3C2F
+                7376673E0D0A}
+            end>
+          LargeLayoutBitmaps = <>
+          DisabledBitmaps = <>
+          HoverBitmaps = <>
+          LargeLayoutDisabledBitmaps = <>
+          LargeLayoutHoverBitmaps = <>
+          BitmapVisible = True
+          ControlIndex = 0
+        end
+        object StepPrevious: TTMSFNCToolBarButton
+          Position.X = 36.000000000000000000
+          Position.Y = 3.000000000000000000
+          Size.Width = 24.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          OnClick = StepPreviousClick
+          Font.Name = 'Segoe UI'
+          Bitmaps = <
+            item
+              Bitmap.PNG = {
+                89504E470D0A1A0A0000000D4948445200000080000000800806000000C33E61
+                CB000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                064249444154785EEDDD4F681C551C07F037BBD582602D088562DA34851E140F
+                0D89F8A797E4A43D991EA49EA445F09C808978D1EA459A0AC939452CBD050FA9
+                27F5949EFC8329E921682120CD1F110A827F40D0263BBEDFCC7BB3D3C9CCECEC
+                ECCCBC7FDFCF6567DF75BFF9BD79DF1D360C0000000000000094185E583F7AF2
+                DA9DCFC5DB46B4C42B28363CFFC3D9CE5E67955F5E0A579A810068E0996B3F4E
+                74587BD563ECAC586A0C02A09018F90B6DD65AF53CEFA8586E1402A0087DF8FE
+                5E87F6FBE970450D04408160E4EFEDAFF3CBA970451D04A06127E7D73E6CF9DE
+                8AC7BC536249297EDF014D888DFC9E7FF5DBB3638D7D2E98000DC81AF9470EB7
+                D9079343E29D1A0840CD4ECCAF4DA78D7CFAF03F7D6D98BD3D764CACA88100D4
+                44B67AFC78B7903CE2BD74E249F6D55BCFB257CF2839F93D0201A8415EAB477F
+                F1D7A74EB3A1A71E172B6A2100151BBABA3695D6EAC9914F7B3E5DEB0201A888
+                6CF55A2DBEDF2746FE73C79E0846FE1BCF3F2D56F481005460F893F55359AD1E
+                7DE8CB17CF6833F2931080010547BC76F6118FC6BE4E233F090128291AF974C4
+                4B19F94BFC464FF511AF0804A084F8173969473C1AF92FF3571320007DEAD5EA
+                D187AFF3C84F4200FAA07BAB570602508029AD5E1908400F26B57A65200039F8
+                C8BF6452AB57060290421EF1F8B8A7B16F4CAB5706029040233FABD5A391AF73
+                AB57060210231FCFE697A9473C1B467E1202C0F56AF5E8AFDEC4235E11CE07A0
+                48AB4721B095D301B0ADD52BC3D900D8D8EA95E15C006C6EF5CA702A0061AB17
+                8C7C2B5BBD329C0940B7D53B38F2975E3F6DE511AF08EB0350A4D57369E42759
+                1D8060E43FECACF04B275ABD32AC0D806CF53C8F4D88A580BCCB7775E4275917
+                0039F2D37E7441B67AB67C915305AB02106FF5C2952E175ABD32AC09005ABD72
+                AC08005ABDF28C0E005ABDC1191B80BC566FE695E34EB67A651819001AF979AD
+                DE340F00F6FB628C0A40ACD5C3C8AF883101883D9E9DDAEA61E497634400A256
+                CFE2C7B355D13A0068F5EAA76D00F25A3DDAE7D1EA5543CB00F46AF5E84E1F23
+                BF1ADA0520ABD5A31B3CB47AD5D3260062BFA7E7F271C46B90160188B57AA923
+                9F8E7818F9F5501E80BC564F8E7C7CF8F55116007C91A307250188B57A783C5B
+                B1C60380564F2F8D0500AD9E9E1A0BC0D6CCE81FE232D591C387C41534A9D12D
+                607B766CC6F7FD19F136F2D3837FD8F99B3FB36F367333023568FC1E60676E7C
+                D1F3F7467DE6DF174B81BFFEDD67EF7CF90B5BFCF637B1024D683C00646BEEC5
+                BB3BB3E323FCF256B8D2B5C00370FEE6BD2010503F250190F89670216B4B38B7
+                B411BC42BD940680445B82EF3F720340138026C167771E8815A883F20010DA12
+                5A8FB5477C9FDD164B918F5777D9C5E54DF10EAAA64500081D1377E6C62699EF
+                5F114B91EF77FE0EA601B684EA691300697B6EFCA37DD699146F23E151F11EFB
+                62E377B10255D02E00E4D7D9176E7B7BAD119FB1BB6229F2EED75BC1B600D5D0
+                320064EBFDD1FB3BB363A3FC72315CE9A21B439A06BB7FFE2756A02C6D032089
+                F6F0B2781B417B580DED0340F851F106DAC37A18110082F6B01EC60440EAD51E
+                7EC78F8C509C710120795F28BDB9BC89F6B00F46068004EDE1A1F628DAC3C118
+                1B0082F6707046074092ED61F20B25D91E624BC866450008B587C1174A29ED21
+                6D09680FD3591300126C09680FFB625500A4BCF6F0DCF50DB4873156068074DB
+                C3835B02B587D81242D6068084ED61B025DC0857BAE496E07A7B68750024BE25
+                5C467B98CE890010B487E99C0900417B7890530120BDDA433A25B8D41E3A1700
+                29AB3DA49EC0A5F6D0D900905EED213D7F683BA70340F2DA437A02D9F6F6D0F9
+                0048D41E763AFE05F136627B7B8800C4ECBE377ECBB5F610014828D21EDAB425
+                200019F2DA437A1CDD96F61001C8D1AB3DB4E1717404A007D91EF2CBD4C7D1A9
+                3D34F90B2504A0003A2AD2E3E899EDA1C13F668100F481DAC3604BB0E8C72C10
+                803E055B8245ED2102504291F6D0942D01011800B587A6FF98050230A0E0C72C
+                32DA43137ECC0201A880C9ED2102502113DB4304A062A6B58708400D4C6A0F11
+                809A98D21E220035D3BD3DF4C42BD48CFE634AE76167C5F3D88458CAC4274763
+                9F0B264043A2C7D153DA439510808665B587AA20000AE4B5874D43001489B587
+                4AB704044031DA12D2DAC3A620001AC86A0FC141F42FF4C52500000000000040
+                B518FB1F1CCAE3E8BD7964A50000000049454E44AE426082}
+              Bitmap.SVG = {
+                3C73766720786D6C6E733D22687474703A2F2F7777772E77332E6F72672F3230
+                30302F737667222077696474683D2231323822206865696768743D2231323822
+                2076696577426F783D223020302031323820313238223E3C646566733E3C7374
+                796C653E2E636C732D317B66696C6C3A236666663B7D2E636C732D327B66696C
+                6C3A233165386263643B7D3C2F7374796C653E3C2F646566733E3C7469746C65
+                3E6D6D2D4261636B2D323C2F7469746C653E3C672069643D2249636F6E223E3C
+                706F6C79676F6E20636C6173733D22636C732D312220706F696E74733D223939
+                20313120393920313137203330203634203939203131222F3E3C706174682063
+                6C6173733D22636C732D322220643D224D32362E37322C36342C3130312C362E
+                3934563132312E30365A6D362E35362C304C39372C3131322E39345631352E30
+                365A222F3E3C2F673E3C2F7376673E0D0A}
+            end>
+          LargeLayoutBitmaps = <>
+          DisabledBitmaps = <>
+          HoverBitmaps = <>
+          LargeLayoutDisabledBitmaps = <>
+          LargeLayoutHoverBitmaps = <>
+          BitmapVisible = True
+          ControlIndex = 1
+        end
+        object StepNext: TTMSFNCToolBarButton
+          Position.X = 63.000000000000000000
+          Position.Y = 3.000000000000000000
+          Size.Width = 24.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          OnClick = StepNextClick
+          Font.Name = 'Segoe UI'
+          Bitmaps = <
+            item
+              Bitmap.PNG = {
+                89504E470D0A1A0A0000000D4948445200000080000000800806000000C33E61
+                CB000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                069049444154785EED9D4F681C551CC7DF6CA205411B100A629216A150258786
+                44FC736A4EEAC9E620F5541AA4392760235EB4F5226E84E42C488B278B87C653
+                F5945EEA1FCCB23D881E0A6DD3448482501504FF6CC6F79B7D2FBB999DD9999D
+                9D797FBF1F28D97D3DCE67BFBF79DF5DE6310000000000000000A02226571BD7
+                C44B600835F15715A727561BCDA3F5EF4F8AF74033AA0560016327C360B43951
+                DF3A27968046940B200982E0321F096BE22DD004FF40AA835FF050BCDC872FDC
+                AAFD579BDF7E77FA9E58020AD19600121A097B23ADE6F8475BA7C51250887601
+                083E0EC66AB5E0DA647DEB7DB10414A17D04C48946C2686D6E7B79FAA1580215
+                A23501DE9B1B17AF3A4423E1DFD65D6C15D5A05580B7668EB0EB674FB0270E8D
+                8895363412C45671492C818AD07E0FF0DC91C7D8CDC529F6E2C4E362A5031761
+                6DA2DED8146F4105187113480970F5CCF12811E204013B85F6B03A8C104042F7
+                049F7311E2A03DAC0EA304205EE2A3E0E6F9A96834C4417B583EC609408C1F7E
+                34BA394C1A099CA568247CD83C26DE8321305200098D848F5F3D2ADE75407B58
+                1E460B40BC31F5649406940ADDA03D2C07E30520A2AD22BF2F78E5F89858E922
+                082E462361AD99F09F200B2B04907CF2FA337DDBC3A7577F382596404EAC1280
+                90ED61D2481861B54DB48783619D00048D84EB679F457B5802560A40C8F670F9
+                E5A7C44A07B487F9B15600C9121780DAC39E2F943AED2146421FAC178088DAC3
+                C5D4F6700DED613A4E08405002A03D1C1C670490F46B0FC3D1BDBB680F0FE29C
+                00846C0F934642D41E6224ECE3A400447BAB7822922181F648407BE8AE00121A
+                07680FD3715E0002ED613A5E0840A03D4CC61B0188ECF670CBBB9FA37B258024
+                BD3D0C8EF9D61E7A290091A33DBC2CDE3A8DB7021019EDE1391FDA43AF0590D0
+                36917E6C12C787F6100208E8E7663EB68710A08B5CEDA16323010224D0B73D1C
+                69355D6A0F21400A59EDA12B3F4787007D90ED61EACFD1EB8D4DDBBF50820019
+                D05691760869EDA1ED0FB3800039A1F69046424F7B68F9C32C20C000D04870AD
+                3D84000392AB3DB46824408082D036D1858759408021A02F94D2DA433E12AC78
+                9805041812D91EDAFA737408501234126C6C0F214089D8D81E428092B1AD3D84
+                001560537B08012AC486F61002548C6C0FD37E8ECEB78A5A0FD282000AA00448
+                7B142E47EB415A10402126B687104031A6B587104003E3870FB1895857D0C598
+                CA6D220450CCB73B7FB2D73EFB997D7DFBE0893861183EE4FF96EF5F98595079
+                5C0E0450C8FA37BFB2C58D3B6CF7F77FC44A1B3A27290CD9C2CECAECBA585206
+                0450C01F7FB7D8E29777D81A17805E77C32FFC0D3A246BF79DD90DB1A4140850
+                3159915F7BA436AFF384340850219F361E24477E74F1DB91AFFB783C08500114
+                F36F7FB5CD3ED8DC4D8EFCD6C8B4AEC88F03014AE6A7077FB133576FB32F7EFC
+                4DAC1C603D8A7C83CE4986002542739E2E3E49D08D98F70B7C8BB76CDA89A810
+                A00428E629EEE94EBF27F2E9285C1EF97CDE5F114B46010186846EF068DED30D
+                5F02EBD139C8061F8D0F01862047AB675CE4C7810005D88F7CBEC54B8AFCBD20
+                9CD7D1EA1501020C085D7019F93D175FB47ABF5C78FE8658321E0830005991BF
+                B33233677AE4C7810039C9D3EA8925AB800019C8C8B7A1D52B0204E8836DAD5E
+                1120400A74D16D6BF58A00016250CC53DC53ECF744BEE1AD5E11204017F469B7
+                B9D52B020410D0168F22DFE656AF08DE0B20233FADD5ABB1D69CAD5BBC3C782D
+                005DF0AC566F7BE5855B62C949BC15C0C556AF085E0AE06AAB5704AF049091EF
+                6AAB57046F04A02D1E45BECBAD5E11BC1040B67A4991BFB717CEBBBAC5CB83D3
+                0250CC67B57ABE457E1C6705A0C83FCF6FF47C6AF58AE0A400B2D5FB8EFFED46
+                6CF19CF922A70C9C124046FE9BFCE227467EBBD573E68B9C32704600BAE0695F
+                E4F8D2EA15C10901D0EA15C77A01D0EA0D87B502C8C847AB371C560AD0B7D50B
+                C38BBEB67A45B04E008AFCBEADDECAEC25CCFBFC582380DCE221F2CBC50A0128
+                F2E9539FDAEA21F20B63BC00B2D52309BA115B3CB47A4362AC0032F2D1EA558B
+                9102D0054F6BF5381B68F5CAC33801B25A3D1EF95A9FABE71A460990DAEAB1F0
+                1E5ABD6A3042008A7C7AC052EA166F145BBCAAD02E806CF5D2223FDAE221F22B
+                23107F9530B9DAE037F01DE8040D7A8276EFA7BEFD450E3EF5D5A3558024DAAD
+                5E6D01C58E1A4CDB05A0D5538C11094091CFFF2CA3D8518FF60440ABA717DD02
+                5C41ABA7172D02C82DDE7DC50724815E940B40918F56CF1C940AD06EF5F41D90
+                043463D2B9F900000000000000E0238CFD0F621560FBEA7AB209000000004945
+                4E44AE426082}
+              Bitmap.SVG = {
+                3C73766720786D6C6E733D22687474703A2F2F7777772E77332E6F72672F3230
+                30302F737667222077696474683D2231323822206865696768743D2231323822
+                2076696577426F783D223020302031323820313238223E3C646566733E3C7374
+                796C653E2E636C732D317B66696C6C3A236666663B7D2E636C732D327B66696C
+                6C3A233165386263643B7D3C2F7374796C653E3C2F646566733E3C7469746C65
+                3E6D6D2D466F72776172642D323C2F7469746C653E3C672069643D2249636F6E
+                223E3C706F6C79676F6E20636C6173733D22636C732D312220706F696E74733D
+                22323920313120323920313137203938203634203239203131222F3E3C706174
+                6820636C6173733D22636C732D322220643D224D32372C3132312E303656362E
+                39344C3130312E32382C36345A6D342D3130367639372E38384C39342E37322C
+                36345A222F3E3C2F673E3C2F7376673E0D0A}
+            end>
+          LargeLayoutBitmaps = <>
+          DisabledBitmaps = <>
+          HoverBitmaps = <>
+          LargeLayoutDisabledBitmaps = <>
+          LargeLayoutHoverBitmaps = <>
+          BitmapVisible = True
+          ControlIndex = 2
+        end
+        object SkipToBreakPoint: TTMSFNCToolBarButton
+          Position.X = 90.000000000000000000
+          Position.Y = 3.000000000000000000
+          Size.Width = 24.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          OnClick = SkipToBreakPointClick
+          Font.Name = 'Segoe UI'
+          Bitmaps = <
+            item
+              Bitmap.PNG = {
+                89504E470D0A1A0A0000000D4948445200000080000000800806000000C33E61
+                CB000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                091E49444154785EED9D6F6855651CC7CFBD9B69A16D9249D6364D52B34436B5
+                4C9374106805E55E8412680E712F42C8452E82288B20DA82ED9590155A4228BD
+                70BD522198827F92B6B644FC1BCEB99561452EA54CBDBB3DBF739F67BBBBF7FC
+                DBD9F9F37DEE7E1F183BF779F5E39CEFFDFECEEF7B2EE7311886611886611886
+                6198314D4553C73E79A80D3AD68C4252FECF6675795347E7F4C61395F2B30EE8
+                583304560230128651994E14779637B66F904BF0E85833029602502412899DC2
+                5E9BE5472DD0B1E638115F9CE18893979687838885AEE49D644DCFDB5597E412
+                143AD68C82A30328C85E078A529D651FB7AF964BF0E858731C78120021ACB534
+                994CECAB686C7F4F2EC1A363CD51E3A905E462DA6B71B2BAA7BEEA9A5C8A151D
+                6B46C1D501D6554E392C0F0731EDF576AA1B75EC7AB7BA4C1E0D815E735CB80A
+                E0C3672B96EF7B65F63971D89F59C940F62AC7AE2D7209868D0BA71AFBD73F6A
+                DC3BBE48AE6440AE392E3CDD032C7870E29C939BE71BA5138ABBE4D220E2A436
+                973776B4C98F303C36F51EE368DD3CE3A9F249726508D49AE3C0F34D60C984E2
+                929F36CFAF5C523E31BF25248C1588491C39C0DE35B34C47C805B5E6A8F12C00
+                C59E35B397EF58FD70BE13002771744FB047082117E49AA362C40220563E32B9
+                F2F0C6C7FB268C4BD2BDC13084BD4226714B442B38BA699ED91A7241AD390A7C
+                09809831797CD9B9D72BE758B504C116D35E3FEA9C213F4350567297797368D5
+                12049035878D6F0128A825D42F9D76447E1CC41CBB4093386A099FAC9A2E3F0D
+                815C73588C5A00C496A5D396D1A8589434FAE492098D5DA849DCCBF3EE33DD80
+                5C211BE49AC320100110342A5E7C63419938A127E4D21089C436D35E9B3B4BE5
+                0A04E6A828EE0B56CEB2280BB4E6A0094C000A7142173BA5870F35FDB0422EC1
+                B0E3A5998EE92162CD4111B80008951E5AB5842223D9869C1E5AB504D49A8320
+                140110D4123A5F9B3F49B7F470FFFAB9632A3D0C4D00844A0F5F985D7A482E0D
+                829E1E8AC946AE0C5188E961A802506C7F71E60A991E0E7FA03494C4C1D9AB98
+                6CCCF430EF811270CD7E88440004A587F440C9263D6C864D0FEB6CD343C89A47
+                4A640220A825E8961E920314727A18A900144EE961BA78A05BB7F410B5662FC4
+                220042A587562DC14CE200ED55A587562D01B5663762130041A322B584B9F7DF
+                9DE706828CBD02A687240212830590353B11AB0014075E9DBB4CB7F490DA4121
+                A487100220DCD243C4873385901EC20880704A0FC559DD268FA0D03D3D841200
+                E1941EA2E29E1EB6C3FE1C1D4E000ABBF41019FBF4303103353D841500E1941E
+                A2E2213DDC293F42002D00C2253D84C4253DDC80941EC20B4041E9A13CD4061A
+                13E9C726B920A587DA084057E8E766C8E9210B20023CA58731B50416408438A6
+                8745A9CE38D2431640C4B8A58751279E2C801850E9A1EDCFD11B3BDAA27AA0C4
+                0288091A156942B04B0FA37A99050B2066283DA49690971E8A9610457AC80200
+                805A425CE9210B00044FE961082D810500068D8951BECC820500083D50B24B0F
+                454B08F465162C0050547A18F6CFD15900E0504B08333D6401684098E9210B40
+                13C24A0F59001A11467AC802D09020D3431680A6A8F4D0EEE7E86254F4B49116
+                0B4063C801EC5E852BF0B491160BA000184D7AC8022810FCA6872C8002A2AC64
+                BC519E931564516A3526B2000A84E3BDD78DE7BE3A631CBC307C479C743A7D4D
+                FCD55FDEBAB0D66ABB1C164001D072EC8A51D77AD1E8EBBF255732D03E49E9B4
+                51DBDBB0A8452EE5C102D098BFFF4B1975DF5E349A8500E8381B71E10FD12659
+                7D6F2D6A954B96B00034C5CDF293E392355E7648630168C8171D57AD2DDFBCF8
+                19CBF7BA3D1E0B4023C8E6DF3CD0637CD0D6676DF9A9A22A37CBCF8505A009A7
+                AFFE63ACD97BC1F8E6D49F7265182DA6E5FBD8279905A001D4E7E9E29308B291
+                FDBE568C78F57E774465010043364F764F77FA79964F5BE10ACB17FD7E975CF2
+                050B0014BAC1A37E4F377C16B498FB2007B0353E0B00100FA99E6FCBCF850500
+                C4A0E58B11CFCAF20712E91AA754CF0F2C0010E8822BCBCFBBF832D5FB65EB13
+                81BF3A8F0500809BE5F7362CAC0ECAF2736101C48C97544F2E85020B202694E5
+                0799EAF98105100361A57A7E6001440C5DF4B0523D3FB00022826C9EEC9E6C3F
+                CFF2034AF5FCC0028800FAB64791EAF98105103234E291E54791EAF9410B01F4
+                DFBCD3BF76EF796D5E164D28CBB74BF59246AA3AEC11CF0BF002A08BFFFCEEB3
+                678FF7DED0E665D174C1DD52BD9E86C5F9BBA2C400B4000EFEFC5757D5F693D7
+                FBFA6F2D964BF0C499EAF9015600EF7C77F9705D6BF7C3A90123FFF518A0C49D
+                EAF9014E0064F9ABBE3C736477D71F64F92599556C94E5C79DEAF9014A003FFE
+                7AE31C59FE99DFFF5D2697B281FBF61034E291E523A47A7E801140CBB12B476A
+                BE3EFF40AEE5937D0E0CA46B685C924B30A854CFCAF255CD48FDDE8AD805A046
+                BCE66357E85B3FCCF2554286669F64F36EA91EAAE5E712AB00C8F29FF9FC74B7
+                CD88176B42660759FE2671A38798EAF9213601D08847967FEDE69D616FB090E3
+                52E40F45BCA052BDEFC5FF6C906B7623720128CB17231E5DF87CCBCF2464913F
+                14714259FE5A71F12D2D1FB066AF442A00A7540F2D2153D005B77B90835AF348
+                884C0076A99EB44FB8848CD02DD5F3432402B04BF53227123321D331D5F343A8
+                02704AF550133265F93AA67A7E084D008EA95E3ABD0D3121734CF5406B1E2DA1
+                08802CDF31D56B58F43E5AEF24CB774CF5006B0E824005A0463CDD2C9FEC7EAC
+                587E2E8109802CFFC94F4FFD669BEA815A3E7DEB6D53BD02B4FC5C0211804AF5
+                6EDE1E9823974C3277CCD8A91E89201BE49AC3605402E0544F7F7C0BC029D513
+                B4EA96EA09206B0E1B5F02704BF5847D7A7A475D94B8A57A883547C18805609B
+                EA19E94BA809996DAA075C735478160059FED39F9D3A613BE215638E78F48225
+                DB110FB0E6A8F1240095EAD959BE392E81D9A74AF5EC2C1FB1E63848C8FF8354
+                3475889BE121D6554EA16027FF2EDF3C91462DC23728B766DA4183DEA09DFFAD
+                C7A9190557015861DA672A598B1292E858330A7EA6001D13B23191EAF9C1B303
+                907D8A7FF58821898E35A3E0C901C4D9D52E21D3B1E638F022805D1A26643AD6
+                1C0BB602C8DC31DB6F3684888E35C78DA500C83E695CD22921D3B16604F20460
+                8E4BC23E759A9575AC19163F7BD0C78D8E35330CC3300CC3300CC3C48161FC0F
+                8FA5E87D904DE62E0000000049454E44AE426082}
+              Bitmap.SVG = {
+                3C73766720786D6C6E733D22687474703A2F2F7777772E77332E6F72672F3230
+                30302F737667222077696474683D2231323822206865696768743D2231323822
+                2076696577426F783D223020302031323820313238223E3C646566733E3C7374
+                796C653E2E636C732D317B66696C6C3A236666663B7D2E636C732D327B66696C
+                6C3A233165386263643B7D3C2F7374796C653E3C2F646566733E3C7469746C65
+                3E6D6D2D466173742D466F72776172642D323C2F7469746C653E3C672069643D
+                2249636F6E223E3C706F6C79676F6E20636C6173733D22636C732D312220706F
+                696E74733D2238203131322E39342034332038362E30362034332034312E3934
+                20382031352E30362038203131322E3934222F3E3C706F6C79676F6E20636C61
+                73733D22636C732D322220706F696E74733D2234203132312E30362034332039
+                312E312034332038362E30362038203131322E393420382031352E3036203433
+                2034312E39342034332033362E39203420362E39342034203132312E3036222F
+                3E3C706F6C79676F6E20636C6173733D22636C732D312220706F696E74733D22
+                35312031312035312031313720313230203634203531203131222F3E3C706174
+                6820636C6173733D22636C732D322220643D224D34392C3132312E303656362E
+                39344C3132332E32382C36345A6D342D3130367639372E38384C3131362E3732
+                2C36345A222F3E3C2F673E3C2F7376673E0D0A}
+            end>
+          LargeLayoutBitmaps = <>
+          DisabledBitmaps = <>
+          HoverBitmaps = <>
+          LargeLayoutDisabledBitmaps = <>
+          LargeLayoutHoverBitmaps = <>
+          BitmapVisible = True
+          ControlIndex = 3
+        end
+        object StopDebugging: TTMSFNCToolBarButton
+          Position.X = 117.000000000000000000
+          Position.Y = 3.000000000000000000
+          Size.Width = 24.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          OnClick = StopDebuggingClick
+          Font.Name = 'Segoe UI'
+          Bitmaps = <
+            item
+              Bitmap.PNG = {
+                89504E470D0A1A0A0000000D4948445200000080000000800806000000C33E61
+                CB000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                035449444154785EEDD7314F14411C86F1D955082614DA78D29DF103A02D857B
+                972896400F1A2BE3A7F0B328D6082D0DB724A29DC4DE48A758515020703BCEDC
+                FD0BEFA87687C3E0FBFC12723373C91DD97D7677CE01000000000000000000F8
+                4F65F67A297E1445E7A6CF97BC739DF0D7CE3277DBDE4202EFDD5138514761D8
+                EB67D5DBB9B2EC0DDF497729011C16C5C3CCE76FC2A72DDB1226C9BBFD10C24A
+                08E1C0561A4B0E209E7CE7F31DAEF6ABD7775537F56E901440B8E5B7739F7FE1
+                E4FF1BF1D1E0B2AADB2ACB7D5BAA2D2980C3C7DD78E5776C3A70737EDEDD7AFD
+                CAE5AD96CB66676D1529FCF1B13BFFFAD59D7DFCE44EB7B76DD57877707777E7
+                BECD6A6B1CC0CFA258CE5DFEC1A603336BAB6EE6F99ACD300927EFD6DDC9FA7B
+                9B0D55AE5AB957969B36AD25B7D7DAC2AD7FC98603530B0B9CFC2B108F713CD6
+                7F0BE7E2850D6B6B1C403072EB9F7EF6D44698B499E7AB361A8A3FBB6D585BE3
+                00C2978E6CFC6E3C7860234CDAF8B14ED984370E60FC4BE3A60FD74FCA2300FF
+                0102104700E208401C018823007104208E00C411803802104700E208401C0188
+                23007104208E00C411803802104700E208401C018823007104208E00C4118038
+                02104700E208401C018823007104208E00C411803802104700E208401C018823
+                007104208E00C411803802104700E208401C018823007104208E00C411803802
+                104700E208401C018823007104208E00C411803802104700E208401C01882300
+                7104208E00C411803802104700E208401C018823007104208E00C41180380210
+                4700E208401C018823007104208E00C41180B8C60178EF8E6C38E08F8F6D84EB
+                A47100991B0DE0FCDB371B61D2FAE3C7DABB031BD59612C0A60D074E3746A698
+                A0DF178FF5BEBDD6D63880F3ACDAB2E1C0D9DE9E3BD9D8B01926251EE3D3ED6D
+                9B0D5559F5D686B5850BB9B95F8FBB5FC2273CB4E9C0F4E2A29B5A7CE2A6E6E7
+                6D05A9E2FE2A3E62FB7B9F2F5C64612FD66BEDEE746D5A5B52003F8AA27DC3E5
+                DF6D8A2B1637E2E1EA5F992BCB9E2DD596F433307CF141DF558DEB4373F1E4FB
+                AC7A9972F2A3A400A2F80F78573D0A3BD1C61B11D4136FFB2EABBAF7CA3279E7
+                9DF40818F7B32896739F2F8561277C727BB88ACB10AFF870B27AE1AADF9A0EBF
+                C0EE94E5C8CF7000000000000000000000F89B737F003C17BADCA301E8420000
+                000049454E44AE426082}
+              Bitmap.SVG = {
+                3C73766720786D6C6E733D22687474703A2F2F7777772E77332E6F72672F3230
+                30302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F7777772E
+                77332E6F72672F313939392F786C696E6B222077696474683D22313238222068
+                65696768743D22313238222076696577426F783D223020302031323820313238
+                223E3C646566733E3C7374796C653E2E636C732D317B66696C6C3A6E6F6E653B
+                7D2E636C732D327B66696C6C3A236561336634313B7D2E636C732D337B66696C
+                6C3A236661666166613B7D2E636C732D347B66696C6C3A75726C28234E65775F
+                5061747465726E5F5377617463685F33293B7D3C2F7374796C653E3C70617474
+                65726E2069643D224E65775F5061747465726E5F5377617463685F3322206461
+                74612D6E616D653D224E6577205061747465726E205377617463682033222077
+                696474683D22363822206865696768743D22363822207061747465726E556E69
+                74733D227573657253706163654F6E557365222076696577426F783D22302030
+                203638203638223E3C7265637420636C6173733D22636C732D31222077696474
+                683D22363822206865696768743D223638222F3E3C7265637420636C6173733D
+                22636C732D32222077696474683D22363822206865696768743D223638222F3E
+                3C2F7061747465726E3E3C2F646566733E3C7469746C653E6D6D2D53746F702D
+                323C2F7469746C653E3C672069643D2249636F6E223E3C7265637420636C6173
+                733D22636C732D332220783D2231362220793D223136222077696474683D2239
+                3622206865696768743D223936222072783D22362E3938222072793D22362E39
+                38222F3E3C7061746820636C6173733D22636C732D342220643D224D3130352C
+                31313448323361392C392C302C302C312D392D3956323361392C392C302C302C
+                312C392D3968383261392C392C302C302C312C392C3976383241392C392C302C
+                302C312C3130352C3131345A4D32332C313861352C352C302C302C302D352C35
+                76383261352C352C302C302C302C352C3568383261352C352C302C302C302C35
+                2D3556323361352C352C302C302C302D352D355A222F3E3C2F673E3C2F737667
+                3E0D0A}
+            end>
+          LargeLayoutBitmaps = <>
+          DisabledBitmaps = <>
+          HoverBitmaps = <>
+          LargeLayoutDisabledBitmaps = <>
+          LargeLayoutHoverBitmaps = <>
+          BitmapVisible = True
+          ControlIndex = 4
+        end
+      end
+    end
+    object TMSFNCPageControl1Page0: TTMSFNCPageControlContainer
+      Align = Client
+      Margins.Top = 29.000000000000000000
+      Size.Width = 696.000000000000000000
+      Size.Height = 767.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      TabStop = False
+      PageIndex = 0
+      IsActive = True
+      object TMSFNCToolBar1: TTMSFNCToolBar
+        Align = Top
+        Size.Width = 696.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        CompactBitmaps = <>
+        Font.Name = 'Segoe UI'
+        OptionsMenu.ShowButton = False
+        object OpenFile: TTMSFNCToolBarButton
+          Position.X = 9.000000000000000000
+          Position.Y = 3.000000000000000000
+          Size.Width = 24.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          OnClick = OpenFileClick
+          Font.Name = 'Segoe UI'
+          Bitmaps = <
+            item
+              Bitmap.PNG = {
+                89504E470D0A1A0A0000000D4948445200000080000000800806000000C33E61
+                CB000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                072949444154785EEDDC4F681C550006F079B36992D65AABE09F62D7C4AAAD82
+                87C6160AA234B914040FC9513C68F4A015C12CD28027EBA99820694145A15211
+                BC78690A3D684553A9154A531391427B284D8C48150FF15FB39BCDCEF3BDC97B
+                9BCECE6C77E6BD999D37D3EF77D97993CD26ECFBE69B37BB9B58000000000000
+                0000000000000000000000000000907D44DCD6553EDA47C5662650C72A75BF76
+                EAB0184244B6B8CD2C625B13E50FF78D88214494F900700881BA5C04804308D4
+                B45C0390974E8A2DC3FC71798E9E7CB3578CEAB0268826BB01E0321682FBC7CF
+                F71728D94B2DD2CF9EF9CD16A56BBF3BB116894566D9BE5962D54ECC8FEE9915
+                5F4954B603C0191E829E8999CD4EB5366811F2067BB2778ADD2DB149E06138B2
+                30BAFB53B12B11D95F03DCB3A3973CFBDE9C18D599B026E047BCB3E24C11428E
+                45997C8EDF9F7F5F717CFA6A716CFA45B13B76D96F00C9A026E0473D5D71DE66
+                9B7106F0F02F077695C4B6B207C62F78E637375701A6348198FC636CD3F73329
+                A58B945AA7D9C6414257FAC88AFD20E9B0EFE4B78E4387D8D7F9044FAEDEDB67
+                A4387E61466CC7263F0D20A5D804374CFEE0EA9E557CE2599D4FB2493F126671
+                D77368A69776B80DE2AB7EBE365838B0AB4F0C23CB6F0348293681A87DEFE45B
+                748E1DF5C3ACBE87C3AEECE7DFEA9BE3F7E72DC1BF5FEC76F1B54171ECC29418
+                6ACB5F03484D9A40179BCC457619D7B77EFF579E89D9FAEEF4A06D93E362E8E2
+                47ABBD620FF10915BB2273AF22F842B26111C94F250BA3BB06C430B4FC3780D4
+                A40974D9C49A6C9C7C3E49C426FCE8AFE347AEDD610FE84C3E375FEA5BE48FC3
+                C32476B908B1FAE36882FC06804B2004D51DCFFC2436EBF8757EE311EA587498
+                4F9E187AFC37353152395EFAADFCD973D5F227430EBF75C7DF8C1D1577F14832
+                04F93D05DC28A6D3015D771BED7EF9B8EFA0E1ABF38600045EB25D3FF3F15385
+                3F2F7D61FD7E718BD8E543376D5D728A7BF66D78FA95EFC5AEBA384E078DA780
+                5B2300F199ECECEC1C12DBAE9EB1733B29E9A85F9EF115BF5D2BF43556FFD2D2
+                526FA150E0476BCB20F2C76037035D5D5DBE45A36E086E9D354002D8C49C109B
+                758E55E8179B2E76B9773AE8BC6FDB36BF3C0CD542EC3136B39BA94AA5E29964
+                2EEED30102108138323DD864ED159BAEA09094CBE541763F4F505A510D013BC2
+                27C4301404200236B9BE4A66AB7DCF04D956CD771F76F4BF203623091702EFEB
+                04CC48941020001174777707AEEA3D6A9D41F7F14D605832047C0DB1BA678D1B
+                8295C2404033850E010210019B0CFF29C0229E896972DDAF7505C243C017906C
+                A279183CF8CFE38BCEC0108C4D7B5E9B08820064476FB55A9D71CE1EED11E3BA
+                A62120E460716CFAA62F7FE33230027609E87BBEC2585E5EF63CA7CDA83EBEC4
+                2F49D95509FFFC81A72958304A0BA3BBDD37C270199863FCCD26B608F5BD16C0
+                0231D1EC43250840CEF010F07711C5B08E85E058500810801CBA5908C4661D02
+                90533C0435CB69F9D270A61681F4D297E7AC1FDEDF2386B9D3F5EA29DF7C342E
+                DAA2E2DF1CB4B294FB33D300B4FCF75FF4EC078F8A2184C4273928413214D939
+                057C7B6896107A87184104CD42C06522006EF55FFBD9F3A60B4413741AE07CFB
+                4D5B03B8D5FFF9F36C05BB76F4D30DB7579C279EAC90CEAE4D62572EACDFFE7A
+                B3794A8CF90DD050FDB4B08E5A0F3DB690B7C94F8BD10108ACFE2DC5797AF77D
+                0F8B116832360041AB7EB7FA7B1FB94B0C2106E63600AABF2D8C5C0406BDE043
+                B76E9BA3DB1FD77A5FFD5640AFFF7BCD3E7FE65E52ABAECD2DA5935DFBBFF67C
+                985532AE0150FD7AEC8B3F6EBC71F2F95F3275969787C5D0C7BC5300AA5F19BD
+                72E90AF96771A318AEA2D63BA4F45DD0C7D45C460500AB7E756EF5FF7A759B18
+                AE62D5DFEA2FA28D0900AA5F4FD4EA97CC690054BF3295EA978C0800AA5F9D6A
+                F54BA90700D5AF47B5FAA5F41B00D5AF4CA7FAA5540380EA57A75BFD526A0140
+                F5EBD1AD7E29BD0640F52B8BA3FAA5540280EA571757F54B6D0F00AA5F4F5CD5
+                2FB5BF0150FDCAE2AC7EA9AD0140F5AB8BBBFAA5B60500D5AF27EEEA97DAD700
+                A87E654954BFD49600A0FAD52555FD52E20140F5EB49AAFAA5E41B00D5AF2CC9
+                EA97120D00AA5F5DD2D52F25160054BF9EA4AB5F4AAE0150FDCADA51FD522201
+                40F5AB6B57F54BB10700D5AFA75DD52FC5DF00A87E65EDAC7E29D600A0FAD5B5
+                BBFAA5D80280EAD7D3EEEA97E26B0054BFB234AA5F8A2500A87E756955BFA41D
+                0054BF9EB4AA5FD26F0054BFB234AB5FD20A00AA5F5DDAD52F290700D5AF27ED
+                EA97D41B00D5AFCC84EA97940280EA57674AF54B910380EAD7634AF54BD11B00
+                D5AFCCA4EA97220500D5AFCEB4EA97420700D5AFC7B4EA97C23700AA5F9989D5
+                2F850A00AA5F9DA9D52FB50C00AA5F8FA9D52FB56E0054BF3293AB5F6A1D0054
+                BF12D3AB5F0ABF086450FDE1995EFD52FD17941AFF5D3CC4833A56C9B4A39F8B
+                D400A0C8C0EA97108084995AFD12029034C356FD000000000000000000000000
+                000000000000905396F53FE4A8BAEC78B22BC60000000049454E44AE426082}
+              Bitmap.SVG = {
+                3C73766720786D6C6E733D22687474703A2F2F7777772E77332E6F72672F3230
+                30302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F7777772E
+                77332E6F72672F313939392F786C696E6B222077696474683D22313238222068
+                65696768743D22313238222076696577426F783D223020302031323820313238
+                223E3C646566733E3C7374796C653E2E636C732D317B66696C6C3A6E6F6E653B
+                7D2E636C732D327B66696C6C3A236637646139343B7D2E636C732D337B66696C
+                6C3A236661666166613B7D2E636C732D347B66696C6C3A236639393834363B7D
+                2E636C732D357B66696C6C3A75726C28234E65775F5061747465726E5F537761
+                7463685F32293B7D2E636C732D367B66696C6C3A75726C28234E65775F506174
+                7465726E5F5377617463685F3130293B7D2E636C732D377B66696C6C3A75726C
+                28234E65775F5061747465726E5F5377617463685F39293B7D2E636C732D387B
+                66696C6C3A233165386263643B7D3C2F7374796C653E3C7061747465726E2069
+                643D224E65775F5061747465726E5F5377617463685F322220646174612D6E61
+                6D653D224E6577205061747465726E205377617463682032222077696474683D
+                22363822206865696768743D22363822207061747465726E556E6974733D2275
+                73657253706163654F6E557365222076696577426F783D223020302036382036
+                38223E3C7265637420636C6173733D22636C732D31222077696474683D223638
+                22206865696768743D223638222F3E3C7265637420636C6173733D22636C732D
+                33222077696474683D22363822206865696768743D223638222F3E3C2F706174
+                7465726E3E3C7061747465726E2069643D224E65775F5061747465726E5F5377
+                617463685F31302220646174612D6E616D653D224E6577205061747465726E20
+                537761746368203130222077696474683D22363822206865696768743D223638
+                22207061747465726E556E6974733D227573657253706163654F6E5573652220
+                76696577426F783D22302030203638203638223E3C7265637420636C6173733D
+                22636C732D31222077696474683D22363822206865696768743D223638222F3E
+                3C7265637420636C6173733D22636C732D32222077696474683D223638222068
+                65696768743D223638222F3E3C2F7061747465726E3E3C7061747465726E2069
+                643D224E65775F5061747465726E5F5377617463685F392220646174612D6E61
+                6D653D224E6577205061747465726E205377617463682039222077696474683D
+                22363822206865696768743D22363822207061747465726E556E6974733D2275
+                73657253706163654F6E557365222076696577426F783D223020302036382036
+                38223E3C7265637420636C6173733D22636C732D31222077696474683D223638
+                22206865696768743D223638222F3E3C7265637420636C6173733D22636C732D
+                34222077696474683D22363822206865696768743D223638222F3E3C2F706174
+                7465726E3E3C2F646566733E3C7469746C653E4F70656E2D323C2F7469746C65
+                3E3C672069643D2249636F6E223E3C7061746820636C6173733D22636C732D35
+                2220643D224D37352E37342C33374835382E33346C2D312E31372D312E31374C
+                34362E33342C323548387637384C34342C34394837355634322E354132312E32
+                382C32312E32382C302C302C312C37352E37342C33375A222F3E3C7061746820
+                636C6173733D22636C732D352220643D224D39392C34346839762D2E3435632D
+                332E36322D332E37322D362D362E31352D362E342D362E35354839312E343241
+                372E34392C372E34392C302C302C302C38392C34322E355634394839395A222F
+                3E3C706F6C79676F6E20636C6173733D22636C732D362220706F696E74733D22
+                31312E3437203130352038352E383620313035203131372E3139203538203939
+                2035382039392035332034362E31342035332031312E343720313035222F3E3C
+                7061746820636C6173733D22636C732D352220643D224D34372E31372C323348
+                367638336C322D335632354834362E33344C35372E31372C33352E38332C3538
+                2E33342C33376831372E346131392E342C31392E342C302C302C312C2E36342D
+                324835392E31375A222F3E3C7061746820636C6173733D22636C732D35222064
+                3D224D3130312E35362C333761372E34382C372E34382C302C302C302D31302E
+                31342C30483130312E365A222F3E3C7061746820636C6173733D22636C732D35
+                2220643D224D3130382E34342C34346C2D2E34342D2E34355634345A222F3E3C
+                706F6C79676F6E20636C6173733D22636C732D362220706F696E74733D22372E
+                3734203130372038362E393320313037203131392E36203538203131372E3139
+                2035382038352E3836203130352031312E3437203130352034362E3134203533
+                2039392035332039392035312034352E303720353120372E373420313037222F
+                3E3C7061746820636C6173733D22636C732D372220643D224D3130312E35362C
+                333761372E34382C372E34382C302C302C302D31302E31342C30483130312E36
+                5A222F3E3C7061746820636C6173733D22636C732D372220643D224D3130382C
+                34332E3535563434682E34345A222F3E3C7061746820636C6173733D22636C73
+                2D372220643D224D3131372E31392C35382C38352E38362C3130354831312E34
+                374C34362E31342C35334839395634394834344C382C3130335632354834362E
+                33344C35372E31372C33352E38332C35382E33342C33376831372E346131392E
+                342C31392E342C302C302C312C2E36342D322C32302E37362C32302E37362C30
+                2C302C312C2E38362D324836304C34382C323148347638384838386C33342D35
+                31682D342E38315A222F3E3C706F6C79676F6E20636C6173733D22636C732D38
+                2220706F696E74733D2231303420343920313034203533203132382035332031
+                3238203239203132342032392031323420343920313034203439222F3E3C7061
+                746820636C6173733D22636C732D382220643D224D3132332E35362C35322E33
+                39632D372E31322D372E33342D31372E39332D31382E34362D31382E35332D31
+                394131322E352C31322E352C302C302C302C38342C34322E3556343448383056
+                34322E356131362E352C31362E352C302C302C312C32372E37362D31322E3036
+                632E37322E36372C31362E38342C31372E32382C31382E36382C31392E31375A
+                222F3E3C2F673E3C2F7376673E0D0A}
+            end>
+          LargeLayoutBitmaps = <>
+          DisabledBitmaps = <>
+          HoverBitmaps = <>
+          LargeLayoutDisabledBitmaps = <>
+          LargeLayoutHoverBitmaps = <>
+          BitmapVisible = True
+          ControlIndex = 0
+        end
+        object SaveFile: TTMSFNCToolBarButton
+          Position.X = 36.000000000000000000
+          Position.Y = 3.000000000000000000
+          Size.Width = 24.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          OnClick = SaveFileClick
+          Font.Name = 'Segoe UI'
+          Bitmaps = <
+            item
+              Bitmap.PNG = {
+                89504E470D0A1A0A0000000D4948445200000080000000800806000000C33E61
+                CB000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                01D749444154785EEDDD416A13611880E1E8615C7992AC025DF5167A12BD4557
+                85ACE62405C18D5B41C12368437E5C08DAC9D4B699BCCFB3F9BF6C9397E483C9
+                301B0000000020E0D5381F74B3DDFF1C232B703DED667DB6AFC7499400E20410
+                B7780778BB7D33A679EEA6CF633ABADA6FC7C4C1ED6E1AD3D163DF5F3B00B308
+                204E0071028813409C00E2041027803801C409204E0071028813409C00E20410
+                27803801C409204E0071028813409C00E2041027803801C409204E0071028813
+                409C00E2041027803801C409204E0071028813409C00E2041027803801C40920
+                4E0071028813409C00E2041027803801C409204E00712FF6CC20FECD33837816
+                02881340DCB3ED003C2D3B008B08204E0071028813409C00E2041027803801C4
+                09204E00712F762DA0FEFF80FF7D2DC5B5001611409C00E2CE6607B8DA6FC774
+                996E77D3988EEC009C0501C409204E0071028813409C00E2041027803801C409
+                204E0071028813409C00E2041027803801C409204E007102885B1CC0F72F3FC6
+                C49A2D0EE0EBA76F22B800A704F0719CBF8960FD6607703DEDDEDF1F22B83027
+                FD0488E0F29CBC0388E0B2CCBE37F04F37DBFD87FBE3DDF115E7E6C9EF0DFCDB
+                3701EBB238800311ACDFA30238100100000000C079DB6C7E018FA46A507F60C5
+                720000000049454E44AE426082}
+              Bitmap.SVG = {
+                3C73766720786D6C6E733D22687474703A2F2F7777772E77332E6F72672F3230
+                30302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F7777772E
+                77332E6F72672F313939392F786C696E6B222077696474683D22313238222068
+                65696768743D22313238222076696577426F783D223020302031323820313238
+                223E3C646566733E3C7374796C653E2E636C732D317B66696C6C3A6E6F6E653B
+                7D2E636C732D327B66696C6C3A236661666166613B7D2E636C732D337B66696C
+                6C3A236137346162303B7D2E636C732D347B66696C6C3A236433393464363B7D
+                2E636C732D357B66696C6C3A75726C28234E65775F5061747465726E5F537761
+                7463685F38293B7D2E636C732D367B66696C6C3A75726C28234E65775F506174
+                7465726E5F5377617463685F37293B7D2E636C732D377B66696C6C3A75726C28
+                234E65775F5061747465726E5F5377617463685F32293B7D3C2F7374796C653E
+                3C7061747465726E2069643D224E65775F5061747465726E5F5377617463685F
+                382220646174612D6E616D653D224E6577205061747465726E20537761746368
+                2038222077696474683D22363822206865696768743D22363822207061747465
+                726E556E6974733D227573657253706163654F6E557365222076696577426F78
+                3D22302030203638203638223E3C7265637420636C6173733D22636C732D3122
+                2077696474683D22363822206865696768743D223638222F3E3C726563742063
+                6C6173733D22636C732D34222077696474683D22363822206865696768743D22
+                3638222F3E3C2F7061747465726E3E3C7061747465726E2069643D224E65775F
+                5061747465726E5F5377617463685F372220646174612D6E616D653D224E6577
+                205061747465726E205377617463682037222077696474683D22363822206865
+                696768743D22363822207061747465726E556E6974733D227573657253706163
+                654F6E557365222076696577426F783D22302030203638203638223E3C726563
+                7420636C6173733D22636C732D31222077696474683D22363822206865696768
+                743D223638222F3E3C7265637420636C6173733D22636C732D33222077696474
+                683D22363822206865696768743D223638222F3E3C2F7061747465726E3E3C70
+                61747465726E2069643D224E65775F5061747465726E5F5377617463685F3222
+                20646174612D6E616D653D224E6577205061747465726E205377617463682032
+                222077696474683D22363822206865696768743D22363822207061747465726E
+                556E6974733D227573657253706163654F6E557365222076696577426F783D22
+                302030203638203638223E3C7265637420636C6173733D22636C732D31222077
+                696474683D22363822206865696768743D223638222F3E3C7265637420636C61
+                73733D22636C732D32222077696474683D22363822206865696768743D223638
+                222F3E3C2F7061747465726E3E3C2F646566733E3C7469746C653E536176652D
+                323C2F7469746C653E3C672069643D2249636F6E223E3C706F6C79676F6E2063
+                6C6173733D22636C732D352220706F696E74733D223131342031313420313820
+                3131342031342031303920313420313420313134203134203131342031313422
+                2F3E3C7061746820636C6173733D22636C732D362220643D224D3131342C3134
+                563131344832306C2D362D36563134483131346D342D34483130563131306C38
+                2C38483131385631305A222F3E3C7061746820636C6173733D22636C732D3622
+                20643D224D39382C31345636364833305631344839386D342D34483236563730
+                6837365631305A222F3E3C7061746820636C6173733D22636C732D362220643D
+                224D39302C38367632384833345638366D36302D344833307633364839345638
+                325A222F3E3C7265637420636C6173733D22636C732D372220783D2233302220
+                793D223134222077696474683D22363822206865696768743D223532222F3E3C
+                7265637420636C6173733D22636C732D372220783D2233342220793D22383622
+                2077696474683D22353622206865696768743D223238222F3E3C2F673E3C2F73
+                76673E0D0A}
+            end>
+          LargeLayoutBitmaps = <>
+          DisabledBitmaps = <>
+          HoverBitmaps = <>
+          LargeLayoutDisabledBitmaps = <>
+          LargeLayoutHoverBitmaps = <>
+          BitmapVisible = True
+          ControlIndex = 1
+        end
+        object Search: TTMSFNCToolBarButton
+          Position.X = 63.000000000000000000
+          Position.Y = 3.000000000000000000
+          Size.Width = 24.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          OnClick = SearchClick
+          Font.Name = 'Segoe UI'
+          Bitmaps = <
+            item
+              Bitmap.PNG = {
+                89504E470D0A1A0A0000000D4948445200000080000000800806000000C33E61
+                CB000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                0CCA49444154785EED9D5D6C14D715C76766EB0F04C40BB84082296B5389A669
+                CA1A94D8EB96DA20F2922AC1964AA22A556C4CE943510906A43E14625C2AF152
+                C090A4524B832175DA7C14191A05DE825D90970D604CD334462AB62B6C092BC8
+                EC865A18DC9DE93DB36761EEECCCEEECF79DD9FB7BD973C70679F6FCEFB9E7DE
+                997BAEC0E170381C0EA72011F19363404D4D8D479214AFA208E4535CA628A257
+                1014B7288A6E4551DCF03B6807C96750FD478232487E8FB485514591AF89A232
+                DADF7F6930F233F6E002D05057F78C5796C50651943610477AC1B9F8A30CA09C
+                225F371142F8344B82287801402F77B9C466D28B1B89C3490FCF09A320887058
+                381C0804889D3F0A5200F5F52BDDD3D3A55E49120E91A627B33D3D39C8F0D24B
+                868913FDFD81E37829A7149400C0F10F1E943490DB6EB7D8DB438F3D5636B27C
+                796568D9328FB07AF53365F3E7CF9BE576CF9B3D77EE9CB9F00BE4E7655F7D15
+                0ADDBDFBDFBBC1E09DA9E1E1E1E0E4E4E4CCC8C8C8FF060606DCE46756A30A44
+                858E5C0BA1600440427D03F4F8048E571DBE6AD5AAE0C68D1B1F5FBA74E96270
+                30FE2C65CE9F3F3F78E5CAA5D0279F9C03B1C4154424A114DA722504C70B0012
+                3B4190DAC9AD36E2A518889307D7AD5B1B6A6DDDECCD84C31371E2C4F10B274F
+                9E9C134F0C440883A2286FCA76C2E8580140B89F99296D27636C8BC9181FAAAA
+                5AFED9CE9D3BBFFED453DF5981D772CAE79FFFF3FA810307BE1C1EBEF17DBC64
+                80D249A2411B36328E230510C9EC21C133ECF5A1EA6AEFE0AE5DBF5CBE64C992
+                0ABC9677DADAB6F55DBD3A588F4D8A6C4603C70900C7FA1EA35E0FA17EFFFEFD
+                B3F2D5E313313E3E3EB667CFEE51B388A0287293DFFFE9296C66044709A0B6F6
+                D9EDC4F190E1EB9D1FDAB973D7D00B2FBC58836DA681A161DBB65FCC0E87C346
+                116A6F7FFFC50EB4D3C63102A8ABAB25899EB037D27A04F4FAEEEEEECA5C2477
+                99A6B575D305A368006B077EFFC5B5D84C0B177EDA1A9FAFB68B4C9DB663334A
+                A8B1B13170F8F01BB52525A5A578CD566CD8D0F88D60F04EDFD0D090072FA990
+                7BF5545454348C8D8D9DC04B2963FB0880CE6FC166145B85FC44C090B075EBCF
+                1713938A62998804B6168051D877B95C63EFBCD32DB094E167024810376F6E99
+                9A9EBE4F25B0E98A40C24FDB01091FF9A09C5F5A5A72DD89CE07E09E3EF8E0AF
+                8BE11EF1920A897E0D757535F04C23256C19018CA67A4EEDF97AE0B9C34B2FFD
+                E8566C24486D8A68BB08008B3C06F3FCD091236F4C39DDF900CC66DE7EFBF86C
+                628622572288A2D41359F64E0EDB090056F8F4CE87848FD5C59D6C00427FEBAD
+                DFDDC2A606570F1A96B1D53430B2D02351D33D98EA3537B77C0F9B05C3C2850B
+                CB172C5810F0FBFBB551CF4DA6871E323D3C8DED84D82607C0D07F55DBFBABAA
+                965F3876AC2BCE8314E7F3F2CB1B03131313BAE96EB8DAEA7303DB0C01FAD00F
+                495F6767E7D3D82C588E1EFDE3B7E0BBC026627D28B085007CBE671B49B0A29E
+                EC6DDFDE366EC7E5DD4C03DFC1DEBDBFBE8DCD281E3235D42F8E1962930820BD
+                8686CAA2458B024E59E5CB046BD6ACF1C277824D154551DF774C08F30280DE0F
+                8B1DD80442AFBFDEAE9D0570083014A0A902C3252E96C5C5061180EEFDF03247
+                214DF9AC02434143C3DA5E6CAA1011C052795C98168051EF873779D0E6E8D8B1
+                6347359A2A100512E5024C0B80DC40339A2AF00E5F21ACF6A50A44011221FBB0
+                89C48F02CC0A00E6FD2491D1F67E015EE04493634247C73EFD72B007BE4BB463
+                605600A2A86ED57A98EC4196CBC7FEC440148005326CAA48927914605800B041
+                F311CF3FFFC319343909A8AFD7BF5CAC98EE89605200F04EBF3EF95BBFFE39D3
+                30C6A1696A6AA2564821929A0D034C0A6066A694522C09FF433CF9B38ED13000
+                432A9A14AC0E0154F87FF2C96FDF43936311FD3040F200C34D278C0A80DEC0B9
+                65CBCFBE8926C722FA61403FA38AC29C0060FC271FDAF12AC4C37FF2C030A07D
+                4A1859148A7D6388390140E1063455C88D8CA0C94992F2F2F2713455A0FC0D9A
+                0F614E002459A10400C519D0E424C9134F3C3E8DA68A2449318FCF191480B412
+                4D15AF779523762FE58375EBD6EB7644D19D0B603102508F7AE7CF9F5F842627
+                49DCEE792568AA904430662D803901280AF5C6AF505555C59FFDA7C8CA95DFAD
+                44330AFB021045FA8F84824C6872B2007302D013ADC6C5491E980AA2A9A27DB8
+                1685790170320BAEB33C84C11C804E0239D985C11C205A7499930DFAFAAE51DF
+                2F8B11800B2043C04E62344D613007A023C0CD9B370D364172AC00E56BD18C12
+                53989AC121808E00939377F8A3E01481DAC568AA184557062300AD52A8B18B26
+                27492E5FBEFC259A486C7EC5FC10100C861434394972E7CE64184D15125D6376
+                0C339804CAD7D054F9E28B7FCD429393247EBF5F5F1E8FFA6E01E604505C7C9F
+                DADE34313141ED79E358E7F6EDDB4BD054B1450E80F3546D1E500625D2D0E658
+                046A0BEA4BCDEA3B17C0621248942A507FE8871FBE7F034D8E45F40920541CD7
+                2F02014C0A80242BD4FE3683B18C938033673EA6DEA31045BA53456152004545
+                D354BD3BC803ACAC6A7122C077A5CF9D4804D06D1A8DC0A4008CF2809E9E9ECF
+                D0E624A0AFAF6F887C3C7C140CC99F591149260500C8B27C184D153863074D4E
+                02BABBFF84560412FE4D0FA06256002525F7A93F1A0E58E2B381C4C077A40FFF
+                E1B0605A37905901C0304066039408E038153439261C3DFA877F930F6DF81F0C
+                0402860920C0AC00005956A8031186876F3CCDA3803990FCF5F69ED39789895B
+                409A6901A072A964904701730E1E3C78957C50C95F51D13D2A97D2C3B4002228
+                D401493C0A1863D2FB3B8D167FB4302F003C42958A023B766CA7F6BC7104A1BD
+                7D0F3CE94BAAF7033688007033327572261447FEE8A3BF5195310B19389B587F
+                E8A495DE0FD8A65AB8CF577B4E5F36A6B7F7EFD47BEF8508847E8313444649EF
+                AFB622005B440080CC0836A119A50C4AA5A35DB040E8D71F1F130E2B9BAC381F
+                B0CDCE5B92F805972E559F6E3E8C02535353157068C28A152B0AB280049C427E
+                F6ECD91F6013513A2F5E0CFC1E1B09B14D040064598E792074E0C06F6BE0D937
+                360B06B8E7AEAE63FAF31248E89F4EEA58595BE40078147C17F973CDEADD85DE
+                7DF72F770BA5940C4C835F7DF52724D43F7AE103B27E59169AE2ADFA19C17C04
+                B0E07CA00CBE104888B0ED58E01EE10049FDDB3E44001DC93A1F605A00169DAF
+                025F0864C34E1601DCDB962D3F1DD2277D9171FFD34E6C2405B30248C6F951E0
+                8B696A6ABCEBC49542B8271038AC81E02515786096ECB8AF854901A4E2FC2810
+                095E79E5C7739D9418C2BDC010177B5AA8D05B5C7CAFCDEA94CF08E6A681E938
+                5F43E999331F97C3D1EBB5B53EC31AB97601563C77EFFE95878CF10BF1920A3A
+                BF291DE7034CCD0232E47C0A3840E1D0A1238665525906C67B58E4D12FF14650
+                4E91B06F79B1271ECC44806C381FB875EB96E7BDF7FE7CBDACCC7DC32E0B46B0
+                B6BF6DDBD6FB6363E3ABF19206A593383FADB0AF858908902DE7EB810ADAFBF6
+                FDC6C3EA7A81A6D7433D3FEA3907CCF361AA976AB66F46DE05902BE76B616D58
+                88E77880387E509685B654E6F989C8AB00B2EB7C057B8A687A761E08014E21CB
+                574448E47800A679E966FAF1C89B00B2E97CE831C5C5D36BE14B830AD98A2275
+                89225D825E0B9C470447D23437B764FD206A70FAB56BFF1879F3CD23F7F1ED5D
+                13C7C3566EA5C3EC7DFE4C911701E4CAF97849054ED19424F510CAB8D3421083
+                CFE79B6E6DDDECD5D7D94B15703A6CD6E8E9E9998157DAC825D3FF97FCFDEA58
+                0FAFC567ABD76BC9B900F2E17C2D56858084E0B81A38B1A4B2B2F26B24899C53
+                5555556E34648093A1260F9465191E1E0E5EB972E5DEC0C080FBC183E959B14B
+                B7B1E4DAF151722A807C3B5F0B08810C0BCDF186865C000B3A8A229FCEB5E3A3
+                E44C002C395F4B4D4D4D83CB25D693FF030491932295D0DB23DBB5E413FDFD97
+                62CAB6E4929C088055E7EB792406A141F7FE615A80C3C9BD0F46B668874F1715
+                3D18CD476F3722EB02B08BF38D880802720571198802AE112742EE10933F447A
+                B508E338F46E788D7D549695FF4892D2CB92C3F564550076767EA190350170E7
+                DB83AC08803BDF3E645C00DCF9F622A302E0CEB71F19130077BE3DC98800B8F3
+                ED4BDA02E0CEB7376909803BDFFEA42C00EE7C67909200B8F39D43D202E0CE77
+                164909803BDF7958160077BE33B12400EE7CE7925000DCF9CE26AE00B8F39D8F
+                A900B8F30B03430170E7170E86052288F3DBB9F30B839808805BA9CE65FA1569
+                EE7C36318800AE0DDCF98583D110D0829F19813B9F6D6204401C96B1DECF9DCF
+                3E59AB12C69D6F0F620400BB5BD04C19EE7CFB60100194B40A1270E7DB8B1801
+                84C342C26346CCE0CEB71F3165E2A02E7F454585471485A4F6CD73E7DB13D367
+                013E5FCD55920F58120177BE7D319D05F8FD816AA850854D53A0C20577BE7D89
+                FB3818882C0DBB5EC38209EABE78D2E3610F7CAF20C81DF9AE70C1C931F0A410
+                4D0E87C3E17038764510FE0F1757C3F4D076FB650000000049454E44AE426082}
+              Bitmap.SVG = {
+                3C73766720786D6C6E733D22687474703A2F2F7777772E77332E6F72672F3230
+                30302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F7777772E
+                77332E6F72672F313939392F786C696E6B222077696474683D22313238222068
+                65696768743D22313238222076696577426F783D223020302031323820313238
+                223E3C646566733E3C7374796C653E2E636C732D317B66696C6C3A6E6F6E653B
+                7D2E636C732D327B66696C6C3A236661666166613B7D2E636C732D337B66696C
+                6C3A75726C28234E65775F5061747465726E5F5377617463685F32293B7D2E63
+                6C732D347B66696C6C3A233361336133383B7D3C2F7374796C653E3C70617474
+                65726E2069643D224E65775F5061747465726E5F5377617463685F3222206461
+                74612D6E616D653D224E6577205061747465726E205377617463682032222077
+                696474683D22363822206865696768743D22363822207061747465726E556E69
+                74733D227573657253706163654F6E557365222076696577426F783D22302030
+                203638203638223E3C7265637420636C6173733D22636C732D31222077696474
+                683D22363822206865696768743D223638222F3E3C7265637420636C6173733D
+                22636C732D32222077696474683D22363822206865696768743D223638222F3E
+                3C2F7061747465726E3E3C2F646566733E3C7469746C653E46696E643C2F7469
+                746C653E3C672069643D2249636F6E223E3C7061746820636C6173733D22636C
+                732D332220643D224D38302C38386134302C34302C302C312C312C34302D3430
+                4134302C34302C302C302C312C38302C38385A222F3E3C7061746820636C6173
+                733D22636C732D342220643D224D38302C344134342C34342C302C302C302C34
+                342C37332E323161382E31362C382E31362C302C302C302D312E38362C312E33
+                384C362E33342C3131302E333461382C382C302C302C302C31312E33322C3131
+                2E33324C35332E34312C38352E393161382E31362C382E31362C302C302C302C
+                312E33382D312E38364134342C34342C302C312C302C38302C345A6D302C3834
+                6134302C34302C302C312C312C34302D34304134302C34302C302C302C312C38
+                302C38385A222F3E3C2F673E3C2F7376673E0D0A}
+            end>
+          LargeLayoutBitmaps = <>
+          DisabledBitmaps = <>
+          HoverBitmaps = <>
+          LargeLayoutDisabledBitmaps = <>
+          LargeLayoutHoverBitmaps = <>
+          BitmapVisible = True
+          ControlIndex = 2
+        end
+        object FIndEdit: TEdit
+          Tag = 3
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 3
+          Position.X = 90.000000000000000000
+          Position.Y = 3.000000000000000000
+          Size.Width = 100.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object Replace: TTMSFNCToolBarButton
+          Position.X = 193.000000000000000000
+          Position.Y = 3.000000000000000000
+          Size.Width = 24.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 4
+          OnClick = ReplaceClick
+          Font.Name = 'Segoe UI'
+          Bitmaps = <
+            item
+              Bitmap.PNG = {
+                89504E470D0A1A0A0000000D4948445200000200000002000806000000F478D4
+                FA000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                1C4949444154785EEDDD3D9A24D77925600072C603B502F6AC802D4F1E8015B0
+                E5CD58D3346511F4E4415A01C91540B2341E406F3C80E65868AE00C00AD0F4E4
+                51F75466A2EB7646556566E54FDCFBBDEFF31C64361F51E8FA619C2F6EDC88FC
+                F0030066F78B96972D9FB47CBAFDF38B96C8FBF8A1E54DCBDBEDFB3F6DFF0C00
+                0C24C59EB2FFAAE5A796BF9D90FCF77EDFB21B160080954AF17FDEF27DCB52A9
+                9F9A0C12192800809549417FD7B254E0E7CA972D560400600572D69FA5FAA5C2
+                BE545EB700003792CD7D973EEB7F28193A00802B4BF99FBAC1EF5CF9A60500B8
+                923594FF2E860000B8826CC23BF72EFFE7C610000017940D7F29DBA512BE750C
+                010070215FB42C95EF5A6208008033CB7DFE6BB9EEFF580C010070466B5DFA5F
+                8A210000CEE055CB52D1AE3986000078A691CEFEEFC710000027CA3DFF4BE53A
+                4A0C012BF4D1F61580F5FAF5F67554D9BC68080080238DBAFCFF7E0C010070A0
+                3CF867A94C478D2160255C020058B75CFF9F89CB012B61000058B7D906803004
+                AC80010060DD7EB57D9D8D21E0C60C0000EB963D00B33204DC900100805B3204
+                DC880100805B3304DC80010060DDDE6E5F676708B8320300C0BA551900C21070
+                4506008075AB34008421E04A0C0000EBF697ED6B25860000CA9BED51C0C7C410
+                004069DFB72C15648518022EC4250080F5FB7AFB5A91CB01009455F932C02E86
+                00004AFAAE65A9182BC510004039AF5A964AB15A0C01009463156013430000A5
+                BC6C592AC48A31040050CAEF5B960AB1620C010094E252C0BB18020028E345CB
+                4F2D4B855831860000CAB01FA08F210080320C017D0C0100946108E8630800A0
+                8C3C2F7FA90CABC61000401986803E860000CA3004F4310400508621A08F2100
+                80320C017D0C0100946108E8630800A00C43401F430000651802FAE4731400A0
+                0443401F430000651802FA18020028C310D0C71000401986803E860000CA3004
+                F4310400508621A08F210080320C017D0C0100946108E8630800A00C43401F43
+                0000651802FA18020028C310D0C71000401986803E860000CA3004F431040050
+                8621A08F210080320C017D0C0100946108E8630800A00C43401F430000651802
+                FA18020028C310D0C71000401986803E860000CA3004F4310400508621A08F21
+                0080320C017D0C0100946108E8630800A00C43401F430000651802FA18020028
+                C310D0C71000401986803E860000CA3004F4310400508621A08F210080320C01
+                7D0C0100946108E8630800A00C43401F430000651802FA18020028C310D0C710
+                00401986803E860000CA3004F4310400508621A08F210080320C017D0C010094
+                6108E8630800A00C43401F430000651802FA18020028C310D0C7100040198680
+                3E860000CA3004F4310400508621A08F210080320C017D0C010094F179CB5219
+                568D210080320C017D0C0100946108E8630800A00C43409F670D011F6E5F19DF
+                2F5A5E6C5FEF273E6ED9BD0718D9AB961CEBD878D3F20F9BB7C731008C23BFF0
+                C9CB965FDEFBF3FB650F402D270D010680F54991A7E477459FDB6076450F004B
+                8E1E020C00B797A24FC92B7B009EE3A821C000707DBBC2FF554BAE65297B00CE
+                E5E021C0007079BB25FD4F5A52F8790F009772D0106000B88C5DE9FF9F1667F9
+                005CDB93438001E07C943E006BF2E810600078BE5CCFFF75CBEB16A50FC09A7C
+                DBF2D9E66DEFEFB6AF1C2745FFBF5ABE6CF997967F6CF91F2D00B026B9B32CFE
+                BC7DFD991580E338DB0760445905C86AC0CF0C008749F17FD1926BFC8A1F80D1
+                BC6DF9FBCDDB0D97001E96A2CFD2FE572D59E6CF328A657E0046B4EBAF9F2F05
+                5801D897E2CF99FEEFB7AF0030836E15E0A3ED2B1B59EAFF661BE50FC04C7282
+                9B8F54BE63056023C5EF8C1F80D9FDBC0A507D0520859F6BFCCEF801A820AB00
+                77B706561D00F20DC8197F8A3F4FED03802AF2C4DA929700720F7FCA3F430000
+                54737719A0D2009025FE147FAEF70340657F5FE112C0FDE57EE50F001F7CF062
+                F60701A5F0FFB325D7F93DC4070036FEFFAC2B00BBB3FEECF0B7BB1F007ABF98
+                710048E167B93F0F3BB0D10F00F67D3CDB0090D2774F3F003C6196012067FAF9
+                6C7EB7F701C00166180072B6FF5D4BEEEF07009EF6E3E803404A3F4BFE778F35
+                04000EF276D407016599FF8B969F3FD5080038D8FF1C7100D85DEFF70C7F0038
+                DEDDA38047BB04B0BBDEAFFC01E0346FF28F910680DDFDFDAEF703C0E9BECD3F
+                46190072C69FF2778B1F003CCF7FE41F230C00D9E8976BFECA1F009E2767FF3F
+                E4CDDA078094BF87FB00C079FC71FBBAEA0120B7F9A5FC0180E7CB99FFDDF5FF
+                58EB0090F2FFD7CD5B00E00CFEAD25B700DE59E37300943F009CD7D72DFFB479
+                BBB1B60140F903C079E5ACFFB396BBFBFF77D67409201BFE943F009CD76F5ABA
+                F28FB50C00BBDDFE00C0F9FCA125CBFF7BD6700940F903C0F9A5FC7FB779BBEF
+                D62B00F938DF5CF70700CEE7D1F28F5BAE00EC9EEDEF213F00703E4F967FDC6A
+                00C807FAE453FD943F009CCF41E51FB7B80490D2FF6AFB0A009CC7C1E51FD71E
+                0052FAF9609F2CFF0300E77154F9C7B50780DFB6E4A37D0180F338BAFCE39A7B
+                00B2E33F67FF5C569EF8940F7C48F27E97BFB644DE038C2A778E651F191B2795
+                7F5C6B00B0E3FFFCF254A7947C5EFFDCB22B7E050FCC2A2791399964E3E4F2BF
+                96947E76FCFF4D4ECE4F2D19A032F97EDA629002AA49F92F1D1FAB668807E8E5
+                2FB9F49797C793D2CFF74EE103D529FF3E43947F1EF3BBF49797E5A4F473969F
+                4B264A1FC049E4FB19A2FCB3492385B6F405C8BBEC96F7953E402F27444BC7CD
+                AA19A2FC536429B5A52F4036F9BE252B244A1F609FF2EF3344F9871FDCC3C960
+                A4F8011EA643FA0C53FE59CAB6F4BF9F147F36F401F030E5DF6798F2B7F4BF9F
+                7C3F3CFD10E069CABFCF30E51F7E78EF9255104BFD0087D11F7D862A7FBBFE37
+                51FC00C751FE7D862AFFB0F4BFF91EF8A44380C329FF3EC3957FAE712F7D2155
+                E2AC1FE078CABFCF70E59FD2CB3DED4B5F4C8538EB07389EF2EF335CF947E51F
+                62BE7667FD00C751FE7D862CFFAA1BFFF235BBB50FE078CABFCF90E51F153FA1
+                291F6D9CC10780E328FF3EC3967F9E6AB7F405CD9CAF5A2CF9031C2F1BA5978E
+                AB55336CF947B5DBFE86FE6101DC90F2EF33749F54BAED6F778B1F00C753FE7D
+                863F99AC72F69FF27FDD02C0F1947F9FE1CBBFCAD9BF9DFE00A753FE7DA6B88C
+                5CE1EC5FF9039C4EF9F799A2FC2B9CFD2B7F80D329FF3E53947F5438FB77CD1F
+                E034CABFCF34E55FE1BEFFFCF202703CE5DF679AF28FD99FFA37D50F0BE08A94
+                7F9FA9FA64F667FE67B8F1843F80E329FF3ED39D4CCEFCFCE63CDB5FF9031C4F
+                F9F799AEFC67FEBCFFAC6AF82C7F80E329FF3E535E469EF9D63FB7FB011C4FF9
+                F799760FD9ACB7FE4DFB0303B820E5DF67DA2EC9F2F8D2173C7A5CF707389EF2
+                EF33F589E48C9BFF72DD3FCF3400E070CABFCFF4ABC8336EFECB5003C0E1947F
+                9FE9CB7FC6CD7F96FE018EA3FCFB94D83F962F72E98B1F3996FE010EA7FCFB94
+                28FF986DF9BFCC0F0EE00C947F9F321D32DBF27F36FE59FA07388CF2EF53EA04
+                72B6E57F1BFF000EA3FCFB945B3D9E69F93F5F8BB37F80A729FF3EE5CA7FB687
+                FFBC6E01E071CABF4FB9F28F991EFE93DBFE00789CF2EF53B2FC63A667FF3BFB
+                07789CF2EF53B6FC73AD7CE91B326272ED1F808729FF3E65CB3F66BAFD2FBFD8
+                002C53FE7D4A977F7CD9B2F48D192DEEFB077898F2EF53BEFC6396DBFFDCF70F
+                B04CF9F751FECD4CD7FF5FB400D053FE7D94FFD62CD7FFBF6A01A0A7FCFB28FF
+                7B66B9FF3F830C00EF28FF3ECAFF3D39735EFA468D149BFF007ACABF8FF25F30
+                C30640CBFF00EF28FF3ECA7FC12CCFFFB7FC0FB0A1FCFB28FF07E491B94BDFB0
+                9162F91F6043F9F751FE8F986103A0E57F00E5FF7E94FF1366D800E8837F80EA
+                947F1FE57F801936007AF80F5099F2EFA3FC0F30C313007DEE3F5099F2EFA3FC
+                0F34C31D00F91023808A52FED904BD746CAC18E57F84191E01ECFA3F5091F2EF
+                A3FC8F34C3D291EBFF403539F151FEEFA2FC4F90E5F3A56FE628C9FF00002AC9
+                A55BE5FF2ECAFF041FB58CFEF09C1FB6AF0015E4989D13370F3EDBF843CBEF36
+                6F39460680D197CFDF6C5F012AC883DBB20280F27F96195600FEB27D0598DDA7
+                2D363D6F28FF3358BA9E32527C001050C5372D4BC7C16A71CDFF4C96BEB923C5
+                1D00400539FB5F3A06568BF23F935C020060FD7EBB7DADCCB2FF992D4D58A324
+                9F610030BBECD5AA7EDB9F33FF331B7D05E0EDF6156066D9F857F9B63F67FE17
+                60000058BF4FB6AF1529FF0B310000AC5FD5FBFE95FF05190000D62DE55FF16E
+                27E57F6106008075AB78ED5FF95FC1E80300C0ECAA2DFF2BFF2BB10200C05A28
+                FF2BB20200B06E1F6F5F67A7FCAFCC0000B06E15F60028FF1B187D00F871FB0A
+                30ABD92F752AFF1BB1070060DD663ED151FE3734FA00F066FB0A30AB594F7494
+                FF0A2C7DE8C208C90763547E363650438E734BC7C091E3837D56E29B96A51FD0
+                DAF35D0B4005F9E4D3A5E3E08851FE2B914B00DF6EDE0EE7EBED2BC0EC463D4E
+                BFCFB2FFCA8CBABC54F5C331807A5EB52C1D07478A33FF951A6D79C9F23F5049
+                4ED4B2EF69E978384294FF8ABD6E59FAA1AD35F9FB025492125D3A1EAE3DCA7F
+                00A3AC02E4EF69F73F50CD88976B95FF2046B9C6E4EC1FA8EACB96A5E3E21AA3
+                FC07B3F65B02BF6A01A86A94BD00CA7F406B5E62CA2FBD9DFF40756B5FAD55FE
+                03FBB465E9877AEBE4971E80F55E0A50FE13F8BC65E9877BABF8A502E8ADED92
+                ADE3F444F2C35CFA215F3B7EA900F6E5926D9E89B274DCBC761CA727F445CBD2
+                0FFB5AC9BF1F80656B18021CA727768B3D01D9F0E7763F80C3DC624F80E37411
+                D97D7FAD2933D7B55EB40070B86BEEDDCA71DA5D59C5E417EC524F0CCC3499FF
+                FF59D202E078397E5E7235C0719AB30E029924FD42019C4FCECECF3908287EF6
+                647F4036801C7B7920FFF7D9356A0909E0B252DCA7DC3298D2CFD357F30C16C5
+                3FA10FB7AFE7B2FB45F9E5F63579DB123FB6BCD966F79F01703D3946678F558E
+                D179DD15FBEE98FC434B8ED5DF6EDF3B56030000000000000000000000DCDCB9
+                6F03647DF2AC85DCEE73FFD69F9DDCE2B3BBED27AFB9F50780EBCAED98BBE374
+                F2F1F63FBB7F1BBD63344FCA2F4D1ED094072D9DF2F90D79F0870FF800B8ACFB
+                0FD2CB4397968EC74BC9313AFFBDFB27731497E23FE5A98C8F2543845F3280F3
+                C8713A0F633AD7713A4F7874C2565C7E012EF5214D490601004E9733FE739EA0
+                DD4FFEFF1A048AC9F5FD2C072DFD429C3B59A2CAE40AC0E1AE799CCE07406595
+                81C9659A3CE6BAD1B9623500E030B7384EE7DF977F2F93CAA77BDDA2FC77C975
+                27001E76EBE374FEFD4C263FD4A51FF6B563080058B696E3B42160226BF9A5DA
+                C51000D05BDB71DAE6C009ACED976A177B02003652B6B75CF67F28F6040C6CAD
+                E5BF8BBB0380EAF2CC9435967F92BF97BB0306B4F6F24FF2CB0550D9B56EF53B
+                35F9FB319011CA7F17970280AAB20ABA745C5C5BACD60E62A4F24FB20AE0B1C1
+                4035595ABFD413FECE9D3C3196951BADFC77C96711005432CAD9FF2EEE0A58B1
+                51CB3FB11700A826B7432F1D0FD71AB76FAFD4C8E5BF8BE912A822CFF95F3A0E
+                AE3D77976B3FCA3F588594FF0C1BE93ED9BE02CCEED7DBD7D1D80CB822339CF9
+                EFE2320050C5DA6FFD7B286E095C8999CA7F170F9C002AC809CFD23170ED71A2
+                B60233967FE2B193C0EC46BDFEBFCB0B7B006E67966BFE4BF23F0C80998D7E9C
+                3300DCC8CCE51F1F6F5F016635FAA5CE970680EB9BBDFC012A18FE44C700705D
+                CA1F8035F8D800703DCA1F80D530005C47B5F2FF71FB0A30ABD1F700FCD50070
+                7915CFFCDF6E5F016635FCF34E0C00975575D9FFCDF61580757A6B00B89CAAE5
+                9FB3FF1F366F01A6650580459537FC7DBB7D0598D9E8038015800BA85CFEF1A7
+                ED2BC0CCEE3E5277640680F3AA5EFE59FEB70200B07E366B9F51CA7FE903172A
+                C5474C021564F97FE91838527C16C099543FF3DFF9E3F6156066C32FFF731ECE
+                FC3771F60F54F1AA65E9383852EC01782667FEEF38FB07AA187D05E0EE566D03
+                C0E994FF3B7F68B1F90FA8E257DBD751D900F80C96FDDFE5FB96E11F88017084
+                6F5A968E87A3E4EE92AD1580E339F37F2753E46FB6AF0055BCDCBE8ECAD35A4F
+                E0CCBFCFEB16804A52FE4BC7C3917277ECB602703867FEBD9CF9FFFBE62D4019
+                9F6E5F4766D5F608CEFCFB38F307AACAF5F3A5E3E248F11C830329FF3ECA1FA8
+                2C1B9F978E8D23C5C6ED0328FF3ECA1FA86C86EBFFDFB5DCB107E061AEF9F75C
+                F307AA9BE1FAFFCF770018009629FF9EF207F8E0834FB6AF23730BE0232CFBF7
+                B1EC0FB0B96EFE53CBD27172A4E4730C58A0FCFB7CD102C01C1F0094B8036081
+                F2EFA3FC01DE99E1F6BFAC60F01EE5DF47F903BC33CBF27F3EC3807B947F1FE5
+                0FD09B65F9DFE6F67B52764BDFA4AA51FE00FB6658FE4F6C00DC52FE7D943FC0
+                BE6C9A5B3A668E181B001BE5DF47F9032C9BA52F7E7E026065CABF8FF2075896
+                CD7F333CFB3F297FFD5FF9F751FE000FCB83D0968E9D23A6F4F57FE5DF47F903
+                3C2ECBE64BC7CF1153F6FABFF2EFA3FC011E37CBAD7F49D9EBFFCABF8FF20778
+                5A1E9AB3740C1D31258FFBCABF8FF20778DA4C67FFC90C1F637C14E5DF47F903
+                3C2D3BFF67BAF69FBB184A51FE7D943FC061667B3C7CA9DBFF947F1FE50F7098
+                593EF4E77ECADCFEA7FCFB287F80C3E56C79E9583A6A32CC64A8999EF2EFA3FC
+                010E978D72B39DFD9758FE57FE7D943FC0E172963CD36D7FBB4CBFFB5FF9F751
+                FE00C7996DE35F32FDEE7FE5DF47F9031CE765CB6C4BFFC9D47DA0FCFB94FFA4
+                278023CDBAF49F4CFBEC7FE5DF47F9031C6FD62EF9AA654ACABF8FF20738DE6C
+                8FFBBD9F29EFFD57FE7D943FC0F1B23C3EE375FF64CA7BFF957F1FE50F70BC99
+                AFFB27E9CAA928FF3ECA1FE034B93EBE745C9D2139FB9F6AF39FF2EFA3FC014E
+                33E3FDFEF733D5E63FE5DF47F9039C66F6F24FA679F29FF2EFA3FC014EF3BA65
+                D64D7FBB4C73F6AFFCFB287F80D3CCF8213F4B99E2EC5FF9F751FE00A7A952FE
+                B9AB6178CABF8FF207384D95F24F867FF08FF2EFA3FC014E9342AC52FEC39FFD
+                2BFF3ECA1FE034D9ED5FA5FC93A1AFFD2BFF3ECA1FE034D5FA64E8B37FE5DF47
+                F9031C2F8FF7FDB265E9B83A73863DFB57FE7D943FC0F152FE333FDEF7A10C7B
+                DFBFF2EFA3FC018E9733E0EF5B968EAB33277B1C5EB60C47F9F751FE00C7C959
+                7F8E9D9536FBDD4F7A7438CABF8FF207384ECE7C2B2EF9EF92158FE13EEF5FF9
+                F751FE00C7A9F04CFFA792EFC150947F1FE50F70B8EA67FDBB0CB7F14FF9F751
+                FE0087A97EADFF7E86DBF8A7FCFB287F80C354DDE1FF50D2A7C350FE7D943FC0
+                D352FCDFB52C1D47AB26DF8F6136FE29FF3ECA1FE07129FE3CDA76E9185A3959
+                FA1FE6897FCABF8FF207789833FEC733CCD2BFF2EFA3FC01F665393BB7B329FE
+                C733CCD2BFF2EFA3FC017A39DBCFB1D1AEFEA733CCAE7FE5DF47F9036CA4C4D2
+                11CEF68FCBE72DABA7FCFB287FA0B22C59E74C5FE99F9E217A44F9F751FE4035
+                F70B3FBBF82DEF3F2F435CF757FE7D52FE436CD60038418E6F2F5A5EB564793A
+                C7BC9495C23F5FAE7ACBDF87DBD763A5FCFF75F396E64DCB1F5BDEDEFD09604C
+                29F9DD89CC2F5B76A57FFF95CBF94DCBBF6FDE5EDE290380F20780F3FA43CBEF
+                366FAFE3D80140F903C0797DDD92B3FFABAE221F3300287F0038AF5C42FEACE5
+                EA97900F1D00943F009C574A3FE59F21E0EA3EDABE3E46F903C079A5FCB3EC7F
+                93F28FA75600943F009CD7AEFC73EDFF661E5B0150FE00707EFFD672D3F28F87
+                5600760F790000CEE7EAB7FB3D646900C847347EB9790B009CC96ACA3FDE1F00
+                F2A4A7613E7F180006B1AAF28FF7F700789E3D009CD7EACA3FEE0F00F9808704
+                00388F55967FDCBF0490A5FF979BB700C033ADB6FC63B70290337FE50F00E791
+                DBE8575BFEB11B007EBB7D05009E27C59F7BFD572D970072E69FE57F00E07479
+                C25FCAFF6A9FE9FF1C5901F874F3160038D1EEF1BE43947F6400F864F3160038
+                413ED0E71F5A6EFE78DF63E412C04F2DEEFD0780E37DDBF24F2D5901184A5600
+                943F001C2FB7F90D59FE911580BF6DDE02000748E167977F068061190000E070
+                B9DE9F9DFE59FA1F9A0100000E33ECF5FE25BB07010100CB52F839EBFF6CFB7E
+                0A560000E06159F2CFFDFD799D8A15000058964D7E39EB9FAEFCC30A0000F452
+                F8D9E53FD4837D8E650000808D5CDFCFA37C53FED35CEB7F88010000363BFCB3
+                D16FCAE5FE25D903F0C3E62D0094B3DBE19FDBFBCA947FFC5DCB8B967FBCFB13
+                00D490E2FFBF2DFFBBE5FFB5FC574B295901F8F3E62D009490E5FEECEECFED7D
+                6557C1B30720BE6FC94A0000CC2AC5FFC796A977F71F6AF71C80EC7A048019E5
+                2C7F779D5FF96FED5600F291C03F6DDE02C01452FC39E3CF49EEF4B7F51D2B9B
+                0063B7F9E1D3ED2B008C6AB7D4FFCFDBF7E536F81D62B702105905F8AEC55E00
+                004694B2CF437C723B9F33FE27DC1F00222B00DF6CDE02C0EAA5E8735D3F67FC
+                A5EEE37FAEF70780F8B2E5F5E62D00AC52CAFE3F5A5CDF3FD1D20010B914F072
+                F316005621457F7F999F67786800C87E805C0A300400704B29FDDDD97E96FA9D
+                ED9FC9430340180200B8855DE9FFA9C512FF853C3600842100806BD82DEFE74C
+                3FAF4AFFC29E1A00C21000C0B9EDCEF253F639D3774DFFCA0E1900C21000C073
+                ECCEF0774BFB794A9FB3FC1B3A7400084300004F49A9A7DC93947D3E7136AFCA
+                7E658E1900C21000C0FD924F7E6CD9957CFEACEC0770EC001086807DF985CFD2
+                16C0E876E59DD7BF6E5FEF97BA822F2E43401E16F437F9399E9E0840098680FD
+                BC6A0180E91902F6E323950128C110B01F430000251802F6630800A00443C07E
+                0C0100946008D88F210080120C01FB310400508221603F8600004A3004ECC710
+                0040098680FD18020028C110B01F430000251802F6630800A00443C07E0C0100
+                946008D88F210080120C01FB310400508221603F8600004A3004ECC710004009
+                8680FD18020028C110B01F430000251802F6630800A00443C07E0C0100946008
+                D88F210080120C01FB310400508221603F8600004A3004ECC7100040098680FD
+                18020028C110B01F430000251802F6630800A00443C07E0C0100946008D88F21
+                0080120C01FB310400508221603F8600004A3004ECC7100040098680FD180200
+                28C110B01F430000251802FAFCD4F2B20500A66708E8630800A00C43401F4300
+                00651802FA18020028C310D0C71000401986803E860000CA3004F43104005086
+                21A08F210080320C017D0C0100946108E8630800A00C43401F430000651802FA
+                18020028C310D0C71000401986803E860000CA3004F4310400508621A08F2100
+                80320C017D0C0100946108E8630800A00C43401F430000651802FA18020028C3
+                10D0C71000401986803E860000CA3004F4310400508621A08F210080320C017D
+                0C0100946108E8630800A00C43409F0C01F99E00C0F40C017DBE690180120C01
+                7D3E6F0180120C017DEC0700A00C43C0BBB814004029868077B10A0040298680
+                4DAC0200508E216093172D00ACDC47DB579EEF6DCB672D6FEEFE54D7ABED2B00
+                94527D25205F3B0094547D08C8D70FC08AB9047019D52F07B81B0060E50C0097
+                537908300000AC9C01E0B2AA0E011F6F5F01582903C0E5551C02AC0000AC9C01
+                E03ADC2208C0AA1800AEC71000C06A1800AEABCA1090AF13801533005C5F8521
+                C00000B0720680DB987D08F8CBF61580953200DCCECC438015000078C28C8F0D
+                F689800070809986001F060430009700D661A6CB015F6F5F018003CDB012E029
+                80007082918780AF5A0080138D3A04BC6A01009E61B421E09B1600E00C461A02
+                3E6D0100CE648421E0F72D00C099AD7908C8DF2B7F3F00E002D63804FCD4E2B6
+                3F00B8B0350D01297FBBFE01E04AD63004287F00B8913C7467A99C2F9D0C1F3E
+                EC07006EE8F396A592BE5472AFBF0D7F00B002D98477E94B0259F27FDD0200AC
+                4CAEC97FDFB254E0A726C59F550667FD00B0721904BE6C592AF44392D2CF52BF
+                E20798D887DB57E69461E0572D794C6F36EEBDBF79EFED363FB4BC69F94B4B3E
+                CF3FFF1900D3FAE083FF0632352676DFBE3FE60000000049454E44AE426082}
+              Bitmap.SVG = {
+                3C737667206865696768743D22353132222076696577426F783D223020302035
+                313220353132222077696474683D223531322220786D6C6E733D22687474703A
+                2F2F7777772E77332E6F72672F323030302F737667223E3C672069643D224152
+                524F575F34382220646174612D6E616D653D224152524F57203438223E3C7061
+                746820643D226D3432392E3439203130322E3338682D3330332E373761313236
+                2E3338203132362E3338203020302030202D3132362E3234203132362E313920
+                323420323420302030203020343820302037382E33322037382E333220302030
+                20312037382E32342D37382E3233683330332E3737632E303920302D36302E36
+                392036302E39332D36302E36392036302E39332D31302031302D392E39322032
+                362E33362E38332033352E36346132342032342030203020302033322E36332D
+                312E32326C3130322D3130312E396132342E36372032342E3637203020302030
+                20302D33342E396C2D3130312E39392D3130312E383961323420323420302031
+                2030202D33332E39352033347A222F3E3C7061746820643D226D38312E343420
+                3430392E3632683330332E3737613132362E3338203132362E33382030203020
+                30203132362E32342D3132362E3139203234203234203020302030202D343820
+                302037382E33322037382E3332203020302031202D37382E32342037382E3233
+                682D3330332E3737632D2E303920302036302E36392D36302E39332036302E36
+                392D36302E39332031302D313020392E39322D32362E33362D2E38332D33352E
+                3634613234203234203020302030202D33322E363320312E32326C2D31303220
+                3130312E396132342E36372032342E363720302030203020302033342E396C31
+                3032203130312E396132342032342030203120302033332E39342D33347A222F
+                3E3C2F673E3C2F7376673E0D0A}
+            end>
+          LargeLayoutBitmaps = <>
+          DisabledBitmaps = <>
+          HoverBitmaps = <>
+          LargeLayoutDisabledBitmaps = <>
+          LargeLayoutHoverBitmaps = <>
+          BitmapVisible = True
+          ControlIndex = 4
+        end
+        object ReplaceEdit: TEdit
+          Tag = 5
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 5
+          Position.X = 220.000000000000000000
+          Position.Y = 3.000000000000000000
+          Size.Width = 100.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object TMSFNCToolBarFontNamePicker1: TTMSFNCToolBarFontNamePicker
+          Position.X = 323.000000000000000000
+          Position.Y = 3.000000000000000000
+          Size.Width = 100.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 6
+          Font.Name = 'Segoe UI'
+          AutoOptionsMenuText = 'Font Name'
+          DropDownKind = ddkDropDownButton
+          DropDownHeight = 150.000000000000000000
+          DropDownWidth = 200.000000000000000000
+          HorizontalTextAlign = gtaLeading
+          Bitmaps = <>
+          LargeLayoutBitmaps = <>
+          DisabledBitmaps = <>
+          HoverBitmaps = <>
+          LargeLayoutDisabledBitmaps = <>
+          LargeLayoutHoverBitmaps = <>
+          OnFontNameSelected = TMSFNCToolBarFontNamePicker1FontNameSelected
+          ControlIndex = 6
+        end
+        object TMSFNCFontSizePicker1: TTMSFNCFontSizePicker
+          Tag = 7
+          Position.X = 426.000000000000000000
+          Position.Y = 3.000000000000000000
+          Size.Width = 60.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 7
+          Font.Name = 'Segoe UI'
+          OnFontSizeSelected = TMSFNCFontSizePicker1FontSizeSelected
+          SelectedFontSize = -1.000000000000000000
+        end
+        object ThemeComboBox: TTMSFNCComboBox
+          Tag = 8
+          Position.X = 489.000000000000000000
+          Position.Y = 3.000000000000000000
+          Size.Width = 194.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 8
+          Font.Name = 'Segoe UI'
+          DropDownWidth = 150.000000000000000000
+          Items.Strings = (
+            'Visual Studio - Light'
+            'Visual Studio - Dark'
+            'High Contrast - Dark')
+          ItemIndex = 0
+          ItemHeight = 16.000000000000000000
+          Text = 'Visual Studio - Light'
+          ItemAppearance.ShowFocus = False
+          ItemAppearance.ExpandColumn = -1
+          ItemAppearance.FixedHeight = 16.000000000000000000
+          ItemAppearance.VariableMinimumHeight = 25.000000000000000000
+          ItemAppearance.ShowLines = False
+          ItemAppearance.Font.Color = xFF7A7A7A
+          ItemAppearance.Font.Name = 'Segoe UI'
+          ItemAppearance.TitleFont.Name = 'Segoe UI'
+          ItemAppearance.SelectedFontColor = xFF454545
+          ItemAppearance.ExtendedFontColor = xFF454545
+          ItemAppearance.SelectedFill.Color = xFFF6F8FC
+          ItemAppearance.SelectedStroke.Color = xFF2D9BEF
+          ItemAppearance.SelectedStroke.Width = 2.000000000000000000
+          ItemAppearance.SelectionArea = tsaFull
+          ItemAppearance.ExtendedFont.Name = 'Segoe UI'
+          ItemAppearance.ExpandNodeIcon.PNG = {
+            89504E470D0A1A0A0000000D494844520000000B0000000B0806000000A9AC77
+            26000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+            004B49444154285363ACAEADFECF402C0029260680D43141F5A0006F3F6F280B
+            1560558C0B90A498054A63588DCCDFBA692B98862B860980004821321F0668E7
+            66AC8AB1390104488841060600EED939BB858B0ECD0000000049454E44AE4260
+            82}
+          ItemAppearance.CollapseNodeIcon.PNG = {
+            89504E470D0A1A0A0000000D494844520000000B0000000B0806000000A9AC77
+            26000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+            003A49444154285363ACAEADFECF402C0029260680D43141F5100568A798054A
+            8381B79F379485005B376D85B2D014234B600383C48324C420030300D49232D7
+            2010A6750000000049454E44AE426082}
+          ItemAppearance.ExpandNodeIconLarge.PNG = {
+            89504E470D0A1A0A0000000D4948445200000016000000160806000000C4B46C
+            3B000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+            006849444154484B63ACAEADFECF4003C004A5A90EE02E6E696A010B500A6AEA
+            6AC034CD5C4CB4C1DE7EDE604C2C187817930A460D860316280D0784621E97FC
+            D64D5BA12C08A09F8BD16D8601984B71C9A383D1540107C3D860506A20364580
+            00CD5C3CD4EA3C060600D2401984154F98460000000049454E44AE426082}
+          ItemAppearance.CollapseNodeIconLarge.PNG = {
+            89504E470D0A1A0A0000000D4948445200000016000000160806000000C4B46C
+            3B000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+            005149444154484B63ACAEADFECF4003C004A5A90EE02E6E696A010B500A6AEA
+            6AC034CD5C3C6A301C8C1A0C072C501A0378FB794359F8C1D64D5BA12C544033
+            178FE63C381835180E869EC143ADCE636000009C2E12F3AF5420C80000000049
+            454E44AE426082}
+          Appearance.Stroke.Color = claDarkgray
+          Appearance.Fill.Color = xFFE9E9E9
+          Appearance.StrokeHover.Color = claLightslategray
+          Appearance.FillHover.Color = xFFBBC4CC
+          Appearance.StrokeDown.Color = claSlategray
+          Appearance.FillDown.Color = xFFB8C0C8
+          Appearance.StrokeSelected.Color = claDarkslategray
+          Appearance.FillSelected.Color = xFFB8C0C8
+          Appearance.StrokeDisabled.Color = claDarkgray
+          Appearance.FillDisabled.Color = claSilver
+          Appearance.SeparatorStroke.Color = claDarkgray
+          Appearance.Font.Name = 'Segoe UI'
+          OnItemSelected = ThemeComboBoxItemSelected
+        end
+      end
+      object BasicMemo: TTMSFNCMemo
+        Align = Client
+        Size.Width = 696.000000000000000000
+        Size.Height = 737.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Readonly = False
+        Font.Name = 'Segoe UI'
+        Lines.Strings = (
+          'unit Main;'
+          ''
+          'interface'
+          ''
+          'uses'
+          
+            '  System.SysUtils, System.Types, System.UITypes, System.Classes,' +
+            ' System.Variants,'
+          '  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,'
+          
+            '  FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSF' +
+            'NCGraphicsTypes,'
+          
+            '  FMX.TMSFNCCustomControl, FMX.TMSFNCWebBrowser, FMX.TMSFNCCusto' +
+            'mWEBControl,'
+          
+            '  FMX.TMSFNCMemo, FMX.TMSFNCToolBar, FMX.TMSFNCPageControl, FMX.' +
+            'TMSFNCTabSet,'
+          '  FMX.Controls.Presentation, FMX.Edit, FMX.TMSFNCComboBox,'
+          '  FMX.TMSFNCCustomPicker, FMX.TMSFNCFontSizePicker;'
+          ''
+          'type'
+          '  TForm2 = class(TForm)'
+          '    DemoPages: TTMSFNCPageControl;'
+          '    TMSFNCPageControl1Page0: TTMSFNCPageControlContainer;'
+          '    TMSFNCPageControl1Page1: TTMSFNCPageControlContainer;'
+          '    TMSFNCPageControl1Page2: TTMSFNCPageControlContainer;'
+          '    TMSFNCToolBar1: TTMSFNCToolBar;'
+          '    BasicMemo: TTMSFNCMemo;'
+          '    OpenFile: TTMSFNCToolBarButton;'
+          '    SaveFile: TTMSFNCToolBarButton;'
+          '    Search: TTMSFNCToolBarButton;'
+          '    OpenDialog1: TOpenDialog;'
+          '    FIndEdit: TEdit;'
+          '    Replace: TTMSFNCToolBarButton;'
+          '    ReplaceEdit: TEdit;'
+          '    TMSFNCToolBarFontNamePicker1: TTMSFNCToolBarFontNamePicker;'
+          '    TMSFNCFontSizePicker1: TTMSFNCFontSizePicker;'
+          '    ThemeComboBox: TTMSFNCComboBox;'
+          '    CodeCompletionMemo: TTMSFNCMemo;'
+          '    BreakpointsMemo: TTMSFNCMemo;'
+          '    TMSFNCToolBar2: TTMSFNCToolBar;'
+          '    StartDebug: TTMSFNCToolBarButton;'
+          '    StepPrevious: TTMSFNCToolBarButton;'
+          '    StepNext: TTMSFNCToolBarButton;'
+          '    SkipToBreakPoint: TTMSFNCToolBarButton;'
+          '    StopDebugging: TTMSFNCToolBarButton;'
+          '    procedure OpenFileClick(Sender: TObject);'
+          '    procedure SaveFileClick(Sender: TObject);'
+          '    procedure SearchClick(Sender: TObject);'
+          '    procedure ReplaceClick(Sender: TObject);'
+          
+            '    procedure TMSFNCToolBarFontNamePicker1FontNameSelected(Sende' +
+            'r: TObject;'
+          '      AFontName: string);'
+          
+            '    procedure TMSFNCFontSizePicker1FontSizeSelected(Sender: TObj' +
+            'ect;'
+          '      AFontSize: Single);'
+          
+            '    procedure ThemeComboBoxItemSelected(Sender: TObject; AText: ' +
+            'string;'
+          '      AItemIndex: Integer);'
+          '    procedure FormCreate(Sender: TObject);'
+          
+            '    procedure CodeCompletionMemoGetCodeCompletion(Sender: TObjec' +
+            't; Token: string;'
+          '      CustomCompletionList: TTMSFNCMemoCodeCompletion;'
+          '      Position: TTMSFNCMemoCaretPosition);'
+          
+            '    procedure BreakpointsMemoGutterClick(Sender: TObject; LineNu' +
+            'mber: Integer);'
+          
+            '    procedure BreakpointsMemoGutterRightClick(Sender: TObject; L' +
+            'ineNumber: Integer);'
+          '    procedure StartDebugClick(Sender: TObject);'
+          '    procedure StepPreviousClick(Sender: TObject);'
+          '    procedure StepNextClick(Sender: TObject);'
+          '    procedure SkipToBreakPointClick(Sender: TObject);'
+          '    procedure StopDebuggingClick(Sender: TObject);'
+          '  private'
+          '    { Private declarations }'
+          '    FActiveLine: Integer;'
+          '  public'
+          '    { Public declarations }'
+          '  end;'
+          ''
+          'var'
+          '  Form2: TForm2;'
+          ''
+          'implementation'
+          ''
+          '{$R *.fmx}'
+          ''
+          'procedure TForm2.FormCreate(Sender: TObject);'
+          'begin'
+          
+            '  TMSFNCToolBarFontNamePicker1.SelectedFontName := BasicMemo.Fon' +
+            't.Name;'
+          '  TMSFNCFontSizePicker1.SelectedFontSize := BasicMemo.Font.Size;'
+          'end;'
+          ''
+          
+            'procedure TForm2.ThemeComboBoxItemSelected(Sender: TObject; ATex' +
+            't: string;'
+          '  AItemIndex: Integer);'
+          'begin'
+          '  case AITemIndex of'
+          '    0: BasicMemo.Theme := TTMSFNCMemoTheme.mtVisualStudio;'
+          '    1: BasicMemo.Theme := TTMSFNCMemoTheme.mtVisualStudioDark;'
+          '    2: BasicMemo.Theme := TTMSFNCMemoTheme.mtHighContrastDark;'
+          '  end;'
+          'end;'
+          ''
+          
+            'procedure TForm2.TMSFNCFontSizePicker1FontSizeSelected(Sender: T' +
+            'Object;'
+          '  AFontSize: Single);'
+          'begin'
+          '  BasicMemo.Font.Size := AFontSize;'
+          'end;'
+          ''
+          
+            'procedure TForm2.CodeCompletionMemoGetCodeCompletion(Sender: TOb' +
+            'ject; Token: string;'
+          '  CustomCompletionList: TTMSFNCMemoCodeCompletion;'
+          '  Position: TTMSFNCMemoCaretPosition);'
+          'begin'
+          '  CustomCompletionList.Add('#39'console.log'#39');'
+          '  CustomCompletionList.Add('#39'IntToStr('#39');'
+          '  CustomCompletionList.Add('#39'StrToInt('#39');'
+          'end;'
+          ''
+          
+            'procedure TForm2.BreakpointsMemoGutterClick(Sender: TObject; Lin' +
+            'eNumber: Integer);'
+          'begin'
+          
+            '  BreakPointsMemo.BreakPoints[LineNumber] := not BreakPointsMemo' +
+            '.BreakPoints[LineNumber];'
+          'end;'
+          ''
+          
+            'procedure TForm2.BreakpointsMemoGutterRightClick(Sender: TObject' +
+            ';'
+          '  LineNumber: Integer);'
+          'begin'
+          
+            '  BreakPointsMemo.BookMarks[LineNumber] := not BreakPointsMemo.B' +
+            'ookMarks[LineNumber];'
+          'end;'
+          ''
+          'procedure TForm2.OpenFileClick(Sender: TObject);'
+          'begin'
+          '  if OpenDialog1.Execute then'
+          '    BasicMemo.Lines.LoadFromFile(OpenDialog1.Files[0]);'
+          'end;'
+          ''
+          'procedure TForm2.SaveFileClick(Sender: TObject);'
+          'begin'
+          '  if OpenDialog1.Files.Count > 0 then'
+          '    BasicMemo.Lines.SaveToFile(OpenDialog1.Files[0])'
+          '  else'
+          '  begin'
+          '    if OpenDialog1.Execute then'
+          '      BasicMemo.Lines.SaveToFile(OpenDialog1.Files[0]);'
+          '  end;'
+          'end;'
+          ''
+          'procedure TForm2.SearchClick(Sender: TObject);'
+          'begin'
+          '  BasicMemo.FindNext(FindEdit.Text);'
+          'end;'
+          ''
+          'procedure TForm2.ReplaceClick(Sender: TObject);'
+          'begin'
+          '  BasicMemo.ReplaceNext(FindEdit.Text, ReplaceEdit.Text);'
+          'end;'
+          ''
+          'procedure TForm2.StartDebugClick(Sender: TObject);'
+          'var'
+          '  i: Integer;'
+          'begin'
+          '  for i := 0 to BreakPointsMemo.Lines.Count -1 do'
+          '  begin'
+          '    if BreakPointsMemo.BreakPoints[i] = true then'
+          '    begin'
+          '      FActiveLine := i;'
+          '      BreakPointsMemo.LineHighlight[i] := true;'
+          '      exit;'
+          '    end;'
+          '  end;'
+          ''
+          '  TTMSFNCUtils.Message('#39'no breakpoints found'#39');'
+          'end;'
+          ''
+          'procedure TForm2.StepPreviousClick(Sender: TObject);'
+          'begin'
+          '  BreakPointsMemo.LineHighlight[FActiveLine] := false;'
+          ''
+          '  if FActiveLine = 0 then'
+          '    FActiveLine := BreakPointsMemo.Lines.Count -1'
+          '  else'
+          '    dec(FActiveLIne);'
+          '  BreakPointsMemo.LineHighlight[FActiveLine] := true;'
+          'end;'
+          ''
+          'procedure TForm2.StepNextClick(Sender: TObject);'
+          'begin'
+          '  BreakPointsMemo.LineHighlight[FActiveLine] := false;'
+          ''
+          '  if FActiveLine = BreakPointsMemo.Lines.Count -1 then'
+          '    FActiveLine := 0'
+          '  else'
+          '    inc(FActiveLIne);'
+          ''
+          '  BreakPointsMemo.LineHighlight[FActiveLine] := true;'
+          'end;'
+          ''
+          'procedure TForm2.SkipToBreakPointClick(Sender: TObject);'
+          'var'
+          '  i: Integer;'
+          'begin'
+          '  BreakPointsMemo.LineHighlight[FActiveLine] := false;'
+          '  inc(FActiveLine);'
+          '  for i := FActiveLine to BreakPointsMemo.Lines.Count -1 do'
+          '  begin'
+          '    if BreakPointsMemo.BreakPoints[i] = true then'
+          '    begin'
+          '      FActiveLine := i;'
+          '      BreakPointsMemo.LineHighlight[i] := true;'
+          '      exit;'
+          '    end;'
+          '  end;'
+          ''
+          
+            '  i := TTMSFNCUtils.Message('#39'no breakpoints found! Go to beginni' +
+            'ng of file?'#39', TMsgDlgType.mtInformation, mbYesNo, 0 );'
+          ''
+          '  if i = 6 then'
+          '  begin'
+          '    StartDebugClick(Self);'
+          '  end;'
+          ''
+          'end;'
+          ''
+          'procedure TForm2.StopDebuggingClick(Sender: TObject);'
+          'begin'
+          '  BreakPointsMemo.LineHighlight[FActiveLine] := false;'
+          'end;'
+          ''
+          
+            'procedure TForm2.TMSFNCToolBarFontNamePicker1FontNameSelected(Se' +
+            'nder: TObject;'
+          '  AFontName: string);'
+          'begin'
+          '  BasicMemo.Font.Name := AFontName;'
+          'end;'
+          ''
+          'end.')
+        CompletionList = <>
+        LibraryLocation = llOffline
+      end
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 663
+    Top = 65535
+  end
+end

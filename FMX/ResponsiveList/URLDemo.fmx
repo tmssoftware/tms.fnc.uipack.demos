@@ -1,0 +1,105 @@
+object Form4: TForm4
+  Left = 0
+  Top = 0
+  Caption = 'Responsive List Demo'
+  ClientHeight = 501
+  ClientWidth = 313
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object TMSFNCResponsiveList1: TTMSFNCResponsiveList
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    Cursor = crDefault
+    Font.Size = 14.000000000000000000
+    Font.Name = 'Segoe UI'
+    Position.X = 40.000000000000000000
+    Position.Y = 48.000000000000000000
+    Size.Width = 233.000000000000000000
+    Size.Height = 393.000000000000000000
+    Size.PlatformDefault = False
+    Conditions = <
+      item
+        Columns = 1
+        HeightFrom = -1
+        ItemHeight = 150
+        Margins.Left = 3
+        Margins.Top = 3
+        Margins.Right = 3
+        Margins.Bottom = 3
+        WidthTo = 250
+        Tag = 0
+      end
+      item
+        Columns = 2
+        HeightFrom = -1
+        ItemHeight = 150
+        Margins.Left = 3
+        Margins.Top = 3
+        Margins.Right = 3
+        Margins.Bottom = 3
+        WidthFrom = 250
+        WidthTo = 500
+        Tag = 0
+      end
+      item
+        Columns = 3
+        HeightFrom = -1
+        ItemHeight = 150
+        Margins.Left = 3
+        Margins.Top = 3
+        Margins.Right = 3
+        Margins.Bottom = 3
+        WidthFrom = 500
+        WidthTo = 750
+        Tag = 0
+      end
+      item
+        Columns = 4
+        HeightFrom = -1
+        ItemHeight = 150
+        Margins.Left = 3
+        Margins.Top = 3
+        Margins.Right = 3
+        Margins.Bottom = 3
+        WidthFrom = 750
+        Tag = 0
+      end>
+    Items = <
+      item
+        Content = 'item 1'
+        HeaderColor = claLightskyblue
+        Visible = True
+        ControlName = ''
+      end
+      item
+        Content = 'item 2'
+        HeaderColor = claLightskyblue
+        Visible = True
+        ControlName = ''
+      end
+      item
+        Content = 'item 3'
+        HeaderColor = claLightskyblue
+        Visible = True
+        ControlName = ''
+      end>
+    Version = '1.2.0.0'
+  end
+  object Label1: TLabel
+    Position.X = 40.000000000000000000
+    Position.Y = 32.000000000000000000
+    Text = 'Car list'
+  end
+  object Label2: TLabel
+    Anchors = [akLeft, akBottom]
+    Position.X = 40.000000000000000000
+    Position.Y = 440.000000000000000000
+    Size.Width = 161.000000000000000000
+    Size.Height = 49.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Resize the form to see effect on the responsive list'
+  end
+end

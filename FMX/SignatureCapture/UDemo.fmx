@@ -1,0 +1,250 @@
+object Form130: TForm130
+  Left = 0
+  Top = 0
+  Caption = 'TMS FNC Signature Capture Demo'
+  ClientHeight = 316
+  ClientWidth = 665
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object TMSFNCSignatureCapture1: TTMSFNCSignatureCapture
+    Position.X = 256.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 400.000000000000000000
+    Size.Height = 300.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 6
+    Font.Name = 'Segoe UI'
+    Pen.Color = claBlack
+    TextPosition.Line.Color = claGray
+    ClearSig.Image.PNG = {
+      89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+      F8000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+      01ED49444154484BD555CB550241109CD58BC70D81A3478C80210388408C4089
+      6097082403F6E65189408840BC794323900CB0AAA767DECEEEB0C2E344BDB7AF
+      677AE8EAAE9E0FE6E291A9354551F4B22C7BC630DFEFF74BD86A369BED64F10C
+      5CA9354A3EC26739C6B745D25216CF40505096E52B0C1334B181A2E1B16A5054
+      0E233C88A98202904C6152247D55D3D7791258B7287281DFFEE27B846B457F50
+      40E83E5049920C453CB02A9D0A103341CC3D86D679CC1C8958AC204AE081A012
+      41854E23F824AC18BF59C0D5732BE65BD7A4728F640202046C0D09526A36F8EA
+      FE39C8C1DDDEA783093CBAD400C9AAEB089B7C08082E4132D46913AB2E72E25A
+      ED4140C1080A5E30BC719E08FDC160F0B35EAFD9B2243A15E034F0C2F154F16C
+      13ECF19B1B3A709FB85F3A6D2199000139C83F307C721EC18EAD827FCCBEAB4F
+      C02218A3D308AD04AC06015B0CEB550939FA2DAD80AD1A49787F78E25A88F640
+      C9DF31AC5713917BB0EFD65ADE015FC82DF6E313FE2F9D0BC2310539AB605B22
+      A9201F833CEA7B1D7C1E60266E26C7F60EBF0FF721B4482536C9A75DE40412B0
+      55FEF96091D19D1105DA1A565F47A5C147A1AE4455484BBD82E6337D123941B5
+      30428A62F9DF22F00928D1F78DAFE149E404FB8E24BCF14C62D115795DFF7D8B
+      4E058873DD871E0A1D3BEFE5C2983FE2BEE02B964D075A0000000049454E44AE
+      426082}
+  end
+  object Panel1: TPanel
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 241.000000000000000000
+    Size.Height = 300.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 7
+    object Button1: TButton
+      Position.X = 144.000000000000000000
+      Position.Y = 224.000000000000000000
+      Size.Width = 88.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Save to file'
+      OnClick = Button1Click
+    end
+    object Button2: TButton
+      Position.X = 144.000000000000000000
+      Position.Y = 248.000000000000000000
+      Size.Width = 88.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Load from file'
+      OnClick = Button2Click
+    end
+    object Button3: TButton
+      Position.X = 144.000000000000000000
+      Position.Y = 272.000000000000000000
+      Size.Width = 88.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Save to image'
+      OnClick = Button3Click
+    end
+    object Edit1: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 3
+      Text = 'demo.txt'
+      Position.X = 8.000000000000000000
+      Position.Y = 224.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Edit2: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 4
+      Text = 'demo.txt'
+      Position.X = 8.000000000000000000
+      Position.Y = 248.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Edit3: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 5
+      Text = 'demo.png'
+      Position.X = 8.000000000000000000
+      Position.Y = 272.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Label1: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 225.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      Text = 
+        'To clear the signature, click the clear icon in the bottom left ' +
+        'corner.'
+      TabOrder = 6
+    end
+    object Label2: TLabel
+      Position.X = 11.000000000000000000
+      Position.Y = 194.000000000000000000
+      Size.Width = 78.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Pen width'
+      TabOrder = 7
+    end
+    object TrackBar1: TTrackBar
+      CanParentFocus = True
+      Max = 10.000000000000000000
+      Min = 1.000000000000000000
+      Orientation = Horizontal
+      Position.X = 110.000000000000000000
+      Position.Y = 192.000000000000000000
+      TabOrder = 8
+      Value = 1.000000000000000000
+      OnChange = TrackBar1Change
+    end
+    object TMSFNCColorPicker1: TTMSFNCColorPicker
+      Position.X = 96.000000000000000000
+      Position.Y = 160.000000000000000000
+      Size.Width = 60.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 9
+      Appearance.Stroke.Color = claDarkgray
+      Appearance.Fill.Color = xFFE9E9E9
+      Appearance.StrokeHover.Color = claLightslategray
+      Appearance.FillHover.Color = xFFBBC4CC
+      Appearance.StrokeDown.Color = claSlategray
+      Appearance.FillDown.Color = xFFB8C0C8
+      Appearance.StrokeSelected.Color = claDarkslategray
+      Appearance.FillSelected.Color = xFFB8C0C8
+      Appearance.StrokeDisabled.Color = claDarkgray
+      Appearance.FillDisabled.Color = claSilver
+      Appearance.SeparatorStroke.Color = claDarkgray
+      Appearance.Font.Name = 'Segoe UI'
+      Items = <
+        item
+          Color = claBlack
+        end
+        item
+          Color = claMaroon
+        end
+        item
+          Color = claGreen
+        end
+        item
+          Color = claOlive
+        end
+        item
+          Color = claNavy
+        end
+        item
+          Color = claPurple
+        end
+        item
+          Color = claTeal
+        end
+        item
+          Color = claSilver
+        end
+        item
+          Color = claGray
+        end
+        item
+          Color = claRed
+        end
+        item
+          Color = claLime
+        end
+        item
+          Color = claYellow
+        end
+        item
+          Color = claBlue
+        end
+        item
+          Color = claFuchsia
+        end
+        item
+          Color = claAqua
+        end
+        item
+          Color = claWhite
+        end>
+      OnColorSelected = TMSFNCColorPicker1ColorSelected
+      SelectedColor = claBlack
+      SelectedItemIndex = 0
+    end
+    object Label3: TLabel
+      Position.X = 96.000000000000000000
+      Position.Y = 193.000000000000000000
+      Size.Width = 9.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+      Text = '1'
+      TabOrder = 11
+    end
+    object Label4: TLabel
+      Position.X = 216.000000000000000000
+      Position.Y = 193.000000000000000000
+      Size.Width = 17.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+      Text = '10'
+      TabOrder = 10
+    end
+    object Label5: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 225.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'The images and files are saved to this demo'#39's folder.'
+      TabOrder = 12
+    end
+    object Label6: TLabel
+      Position.X = 11.000000000000000000
+      Position.Y = 161.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Pen color'
+      TabOrder = 13
+    end
+  end
+end

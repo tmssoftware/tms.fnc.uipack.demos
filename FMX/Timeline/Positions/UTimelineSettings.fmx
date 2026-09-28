@@ -1,0 +1,676 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  Caption = 'Timeline Positions'
+  ClientHeight = 630
+  ClientWidth = 780
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object ScrollBox1: TScrollBox
+    Align = Client
+    Size.Width = 530.000000000000000000
+    Size.Height = 430.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Viewport.Width = 530.000000000000000000
+    Viewport.Height = 430.000000000000000000
+    object PanelSettings: TPanel
+      Align = Top
+      Size.Width = 530.000000000000000000
+      Size.Height = 217.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object Label1: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 8.000000000000000000
+        Position.Y = 64.000000000000000000
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.Trimming = None
+        Text = 'Division'
+        TabOrder = 1
+      end
+      object Label2: TLabel
+        Position.X = 40.000000000000000000
+        Position.Y = 89.000000000000000000
+        Size.Width = 65.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Trimming = None
+        Text = 'Position:'
+        TabOrder = 6
+      end
+      object DivPosLeft: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 144.000000000000000000
+        Position.Y = 84.000000000000000000
+        TabOrder = 18
+        Text = 'TopLeft'
+        TextSettings.Trimming = None
+        OnClick = DivPosLeftClick
+      end
+      object DivPosMiddle: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 232.000000000000000000
+        Position.Y = 84.000000000000000000
+        TabOrder = 8
+        Text = 'Middle'
+        TextSettings.Trimming = None
+        OnClick = DivPosMiddleClick
+      end
+      object DivPosRight: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 320.000000000000000000
+        Position.Y = 84.000000000000000000
+        TabOrder = 14
+        Text = 'BottomRight'
+        TextSettings.Trimming = None
+        OnClick = DivPosRightClick
+      end
+      object BtnTextCenter: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 232.000000000000000000
+        Position.Y = 140.000000000000000000
+        TabOrder = 15
+        Text = 'Center'
+        TextSettings.Trimming = None
+        OnClick = BtnTextCenterClick
+      end
+      object BtnTextHor: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 144.000000000000000000
+        Position.Y = 173.000000000000000000
+        TabOrder = 19
+        Text = 'Horizontal'
+        TextSettings.Trimming = None
+        OnClick = BtnTextHorClick
+      end
+      object BtnTextLeading: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 144.000000000000000000
+        Position.Y = 140.000000000000000000
+        TabOrder = 16
+        Text = 'Leading'
+        TextSettings.Trimming = None
+        OnClick = BtnTextLeadingClick
+      end
+      object BtnTextLeft: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 320.000000000000000000
+        Position.Y = 173.000000000000000000
+        TabOrder = 13
+        Text = 'Left'
+        TextSettings.Trimming = None
+        OnClick = BtnTextLeftClick
+      end
+      object BtnTextRight: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 408.000000000000000000
+        Position.Y = 173.000000000000000000
+        TabOrder = 11
+        Text = 'Right'
+        TextSettings.Trimming = None
+        OnClick = BtnTextRightClick
+      end
+      object BtnTextTrailing: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 320.000000000000000000
+        Position.Y = 140.000000000000000000
+        TabOrder = 9
+        Text = 'Trailing'
+        TextSettings.Trimming = None
+        OnClick = BtnTextTrailingClick
+      end
+      object BtnTextUpDown: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 232.000000000000000000
+        Position.Y = 173.000000000000000000
+        TabOrder = 10
+        Text = 'Upside Down'
+        TextSettings.Trimming = None
+        OnClick = BtnTextUpDownClick
+      end
+      object Label3: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 8.000000000000000000
+        Position.Y = 120.000000000000000000
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.Trimming = None
+        Text = 'Text'
+        TabOrder = 2
+      end
+      object Label4: TLabel
+        Position.X = 40.000000000000000000
+        Position.Y = 145.000000000000000000
+        Size.Width = 65.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Trimming = None
+        Text = 'Position:'
+        TabOrder = 5
+      end
+      object Label5: TLabel
+        Position.X = 40.000000000000000000
+        Position.Y = 178.000000000000000000
+        Size.Width = 65.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Trimming = None
+        Text = 'Angle:'
+        TabOrder = 3
+      end
+      object BtnTLLeft: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 144.000000000000000000
+        Position.Y = 28.000000000000000000
+        TabOrder = 17
+        Text = 'TopLeft'
+        TextSettings.Trimming = None
+        OnClick = BtnTLLeftClick
+      end
+      object BtnTLCenter: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 232.000000000000000000
+        Position.Y = 28.000000000000000000
+        TabOrder = 7
+        Text = 'Middle'
+        TextSettings.Trimming = None
+        OnClick = BtnTLCenterClick
+      end
+      object BtnTLRight: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 320.000000000000000000
+        Position.Y = 28.000000000000000000
+        TabOrder = 12
+        Text = 'BottomRight'
+        TextSettings.Trimming = None
+        OnClick = BtnTLRightClick
+      end
+      object Label6: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 8.000000000000000000
+        Position.Y = 8.000000000000000000
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.Trimming = None
+        Text = 'Timeline'
+        TabOrder = 0
+      end
+      object Label7: TLabel
+        Position.X = 40.000000000000000000
+        Position.Y = 33.000000000000000000
+        Size.Width = 65.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Trimming = None
+        Text = 'Position:'
+        TabOrder = 4
+      end
+    end
+    object Panel1: TPanel
+      Align = Top
+      Position.Y = 217.000000000000000000
+      Size.Width = 530.000000000000000000
+      Size.Height = 208.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object Button4: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 232.000000000000000000
+        Position.Y = 103.000000000000000000
+        TabOrder = 18
+        Text = 'Center'
+        TextSettings.Trimming = None
+        OnClick = Button4Click
+      end
+      object Button5: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 144.000000000000000000
+        Position.Y = 153.000000000000000000
+        TabOrder = 22
+        Text = 'Horizontal'
+        TextSettings.Trimming = None
+        OnClick = Button5Click
+      end
+      object Button6: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 144.000000000000000000
+        Position.Y = 103.000000000000000000
+        TabOrder = 20
+        Text = 'Leading'
+        TextSettings.Trimming = None
+        OnClick = Button6Click
+      end
+      object Button7: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 320.000000000000000000
+        Position.Y = 153.000000000000000000
+        TabOrder = 16
+        Text = 'Left'
+        TextSettings.Trimming = None
+        OnClick = Button7Click
+      end
+      object Button8: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 408.000000000000000000
+        Position.Y = 153.000000000000000000
+        TabOrder = 12
+        Text = 'Right'
+        TextSettings.Trimming = None
+        OnClick = Button8Click
+      end
+      object Button9: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 320.000000000000000000
+        Position.Y = 103.000000000000000000
+        TabOrder = 10
+        Text = 'Trailing'
+        TextSettings.Trimming = None
+        OnClick = Button9Click
+      end
+      object Button10: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 232.000000000000000000
+        Position.Y = 153.000000000000000000
+        TabOrder = 11
+        Text = 'Upside Down'
+        TextSettings.Trimming = None
+        OnClick = Button10Click
+      end
+      object Label10: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 8.000000000000000000
+        Position.Y = 88.000000000000000000
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.Trimming = None
+        Text = 'Text'
+        TabOrder = 1
+      end
+      object Label11: TLabel
+        Position.X = 40.000000000000000000
+        Position.Y = 108.000000000000000000
+        Size.Width = 65.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Trimming = None
+        Text = 'Hor Align:'
+        TabOrder = 6
+      end
+      object Label12: TLabel
+        Position.X = 40.000000000000000000
+        Position.Y = 158.000000000000000000
+        Size.Width = 65.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Trimming = None
+        Text = 'Angle:'
+        TabOrder = 2
+      end
+      object Button11: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 144.000000000000000000
+        Position.Y = 28.000000000000000000
+        TabOrder = 21
+        Text = 'TopLeft'
+        TextSettings.Trimming = None
+        OnClick = Button11Click
+      end
+      object Button12: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 232.000000000000000000
+        Position.Y = 28.000000000000000000
+        TabOrder = 8
+        Text = 'Middle'
+        TextSettings.Trimming = None
+        OnClick = Button12Click
+      end
+      object Button13: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 320.000000000000000000
+        Position.Y = 28.000000000000000000
+        TabOrder = 14
+        Text = 'BottomRight'
+        TextSettings.Trimming = None
+        OnClick = Button13Click
+      end
+      object Label13: TLabel
+        StyledSettings = [Family, FontColor]
+        Position.X = 8.000000000000000000
+        Position.Y = 8.000000000000000000
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.Trimming = None
+        Text = 'Annotation'
+        TabOrder = 0
+      end
+      object Label14: TLabel
+        Position.X = 40.000000000000000000
+        Position.Y = 33.000000000000000000
+        Size.Width = 65.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Trimming = None
+        Text = 'Position:'
+        TabOrder = 3
+      end
+      object Button14: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 144.000000000000000000
+        Position.Y = 128.000000000000000000
+        TabOrder = 19
+        Text = 'Leading'
+        TextSettings.Trimming = None
+        OnClick = Button14Click
+      end
+      object Button15: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 232.000000000000000000
+        Position.Y = 128.000000000000000000
+        TabOrder = 17
+        Text = 'Center'
+        TextSettings.Trimming = None
+        OnClick = Button15Click
+      end
+      object Button16: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 320.000000000000000000
+        Position.Y = 128.000000000000000000
+        TabOrder = 9
+        Text = 'Trailing'
+        TextSettings.Trimming = None
+        OnClick = Button16Click
+      end
+      object Label9: TLabel
+        Position.X = 40.000000000000000000
+        Position.Y = 133.000000000000000000
+        Size.Width = 65.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Trimming = None
+        Text = 'Ver Align'
+        TabOrder = 5
+      end
+      object Button1: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 144.000000000000000000
+        Position.Y = 58.000000000000000000
+        TabOrder = 15
+        Text = 'Leading'
+        TextSettings.Trimming = None
+        OnClick = Button1Click
+      end
+      object Button2: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 232.000000000000000000
+        Position.Y = 58.000000000000000000
+        TabOrder = 13
+        Text = 'Center'
+        TextSettings.Trimming = None
+        OnClick = Button2Click
+      end
+      object Button3: TButton
+        StyledSettings = [Family, Size, Style]
+        Position.X = 320.000000000000000000
+        Position.Y = 58.000000000000000000
+        TabOrder = 7
+        Text = 'Trailing'
+        TextSettings.Trimming = None
+        OnClick = Button3Click
+      end
+      object Label8: TLabel
+        Position.X = 40.000000000000000000
+        Position.Y = 63.000000000000000000
+        Size.Width = 65.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Trimming = None
+        Text = 'Alignment'
+        TabOrder = 4
+      end
+    end
+  end
+  object TMSFNCTimeline1: TTMSFNCTimeline
+    Color = xFFE2A670
+    Align = Top
+    Size.Width = 780.000000000000000000
+    Size.Height = 200.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Appearance.TimelineFill.Kind = gfkNone
+    Appearance.TimelineStroke.Color = claWhite
+    Appearance.DivisionFont.Size = 10.000000000000000000
+    Appearance.DivisionFont.Color = claWhite
+    Appearance.DivisionTickmarkStroke.Color = claWhite
+    Appearance.DefaultIndicatorAppearance.Fill.Color = x70FFFFFF
+    Appearance.DefaultIndicatorAppearance.Stroke.Color = claWhite
+    Appearance.DefaultIndicatorAppearance.Stroke.Width = 2.000000000000000000
+    Appearance.DefaultIndicatorAppearance.HoverFill.Color = xFFC2B9B0
+    Appearance.DefaultIndicatorAppearance.HoverStroke.Color = xFFC2B9B0
+    Appearance.DefaultIndicatorAppearance.HoverStroke.Width = 2.000000000000000000
+    Appearance.DefaultIndicatorAppearance.SelectedFill.Color = claWhite
+    Appearance.DefaultIndicatorAppearance.SelectedStroke.Color = xFF7E685A
+    Appearance.DefaultIndicatorAppearance.SelectedStroke.Width = 2.000000000000000000
+    Appearance.DefaultAnnotationAppearance.Font.Color = claWhite
+    Appearance.DefaultAnnotationAppearance.HoverFont.Color = xFFC2B9B0
+    Appearance.DefaultAnnotationAppearance.SelectedFont.Color = xFF7E685A
+    Appearance.DefaultAnnotationAppearance.Fill.Kind = gfkNone
+    Appearance.DefaultAnnotationAppearance.Stroke.Color = claWhite
+    Appearance.DefaultAnnotationAppearance.HoverFill.Kind = gfkNone
+    Appearance.DefaultAnnotationAppearance.HoverStroke.Color = xFFC2B9B0
+    Appearance.DefaultAnnotationAppearance.SelectedFill.Color = claWhite
+    Appearance.DefaultAnnotationAppearance.SelectedStroke.Color = xFF7E685A
+    Appearance.DefaultAnnotationAppearance.TextMargins.Left = 2.000000000000000000
+    Appearance.DefaultAnnotationAppearance.TextMargins.Top = 2.000000000000000000
+    Appearance.DefaultAnnotationAppearance.TextMargins.Right = 2.000000000000000000
+    Appearance.DefaultAnnotationAppearance.TextMargins.Bottom = 2.000000000000000000
+    Appearance.DefaultAnnotationAppearance.RoundedCorners = [gcTopLeft, gcTopRight, gcBottomLeft, gcBottomRight]
+    Appearance.DefaultAnnotationAppearance.AnnotationLine.Color = claWhite
+    Appearance.DefaultSectionAppearance.Font.Color = claWhite
+    Appearance.DefaultSectionAppearance.HoverFont.Color = claWhite
+    Appearance.DefaultSectionAppearance.SelectedFont.Color = claWhite
+    Appearance.DefaultSectionAppearance.Fill.Color = xFFE7717D
+    Appearance.DefaultSectionAppearance.Stroke.Color = xFFBBB2B5
+    Appearance.DefaultSectionAppearance.HoverFill.Color = xFFDA7B93
+    Appearance.DefaultSectionAppearance.HoverStroke.Color = xFFEDE2DC
+    Appearance.DefaultSectionAppearance.SelectedFill.Color = xFFAB3B61
+    Appearance.DefaultSectionAppearance.SelectedStroke.Color = xFFC2B9B0
+    Appearance.DefaultSectionAppearance.TextMargins.Left = 5.000000000000000000
+    Appearance.DefaultSectionAppearance.TextMargins.Top = 2.000000000000000000
+    Appearance.DefaultSectionAppearance.TextMargins.Right = 5.000000000000000000
+    Appearance.DefaultSectionAppearance.TextMargins.Bottom = 2.000000000000000000
+    Appearance.DefaultSectionAppearance.RoundedCorners = [gcTopLeft, gcTopRight, gcBottomLeft, gcBottomRight]
+    Appearance.DefaultSectionAppearance.Rounding = 4
+    Division.TextWordWrap = True
+    Fill.Kind = gfkGradient
+    Fill.Orientation = gfoHorizontal
+    Fill.Color = xFFE2A670
+    Fill.ColorTo = xFFAC4862
+    Indicators = <
+      item
+        Appearance.Fill.Color = x70FFFFFF
+        Appearance.Stroke.Color = claWhite
+        Appearance.Stroke.Width = 2.000000000000000000
+        Appearance.HoverFill.Color = xFFC2B9B0
+        Appearance.HoverStroke.Color = xFFC2B9B0
+        Appearance.HoverStroke.Width = 2.000000000000000000
+        Appearance.SelectedFill.Color = claWhite
+        Appearance.SelectedStroke.Color = xFF7E685A
+        Appearance.SelectedStroke.Width = 2.000000000000000000
+        Annotation.Appearance.Font.Color = claWhite
+        Annotation.Appearance.HoverFont.Color = xFFC2B9B0
+        Annotation.Appearance.SelectedFont.Color = xFF7E685A
+        Annotation.Appearance.Fill.Kind = gfkNone
+        Annotation.Appearance.Stroke.Color = claWhite
+        Annotation.Appearance.HoverFill.Kind = gfkNone
+        Annotation.Appearance.HoverStroke.Color = xFFC2B9B0
+        Annotation.Appearance.SelectedFill.Color = claWhite
+        Annotation.Appearance.SelectedStroke.Color = xFF7E685A
+        Annotation.Appearance.TextMargins.Left = 2.000000000000000000
+        Annotation.Appearance.TextMargins.Top = 2.000000000000000000
+        Annotation.Appearance.TextMargins.Right = 2.000000000000000000
+        Annotation.Appearance.TextMargins.Bottom = 2.000000000000000000
+        Annotation.Appearance.RoundedCorners = [gcTopLeft, gcTopRight, gcBottomLeft, gcBottomRight]
+        Annotation.Appearance.AnnotationLine.Color = claWhite
+        Annotation.Text = 'Social Media'
+        TimelineValue = 45446.500000000000000000
+        TimelineDate = 45446.500000000000000000
+      end>
+    Layout.Margins.Left = 10.000000000000000000
+    Layout.Margins.Top = 10.000000000000000000
+    Layout.Margins.Right = 10.000000000000000000
+    Layout.Margins.Bottom = 10.000000000000000000
+    Layout.IndicatorHoverBehavior = tlibBoth
+    Range.MinimumDate = 45437.000000000000000000
+    Range.MaximumDate = 45457.000000000000000000
+    Sections = <
+      item
+        Appearance.Font.Color = claWhite
+        Appearance.HoverFont.Color = claWhite
+        Appearance.SelectedFont.Color = claWhite
+        Appearance.Fill.Color = xFFE7717D
+        Appearance.Stroke.Color = xFFBBB2B5
+        Appearance.HoverFill.Color = xFFDA7B93
+        Appearance.HoverStroke.Color = xFFEDE2DC
+        Appearance.SelectedFill.Color = xFFAB3B61
+        Appearance.SelectedStroke.Color = xFFC2B9B0
+        Appearance.TextMargins.Left = 5.000000000000000000
+        Appearance.TextMargins.Top = 2.000000000000000000
+        Appearance.TextMargins.Right = 5.000000000000000000
+        Appearance.TextMargins.Bottom = 2.000000000000000000
+        Appearance.RoundedCorners = [gcTopLeft, gcTopRight, gcBottomLeft, gcBottomRight]
+        Appearance.Rounding = 4
+        Text = 'Marketing Phase'
+        StartTimelineValue = 45443.333333333340000000
+        EndTimelineValue = 45449.666666666660000000
+        StartTimelineDate = 45443.333333333340000000
+        EndTimelineDate = 45449.666666666660000000
+      end>
+  end
+  object TMSFNCTimeline2: TTMSFNCTimeline
+    Color = xFFE2A670
+    Align = Left
+    Position.Y = 200.000000000000000000
+    Size.Width = 250.000000000000000000
+    Size.Height = 430.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Appearance.TimelineFill.Kind = gfkNone
+    Appearance.TimelineStroke.Color = claWhite
+    Appearance.DivisionFont.Size = 10.000000000000000000
+    Appearance.DivisionFont.Color = claWhite
+    Appearance.DivisionTickmarkStroke.Color = claWhite
+    Appearance.DefaultIndicatorAppearance.Fill.Color = x70FFFFFF
+    Appearance.DefaultIndicatorAppearance.Stroke.Color = claWhite
+    Appearance.DefaultIndicatorAppearance.Stroke.Width = 2.000000000000000000
+    Appearance.DefaultIndicatorAppearance.HoverFill.Color = xFFC2B9B0
+    Appearance.DefaultIndicatorAppearance.HoverStroke.Color = xFFC2B9B0
+    Appearance.DefaultIndicatorAppearance.HoverStroke.Width = 2.000000000000000000
+    Appearance.DefaultIndicatorAppearance.SelectedFill.Color = claWhite
+    Appearance.DefaultIndicatorAppearance.SelectedStroke.Color = xFF7E685A
+    Appearance.DefaultIndicatorAppearance.SelectedStroke.Width = 2.000000000000000000
+    Appearance.DefaultAnnotationAppearance.Font.Color = claWhite
+    Appearance.DefaultAnnotationAppearance.HoverFont.Color = xFFC2B9B0
+    Appearance.DefaultAnnotationAppearance.SelectedFont.Color = xFF7E685A
+    Appearance.DefaultAnnotationAppearance.Fill.Kind = gfkNone
+    Appearance.DefaultAnnotationAppearance.Stroke.Color = claWhite
+    Appearance.DefaultAnnotationAppearance.HoverFill.Kind = gfkNone
+    Appearance.DefaultAnnotationAppearance.HoverStroke.Color = xFFC2B9B0
+    Appearance.DefaultAnnotationAppearance.SelectedFill.Color = claWhite
+    Appearance.DefaultAnnotationAppearance.SelectedStroke.Color = xFF7E685A
+    Appearance.DefaultAnnotationAppearance.TextMargins.Left = 2.000000000000000000
+    Appearance.DefaultAnnotationAppearance.TextMargins.Top = 5.000000000000000000
+    Appearance.DefaultAnnotationAppearance.TextMargins.Right = 2.000000000000000000
+    Appearance.DefaultAnnotationAppearance.TextMargins.Bottom = 5.000000000000000000
+    Appearance.DefaultAnnotationAppearance.RoundedCorners = [gcTopLeft, gcTopRight, gcBottomLeft, gcBottomRight]
+    Appearance.DefaultAnnotationAppearance.AnnotationLine.Color = claWhite
+    Appearance.DefaultSectionAppearance.Font.Color = claWhite
+    Appearance.DefaultSectionAppearance.HoverFont.Color = claWhite
+    Appearance.DefaultSectionAppearance.SelectedFont.Color = claWhite
+    Appearance.DefaultSectionAppearance.Fill.Color = xFFE7717D
+    Appearance.DefaultSectionAppearance.Stroke.Color = xFFBBB2B5
+    Appearance.DefaultSectionAppearance.HoverFill.Color = xFFDA7B93
+    Appearance.DefaultSectionAppearance.HoverStroke.Color = xFFEDE2DC
+    Appearance.DefaultSectionAppearance.SelectedFill.Color = xFFAB3B61
+    Appearance.DefaultSectionAppearance.SelectedStroke.Color = xFFC2B9B0
+    Appearance.DefaultSectionAppearance.TextOrientation = tltoRight
+    Appearance.DefaultSectionAppearance.TextMargins.Left = 2.000000000000000000
+    Appearance.DefaultSectionAppearance.TextMargins.Top = 5.000000000000000000
+    Appearance.DefaultSectionAppearance.TextMargins.Right = 2.000000000000000000
+    Appearance.DefaultSectionAppearance.TextMargins.Bottom = 5.000000000000000000
+    Appearance.DefaultSectionAppearance.RoundedCorners = [gcTopLeft, gcTopRight, gcBottomLeft, gcBottomRight]
+    Appearance.DefaultSectionAppearance.Rounding = 4
+    Division.TextWordWrap = True
+    Division.TextOrientation = tltoRight
+    Fill.Kind = gfkGradient
+    Fill.Orientation = gfoHorizontal
+    Fill.Color = xFFE2A670
+    Fill.ColorTo = xFFAC4862
+    Indicators = <
+      item
+        Appearance.Fill.Color = x70FFFFFF
+        Appearance.Stroke.Color = claWhite
+        Appearance.Stroke.Width = 2.000000000000000000
+        Appearance.HoverFill.Color = xFFC2B9B0
+        Appearance.HoverStroke.Color = xFFC2B9B0
+        Appearance.HoverStroke.Width = 2.000000000000000000
+        Appearance.SelectedFill.Color = claWhite
+        Appearance.SelectedStroke.Color = xFF7E685A
+        Appearance.SelectedStroke.Width = 2.000000000000000000
+        Annotation.Appearance.Font.Color = claWhite
+        Annotation.Appearance.HoverFont.Color = xFFC2B9B0
+        Annotation.Appearance.SelectedFont.Color = xFF7E685A
+        Annotation.Appearance.Fill.Kind = gfkNone
+        Annotation.Appearance.Stroke.Color = claWhite
+        Annotation.Appearance.HoverFill.Kind = gfkNone
+        Annotation.Appearance.HoverStroke.Color = xFFC2B9B0
+        Annotation.Appearance.SelectedFill.Color = claWhite
+        Annotation.Appearance.SelectedStroke.Color = xFF7E685A
+        Annotation.Appearance.TextOrientation = tltoRight
+        Annotation.Appearance.TextMargins.Left = 2.000000000000000000
+        Annotation.Appearance.TextMargins.Top = 2.000000000000000000
+        Annotation.Appearance.TextMargins.Right = 2.000000000000000000
+        Annotation.Appearance.TextMargins.Bottom = 2.000000000000000000
+        Annotation.Appearance.RoundedCorners = [gcTopLeft, gcTopRight, gcBottomLeft, gcBottomRight]
+        Annotation.Appearance.AnnotationLine.Color = claWhite
+        Annotation.Text = 'Social Media'
+        TimelineValue = 45446.500000000000000000
+        TimelineDate = 45446.500000000000000000
+      end>
+    Layout.Orientation = tloVertical
+    Layout.Margins.Left = 10.000000000000000000
+    Layout.Margins.Top = 10.000000000000000000
+    Layout.Margins.Right = 10.000000000000000000
+    Layout.Margins.Bottom = 10.000000000000000000
+    Layout.IndicatorHoverBehavior = tlibBoth
+    Range.MinimumDate = 45437.000000000000000000
+    Range.MaximumDate = 45457.000000000000000000
+    Sections = <
+      item
+        Appearance.Font.Color = claWhite
+        Appearance.HoverFont.Color = claWhite
+        Appearance.SelectedFont.Color = claWhite
+        Appearance.Fill.Color = xFFE7717D
+        Appearance.Stroke.Color = xFFBBB2B5
+        Appearance.HoverFill.Color = xFFDA7B93
+        Appearance.HoverStroke.Color = xFFEDE2DC
+        Appearance.SelectedFill.Color = xFFAB3B61
+        Appearance.SelectedStroke.Color = xFFC2B9B0
+        Appearance.TextOrientation = tltoRight
+        Appearance.TextMargins.Left = 2.000000000000000000
+        Appearance.TextMargins.Top = 5.000000000000000000
+        Appearance.TextMargins.Right = 2.000000000000000000
+        Appearance.TextMargins.Bottom = 5.000000000000000000
+        Appearance.RoundedCorners = [gcTopLeft, gcTopRight, gcBottomLeft, gcBottomRight]
+        Appearance.Rounding = 4
+        Text = 'Marketing Phase'
+        StartTimelineValue = 45443.333333333340000000
+        EndTimelineValue = 45449.666666666660000000
+        StartTimelineDate = 45443.333333333340000000
+        EndTimelineDate = 45449.666666666660000000
+      end>
+  end
+end

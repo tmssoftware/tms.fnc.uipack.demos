@@ -1,0 +1,10 @@
+object Form1: TForm1
+  Left = 425
+  Height = 728
+  Top = 217
+  Width = 621
+  Caption = 'TMS FNC SVG Demo'
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '1.8.4.0'
+end

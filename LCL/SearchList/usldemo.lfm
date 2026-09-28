@@ -1,0 +1,337 @@
+object Form1: TForm1
+  Left = 884
+  Height = 410
+  Top = 268
+  Width = 882
+  Caption = 'Search list demo'
+  ClientHeight = 410
+  ClientWidth = 882
+  OnCreate = FormCreate
+  LCLVersion = '1.6.0.4'
+  object GroupBox1: TGroupBox
+    Left = 8
+    Height = 392
+    Top = 8
+    Width = 273
+    Caption = 'Dictionary lookup'
+    ClientHeight = 372
+    ClientWidth = 269
+    TabOrder = 0
+    object Edit1: TEdit
+      Left = 8
+      Height = 23
+      Top = 7
+      Width = 120
+      OnChange = Edit1Change
+      TabOrder = 0
+    end
+    object TMSFNCSearchList1: TTMSFNCSearchList
+      Left = 8
+      Height = 256
+      Top = 40
+      Width = 250
+      TabOrder = 1
+      Appearance.DescriptionControlFont = False
+      Appearance.FilterCountFormat = '(%d)'
+      Appearance.ItemCategoryFont.Color = 42495
+      Appearance.ItemCategoryFormat = 'in %s'
+      FilterCondition.AutoSelect = False
+      BorderColor = clGray
+      Categories = <>
+      Color = clWhite
+      Columns = <      
+        item
+        end>
+      Items = <>
+      Version = '1.0.0.0'
+    end
+    object TMSFNCSearchEdit1: TTMSFNCSearchEdit
+      Left = 7
+      Height = 23
+      Top = 340
+      Width = 251
+      DoubleBuffered = True
+      TabOrder = 2
+      Appearance.DescriptionControlFont = False
+      Appearance.FilterCountFormat = '(%d)'
+      Appearance.ItemCategoryFont.Color = 42495
+      Appearance.ItemCategoryFormat = 'in %s'
+      Categories = <>
+      CategoryButton.Appearance.Rounding = 0
+      CategoryButton.Appearance.InnerStroke.Color = clWhite
+      CategoryButton.Appearance.NormalFill.Kind = gfkGradient
+      CategoryButton.Appearance.NormalFill.Color = 16579577
+      CategoryButton.Appearance.NormalFill.ColorTo = 15461350
+      CategoryButton.Appearance.NormalFill.ColorMirror = 15523036
+      CategoryButton.Appearance.NormalFill.ColorMirrorTo = 15524316
+      CategoryButton.Appearance.NormalStroke.Color = clGray
+      CategoryButton.Appearance.HoverFill.Kind = gfkGradient
+      CategoryButton.Appearance.HoverFill.Color = 15263717
+      CategoryButton.Appearance.HoverFill.ColorTo = 14145490
+      CategoryButton.Appearance.HoverFill.ColorMirror = 14207176
+      CategoryButton.Appearance.HoverFill.ColorMirrorTo = 14208456
+      CategoryButton.Appearance.HoverStroke.Color = clGray
+      CategoryButton.Appearance.DownFill.Kind = gfkGradient
+      CategoryButton.Appearance.DownFill.Color = 14605787
+      CategoryButton.Appearance.DownFill.ColorTo = 13487560
+      CategoryButton.Appearance.DownFill.ColorMirror = 13549246
+      CategoryButton.Appearance.DownFill.ColorMirrorTo = 13550526
+      CategoryButton.Appearance.DownStroke.Color = clGray
+      CategoryButton.Appearance.DisabledStroke.Color = clGray
+      CategoryButton.Bitmaps = <>
+      CategoryButton.Visible = False
+      Columns = <      
+        item
+        end>
+      DropDownWidth = 250
+      EmptyText = 'Search ...'
+      FilterCondition.AutoSelect = True
+      ItemHeight = 20
+      Items = <      
+        item
+          CategoryID = 0
+          Columns = <          
+            item
+              Caption = 'Item A'
+            end>
+        end      
+        item
+          CategoryID = 0
+          Columns = <          
+            item
+              Caption = 'Item B'
+            end>
+        end      
+        item
+          CategoryID = 0
+          Columns = <          
+            item
+              Caption = 'Item C'
+            end>
+        end>
+      SearchButton.Appearance.Rounding = 0
+      SearchButton.Appearance.InnerStroke.Color = clWhite
+      SearchButton.Appearance.NormalFill.Kind = gfkGradient
+      SearchButton.Appearance.NormalFill.Color = 16579577
+      SearchButton.Appearance.NormalFill.ColorTo = 15461350
+      SearchButton.Appearance.NormalFill.ColorMirror = 15523036
+      SearchButton.Appearance.NormalFill.ColorMirrorTo = 15524316
+      SearchButton.Appearance.NormalStroke.Color = clGray
+      SearchButton.Appearance.HoverFill.Kind = gfkGradient
+      SearchButton.Appearance.HoverFill.Color = 15263717
+      SearchButton.Appearance.HoverFill.ColorTo = 14145490
+      SearchButton.Appearance.HoverFill.ColorMirror = 14207176
+      SearchButton.Appearance.HoverFill.ColorMirrorTo = 14208456
+      SearchButton.Appearance.HoverStroke.Color = clGray
+      SearchButton.Appearance.DownFill.Kind = gfkGradient
+      SearchButton.Appearance.DownFill.Color = 14605787
+      SearchButton.Appearance.DownFill.ColorTo = 13487560
+      SearchButton.Appearance.DownFill.ColorMirror = 13549246
+      SearchButton.Appearance.DownFill.ColorMirrorTo = 13550526
+      SearchButton.Appearance.DownStroke.Color = clGray
+      SearchButton.Appearance.DisabledStroke.Color = clGray
+      SearchButton.Text = '...'
+      SearchButton.Bitmaps = <>
+      SearchButton.Visible = False
+    end
+    object ckSearchLimit: TCheckBox
+      Left = 11
+      Height = 19
+      Top = 304
+      Width = 138
+      Caption = 'Limit search results to:'
+      OnChange = ckSearchLimitChange
+      TabOrder = 3
+    end
+    object SpinEdit1: TSpinEdit
+      Left = 170
+      Height = 23
+      Top = 304
+      Width = 87
+      TabOrder = 4
+      Value = 10
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 288
+    Height = 392
+    Top = 8
+    Width = 584
+    Caption = 'Car lookup'
+    ClientHeight = 372
+    ClientWidth = 580
+    TabOrder = 1
+    object Edit2: TEdit
+      Left = 12
+      Height = 23
+      Top = 7
+      Width = 120
+      OnChange = Edit2Change
+      TabOrder = 0
+    end
+    object TMSFNCSearchList2: TTMSFNCSearchList
+      Left = 12
+      Height = 286
+      Top = 41
+      Width = 394
+      TabOrder = 1
+      Appearance.DescriptionControlFont = False
+      Appearance.FilterCountFormat = '(%d)'
+      Appearance.ItemCategoryFont.Color = 42495
+      Appearance.ItemCategoryFormat = 'in %s'
+      FilterCondition.AutoSelect = False
+      BorderColor = clGray
+      Categories = <>
+      Color = clWhite
+      Columns = <      
+        item
+        end>
+      Items = <>
+      Version = '1.0.0.0'
+    end
+    object TMSFNCSearchEdit2: TTMSFNCSearchEdit
+      Left = 12
+      Height = 23
+      Top = 340
+      Width = 395
+      DoubleBuffered = True
+      TabOrder = 2
+      Appearance.DescriptionControlFont = False
+      Appearance.FilterCountFormat = '(%d)'
+      Appearance.ItemCategoryFont.Color = 42495
+      Appearance.ItemCategoryFormat = 'in %s'
+      Categories = <>
+      CategoryButton.Appearance.Rounding = 0
+      CategoryButton.Appearance.InnerStroke.Color = clWhite
+      CategoryButton.Appearance.NormalFill.Kind = gfkGradient
+      CategoryButton.Appearance.NormalFill.Color = 16579577
+      CategoryButton.Appearance.NormalFill.ColorTo = 15461350
+      CategoryButton.Appearance.NormalFill.ColorMirror = 15523036
+      CategoryButton.Appearance.NormalFill.ColorMirrorTo = 15524316
+      CategoryButton.Appearance.NormalStroke.Color = clGray
+      CategoryButton.Appearance.HoverFill.Kind = gfkGradient
+      CategoryButton.Appearance.HoverFill.Color = 15263717
+      CategoryButton.Appearance.HoverFill.ColorTo = 14145490
+      CategoryButton.Appearance.HoverFill.ColorMirror = 14207176
+      CategoryButton.Appearance.HoverFill.ColorMirrorTo = 14208456
+      CategoryButton.Appearance.HoverStroke.Color = clGray
+      CategoryButton.Appearance.DownFill.Kind = gfkGradient
+      CategoryButton.Appearance.DownFill.Color = 14605787
+      CategoryButton.Appearance.DownFill.ColorTo = 13487560
+      CategoryButton.Appearance.DownFill.ColorMirror = 13549246
+      CategoryButton.Appearance.DownFill.ColorMirrorTo = 13550526
+      CategoryButton.Appearance.DownStroke.Color = clGray
+      CategoryButton.Appearance.DisabledStroke.Color = clGray
+      CategoryButton.Bitmaps = <>
+      CategoryButton.Visible = False
+      Columns = <      
+        item
+        end>
+      DropDownWidth = 250
+      EmptyText = 'Search ...'
+      FilterCondition.AutoSelect = True
+      ItemHeight = 20
+      Items = <      
+        item
+          CategoryID = 0
+          Columns = <          
+            item
+              Caption = 'Item A'
+            end>
+        end      
+        item
+          CategoryID = 0
+          Columns = <          
+            item
+              Caption = 'Item B'
+            end>
+        end      
+        item
+          CategoryID = 0
+          Columns = <          
+            item
+              Caption = 'Item C'
+            end>
+        end>
+      SearchButton.Appearance.Rounding = 0
+      SearchButton.Appearance.InnerStroke.Color = clWhite
+      SearchButton.Appearance.NormalFill.Kind = gfkGradient
+      SearchButton.Appearance.NormalFill.Color = 16579577
+      SearchButton.Appearance.NormalFill.ColorTo = 15461350
+      SearchButton.Appearance.NormalFill.ColorMirror = 15523036
+      SearchButton.Appearance.NormalFill.ColorMirrorTo = 15524316
+      SearchButton.Appearance.NormalStroke.Color = clGray
+      SearchButton.Appearance.HoverFill.Kind = gfkGradient
+      SearchButton.Appearance.HoverFill.Color = 15263717
+      SearchButton.Appearance.HoverFill.ColorTo = 14145490
+      SearchButton.Appearance.HoverFill.ColorMirror = 14207176
+      SearchButton.Appearance.HoverFill.ColorMirrorTo = 14208456
+      SearchButton.Appearance.HoverStroke.Color = clGray
+      SearchButton.Appearance.DownFill.Kind = gfkGradient
+      SearchButton.Appearance.DownFill.Color = 14605787
+      SearchButton.Appearance.DownFill.ColorTo = 13487560
+      SearchButton.Appearance.DownFill.ColorMirror = 13549246
+      SearchButton.Appearance.DownFill.ColorMirrorTo = 13550526
+      SearchButton.Appearance.DownStroke.Color = clGray
+      SearchButton.Appearance.DisabledStroke.Color = clGray
+      SearchButton.Text = '...'
+      SearchButton.Bitmaps = <>
+      SearchButton.Visible = False
+    end
+    object CheckListBox1: TCheckListBox
+      Left = 424
+      Height = 103
+      Top = 41
+      Width = 144
+      ItemHeight = 0
+      OnClickCheck = CheckListBox1ClickCheck
+      TabOrder = 3
+    end
+    object Panel1: TPanel
+      Left = 375
+      Height = 27
+      Top = 8
+      Width = 31
+      Color = clRed
+      ParentColor = False
+      TabOrder = 4
+      OnClick = Panel1Click
+    end
+    object ckDescr: TCheckBox
+      Left = 208
+      Height = 19
+      Top = 11
+      Width = 132
+      Caption = 'Filter also description'
+      OnChange = ckDescrChange
+      TabOrder = 5
+    end
+  end
+  object ColorDialog1: TColorDialog
+    Color = clBlack
+    CustomColors.Strings = (
+      'ColorA=000000'
+      'ColorB=000080'
+      'ColorC=008000'
+      'ColorD=008080'
+      'ColorE=800000'
+      'ColorF=800080'
+      'ColorG=808000'
+      'ColorH=808080'
+      'ColorI=C0C0C0'
+      'ColorJ=0000FF'
+      'ColorK=00FF00'
+      'ColorL=00FFFF'
+      'ColorM=FF0000'
+      'ColorN=FF00FF'
+      'ColorO=FFFF00'
+      'ColorP=FFFFFF'
+      'ColorQ=C0DCC0'
+      'ColorR=F0CAA6'
+      'ColorS=F0FBFF'
+      'ColorT=A4A0A0'
+    )
+    left = 848
+    top = 200
+  end
+end

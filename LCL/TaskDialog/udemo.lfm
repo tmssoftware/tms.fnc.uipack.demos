@@ -1,0 +1,570 @@
+object Form1: TForm1
+  Left = 522
+  Height = 624
+  Top = 195
+  Width = 618
+  Caption = 'TMS FNC TaskDialog Demo'
+  ClientHeight = 624
+  ClientWidth = 618
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '1.8.2.0'
+  object Panel1: TPanel
+    Left = 8
+    Height = 608
+    Top = 8
+    Width = 297
+    ClientHeight = 608
+    ClientWidth = 297
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 8
+      Height = 20
+      Top = 8
+      Width = 29
+      Caption = 'Title'
+      Font.Height = -15
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 8
+      Height = 20
+      Top = 64
+      Width = 69
+      Caption = 'Instruction'
+      Font.Height = -15
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 8
+      Height = 20
+      Top = 144
+      Width = 52
+      Caption = 'Content'
+      Font.Height = -15
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 8
+      Height = 20
+      Top = 264
+      Width = 93
+      Caption = 'Radio buttons'
+      Font.Height = -15
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label5: TLabel
+      Left = 8
+      Height = 20
+      Top = 358
+      Width = 115
+      Caption = 'Common buttons'
+      Font.Height = -15
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label6: TLabel
+      Left = 8
+      Height = 20
+      Top = 416
+      Width = 104
+      Caption = 'Custom buttons'
+      Font.Height = -15
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label13: TLabel
+      Left = 8
+      Height = 20
+      Top = 528
+      Width = 68
+      Caption = 'Input field'
+      Font.Height = -15
+      ParentColor = False
+      ParentFont = False
+    end
+    object CheckBox1: TCheckBox
+      Left = 8
+      Height = 19
+      Top = 32
+      Width = 58
+      Caption = 'Default'
+      TabOrder = 0
+    end
+    object CheckBox2: TCheckBox
+      Left = 8
+      Height = 19
+      Top = 88
+      Width = 49
+      Caption = 'Show'
+      Checked = True
+      State = cbChecked
+      TabOrder = 1
+    end
+    object CheckBox3: TCheckBox
+      Left = 8
+      Height = 19
+      Top = 116
+      Width = 75
+      Caption = 'Show icon'
+      Checked = True
+      State = cbChecked
+      TabOrder = 2
+    end
+    object CheckBox4: TCheckBox
+      Left = 8
+      Height = 19
+      Top = 168
+      Width = 49
+      Caption = 'Show'
+      Checked = True
+      State = cbChecked
+      TabOrder = 3
+    end
+    object CheckBox5: TCheckBox
+      Left = 8
+      Height = 19
+      Top = 288
+      Width = 49
+      Caption = 'Show'
+      TabOrder = 4
+    end
+    object CheckBox6: TCheckBox
+      Left = 80
+      Height = 19
+      Top = 382
+      Width = 38
+      Caption = 'Yes'
+      TabOrder = 5
+    end
+    object CheckBox7: TCheckBox
+      Left = 152
+      Height = 19
+      Top = 382
+      Width = 36
+      Caption = 'No'
+      TabOrder = 6
+    end
+    object CheckBox8: TCheckBox
+      Left = 224
+      Height = 19
+      Top = 382
+      Width = 56
+      Caption = 'Cancel'
+      TabOrder = 7
+    end
+    object CheckBox9: TCheckBox
+      Left = 8
+      Height = 19
+      Top = 382
+      Width = 36
+      Caption = 'OK'
+      TabOrder = 8
+    end
+    object CheckBox10: TCheckBox
+      Left = 8
+      Height = 19
+      Top = 440
+      Width = 49
+      Caption = 'Show'
+      TabOrder = 9
+    end
+    object CheckBox11: TCheckBox
+      Left = 8
+      Height = 19
+      Top = 464
+      Width = 99
+      Caption = 'Command link'
+      TabOrder = 10
+    end
+    object Edit1: TEdit
+      Left = 88
+      Height = 23
+      Top = 32
+      Width = 200
+      TabOrder = 11
+      Text = 'TMS FNC TaskDialog'
+    end
+    object Edit2: TEdit
+      Left = 88
+      Height = 23
+      Top = 88
+      Width = 200
+      TabOrder = 12
+      Text = 'Do you like the task dialog?'
+    end
+    object Memo1: TMemo
+      Left = 88
+      Height = 88
+      Top = 168
+      Width = 200
+      Lines.Strings = (
+        'This is the content or description area of the task dialog.'
+        ''
+        'It supports <b><i>HTML formatting</i></b> too!'
+      )
+      TabOrder = 13
+    end
+    object Memo2: TMemo
+      Left = 88
+      Height = 64
+      Top = 288
+      Width = 200
+      Lines.Strings = (
+        'Radio button 1'
+        'Radio button 2'
+      )
+      TabOrder = 14
+    end
+    object Memo3: TMemo
+      Left = 112
+      Height = 75
+      Top = 440
+      Width = 173
+      Lines.Strings = (
+        'Custom 1'
+        'Custom 2'
+        'Custom 3'
+      )
+      TabOrder = 15
+    end
+    object CheckBox16: TCheckBox
+      Left = 8
+      Height = 19
+      Top = 552
+      Width = 49
+      Caption = 'Show'
+      TabOrder = 16
+    end
+    object RadioButton1: TRadioButton
+      Left = 96
+      Height = 19
+      Top = 116
+      Width = 68
+      Caption = 'Question'
+      Checked = True
+      TabOrder = 19
+      TabStop = True
+    end
+    object RadioButton2: TRadioButton
+      Left = 176
+      Height = 19
+      Top = 116
+      Width = 52
+      Caption = 'Shield'
+      TabOrder = 17
+    end
+    object RadioButton3: TRadioButton
+      Left = 240
+      Height = 19
+      Top = 116
+      Width = 45
+      Caption = 'Error'
+      TabOrder = 18
+    end
+    object Panel4: TPanel
+      Left = 8
+      Height = 24
+      Top = 576
+      Width = 276
+      BevelOuter = bvNone
+      ClientHeight = 24
+      ClientWidth = 276
+      TabOrder = 20
+      object RadioButton7: TRadioButton
+        Left = 0
+        Height = 19
+        Top = 0
+        Width = 40
+        Caption = 'Edit'
+        Checked = True
+        TabOrder = 2
+        TabStop = True
+      end
+      object RadioButton8: TRadioButton
+        Left = 48
+        Height = 19
+        Top = 0
+        Width = 44
+        Caption = 'Date'
+        TabOrder = 0
+      end
+      object RadioButton9: TRadioButton
+        Left = 96
+        Height = 19
+        Top = 0
+        Width = 179
+        Caption = 'Custom(TMSFNCColorWheel)'
+        TabOrder = 1
+      end
+    end
+  end
+  object Panel2: TPanel
+    Left = 312
+    Height = 408
+    Top = 8
+    Width = 297
+    ClientHeight = 408
+    ClientWidth = 297
+    TabOrder = 1
+    object Label7: TLabel
+      Left = 8
+      Height = 20
+      Top = 8
+      Width = 95
+      Caption = 'Expanded text'
+      Font.Height = -15
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label8: TLabel
+      Left = 8
+      Height = 15
+      Top = 112
+      Width = 60
+      Caption = 'Expand text'
+      ParentColor = False
+    end
+    object Label9: TLabel
+      Left = 8
+      Height = 15
+      Top = 138
+      Width = 67
+      Caption = 'Collapse text'
+      ParentColor = False
+    end
+    object Label10: TLabel
+      Left = 8
+      Height = 20
+      Top = 168
+      Width = 104
+      Caption = 'Verification box'
+      Font.Height = -15
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label11: TLabel
+      Left = 8
+      Height = 15
+      Top = 224
+      Width = 34
+      Caption = 'Footer'
+      ParentColor = False
+    end
+    object CheckBox12: TCheckBox
+      Left = 8
+      Height = 19
+      Top = 32
+      Width = 49
+      Caption = 'Show'
+      TabOrder = 0
+    end
+    object CheckBox13: TCheckBox
+      Left = 8
+      Height = 19
+      Top = 194
+      Width = 49
+      Caption = 'Show'
+      TabOrder = 1
+    end
+    object CheckBox14: TCheckBox
+      Left = 8
+      Height = 19
+      Top = 241
+      Width = 49
+      Caption = 'Show'
+      TabOrder = 2
+    end
+    object CheckBox15: TCheckBox
+      Left = 8
+      Height = 19
+      Top = 310
+      Width = 75
+      Caption = 'Show icon'
+      TabOrder = 3
+    end
+    object Edit3: TEdit
+      Left = 88
+      Height = 23
+      Top = 109
+      Width = 198
+      TabOrder = 4
+      Text = 'Expand'
+    end
+    object Edit4: TEdit
+      Left = 88
+      Height = 23
+      Top = 136
+      Width = 198
+      TabOrder = 5
+      Text = 'Collapse'
+    end
+    object Edit5: TEdit
+      Left = 72
+      Height = 23
+      Top = 192
+      Width = 214
+      TabOrder = 6
+      Text = 'Don''t show again'
+    end
+    object Memo4: TMemo
+      Left = 72
+      Height = 71
+      Top = 32
+      Width = 214
+      Lines.Strings = (
+        'This is the expandable text area. It also supports <u>HTML formatting</u>!'
+      )
+      TabOrder = 7
+    end
+    object Memo5: TMemo
+      Left = 72
+      Height = 63
+      Top = 241
+      Width = 214
+      Lines.Strings = (
+        'Brought to Delphi by <a href="https://www.tmssoftware.com/">TMS Software</a>'
+      )
+      TabOrder = 8
+    end
+    object RadioButton4: TRadioButton
+      Left = 104
+      Height = 19
+      Top = 310
+      Width = 53
+      Caption = 'About'
+      Checked = True
+      TabOrder = 11
+      TabStop = True
+    end
+    object RadioButton5: TRadioButton
+      Left = 168
+      Height = 19
+      Top = 310
+      Width = 41
+      Caption = 'Info'
+      TabOrder = 9
+    end
+    object RadioButton6: TRadioButton
+      Left = 221
+      Height = 19
+      Top = 310
+      Width = 65
+      Caption = 'Warning'
+      TabOrder = 10
+    end
+    object Button1: TButton
+      Left = 8
+      Height = 64
+      Top = 336
+      Width = 278
+      Caption = 'Show dialog'
+      Font.Height = -19
+      OnClick = Button1Click
+      ParentFont = False
+      TabOrder = 12
+    end
+  end
+  object Panel3: TPanel
+    Left = 312
+    Height = 193
+    Top = 424
+    Width = 297
+    ClientHeight = 193
+    ClientWidth = 297
+    TabOrder = 2
+    object Label12: TLabel
+      Left = 8
+      Height = 20
+      Top = 8
+      Width = 46
+      Caption = 'Results'
+      Font.Height = -15
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label14: TLabel
+      Left = 8
+      Height = 15
+      Top = 32
+      Width = 69
+      Caption = 'Modal result:'
+      ParentColor = False
+    end
+    object Label15: TLabel
+      Left = 8
+      Height = 15
+      Top = 56
+      Width = 116
+      Caption = 'Selected radio button:'
+      ParentColor = False
+    end
+    object Label16: TLabel
+      Left = 10
+      Height = 15
+      Top = 80
+      Width = 79
+      Caption = 'Verify checked:'
+      ParentColor = False
+    end
+    object Label17: TLabel
+      Left = 10
+      Height = 15
+      Top = 104
+      Width = 63
+      Caption = 'Input result:'
+      ParentColor = False
+    end
+    object Label18: TLabel
+      Left = 96
+      Height = 15
+      Top = 32
+      Width = 5
+      Caption = '-'
+      ParentColor = False
+    end
+    object Label19: TLabel
+      Left = 144
+      Height = 15
+      Top = 56
+      Width = 5
+      Caption = '-'
+      ParentColor = False
+    end
+    object Label20: TLabel
+      Left = 112
+      Height = 15
+      Top = 80
+      Width = 5
+      Caption = '-'
+      ParentColor = False
+    end
+    object Memo6: TMemo
+      Left = 88
+      Height = 80
+      Top = 104
+      Width = 198
+      TabOrder = 0
+    end
+  end
+  object TMSFNCColorWheel1: TTMSFNCColorWheel
+    Left = 624
+    Height = 175
+    Top = 8
+    Width = 350
+    DoubleBuffered = True
+    TabOrder = 3
+    Visible = False
+  end
+  object TMSFNCTaskDialog1: TTMSFNCTaskDialog
+    Left = 256
+    Height = 26
+    Top = 552
+    Width = 26
+    Visible = True
+  end
+end

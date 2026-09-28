@@ -1,0 +1,102 @@
+object FormRendererSource: TFormRendererSource
+  Left = 0
+  Top = 0
+  Caption = 'TMS FNC Data Grid RendererSource Demo'
+  ClientHeight = 560
+  ClientWidth = 920
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object Panel1: TPanel
+    Align = Top
+    Padding.Left = 5.000000000000000000
+    Padding.Top = 5.000000000000000000
+    Padding.Right = 5.000000000000000000
+    Margins.Left = 10.000000000000000000
+    Margins.Top = 10.000000000000000000
+    Margins.Right = 10.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 10.000000000000000000
+    Position.Y = 10.000000000000000000
+    Size.Width = 900.000000000000000000
+    Size.Height = 47.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object btnSales: TButton
+      Position.X = 13.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 130.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Sales by Region'
+      TextSettings.Trimming = None
+      OnClick = btnSalesClick
+    end
+    object btnInventory: TButton
+      Position.X = 151.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 130.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Product Inventory'
+      TextSettings.Trimming = None
+      OnClick = btnInventoryClick
+    end
+    object btnDefault: TButton
+      Position.X = 289.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 130.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Grid'#39's own layer'
+      TextSettings.Trimming = None
+      OnClick = btnDefaultClick
+    end
+    object btnAddRow: TButton
+      Position.X = 451.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 170.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Text = 'Add row to active layer'
+      TextSettings.Trimming = None
+      OnClick = btnAddRowClick
+    end
+  end
+  object lblStatus: TLabel
+    Align = Top
+    StyledSettings = [Family, Size, Style, FontColor]
+    Margins.Left = 10.000000000000000000
+    Margins.Right = 10.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 10.000000000000000000
+    Position.Y = 62.000000000000000000
+    Size.Width = 900.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Trimming = None
+    Text = 'Active layer:'
+    TabOrder = 1
+  end
+  object TMSFNCDataGrid1: TTMSFNCDataGrid
+    Align = Client
+    Margins.Left = 10.000000000000000000
+    Margins.Right = 10.000000000000000000
+    Margins.Bottom = 10.000000000000000000
+    Position.X = 10.000000000000000000
+    Position.Y = 89.000000000000000000
+    Size.Width = 900.000000000000000000
+    Size.Height = 461.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Options.Mouse.ClickMargin = 0
+    Stroke.Color = claDarkgray
+  end
+end

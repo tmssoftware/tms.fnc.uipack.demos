@@ -1,0 +1,580 @@
+object Form130: TForm130
+  Left = 0
+  Top = 0
+  Caption = 'TMS FNC Calendar Demo'
+  ClientHeight = 585
+  ClientWidth = 501
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object TMSFNCCalendar1: TTMSFNCCalendar
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 235.000000000000000000
+    Size.Height = 235.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 6
+    Header.Arrow.ArrowLeftBitmap = <>
+    Header.Arrow.ArrowRightBitmap = <>
+    Header.Fill.Color = xFFE4E4E4
+    Header.Font.Name = 'Segoe UI'
+    Footer.Fill.Color = xFFE4E4E4
+    Footer.Font.Name = 'Segoe UI'
+    Month = 5
+    Year = 2018
+    Events = <>
+    WeekNumberAppearance.Font.Name = 'Segoe UI'
+    WeekNumberAppearance.Fill.Color = claNull
+    WeekNumberAppearance.Stroke.Color = claNull
+    DayNameAppearance.Fill.Color = claNull
+    DayNameAppearance.Font.Name = 'Segoe UI'
+    DayNameAppearance.Stroke.Color = claNull
+    DateAppearance.Fill.Color = claNull
+    DateAppearance.Font.Name = 'Segoe UI'
+    DateAppearance.Stroke.Color = claNull
+    DateAppearance.SelectedFill.Color = claDodgerblue
+    DateAppearance.SelectedFont.Color = claWhite
+    DateAppearance.SelectedFont.Name = 'Segoe UI'
+    DateAppearance.SelectedStroke.Color = claDodgerblue
+    DateAppearance.DisabledFill.Color = claNull
+    DateAppearance.DisabledFont.Color = claLightgray
+    DateAppearance.DisabledFont.Name = 'Segoe UI'
+    DateAppearance.DisabledStroke.Color = claNull
+    DateAppearance.DateBeforeFill.Color = claNull
+    DateAppearance.DateBeforeFont.Color = xFFA0A0A0
+    DateAppearance.DateBeforeFont.Name = 'Segoe UI'
+    DateAppearance.DateBeforeStroke.Color = claNull
+    DateAppearance.DateAfterFill.Color = claNull
+    DateAppearance.DateAFterFont.Color = xFFA0A0A0
+    DateAppearance.DateAFterFont.Name = 'Segoe UI'
+    DateAppearance.DateAfterStroke.Color = claNull
+    DateAppearance.TodayFill.Color = claNull
+    DateAppearance.TodayFont.Color = claRed
+    DateAppearance.TodayFont.Name = 'Segoe UI'
+    DateAppearance.TodayStroke.Color = claNull
+    DateAppearance.BadgeFill.Color = claRed
+    DateAppearance.BadgeFont.Size = 10.000000000000000000
+    DateAppearance.BadgeFont.Color = claWhite
+    DateAppearance.BadgeFont.Name = 'Segoe UI'
+    DateAppearance.BadgeStroke.Color = claRed
+    OnSelectDate = TMSFNCCalendar1SelectDate
+    OnSelectMultiDate = TMSFNCCalendar1SelectMultiDate
+    OnYearChanged = TMSFNCCalendar1YearChanged
+    OnMonthChanged = TMSFNCCalendar1MonthChanged
+    OnCustomNavigation = TMSFNCCalendar1CustomNavigation
+  end
+  object TMSFNCCalendar2: TTMSFNCCalendar
+    ShowHint = True
+    Color = xFFC0DCC0
+    Position.X = 256.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 235.000000000000000000
+    Size.Height = 235.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 7
+    BitmapContainer = TMSFNCBitmapContainer1
+    Header.Arrow.ArrowLeftBitmap = <
+      item
+        BitmapName = 'left_32.png'
+      end>
+    Header.Arrow.ArrowRightBitmap = <
+      item
+        BitmapName = 'right_32.png'
+      end>
+    Header.Arrow.Color = claDarkgreen
+    Header.Fill.Color = claSeagreen
+    Header.Font.Color = claWhite
+    Header.Font.Name = 'Segoe UI'
+    Header.Stroke.Color = claDarkgreen
+    Footer.Fill.Color = claSeagreen
+    Footer.Font.Color = claWhite
+    Footer.Font.Name = 'Segoe UI'
+    Footer.Stroke.Color = claDarkgreen
+    Fill.Color = xFFC0DCC0
+    Stroke.Color = claDarkgreen
+    Month = 5
+    Year = 2018
+    Events = <>
+    WeekNumberAppearance.Visible = True
+    WeekNumberAppearance.Font.Name = 'Segoe UI'
+    WeekNumberAppearance.Fill.Color = claNull
+    WeekNumberAppearance.Stroke.Color = claNull
+    DayNameAppearance.Fill.Color = claNull
+    DayNameAppearance.Font.Name = 'Segoe UI'
+    DayNameAppearance.Stroke.Color = claNull
+    DateAppearance.Fill.Color = claNull
+    DateAppearance.Font.Name = 'Segoe UI'
+    DateAppearance.Stroke.Color = claNull
+    DateAppearance.SelectedFill.Color = claLimegreen
+    DateAppearance.SelectedFont.Color = claWhite
+    DateAppearance.SelectedFont.Name = 'Segoe UI'
+    DateAppearance.SelectedStroke.Color = claLimegreen
+    DateAppearance.DisabledFill.Color = claNull
+    DateAppearance.DisabledFont.Color = claLightgray
+    DateAppearance.DisabledFont.Name = 'Segoe UI'
+    DateAppearance.DisabledStroke.Color = claNull
+    DateAppearance.ShowDaysBefore = True
+    DateAppearance.ShowDaysAfter = True
+    DateAppearance.DateBeforeFill.Color = claNull
+    DateAppearance.DateBeforeFont.Color = xFFA0A0A0
+    DateAppearance.DateBeforeFont.Name = 'Segoe UI'
+    DateAppearance.DateBeforeStroke.Color = claNull
+    DateAppearance.DateAfterFill.Color = claNull
+    DateAppearance.DateAFterFont.Color = xFFA0A0A0
+    DateAppearance.DateAFterFont.Name = 'Segoe UI'
+    DateAppearance.DateAfterStroke.Color = claNull
+    DateAppearance.TodayFill.Color = claNull
+    DateAppearance.TodayFont.Color = claRed
+    DateAppearance.TodayFont.Name = 'Segoe UI'
+    DateAppearance.TodayStroke.Color = claNull
+    DateAppearance.BadgeFill.Color = claRed
+    DateAppearance.BadgeFont.Size = 10.000000000000000000
+    DateAppearance.BadgeFont.Color = claWhite
+    DateAppearance.BadgeFont.Name = 'Segoe UI'
+    DateAppearance.BadgeStroke.Color = claRed
+    LineAppearance.Stroke.Color = claDarkgreen
+    OnCustomArrowDraw = TMSFNCCalendar2CustomArrowDraw
+  end
+  object TMSFNCDatePicker1: TTMSFNCDatePicker
+    Position.X = 8.000000000000000000
+    Position.Y = 248.000000000000000000
+    Size.Width = 90.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 8
+    FirstDay = 1
+    Events = <>
+    BadgeSize = 14
+    Header.Arrow.ArrowLeftBitmap = <>
+    Header.Arrow.ArrowRightBitmap = <>
+    Header.Fill.Color = xFFE4E4E4
+    Header.Font.Name = 'Segoe UI'
+    Footer.Fill.Color = xFFE4E4E4
+    Footer.Font.Name = 'Segoe UI'
+    DropDownWidth = 200.000000000000000000
+    DropDownHeight = 180.000000000000000000
+    OnDateSelected = TMSFNCDatePicker1DateSelected
+    SelectedDate = 43238.624490821760000000
+    WeekNumberAppearance.Font.Name = 'Segoe UI'
+    WeekNumberAppearance.Fill.Color = claNull
+    WeekNumberAppearance.Stroke.Color = claNull
+    DateAppearance.Fill.Color = claNull
+    DateAppearance.Font.Name = 'Segoe UI'
+    DateAppearance.Stroke.Color = claNull
+    DateAppearance.SelectedFill.Color = claDodgerblue
+    DateAppearance.SelectedFont.Color = claWhite
+    DateAppearance.SelectedFont.Name = 'Segoe UI'
+    DateAppearance.SelectedStroke.Color = claDodgerblue
+    DateAppearance.DisabledFill.Color = claNull
+    DateAppearance.DisabledFont.Color = claLightgray
+    DateAppearance.DisabledFont.Name = 'Segoe UI'
+    DateAppearance.DisabledStroke.Color = claNull
+    DateAppearance.DateBeforeFill.Color = claNull
+    DateAppearance.DateBeforeFont.Color = xFFA0A0A0
+    DateAppearance.DateBeforeFont.Name = 'Segoe UI'
+    DateAppearance.DateBeforeStroke.Color = claNull
+    DateAppearance.DateAfterFill.Color = claNull
+    DateAppearance.DateAFterFont.Color = xFFA0A0A0
+    DateAppearance.DateAFterFont.Name = 'Segoe UI'
+    DateAppearance.DateAfterStroke.Color = claNull
+    DateAppearance.TodayFill.Color = claNull
+    DateAppearance.TodayFont.Color = claRed
+    DateAppearance.TodayFont.Name = 'Segoe UI'
+    DateAppearance.TodayStroke.Color = claNull
+    DateAppearance.BadgeFill.Color = claRed
+    DateAppearance.BadgeFont.Size = 10.000000000000000000
+    DateAppearance.BadgeFont.Color = claWhite
+    DateAppearance.BadgeFont.Name = 'Segoe UI'
+    DateAppearance.BadgeStroke.Color = claRed
+    DayNameAppearance.Fill.Color = claNull
+    DayNameAppearance.Font.Name = 'Segoe UI'
+    DayNameAppearance.Stroke.Color = claNull
+    OnYearChanged = TMSFNCDatePicker1YearChanged
+    OnMonthChanged = TMSFNCDatePicker1MonthChanged
+    OnCustomNavigation = TMSFNCDatePicker1CustomNavigation
+  end
+  object TMSFNCDatePicker2: TTMSFNCDatePicker
+    ShowHint = True
+    Position.X = 256.000000000000000000
+    Position.Y = 248.000000000000000000
+    Size.Width = 90.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 9
+    BitmapContainer = TMSFNCBitmapContainer1
+    FirstDay = 1
+    Events = <>
+    BadgeSize = 14
+    Header.Arrow.ArrowLeftBitmap = <
+      item
+        BitmapName = 'left_32.png'
+      end>
+    Header.Arrow.ArrowRightBitmap = <
+      item
+        BitmapName = 'right_32.png'
+      end>
+    Header.Arrow.Color = claDarkgreen
+    Header.Fill.Color = claSeagreen
+    Header.Font.Color = claWhite
+    Header.Font.Name = 'Segoe UI'
+    Header.Stroke.Color = claDarkgreen
+    Footer.Fill.Color = claSeagreen
+    Footer.Font.Color = claWhite
+    Footer.Font.Name = 'Segoe UI'
+    Footer.Stroke.Color = claDarkgreen
+    DropDownWidth = 200.000000000000000000
+    DropDownHeight = 180.000000000000000000
+    SelectedDate = 43238.624546250000000000
+    WeekNumberAppearance.Visible = True
+    WeekNumberAppearance.Font.Name = 'Segoe UI'
+    WeekNumberAppearance.Fill.Color = claNull
+    WeekNumberAppearance.Stroke.Color = claNull
+    DateAppearance.Fill.Color = claNull
+    DateAppearance.Font.Name = 'Segoe UI'
+    DateAppearance.Stroke.Color = claNull
+    DateAppearance.SelectedFill.Color = claLimegreen
+    DateAppearance.SelectedFont.Color = claWhite
+    DateAppearance.SelectedFont.Name = 'Segoe UI'
+    DateAppearance.SelectedStroke.Color = claLimegreen
+    DateAppearance.DisabledFill.Color = claNull
+    DateAppearance.DisabledFont.Color = claLightgray
+    DateAppearance.DisabledFont.Name = 'Segoe UI'
+    DateAppearance.DisabledStroke.Color = claNull
+    DateAppearance.ShowDaysBefore = True
+    DateAppearance.ShowDaysAfter = True
+    DateAppearance.DateBeforeFill.Color = claNull
+    DateAppearance.DateBeforeFont.Color = xFFA0A0A0
+    DateAppearance.DateBeforeFont.Name = 'Segoe UI'
+    DateAppearance.DateBeforeStroke.Color = claNull
+    DateAppearance.DateAfterFill.Color = claNull
+    DateAppearance.DateAFterFont.Color = xFFA0A0A0
+    DateAppearance.DateAFterFont.Name = 'Segoe UI'
+    DateAppearance.DateAfterStroke.Color = claNull
+    DateAppearance.TodayFill.Color = claNull
+    DateAppearance.TodayFont.Color = claRed
+    DateAppearance.TodayFont.Name = 'Segoe UI'
+    DateAppearance.TodayStroke.Color = claNull
+    DateAppearance.BadgeFill.Color = claRed
+    DateAppearance.BadgeFont.Size = 10.000000000000000000
+    DateAppearance.BadgeFont.Color = claWhite
+    DateAppearance.BadgeFont.Name = 'Segoe UI'
+    DateAppearance.BadgeStroke.Color = claRed
+    DayNameAppearance.Fill.Color = claNull
+    DayNameAppearance.Font.Name = 'Segoe UI'
+    DayNameAppearance.Stroke.Color = claNull
+    LineAppearance.Stroke.Color = claDarkgreen
+    CalendarFill.Color = xFFC0DCC0
+    CalendarStroke.Color = claDarkgreen
+    OnCustomArrowDraw = TMSFNCDatePicker2CustomArrowDraw
+  end
+  object Panel1: TPanel
+    Position.X = 8.000000000000000000
+    Position.Y = 280.000000000000000000
+    Size.Width = 235.000000000000000000
+    Size.Height = 297.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 10
+    object Label1: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 218.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Selected dates:'
+      TabOrder = 0
+    end
+    object ListBox1: TListBox
+      Position.X = 8.000000000000000000
+      Position.Y = 64.000000000000000000
+      Size.Width = 218.000000000000000000
+      Size.Height = 56.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      DisableFocusEffect = True
+      DefaultItemStyles.ItemStyle = ''
+      DefaultItemStyles.GroupHeaderStyle = ''
+      DefaultItemStyles.GroupFooterStyle = ''
+      Viewport.Width = 214.000000000000000000
+      Viewport.Height = 52.000000000000000000
+    end
+    object CheckBox1: TCheckBox
+      Position.X = 8.000000000000000000
+      Position.Y = 152.000000000000000000
+      Size.Width = 217.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Swipe on header'
+      OnClick = CheckBox1Click
+    end
+    object CheckBox2: TCheckBox
+      Position.X = 8.000000000000000000
+      Position.Y = 128.000000000000000000
+      Size.Width = 217.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Text = 'Enable multiselection'
+      OnClick = CheckBox2Click
+    end
+    object GroupBox2: TGroupBox
+      Position.X = 8.000000000000000000
+      Position.Y = 176.000000000000000000
+      Size.Width = 218.000000000000000000
+      Size.Height = 113.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Navigation'
+      TabOrder = 4
+      object RadioButton5: TRadioButton
+        GroupName = 'GroupBox2'
+        Position.X = 8.000000000000000000
+        Position.Y = 16.000000000000000000
+        Size.Width = 201.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'By focused date'
+        OnClick = RadioButton5Click
+      end
+      object RadioButton6: TRadioButton
+        GroupName = 'GroupBox2'
+        Position.X = 8.000000000000000000
+        Position.Y = 40.000000000000000000
+        Size.Width = 201.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'By month'
+        OnClick = RadioButton6Click
+      end
+      object RadioButton7: TRadioButton
+        GroupName = 'GroupBox2'
+        Position.X = 8.000000000000000000
+        Position.Y = 64.000000000000000000
+        Size.Width = 201.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'By year'
+        OnClick = RadioButton7Click
+      end
+      object RadioButton8: TRadioButton
+        GroupName = 'GroupBox2'
+        Position.X = 8.000000000000000000
+        Position.Y = 88.000000000000000000
+        Size.Width = 201.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        Text = 'By custom (10 years)'
+        OnClick = RadioButton8Click
+      end
+    end
+    object Label2: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 218.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'The Calendar and the DatePicker above are in sync via events.'
+      TabOrder = 5
+    end
+  end
+  object Panel2: TPanel
+    Position.X = 256.000000000000000000
+    Position.Y = 280.000000000000000000
+    Size.Width = 235.000000000000000000
+    Size.Height = 297.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 11
+    object CheckBox3: TCheckBox
+      Position.X = 8.000000000000000000
+      Position.Y = 56.000000000000000000
+      Size.Width = 217.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Editable DatePicker field'
+      OnClick = CheckBox3Click
+    end
+    object CheckBox4: TCheckBox
+      IsChecked = True
+      Position.X = 8.000000000000000000
+      Position.Y = 80.000000000000000000
+      Size.Width = 217.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Customize look'
+      OnClick = CheckBox4Click
+    end
+    object GroupBox1: TGroupBox
+      Position.X = 8.000000000000000000
+      Position.Y = 104.000000000000000000
+      Size.Width = 218.000000000000000000
+      Size.Height = 113.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Arrows'
+      TabOrder = 2
+      object RadioButton1: TRadioButton
+        GroupName = 'GroupBox1'
+        Position.X = 8.000000000000000000
+        Position.Y = 16.000000000000000000
+        Size.Width = 201.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Arrow'
+        OnClick = RadioButton1Click
+      end
+      object RadioButton2: TRadioButton
+        GroupName = 'GroupBox1'
+        Position.X = 8.000000000000000000
+        Position.Y = 40.000000000000000000
+        Size.Width = 201.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Triangle'
+        OnClick = RadioButton2Click
+      end
+      object RadioButton3: TRadioButton
+        GroupName = 'GroupBox1'
+        Position.X = 8.000000000000000000
+        Position.Y = 64.000000000000000000
+        Size.Width = 201.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'Bitmap'
+        OnClick = RadioButton3Click
+      end
+      object RadioButton4: TRadioButton
+        GroupName = 'GroupBox1'
+        Position.X = 8.000000000000000000
+        Position.Y = 88.000000000000000000
+        Size.Width = 201.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        Text = 'Custom'
+        OnClick = RadioButton4Click
+      end
+    end
+    object Label3: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 217.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Hover any date that has a badge indicator to see the hints.'
+      TabOrder = 3
+    end
+  end
+  object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
+    Size.Width = 26.000000000000000000
+    Size.Height = 26.000000000000000000
+    Size.PlatformDefault = False
+    Position.X = 216.000000000000000000
+    Position.Y = 248.000000000000000000
+    Items = <
+      item
+        Bitmap.PNG = {
+          89504E470D0A1A0A0000000D4948445200000020000000200806000000737A7A
+          F4000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+          04FC494441545847AD564D6C5455143EEFCD749A76A685B6B4D06888348134FD
+          C5D84AA2C18DC6284BC7B85117448CC68D0B23A21B75A121214613B7AE4CFC49
+          0CC405126244D1F8134A60806A6C480C382895B652603A6FDE7BF37E3CDFB9F7
+          0E33ADA59D4E0F3D9C7BCF3D3FDF3DF7DCFB861AA50F7E6A8FF5704D646BD910
+          BDFFE386F8E089EE27F4B42E6A184014D9F4E2F8554AA5FCC36B01B10E15B0E8
+          5CE939DA73FF5B0CA25C37888601C4B1C555F0686AE66D7A7CFC0D6A6A0AEA02
+          D13880C8A2207228E67FBFCFBE438F8DBF42C964B46A108D1F0157A01C2D5084
+          BBC060A6660FD1A3632F5122B13A108D37210004053E0A8CD5915C9CFD901E19
+          DB4BB6452B82B00E7DDFD5D03D8E8324F5EF489317FECB13565800A1645FE7B3
+          74E2F417AC8EB2071E9E3D220E8BC83AF8CD96F8E5DD7F509E3ED2AAFA682BED
+          A363D37D1446AED6803402A6AD1D4FD2C9334779FAFF20AC77BFEE8D77DFF710
+          FD357F9C2CF1B9ED2C632EA950CD9AD61B9DA87962964155A67777ECA11FCE9E
+          24DB0E9680B0716671145218701FF321A2ABE388FDF438E27A2216CA2AE75CD1
+          EB33675B25959DE8E1AFD720F3D7BFA20746775114A496F40403B0B97C658A42
+          0455094D70090C1D92681610FC5F0C86AE62C31C2A27AC297F25B1FEF78D6F69
+          7C648842BFB906841D73E2302E53109AC02CD90B01B12B354632703518338664
+          1BDEBF00113631905C0142DC6B377FA17B87B751D96BA980E00A2438B9472103
+          901DC109C9D90381E008BE1DCCE84C60AD135F03D6D828BF0A589ECF152ED0E8
+          600FF9A55601213D10863E974F051127DE8D241767AD67B452E12A9DB1316316
+          4A1AC69A8C1528651FD37CF1220D0E64C8753287054010BA52818A933040A8DD
+          D5E817E944321B2035CC86CA8F258383CEF7399FDF4A93932E156E6ECCDAF89C
+          06A8002F8A31825502AAD24952ACCB1ACE588140598C9F945FEB8DADF411A4D6
+          792EAE6A9AFEBC9CA142A13D3BF460EE988D243EF780A0E3B7C4340FFF29D41C
+          0101507ED394956BC8063C131B01063FD8685B490E1B66D7B1B8E1D294BF9CA6
+          E2425B76D7CEDCD1BDDBC86500A880274E9E6B3308DD80B8963A488CFE401204
+          4350098C4400A4C020211E27739501482AC17AD7B1F9A3C3C9F36DE43899EC7B
+          CFE48E3C35443EEF4FBF03012AA09E30DFB3A9782B414EC1268725C6C502CFB5
+          94B55B6A4DB11A03BCDAADD9B902E821B995A62BF9762A955AA5EC924813F700
+          BEE7653D5D3B953DB37380E092176D61DB6AE1E41BC9F55AB299A7735FA2ECDA
+          45C83AF0F960BC73B4534FD746D717CE91574C50739ACF8A0BE93B09D6C6D4D5
+          790FFDF66BC89FEB2629BBB2AE25EBB5CF86819BBF25E850F933DF1096583173
+          4BE66A5645564CA32319BA363345A9D6901F9884586CEAEAA30B9365BEDEC9EC
+          8EFE7F8EBF3036ED28875AB2DEFC8E9283DDCBFF3099A1EE540FCD4AC32C2634
+          D2FE4F47E2E19104CDCD5DD25AA29EEEED74FE3CBFAE5162D99D1B5AB49DFAE9
+          D54F46E381219F6ECC4FCB7C73773FE5722E5F616BC5E4A075F8558C6B5C92F1
+          969E013A9BE32BBDCAE4A075F9555C0E5CEADD3C44A7CF94D025AB4E0E5A870A
+          58D4D9B69D26264AF851545772D04A00B09E646E664E33B733E3CEF630F732DF
+          857B71EA944373578BCF73F29F79BA89790333EC53CCB893CBF6DA9D00600D8C
+          002608C0B43223383883E7F7D2E4FCFE8F5F9F9AE07907731BB3F1853D7CCD7C
+          09DDE91660CD309C210D1813D0E8F8059247A25A9A31BF8B220D5711D17FA8DD
+          C1A005D320B20000000049454E44AE426082}
+        Name = 'right_32.png'
+        Tag = 0
+      end
+      item
+        Bitmap.PNG = {
+          89504E470D0A1A0A0000000D4948445200000020000000200806000000737A7A
+          F4000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+          04E6494441545847BD574D685C55143EEFBDC9FCE6779AA6098D4210419AB469
+          B4B1A02005456270D5C18D75535410B75DE9AA2E04B1888A2B4110D495F8C485
+          76A70B63298DD6343FD6490A318E5A68263FD6E9FCBD793F9EEFFE4C66CC24CE
+          24B4273D73EF3DF79CEF7CF7DC336F5E693FF2DEA5CE404DF72CA61A5B92B7BE
+          3D78FADD1FBAF69D1CD23201240F871DFB95F19BE4FB7BE25F272D21C8E4157B
+          F2D1F374ADF8225B0CB9B10F699A0092B7B5B9F633E3AF537AF50D3E7D9982E0
+          1E1140F250C8B727C6CFD1AFD93729E03FD72F50E0DF0302486E59BEFDF48957
+          299DBD40C4497D6EBF8A7F87E86E5700C94D83ECA74E9CA5A5EC07A2E4481E80
+          809BE3F9FE09EC8880E40699F693E3CFD1F2C6A79C959DE18D2F1F8F11EB00A5
+          97F264845CE1BF57694800C92930ED538F3C4B99CD2F945565566299519A1C58
+          A60C7DA42CADC9FDF412BD3FF5C0760248EEFB21FB89874FD19F9B1765CEDADC
+          7A8E7B1036FE10B6EAC6960D52B543E41CA1833D133475F5FBFA1E10C9DDB0FD
+          D8E849CA6C7C231C039F95479F4771FFEC17F044CC954DCEB93F782262A0ECE7
+          F30476F80B1C35F75CAC3DF6E34B16995990DC7322F6F8B111FAEBEFEFC4A604
+          57C9040B9E7BAC00D20D2908C247261744956E6168851FDB3C833CBFC2FBA624
+          80E49572CC1E3B3A44B76E5F16400015C0020C81005089F97CC2264E8D7D3D82
+          903CA5DCC749B59F22C81FAE47E4054C80899848EE14E3F6E8701FADE5E664A2
+          1A504906C0B069506D9724A56ED96AE38027F6351EABC7045C0F4F528BCC52A1
+          DD1E3ED24E9BF925C916014886200088798D72C5B48FF453A352BE21D52772AD
+          7D5035410A6B54C07378CD15C8DDEE4ECDCF97C875E2E438281F9CE1A84F02F6
+          32B056052854CD05B8F2ADB58983F0A2D62E2B509204461E9FB998CB75A67E5F
+          69E78804954B8A840640E930679B069457210171DC6A22F447D5571D40F484F4
+          117E2ACEE50AE0E7DC3C3B44A593C767BECEDFE948655612643289524191D081
+          4828827555781F09453322397C54A3B1E21A840D24706550F8B1D129C197C841
+          0F708C7E420839F7D9D8E958AC600F0EE6F8D72E4FE1A8CF0EEC229E2B8C2857
+          4056BF43F8801D823D64E57F0891EE72970D061B2A65839CB2498619503299A4
+          C5EB6189A7E5E3DF28BA70696C321A29DA87EFFB87EF8A49C4C09FA59ACB1040
+          6EA52EB465E9EE8ED38DC5AEFA2721AEA3FDCCCC57A5722CF547A69B4C2346A5
+          BC29B4B6074060BFE2F28308FDB52312AEA32D54B187472C5ADF58618B41E138
+          B72F9328E72D8A243C4AB61F97CE7B946BB31B3B13F8F0A781F852BA7FC2B25C
+          FBD8D1365A5B5F1637108E79E4142C3AD4F710CDCE357A2941B7C87E803F76E5
+          5A7017233ED0A0B0FE377A9BA01296E9D9A3A3115ACDDE5056A2DEDE219A9FF3
+          E8EDE7E78CCF1728ACCC75B24A07C37D9475D4729BFC92C5FB55130212DC05F6
+          D858946E65D3C2D6DD3340D717C274E1CC6C53183BC9AEAF645ADE7961E64BFE
+          42A67E9E29537FDF116173BD2297B1A9F05DA5690490E03B4CFD78B548038746
+          F89D901FA5CD15705769E90820C1EF85A9E9E922253B1EE40ADC3D02B0875823
+          AC09D64ED6246B1F93B8BC7633FFF2952BFCFF0236B01C66ED67ED65ED62853F
+          9AD262FD5F868D08C0060580060199382BC0139FBC969E5A9C5E3FAFBE820758
+          7B583B58752CFC11ABD73B4A2386B0694530464D46036A1B3F9944216A473DC7
+          331CA3D60642F42FAC4D5AD22E90996C0000000049454E44AE426082}
+        Name = 'left_32.png'
+        Tag = 0
+      end>
+  end
+end

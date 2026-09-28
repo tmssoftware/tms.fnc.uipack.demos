@@ -1,0 +1,234 @@
+object Form1: TForm1
+  Left = 638
+  Height = 315
+  Top = 378
+  Width = 646
+  Caption = 'TMS FNC Signature Capture'
+  ClientHeight = 315
+  ClientWidth = 646
+  Position = poScreenCenter
+  LCLVersion = '1.8.2.0'
+  object TMSFNCSignatureCapture1: TTMSFNCSignatureCapture
+    Left = 240
+    Height = 300
+    Top = 8
+    Width = 400
+    DoubleBuffered = True
+    TabOrder = 0
+    Pen.Color = clBlack
+    TextPosition.Line.Color = clGray
+    ClearSig.Image.Data = {
+      1754506F727461626C654E6574776F726B47726170686963E501000089504E47
+      0D0A1A0A0000000D4948445200000018000000180806000000E0773DF8000000
+      097048597300000EC300000EC301C76FA86400000197494441544889D595B159
+      C33010857F4243E9115C523A1B281BC00424138027E03141B281DD510626401B
+      603A3AC20464040A9DBF28427602547995ACBB7BEFEE249DE1D471D62F2495C0
+      12288067A095B4FDAFC0245A2F812BC0D9FA4392FE2B1057B03681141D303BB6
+      1A4945CF23A98D2BA8811C4945A8A63A40EC2435C017700BF8BD0ACCA904D646
+      9AC342529BC4CC811B426B015692EADEBE27100509B81F1391E48006286D7F63
+      361F3B67054CA432825C355DB2BF021E72E73428100989E16A3664B28E311932
+      2402B301B31F2307383F42E00A78042E32E6CA39F7E9BDEF86E2472B90B424DC
+      AAC2B6B6C053E2D68C5DE1AC80A442D22B70176D6F090FEE1A5824216B7B6087
+      052C9B0FF66F494FDE994F9B8894841BF7037B6760E42FEC5AF283BC87F7BE73
+      CE95512297CEB937EFFD7BEC974ED3D7841CE05A52DAF738A90698DBE70698C6
+      EF216E519321AFC7C84D6001B4F65992BC993373AA2CFB18AD051F85A49269DF
+      D2BE82744CFF8ADC5013460884FF09B140CB6E54AFFE408EF57D6622CE86E1E1
+      59F407A182700EA5BD9913C7370546A41FF73136EB0000000049454E44AE4260
+      82
+    }
+  end
+  object Panel1: TPanel
+    Left = 8
+    Height = 300
+    Top = 8
+    Width = 224
+    ClientHeight = 300
+    ClientWidth = 224
+    TabOrder = 1
+    object Button1: TButton
+      Left = 128
+      Height = 25
+      Top = 202
+      Width = 90
+      Caption = 'Save to file'
+      OnClick = Button1Click
+      TabOrder = 0
+    end
+    object Button2: TButton
+      Left = 128
+      Height = 25
+      Top = 232
+      Width = 90
+      Caption = 'Load from file'
+      OnClick = Button2Click
+      TabOrder = 1
+    end
+    object Button3: TButton
+      Left = 128
+      Height = 25
+      Top = 264
+      Width = 90
+      Caption = 'Save to image'
+      OnClick = Button3Click
+      TabOrder = 2
+    end
+    object Edit1: TEdit
+      Left = 8
+      Height = 23
+      Top = 203
+      Width = 112
+      TabOrder = 3
+      Text = 'demo.txt'
+    end
+    object Edit2: TEdit
+      Left = 8
+      Height = 23
+      Top = 233
+      Width = 112
+      TabOrder = 4
+      Text = 'demo.txt'
+    end
+    object Edit3: TEdit
+      Left = 8
+      Height = 23
+      Top = 265
+      Width = 112
+      TabOrder = 5
+      Text = 'demo.png'
+    end
+    object Label1: TLabel
+      Left = 9
+      Height = 32
+      Top = 8
+      Width = 209
+      AutoSize = False
+      Caption = 'To clear the signature, click the clear icon in the bottom left corner.'
+      ParentColor = False
+      WordWrap = True
+    end
+    object Label2: TLabel
+      Left = 9
+      Height = 31
+      Top = 48
+      Width = 202
+      AutoSize = False
+      Caption = 'The images and files are saved to this demo''s folder.'
+      ParentColor = False
+      WordWrap = True
+    end
+    object TrackBar1: TTrackBar
+      Left = 99
+      Height = 25
+      Top = 168
+      Width = 100
+      Min = 1
+      OnChange = TrackBar1Change
+      Position = 1
+      TickStyle = tsNone
+      TabOrder = 6
+    end
+    object Label3: TLabel
+      Left = 9
+      Height = 15
+      Top = 171
+      Width = 53
+      Caption = 'Pen width'
+      ParentColor = False
+    end
+    object Label4: TLabel
+      Left = 9
+      Height = 15
+      Top = 139
+      Width = 50
+      Caption = 'Pen color'
+      ParentColor = False
+    end
+    object TMSFNCColorPicker1: TTMSFNCColorPicker
+      Left = 91
+      Height = 22
+      Top = 136
+      Width = 60
+      DoubleBuffered = True
+      TabOrder = 7
+      Appearance.Stroke.Color = 11119017
+      Appearance.Fill.Color = 15329769
+      Appearance.StrokeHover.Color = 10061943
+      Appearance.FillHover.Color = 13419707
+      Appearance.StrokeDown.Color = 9470064
+      Appearance.FillDown.Color = 13156536
+      Appearance.StrokeSelected.Color = 5197615
+      Appearance.FillSelected.Color = 13156536
+      Appearance.StrokeDisabled.Color = 11119017
+      Appearance.FillDisabled.Color = clSilver
+      Appearance.SeparatorStroke.Color = 11119017
+      Items = <      
+        item
+          Color = clBlack
+        end      
+        item
+          Color = clMaroon
+        end      
+        item
+          Color = clGreen
+        end      
+        item
+          Color = clOlive
+        end      
+        item
+          Color = clNavy
+        end      
+        item
+          Color = clPurple
+        end      
+        item
+          Color = clTeal
+        end      
+        item
+          Color = clSilver
+        end      
+        item
+          Color = clGray
+        end      
+        item
+          Color = clRed
+        end      
+        item
+          Color = clLime
+        end      
+        item
+          Color = clYellow
+        end      
+        item
+          Color = clBlue
+        end      
+        item
+          Color = clFuchsia
+        end      
+        item
+          Color = clAqua
+        end      
+        item
+          Color = clWhite
+        end>
+      OnColorSelected = TMSFNCColorPicker1ColorSelected
+      SelectedColor = clBlack
+      SelectedItemIndex = 0
+    end
+    object Label5: TLabel
+      Left = 91
+      Height = 15
+      Top = 171
+      Width = 6
+      Caption = '1'
+      ParentColor = False
+    end
+    object Label6: TLabel
+      Left = 199
+      Height = 15
+      Top = 171
+      Width = 12
+      Caption = '10'
+      ParentColor = False
+    end
+  end
+end

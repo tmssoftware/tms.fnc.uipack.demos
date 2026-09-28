@@ -1,0 +1,136 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Memo Language and Theme Demo'
+  ClientHeight = 400
+  ClientWidth = 518
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object TMSFNCMemo1: TTMSFNCMemo
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    Position.X = 8.000000000000000000
+    Position.Y = 42.000000000000000000
+    Size.Width = 500.000000000000000000
+    Size.Height = 350.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Font.Family = 'Consolas'
+    Font.Name = 'Consolas'
+    Lines.Strings = (
+      '// Type source code in your language here...'
+      'class MyClass {'
+      '  @attribute'
+      '  void main() {'
+      '    Console.writeln( "Hello Monarch world\n");'
+      '  }'
+      '}')
+    Options.RenderLineHighlight = hlAll
+    Options.RenderLineHighlightOnlyWhenFocus = True
+    Options.WordWrap = wwtOff
+    Options.WordWrapColumn = 80
+    Options.BracketPairColorization = False
+    CompletionList = <>
+    CustomLanguages = <>
+    CustomThemes = <>
+    LanguageFileExtensionsMap = <
+      item
+        Language = mlBat
+        Extension = '.bat'
+      end
+      item
+        Language = mlCsharp
+        Extension = '.cs'
+      end
+      item
+        Language = mlCSS
+        Extension = '.css'
+      end
+      item
+        Language = mlHtml
+        Extension = '.html'
+      end
+      item
+        Language = mlJavascript
+        Extension = '.js'
+      end
+      item
+        Language = mlJSON
+        Extension = '.json'
+      end
+      item
+        Extension = '.pas'
+      end
+      item
+        Extension = '.dpr'
+      end
+      item
+        Extension = '.dfm'
+      end
+      item
+        Extension = '.fmx'
+      end
+      item
+        Extension = '.inc'
+      end
+      item
+        Extension = '.dproj'
+      end
+      item
+        Language = mlPlainText
+        Extension = '.txt'
+      end
+      item
+        Language = mlTypeScript
+        Extension = '.ts'
+      end
+      item
+        Language = mlXml
+        Extension = '.xml'
+      end>
+    ActiveSource = -1
+    Sources = <>
+  end
+  object TMSFNCMemoCustomLanguage1: TTMSFNCMemoCustomLanguage
+    Size.Width = 26.000000000000000000
+    Size.Height = 26.000000000000000000
+    Size.PlatformDefault = False
+    Position.X = 280.000000000000000000
+    Position.Y = 8.000000000000000000
+    Brackets = <>
+    Tokenizer = <>
+    ExtraKeys = <>
+  end
+  object Button1: TButton
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 105.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Text = 'Add language'
+    TextSettings.Trimming = None
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Position.X = 121.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 96.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    Text = 'Add theme'
+    TextSettings.Trimming = None
+    OnClick = Button2Click
+  end
+  object TMSFNCMemoCustomTheme1: TTMSFNCMemoCustomTheme
+    Size.Width = 26.000000000000000000
+    Size.Height = 26.000000000000000000
+    Size.PlatformDefault = False
+    Position.X = 400.000000000000000000
+    Position.Y = 8.000000000000000000
+    Rules = <>
+  end
+end

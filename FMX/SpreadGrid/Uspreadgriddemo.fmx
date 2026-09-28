@@ -1,0 +1,168 @@
+object Form2: TForm2
+  Left = 0
+  Top = 0
+  Caption = 'TMSFNCSpreadGridDemo'
+  ClientHeight = 523
+  ClientWidth = 843
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object TMSFNCSpreadGrid1: TTMSFNCSpreadGrid
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    Position.X = 16.000000000000000000
+    Position.Y = 40.000000000000000000
+    Size.Width = 810.000000000000000000
+    Size.Height = 449.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Options.Editing.CalcFormat = '%g'
+    Options.Grouping.CalcFormat = '%g'
+    Options.Grouping.GroupCountFormat = '(%d)'
+    Options.IO.XMLEncoding = 'ISO-8859-1'
+    Options.Selection.ShowSelectionInFixedCells = True
+    Columns = <
+      item
+        BorderWidth = 1
+        FixedFont.Name = 'Segoe UI'
+        FixedFont.Style = [fsBold]
+        Font.Name = 'Segoe UI'
+        ID = ''
+        Width = 68.000000000000000000
+      end
+      item
+        BorderWidth = 1
+        FixedFont.Name = 'Segoe UI'
+        FixedFont.Style = [fsBold]
+        Font.Name = 'Segoe UI'
+        ID = ''
+        Width = 68.000000000000000000
+      end
+      item
+        BorderWidth = 1
+        FixedFont.Name = 'Segoe UI'
+        FixedFont.Style = [fsBold]
+        Font.Name = 'Segoe UI'
+        ID = ''
+        Width = 68.000000000000000000
+      end
+      item
+        BorderWidth = 1
+        FixedFont.Name = 'Segoe UI'
+        FixedFont.Style = [fsBold]
+        Font.Name = 'Segoe UI'
+        ID = ''
+        Width = 68.000000000000000000
+      end
+      item
+        BorderWidth = 1
+        FixedFont.Name = 'Segoe UI'
+        FixedFont.Style = [fsBold]
+        Font.Name = 'Segoe UI'
+        ID = ''
+        Width = 68.000000000000000000
+      end>
+    TopRow = 1
+    Appearance.FixedLayout.Fill.Color = xFFE6E6E6
+    Appearance.FixedLayout.Font.Name = 'Segoe UI'
+    Appearance.FixedLayout.Font.Style = [fsBold]
+    Appearance.NormalLayout.Fill.Color = claNull
+    Appearance.NormalLayout.Font.Name = 'Segoe UI'
+    Appearance.GroupLayout.Fill.Color = xFF6E93C3
+    Appearance.GroupLayout.Font.Color = claWhite
+    Appearance.GroupLayout.Font.Name = 'Segoe UI'
+    Appearance.SummaryLayout.Fill.Color = xFFB9C5D5
+    Appearance.SummaryLayout.Font.Name = 'Segoe UI'
+    Appearance.SelectedLayout.Fill.Color = claLightsteelblue
+    Appearance.SelectedLayout.Font.Color = claWhite
+    Appearance.SelectedLayout.Font.Name = 'Segoe UI'
+    Appearance.FocusedLayout.Fill.Color = claLightsteelblue
+    Appearance.FocusedLayout.Font.Color = claWhite
+    Appearance.FocusedLayout.Font.Name = 'Segoe UI'
+    Appearance.FixedSelectedLayout.Fill.Color = claLightsteelblue
+    Appearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
+    Appearance.BandLayout.Fill.Color = claLightyellow
+    Appearance.BandLayout.Font.Name = 'Segoe UI'
+    Appearance.ProgressLayout.Format = '%.0f%%'
+    LeftCol = 1
+    ScrollMode = scmItemScrolling
+    OnCellEditValidateData = TMSFNCSpreadGrid1CellEditValidateData
+    OnSelectCell = TMSFNCSpreadGrid1SelectCell
+    FloatFormat = '%.2f'
+    OnFormulaError = TMSFNCSpreadGrid1FormulaError
+    OnIsCustomFunction = TMSFNCSpreadGrid1IsCustomFunction
+    OnCalcCustomFunction = TMSFNCSpreadGrid1CalcCustomFunction
+  end
+  object ckShowFormula: TCheckBox
+    Position.X = 445.000000000000000000
+    Position.Y = 9.000000000000000000
+    TabOrder = 2
+    Text = 'Show formulas'
+    OnChange = ckShowFormulaChange
+  end
+  object Button1: TButton
+    Position.X = 224.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 89.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    Text = 'Name demo'
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Position.X = 328.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 89.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    Text = 'Range demo'
+    OnClick = Button2Click
+  end
+  object ckNameMode: TCheckBox
+    Position.X = 565.000000000000000000
+    Position.Y = 9.000000000000000000
+    Size.Width = 137.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Text = 'RC cell name mode'
+    OnChange = ckNameModeChange
+  end
+  object Button3: TButton
+    Position.X = 120.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 89.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    Text = 'File demo'
+    OnClick = Button3Click
+  end
+  object Button4: TButton
+    Position.X = 16.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 89.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 6
+    Text = 'Clear'
+    OnClick = Button4Click
+  end
+  object StatusBar1: TStatusBar
+    Position.Y = 501.000000000000000000
+    ShowSizeGrip = True
+    Size.Width = 843.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 7
+    object Label1: TLabel
+      Align = Client
+      Size.Width = 843.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+  end
+end

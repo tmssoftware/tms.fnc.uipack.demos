@@ -1,0 +1,214 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  Caption = 'Demo chat client'
+  ClientHeight = 480
+  ClientWidth = 640
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnClose = FormClose
+  DesignerMasterStyle = 0
+  object Panel1: TPanel
+    Align = Top
+    Size.Width = 640.000000000000000000
+    Size.Height = 41.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object Label1: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 49.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Server:'
+      TabOrder = 1
+    end
+    object Label2: TLabel
+      Position.X = 176.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 33.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Port:'
+      TabOrder = 2
+    end
+    object Label3: TLabel
+      Position.X = 300.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 42.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Name:'
+      TabOrder = 3
+    end
+    object Edit1: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 4
+      Text = 'localhost'
+      Position.X = 56.000000000000000000
+      Position.Y = 8.000000000000000000
+    end
+    object Edit2: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 5
+      Text = '8888'
+      Position.X = 209.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 53.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Edit3: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 6
+      Position.X = 344.000000000000000000
+      Position.Y = 8.000000000000000000
+    end
+    object Button1: TButton
+      Anchors = [akTop, akRight]
+      Position.X = 552.000000000000000000
+      Position.Y = 8.000000000000000000
+      TabOrder = 7
+      Text = 'Connect'
+      OnClick = Button1Click
+    end
+  end
+  object TMSFNCChat1: TTMSFNCChat
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 439.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Appearance.TitleFont.Name = 'Segoe UI'
+    Appearance.Spacing = 10.000000000000000000
+    ChatMessages = <
+      item
+        SelectedFill.Color = xFFA0A0A0
+        SelectedStroke.Kind = gskNone
+        Fill.Color = claDodgerblue
+        Stroke.Kind = gskNone
+        MessageLocation = cmlRight
+        Title = 'Me'
+        TitleVerticalTextAlign = gtaCenter
+        TitleColor = claWhite
+        Text = 'Hi Tom! Are you free tomorrow?'
+        VerticalTextAlign = gtaCenter
+        TextColor = claWhite
+      end
+      item
+        SelectedFill.Color = xFFA0A0A0
+        SelectedStroke.Kind = gskNone
+        Fill.Color = claLightgray
+        Stroke.Kind = gskNone
+        Title = 'Tom'
+        TitleVerticalTextAlign = gtaCenter
+        Text = 'Hi George! Unfortunately, no.'
+        VerticalTextAlign = gtaCenter
+      end
+      item
+        SelectedFill.Color = xFFA0A0A0
+        SelectedStroke.Kind = gskNone
+        Fill.Color = claLightgray
+        Stroke.Kind = gskNone
+        Title = 'Tom'
+        TitleVerticalTextAlign = gtaCenter
+        Text = 'I have an exam tomorrow afternoon.'
+        VerticalTextAlign = gtaCenter
+      end
+      item
+        SelectedFill.Color = xFFA0A0A0
+        SelectedStroke.Kind = gskNone
+        Fill.Color = claDodgerblue
+        Stroke.Kind = gskNone
+        MessageLocation = cmlRight
+        Title = 'Me'
+        TitleVerticalTextAlign = gtaCenter
+        TitleColor = claWhite
+        Text = 'Wow, good luck with that!'
+        VerticalTextAlign = gtaCenter
+        TextColor = claWhite
+      end
+      item
+        SelectedFill.Color = xFFA0A0A0
+        SelectedStroke.Kind = gskNone
+        Fill.Color = claLightgray
+        Stroke.Kind = gskNone
+        Title = 'Tom'
+        TitleVerticalTextAlign = gtaCenter
+        Text = 'Thank you! We can meet up on Sunday afternoon if you are free'
+        VerticalTextAlign = gtaCenter
+      end
+      item
+        SelectedFill.Color = xFFA0A0A0
+        SelectedStroke.Kind = gskNone
+        Fill.Color = claDodgerblue
+        Stroke.Kind = gskNone
+        MessageLocation = cmlRight
+        Title = 'Me'
+        TitleVerticalTextAlign = gtaCenter
+        TitleColor = claWhite
+        Text = 'Sure, see you on Sunday then!'
+        VerticalTextAlign = gtaCenter
+        TextColor = claWhite
+      end>
+    Header.Visible = False
+    Header.Text = 'Header'
+    Header.Fill.Color = xFFF9F9F9
+    Header.Font.Size = 14.000000000000000000
+    Header.Font.Color = xFF454545
+    Header.Font.Name = 'Segoe UI'
+    Header.Font.StyleExt = {00070000000000000004000000}
+    Header.Stroke.Kind = gskNone
+    Header.Stroke.Color = xFFB2B2B2
+    Header.Height = 30.000000000000000000
+    Footer.Visible = False
+    Footer.Text = 'Footer'
+    Footer.Fill.Kind = gfkNone
+    Footer.Fill.Color = xFFF9F9F9
+    Footer.Font.Color = xFF454545
+    Footer.Font.Name = 'Segoe UI'
+    Footer.Stroke.Color = xFFB2B2B2
+    Footer.Height = 30.000000000000000000
+    Stroke.Color = xFFC8C7CC
+    DefaultRightItem.SelectedFill.Color = xFF1772C6
+    DefaultRightItem.SelectedStroke.Kind = gskNone
+    DefaultRightItem.Fill.Color = claDodgerblue
+    DefaultRightItem.Stroke.Kind = gskNone
+    DefaultRightItem.TitleVerticalTextAlign = gtaCenter
+    DefaultRightItem.TitleColor = claWhite
+    DefaultRightItem.SelectedTitleColor = claWhite
+    DefaultRightItem.VerticalTextAlign = gtaCenter
+    DefaultRightItem.TextColor = claWhite
+    DefaultRightItem.SelectedTextColor = claWhite
+    DefaultLeftItem.SelectedFill.Color = xFFA0A0A0
+    DefaultLeftItem.SelectedStroke.Kind = gskNone
+    DefaultLeftItem.Fill.Color = claLightgray
+    DefaultLeftItem.Stroke.Kind = gskNone
+    DefaultLeftItem.TitleVerticalTextAlign = gtaCenter
+    DefaultLeftItem.VerticalTextAlign = gtaCenter
+    Reload.Stroke.Width = 2.000000000000000000
+    MessageTimestamp.Font.Name = 'Segoe UI'
+    GlobalFont.Scale = 1.000000000000000000
+    GlobalFont.Style = []
+    OnAfterSendMessage = TMSFNCChat1SendMessage
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 100
+    OnTimer = Timer1Timer
+    Left = 480
+    Top = 384
+  end
+  object IdTCPClient1: TIdTCPClient
+    OnDisconnected = IdTCPClient1Disconnected
+    OnConnected = IdTCPClient1Connected
+    ConnectTimeout = 0
+    Port = 0
+    ReadTimeout = -1
+    Left = 384
+    Top = 384
+  end
+end

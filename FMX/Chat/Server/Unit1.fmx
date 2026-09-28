@@ -1,0 +1,41 @@
+object Form2: TForm2
+  Left = 0
+  Top = 0
+  Caption = 'Demo chat server'
+  ClientHeight = 480
+  ClientWidth = 640
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object Memo1: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    Position.X = 8.000000000000000000
+    Position.Y = 33.000000000000000000
+    Size.Width = 624.000000000000000000
+    Size.Height = 439.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Viewport.Width = 620.000000000000000000
+    Viewport.Height = 435.000000000000000000
+  end
+  object Label1: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Text = 'Server logs:'
+    TabOrder = 2
+  end
+  object IdTCPServer1: TIdTCPServer
+    Bindings = <>
+    DefaultPort = 8888
+    OnConnect = IdTCPServer1Connect
+    OnDisconnect = IdTCPServer1Disconnect
+    OnExecute = IdTCPServer1Execute
+    Left = 288
+    Top = 88
+  end
+end

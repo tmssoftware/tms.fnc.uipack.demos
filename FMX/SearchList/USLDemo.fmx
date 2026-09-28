@@ -1,0 +1,469 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Search list demo'
+  ClientHeight = 377
+  ClientWidth = 732
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object GroupBox1: TGroupBox
+    Position.X = 8.000000000000000000
+    Position.Y = 16.000000000000000000
+    Size.Width = 281.000000000000000000
+    Size.Height = 353.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Dictionary lookup'
+    TabOrder = 1
+    object TMSFNCSearchList1: TTMSFNCSearchList
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Font.Size = 14.000000000000000000
+      Font.Name = 'Segoe UI'
+      Position.X = 16.000000000000000000
+      Position.Y = 56.000000000000000000
+      Size.Width = 250.000000000000000000
+      Size.Height = 225.000000000000000000
+      Size.PlatformDefault = False
+      Appearance.CategoryFont.Name = 'Segoe UI'
+      Appearance.DescriptionFont.Name = 'Segoe UI'
+      Appearance.DescriptionControlFont = False
+      Appearance.FilterCountFont.Name = 'Segoe UI'
+      Appearance.FilterCountFormat = '(%d)'
+      Appearance.ItemCategoryFont.Color = x0000A5FF
+      Appearance.ItemCategoryFont.Name = 'Segoe UI'
+      Appearance.ItemCategoryFormat = 'in %s'
+      FilterCondition.AutoSelect = False
+      Categories = <>
+      Columns = <
+        item
+          Font.Name = 'Segoe UI'
+        end>
+      Items = <>
+      Version = '1.0.0.0'
+    end
+    object TMSFNCSearchEdit1: TTMSFNCSearchEdit
+      Position.X = 16.000000000000000000
+      Position.Y = 320.000000000000000000
+      Size.Width = 249.000000000000000000
+      Size.Height = 23.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Appearance.CategoryFont.Name = 'Segoe UI'
+      Appearance.DescriptionFont.Name = 'Segoe UI'
+      Appearance.DescriptionControlFont = False
+      Appearance.FilterCountFont.Name = 'Segoe UI'
+      Appearance.FilterCountFormat = '(%d)'
+      Appearance.ItemCategoryFont.Color = x0000A5FF
+      Appearance.ItemCategoryFont.Name = 'Segoe UI'
+      Appearance.ItemCategoryFormat = 'in %s'
+      Categories = <>
+      CategoryButton.Appearance.Rounding = 0.000000000000000000
+      CategoryButton.Appearance.InnerStroke.Color = claWhite
+      CategoryButton.Appearance.NormalFill.Kind = gfkGradient
+      CategoryButton.Appearance.NormalFill.Color = xFFF9FBFC
+      CategoryButton.Appearance.NormalFill.ColorTo = xFFE6EBEB
+      CategoryButton.Appearance.NormalFill.ColorMirror = xFFDCDCEC
+      CategoryButton.Appearance.NormalFill.ColorMirrorTo = xFFDCE1EC
+      CategoryButton.Appearance.NormalStroke.Color = claGray
+      CategoryButton.Appearance.HoverFill.Kind = gfkGradient
+      CategoryButton.Appearance.HoverFill.Color = xFFE5E7E8
+      CategoryButton.Appearance.HoverFill.ColorTo = xFFD2D7D7
+      CategoryButton.Appearance.HoverFill.ColorMirror = xFFC8C8D8
+      CategoryButton.Appearance.HoverFill.ColorMirrorTo = xFFC8CDD8
+      CategoryButton.Appearance.HoverStroke.Color = claGray
+      CategoryButton.Appearance.DownFill.Kind = gfkGradient
+      CategoryButton.Appearance.DownFill.Color = xFFDBDDDE
+      CategoryButton.Appearance.DownFill.ColorTo = xFFC8CDCD
+      CategoryButton.Appearance.DownFill.ColorMirror = xFFBEBECE
+      CategoryButton.Appearance.DownFill.ColorMirrorTo = xFFBEC3CE
+      CategoryButton.Appearance.DownStroke.Color = claGray
+      CategoryButton.Appearance.DisabledStroke.Color = claGray
+      CategoryButton.Bitmaps = <>
+      CategoryButton.Visible = False
+      Columns = <
+        item
+          Font.Name = 'Segoe UI'
+        end>
+      DropDownWidth = 250.000000000000000000
+      EmptyText = 'Search ...'
+      FilterCondition.AutoSelect = True
+      ItemHeight = 20
+      Items = <
+        item
+          CategoryID = 0
+          Columns = <
+            item
+              Caption = 'Item A'
+            end>
+        end
+        item
+          CategoryID = 0
+          Columns = <
+            item
+              Caption = 'Item B'
+            end>
+        end
+        item
+          CategoryID = 0
+          Columns = <
+            item
+              Caption = 'Item C'
+            end>
+        end>
+      SearchButton.Appearance.Rounding = 0.000000000000000000
+      SearchButton.Appearance.InnerStroke.Color = claWhite
+      SearchButton.Appearance.NormalFill.Kind = gfkGradient
+      SearchButton.Appearance.NormalFill.Color = xFFF9FBFC
+      SearchButton.Appearance.NormalFill.ColorTo = xFFE6EBEB
+      SearchButton.Appearance.NormalFill.ColorMirror = xFFDCDCEC
+      SearchButton.Appearance.NormalFill.ColorMirrorTo = xFFDCE1EC
+      SearchButton.Appearance.NormalStroke.Color = claGray
+      SearchButton.Appearance.HoverFill.Kind = gfkGradient
+      SearchButton.Appearance.HoverFill.Color = xFFE5E7E8
+      SearchButton.Appearance.HoverFill.ColorTo = xFFD2D7D7
+      SearchButton.Appearance.HoverFill.ColorMirror = xFFC8C8D8
+      SearchButton.Appearance.HoverFill.ColorMirrorTo = xFFC8CDD8
+      SearchButton.Appearance.HoverStroke.Color = claGray
+      SearchButton.Appearance.DownFill.Kind = gfkGradient
+      SearchButton.Appearance.DownFill.Color = xFFDBDDDE
+      SearchButton.Appearance.DownFill.ColorTo = xFFC8CDCD
+      SearchButton.Appearance.DownFill.ColorMirror = xFFBEBECE
+      SearchButton.Appearance.DownFill.ColorMirrorTo = xFFBEC3CE
+      SearchButton.Appearance.DownStroke.Color = claGray
+      SearchButton.Appearance.DisabledStroke.Color = claGray
+      SearchButton.Text = '...'
+      SearchButton.Bitmaps = <>
+      SearchButton.Visible = False
+    end
+    object Edit1: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 3
+      Position.X = 16.000000000000000000
+      Position.Y = 24.000000000000000000
+      OnChangeTracking = Edit1ChangeTracking
+    end
+    object ckSearchLimit: TCheckBox
+      Position.X = 16.000000000000000000
+      Position.Y = 288.000000000000000000
+      TabOrder = 4
+      Text = 'Limit search results to:'
+      OnChange = ckSearchLimitChange
+    end
+    object Edit3: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 5
+      KeyboardType = NumberPad
+      Text = '10'
+      Position.X = 165.000000000000000000
+      Position.Y = 288.000000000000000000
+    end
+  end
+  object GroupBox2: TGroupBox
+    Position.X = 296.000000000000000000
+    Position.Y = 16.000000000000000000
+    Size.Width = 417.000000000000000000
+    Size.Height = 353.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Car list lookup'
+    TabOrder = 0
+    object TMSFNCSearchList2: TTMSFNCSearchList
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Font.Size = 14.000000000000000000
+      Font.Name = 'Segoe UI'
+      Position.X = 16.000000000000000000
+      Position.Y = 56.000000000000000000
+      Size.Width = 385.000000000000000000
+      Size.Height = 243.000000000000000000
+      Size.PlatformDefault = False
+      Appearance.CategoryFont.Name = 'Segoe UI'
+      Appearance.DescriptionFont.Name = 'Segoe UI'
+      Appearance.DescriptionControlFont = False
+      Appearance.FilterCountFont.Name = 'Segoe UI'
+      Appearance.FilterCountFormat = '(%d)'
+      Appearance.ItemCategoryFont.Color = x0000A5FF
+      Appearance.ItemCategoryFont.Name = 'Segoe UI'
+      Appearance.ItemCategoryFormat = 'in %s'
+      FilterCondition.AutoSelect = False
+      Categories = <>
+      Columns = <
+        item
+          Font.Name = 'Segoe UI'
+        end>
+      Items = <>
+      Version = '1.0.0.0'
+    end
+    object TMSFNCSearchEdit2: TTMSFNCSearchEdit
+      Position.X = 16.000000000000000000
+      Position.Y = 320.000000000000000000
+      Size.Width = 385.000000000000000000
+      Size.Height = 23.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Appearance.CategoryFont.Name = 'Segoe UI'
+      Appearance.DescriptionFont.Name = 'Segoe UI'
+      Appearance.DescriptionControlFont = False
+      Appearance.FilterCountFont.Name = 'Segoe UI'
+      Appearance.FilterCountFormat = '(%d)'
+      Appearance.ItemCategoryFont.Color = x0000A5FF
+      Appearance.ItemCategoryFont.Name = 'Segoe UI'
+      Appearance.ItemCategoryFormat = 'in %s'
+      Categories = <>
+      CategoryButton.Appearance.Rounding = 0.000000000000000000
+      CategoryButton.Appearance.InnerStroke.Color = claWhite
+      CategoryButton.Appearance.NormalFill.Kind = gfkGradient
+      CategoryButton.Appearance.NormalFill.Color = xFFF9FBFC
+      CategoryButton.Appearance.NormalFill.ColorTo = xFFE6EBEB
+      CategoryButton.Appearance.NormalFill.ColorMirror = xFFDCDCEC
+      CategoryButton.Appearance.NormalFill.ColorMirrorTo = xFFDCE1EC
+      CategoryButton.Appearance.NormalStroke.Color = claGray
+      CategoryButton.Appearance.HoverFill.Kind = gfkGradient
+      CategoryButton.Appearance.HoverFill.Color = xFFE5E7E8
+      CategoryButton.Appearance.HoverFill.ColorTo = xFFD2D7D7
+      CategoryButton.Appearance.HoverFill.ColorMirror = xFFC8C8D8
+      CategoryButton.Appearance.HoverFill.ColorMirrorTo = xFFC8CDD8
+      CategoryButton.Appearance.HoverStroke.Color = claGray
+      CategoryButton.Appearance.DownFill.Kind = gfkGradient
+      CategoryButton.Appearance.DownFill.Color = xFFDBDDDE
+      CategoryButton.Appearance.DownFill.ColorTo = xFFC8CDCD
+      CategoryButton.Appearance.DownFill.ColorMirror = xFFBEBECE
+      CategoryButton.Appearance.DownFill.ColorMirrorTo = xFFBEC3CE
+      CategoryButton.Appearance.DownStroke.Color = claGray
+      CategoryButton.Appearance.DisabledStroke.Color = claGray
+      CategoryButton.Bitmaps = <>
+      CategoryButton.Visible = False
+      Columns = <
+        item
+          Font.Name = 'Segoe UI'
+        end>
+      DropDownWidth = 250.000000000000000000
+      EmptyText = 'Search ...'
+      FilterCondition.AutoSelect = True
+      ItemHeight = 20
+      Items = <
+        item
+          CategoryID = 0
+          Columns = <
+            item
+              Caption = 'Item A'
+            end>
+        end
+        item
+          CategoryID = 0
+          Columns = <
+            item
+              Caption = 'Item B'
+            end>
+        end
+        item
+          CategoryID = 0
+          Columns = <
+            item
+              Caption = 'Item C'
+            end>
+        end>
+      SearchButton.Appearance.Rounding = 0.000000000000000000
+      SearchButton.Appearance.InnerStroke.Color = claWhite
+      SearchButton.Appearance.NormalFill.Kind = gfkGradient
+      SearchButton.Appearance.NormalFill.Color = xFFF9FBFC
+      SearchButton.Appearance.NormalFill.ColorTo = xFFE6EBEB
+      SearchButton.Appearance.NormalFill.ColorMirror = xFFDCDCEC
+      SearchButton.Appearance.NormalFill.ColorMirrorTo = xFFDCE1EC
+      SearchButton.Appearance.NormalStroke.Color = claGray
+      SearchButton.Appearance.HoverFill.Kind = gfkGradient
+      SearchButton.Appearance.HoverFill.Color = xFFE5E7E8
+      SearchButton.Appearance.HoverFill.ColorTo = xFFD2D7D7
+      SearchButton.Appearance.HoverFill.ColorMirror = xFFC8C8D8
+      SearchButton.Appearance.HoverFill.ColorMirrorTo = xFFC8CDD8
+      SearchButton.Appearance.HoverStroke.Color = claGray
+      SearchButton.Appearance.DownFill.Kind = gfkGradient
+      SearchButton.Appearance.DownFill.Color = xFFDBDDDE
+      SearchButton.Appearance.DownFill.ColorTo = xFFC8CDCD
+      SearchButton.Appearance.DownFill.ColorMirror = xFFBEBECE
+      SearchButton.Appearance.DownFill.ColorMirrorTo = xFFBEC3CE
+      SearchButton.Appearance.DownStroke.Color = claGray
+      SearchButton.Appearance.DisabledStroke.Color = claGray
+      SearchButton.Text = '...'
+      SearchButton.Bitmaps = <>
+      SearchButton.Visible = False
+    end
+    object Edit2: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 3
+      Position.X = 16.000000000000000000
+      Position.Y = 24.000000000000000000
+      OnChangeTracking = Edit2ChangeTracking
+    end
+    object ckDescr: TCheckBox
+      Position.X = 184.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 153.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      Text = 'Filter also description'
+      OnChange = ckDescrChange
+    end
+    object TMSFNCToolBarColorPicker1: TTMSFNCToolBarColorPicker
+      Position.X = 352.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 5
+      Font.Name = 'Segoe UI'
+      AutoOptionsMenuText = 'Color'
+      DropDownKind = ddkDropDownButton
+      DropDownHeight = 125.000000000000000000
+      DropDownWidth = 175.000000000000000000
+      Bitmaps = <>
+      DisabledBitmaps = <>
+      BitmapSize = 24.000000000000000000
+      Appearance.InnerStroke.Color = claWhite
+      Appearance.NormalFill.Kind = gfkGradient
+      Appearance.NormalFill.Color = xFFF9FBFC
+      Appearance.NormalFill.ColorTo = xFFE6EBEB
+      Appearance.NormalFill.ColorMirror = xFFDCDCEC
+      Appearance.NormalFill.ColorMirrorTo = xFFDCE1EC
+      Appearance.NormalStroke.Color = claGray
+      Appearance.HoverFill.Kind = gfkGradient
+      Appearance.HoverFill.Color = xFFE5E7E8
+      Appearance.HoverFill.ColorTo = xFFD2D7D7
+      Appearance.HoverFill.ColorMirror = xFFC8C8D8
+      Appearance.HoverFill.ColorMirrorTo = xFFC8CDD8
+      Appearance.HoverStroke.Color = claGray
+      Appearance.DownFill.Kind = gfkGradient
+      Appearance.DownFill.Color = xFFDBDDDE
+      Appearance.DownFill.ColorTo = xFFC8CDCD
+      Appearance.DownFill.ColorMirror = xFFBEBECE
+      Appearance.DownFill.ColorMirrorTo = xFFBEC3CE
+      Appearance.DownStroke.Color = claGray
+      Appearance.DisabledStroke.Color = claGray
+      OnColorSelected = TMSFNCToolBarColorPicker1ColorSelected
+      SelectedColor = claRed
+      SelectedItemIndex = 16
+      Items = <
+        item
+          Color = claBlack
+        end
+        item
+          Color = xFF003399
+        end
+        item
+          Color = xFF003333
+        end
+        item
+          Color = xFF003300
+        end
+        item
+          Color = xFF663300
+        end
+        item
+          Color = claNavy
+        end
+        item
+          Color = xFF353333
+        end
+        item
+          Color = xFF333333
+        end
+        item
+          Color = claMaroon
+        end
+        item
+          Color = xFFFF6600
+        end
+        item
+          Color = claOlive
+        end
+        item
+          Color = claGreen
+        end
+        item
+          Color = claTeal
+        end
+        item
+          Color = claBlue
+        end
+        item
+          Color = xFF666699
+        end
+        item
+          Color = claGray
+        end
+        item
+          Color = claRed
+        end
+        item
+          Color = xFFFF9900
+        end
+        item
+          Color = xFF99CC00
+        end
+        item
+          Color = xFF339966
+        end
+        item
+          Color = xFF33CCCC
+        end
+        item
+          Color = xFF3366FF
+        end
+        item
+          Color = claPurple
+        end
+        item
+          Color = xFF999999
+        end
+        item
+          Color = claFuchsia
+        end
+        item
+          Color = xFFFFCC00
+        end
+        item
+          Color = claYellow
+        end
+        item
+          Color = claLime
+        end
+        item
+          Color = claAqua
+        end
+        item
+          Color = xFF00CCFF
+        end
+        item
+          Color = xFF993366
+        end
+        item
+          Color = claSilver
+        end
+        item
+          Color = xFFFF99CC
+        end
+        item
+          Color = xFFFFCC99
+        end
+        item
+          Color = xFFFFFF99
+        end
+        item
+          Color = xFFCCFFCC
+        end
+        item
+          Color = xFFCCFFFF
+        end
+        item
+          Color = xFF99CCFF
+        end
+        item
+          Color = xFFCC99FF
+        end
+        item
+          Color = claWhite
+        end>
+    end
+  end
+end

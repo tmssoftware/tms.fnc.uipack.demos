@@ -1,0 +1,132 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{754E7D81-E8A2-482F-96D2-8858CCDD33E9}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Cell Controls\CellControls.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Editing\Editing.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Filtering\Filtering.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Grouping\Grouping.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Merging\Merging.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="PDF Export\PDFExport.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Sorting\Sorting.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="XLS Export\XLSExport.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="AutoFill\AutoFill.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="CellControls">
+        <MSBuild Projects="Cell Controls\CellControls.dproj"/>
+    </Target>
+    <Target Name="CellControls:Clean">
+        <MSBuild Projects="Cell Controls\CellControls.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CellControls:Make">
+        <MSBuild Projects="Cell Controls\CellControls.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Editing">
+        <MSBuild Projects="Editing\Editing.dproj"/>
+    </Target>
+    <Target Name="Editing:Clean">
+        <MSBuild Projects="Editing\Editing.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Editing:Make">
+        <MSBuild Projects="Editing\Editing.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Filtering">
+        <MSBuild Projects="Filtering\Filtering.dproj"/>
+    </Target>
+    <Target Name="Filtering:Clean">
+        <MSBuild Projects="Filtering\Filtering.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Filtering:Make">
+        <MSBuild Projects="Filtering\Filtering.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Grouping">
+        <MSBuild Projects="Grouping\Grouping.dproj"/>
+    </Target>
+    <Target Name="Grouping:Clean">
+        <MSBuild Projects="Grouping\Grouping.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Grouping:Make">
+        <MSBuild Projects="Grouping\Grouping.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Merging">
+        <MSBuild Projects="Merging\Merging.dproj"/>
+    </Target>
+    <Target Name="Merging:Clean">
+        <MSBuild Projects="Merging\Merging.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Merging:Make">
+        <MSBuild Projects="Merging\Merging.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PDFExport">
+        <MSBuild Projects="PDF Export\PDFExport.dproj"/>
+    </Target>
+    <Target Name="PDFExport:Clean">
+        <MSBuild Projects="PDF Export\PDFExport.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PDFExport:Make">
+        <MSBuild Projects="PDF Export\PDFExport.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Sorting">
+        <MSBuild Projects="Sorting\Sorting.dproj"/>
+    </Target>
+    <Target Name="Sorting:Clean">
+        <MSBuild Projects="Sorting\Sorting.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Sorting:Make">
+        <MSBuild Projects="Sorting\Sorting.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="XLSExport">
+        <MSBuild Projects="XLS Export\XLSExport.dproj"/>
+    </Target>
+    <Target Name="XLSExport:Clean">
+        <MSBuild Projects="XLS Export\XLSExport.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="XLSExport:Make">
+        <MSBuild Projects="XLS Export\XLSExport.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="AutoFill">
+        <MSBuild Projects="AutoFill\AutoFill.dproj"/>
+    </Target>
+    <Target Name="AutoFill:Clean">
+        <MSBuild Projects="AutoFill\AutoFill.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AutoFill:Make">
+        <MSBuild Projects="AutoFill\AutoFill.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="CellControls;Editing;Filtering;Grouping;Merging;PDFExport;Sorting;XLSExport;AutoFill"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="CellControls:Clean;Editing:Clean;Filtering:Clean;Grouping:Clean;Merging:Clean;PDFExport:Clean;Sorting:Clean;XLSExport:Clean;AutoFill:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="CellControls:Make;Editing:Make;Filtering:Make;Grouping:Make;Merging:Make;PDFExport:Make;Sorting:Make;XLSExport:Make;AutoFill:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
