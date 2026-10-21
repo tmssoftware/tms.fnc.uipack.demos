@@ -2,8 +2,8 @@ unit UBL;
 
 { TMS FNC UI Pack - Theming Dashboard demo: builds the whole dashboard in code.
 
-  One source for VCL and FMX (the VCL / FMX define of the project): the FNC API is the same in both
-  frameworks.
+  One source for VCL, FMX and WEB (TMS WEB Core; the VCL / FMX / WEBLIB define of the project): the
+  FNC API is the same in the frameworks.
 
   How the theming works in this demo:
   * the form has a TTMSFNCThemeManager (Scope tsApplication, Theme 'Fluent Light'): every FNC
@@ -11,7 +11,8 @@ unit UBL;
   * the theme switcher in the header calls TTMSFNCTheme.Apply with the theme of the clicked segment;
   * the 'Follow system' switch calls TTMSFNCTheme.SetFollowSystem with the light and the dark theme
     of the current family (Fluent or Microsoft 365): the engine then applies the one that matches
-    the Windows mode, also when that mode changes while the application runs;
+    the Windows mode (WEB: the browser's prefers-color-scheme), also when that mode changes while the
+    application runs;
   * the accent swatches call TTMSFNCTheme.SetAccent (gcNull removes the override again);
   * the demo only colors what is its own composition (the segmented switcher, chips, status pills,
     secondary text). It takes those colors from the tokens of the current theme
@@ -24,6 +25,17 @@ unit UBL;
 interface
 
 uses
+  {$IFDEF WEBLIB}
+  SysUtils, Classes, Types, Math, Generics.Collections, DateUtils, StrUtils,
+  WEBLib.Graphics, WEBLib.Controls, WEBLib.Forms, WEBLib.ExtCtrls,
+  WEBLib.TMSFNCTypes, WEBLib.TMSFNCUtils, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCGraphicsTypes, WEBLib.TMSFNCTheme,
+  WEBLib.TMSFNCCustomControl, WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCToolBar, WEBLib.TMSFNCSwitch,
+  WEBLib.TMSFNCListBox, WEBLib.TMSFNCBadge, WEBLib.TMSFNCDataGrid, WEBLib.TMSFNCDataGridCell,
+  WEBLib.TMSFNCDataGridRenderer, WEBLib.TMSFNCDataGridCore, WEBLib.TMSFNCProgressBar, WEBLib.TMSFNCEdit,
+  WEBLib.TMSFNCComboBox, WEBLib.TMSFNCDatePicker, WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton,
+  WEBLib.TMSFNCTrackBar, WEBLib.TMSFNCTreeView, WEBLib.TMSFNCTreeViewData, WEBLib.TMSFNCCustomTreeView,
+  WEBLib.TMSFNCCheckedTreeView, WEBLib.TMSFNCStatusBar, WEBLib.TMSFNCButton;
+  {$ELSE}
   System.SysUtils, System.Classes, System.Types, System.UITypes, System.Math,
   System.Generics.Collections, System.Rtti, System.DateUtils, System.StrUtils,
   {$IFDEF FMX}
@@ -45,13 +57,18 @@ uses
   VCL.TMSFNCTrackBar, VCL.TMSFNCTreeView, VCL.TMSFNCTreeViewData, VCL.TMSFNCCustomTreeView,
   VCL.TMSFNCCheckedTreeView, VCL.TMSFNCStatusBar, VCL.TMSFNCButton;
   {$ENDIF}
+  {$ENDIF}
 
 type
   {$IFDEF FMX}
   TDashParent = TFmxObject;
-  {$ELSE}
-  TDashParent = TWinControl;
   {$ENDIF}
+  {$IFDEF WEBLIB}
+  TDashParent = TControl;
+  {$ENDIF}
+  {$IFNDEF FMX}{$IFNDEF WEBLIB}
+  TDashParent = TWinControl;
+  {$ENDIF}{$ENDIF}
 
   TStatusKind = (skInfo, skSuccess, skWarning, skError);
 
@@ -163,6 +180,11 @@ type
     FSave: TTMSFNCButton;
     { status bar }
     FStatus: TTMSFNCStatusBar;
+    {$IFDEF WEBLIB}
+    { WEB: an image loads asynchronously; the icons, per SVG text, once loaded }
+    FIcons: TDictionary<string, TTMSFNCBitmap>;
+    function IconBitmap(const ASvg: string): TTMSFNCBitmap;
+    {$ENDIF}
 
     function Theme: TTMSFNCResolvedTheme;
     function Scale: Single;
@@ -315,7 +337,9 @@ const
 
 type
   TFNCControlAccess = class(TTMSFNCCustomControl);
+  {$IFNDEF WEBLIB}
   TControlAccess = class(TControl);
+  {$ENDIF}
 
 { ---------------------------------------------------------------- colors }
 
@@ -330,7 +354,7 @@ end;
 var
   c: Longint;
 begin
-  c := ColorToRGB(AColor);
+  c := {$IFDEF WEBLIB}AColor{$ELSE}ColorToRGB(AColor){$ENDIF};
   R := c and $FF;
   G := (c shr 8) and $FF;
   B := (c shr 16) and $FF;
@@ -385,25 +409,16 @@ begin
   Result := StartsText('Fluent', TTMSFNCTheme.Current);
 end;
 
-{ the design's colors next to the tokens: the tertiary text (icons in fields), the strong border
-  (unchecked check boxes) and the track of a bar; mixed from the tokens in other themes }
-function Text3Color(T: TTMSFNCResolvedTheme): TTMSFNCGraphicsColor;
-begin
-  if IsFluentTheme and (T.Mode = tmLight) then
-    Result := HexColor('#8A929C')
-  else if IsFluentTheme then
-    Result := HexColor('#7C838D')
-  else
-    Result := Mix(T[ttTextSecondary], T[ttSurface], 0.3);
-end;
-
-{ the text on the selection tint: the accent text, or the text on the accent where a theme selects
-  with a solid, dark fill (the Framework theme follows the platform style) }
+{ the text on the selection tint: the accent text (the design), or the text on the accent where a
+  theme selects with a solid, dark fill (the Framework theme follows the platform style); High
+  Contrast: the selection text of the system (on its highlight color) }
 function SelectionTextColor(T: TTMSFNCResolvedTheme): TTMSFNCGraphicsColor;
 var
   r, g, b: Byte;
   c: TTMSFNCGraphicsColor;
 begin
+  if T.Mode = tmHighContrast then
+    Exit(T[ttSelectionText]);
   Result := T[ttAccentText];
   c := T[ttSelection];
   ColorRGB(c, r, g, b);
@@ -411,15 +426,34 @@ begin
     Result := T[ttTextOnAccent];
 end;
 
+{ the track of a bar }
 function TrackColor(T: TTMSFNCResolvedTheme): TTMSFNCGraphicsColor;
 begin
-  if IsFluentTheme and (T.Mode = tmLight) then
-    Result := HexColor('#E9EBEF')
-  else if IsFluentTheme then
-    Result := HexColor('#34373D')
-  else
-    Result := Mix(T[ttSurface], T[ttText], 0.1);
+  Result := T[ttTrack];
 end;
+
+{$IFDEF WEBLIB}
+{ WEB: an SVG image (ASCII) as a data URL: a bitmap loads it from there }
+function SvgDataURL(const ASvg: string): string;
+begin
+  Result := '';
+  asm
+    Result = 'data:image/svg+xml;base64,' + window.btoa(ASvg);
+  end;
+end;
+
+{ WEB: the CSS family of the semibold face (Windows names it as a family of its own, browsers
+  resolve it); the stack ends with the platform's own font }
+function WebSemiboldFamily(const AFamily: string): string;
+begin
+  if Pos('Segoe UI Variable Text', AFamily) > 0 then
+    Result := '''Segoe UI Variable Text Semibold'', ''Segoe UI Semibold'', system-ui, sans-serif'
+  else if Pos('Segoe UI', AFamily) > 0 then
+    Result := '''Segoe UI Semibold'', system-ui, sans-serif'
+  else
+    Result := AFamily;
+end;
+{$ENDIF}
 
 function Svg(const ABody: string; AColor: TTMSFNCGraphicsColor; ASize: Integer = 18): string;
 begin
@@ -513,6 +547,9 @@ begin
   FormatSettings := TFormatSettings.Create('en-US');
   FormatSettings.ShortDateFormat := 'mmm d, yyyy';
   FSecondary := TList<TTMSFNCHTMLText>.Create;
+  {$IFDEF WEBLIB}
+  FIcons := TDictionary<string, TTMSFNCBitmap>.Create;
+  {$ENDIF}
   FVisibleOrders := TList<Integer>.Create;
   FOrders := MakeOrders;
   FFilter := 0;
@@ -523,7 +560,7 @@ begin
   if Assigned(t) and (t.FontFamily <> '') then
     FFamily := t.FontFamily
   else
-    FFamily := 'Segoe UI';
+    FFamily := {$IFDEF WEBLIB}'''Segoe UI Variable Text'', ''Segoe UI'', system-ui, sans-serif'{$ELSE}'Segoe UI'{$ENDIF};
   FUpdating := True;
   try
     BuildHeader;
@@ -558,11 +595,43 @@ begin
 end;
 
 destructor TDashboard.Destroy;
+{$IFDEF WEBLIB}
+var
+  b: TTMSFNCBitmap;
+{$ENDIF}
 begin
+  {$IFDEF WEBLIB}
+  for b in FIcons.Values do
+    b.Free;
+  FIcons.Free;
+  {$ENDIF}
   FSecondary.Free;
   FVisibleOrders.Free;
   inherited;
 end;
+
+{$IFDEF WEBLIB}
+{ nil until the image is loaded; the navigation is painted again then }
+function TDashboard.IconBitmap(const ASvg: string): TTMSFNCBitmap;
+begin
+  if FIcons.TryGetValue(ASvg, Result) then
+  begin
+    if Result.Empty then
+      Result := nil;
+    Exit;
+  end;
+  Result := TTMSFNCBitmap.Create;
+  FIcons.Add(ASvg, Result);
+  Result.LoadFromURL(SvgDataURL(ASvg),
+    procedure
+    begin
+      { the list's items are painted by its inner tree view }
+      FNav.TreeView.Invalidate;
+      FNavBottom.TreeView.Invalidate;
+    end);
+  Result := nil;
+end;
+{$ENDIF}
 
 function TDashboard.Theme: TTMSFNCResolvedTheme;
 begin
@@ -580,9 +649,14 @@ function TDashboard.Scale: Single;
 begin
   {$IFDEF FMX}
   Result := 1;
-  {$ELSE}
-  Result := FForm.ScaleFactor;
   {$ENDIF}
+  {$IFDEF WEBLIB}
+  { the browser scales the page (CSS pixels) }
+  Result := 1;
+  {$ENDIF}
+  {$IFNDEF FMX}{$IFNDEF WEBLIB}
+  Result := FForm.ScaleFactor;
+  {$ENDIF}{$ENDIF}
 end;
 
 function TDashboard.S(AValue: Single): Single;
@@ -598,6 +672,12 @@ var
 begin
   l := Round(S(X));
   t := Round(S(Y));
+  {$IFDEF WEBLIB}
+  { WEB paints a control again on every change of its bounds: skip what does not change }
+  if (AControl.Left = l) and (AControl.Top = t) and (AControl.Width = Round(S(X + W)) - l) and
+    (AControl.Height = Round(S(Y + H)) - t) then
+    Exit;
+  {$ENDIF}
   {$IFDEF FMX}
   AControl.SetBounds(l, t, Round(S(X + W)) - l, Round(S(Y + H)) - t);
   {$ELSE}
@@ -617,14 +697,29 @@ begin
     AFont.StyleExt := TFontStyleExt.Create(TFontWeight.Semibold, TFontSlant.Regular, TFontStretch.Regular)
   else
     AFont.StyleExt := TFontStyleExt.Default;
-  {$ELSE}
+  {$ENDIF}
+  {$IFDEF WEBLIB}
+  { WEB: the canvas font. Semibold is the family of the semibold face, as on VCL (the browser
+    resolves those names, e.g. 'Segoe UI Semibold'). A WEB font holds its size in whole points:
+    the exact size in pixels (13 px = 9.75 pt) is kept in the font's size field. }
+  if ASemibold then
+    AFont.Name := WebSemiboldFamily(FFamily)
+  else
+    AFont.Name := FFamily;
+  AFont.Style := [];
+  AFont.Height := -Round(APx);
+  asm
+    if (AFont.FSize !== APx * 0.75) { AFont.FSize = APx * 0.75; AFont.DoChange(); }
+  end;
+  {$ENDIF}
+  {$IFNDEF FMX}{$IFNDEF WEBLIB}
   if ASemibold and (TTMSFNCTheme.SemiboldFamily(FFamily) <> '') then
     AFont.Name := TTMSFNCTheme.SemiboldFamily(FFamily)
   else
     AFont.Name := FFamily;
   AFont.Style := [];
   AFont.Height := -Round(APx * Scale);
-  {$ENDIF}
+  {$ENDIF}{$ENDIF}
 end;
 
 { A card: a panel (themed: the Fluent card look); AShadow: it casts the theme's soft shadow. Bars and
@@ -773,7 +868,7 @@ begin
   FSwitcher := NewCard(FHeader);
   for I := 0 to High(FSegments) do
   begin
-    FSegments[I] := NewButton(FSwitcher, SegmentNames[I], 13, False, SegmentClick);
+    FSegments[I] := NewButton(FSwitcher, SegmentNames[I], 13, False, {$IFDEF WEBLIB}@{$ENDIF}SegmentClick);
     FSegments[I].Tag := I;
     FSegments[I].Appearance.ShowInnerStroke := False;
     FSegments[I].Appearance.Rounding := 6;
@@ -792,10 +887,14 @@ begin
     FSwatches[I].Hint := AccentNames[I];
     FSwatches[I].Fill.Kind := gfkSolid;
     FSwatches[I].Stroke.Kind := gskNone;
-    {$IFNDEF FMX}
+    {$IFNDEF FMX}{$IFNDEF WEBLIB}
     FSwatches[I].NativeCanvas := True;
-    {$ENDIF}
+    {$ENDIF}{$ENDIF}
+    {$IFDEF WEBLIB}
+    FSwatches[I].OnClick := @SwatchClick;
+    {$ELSE}
     TControlAccess(FSwatches[I]).OnClick := SwatchClick;
+    {$ENDIF}
   end;
 
   FAvatar := NewPill(FHeader, 'PS');
@@ -823,6 +922,11 @@ var
     AList.OnItemSelected := NavSelected;
     AList.OnBeforeDrawItem := NavBeforeDrawItem;
     AList.OnBeforeDrawItemText := NavBeforeDrawItemText;
+    {$IFDEF WEBLIB}
+    { WEB: the list's own element is transparent (its items are painted by the inner tree view; the
+      element's background would show at the anti-aliased edges) }
+    TFNCControlAccess(TObject(AList)).Fill.Kind := gfkNone;
+    {$ENDIF}
   end;
 
 begin
@@ -889,7 +993,7 @@ begin
   FOrdersTitle := NewText(FOrdersCard, 'Recent orders', 16, True);
   for I := 0 to High(ChipNames) do
   begin
-    FChips[I] := NewButton(FOrdersCard, ChipNames[I], 13, I = 0, ChipClick);
+    FChips[I] := NewButton(FOrdersCard, ChipNames[I], 13, I = 0, {$IFDEF WEBLIB}@{$ENDIF}ChipClick);
     FChips[I].Tag := I;
     FChips[I].Appearance.Rounding := 14;
     FChips[I].Appearance.ShowInnerStroke := False;
@@ -910,11 +1014,11 @@ begin
   FGrid := TTMSFNCDataGrid.Create(FForm);
   FGrid.Parent := FOrdersCard;
   FGrid.Stroke.Kind := gskNone;
-  {$IFNDEF FMX}
+  {$IFNDEF FMX}{$IFNDEF WEBLIB}
   { the status pills and bars are drawn antialiased: the GDI+ canvas (with ClearType text) }
   TFNCControlAccess(FGrid).NativeCanvas := True;
   TFNCControlAccess(FGrid).TextQuality := gtqClearType;
-  {$ENDIF}
+  {$ENDIF}{$ENDIF}
   FGrid.BeginUpdate;
   try
     FGrid.ColumnCount := Length(Headers);
@@ -955,10 +1059,10 @@ begin
   FTree.Parent := FProjectsCard;
   FTree.Stroke.Kind := gskNone;
   FTree.Stroke.Color := gcNull;
-  {$IFNDEF FMX}
+  {$IFNDEF FMX}{$IFNDEF WEBLIB}
   TFNCControlAccess(FTree).NativeCanvas := True;
   TFNCControlAccess(FTree).TextQuality := gtqClearType;
-  {$ENDIF}
+  {$ENDIF}{$ENDIF}
   { six rows fill the card: no scroll bar }
   FTree.VerticalScrollBarVisible := False;
   FTree.HorizontalScrollBarVisible := False;
@@ -1470,6 +1574,8 @@ end;
 
 procedure TDashboard.FitToScreen;
 begin
+  { WEB: the page is the browser window, the layout follows its size (FormResize) }
+  {$IFNDEF WEBLIB}
   if FForm.Height > Screen.WorkAreaHeight then
   begin
     FForm.Top := {$IFDEF FMX}Round(Screen.WorkAreaTop){$ELSE}Screen.WorkAreaTop{$ENDIF};
@@ -1480,6 +1586,7 @@ begin
     FForm.Left := {$IFDEF FMX}Round(Screen.WorkAreaLeft){$ELSE}Screen.WorkAreaLeft{$ENDIF};
     FForm.Width := {$IFDEF FMX}Round(Screen.WorkAreaWidth){$ELSE}Screen.WorkAreaWidth{$ENDIF};
   end;
+  {$ENDIF}
 end;
 
 { ---------------------------------------------------------------- theming }
@@ -1545,8 +1652,9 @@ begin
     end;
     tmHighContrast:
     begin
+      { system colors only: the text color on the surface, with a border in the text color }
       ABack := t[ttSurface];
-      AFore := tone;
+      AFore := t[ttText];
     end;
   else
     ABack := Mix(t[ttSurface], tone, 0.12);
@@ -1601,7 +1709,7 @@ var
   t: TTMSFNCResolvedTheme;
   I, act: Integer;
   txt: TTMSFNCHTMLText;
-  back, fore, accent, soft: TTMSFNCGraphicsColor;
+  back, fore, accent: TTMSFNCGraphicsColor;
   dark: Boolean;
   st: TTMSFNCGraphicsStroke;
 begin
@@ -1641,9 +1749,11 @@ begin
     FSegments[I].Font.Color := FSegments[I].HoverFontColor;
   end;
 
-  { accent swatches: content colors; the active one gets a ring in the text color }
+  { accent swatches: content colors; the active one gets a ring in the text color. High Contrast
+    uses the system's colors only (the accent override does not apply): no swatches }
   for I := 0 to High(FSwatches) do
   begin
+    FSwatches[I].Visible := t.Mode <> tmHighContrast;
     back := HexColor(AccentHex[I]);
     FSwatches[I].SwatchColor := back;
     FSwatches[I].RingColor := t[ttSurface];
@@ -1655,18 +1765,43 @@ begin
     FSwatches[I].Invalidate;
   end;
 
-  { avatar: a tinted accent circle }
-  soft := Mix(t[ttSurface], accent, IfThen(dark, 0.28, 0.14));
-  FAvatar.Appearance.Fill.Color := soft;
-  FAvatar.Appearance.Stroke.Color := soft;
-  FAvatar.Appearance.Font.Color := t[ttAccentText];
-  FAvatar.Appearance.HoverFill.Color := soft;
-  FAvatar.Appearance.HoverStroke.Color := soft;
-  FAvatar.Appearance.HoverFont.Color := t[ttAccentText];
+  { avatar: a tinted accent circle; High Contrast: the surface with a border and text in the text
+    color }
+  if t.Mode = tmHighContrast then
+  begin
+    back := t[ttSurface];
+    fore := t[ttText];
+  end
+  else
+  begin
+    back := Mix(t[ttSurface], accent, IfThen(dark, 0.28, 0.14));
+    fore := t[ttAccentText];
+  end;
+  FAvatar.Appearance.Fill.Color := back;
+  FAvatar.Appearance.HoverFill.Color := back;
+  if t.Mode = tmHighContrast then
+  begin
+    FAvatar.Appearance.Stroke.Color := fore;
+    FAvatar.Appearance.HoverStroke.Color := fore;
+  end
+  else
+  begin
+    FAvatar.Appearance.Stroke.Color := back;
+    FAvatar.Appearance.HoverStroke.Color := back;
+  end;
+  FAvatar.Appearance.Font.Color := fore;
+  FAvatar.Appearance.HoverFont.Color := fore;
 
   { filter chips }
   for I := 0 to High(FChips) do
-    if I = FFilter then
+    if (I = FFilter) and (t.Mode = tmHighContrast) then
+    begin
+      { system colors only: the selection with its text, a border in the text color }
+      StyleButton(FChips[I], t[ttSelection], t[ttText], SelectionTextColor(t), t[ttSelection], t[ttSelection]);
+      SetFont(FChips[I].Font, 13, True);
+      FChips[I].Font.Color := SelectionTextColor(t);
+    end
+    else if I = FFilter then
     begin
       StyleButton(FChips[I], t[ttSelection], accent, SelectionTextColor(t),
         Mix(t[ttSurface], accent, IfThen(dark, 0.28, 0.14)), Mix(t[ttSurface], accent, IfThen(dark, 0.34, 0.18)));
@@ -1701,7 +1836,11 @@ begin
   end;
 
   { the search icon in the button of the search box }
+  {$IFDEF WEBLIB}
+  FSearch.Bitmap.LoadFromURL(SvgDataURL(Svg(SearchIcon, t[ttTextTertiary], 16)));
+  {$ELSE}
   FSearch.Bitmap.LoadFromSVG(Svg(SearchIcon, t[ttTextTertiary], 16));
+  {$ENDIF}
 
   { the navigation lists are no cards: no border (a theme writes one; assigned as a whole, the
     list passes it on to its inner tree) }
@@ -1753,22 +1892,25 @@ begin
     ThemeChanged;
 end;
 
+{ the controls' Tag (on WEB a control declares a Tag of its own, next to the component's) }
 procedure TDashboard.SegmentClick(Sender: TObject);
 begin
-  ApplyTheme(SegmentTheme((Sender as TComponent).Tag));
+  ApplyTheme(SegmentTheme((Sender as TControl).Tag));
 end;
 
 procedure TDashboard.FollowChange(Sender: TObject);
 var
   cur: string;
 begin
-  if FUpdating then
+  { the switch reports appearance changes too (a theme writes its colors): act on a change of
+    its state only }
+  if FUpdating or ((FFollow.State = ssOn) = TTMSFNCTheme.FollowSystem) then
     Exit;
   if FFollow.State = ssOn then
   begin
     cur := TTMSFNCTheme.Current;
     { follow the OS within the current theme family }
-    if cur.StartsWith('Microsoft 365') then
+    if StartsText('Microsoft 365', cur) then
       TTMSFNCTheme.SetFollowSystem(True, 'Microsoft 365 Light', 'Microsoft 365 Dark')
     else
       TTMSFNCTheme.SetFollowSystem(True);
@@ -1782,7 +1924,7 @@ procedure TDashboard.SwatchClick(Sender: TObject);
 begin
   { SetAccent replaces the accent of every theme (also after a theme switch) and re-themes the app;
     gcNull removes the override, every theme then uses its own accent again }
-  FAccentIndex := (Sender as TComponent).Tag;
+  FAccentIndex := (Sender as TControl).Tag;
   if FAccentIndex = 0 then
     TTMSFNCTheme.SetAccent(gcNull)
   else
@@ -1792,7 +1934,7 @@ end;
 
 procedure TDashboard.ChipClick(Sender: TObject);
 begin
-  FFilter := (Sender as TComponent).Tag;
+  FFilter := (Sender as TControl).Tag;
   FillGrid;
   ThemeChanged;
 end;
@@ -1858,6 +2000,11 @@ begin
     c := t[ttText];
   { the icon }
   ir := RectF(r.Left + S(10), Round((r.Top + r.Bottom) / 2 - S(9)), r.Left + S(28), Round((r.Top + r.Bottom) / 2 - S(9)) + S(18));
+  {$IFDEF WEBLIB}
+  bmp := IconBitmap(Svg(NavIcons[AItem.Tag], c));
+  if Assigned(bmp) then
+    AGraphics.DrawBitmap(ir, bmp);
+  {$ELSE}
   bmp := TTMSFNCBitmap.Create;
   try
     bmp.LoadFromSVG(Svg(NavIcons[AItem.Tag], c));
@@ -1865,6 +2012,7 @@ begin
   finally
     bmp.Free;
   end;
+  {$ENDIF}
   { the text }
   SetFont(AGraphics.Font, 14, sel);
   AGraphics.Font.Color := c;

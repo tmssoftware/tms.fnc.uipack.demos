@@ -18,6 +18,10 @@ uses
   System.SysUtils, System.Classes, FMX.Types, FMX.Controls, FMX.Forms, FMX.TMSFNCTheme, UBL;
   {$ENDIF}
 
+  {$IFDEF WEBLIB}
+  SysUtils, Classes, WEBLib.Graphics, WEBLib.Controls, WEBLib.Forms, WEBLib.TMSFNCTheme, UBL;
+  {$ENDIF}
+
 type
   TForm1 = class(TForm)
     TMSFNCThemeManager1: TTMSFNCThemeManager;
@@ -39,6 +43,9 @@ implementation
 {$IFDEF VCL}
 {$R *.dfm}
 {$ENDIF}
+{$IFDEF WEBLIB}
+{$R *.dfm}
+{$ENDIF}
 
 {$IFDEF DASHBOARD_AUTOMATION}
 { the unattended tests of the TMS build (not part of the demo, only in a build with this define) }
@@ -50,7 +57,7 @@ procedure TForm1.FormCreate(Sender: TObject);
 begin
   FDashboard := TDashboard.Create(Self);
   { the dashboard is designed for 1440 x 1277: on a smaller screen the window fits the work area
-    and the layout adapts }
+    and the layout adapts; WEB: the page fills the browser window and follows its size }
   FDashboard.FitToScreen;
 end;
 
