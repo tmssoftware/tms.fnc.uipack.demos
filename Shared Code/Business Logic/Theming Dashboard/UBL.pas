@@ -947,6 +947,7 @@ begin
     col.StatusValues.Add('Done=Info');
     col.StatusValues.Add('In progress=Warning');
     col.StatusValues.Add('At risk=Error');
+    col.StatusShowDot := False;
     FTree.ColumnsAppearance.StretchAll := False;
     FTree.ColumnsAppearance.StretchColumn := 0;
     FTree.ColumnsAppearance.Stretch := True;
