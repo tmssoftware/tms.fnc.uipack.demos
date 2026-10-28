@@ -4,8 +4,10 @@ unit UOrdersData;
 
   A SQLite database through FireDAC, all designed in UOrdersData.dfm:
   * Orders: the orders, edited in the grid's detail card; posted rows are written to the file at once;
-  * Kpis: one row of aggregates (revenue, open orders, customers, goals), refreshed after every post
-    and delete; the form shows it through a data source of its own;
+    calculated: the card's title, the index and the badge status of an order's status;
+  * Kpis: one row of aggregates (revenue, open orders, customers, goals) with their texts and badge
+    statuses, refreshed after every post and delete and when the filter changes; the form binds it
+    to its labels through a data source of its own;
   * Customers and Projects: the customer list and the project tasks.
 
   The demo ships orders.db (and orders.sql, the script it is built from) next to this unit. The app
@@ -32,6 +34,9 @@ type
     OrdersStatus: TStringField;
     OrdersFulfilment: TIntegerField;
     OrdersExpress: TBooleanField;
+    OrdersTitle: TStringField;
+    OrdersStatusIndex: TIntegerField;
+    OrdersStatusKind: TStringField;
     Kpis: TFDQuery;
     Customers: TFDQuery;
     Projects: TFDQuery;
@@ -42,6 +47,7 @@ type
     procedure OrdersIdGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure OrdersOrderDateGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure OrdersAmountGetText(Sender: TField; var Text: string; DisplayText: Boolean);
+    procedure OrdersCalcFields(DataSet: TDataSet);
   private
     FStatus, FSearch: string;
     function FileName: string;
@@ -64,6 +70,8 @@ implementation
 
 const
   ShippedDatabase = 'Shared Code\Business Logic\Theming Dashboard\orders.db';
+  Statuses: array[0..3] of string = ('Open', 'Packing', 'Shipped', 'Late');
+  StatusKinds: array[0..3] of string = ('tskInfo', 'tskWarning', 'tskSuccess', 'tskError');
 
 { the working copy, next to the executable }
 function TOrdersData.FileName: string;
@@ -130,6 +138,10 @@ begin
   FSearch := LowerCase(Trim(ASearch));
   Orders.Filtered := False;
   Orders.Filtered := (FStatus <> '') or (FSearch <> '');
+  { the count of the orders shown ('12 of 200 orders') }
+  Kpis.ParamByName('status').AsString := FStatus;
+  Kpis.ParamByName('search').AsString := FSearch;
+  Kpis.Refresh;
 end;
 
 procedure TOrdersData.OrdersFilterRecord(DataSet: TDataSet; var Accept: Boolean);
@@ -158,6 +170,25 @@ end;
 procedure TOrdersData.OrdersAmountGetText(Sender: TField; var Text: string; DisplayText: Boolean);
 begin
   Text := FormatFloat('$#,##0.00', Sender.AsFloat);
+end;
+
+{ the detail card's title, the status as an index of the status list and as a badge status }
+procedure TOrdersData.OrdersCalcFields(DataSet: TDataSet);
+var
+  I: Integer;
+begin
+  if DataSet.State = dsInsert then
+    OrdersTitle.AsString := 'New order'
+  else
+    OrdersTitle.AsString := 'Order ' + OrdersId.DisplayText;
+  OrdersStatusIndex.AsInteger := -1;
+  OrdersStatusKind.AsString := 'tskNone';
+  for I := 0 to High(Statuses) do
+    if SameText(OrdersStatus.AsString, Statuses[I]) then
+    begin
+      OrdersStatusIndex.AsInteger := I;
+      OrdersStatusKind.AsString := StatusKinds[I];
+    end;
 end;
 
 end.

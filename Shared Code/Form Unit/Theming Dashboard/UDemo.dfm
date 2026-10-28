@@ -12,8 +12,6 @@ object Form1: TForm1
   Font.Style = []
   Position = poScreenCenter
   OnCreate = FormCreate
-  OnDestroy = FormDestroy
-  OnResize = FormResize
   DesignSize = (
     1440
     1277)
@@ -190,6 +188,7 @@ object Form1: TForm1
     end
   end
   object KpiRow: TTMSFNCPanel
+    ChildLayout = pclEqualColumns
     AlignWithMargins = True
     Left = 258
     Top = 151
@@ -2379,6 +2378,8 @@ object Form1: TForm1
           Text = ''
         end
         object OrdersGrid: TTMSFNCDataGrid
+          NativeCanvas = True
+          TextQuality = gtqClearType
           AlignWithMargins = True
           Left = 3
           Top = 63
@@ -2501,7 +2502,7 @@ object Form1: TForm1
               Appearance.FilterMatchLayout.Font.Height = -12
               Appearance.FilterMatchLayout.Font.Name = 'Segoe UI'
               Appearance.FilterMatchLayout.Font.Style = []
-              Appearance.FilterMatchLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FilterMatchLayout.TextMargins.Left = 18.000000000000000000
               Appearance.FilterMatchLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FilterMatchLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FilterMatchLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2510,7 +2511,7 @@ object Form1: TForm1
               Appearance.FilterInverseMatchLayout.Font.Height = -12
               Appearance.FilterInverseMatchLayout.Font.Name = 'Segoe UI'
               Appearance.FilterInverseMatchLayout.Font.Style = []
-              Appearance.FilterInverseMatchLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FilterInverseMatchLayout.TextMargins.Left = 18.000000000000000000
               Appearance.FilterInverseMatchLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FilterInverseMatchLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FilterInverseMatchLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2519,7 +2520,7 @@ object Form1: TForm1
               Appearance.BandLayout.Font.Height = -12
               Appearance.BandLayout.Font.Name = 'Segoe UI'
               Appearance.BandLayout.Font.Style = []
-              Appearance.BandLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.BandLayout.TextMargins.Left = 18.000000000000000000
               Appearance.BandLayout.TextMargins.Top = 3.000000000000000000
               Appearance.BandLayout.TextMargins.Right = 3.000000000000000000
               Appearance.BandLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2528,7 +2529,7 @@ object Form1: TForm1
               Appearance.FixedLayout.Font.Height = -12
               Appearance.FixedLayout.Font.Name = 'Segoe UI'
               Appearance.FixedLayout.Font.Style = []
-              Appearance.FixedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FixedLayout.TextMargins.Left = 18.000000000000000000
               Appearance.FixedLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FixedLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FixedLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2537,7 +2538,7 @@ object Form1: TForm1
               Appearance.FixedSelectedLayout.Font.Height = -12
               Appearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
               Appearance.FixedSelectedLayout.Font.Style = []
-              Appearance.FixedSelectedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FixedSelectedLayout.TextMargins.Left = 18.000000000000000000
               Appearance.FixedSelectedLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FixedSelectedLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FixedSelectedLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2546,7 +2547,7 @@ object Form1: TForm1
               Appearance.FocusedLayout.Font.Height = -12
               Appearance.FocusedLayout.Font.Name = 'Segoe UI'
               Appearance.FocusedLayout.Font.Style = []
-              Appearance.FocusedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FocusedLayout.TextMargins.Left = 18.000000000000000000
               Appearance.FocusedLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FocusedLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FocusedLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2555,7 +2556,7 @@ object Form1: TForm1
               Appearance.GroupLayout.Font.Height = -12
               Appearance.GroupLayout.Font.Name = 'Segoe UI'
               Appearance.GroupLayout.Font.Style = []
-              Appearance.GroupLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.GroupLayout.TextMargins.Left = 18.000000000000000000
               Appearance.GroupLayout.TextMargins.Top = 3.000000000000000000
               Appearance.GroupLayout.TextMargins.Right = 3.000000000000000000
               Appearance.GroupLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2564,7 +2565,7 @@ object Form1: TForm1
               Appearance.NormalLayout.Font.Height = -12
               Appearance.NormalLayout.Font.Name = 'Segoe UI'
               Appearance.NormalLayout.Font.Style = []
-              Appearance.NormalLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.NormalLayout.TextMargins.Left = 18.000000000000000000
               Appearance.NormalLayout.TextMargins.Top = 3.000000000000000000
               Appearance.NormalLayout.TextMargins.Right = 3.000000000000000000
               Appearance.NormalLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2573,7 +2574,7 @@ object Form1: TForm1
               Appearance.SelectedLayout.Font.Height = -12
               Appearance.SelectedLayout.Font.Name = 'Segoe UI'
               Appearance.SelectedLayout.Font.Style = []
-              Appearance.SelectedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.SelectedLayout.TextMargins.Left = 18.000000000000000000
               Appearance.SelectedLayout.TextMargins.Top = 3.000000000000000000
               Appearance.SelectedLayout.TextMargins.Right = 3.000000000000000000
               Appearance.SelectedLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2582,12 +2583,14 @@ object Form1: TForm1
               Appearance.SummaryLayout.Font.Height = -12
               Appearance.SummaryLayout.Font.Name = 'Segoe UI'
               Appearance.SummaryLayout.Font.Style = []
-              Appearance.SummaryLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.SummaryLayout.TextMargins.Left = 18.000000000000000000
               Appearance.SummaryLayout.TextMargins.Top = 3.000000000000000000
               Appearance.SummaryLayout.TextMargins.Right = 3.000000000000000000
               Appearance.SummaryLayout.TextMargins.Bottom = 3.000000000000000000
               Header = 'Order'
               Width = 112.000000000000000000
+              Settings = [gcsAppearance]
+              TextRole = gtrAccent
             end
             item
               Appearance.FilterMatchLayout.Font.Charset = DEFAULT_CHARSET
@@ -2595,7 +2598,7 @@ object Form1: TForm1
               Appearance.FilterMatchLayout.Font.Height = -12
               Appearance.FilterMatchLayout.Font.Name = 'Segoe UI'
               Appearance.FilterMatchLayout.Font.Style = []
-              Appearance.FilterMatchLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FilterMatchLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FilterMatchLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FilterMatchLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FilterMatchLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2604,7 +2607,7 @@ object Form1: TForm1
               Appearance.FilterInverseMatchLayout.Font.Height = -12
               Appearance.FilterInverseMatchLayout.Font.Name = 'Segoe UI'
               Appearance.FilterInverseMatchLayout.Font.Style = []
-              Appearance.FilterInverseMatchLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FilterInverseMatchLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FilterInverseMatchLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FilterInverseMatchLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FilterInverseMatchLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2613,7 +2616,7 @@ object Form1: TForm1
               Appearance.BandLayout.Font.Height = -12
               Appearance.BandLayout.Font.Name = 'Segoe UI'
               Appearance.BandLayout.Font.Style = []
-              Appearance.BandLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.BandLayout.TextMargins.Left = 12.000000000000000000
               Appearance.BandLayout.TextMargins.Top = 3.000000000000000000
               Appearance.BandLayout.TextMargins.Right = 3.000000000000000000
               Appearance.BandLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2622,7 +2625,7 @@ object Form1: TForm1
               Appearance.FixedLayout.Font.Height = -12
               Appearance.FixedLayout.Font.Name = 'Segoe UI'
               Appearance.FixedLayout.Font.Style = []
-              Appearance.FixedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FixedLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FixedLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FixedLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FixedLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2631,7 +2634,7 @@ object Form1: TForm1
               Appearance.FixedSelectedLayout.Font.Height = -12
               Appearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
               Appearance.FixedSelectedLayout.Font.Style = []
-              Appearance.FixedSelectedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FixedSelectedLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FixedSelectedLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FixedSelectedLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FixedSelectedLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2640,7 +2643,7 @@ object Form1: TForm1
               Appearance.FocusedLayout.Font.Height = -12
               Appearance.FocusedLayout.Font.Name = 'Segoe UI'
               Appearance.FocusedLayout.Font.Style = []
-              Appearance.FocusedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FocusedLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FocusedLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FocusedLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FocusedLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2649,7 +2652,7 @@ object Form1: TForm1
               Appearance.GroupLayout.Font.Height = -12
               Appearance.GroupLayout.Font.Name = 'Segoe UI'
               Appearance.GroupLayout.Font.Style = []
-              Appearance.GroupLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.GroupLayout.TextMargins.Left = 12.000000000000000000
               Appearance.GroupLayout.TextMargins.Top = 3.000000000000000000
               Appearance.GroupLayout.TextMargins.Right = 3.000000000000000000
               Appearance.GroupLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2658,7 +2661,7 @@ object Form1: TForm1
               Appearance.NormalLayout.Font.Height = -12
               Appearance.NormalLayout.Font.Name = 'Segoe UI'
               Appearance.NormalLayout.Font.Style = []
-              Appearance.NormalLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.NormalLayout.TextMargins.Left = 12.000000000000000000
               Appearance.NormalLayout.TextMargins.Top = 3.000000000000000000
               Appearance.NormalLayout.TextMargins.Right = 3.000000000000000000
               Appearance.NormalLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2667,7 +2670,7 @@ object Form1: TForm1
               Appearance.SelectedLayout.Font.Height = -12
               Appearance.SelectedLayout.Font.Name = 'Segoe UI'
               Appearance.SelectedLayout.Font.Style = []
-              Appearance.SelectedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.SelectedLayout.TextMargins.Left = 12.000000000000000000
               Appearance.SelectedLayout.TextMargins.Top = 3.000000000000000000
               Appearance.SelectedLayout.TextMargins.Right = 3.000000000000000000
               Appearance.SelectedLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2676,12 +2679,13 @@ object Form1: TForm1
               Appearance.SummaryLayout.Font.Height = -12
               Appearance.SummaryLayout.Font.Name = 'Segoe UI'
               Appearance.SummaryLayout.Font.Style = []
-              Appearance.SummaryLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.SummaryLayout.TextMargins.Left = 12.000000000000000000
               Appearance.SummaryLayout.TextMargins.Top = 3.000000000000000000
               Appearance.SummaryLayout.TextMargins.Right = 3.000000000000000000
               Appearance.SummaryLayout.TextMargins.Bottom = 3.000000000000000000
               Header = 'Customer'
               Width = 212.000000000000000000
+              Settings = [gcsAppearance]
             end
             item
               Appearance.FilterMatchLayout.Font.Charset = DEFAULT_CHARSET
@@ -2689,7 +2693,7 @@ object Form1: TForm1
               Appearance.FilterMatchLayout.Font.Height = -12
               Appearance.FilterMatchLayout.Font.Name = 'Segoe UI'
               Appearance.FilterMatchLayout.Font.Style = []
-              Appearance.FilterMatchLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FilterMatchLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FilterMatchLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FilterMatchLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FilterMatchLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2698,7 +2702,7 @@ object Form1: TForm1
               Appearance.FilterInverseMatchLayout.Font.Height = -12
               Appearance.FilterInverseMatchLayout.Font.Name = 'Segoe UI'
               Appearance.FilterInverseMatchLayout.Font.Style = []
-              Appearance.FilterInverseMatchLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FilterInverseMatchLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FilterInverseMatchLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FilterInverseMatchLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FilterInverseMatchLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2707,7 +2711,7 @@ object Form1: TForm1
               Appearance.BandLayout.Font.Height = -12
               Appearance.BandLayout.Font.Name = 'Segoe UI'
               Appearance.BandLayout.Font.Style = []
-              Appearance.BandLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.BandLayout.TextMargins.Left = 12.000000000000000000
               Appearance.BandLayout.TextMargins.Top = 3.000000000000000000
               Appearance.BandLayout.TextMargins.Right = 3.000000000000000000
               Appearance.BandLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2716,7 +2720,7 @@ object Form1: TForm1
               Appearance.FixedLayout.Font.Height = -12
               Appearance.FixedLayout.Font.Name = 'Segoe UI'
               Appearance.FixedLayout.Font.Style = []
-              Appearance.FixedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FixedLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FixedLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FixedLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FixedLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2725,7 +2729,7 @@ object Form1: TForm1
               Appearance.FixedSelectedLayout.Font.Height = -12
               Appearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
               Appearance.FixedSelectedLayout.Font.Style = []
-              Appearance.FixedSelectedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FixedSelectedLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FixedSelectedLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FixedSelectedLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FixedSelectedLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2734,7 +2738,7 @@ object Form1: TForm1
               Appearance.FocusedLayout.Font.Height = -12
               Appearance.FocusedLayout.Font.Name = 'Segoe UI'
               Appearance.FocusedLayout.Font.Style = []
-              Appearance.FocusedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FocusedLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FocusedLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FocusedLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FocusedLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2743,7 +2747,7 @@ object Form1: TForm1
               Appearance.GroupLayout.Font.Height = -12
               Appearance.GroupLayout.Font.Name = 'Segoe UI'
               Appearance.GroupLayout.Font.Style = []
-              Appearance.GroupLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.GroupLayout.TextMargins.Left = 12.000000000000000000
               Appearance.GroupLayout.TextMargins.Top = 3.000000000000000000
               Appearance.GroupLayout.TextMargins.Right = 3.000000000000000000
               Appearance.GroupLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2752,7 +2756,7 @@ object Form1: TForm1
               Appearance.NormalLayout.Font.Height = -12
               Appearance.NormalLayout.Font.Name = 'Segoe UI'
               Appearance.NormalLayout.Font.Style = []
-              Appearance.NormalLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.NormalLayout.TextMargins.Left = 12.000000000000000000
               Appearance.NormalLayout.TextMargins.Top = 3.000000000000000000
               Appearance.NormalLayout.TextMargins.Right = 3.000000000000000000
               Appearance.NormalLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2761,7 +2765,7 @@ object Form1: TForm1
               Appearance.SelectedLayout.Font.Height = -12
               Appearance.SelectedLayout.Font.Name = 'Segoe UI'
               Appearance.SelectedLayout.Font.Style = []
-              Appearance.SelectedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.SelectedLayout.TextMargins.Left = 12.000000000000000000
               Appearance.SelectedLayout.TextMargins.Top = 3.000000000000000000
               Appearance.SelectedLayout.TextMargins.Right = 3.000000000000000000
               Appearance.SelectedLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2770,12 +2774,14 @@ object Form1: TForm1
               Appearance.SummaryLayout.Font.Height = -12
               Appearance.SummaryLayout.Font.Name = 'Segoe UI'
               Appearance.SummaryLayout.Font.Style = []
-              Appearance.SummaryLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.SummaryLayout.TextMargins.Left = 12.000000000000000000
               Appearance.SummaryLayout.TextMargins.Top = 3.000000000000000000
               Appearance.SummaryLayout.TextMargins.Right = 3.000000000000000000
               Appearance.SummaryLayout.TextMargins.Bottom = 3.000000000000000000
               Header = 'Date'
               Width = 88.000000000000000000
+              Settings = [gcsAppearance]
+              TextRole = gtrSecondary
             end
             item
               Appearance.FilterMatchLayout.Font.Charset = DEFAULT_CHARSET
@@ -2783,93 +2789,104 @@ object Form1: TForm1
               Appearance.FilterMatchLayout.Font.Height = -12
               Appearance.FilterMatchLayout.Font.Name = 'Segoe UI'
               Appearance.FilterMatchLayout.Font.Style = []
-              Appearance.FilterMatchLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FilterMatchLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FilterMatchLayout.TextMargins.Top = 3.000000000000000000
-              Appearance.FilterMatchLayout.TextMargins.Right = 3.000000000000000000
+              Appearance.FilterMatchLayout.TextMargins.Right = 12.000000000000000000
               Appearance.FilterMatchLayout.TextMargins.Bottom = 3.000000000000000000
+              Appearance.FilterMatchLayout.TextAlign = gtaTrailing
               Appearance.FilterInverseMatchLayout.Font.Charset = DEFAULT_CHARSET
               Appearance.FilterInverseMatchLayout.Font.Color = clWindowText
               Appearance.FilterInverseMatchLayout.Font.Height = -12
               Appearance.FilterInverseMatchLayout.Font.Name = 'Segoe UI'
               Appearance.FilterInverseMatchLayout.Font.Style = []
-              Appearance.FilterInverseMatchLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FilterInverseMatchLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FilterInverseMatchLayout.TextMargins.Top = 3.000000000000000000
-              Appearance.FilterInverseMatchLayout.TextMargins.Right = 3.000000000000000000
+              Appearance.FilterInverseMatchLayout.TextMargins.Right = 12.000000000000000000
               Appearance.FilterInverseMatchLayout.TextMargins.Bottom = 3.000000000000000000
+              Appearance.FilterInverseMatchLayout.TextAlign = gtaTrailing
               Appearance.BandLayout.Font.Charset = DEFAULT_CHARSET
               Appearance.BandLayout.Font.Color = clWindowText
               Appearance.BandLayout.Font.Height = -12
               Appearance.BandLayout.Font.Name = 'Segoe UI'
               Appearance.BandLayout.Font.Style = []
-              Appearance.BandLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.BandLayout.TextMargins.Left = 12.000000000000000000
               Appearance.BandLayout.TextMargins.Top = 3.000000000000000000
-              Appearance.BandLayout.TextMargins.Right = 3.000000000000000000
+              Appearance.BandLayout.TextMargins.Right = 12.000000000000000000
               Appearance.BandLayout.TextMargins.Bottom = 3.000000000000000000
+              Appearance.BandLayout.TextAlign = gtaTrailing
               Appearance.FixedLayout.Font.Charset = DEFAULT_CHARSET
               Appearance.FixedLayout.Font.Color = clWindowText
               Appearance.FixedLayout.Font.Height = -12
               Appearance.FixedLayout.Font.Name = 'Segoe UI'
               Appearance.FixedLayout.Font.Style = []
-              Appearance.FixedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FixedLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FixedLayout.TextMargins.Top = 3.000000000000000000
-              Appearance.FixedLayout.TextMargins.Right = 3.000000000000000000
+              Appearance.FixedLayout.TextMargins.Right = 12.000000000000000000
               Appearance.FixedLayout.TextMargins.Bottom = 3.000000000000000000
+              Appearance.FixedLayout.TextAlign = gtaTrailing
               Appearance.FixedSelectedLayout.Font.Charset = DEFAULT_CHARSET
               Appearance.FixedSelectedLayout.Font.Color = clWindowText
               Appearance.FixedSelectedLayout.Font.Height = -12
               Appearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
               Appearance.FixedSelectedLayout.Font.Style = []
-              Appearance.FixedSelectedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FixedSelectedLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FixedSelectedLayout.TextMargins.Top = 3.000000000000000000
-              Appearance.FixedSelectedLayout.TextMargins.Right = 3.000000000000000000
+              Appearance.FixedSelectedLayout.TextMargins.Right = 12.000000000000000000
               Appearance.FixedSelectedLayout.TextMargins.Bottom = 3.000000000000000000
+              Appearance.FixedSelectedLayout.TextAlign = gtaTrailing
               Appearance.FocusedLayout.Font.Charset = DEFAULT_CHARSET
               Appearance.FocusedLayout.Font.Color = clWindowText
               Appearance.FocusedLayout.Font.Height = -12
               Appearance.FocusedLayout.Font.Name = 'Segoe UI'
               Appearance.FocusedLayout.Font.Style = []
-              Appearance.FocusedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FocusedLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FocusedLayout.TextMargins.Top = 3.000000000000000000
-              Appearance.FocusedLayout.TextMargins.Right = 3.000000000000000000
+              Appearance.FocusedLayout.TextMargins.Right = 12.000000000000000000
               Appearance.FocusedLayout.TextMargins.Bottom = 3.000000000000000000
+              Appearance.FocusedLayout.TextAlign = gtaTrailing
               Appearance.GroupLayout.Font.Charset = DEFAULT_CHARSET
               Appearance.GroupLayout.Font.Color = clWindowText
               Appearance.GroupLayout.Font.Height = -12
               Appearance.GroupLayout.Font.Name = 'Segoe UI'
               Appearance.GroupLayout.Font.Style = []
-              Appearance.GroupLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.GroupLayout.TextMargins.Left = 12.000000000000000000
               Appearance.GroupLayout.TextMargins.Top = 3.000000000000000000
-              Appearance.GroupLayout.TextMargins.Right = 3.000000000000000000
+              Appearance.GroupLayout.TextMargins.Right = 12.000000000000000000
               Appearance.GroupLayout.TextMargins.Bottom = 3.000000000000000000
+              Appearance.GroupLayout.TextAlign = gtaTrailing
               Appearance.NormalLayout.Font.Charset = DEFAULT_CHARSET
               Appearance.NormalLayout.Font.Color = clWindowText
               Appearance.NormalLayout.Font.Height = -12
               Appearance.NormalLayout.Font.Name = 'Segoe UI'
               Appearance.NormalLayout.Font.Style = []
-              Appearance.NormalLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.NormalLayout.TextMargins.Left = 12.000000000000000000
               Appearance.NormalLayout.TextMargins.Top = 3.000000000000000000
-              Appearance.NormalLayout.TextMargins.Right = 3.000000000000000000
+              Appearance.NormalLayout.TextMargins.Right = 12.000000000000000000
               Appearance.NormalLayout.TextMargins.Bottom = 3.000000000000000000
+              Appearance.NormalLayout.TextAlign = gtaTrailing
               Appearance.SelectedLayout.Font.Charset = DEFAULT_CHARSET
               Appearance.SelectedLayout.Font.Color = clWindowText
               Appearance.SelectedLayout.Font.Height = -12
               Appearance.SelectedLayout.Font.Name = 'Segoe UI'
               Appearance.SelectedLayout.Font.Style = []
-              Appearance.SelectedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.SelectedLayout.TextMargins.Left = 12.000000000000000000
               Appearance.SelectedLayout.TextMargins.Top = 3.000000000000000000
-              Appearance.SelectedLayout.TextMargins.Right = 3.000000000000000000
+              Appearance.SelectedLayout.TextMargins.Right = 12.000000000000000000
               Appearance.SelectedLayout.TextMargins.Bottom = 3.000000000000000000
+              Appearance.SelectedLayout.TextAlign = gtaTrailing
               Appearance.SummaryLayout.Font.Charset = DEFAULT_CHARSET
               Appearance.SummaryLayout.Font.Color = clWindowText
               Appearance.SummaryLayout.Font.Height = -12
               Appearance.SummaryLayout.Font.Name = 'Segoe UI'
               Appearance.SummaryLayout.Font.Style = []
-              Appearance.SummaryLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.SummaryLayout.TextMargins.Left = 12.000000000000000000
               Appearance.SummaryLayout.TextMargins.Top = 3.000000000000000000
-              Appearance.SummaryLayout.TextMargins.Right = 3.000000000000000000
+              Appearance.SummaryLayout.TextMargins.Right = 12.000000000000000000
               Appearance.SummaryLayout.TextMargins.Bottom = 3.000000000000000000
+              Appearance.SummaryLayout.TextAlign = gtaTrailing
               Header = 'Total'
               Width = 112.000000000000000000
+              Settings = [gcsAppearance]
             end
             item
               Type = gcitDataStatus
@@ -2878,7 +2895,7 @@ object Form1: TForm1
               Appearance.FilterMatchLayout.Font.Height = -12
               Appearance.FilterMatchLayout.Font.Name = 'Segoe UI'
               Appearance.FilterMatchLayout.Font.Style = []
-              Appearance.FilterMatchLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FilterMatchLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FilterMatchLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FilterMatchLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FilterMatchLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2887,7 +2904,7 @@ object Form1: TForm1
               Appearance.FilterInverseMatchLayout.Font.Height = -12
               Appearance.FilterInverseMatchLayout.Font.Name = 'Segoe UI'
               Appearance.FilterInverseMatchLayout.Font.Style = []
-              Appearance.FilterInverseMatchLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FilterInverseMatchLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FilterInverseMatchLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FilterInverseMatchLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FilterInverseMatchLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2896,7 +2913,7 @@ object Form1: TForm1
               Appearance.BandLayout.Font.Height = -12
               Appearance.BandLayout.Font.Name = 'Segoe UI'
               Appearance.BandLayout.Font.Style = []
-              Appearance.BandLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.BandLayout.TextMargins.Left = 12.000000000000000000
               Appearance.BandLayout.TextMargins.Top = 3.000000000000000000
               Appearance.BandLayout.TextMargins.Right = 3.000000000000000000
               Appearance.BandLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2905,7 +2922,7 @@ object Form1: TForm1
               Appearance.FixedLayout.Font.Height = -12
               Appearance.FixedLayout.Font.Name = 'Segoe UI'
               Appearance.FixedLayout.Font.Style = []
-              Appearance.FixedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FixedLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FixedLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FixedLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FixedLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2914,7 +2931,7 @@ object Form1: TForm1
               Appearance.FixedSelectedLayout.Font.Height = -12
               Appearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
               Appearance.FixedSelectedLayout.Font.Style = []
-              Appearance.FixedSelectedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FixedSelectedLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FixedSelectedLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FixedSelectedLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FixedSelectedLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2923,7 +2940,7 @@ object Form1: TForm1
               Appearance.FocusedLayout.Font.Height = -12
               Appearance.FocusedLayout.Font.Name = 'Segoe UI'
               Appearance.FocusedLayout.Font.Style = []
-              Appearance.FocusedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FocusedLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FocusedLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FocusedLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FocusedLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2932,7 +2949,7 @@ object Form1: TForm1
               Appearance.GroupLayout.Font.Height = -12
               Appearance.GroupLayout.Font.Name = 'Segoe UI'
               Appearance.GroupLayout.Font.Style = []
-              Appearance.GroupLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.GroupLayout.TextMargins.Left = 12.000000000000000000
               Appearance.GroupLayout.TextMargins.Top = 3.000000000000000000
               Appearance.GroupLayout.TextMargins.Right = 3.000000000000000000
               Appearance.GroupLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2941,7 +2958,7 @@ object Form1: TForm1
               Appearance.NormalLayout.Font.Height = -12
               Appearance.NormalLayout.Font.Name = 'Segoe UI'
               Appearance.NormalLayout.Font.Style = []
-              Appearance.NormalLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.NormalLayout.TextMargins.Left = 12.000000000000000000
               Appearance.NormalLayout.TextMargins.Top = 3.000000000000000000
               Appearance.NormalLayout.TextMargins.Right = 3.000000000000000000
               Appearance.NormalLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2950,7 +2967,7 @@ object Form1: TForm1
               Appearance.SelectedLayout.Font.Height = -12
               Appearance.SelectedLayout.Font.Name = 'Segoe UI'
               Appearance.SelectedLayout.Font.Style = []
-              Appearance.SelectedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.SelectedLayout.TextMargins.Left = 12.000000000000000000
               Appearance.SelectedLayout.TextMargins.Top = 3.000000000000000000
               Appearance.SelectedLayout.TextMargins.Right = 3.000000000000000000
               Appearance.SelectedLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2959,12 +2976,12 @@ object Form1: TForm1
               Appearance.SummaryLayout.Font.Height = -12
               Appearance.SummaryLayout.Font.Name = 'Segoe UI'
               Appearance.SummaryLayout.Font.Style = []
-              Appearance.SummaryLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.SummaryLayout.TextMargins.Left = 12.000000000000000000
               Appearance.SummaryLayout.TextMargins.Top = 3.000000000000000000
               Appearance.SummaryLayout.TextMargins.Right = 3.000000000000000000
               Appearance.SummaryLayout.TextMargins.Bottom = 3.000000000000000000
               Header = 'Status'
-              Settings = [gcsType]
+              Settings = [gcsAppearance, gcsType]
               TypeRange = gcirNormal
               Width = 140.000000000000000000
               StatusValues.Strings = (
@@ -2980,7 +2997,7 @@ object Form1: TForm1
               Appearance.FilterMatchLayout.Font.Height = -12
               Appearance.FilterMatchLayout.Font.Name = 'Segoe UI'
               Appearance.FilterMatchLayout.Font.Style = []
-              Appearance.FilterMatchLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FilterMatchLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FilterMatchLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FilterMatchLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FilterMatchLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2989,7 +3006,7 @@ object Form1: TForm1
               Appearance.FilterInverseMatchLayout.Font.Height = -12
               Appearance.FilterInverseMatchLayout.Font.Name = 'Segoe UI'
               Appearance.FilterInverseMatchLayout.Font.Style = []
-              Appearance.FilterInverseMatchLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FilterInverseMatchLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FilterInverseMatchLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FilterInverseMatchLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FilterInverseMatchLayout.TextMargins.Bottom = 3.000000000000000000
@@ -2998,7 +3015,7 @@ object Form1: TForm1
               Appearance.BandLayout.Font.Height = -12
               Appearance.BandLayout.Font.Name = 'Segoe UI'
               Appearance.BandLayout.Font.Style = []
-              Appearance.BandLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.BandLayout.TextMargins.Left = 12.000000000000000000
               Appearance.BandLayout.TextMargins.Top = 3.000000000000000000
               Appearance.BandLayout.TextMargins.Right = 3.000000000000000000
               Appearance.BandLayout.TextMargins.Bottom = 3.000000000000000000
@@ -3007,7 +3024,7 @@ object Form1: TForm1
               Appearance.FixedLayout.Font.Height = -12
               Appearance.FixedLayout.Font.Name = 'Segoe UI'
               Appearance.FixedLayout.Font.Style = []
-              Appearance.FixedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FixedLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FixedLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FixedLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FixedLayout.TextMargins.Bottom = 3.000000000000000000
@@ -3016,7 +3033,7 @@ object Form1: TForm1
               Appearance.FixedSelectedLayout.Font.Height = -12
               Appearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
               Appearance.FixedSelectedLayout.Font.Style = []
-              Appearance.FixedSelectedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FixedSelectedLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FixedSelectedLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FixedSelectedLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FixedSelectedLayout.TextMargins.Bottom = 3.000000000000000000
@@ -3025,7 +3042,7 @@ object Form1: TForm1
               Appearance.FocusedLayout.Font.Height = -12
               Appearance.FocusedLayout.Font.Name = 'Segoe UI'
               Appearance.FocusedLayout.Font.Style = []
-              Appearance.FocusedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.FocusedLayout.TextMargins.Left = 12.000000000000000000
               Appearance.FocusedLayout.TextMargins.Top = 3.000000000000000000
               Appearance.FocusedLayout.TextMargins.Right = 3.000000000000000000
               Appearance.FocusedLayout.TextMargins.Bottom = 3.000000000000000000
@@ -3034,7 +3051,7 @@ object Form1: TForm1
               Appearance.GroupLayout.Font.Height = -12
               Appearance.GroupLayout.Font.Name = 'Segoe UI'
               Appearance.GroupLayout.Font.Style = []
-              Appearance.GroupLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.GroupLayout.TextMargins.Left = 12.000000000000000000
               Appearance.GroupLayout.TextMargins.Top = 3.000000000000000000
               Appearance.GroupLayout.TextMargins.Right = 3.000000000000000000
               Appearance.GroupLayout.TextMargins.Bottom = 3.000000000000000000
@@ -3043,7 +3060,7 @@ object Form1: TForm1
               Appearance.NormalLayout.Font.Height = -12
               Appearance.NormalLayout.Font.Name = 'Segoe UI'
               Appearance.NormalLayout.Font.Style = []
-              Appearance.NormalLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.NormalLayout.TextMargins.Left = 12.000000000000000000
               Appearance.NormalLayout.TextMargins.Top = 3.000000000000000000
               Appearance.NormalLayout.TextMargins.Right = 3.000000000000000000
               Appearance.NormalLayout.TextMargins.Bottom = 3.000000000000000000
@@ -3052,7 +3069,7 @@ object Form1: TForm1
               Appearance.SelectedLayout.Font.Height = -12
               Appearance.SelectedLayout.Font.Name = 'Segoe UI'
               Appearance.SelectedLayout.Font.Style = []
-              Appearance.SelectedLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.SelectedLayout.TextMargins.Left = 12.000000000000000000
               Appearance.SelectedLayout.TextMargins.Top = 3.000000000000000000
               Appearance.SelectedLayout.TextMargins.Right = 3.000000000000000000
               Appearance.SelectedLayout.TextMargins.Bottom = 3.000000000000000000
@@ -3061,12 +3078,12 @@ object Form1: TForm1
               Appearance.SummaryLayout.Font.Height = -12
               Appearance.SummaryLayout.Font.Name = 'Segoe UI'
               Appearance.SummaryLayout.Font.Style = []
-              Appearance.SummaryLayout.TextMargins.Left = 3.000000000000000000
+              Appearance.SummaryLayout.TextMargins.Left = 12.000000000000000000
               Appearance.SummaryLayout.TextMargins.Top = 3.000000000000000000
               Appearance.SummaryLayout.TextMargins.Right = 3.000000000000000000
               Appearance.SummaryLayout.TextMargins.Bottom = 3.000000000000000000
               Header = 'Fulfilment'
-              Settings = [gcsType]
+              Settings = [gcsAppearance, gcsType]
               TypeRange = gcirNormal
               Width = 150.000000000000000000
             end>
@@ -3083,7 +3100,6 @@ object Form1: TForm1
           SortIndicatorAppearance.IndexFont.Height = -11
           SortIndicatorAppearance.IndexFont.Name = 'Segoe UI'
           SortIndicatorAppearance.IndexFont.Style = []
-          OnGetCellLayout = OrdersGridGetCellLayout
           Options.Column.Stretching.Enabled = True
           Options.Column.Stretching.Mode = gstmIndex
           Options.Column.Stretching.Index = 1
@@ -3228,6 +3244,8 @@ object Form1: TForm1
           Text = '2 of 4 tasks done'
         end
         object ProjectTree: TTMSFNCCheckedTreeView
+          NativeCanvas = True
+          TextQuality = gtqClearType
           AlignWithMargins = True
           Left = 3
           Top = 55
@@ -3280,6 +3298,7 @@ object Form1: TForm1
             item
               Name = 'Column1'
               Text = 'Owner'
+              TextRole = gtrSecondary
               Width = 130.000000000000000000
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
@@ -3394,7 +3413,6 @@ object Form1: TForm1
           NodesAppearance.ParentNodesSemibold = True
           OnAfterUnCheckNode = ProjectTreeNodeChecked
           OnAfterCheckNode = ProjectTreeNodeChecked
-          OnGetNodeTextColor = ProjectTreeGetNodeTextColor
           DefaultViewJSONOptions.NameHTMLTemplate = '<#NAME>'
           DefaultViewJSONOptions.ValueHTMLTemplate = '<#VALUE>'
         end
@@ -3639,6 +3657,7 @@ object Form1: TForm1
       Items = <
         item
           Text = 'Settings'
+          TextRole = gtrSecondary
           Bitmap.Data = {
             1054544D53464E435356474269746D61706B0100003C73766720786D6C6E733D
             22687474703A2F2F7777772E77332E6F72672F323030302F7376672220776964
@@ -3687,7 +3706,8 @@ object Form1: TForm1
         Progress.Position = 0
       end
       item
-        Text = 'Theme: Fluent Light'
+        Text = 'Theme: '
+        Style = spsThemeName
         Width = 200
         Progress.Level0Fill.Color = clLime
         Progress.Level1Fill.Color = clYellow
@@ -3708,6 +3728,7 @@ object Form1: TForm1
       item
         Style = spsText
         Width = 860
+        Stretch = True
         Progress.Level0Fill.Color = clLime
         Progress.Level1Fill.Color = clYellow
         Progress.Level2Fill.Color = clOrange
@@ -3840,6 +3861,7 @@ object Form1: TForm1
       Text = 'Theming Dashboard'
     end
     object AccentSelector: TTMSFNCAccentSelector
+      HideInHighContrast = True
       AlignWithMargins = True
       Left = 1200
       Top = 0
@@ -4094,14 +4116,242 @@ object Form1: TForm1
   end
   object OrderSource: TDataSource
     DataSet = OrdersData.Orders
-    OnDataChange = OrderSourceDataChange
     Left = 1336
     Top = 1024
   end
   object KpiSource: TDataSource
     DataSet = OrdersData.Kpis
-    OnDataChange = KpiSourceDataChange
     Left = 1400
     Top = 1024
+  end
+  object CustomersSource: TDataSource
+    DataSet = OrdersData.Customers
+    Left = 1272
+    Top = 1024
+  end
+  object PageBinder: TTMSFNCDataBinder
+    Left = 1400
+    Top = 1152
+    Width = 26
+    Height = 26
+    Visible = True
+    DataSource = KpiSource
+    Items = <
+      item
+        BindComponent = CustomerCombo
+        PropertyName = 'Items'
+        DataSource = CustomersSource
+        BindType = dbbtList
+        FieldName = 'name'
+      end
+      item
+        BindComponent = RevenueValue
+        PropertyName = 'Text'
+        DataSource = KpiSource
+        FieldName = 'revenue_text'
+      end
+      item
+        BindComponent = RevenueDelta
+        PropertyName = 'Text'
+        DataSource = KpiSource
+        FieldName = 'revenue_change'
+      end
+      item
+        BindComponent = RevenueDelta
+        PropertyName = 'Kind'
+        DataSource = KpiSource
+        FieldName = 'revenue_kind'
+      end
+      item
+        BindComponent = OpenValue
+        PropertyName = 'Text'
+        DataSource = KpiSource
+        FieldName = 'open_orders'
+      end
+      item
+        BindComponent = OpenDelta
+        PropertyName = 'Text'
+        DataSource = KpiSource
+        FieldName = 'late_text'
+      end
+      item
+        BindComponent = OpenDelta
+        PropertyName = 'Kind'
+        DataSource = KpiSource
+        FieldName = 'late_kind'
+      end
+      item
+        BindComponent = CustomersValue
+        PropertyName = 'Text'
+        DataSource = KpiSource
+        FieldName = 'customers'
+      end
+      item
+        BindComponent = CustomersDelta
+        PropertyName = 'Text'
+        DataSource = KpiSource
+        FieldName = 'new_text'
+      end
+      item
+        BindComponent = AverageValue
+        PropertyName = 'Text'
+        DataSource = KpiSource
+        FieldName = 'average_text'
+      end
+      item
+        BindComponent = AverageDelta
+        PropertyName = 'Text'
+        DataSource = KpiSource
+        FieldName = 'average_change'
+      end
+      item
+        BindComponent = AverageDelta
+        PropertyName = 'Kind'
+        DataSource = KpiSource
+        FieldName = 'average_kind'
+      end
+      item
+        BindComponent = RevenueGoalBar
+        PropertyName = 'Value'
+        DataSource = KpiSource
+        FieldName = 'goal_revenue'
+      end
+      item
+        BindComponent = RevenueGoalValue
+        PropertyName = 'Text'
+        DataSource = KpiSource
+        FieldName = 'goal_revenue_text'
+      end
+      item
+        BindComponent = OnTimeGoalBar
+        PropertyName = 'Value'
+        DataSource = KpiSource
+        FieldName = 'goal_on_time'
+      end
+      item
+        BindComponent = OnTimeGoalValue
+        PropertyName = 'Text'
+        DataSource = KpiSource
+        FieldName = 'goal_on_time_text'
+      end
+      item
+        BindComponent = RetentionGoalBar
+        PropertyName = 'Value'
+        DataSource = KpiSource
+        FieldName = 'goal_retention'
+      end
+      item
+        BindComponent = RetentionGoalValue
+        PropertyName = 'Text'
+        DataSource = KpiSource
+        FieldName = 'goal_retention_text'
+      end
+      item
+        BindComponent = NavList
+        PropertyName = 'Items[1].Badge'
+        DataSource = KpiSource
+        FieldName = 'open_orders'
+      end
+      item
+        BindComponent = PageSubtitle
+        PropertyName = 'Text'
+        DataSource = KpiSource
+        FieldName = 'subtitle'
+      end
+      item
+        BindComponent = StatusBar
+        PropertyName = 'Panels[2].Text'
+        DataSource = KpiSource
+        FieldName = 'order_count_text'
+      end
+      item
+        BindComponent = OrdersCard
+        PropertyName = 'Footer.Text'
+        DataSource = KpiSource
+        FieldName = 'shown_text'
+      end>
+    Active = True
+  end
+  object DetailsBinder: TTMSFNCDataBinder
+    Left = 1336
+    Top = 1152
+    Width = 26
+    Height = 26
+    Visible = True
+    DataSource = OrderSource
+    Items = <
+      item
+        BindComponent = DetailsCard
+        PropertyName = 'Header.Text'
+        DataSource = OrderSource
+        FieldName = 'title'
+        ReadOnly = True
+        ClearOnInsert = False
+      end
+      item
+        BindComponent = CustomerCombo
+        PropertyName = 'Text'
+        DataSource = OrderSource
+        FieldName = 'customer'
+        ReadOnly = True
+        ClearOnInsert = False
+      end
+      item
+        BindComponent = DatePicker
+        PropertyName = 'SelectedDate'
+        DataSource = OrderSource
+        FieldName = 'order_date'
+        ReadOnly = True
+        ClearOnInsert = False
+      end
+      item
+        BindComponent = AmountEdit
+        PropertyName = 'FloatValue'
+        DataSource = OrderSource
+        FieldName = 'amount'
+        ReadOnly = True
+        ClearOnInsert = False
+      end
+      item
+        BindComponent = StatusCombo
+        PropertyName = 'ItemIndex'
+        DataSource = OrderSource
+        FieldName = 'status_index'
+        ReadOnly = True
+        ClearOnInsert = False
+      end
+      item
+        BindComponent = ExpressCheck
+        PropertyName = 'Checked'
+        DataSource = OrderSource
+        FieldName = 'express'
+        ReadOnly = True
+        ClearOnInsert = False
+      end
+      item
+        BindComponent = FulfilmentBar
+        PropertyName = 'Value'
+        DataSource = OrderSource
+        FieldName = 'fulfilment'
+        ReadOnly = True
+        ClearOnInsert = False
+      end
+      item
+        BindComponent = DetailsStatus
+        PropertyName = 'Text'
+        DataSource = OrderSource
+        FieldName = 'status'
+        ReadOnly = True
+        ClearOnInsert = False
+      end
+      item
+        BindComponent = DetailsStatus
+        PropertyName = 'Kind'
+        DataSource = OrderSource
+        FieldName = 'status_kind'
+        ReadOnly = True
+        ClearOnInsert = False
+      end>
+    Active = True
   end
 end
