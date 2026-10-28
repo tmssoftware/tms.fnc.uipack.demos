@@ -17,7 +17,6 @@ object Form1: TForm1
     Margins.Top = 80
     Margins.Right = 28
     Margins.Bottom = 0
-    ThemingEnabled = False
     Align = alTop
     TabOrder = 0
     Fill.Kind = gfkNone
@@ -45,6 +44,7 @@ object Form1: TForm1
       Text = 'Overview'
     end
     object PageSubtitle: TTMSFNCHTMLText
+      TextRole = htrSecondary
       Left = 0
       Top = 32
       Width = 600
@@ -100,7 +100,6 @@ object Form1: TForm1
     Margins.Top = 19
     Margins.Right = 26
     Margins.Bottom = 0
-    ThemingEnabled = False
     Align = alTop
     TabOrder = 1
     Fill.Kind = gfkNone
@@ -132,6 +131,7 @@ object Form1: TForm1
       ButtonsAppearance.ButtonAppearance.HoverStroke.Color = 11632444
       ButtonsAppearance.ButtonAppearance.FlatStyle = True
       object RevenueTitle: TTMSFNCHTMLText
+        TextRole = htrSecondary
         Left = 21
         Top = 18
         Width = 238
@@ -163,6 +163,7 @@ object Form1: TForm1
         Text = '$128.4K'
       end
       object RevenueNote: TTMSFNCHTMLText
+        TextRole = htrSecondary
         Left = 89
         Top = 86
         Width = 170
@@ -212,6 +213,7 @@ object Form1: TForm1
       ButtonsAppearance.ButtonAppearance.HoverStroke.Color = 11632444
       ButtonsAppearance.ButtonAppearance.FlatStyle = True
       object OpenTitle: TTMSFNCHTMLText
+        TextRole = htrSecondary
         Left = 21
         Top = 18
         Width = 238
@@ -243,6 +245,7 @@ object Form1: TForm1
         Text = '22'
       end
       object OpenNote: TTMSFNCHTMLText
+        TextRole = htrSecondary
         Left = 89
         Top = 86
         Width = 170
@@ -292,6 +295,7 @@ object Form1: TForm1
       ButtonsAppearance.ButtonAppearance.HoverStroke.Color = 11632444
       ButtonsAppearance.ButtonAppearance.FlatStyle = True
       object CustomersTitle: TTMSFNCHTMLText
+        TextRole = htrSecondary
         Left = 21
         Top = 18
         Width = 238
@@ -323,6 +327,7 @@ object Form1: TForm1
         Text = '20'
       end
       object CustomersNote: TTMSFNCHTMLText
+        TextRole = htrSecondary
         Left = 89
         Top = 86
         Width = 170
@@ -372,6 +377,7 @@ object Form1: TForm1
       ButtonsAppearance.ButtonAppearance.HoverStroke.Color = 11632444
       ButtonsAppearance.ButtonAppearance.FlatStyle = True
       object AverageTitle: TTMSFNCHTMLText
+        TextRole = htrSecondary
         Left = 21
         Top = 18
         Width = 238
@@ -403,6 +409,7 @@ object Form1: TForm1
         Text = '$3,132'
       end
       object AverageNote: TTMSFNCHTMLText
+        TextRole = htrSecondary
         Left = 89
         Top = 86
         Width = 170
@@ -443,7 +450,6 @@ object Form1: TForm1
     Margins.Top = 17
     Margins.Right = 26
     Margins.Bottom = 61
-    ThemingEnabled = False
     Align = alClient
     TabOrder = 2
     Fill.Kind = gfkNone
@@ -465,7 +471,6 @@ object Form1: TForm1
       Margins.Top = 0
       Margins.Right = 0
       Margins.Bottom = 0
-      ThemingEnabled = False
       Align = alRight
       TabOrder = 0
       Fill.Kind = gfkNone
@@ -569,7 +574,6 @@ object Form1: TForm1
           Header.Arrow.ArrowRightBitmap = <>
           DropDownWidth = 200.000000000000000000
           DropDownHeight = 180.000000000000000000
-          OnDateSelected = DatePickerDateSelected
           SelectedDate = 46323.000000000000000000
           DateAppearance.SelectedFont.Color = clWhite
           DateAppearance.DisabledFont.Color = clLightgray
@@ -678,6 +682,7 @@ object Form1: TForm1
           Text = 'Fulfilment'
         end
         object FulfilmentValue: TTMSFNCHTMLText
+          TextRole = htrSecondary
           Left = 243
           Top = 272
           Width = 60
@@ -785,6 +790,7 @@ object Form1: TForm1
           Text = 'Revenue target'
         end
         object RevenueGoalValue: TTMSFNCHTMLText
+          TextRole = htrSecondary
           Left = 243
           Top = 56
           Width = 60
@@ -829,6 +835,7 @@ object Form1: TForm1
           Text = 'On-time delivery'
         end
         object OnTimeGoalValue: TTMSFNCHTMLText
+          TextRole = htrSecondary
           Left = 243
           Top = 104
           Width = 60
@@ -873,6 +880,7 @@ object Form1: TForm1
           Text = 'Customer retention'
         end
         object RetentionGoalValue: TTMSFNCHTMLText
+          TextRole = htrSecondary
           Left = 243
           Top = 152
           Width = 60
@@ -913,7 +921,6 @@ object Form1: TForm1
       Margins.Top = 0
       Margins.Right = 12
       Margins.Bottom = 0
-      ThemingEnabled = False
       Align = alClient
       TabOrder = 1
       Fill.Kind = gfkNone
@@ -990,6 +997,8 @@ object Form1: TForm1
           OnAfterSelectItem = FilterChipsAfterSelectItem
         end
         object SearchEdit: TTMSFNCEditButton
+          OnChange = SearchEditChange
+          TextHint = 'Search orders'
           Left = 600
           Top = 16
           Width = 200
@@ -1389,6 +1398,7 @@ object Form1: TForm1
         ButtonsAppearance.ButtonAppearance.HoverStroke.Color = 11632444
         ButtonsAppearance.ButtonAppearance.FlatStyle = True
         object ProjectsNote: TTMSFNCHTMLText
+          TextRole = htrSecondary
           Left = 560
           Top = 18
           Width = 240

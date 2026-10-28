@@ -128,6 +128,7 @@ type
     procedure OrderSourceDataChange(Sender: TObject; Field: TField);
     procedure KpiSourceDataChange(Sender: TObject; Field: TField);
     procedure NavListItemSelected(Sender: TObject; AItem: TTMSFNCListBoxItem);
+    procedure SearchEditChange(Sender: TObject);
     procedure FilterChipsAfterSelectItem(Sender: TObject; AItemIndex: Integer);
     procedure ViewAllLinkAnchorClick(Sender: TObject; AAnchor: string);
     procedure OrdersGridGetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
@@ -137,14 +138,11 @@ type
     procedure CancelButtonClick(Sender: TObject);
     procedure DeleteButtonClick(Sender: TObject);
     procedure FulfilmentBarValueChanged(Sender: TObject; AValue: Single);
-    procedure DatePickerDateSelected(Sender: TObject; ADate: TDate);
     procedure ProjectTreeNodeChecked(Sender: TObject; ANode: TTMSFNCTreeViewVirtualNode; AColumn: Integer);
     procedure ProjectTreeGetNodeTextColor(Sender: TObject; ANode: TTMSFNCTreeViewVirtualNode; AColumn: Integer;
       var ATextColor: TTMSFNCGraphicsColor);
   private
     FLoading: Boolean;
-    FOrderDate: TDate;
-    procedure SearchEditChange(Sender: TObject);
     procedure ThemeChanged(Sender: TObject);
     procedure FillProjects;
   end;
@@ -185,14 +183,9 @@ var
   c: TTMSFNCCustomControl;
 {$ENDIF}
 begin
-  { the edit inside the search box: its events and placeholder are not published }
-  SearchEdit.Edit.OnChange := SearchEditChange;
-  SearchEdit.Edit.{$IFDEF FMX}TextPrompt{$ELSE}TextHint{$ENDIF} := 'Search orders';
   {$IFDEF VCL}
-  { VCL: the layout panels show the form behind them; the pills and bars of the grid and the tree
-    antialiased (GDI+, ClearType text). These properties are not published. }
-  for c in TArray<TTMSFNCCustomControl>.Create(PageHeader, KpiRow, Content, LeftColumn, RightColumn) do
-    TControlAccess(c).Transparent := True;
+  { VCL: the pills and bars of the grid and the tree antialiased (GDI+, ClearType text). These properties
+    are not published. }
   for c in TArray<TTMSFNCCustomControl>.Create(OrdersGrid, ProjectTree) do
   begin
     TControlAccess(c).NativeCanvas := True;
@@ -237,19 +230,14 @@ begin
   StatusBar.Panels.Items[3].Width := Round(w);
 end;
 
-{ the theme's secondary text color for the demo's secondary labels, its name in the status bar }
+{ the theme's secondary text color for the settings item, its name in the status bar }
 procedure TForm1.ThemeChanged(Sender: TObject);
 var
   t: TTMSFNCResolvedTheme;
-  l: TTMSFNCHTMLText;
 begin
   t := Theme;
   if not Assigned(t) then
     Exit;
-  for l in TArray<TTMSFNCHTMLText>.Create(PageSubtitle, RevenueTitle, RevenueNote, OpenTitle, OpenNote, CustomersTitle,
-    CustomersNote, AverageTitle, AverageNote, FulfilmentValue, RevenueGoalValue, OnTimeGoalValue, RetentionGoalValue,
-    ProjectsNote) do
-    l.Font.Color := t[ttTextSecondary];
   SettingsList.Items[0].TextColor := t[ttTextSecondary];
   StatusBar.Panels.Items[1].Text := Format('Theme: <font color="%s"><b>%s</b></font>',
     [TTMSFNCGraphics.ColorToHTML(t[ttText]), TTMSFNCTheme.Current]);
@@ -305,8 +293,7 @@ begin
   else
     DetailsCard.Header.Text := 'Order ' + d.OrdersId.DisplayText;
   CustomerCombo.Text := d.OrdersCustomer.AsString;
-  FOrderDate := d.OrdersOrderDate.AsDateTime;
-  DatePicker.SelectedDate := FOrderDate;
+  DatePicker.SelectedDate := d.OrdersOrderDate.AsDateTime;
   AmountEdit.FloatValue := d.OrdersAmount.AsFloat;
   StatusCombo.ItemIndex := StatusCombo.Items.IndexOf(d.OrdersStatus.AsString);
   ExpressCheck.Checked := d.OrdersExpress.AsBoolean;
@@ -325,7 +312,7 @@ begin
     Exit;
   d.Orders.Edit;
   d.OrdersCustomer.AsString := Trim(CustomerCombo.Text);
-  d.OrdersOrderDate.AsDateTime := FOrderDate;
+  d.OrdersOrderDate.AsDateTime := DatePicker.SelectedDate;
   d.OrdersAmount.AsFloat := AmountEdit.FloatValue;
   d.OrdersStatus.AsString := StatusCombo.Items[Max(0, StatusCombo.ItemIndex)];
   { a shipped order is complete }
@@ -405,12 +392,6 @@ end;
 procedure TForm1.FulfilmentBarValueChanged(Sender: TObject; AValue: Single);
 begin
   FulfilmentValue.Text := Format('%d%%', [Round(AValue)]);
-end;
-
-{ the picked date (the picker's SelectedDate reads its calendar, which an assigned date does not reach) }
-procedure TForm1.DatePickerDateSelected(Sender: TObject; ADate: TDate);
-begin
-  FOrderDate := ADate;
 end;
 
 { the projects, each with its tasks; a checked task is done }

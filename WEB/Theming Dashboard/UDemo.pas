@@ -125,6 +125,7 @@ type
     procedure OrdersAmountGetText(Sender: TField; var Text: string; DisplayText: Boolean);
     procedure OrderSourceDataChange(Sender: TObject; Field: TField);
     procedure NavListItemSelected(Sender: TObject; AItem: TTMSFNCListBoxItem);
+    procedure SearchEditChange(Sender: TObject);
     procedure FilterChipsAfterSelectItem(Sender: TObject; AItemIndex: Integer);
     procedure ViewAllLinkAnchorClick(Sender: TObject; AAnchor: string);
     procedure OrdersGridGetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
@@ -134,15 +135,12 @@ type
     procedure CancelButtonClick(Sender: TObject);
     procedure DeleteButtonClick(Sender: TObject);
     procedure FulfilmentBarValueChanged(Sender: TObject; AValue: Single);
-    procedure DatePickerDateSelected(Sender: TObject; ADate: TDate);
     procedure ProjectTreeNodeChecked(Sender: TObject; ANode: TTMSFNCTreeViewVirtualNode; AColumn: Integer);
     procedure ProjectTreeGetNodeTextColor(Sender: TObject; ANode: TTMSFNCTreeViewVirtualNode; AColumn: Integer;
       var ATextColor: TTMSFNCGraphicsColor);
   private
     FData: TOrdersData;
     FLoading: Boolean;
-    FOrderDate: TDate;
-    procedure SearchEditChange(Sender: TObject);
     procedure ThemeChanged(Sender: TObject);
     procedure ShowKpis;
     procedure FillProjects;
@@ -208,9 +206,6 @@ procedure TForm1.WebFormCreate(Sender: TObject);
 begin
   FormatSettings := TFormatSettings.Create('en-US');
   FormatSettings.ShortDateFormat := 'mmm d, yyyy';
-  { the edit inside the search box: its events and placeholder are not published }
-  SearchEdit.Edit.OnChange := @SearchEditChange;
-  SearchEdit.Edit.TextHint := 'Search orders';
   NavList.ItemIndex := 0;
   TTMSFNCTheme.AddChangeListener(@ThemeChanged);
   ThemeChanged(nil);
@@ -245,17 +240,11 @@ end;
 procedure TForm1.ThemeChanged(Sender: TObject);
 var
   t: TTMSFNCResolvedTheme;
-  l: TTMSFNCHTMLText;
-  ls: array of TTMSFNCHTMLText;
   I: Integer;
 begin
   t := Theme;
   if not Assigned(t) then
     Exit;
-  ls := [PageSubtitle, RevenueTitle, RevenueNote, OpenTitle, OpenNote, CustomersTitle, CustomersNote, AverageTitle,
-    AverageNote, FulfilmentValue, RevenueGoalValue, OnTimeGoalValue, RetentionGoalValue, ProjectsNote];
-  for l in ls do
-    l.Font.Color := t[ttTextSecondary];
   SettingsList.Items[0].TextColor := t[ttTextSecondary];
   StatusBar.Panels.Items[1].Text := Format('Theme: <font color="%s"><b>%s</b></font>',
     [TTMSFNCGraphics.ColorToHTML(t[ttText]), TTMSFNCTheme.Current]);
@@ -364,8 +353,7 @@ begin
   else
     DetailsCard.Header.Text := 'Order #' + OrdersId.AsString;
   CustomerCombo.Text := OrdersCustomer.AsString;
-  FOrderDate := ParseISODate(OrdersOrderDate.AsString);
-  DatePicker.SelectedDate := FOrderDate;
+  DatePicker.SelectedDate := ParseISODate(OrdersOrderDate.AsString);
   AmountEdit.FloatValue := OrdersAmount.AsFloat;
   s := StatusCombo.Items.IndexOf(OrdersStatus.AsString);
   StatusCombo.ItemIndex := s;
@@ -382,7 +370,7 @@ begin
     Exit;
   Orders.Edit;
   OrdersCustomer.AsString := Trim(CustomerCombo.Text);
-  OrdersOrderDate.AsString := ISODate(FOrderDate);
+  OrdersOrderDate.AsString := ISODate(DatePicker.SelectedDate);
   OrdersAmount.AsFloat := AmountEdit.FloatValue;
   OrdersStatus.AsString := StatusNames[Max(0, StatusCombo.ItemIndex)];
   { a shipped order is complete }
@@ -462,12 +450,6 @@ end;
 procedure TForm1.FulfilmentBarValueChanged(Sender: TObject; AValue: Single);
 begin
   FulfilmentValue.Text := Format('%d%%', [Round(AValue)]);
-end;
-
-{ the picked date (the picker's SelectedDate reads its calendar, which an assigned date does not reach) }
-procedure TForm1.DatePickerDateSelected(Sender: TObject; ADate: TDate);
-begin
-  FOrderDate := ADate;
 end;
 
 { the projects, each with its tasks; a checked task is done }
