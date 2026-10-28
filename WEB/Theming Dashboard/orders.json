@@ -1,0 +1,1976 @@
+{
+ "orders": [
+  {
+   "id": 10439,
+   "customer": "Northwind Traders",
+   "order_date": "2026-10-30",
+   "amount": 180.0,
+   "status": "Open",
+   "fulfilment": 10,
+   "express": false
+  },
+  {
+   "id": 10438,
+   "customer": "Proseware",
+   "order_date": "2026-10-29",
+   "amount": 3899.0,
+   "status": "Late",
+   "fulfilment": 47,
+   "express": false
+  },
+  {
+   "id": 10437,
+   "customer": "Fabrikam Inc.",
+   "order_date": "2026-10-29",
+   "amount": 3418.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10436,
+   "customer": "Alpine Ski House",
+   "order_date": "2026-10-28",
+   "amount": 2937.0,
+   "status": "Packing",
+   "fulfilment": 72,
+   "express": false
+  },
+  {
+   "id": 10435,
+   "customer": "Tailspin Toys",
+   "order_date": "2026-10-28",
+   "amount": 2456.0,
+   "status": "Open",
+   "fulfilment": 31,
+   "express": false
+  },
+  {
+   "id": 10434,
+   "customer": "Humongous Insurance",
+   "order_date": "2026-10-27",
+   "amount": 1975.0,
+   "status": "Late",
+   "fulfilment": 15,
+   "express": false
+  },
+  {
+   "id": 10433,
+   "customer": "Litware Group",
+   "order_date": "2026-10-27",
+   "amount": 1494.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10432,
+   "customer": "Wide World Importers",
+   "order_date": "2026-10-25",
+   "amount": 3294.0,
+   "status": "Open",
+   "fulfilment": 16,
+   "express": false
+  },
+  {
+   "id": 10431,
+   "customer": "Fourth Coffee",
+   "order_date": "2026-10-24",
+   "amount": 4331.0,
+   "status": "Open",
+   "fulfilment": 24,
+   "express": false
+  },
+  {
+   "id": 10430,
+   "customer": "Litware Group",
+   "order_date": "2026-10-23",
+   "amount": 1597.0,
+   "status": "Late",
+   "fulfilment": 50,
+   "express": false
+  },
+  {
+   "id": 10429,
+   "customer": "Fabrikam Inc.",
+   "order_date": "2026-10-23",
+   "amount": 5102.0,
+   "status": "Open",
+   "fulfilment": 3,
+   "express": true
+  },
+  {
+   "id": 10428,
+   "customer": "Adventure Works",
+   "order_date": "2026-10-22",
+   "amount": 3634.0,
+   "status": "Open",
+   "fulfilment": 0,
+   "express": false
+  },
+  {
+   "id": 10427,
+   "customer": "Fabrikam Inc.",
+   "order_date": "2026-10-22",
+   "amount": 2745.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10426,
+   "customer": "Trey Research",
+   "order_date": "2026-10-21",
+   "amount": 1643.0,
+   "status": "Packing",
+   "fulfilment": 85,
+   "express": false
+  },
+  {
+   "id": 10425,
+   "customer": "Litware Group",
+   "order_date": "2026-10-20",
+   "amount": 5354.0,
+   "status": "Packing",
+   "fulfilment": 68,
+   "express": true
+  },
+  {
+   "id": 10424,
+   "customer": "Northwind Traders",
+   "order_date": "2026-10-19",
+   "amount": 4640.0,
+   "status": "Packing",
+   "fulfilment": 92,
+   "express": false
+  },
+  {
+   "id": 10423,
+   "customer": "Lucerne Publishing",
+   "order_date": "2026-10-18",
+   "amount": 3146.0,
+   "status": "Late",
+   "fulfilment": 57,
+   "express": false
+  },
+  {
+   "id": 10422,
+   "customer": "Proseware",
+   "order_date": "2026-10-18",
+   "amount": 1568.0,
+   "status": "Packing",
+   "fulfilment": 92,
+   "express": false
+  },
+  {
+   "id": 10421,
+   "customer": "Fabrikam Inc.",
+   "order_date": "2026-10-17",
+   "amount": 1444.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10420,
+   "customer": "Trey Research",
+   "order_date": "2026-10-16",
+   "amount": 1237.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10419,
+   "customer": "Graphic Design Institute",
+   "order_date": "2026-10-16",
+   "amount": 1444.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10418,
+   "customer": "Tailspin Toys",
+   "order_date": "2026-10-15",
+   "amount": 3884.0,
+   "status": "Packing",
+   "fulfilment": 74,
+   "express": false
+  },
+  {
+   "id": 10417,
+   "customer": "Northwind Traders",
+   "order_date": "2026-10-14",
+   "amount": 462.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10416,
+   "customer": "Northwind Traders",
+   "order_date": "2026-10-13",
+   "amount": 4927.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10415,
+   "customer": "Alpine Ski House",
+   "order_date": "2026-10-12",
+   "amount": 4921.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10414,
+   "customer": "Litware Group",
+   "order_date": "2026-10-12",
+   "amount": 2411.0,
+   "status": "Late",
+   "fulfilment": 32,
+   "express": false
+  },
+  {
+   "id": 10413,
+   "customer": "Contoso Ltd.",
+   "order_date": "2026-10-11",
+   "amount": 3515.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10412,
+   "customer": "Margie's Travel",
+   "order_date": "2026-10-11",
+   "amount": 848.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10411,
+   "customer": "Wide World Importers",
+   "order_date": "2026-10-10",
+   "amount": 5198.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10410,
+   "customer": "Graphic Design Institute",
+   "order_date": "2026-10-09",
+   "amount": 4713.0,
+   "status": "Late",
+   "fulfilment": 43,
+   "express": false
+  },
+  {
+   "id": 10409,
+   "customer": "Fourth Coffee",
+   "order_date": "2026-10-08",
+   "amount": 3520.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10408,
+   "customer": "Alpine Ski House",
+   "order_date": "2026-10-07",
+   "amount": 4143.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10407,
+   "customer": "Humongous Insurance",
+   "order_date": "2026-10-07",
+   "amount": 5716.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10406,
+   "customer": "Lucerne Publishing",
+   "order_date": "2026-10-06",
+   "amount": 1198.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10405,
+   "customer": "Fabrikam Inc.",
+   "order_date": "2026-10-05",
+   "amount": 5412.0,
+   "status": "Late",
+   "fulfilment": 36,
+   "express": false
+  },
+  {
+   "id": 10404,
+   "customer": "School of Fine Art",
+   "order_date": "2026-10-04",
+   "amount": 2081.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10403,
+   "customer": "Alpine Ski House",
+   "order_date": "2026-10-04",
+   "amount": 5516.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10402,
+   "customer": "Fabrikam Inc.",
+   "order_date": "2026-10-03",
+   "amount": 3605.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10401,
+   "customer": "Margie's Travel",
+   "order_date": "2026-10-02",
+   "amount": 5779.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10400,
+   "customer": "Litware Group",
+   "order_date": "2026-10-02",
+   "amount": 2856.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10399,
+   "customer": "Tailspin Toys",
+   "order_date": "2026-10-01",
+   "amount": 177.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10398,
+   "customer": "Wingtip Boats",
+   "order_date": "2026-09-30",
+   "amount": 3528.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10397,
+   "customer": "Contoso Ltd.",
+   "order_date": "2026-09-29",
+   "amount": 509.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10396,
+   "customer": "Contoso Ltd.",
+   "order_date": "2026-09-29",
+   "amount": 2920.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10395,
+   "customer": "Adventure Works",
+   "order_date": "2026-09-28",
+   "amount": 4370.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10394,
+   "customer": "Northwind Traders",
+   "order_date": "2026-09-27",
+   "amount": 1075.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10393,
+   "customer": "Fourth Coffee",
+   "order_date": "2026-09-26",
+   "amount": 986.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10392,
+   "customer": "Blue Yonder Airlines",
+   "order_date": "2026-09-26",
+   "amount": 3236.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10391,
+   "customer": "Humongous Insurance",
+   "order_date": "2026-09-24",
+   "amount": 3494.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10390,
+   "customer": "Woodgrove Bank",
+   "order_date": "2026-09-24",
+   "amount": 822.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10389,
+   "customer": "Humongous Insurance",
+   "order_date": "2026-09-23",
+   "amount": 2282.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10388,
+   "customer": "Contoso Ltd.",
+   "order_date": "2026-09-22",
+   "amount": 394.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10387,
+   "customer": "Contoso Ltd.",
+   "order_date": "2026-09-22",
+   "amount": 1630.0,
+   "status": "Late",
+   "fulfilment": 40,
+   "express": false
+  },
+  {
+   "id": 10386,
+   "customer": "Alpine Ski House",
+   "order_date": "2026-09-21",
+   "amount": 2810.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10385,
+   "customer": "Coho Winery",
+   "order_date": "2026-09-20",
+   "amount": 1029.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10384,
+   "customer": "Alpine Ski House",
+   "order_date": "2026-09-19",
+   "amount": 1693.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10383,
+   "customer": "Wingtip Boats",
+   "order_date": "2026-09-19",
+   "amount": 481.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10382,
+   "customer": "Northwind Traders",
+   "order_date": "2026-09-18",
+   "amount": 3651.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10381,
+   "customer": "Wide World Importers",
+   "order_date": "2026-09-17",
+   "amount": 4057.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10380,
+   "customer": "Northwind Traders",
+   "order_date": "2026-09-16",
+   "amount": 2762.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10379,
+   "customer": "Wingtip Boats",
+   "order_date": "2026-09-15",
+   "amount": 1512.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10378,
+   "customer": "Litware Group",
+   "order_date": "2026-09-15",
+   "amount": 2839.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10377,
+   "customer": "Tailspin Toys",
+   "order_date": "2026-09-14",
+   "amount": 2375.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10376,
+   "customer": "Humongous Insurance",
+   "order_date": "2026-09-13",
+   "amount": 1779.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10375,
+   "customer": "Alpine Ski House",
+   "order_date": "2026-09-12",
+   "amount": 4010.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10374,
+   "customer": "Fabrikam Inc.",
+   "order_date": "2026-09-12",
+   "amount": 3374.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10373,
+   "customer": "Tailspin Toys",
+   "order_date": "2026-09-10",
+   "amount": 500.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10372,
+   "customer": "Proseware",
+   "order_date": "2026-09-10",
+   "amount": 740.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10371,
+   "customer": "Fabrikam Inc.",
+   "order_date": "2026-09-09",
+   "amount": 3827.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10370,
+   "customer": "Alpine Ski House",
+   "order_date": "2026-09-08",
+   "amount": 3544.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10369,
+   "customer": "Proseware",
+   "order_date": "2026-09-07",
+   "amount": 2130.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10368,
+   "customer": "Tailspin Toys",
+   "order_date": "2026-09-07",
+   "amount": 3071.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10367,
+   "customer": "Northwind Traders",
+   "order_date": "2026-09-06",
+   "amount": 2975.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10366,
+   "customer": "Wide World Importers",
+   "order_date": "2026-09-06",
+   "amount": 1834.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10365,
+   "customer": "Proseware",
+   "order_date": "2026-09-05",
+   "amount": 4251.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10364,
+   "customer": "Proseware",
+   "order_date": "2026-09-04",
+   "amount": 3394.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10363,
+   "customer": "Proseware",
+   "order_date": "2026-09-03",
+   "amount": 4255.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10362,
+   "customer": "Northwind Traders",
+   "order_date": "2026-09-02",
+   "amount": 366.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10361,
+   "customer": "Woodgrove Bank",
+   "order_date": "2026-09-01",
+   "amount": 2507.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10360,
+   "customer": "Adventure Works",
+   "order_date": "2026-09-01",
+   "amount": 1285.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10359,
+   "customer": "Fourth Coffee",
+   "order_date": "2026-08-30",
+   "amount": 4210.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10358,
+   "customer": "Proseware",
+   "order_date": "2026-08-30",
+   "amount": 1146.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10357,
+   "customer": "Adventure Works",
+   "order_date": "2026-08-29",
+   "amount": 486.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10356,
+   "customer": "Wide World Importers",
+   "order_date": "2026-08-28",
+   "amount": 4466.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10355,
+   "customer": "Proseware",
+   "order_date": "2026-08-27",
+   "amount": 3695.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10354,
+   "customer": "Alpine Ski House",
+   "order_date": "2026-08-27",
+   "amount": 4314.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10353,
+   "customer": "Trey Research",
+   "order_date": "2026-08-26",
+   "amount": 966.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10352,
+   "customer": "Humongous Insurance",
+   "order_date": "2026-08-25",
+   "amount": 2022.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10351,
+   "customer": "Woodgrove Bank",
+   "order_date": "2026-08-25",
+   "amount": 274.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10350,
+   "customer": "Wide World Importers",
+   "order_date": "2026-08-23",
+   "amount": 2442.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10349,
+   "customer": "Tailspin Toys",
+   "order_date": "2026-08-22",
+   "amount": 1730.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10348,
+   "customer": "Contoso Ltd.",
+   "order_date": "2026-08-22",
+   "amount": 123.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10347,
+   "customer": "Fourth Coffee",
+   "order_date": "2026-08-21",
+   "amount": 3495.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10346,
+   "customer": "Wingtip Boats",
+   "order_date": "2026-08-20",
+   "amount": 4709.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10345,
+   "customer": "Wingtip Boats",
+   "order_date": "2026-08-19",
+   "amount": 4383.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10344,
+   "customer": "Adventure Works",
+   "order_date": "2026-08-18",
+   "amount": 4514.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10343,
+   "customer": "Wide World Importers",
+   "order_date": "2026-08-18",
+   "amount": 1799.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10342,
+   "customer": "Litware Group",
+   "order_date": "2026-08-17",
+   "amount": 3872.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10341,
+   "customer": "Contoso Ltd.",
+   "order_date": "2026-08-16",
+   "amount": 741.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10340,
+   "customer": "Litware Group",
+   "order_date": "2026-08-15",
+   "amount": 377.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10339,
+   "customer": "Litware Group",
+   "order_date": "2026-08-14",
+   "amount": 3128.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10338,
+   "customer": "Coho Winery",
+   "order_date": "2026-08-13",
+   "amount": 4392.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10337,
+   "customer": "Northwind Traders",
+   "order_date": "2026-08-13",
+   "amount": 747.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10336,
+   "customer": "Humongous Insurance",
+   "order_date": "2026-08-12",
+   "amount": 4708.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10335,
+   "customer": "Northwind Traders",
+   "order_date": "2026-08-11",
+   "amount": 4204.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10334,
+   "customer": "Northwind Traders",
+   "order_date": "2026-08-10",
+   "amount": 1656.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10333,
+   "customer": "Alpine Ski House",
+   "order_date": "2026-08-10",
+   "amount": 3955.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10332,
+   "customer": "Lucerne Publishing",
+   "order_date": "2026-08-09",
+   "amount": 2013.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10331,
+   "customer": "Contoso Ltd.",
+   "order_date": "2026-08-08",
+   "amount": 2680.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10330,
+   "customer": "Adventure Works",
+   "order_date": "2026-08-07",
+   "amount": 1359.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10329,
+   "customer": "Northwind Traders",
+   "order_date": "2026-08-06",
+   "amount": 1764.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10328,
+   "customer": "Tailspin Toys",
+   "order_date": "2026-08-06",
+   "amount": 3645.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10327,
+   "customer": "Northwind Traders",
+   "order_date": "2026-08-04",
+   "amount": 4670.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10326,
+   "customer": "Tailspin Toys",
+   "order_date": "2026-08-03",
+   "amount": 4193.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10325,
+   "customer": "Alpine Ski House",
+   "order_date": "2026-08-03",
+   "amount": 2037.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10324,
+   "customer": "Alpine Ski House",
+   "order_date": "2026-08-02",
+   "amount": 3775.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10323,
+   "customer": "Proseware",
+   "order_date": "2026-08-01",
+   "amount": 1649.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10322,
+   "customer": "Woodgrove Bank",
+   "order_date": "2026-07-31",
+   "amount": 2202.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10321,
+   "customer": "Tailspin Toys",
+   "order_date": "2026-07-30",
+   "amount": 736.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10320,
+   "customer": "Contoso Ltd.",
+   "order_date": "2026-07-30",
+   "amount": 828.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10319,
+   "customer": "Tailspin Toys",
+   "order_date": "2026-07-28",
+   "amount": 3763.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10318,
+   "customer": "Woodgrove Bank",
+   "order_date": "2026-07-28",
+   "amount": 3543.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10317,
+   "customer": "Coho Winery",
+   "order_date": "2026-07-27",
+   "amount": 2051.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10316,
+   "customer": "Humongous Insurance",
+   "order_date": "2026-07-26",
+   "amount": 3509.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10315,
+   "customer": "Northwind Traders",
+   "order_date": "2026-07-25",
+   "amount": 780.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10314,
+   "customer": "Northwind Traders",
+   "order_date": "2026-07-24",
+   "amount": 1307.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10313,
+   "customer": "Fabrikam Inc.",
+   "order_date": "2026-07-24",
+   "amount": 942.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10312,
+   "customer": "Northwind Traders",
+   "order_date": "2026-07-23",
+   "amount": 546.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10311,
+   "customer": "Proseware",
+   "order_date": "2026-07-22",
+   "amount": 4127.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10310,
+   "customer": "Northwind Traders",
+   "order_date": "2026-07-21",
+   "amount": 1550.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10309,
+   "customer": "Wide World Importers",
+   "order_date": "2026-07-20",
+   "amount": 4391.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10308,
+   "customer": "Contoso Ltd.",
+   "order_date": "2026-07-19",
+   "amount": 2984.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10307,
+   "customer": "Litware Group",
+   "order_date": "2026-07-18",
+   "amount": 796.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10306,
+   "customer": "Coho Winery",
+   "order_date": "2026-07-17",
+   "amount": 3088.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10305,
+   "customer": "Northwind Traders",
+   "order_date": "2026-07-17",
+   "amount": 931.0,
+   "status": "Late",
+   "fulfilment": 57,
+   "express": false
+  },
+  {
+   "id": 10304,
+   "customer": "Woodgrove Bank",
+   "order_date": "2026-07-16",
+   "amount": 792.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10303,
+   "customer": "Woodgrove Bank",
+   "order_date": "2026-07-15",
+   "amount": 3254.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10302,
+   "customer": "Proseware",
+   "order_date": "2026-07-14",
+   "amount": 549.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10301,
+   "customer": "Humongous Insurance",
+   "order_date": "2026-07-12",
+   "amount": 2262.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10300,
+   "customer": "Wide World Importers",
+   "order_date": "2026-07-12",
+   "amount": 3321.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10299,
+   "customer": "Lucerne Publishing",
+   "order_date": "2026-07-11",
+   "amount": 944.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10298,
+   "customer": "Contoso Ltd.",
+   "order_date": "2026-07-10",
+   "amount": 1591.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10297,
+   "customer": "Adventure Works",
+   "order_date": "2026-07-09",
+   "amount": 4324.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10296,
+   "customer": "Fourth Coffee",
+   "order_date": "2026-07-08",
+   "amount": 655.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10295,
+   "customer": "Lucerne Publishing",
+   "order_date": "2026-07-07",
+   "amount": 2334.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10294,
+   "customer": "Wide World Importers",
+   "order_date": "2026-07-06",
+   "amount": 3882.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10293,
+   "customer": "Coho Winery",
+   "order_date": "2026-07-05",
+   "amount": 949.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10292,
+   "customer": "Fourth Coffee",
+   "order_date": "2026-07-04",
+   "amount": 2636.0,
+   "status": "Late",
+   "fulfilment": 39,
+   "express": false
+  },
+  {
+   "id": 10291,
+   "customer": "Trey Research",
+   "order_date": "2026-07-03",
+   "amount": 2244.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10290,
+   "customer": "Proseware",
+   "order_date": "2026-07-03",
+   "amount": 539.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10289,
+   "customer": "Trey Research",
+   "order_date": "2026-07-02",
+   "amount": 3326.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10288,
+   "customer": "Fabrikam Inc.",
+   "order_date": "2026-07-01",
+   "amount": 1638.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10287,
+   "customer": "Contoso Ltd.",
+   "order_date": "2026-06-30",
+   "amount": 1649.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10286,
+   "customer": "Wide World Importers",
+   "order_date": "2026-06-29",
+   "amount": 2109.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10285,
+   "customer": "Litware Group",
+   "order_date": "2026-06-28",
+   "amount": 368.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10284,
+   "customer": "Humongous Insurance",
+   "order_date": "2026-06-27",
+   "amount": 3807.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10283,
+   "customer": "Lucerne Publishing",
+   "order_date": "2026-06-26",
+   "amount": 1278.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10282,
+   "customer": "Wide World Importers",
+   "order_date": "2026-06-24",
+   "amount": 4105.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10281,
+   "customer": "Humongous Insurance",
+   "order_date": "2026-06-24",
+   "amount": 2930.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10280,
+   "customer": "Northwind Traders",
+   "order_date": "2026-06-23",
+   "amount": 3301.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10279,
+   "customer": "Proseware",
+   "order_date": "2026-06-21",
+   "amount": 2902.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10278,
+   "customer": "Adventure Works",
+   "order_date": "2026-06-20",
+   "amount": 3467.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10277,
+   "customer": "Lucerne Publishing",
+   "order_date": "2026-06-20",
+   "amount": 3938.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10276,
+   "customer": "Trey Research",
+   "order_date": "2026-06-19",
+   "amount": 4016.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10275,
+   "customer": "Proseware",
+   "order_date": "2026-06-18",
+   "amount": 1415.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10274,
+   "customer": "Northwind Traders",
+   "order_date": "2026-06-17",
+   "amount": 1881.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10273,
+   "customer": "Proseware",
+   "order_date": "2026-06-15",
+   "amount": 4672.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10272,
+   "customer": "Contoso Ltd.",
+   "order_date": "2026-06-15",
+   "amount": 4166.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10271,
+   "customer": "Wingtip Boats",
+   "order_date": "2026-06-14",
+   "amount": 3484.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10270,
+   "customer": "Alpine Ski House",
+   "order_date": "2026-06-13",
+   "amount": 3067.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10269,
+   "customer": "Tailspin Toys",
+   "order_date": "2026-06-12",
+   "amount": 4745.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10268,
+   "customer": "Alpine Ski House",
+   "order_date": "2026-06-10",
+   "amount": 2003.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10267,
+   "customer": "Proseware",
+   "order_date": "2026-06-10",
+   "amount": 3489.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10266,
+   "customer": "Contoso Ltd.",
+   "order_date": "2026-06-08",
+   "amount": 3946.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10265,
+   "customer": "Alpine Ski House",
+   "order_date": "2026-06-08",
+   "amount": 4083.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10264,
+   "customer": "Adventure Works",
+   "order_date": "2026-06-06",
+   "amount": 3514.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10263,
+   "customer": "Adventure Works",
+   "order_date": "2026-06-05",
+   "amount": 1646.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10262,
+   "customer": "Humongous Insurance",
+   "order_date": "2026-06-04",
+   "amount": 1458.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10261,
+   "customer": "Litware Group",
+   "order_date": "2026-06-03",
+   "amount": 2452.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10260,
+   "customer": "Lucerne Publishing",
+   "order_date": "2026-06-02",
+   "amount": 4333.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10259,
+   "customer": "Northwind Traders",
+   "order_date": "2026-05-31",
+   "amount": 2337.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10258,
+   "customer": "Adventure Works",
+   "order_date": "2026-05-30",
+   "amount": 2221.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10257,
+   "customer": "Woodgrove Bank",
+   "order_date": "2026-05-29",
+   "amount": 3327.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10256,
+   "customer": "Contoso Ltd.",
+   "order_date": "2026-05-28",
+   "amount": 1002.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10255,
+   "customer": "Northwind Traders",
+   "order_date": "2026-05-27",
+   "amount": 1346.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10254,
+   "customer": "Lucerne Publishing",
+   "order_date": "2026-05-25",
+   "amount": 1102.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10253,
+   "customer": "Alpine Ski House",
+   "order_date": "2026-05-25",
+   "amount": 4398.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10252,
+   "customer": "Humongous Insurance",
+   "order_date": "2026-05-23",
+   "amount": 1341.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10251,
+   "customer": "Contoso Ltd.",
+   "order_date": "2026-05-21",
+   "amount": 3283.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10250,
+   "customer": "Adventure Works",
+   "order_date": "2026-05-21",
+   "amount": 2235.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10249,
+   "customer": "Wingtip Boats",
+   "order_date": "2026-05-19",
+   "amount": 1763.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10248,
+   "customer": "Northwind Traders",
+   "order_date": "2026-05-17",
+   "amount": 2012.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10247,
+   "customer": "Contoso Ltd.",
+   "order_date": "2026-05-17",
+   "amount": 247.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10246,
+   "customer": "Tailspin Toys",
+   "order_date": "2026-05-15",
+   "amount": 664.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10245,
+   "customer": "Contoso Ltd.",
+   "order_date": "2026-05-13",
+   "amount": 1554.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": true
+  },
+  {
+   "id": 10244,
+   "customer": "Proseware",
+   "order_date": "2026-05-12",
+   "amount": 782.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10243,
+   "customer": "Fabrikam Inc.",
+   "order_date": "2026-05-11",
+   "amount": 297.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10242,
+   "customer": "Tailspin Toys",
+   "order_date": "2026-05-08",
+   "amount": 3321.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10241,
+   "customer": "Fabrikam Inc.",
+   "order_date": "2026-05-06",
+   "amount": 2270.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  },
+  {
+   "id": 10240,
+   "customer": "Litware Group",
+   "order_date": "2026-05-06",
+   "amount": 3511.0,
+   "status": "Shipped",
+   "fulfilment": 100,
+   "express": false
+  }
+ ],
+ "customers": [
+  {
+   "name": "Northwind Traders",
+   "region": "Europe",
+   "contact": "Anne Dodsworth"
+  },
+  {
+   "name": "Proseware",
+   "region": "Americas",
+   "contact": "Kevin Liu"
+  },
+  {
+   "name": "Fabrikam Inc.",
+   "region": "Americas",
+   "contact": "Mary Baker"
+  },
+  {
+   "name": "Alpine Ski House",
+   "region": "Europe",
+   "contact": "Lukas Keller"
+  },
+  {
+   "name": "Tailspin Toys",
+   "region": "Americas",
+   "contact": "Sara Davis"
+  },
+  {
+   "name": "Humongous Insurance",
+   "region": "Americas",
+   "contact": "Jeff Hay"
+  },
+  {
+   "name": "Litware Group",
+   "region": "Europe",
+   "contact": "Nina Vogel"
+  },
+  {
+   "name": "Contoso Ltd.",
+   "region": "Europe",
+   "contact": "Pieter Smit"
+  },
+  {
+   "name": "Adventure Works",
+   "region": "Americas",
+   "contact": "Rob Walters"
+  },
+  {
+   "name": "Wingtip Boats",
+   "region": "Asia Pacific",
+   "contact": "Mei Chen"
+  },
+  {
+   "name": "Coho Winery",
+   "region": "Europe",
+   "contact": "Laura Rossi"
+  },
+  {
+   "name": "Lucerne Publishing",
+   "region": "Europe",
+   "contact": "Jonas Weber"
+  },
+  {
+   "name": "Woodgrove Bank",
+   "region": "Middle East",
+   "contact": "Omar Haddad"
+  },
+  {
+   "name": "Trey Research",
+   "region": "Americas",
+   "contact": "Emily Clark"
+  },
+  {
+   "name": "Wide World Importers",
+   "region": "Asia Pacific",
+   "contact": "Kenji Sato"
+  },
+  {
+   "name": "Fourth Coffee",
+   "region": "Americas",
+   "contact": "Luis Ortega"
+  },
+  {
+   "name": "Blue Yonder Airlines",
+   "region": "Middle East",
+   "contact": "Leila Nasser"
+  },
+  {
+   "name": "Graphic Design Institute",
+   "region": "Europe",
+   "contact": "Sophie Martin"
+  },
+  {
+   "name": "Margie's Travel",
+   "region": "Asia Pacific",
+   "contact": "Aiko Tanaka"
+  },
+  {
+   "name": "School of Fine Art",
+   "region": "Americas",
+   "contact": "Grace Lee"
+  }
+ ],
+ "projects": [
+  {
+   "id": 1,
+   "parent_id": 0,
+   "name": "Website relaunch",
+   "owner": "Lena",
+   "status": "",
+   "done": false
+  },
+  {
+   "id": 2,
+   "parent_id": 1,
+   "name": "Design system",
+   "owner": "Marcus",
+   "status": "Done",
+   "done": true
+  },
+  {
+   "id": 3,
+   "parent_id": 1,
+   "name": "Landing pages",
+   "owner": "Priya",
+   "status": "In progress",
+   "done": false
+  },
+  {
+   "id": 4,
+   "parent_id": 0,
+   "name": "Mobile app 2.0",
+   "owner": "Sofia",
+   "status": "",
+   "done": false
+  },
+  {
+   "id": 5,
+   "parent_id": 4,
+   "name": "Offline mode",
+   "owner": "Jonas",
+   "status": "At risk",
+   "done": false
+  },
+  {
+   "id": 6,
+   "parent_id": 4,
+   "name": "Dark mode",
+   "owner": "Diego",
+   "status": "Done",
+   "done": true
+  }
+ ],
+ "goals": [
+  {
+   "id": 1,
+   "name": "Revenue target",
+   "metric": "revenue",
+   "target": 180000.0
+  },
+  {
+   "id": 2,
+   "name": "On-time delivery",
+   "metric": "on_time",
+   "target": 100.0
+  },
+  {
+   "id": 3,
+   "name": "Customer retention",
+   "metric": "retention",
+   "target": 100.0
+  }
+ ]
+}

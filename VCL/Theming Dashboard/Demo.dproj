@@ -76,7 +76,11 @@
 		<DelphiCompile Include="$(MainSource)">
 			<MainSource>MainSource</MainSource>
 		</DelphiCompile>
-		<DCCReference Include="..\..\Shared Code\Business Logic\Theming Dashboard\UBL.pas"/>
+		<DCCReference Include="..\..\Shared Code\Business Logic\Theming Dashboard\UOrdersData.pas">
+			<Form>OrdersData</Form>
+			<FormType>dfm</FormType>
+			<DesignClass>TDataModule</DesignClass>
+		</DCCReference>
 		<DCCReference Include="..\..\Shared Code\Form Unit\Theming Dashboard\UDemo.pas">
 			<Form>Form1</Form>
 			<FormType>dfm</FormType>
