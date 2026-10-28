@@ -80,7 +80,7 @@ begin
   if Edit2.Text <> '' then
   begin
     fltr := TMSFNCDataGrid1.Filter.ColumnFilter[7];
-    fltr.&Type := TTMSFNCDataGridDataFilterNumberType(ComboBox1.ItemIndex);
+    fltr.&Type := TTMSFNCDataGridDataFilterNumberType(ComboBox1.ItemIndex + Ord(Low(TTMSFNCDataGridDataFilterNumberType)));
     fltr.Condition := Edit2.Text;
   end;
   TMSFNCDataGrid1.ApplyFilter;
@@ -110,7 +110,7 @@ begin
   begin
     fltr := TMSFNCDataGrid1.Filter.ColumnFilter[7];
     fltr.CaseSensitive := false;
-    fltr.&Type := TTMSFNCDataGridDataFilterNumberType(ComboBox1.ItemIndex - Integer(Low(TTMSFNCDataGridDataFilterNumberType)));
+    fltr.&Type := TTMSFNCDataGridDataFilterNumberType(ComboBox1.ItemIndex + Ord(Low(TTMSFNCDataGridDataFilterNumberType)));
     fltr.Condition := Edit2.Text;
   end;
   TMSFNCDataGrid1.ApplyFilter;
