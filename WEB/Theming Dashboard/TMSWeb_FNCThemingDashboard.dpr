@@ -2,8 +2,8 @@ program TMSWeb_FNCThemingDashboard;
 
 uses
   WEBLib.Forms,
-  UBL in '..\..\Shared Code\Business Logic\Theming Dashboard\UBL.pas',
-  UDemo in '..\..\Shared Code\Form Unit\Theming Dashboard\UDemo.pas' {Form1: TWebForm} {*.html};
+  UOrdersData in 'UOrdersData.pas',
+  UDemo in 'UDemo.pas' {Form1: TWebForm} {*.html};
 
 {$R *.res}
 

@@ -104,13 +104,14 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="..\..\Shared Code\Business Logic\Theming Dashboard\UBL.pas"/>
-        <DCCReference Include="..\..\Shared Code\Form Unit\Theming Dashboard\UDemo.pas">
+        <DCCReference Include="UOrdersData.pas"/>
+        <DCCReference Include="UDemo.pas">
             <Form>Form1</Form>
             <FormType>dfm</FormType>
             <DesignClass>TWebForm</DesignClass>
         </DCCReference>
         <None Include="index.html"/>
+        <None Include="orders.json"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
