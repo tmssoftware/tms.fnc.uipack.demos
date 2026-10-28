@@ -11,6 +11,7 @@ object OrdersData: TOrdersData
     Top = 32
   end
   object Orders: TFDQuery
+    OnCalcFields = OrdersCalcFields
     OnFilterRecord = OrdersFilterRecord
     AfterPost = OrdersChanged
     AfterDelete = OrdersChanged
@@ -71,6 +72,23 @@ object OrdersData: TOrdersData
       Origin = 'express'
       Required = True
     end
+    object OrdersTitle: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'title'
+      Size = 30
+      Calculated = True
+    end
+    object OrdersStatusIndex: TIntegerField
+      FieldKind = fkCalculated
+      FieldName = 'status_index'
+      Calculated = True
+    end
+    object OrdersStatusKind: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'status_kind'
+      Size = 12
+      Calculated = True
+    end
   end
   object Kpis: TFDQuery
     Connection = Database
@@ -86,6 +104,8 @@ object OrdersData: TOrdersData
       '  (SELECT CAST(strftime(''%Y'', d) AS INT) FROM ref) AS ref_year,'
       '  (SELECT CAST(strftime(''%m'', d) AS INT) FROM ref) AS ref_month,'
       '  (SELECT COUNT(*) FROM orders) AS order_count,'
+      '  (SELECT COUNT(*) FROM orders WHERE (:status = '''' OR status = :status COLLATE NOCASE)'
+      '    AND (:search = '''' OR instr(lower(customer || '' #'' || id), :search) > 0)) AS shown,'
       '  (SELECT TOTAL(amount) FROM orders, per WHERE strftime(''%Y-%m'', order_date) = cur) AS revenue,'
       '  (SELECT TOTAL(amount) FROM orders, per WHERE strftime(''%Y-%m'', order_date) = prev) AS revenue_prev,'
       '  (SELECT COUNT(*) FROM orders WHERE status <> ''Shipped'') AS open_orders,'
@@ -108,8 +128,30 @@ object OrdersData: TOrdersData
       '   ELSE char(8722) || printf(''%.1f%%'', 100.0 * (avg_order_prev - avg_order) / avg_order_prev) END AS average_change,'
       ' printf(''%d%%'', CAST(ROUND(goal_revenue) AS INT)) AS goal_revenue_text,'
       ' printf(''%d%%'', CAST(ROUND(goal_on_time) AS INT)) AS goal_on_time_text,'
-      ' printf(''%d%%'', CAST(ROUND(goal_retention) AS INT)) AS goal_retention_text'
+      ' printf(''%d%%'', CAST(ROUND(goal_retention) AS INT)) AS goal_retention_text,'
+      ' CASE WHEN revenue >= revenue_prev THEN ''tskSuccess'' ELSE ''tskError'' END AS revenue_kind,'
+      ' CASE WHEN late_orders > 0 THEN ''tskWarning'' ELSE ''tskSuccess'' END AS late_kind,'
+      ' CASE WHEN avg_order >= avg_order_prev THEN ''tskSuccess'' ELSE ''tskError'' END AS average_kind,'
+      ' printf(''%d orders'', order_count) AS order_count_text,'
+      ' printf(''%d of %d orders'', shown, order_count) AS shown_text,'
+      ' CASE ref_month WHEN 1 THEN ''January'' WHEN 2 THEN ''February'' WHEN 3 THEN ''March'' WHEN 4 THEN ''April'''
+      '   WHEN 5 THEN ''May'' WHEN 6 THEN ''June'' WHEN 7 THEN ''July'' WHEN 8 THEN ''August'' WHEN 9 THEN ''September'''
+      '   WHEN 10 THEN ''October'' WHEN 11 THEN ''November'' ELSE ''December'' END || '' '' || ref_year || '' '' || char(183) ||'
+      '   '' all regions'' AS subtitle'
       'FROM v')
+    ParamData = <
+      item
+        Name = 'STATUS'
+        DataType = ftString
+        ParamType = ptInput
+        Value = ''
+      end
+      item
+        Name = 'SEARCH'
+        DataType = ftString
+        ParamType = ptInput
+        Value = ''
+      end>
     Left = 160
     Top = 104
   end

@@ -8,8 +8,10 @@ unit UDemo;
   from the rows. The detail card edits the current order; every change is kept for the browser tab.
 
   Theming: the TTMSFNCThemeManager, the TTMSFNCThemeSelector and the TTMSFNCAccentSelector on the
-  form do it all; the demo colors its secondary texts and (WEB draws images as loaded) its icons from
-  the current theme's tokens in ThemeChanged. }
+  form do it all; the texts take their roles in the designer (grid and tree columns, the settings
+  item: TextRole), the status bar shows the theme's name (spsThemeName), the KPI row arranges its
+  cards (ChildLayout) and the accent selector hides in high contrast (HideInHighContrast). The demo
+  only loads its icons in the colors of the current theme (WEB draws images as loaded): ThemeChanged. }
 
 interface
 
@@ -114,7 +116,6 @@ type
     AppMark: TTMSFNCBadge;
     ThemeSelector: TTMSFNCThemeSelector;
     procedure WebFormCreate(Sender: TObject);
-    procedure WebFormResize(Sender: TObject);
     procedure DataRequestResponse(Sender: TObject; AResponse: string);
     procedure OrdersAfterOpen(DataSet: TDataSet);
     procedure OrdersChanged(DataSet: TDataSet);
@@ -128,7 +129,6 @@ type
     procedure SearchEditChange(Sender: TObject);
     procedure FilterChipsAfterSelectItem(Sender: TObject; AItemIndex: Integer);
     procedure ViewAllLinkAnchorClick(Sender: TObject; AAnchor: string);
-    procedure OrdersGridGetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
     procedure NewOrderButtonClick(Sender: TObject);
     procedure ResetButtonClick(Sender: TObject);
     procedure SaveButtonClick(Sender: TObject);
@@ -136,8 +136,6 @@ type
     procedure DeleteButtonClick(Sender: TObject);
     procedure FulfilmentBarValueChanged(Sender: TObject; AValue: Single);
     procedure ProjectTreeNodeChecked(Sender: TObject; ANode: TTMSFNCTreeViewVirtualNode; AColumn: Integer);
-    procedure ProjectTreeGetNodeTextColor(Sender: TObject; ANode: TTMSFNCTreeViewVirtualNode; AColumn: Integer;
-      var ATextColor: TTMSFNCGraphicsColor);
   private
     FData: TOrdersData;
     FLoading: Boolean;
@@ -220,23 +218,7 @@ begin
   FData.Load(AResponse);
 end;
 
-{ the four KPI cards share the row; the status bar's spacer pushes the versions to the end }
-procedure TForm1.WebFormResize(Sender: TObject);
-var
-  I, w: Integer;
-begin
-  w := (KpiRow.Width - 3 * RevenueCard.Margins.Right) div 4;
-  RevenueCard.Width := w;
-  OpenCard.Width := w;
-  CustomersCard.Width := w;
-  w := StatusBar.Width;
-  for I := 0 to StatusBar.Panels.Count - 1 do
-    if I <> 3 then
-      w := w - StatusBar.Panels.Items[I].Width;
-  StatusBar.Panels.Items[3].Width := w;
-end;
-
-{ the theme's secondary text color for the secondary labels, its name in the status bar, the icons }
+{ the icons in the theme's colors }
 procedure TForm1.ThemeChanged(Sender: TObject);
 var
   t: TTMSFNCResolvedTheme;
@@ -245,10 +227,6 @@ begin
   t := Theme;
   if not Assigned(t) then
     Exit;
-  SettingsList.Items[0].TextColor := t[ttTextSecondary];
-  StatusBar.Panels.Items[1].Text := Format('Theme: <font color="%s"><b>%s</b></font>',
-    [TTMSFNCGraphics.ColorToHTML(t[ttText]), TTMSFNCTheme.Current]);
-  AccentSelector.Visible := t.Mode <> tmHighContrast;
   for I := 0 to NavList.Items.Count - 1 do
     if I = NavList.ItemIndex then
       NavList.Items[I].Bitmap.LoadFromURL(Icon(NavIcons[I], NavList.ItemsAppearance.SelectedFont.Color, 25, 18, 5))
@@ -503,45 +481,6 @@ begin
     Exit;
   FData.SetDone(ANode.Node.DataInteger, ProjectTree.Checked[ANode.Node]);
   FillProjects;
-end;
-
-{ the order number semibold in the accent's text color, the date in the secondary text color; the
-  text 18 px in at the card's edges, 12 px between the columns }
-procedure TForm1.OrdersGridGetCellLayout(Sender: TObject; ACell: TTMSFNCDataGridCell);
-var
-  t: TTMSFNCResolvedTheme;
-begin
-  if ACell.Column = 0 then
-    ACell.Layout.TextMargins.Left := 18
-  else
-    ACell.Layout.TextMargins.Left := 12;
-  if ACell.Column = 3 then
-  begin
-    ACell.Layout.TextAlign := gtaTrailing;
-    ACell.Layout.TextMargins.Right := 12;
-  end;
-  t := Theme;
-  { the header and the selected row keep the grid's colors }
-  if (ACell.Row = 0) or not Assigned(t) or OrdersGrid.IsCellSelected(MakeCell(ACell.Column, ACell.Row)) then
-    Exit;
-  if ACell.Column = 0 then
-  begin
-    ACell.Layout.Font.Color := t[ttAccentText];
-    ACell.Layout.Font.Name := TTMSFNCTheme.SemiboldFamily(ACell.Layout.Font.Name);
-  end
-  else if ACell.Column = 2 then
-    ACell.Layout.Font.Color := t[ttTextSecondary];
-end;
-
-{ the owners in the secondary text color }
-procedure TForm1.ProjectTreeGetNodeTextColor(Sender: TObject; ANode: TTMSFNCTreeViewVirtualNode; AColumn: Integer;
-  var ATextColor: TTMSFNCGraphicsColor);
-var
-  t: TTMSFNCResolvedTheme;
-begin
-  t := Theme;
-  if (AColumn = 1) and Assigned(t) then
-    ATextColor := t[ttTextSecondary];
 end;
 
 end.
