@@ -29,12 +29,12 @@ object Form2: TForm2
       Margins.Bottom = 0
       Align = alTop
       Font.Height = -15
-      Font.Name = 'Segoe UI Semibold'
       HorizontalTextAlign = gtaLeading
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
       Text = 'Theme'
+      Font.Name = 'Segoe UI Semibold'
     end
     object DemoThemeSelector: TTMSFNCThemeSelector
       AlignWithMargins = True
@@ -65,12 +65,12 @@ object Form2: TForm2
       Margins.Bottom = 0
       Align = alTop
       Font.Height = -15
-      Font.Name = 'Segoe UI Semibold'
       HorizontalTextAlign = gtaLeading
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
       Text = 'Quiz'
+      Font.Name = 'Segoe UI Semibold'
     end
     object WebButton2: TTMSFNCButton
       AlignWithMargins = True
@@ -115,12 +115,12 @@ object Form2: TForm2
       Margins.Bottom = 0
       Align = alTop
       Font.Height = -15
-      Font.Name = 'Segoe UI Semibold'
       HorizontalTextAlign = gtaLeading
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
       Text = 'Score'
+      Font.Name = 'Segoe UI Semibold'
     end
     object WebLabel3: TTMSFNCHTMLText
       AlignWithMargins = True
@@ -152,12 +152,12 @@ object Form2: TForm2
       Margins.Bottom = 0
       Align = alTop
       Font.Height = -15
-      Font.Name = 'Segoe UI Semibold'
       HorizontalTextAlign = gtaLeading
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
       Text = 'Question'
+      Font.Name = 'Segoe UI Semibold'
     end
     object WebLabel1: TTMSFNCHTMLText
       AlignWithMargins = True
@@ -189,12 +189,12 @@ object Form2: TForm2
       Margins.Bottom = 0
       Align = alTop
       Font.Height = -15
-      Font.Name = 'Segoe UI Semibold'
       HorizontalTextAlign = gtaLeading
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
       Text = 'Answer'
+      Font.Name = 'Segoe UI Semibold'
     end
     object WebLabel2: TTMSFNCHTMLText
       AlignWithMargins = True
@@ -226,12 +226,12 @@ object Form2: TForm2
       Margins.Bottom = 0
       Align = alTop
       Font.Height = -15
-      Font.Name = 'Segoe UI Semibold'
       HorizontalTextAlign = gtaLeading
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
       Text = 'How to play'
+      Font.Name = 'Segoe UI Semibold'
     end
     object HelpText: TTMSFNCHTMLText
       TextRole = htrSecondary
