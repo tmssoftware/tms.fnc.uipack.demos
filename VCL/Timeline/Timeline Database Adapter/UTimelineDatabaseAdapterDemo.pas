@@ -87,28 +87,28 @@ begin
   HistoryData.FieldByName('Start').AsInteger := 410 ;
   HistoryData.FieldByName('End').AsInteger :=  1066;
   HistoryData.FieldByName('Text').AsString := 'Anglo-Saxons';
-  HistoryData.FieldByName('Color').AsLongWord := gcGold;
+  HistoryData.FieldByName('Color').AsLongWord := gcLightgoldenrodyellow;
 
   HistoryData.Insert;
   HistoryData.FieldByName('Id').AsString := TGuid.NewGuid.ToString;
   HistoryData.FieldByName('Start').AsInteger := 793 ;
   HistoryData.FieldByName('End').AsInteger :=  1066;
   HistoryData.FieldByName('Text').AsString := 'Vikings';
-  HistoryData.FieldByName('Color').AsLongWord := gcCrimson;
+  HistoryData.FieldByName('Color').AsLongWord := gcLightcoral;
 
   HistoryData.Insert;
   HistoryData.FieldByName('Id').AsString := TGuid.NewGuid.ToString;
   HistoryData.FieldByName('Start').AsInteger := 1485 ;
   HistoryData.FieldByName('End').AsInteger :=  1603;
   HistoryData.FieldByName('Text').AsString := 'The Tudors';
-  HistoryData.FieldByName('Color').AsLongWord := gcMagenta;
+  HistoryData.FieldByName('Color').AsLongWord := gcLavender;
 
   HistoryData.Insert;
   HistoryData.FieldByName('Id').AsString := TGuid.NewGuid.ToString;
   HistoryData.FieldByName('Start').AsInteger := 1789 ;
   HistoryData.FieldByName('End').AsInteger :=  1945;
   HistoryData.FieldByName('Text').AsString := 'Late Modern Period';
-  HistoryData.FieldByName('Color').AsLongWord := gcAzure;
+  HistoryData.FieldByName('Color').AsLongWord := gcLightseagreen;
 
   HistoryData.Insert;
   HistoryData.FieldByName('Id').AsString := TGuid.NewGuid.ToString;
