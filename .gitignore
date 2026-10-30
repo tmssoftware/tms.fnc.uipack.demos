@@ -102,3 +102,6 @@ Desktop.ini
 
 # demo tools (tools/README.md)
 __pycache__/
+
+# written by the Stellar Data Store demo at run time
+StellarDataStoreConnection.ini
