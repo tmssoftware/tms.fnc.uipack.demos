@@ -1,21 +1,77 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Listbox Demo'
-  ClientHeight = 639
-  ClientWidth = 1000
+  Caption = 'TMS FNC UI Pack - ObjectInspector'
+  ClientHeight = 720
+  ClientWidth = 1100
   Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 1000.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 776.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'ObjectInspector'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 776.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Pick a control: the inspector shows its properties and edits them live'
+    end
+  end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
     Size.Width = 26.000000000000000000
     Size.Height = 26.000000000000000000
     Size.PlatformDefault = False
     Position.X = 312.000000000000000000
-    Position.Y = 576.000000000000000000
+    Position.Y = 648.000000000000000000
     Items = <
       item
         Bitmap.PNG = {
@@ -971,24 +1027,19 @@ object Form130: TForm130
   end
   object TMSFNCObjectInspector1: TTMSFNCObjectInspector
     Align = Left
-    Margins.Left = 5.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 0.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     Position.X = 5.000000000000000000
     Position.Y = 32.000000000000000000
-    Size.Width = 300.000000000000000000
+    Size.Width = 360.000000000000000000
     Size.Height = 602.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
     Groups = <>
     GroupsAppearance.TopSize = 50.000000000000000000
     GroupsAppearance.BottomSize = 50.000000000000000000
-    GroupsAppearance.TopFont.Name = 'Segoe UI'
-    GroupsAppearance.BottomFont.Name = 'Segoe UI'
-    GroupsAppearance.TopStroke.Color = claDarkgray
-    GroupsAppearance.BottomStroke.Color = claDarkgray
-    ColumnStroke.Color = claNull
     Columns = <
       item
         Name = 'Column0'
@@ -1024,38 +1075,16 @@ object Form130: TForm130
     ColumnsAppearance.StretchAll = False
     ColumnsAppearance.TopSize = 25.000000000000000000
     ColumnsAppearance.BottomSize = 25.000000000000000000
-    ColumnsAppearance.TopFont.Name = 'Segoe UI'
-    ColumnsAppearance.BottomFont.Name = 'Segoe UI'
-    ColumnsAppearance.TopStroke.Color = claDarkgray
-    ColumnsAppearance.BottomStroke.Color = claDarkgray
     NodesAppearance.ExpandWidth = 15.000000000000000000
     NodesAppearance.ExpandHeight = 15.000000000000000000
     NodesAppearance.LevelIndent = 20.000000000000000000
     NodesAppearance.FixedHeight = 25.000000000000000000
     NodesAppearance.VariableMinimumHeight = 25.000000000000000000
-    NodesAppearance.Fill.Color = claNull
     NodesAppearance.Stroke.Kind = gskNone
-    NodesAppearance.Stroke.Color = claDarkgray
-    NodesAppearance.ColumnStroke.Color = claNull
     NodesAppearance.LineStroke.Kind = gskDot
-    NodesAppearance.LineStroke.Color = claDarkgray
-    NodesAppearance.Font.Name = 'Segoe UI'
-    NodesAppearance.TitleFont.Name = 'Segoe UI'
-    NodesAppearance.SelectedFontColor = claBlack
-    NodesAppearance.SelectedFill.Color = xFFF0F0F0
-    NodesAppearance.SelectedStroke.Color = xFFF0F0F0
-    NodesAppearance.DisabledFill.Color = claDarkgray
     NodesAppearance.DisabledStroke.Kind = gskNone
-    NodesAppearance.DisabledStroke.Color = claDarkgray
-    NodesAppearance.ExtendedFill.Color = xFFF4F4F4
-    NodesAppearance.ExtendedStroke.Color = claDarkgray
-    NodesAppearance.ExtendedFont.Name = 'Segoe UI'
-    NodesAppearance.ExtendedSelectedFill.Color = xFF1BADF8
     NodesAppearance.ExtendedSelectedStroke.Kind = gskNone
-    NodesAppearance.ExtendedSelectedStroke.Color = claDarkgray
-    NodesAppearance.ExtendedDisabledFill.Color = claDarkgray
     NodesAppearance.ExtendedDisabledStroke.Kind = gskNone
-    NodesAppearance.ExtendedDisabledStroke.Color = claDarkgray
     NodesAppearance.ExpandNodeIcon.PNG = {
       89504E470D0A1A0A0000000D494844520000000B0000000B0806000000A9AC77
       26000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
@@ -1087,34 +1116,43 @@ object Form130: TForm130
     Interaction.ColumnSizing = True
     Interaction.ColumnAutoSizeOnDblClick = True
   end
-  object Panel1: TPanel
+  object Panel1: TTMSFNCPanel
     Align = Client
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     Size.Width = 685.000000000000000000
     Size.Height = 602.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
+    Header.Visible = False
+    Margins.Left = 16.000000000000000000
   end
-  object ComboBox1: TComboBox
+  object ComboBox1: TTMSFNCComboBox
     Align = Top
     Items.Strings = (
-      'TButton'
-      'TLabel'
-      'TListBox'
+      'TTMSFNCButton'
+      'TTMSFNCHTMLText'
+      'TTMSFNCListBox'
       'TTMSFNCImage'
       'TTMSFNCTreeView'
       'TTMSFNCPlanner')
-    Margins.Left = 5.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 5.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
     Position.X = 5.000000000000000000
     Position.Y = 5.000000000000000000
     Size.Width = 990.000000000000000000
-    Size.Height = 22.000000000000000000
+    Size.Height = 32.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 3
     OnChange = ComboBox1Change
+    Style = csDropDownList
+    Margins.Bottom = 8.000000000000000000
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

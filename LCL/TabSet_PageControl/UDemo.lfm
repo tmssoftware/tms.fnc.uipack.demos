@@ -3,8 +3,8 @@ object Form1: TForm1
   Height = 487
   Top = 414
   Width = 662
-  Caption = 'TMS FNC TabSet/PageControl Demo'
-  ClientHeight = 487
+  Caption = 'TMS FNC UI Pack - TabSet and PageControl'
+  ClientHeight = 559
   ClientWidth = 662
   Icon.Data = {
     BE1000000000010001002020000001002000A810000016000000280000002000
@@ -145,6 +145,40 @@ object Form1: TForm1
   }
   Position = poScreenCenter
   LCLVersion = '1.6.0.4'
+  object DemoHeader: TPanel
+    Left = 0
+    Height = 72
+    Top = 0
+    Width = 662
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 72
+    ClientWidth = 662
+    TabOrder = 0
+    object DemoTitle: TLabel
+      Left = 24
+      Height = 30
+      Top = 12
+      Width = 614
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'PageControl and TabSet'
+      Font.Height = -20
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object DemoDescription: TLabel
+      Left = 24
+      Height = 20
+      Top = 42
+      Width = 614
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Close, insert and reorder tabs, open the tab list; the pages hold a data grid, tree view, image and rich editor'
+      Font.Color = clGrayText
+      ParentFont = False
+    end
+  end
   object TMSFNCPageControl1: TTMSFNCPageControl
     Left = 0
     Height = 487

@@ -15,6 +15,9 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    DemoHeader: TPanel;
+    DemoTitle: TLabel;
+    DemoDescription: TLabel;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
@@ -57,7 +60,6 @@ const
   pnls: array[0..2] of string = ('Grid', 'Treeview', 'Image');
 begin
   TMSFNCGrid1.LoadFromCSV('CARS.csv');
-  Color := gcWhite;
   for I := 0 to Length(pnls) -  1 do
   begin
     with TMSFNCNavigationPanel1.Panels.Add do

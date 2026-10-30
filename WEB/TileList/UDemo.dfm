@@ -1,6 +1,7 @@
 object Form43: TForm43
-  Width = 739
-  Height = 676
+  Caption = 'TMS FNC UI Pack - TileList'
+  Width = 1000
+  Height = 720
   FormContainer = 'appcontent'
   OnCreate = WebFormCreate
   object WebLabel3: TWebLabel
@@ -8,7 +9,7 @@ object Form43: TForm43
     Top = 93
     Width = 122
     Height = 15
-    Caption = 'TMS FNC TileList demo'
+    Caption = 'TileList'
     ElementID = 'title'
     HeightPercent = 100.000000000000000000
     WidthPercent = 100.000000000000000000
@@ -18,135 +19,243 @@ object Form43: TForm43
     Top = 112
     Width = 280
     Height = 15
-    Caption = 'Shows the various configurability of TTMSFNCTileList'
+    Caption = 'Tiles in pages or scrolling, horizontal or vertical, with header, footer and drag to reorder'
     ElementID = 'description'
     HeightPercent = 100.000000000000000000
     WidthPercent = 100.000000000000000000
   end
-  object WebPanel1: TWebPanel
-    Left = 0
+  object SettingsPanel: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 16
     Top = 0
-    Width = 739
-    Height = 137
-    Align = alTop
-    ChildOrder = 2
-    ExplicitWidth = 736
-    object WebGroupBox1: TWebGroupBox
-      Left = 304
-      Top = 14
-      Width = 177
-      Height = 94
-      BorderColor = clSilver
-      Caption = 'Navigation mode'
-      object WebRadioButton1: TWebRadioButton
-        Left = 16
-        Top = 24
-        Width = 113
-        Height = 22
-        Caption = 'Paging'
-        Checked = True
-        Color = clNone
-        GroupName = 'navigation'
-        HeightPercent = 100.000000000000000000
-        WidthPercent = 100.000000000000000000
-        OnClick = WebRadioButton1Click
-      end
-      object WebRadioButton2: TWebRadioButton
-        Left = 16
-        Top = 52
-        Width = 113
-        Height = 22
-        Caption = 'Scrolling'
-        Checked = False
-        ChildOrder = 1
-        Color = clNone
-        GroupName = 'navigation'
-        HeightPercent = 100.000000000000000000
-        WidthPercent = 100.000000000000000000
-        OnClick = WebRadioButton2Click
-      end
+    Width = 260
+    Height = 600
+    Margins.Left = 16
+    Margins.Top = 16
+    Margins.Right = 0
+    Margins.Bottom = 16
+    Align = alLeft
+    TabOrder = 1
+    Header.Visible = False
+    object ThemeCaption: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 16
+      Top = 12
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 12
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -15
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Theme'
+      Font.Name = 'Segoe UI Semibold'
     end
-    object WebGroupBox2: TWebGroupBox
-      Left = 504
-      Top = 16
-      Width = 177
-      Height = 92
-      BorderColor = clSilver
-      Caption = 'Orientation'
-      ChildOrder = 1
-      object WebRadioButton3: TWebRadioButton
-        Left = 16
-        Top = 22
-        Width = 113
-        Height = 22
-        Caption = 'Horizontal'
-        Checked = True
-        Color = clNone
-        GroupName = 'orientation'
-        HeightPercent = 100.000000000000000000
-        WidthPercent = 100.000000000000000000
-        OnClick = WebRadioButton3Click
-      end
-      object WebRadioButton4: TWebRadioButton
-        Left = 16
-        Top = 50
-        Width = 113
-        Height = 22
-        Caption = 'Vertical'
-        Checked = False
-        ChildOrder = 1
-        Color = clNone
-        GroupName = 'orientation'
-        HeightPercent = 100.000000000000000000
-        WidthPercent = 100.000000000000000000
-        OnClick = WebRadioButton4Click
-      end
-    end
-    object WebCheckBox1: TWebCheckBox
-      Left = 24
-      Top = 16
-      Width = 113
-      Height = 22
-      Caption = 'Header'
-      ChildOrder = 2
-      HeightPercent = 100.000000000000000000
-      WidthPercent = 100.000000000000000000
-      OnClick = WebCheckBox1Click
-    end
-    object WebCheckBox2: TWebCheckBox
-      Left = 24
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 16
       Top = 44
-      Width = 113
-      Height = 22
-      Caption = 'Footer'
+      Width = 228
+      Height = 36
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object NavCaption: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 16
+      Top = 96
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 16
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -15
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Navigation mode'
+      Font.Name = 'Segoe UI Semibold'
+    end
+    object WebRadioButton1: TTMSFNCRadioButton
+      AlignWithMargins = True
+      Left = 16
+      Top = 124
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 4
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 1
+      Text = 'Paging'
       Checked = True
-      ChildOrder = 3
-      HeightPercent = 100.000000000000000000
-      State = cbChecked
-      WidthPercent = 100.000000000000000000
-      OnClick = WebCheckBox2Click
+      GroupName = 'navigation'
+      OnChange = WebRadioButton1Click
     end
-    object WebCheckBox3: TWebCheckBox
-      Left = 168
-      Top = 16
-      Width = 113
-      Height = 22
-      Caption = 'Enable drag'
-      ChildOrder = 4
-      HeightPercent = 100.000000000000000000
-      WidthPercent = 100.000000000000000000
-      OnClick = WebCheckBox3Click
+    object WebRadioButton2: TTMSFNCRadioButton
+      AlignWithMargins = True
+      Left = 16
+      Top = 152
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 4
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 2
+      Text = 'Scrolling'
+      GroupName = 'navigation'
+      OnChange = WebRadioButton2Click
     end
-    object WebCheckBox4: TWebCheckBox
-      Left = 24
-      Top = 72
-      Width = 113
-      Height = 22
-      Caption = 'Show arrows'
-      ChildOrder = 5
-      HeightPercent = 100.000000000000000000
-      WidthPercent = 100.000000000000000000
-      OnClick = WebCheckBox4Click
+    object OrientCaption: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 16
+      Top = 192
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 16
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -15
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Orientation'
+      Font.Name = 'Segoe UI Semibold'
+    end
+    object WebRadioButton3: TTMSFNCRadioButton
+      AlignWithMargins = True
+      Left = 16
+      Top = 220
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 4
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 3
+      Text = 'Horizontal'
+      Checked = True
+      GroupName = 'orientation'
+      OnChange = WebRadioButton3Click
+    end
+    object WebRadioButton4: TTMSFNCRadioButton
+      AlignWithMargins = True
+      Left = 16
+      Top = 248
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 4
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 4
+      Text = 'Vertical'
+      GroupName = 'orientation'
+      OnChange = WebRadioButton4Click
+    end
+    object OptionsCaption: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 16
+      Top = 288
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 16
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -15
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Options'
+      Font.Name = 'Segoe UI Semibold'
+    end
+    object WebCheckBox1: TTMSFNCCheckBox
+      AlignWithMargins = True
+      Left = 16
+      Top = 320
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 5
+      Text = 'Header'
+      OnChange = WebCheckBox1Click
+    end
+    object WebCheckBox2: TTMSFNCCheckBox
+      AlignWithMargins = True
+      Left = 16
+      Top = 352
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 6
+      Text = 'Footer'
+      Checked = True
+      OnChange = WebCheckBox2Click
+    end
+    object WebCheckBox3: TTMSFNCCheckBox
+      AlignWithMargins = True
+      Left = 16
+      Top = 384
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 7
+      Text = 'Enable drag'
+      OnChange = WebCheckBox3Click
+    end
+    object WebCheckBox4: TTMSFNCCheckBox
+      AlignWithMargins = True
+      Left = 16
+      Top = 416
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 8
+      Text = 'Show arrows'
+      OnChange = WebCheckBox4Click
     end
   end
   object TMSFNCTileList1: TTMSFNCTileList
@@ -154,7 +263,7 @@ object Form43: TForm43
     Top = 137
     Width = 739
     Height = 504
-    Align = alTop
+    Align = alClient
     TabOrder = 1
     BitmapContainer = TMSFNCBitmapContainer1
     Items = <
@@ -195,57 +304,18 @@ object Form43: TForm43
     Appearance.BadgeFont.Height = -11
     Appearance.BadgeFont.Name = 'Segoe UI'
     Appearance.BadgeFont.Style = [fsBold]
-    Appearance.Stroke.Color = 11119017
-    Appearance.Fill.Color = 16578806
-    Appearance.StrokeHover.Color = 10061943
-    Appearance.FillHover.Color = 16441019
-    Appearance.StrokeDown.Color = 9470064
-    Appearance.FillDown.Color = 16039284
-    Appearance.StrokeSelected.Color = 5197615
-    Appearance.FillSelected.Color = 16039284
-    Appearance.StrokeDisabled.Color = 11119017
-    Appearance.FillDisabled.Color = clSilver
     Appearance.TitleFont.Charset = DEFAULT_CHARSET
-    Appearance.TitleFont.Color = clBlack
     Appearance.TitleFont.Height = -11
-    Appearance.TitleFont.Name = 'Segoe UI'
     Appearance.TitleFont.Style = []
     Appearance.DescriptionFont.Charset = DEFAULT_CHARSET
-    Appearance.DescriptionFont.Color = clBlack
     Appearance.DescriptionFont.Height = -11
-    Appearance.DescriptionFont.Name = 'Segoe UI'
     Appearance.DescriptionFont.Style = []
     Columns = 3
-    Header.Fill.Color = 16380654
-    Header.Bullets.SelectedFill.Color = clGray
-    Header.Bullets.SelectedStroke.Color = clGray
-    Header.ArrowLeft.Fill.Color = 16380654
-    Header.ArrowLeft.DownFill.Color = 16380654
-    Header.ArrowLeft.HoverFill.Color = 16380654
-    Header.ArrowLeft.ArrowFill.Color = 6908265
-    Header.ArrowLeft.ArrowDownFill.Color = 6908265
-    Header.ArrowLeft.ArrowHoverFill.Color = 6908265
-    Header.ArrowRight.Fill.Color = 16380654
-    Header.ArrowRight.DownFill.Color = 16380654
-    Header.ArrowRight.HoverFill.Color = 16380654
-    Header.ArrowRight.ArrowFill.Color = 6908265
-    Header.ArrowRight.ArrowDownFill.Color = 6908265
-    Header.ArrowRight.ArrowHoverFill.Color = 6908265
-    Footer.Fill.Color = 16380654
-    Footer.Bullets.SelectedFill.Color = clGray
-    Footer.Bullets.SelectedStroke.Color = clGray
-    Footer.ArrowLeft.Fill.Color = 16380654
-    Footer.ArrowLeft.DownFill.Color = 16380654
-    Footer.ArrowLeft.HoverFill.Color = 16380654
-    Footer.ArrowLeft.ArrowFill.Color = 6908265
-    Footer.ArrowLeft.ArrowDownFill.Color = 6908265
-    Footer.ArrowLeft.ArrowHoverFill.Color = 6908265
-    Footer.ArrowRight.Fill.Color = 16380654
-    Footer.ArrowRight.DownFill.Color = 16380654
-    Footer.ArrowRight.HoverFill.Color = 16380654
-    Footer.ArrowRight.ArrowFill.Color = 6908265
-    Footer.ArrowRight.ArrowDownFill.Color = 6908265
-    Footer.ArrowRight.ArrowHoverFill.Color = 6908265
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 16
+    Margins.Right = 16
+    Margins.Bottom = 16
   end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
     Left = 208
@@ -255,12 +325,11 @@ object Form43: TForm43
     Visible = True
     Items = <
       item
-        Bitmap.Data = {
-          1054544D53464E435356474269746D6170A60100003C3F786D6C207665727369
+        Bitmap.Data = {1054544D53464E435356474269746D6170A60100003C3F786D6C207665727369
           6F6E3D22312E3022203F3E3C737667206865696768743D223438222076696577
           426F783D22302030203438203438222077696474683D2234382220786D6C6E73
           3D22687474703A2F2F7777772E77332E6F72672F323030302F737667223E3C70
-          6174682066696C6C3D22234646464646462220643D224D323420344331322E39
+          6174682066696C6C3D22233645373337432220643D224D323420344331322E39
           35203420342031322E3935203420323473382E39352032302032302032302032
           302D382E39352032302D32305333352E3035203420323420347A6D3020366333
           2E33312030203620322E363920362036203020332E33322D322E363920362D36
@@ -274,13 +343,12 @@ object Form43: TForm43
         Tag = 0
       end
       item
-        Bitmap.Data = {
-          1054544D53464E435356474269746D6170D40100003C3F786D6C207665727369
+        Bitmap.Data = {1054544D53464E435356474269746D6170D40100003C3F786D6C207665727369
           6F6E3D22312E3022203F3E3C737667206865696768743D223438222076696577
           426F783D22302030203438203438222077696474683D2234382220786D6C6E73
           3D22687474703A2F2F7777772E77332E6F72672F323030302F737667223E3C70
           61746820643D224D30203068343876343848307A222066696C6C3D226E6F6E65
-          222F3E3C706174682066696C6C3D22234646464646462220643D224D34342031
+          222F3E3C706174682066696C6C3D22233645373337432220643D224D34342031
           312E34346C2D392E31392D372E37312D322E353720332E303620392E31392037
           2E37314C34342031312E34347A4D31352E373620362E37386C2D322E35372D33
           2E30364C342031312E34336C322E353720332E303620392E31392D372E37317A
@@ -295,13 +363,12 @@ object Form43: TForm43
         Tag = 0
       end
       item
-        Bitmap.Data = {
-          1054544D53464E435356474269746D6170F60300003C3F786D6C207665727369
+        Bitmap.Data = {1054544D53464E435356474269746D6170F60300003C3F786D6C207665727369
           6F6E3D22312E3022203F3E3C737667206865696768743D223438222076696577
           426F783D22302030203438203438222077696474683D2234382220786D6C6E73
           3D22687474703A2F2F7777772E77332E6F72672F323030302F737667223E3C70
           61746820643D224D30203068343876343848307A222066696C6C3D226E6F6E65
-          222F3E3C706174682066696C6C3D22234646464646462220643D224D32332E39
+          222F3E3C706174682066696C6C3D22233645373337432220643D224D32332E39
           3920344331322E3934203420342031322E3935203420323473382E3934203230
           2031392E39392032304333352E30342034342034342033352E30352034342032
           345333352E303420342032332E393920347A6D31332E3835203132682D352E39
@@ -333,13 +400,12 @@ object Form43: TForm43
         Tag = 0
       end
       item
-        Bitmap.Data = {
-          1054544D53464E435356474269746D6170480100003C3F786D6C207665727369
+        Bitmap.Data = {1054544D53464E435356474269746D6170480100003C3F786D6C207665727369
           6F6E3D22312E3022203F3E3C737667206865696768743D223438222076696577
           426F783D22302030203438203438222077696474683D2234382220786D6C6E73
           3D22687474703A2F2F7777772E77332E6F72672F323030302F737667223E3C70
           61746820643D224D30203068343876343848307A222066696C6C3D226E6F6E65
-          222F3E3C706174682066696C6C3D22234646464646462220643D224D33382036
+          222F3E3C706174682066696C6C3D22233645373337432220643D224D33382036
           682D325632682D3476344831365632682D347634682D32632D322E323120302D
           332E393820312E37392D332E393820344C36203338633020322E323120312E37
           3920342034203468323863322E3231203020342D312E373920342D3456313063
@@ -349,13 +415,12 @@ object Form43: TForm43
         Tag = 0
       end
       item
-        Bitmap.Data = {
-          1054544D53464E435356474269746D6170DC0100003C3F786D6C207665727369
+        Bitmap.Data = {1054544D53464E435356474269746D6170DC0100003C3F786D6C207665727369
           6F6E3D22312E3022203F3E3C737667206865696768743D223438222076696577
           426F783D22302030203438203438222077696474683D2234382220786D6C6E73
           3D22687474703A2F2F7777772E77332E6F72672F323030302F737667223E3C70
           61746820643D224D30203068343876343848307A222066696C6C3D226E6F6E65
-          222F3E3C706174682066696C6C3D22234646464646462220643D224D33332032
+          222F3E3C706174682066696C6C3D22233645373337432220643D224D33332032
           3463322E3736203020342E39382D322E323420342E39382D35732D322E32322D
           352D342E39382D35632D322E373620302D3520322E32342D35203573322E3234
           2035203520357A6D2D31352D3263332E3331203020352E39382D322E36392035
@@ -370,13 +435,12 @@ object Form43: TForm43
         Tag = 0
       end
       item
-        Bitmap.Data = {
-          1054544D53464E435356474269746D61703A0100003C3F786D6C207665727369
+        Bitmap.Data = {1054544D53464E435356474269746D61703A0100003C3F786D6C207665727369
           6F6E3D22312E3022203F3E3C737667206865696768743D223438222076696577
           426F783D22302030203438203438222077696474683D2234382220786D6C6E73
           3D22687474703A2F2F7777772E77332E6F72672F323030302F737667223E3C70
           61746820643D224D30203068343876343848307A222066696C6C3D226E6F6E65
-          222F3E3C706174682066696C6C3D22234646464646462220643D224D32382034
+          222F3E3C706174682066696C6C3D22233645373337432220643D224D32382034
           48313243392E3739203420382E303220352E373920382E303220384C38203430
           633020322E323120312E3737203420332E3938203448333663322E3231203020
           342D312E373920342D345631364C323820347A6D34203332483136762D346831
@@ -386,13 +450,12 @@ object Form43: TForm43
         Tag = 0
       end
       item
-        Bitmap.Data = {
-          1054544D53464E435356474269746D6170CF0100003C3F786D6C207665727369
+        Bitmap.Data = {1054544D53464E435356474269746D6170CF0100003C3F786D6C207665727369
           6F6E3D22312E3022203F3E3C737667206865696768743D223438222076696577
           426F783D22302030203438203438222077696474683D2234382220786D6C6E73
           3D22687474703A2F2F7777772E77332E6F72672F323030302F737667223E3C70
           61746820643D224D30203068343876343848307A222066696C6C3D226E6F6E65
-          222F3E3C706174682066696C6C3D22234646464646462220643D224D34312032
+          222F3E3C706174682066696C6C3D22233645373337432220643D224D34312032
           32682D33762D3863302D322E32312D312E37392D342D342D34682D3856376330
           2D322E37362D322E32342D352D352D35732D3520322E32342D35203576334838
           632D322E323120302D332E393820312E37392D332E393820346C2D2E30312037
@@ -407,12 +470,11 @@ object Form43: TForm43
         Tag = 0
       end
       item
-        Bitmap.Data = {
-          1054544D53464E435356474269746D61703B0100003C3F786D6C207665727369
+        Bitmap.Data = {1054544D53464E435356474269746D61703B0100003C3F786D6C207665727369
           6F6E3D22312E3022203F3E3C737667206865696768743D223438222076696577
           426F783D22302030203438203438222077696474683D2234382220786D6C6E73
           3D22687474703A2F2F7777772E77332E6F72672F323030302F737667223E3C70
-          6174682066696C6C3D22234646464646462220643D224D32342034632D372E37
+          6174682066696C6C3D22233645373337432220643D224D32342034632D372E37
           3320302D313420362E32372D313420313420302031302E352031342032362031
           342032367331342D31352E352031342D323663302D372E37332D362E32372D31
           342D31342D31347A6D30203139632D322E373620302D352D322E32342D352D35
@@ -423,13 +485,12 @@ object Form43: TForm43
         Tag = 0
       end
       item
-        Bitmap.Data = {
-          1054544D53464E435356474269746D61706A0100003C3F786D6C207665727369
+        Bitmap.Data = {1054544D53464E435356474269746D61706A0100003C3F786D6C207665727369
           6F6E3D22312E3022203F3E3C737667206865696768743D223438222076696577
           426F783D22302030203438203438222077696474683D2234382220786D6C6E73
           3D22687474703A2F2F7777772E77332E6F72672F323030302F737667223E3C70
           61746820643D224D30203068343876343848307A222066696C6C3D226E6F6E65
-          222F3E3C706174682066696C6C3D22234646464646462220643D224D34203132
+          222F3E3C706174682066696C6C3D22233645373337432220643D224D34203132
           4830763130682E30324C30203430633020322E323120312E3739203420342034
           683336762D3448345631327A6D34302D344832386C2D342D3448313243392E37
           39203420382E303220352E373920382E303220384C38203332633020322E3231
@@ -440,13 +501,12 @@ object Form43: TForm43
         Tag = 0
       end
       item
-        Bitmap.Data = {
-          1054544D53464E435356474269746D61702B0100003C3F786D6C207665727369
+        Bitmap.Data = {1054544D53464E435356474269746D61702B0100003C3F786D6C207665727369
           6F6E3D22312E3022203F3E3C737667206865696768743D223438222076696577
           426F783D22302030203438203438222077696474683D2234382220786D6C6E73
           3D22687474703A2F2F7777772E77332E6F72672F323030302F737667223E3C70
           61746820643D224D30203068343876343848307A222066696C6C3D226E6F6E65
-          222F3E3C706174682066696C6C3D22234646464646462220643D224D34322031
+          222F3E3C706174682066696C6C3D22233645373337432220643D224D34322031
           32682D347631384831327634633020312E312E392032203220326832326C3820
           3856313463302D312E312D2E392D322D322D327A6D2D38203132563663302D31
           2E312D2E392D322D322D324836632D312E3120302D32202E392D322032763238
@@ -455,13 +515,12 @@ object Form43: TForm43
         Tag = 0
       end
       item
-        Bitmap.Data = {
-          1054544D53464E435356474269746D61709E0100003C3F786D6C207665727369
+        Bitmap.Data = {1054544D53464E435356474269746D61709E0100003C3F786D6C207665727369
           6F6E3D22312E3022203F3E3C737667206865696768743D223438222076696577
           426F783D22302030203438203438222077696474683D2234382220786D6C6E73
           3D22687474703A2F2F7777772E77332E6F72672F323030302F737667223E3C70
           61746820643D224D30203068343876343848307A222066696C6C3D226E6F6E65
-          222F3E3C706174682066696C6C3D22234646464646462220643D224D33382036
+          222F3E3C706174682066696C6C3D22233645373337432220643D224D33382036
           682D382E3337632D2E38322D322E33322D332E30322D342D352E36332D34732D
           342E383120312E36382D352E36332034483130632D322E323120302D3420312E
           37392D342034763238633020322E323120312E37392034203420346832386332
@@ -474,12 +533,11 @@ object Form43: TForm43
         Tag = 0
       end
       item
-        Bitmap.Data = {
-          1054544D53464E435356474269746D6170870100003C3F786D6C207665727369
+        Bitmap.Data = {1054544D53464E435356474269746D6170870100003C3F786D6C207665727369
           6F6E3D22312E3022203F3E3C737667206865696768743D223438222076696577
           426F783D22302030203438203438222077696474683D2234382220786D6C6E73
           3D22687474703A2F2F7777772E77332E6F72672F323030302F737667223E3C70
-          6174682066696C6C3D22234646464646462220643D224D3331203238682D312E
+          6174682066696C6C3D22233645373337432220643D224D3331203238682D312E
           35396C2D2E35352D2E35354333302E38322032352E31382033322032322E3233
           20333220313963302D372E31382D352E38322D31332D31332D31335336203131
           2E3832203620313973352E383220313320313320313363332E3233203020362E
@@ -492,13 +550,12 @@ object Form43: TForm43
         Tag = 0
       end
       item
-        Bitmap.Data = {
-          1054544D53464E435356474269746D61705D0300003C3F786D6C207665727369
+        Bitmap.Data = {1054544D53464E435356474269746D61705D0300003C3F786D6C207665727369
           6F6E3D22312E3022203F3E3C737667206865696768743D223438222076696577
           426F783D22302030203438203438222077696474683D2234382220786D6C6E73
           3D22687474703A2F2F7777772E77332E6F72672F323030302F737667223E3C70
           61746820643D224D30203068343876343848307A222066696C6C3D226E6F6E65
-          222F3E3C706174682066696C6C3D22234646464646462220643D224D33382E38
+          222F3E3C706174682066696C6C3D22233645373337432220643D224D33382E38
           362032352E3935632E30382D2E36342E31342D312E32392E31342D312E393573
           2D2E30362D312E33312D2E31342D312E39356C342E32332D332E3331632E3338
           2D2E332E34392D2E38342E32342D312E32386C2D342D362E3933632D2E32352D
@@ -525,13 +582,12 @@ object Form43: TForm43
         Tag = 0
       end
       item
-        Bitmap.Data = {
-          1054544D53464E435356474269746D6170380100003C3F786D6C207665727369
+        Bitmap.Data = {1054544D53464E435356474269746D6170380100003C3F786D6C207665727369
           6F6E3D22312E3022203F3E3C737667206865696768743D223438222076696577
           426F783D22302030203438203438222077696474683D2234382220786D6C6E73
           3D22687474703A2F2F7777772E77332E6F72672F323030302F737667223E3C70
           61746820643D224D30203068343876343848307A222066696C6C3D226E6F6E65
-          222F3E3C706174682066696C6C3D22234646464646462220643D224D33322031
+          222F3E3C706174682066696C6C3D22233645373337432220643D224D33322031
           32563863302D322E32312D312E37392D342D342D34682D38632D322E32312030
           2D3420312E37392D34203476344834763236633020322E323120312E37392034
           2034203468333263322E3231203020342D312E373920342D345631324833327A
@@ -540,5 +596,10 @@ object Form43: TForm43
         Name = 'store.svg'
         Tag = 0
       end>
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 760
+    Top = 160
   end
 end

@@ -1,5 +1,7 @@
 unit UDataGridFilter;
 
+{ demo-colors: the labels on the filter view keep an explicit dark text colour: the filter view itself is not coloured by the theme and stays light in Fluent Dark }
+
 interface
 
 uses
@@ -11,10 +13,16 @@ uses
   TMS.TMSFNCFilterBuilder, TMS.TMSFNCFilterStructure, FMX.TMSFNCHTMLText,
   FMX.TMSFNCFilterView, FMX.TMSFNCPanel, FMX.Layouts, FMX.TMSFNCCustomControl,
   FMX.TMSFNCDataGrid, FMX.ListBox, FMX.TMSFNCCalendar, FMX.TMSFNCImage,
-  FMX.TMSFNCToolBar;
+  FMX.TMSFNCToolBar,
+  FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TFilterViewDataGridForm = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCFilterView1: TTMSFNCFilterView;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     TMSFNCFilterView1_FilterPanel1_FilterExpressionValueEdit1: TTMSFNCFilterViewExpressionValueEdit;

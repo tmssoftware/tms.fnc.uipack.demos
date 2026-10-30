@@ -1,9 +1,9 @@
 object Form3: TForm3
   Left = 0
   Top = 0
-  Caption = 'Responsive list demo'
-  ClientHeight = 439
-  ClientWidth = 274
+  Caption = 'TMS FNC UI Pack - ResponsiveList'
+  ClientHeight = 640
+  ClientWidth = 760
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,31 +12,68 @@ object Form3: TForm3
   Font.Style = []
   OldCreateOrder = False
   OnCreate = FormCreate
-  DesignSize = (
-    274
-    439)
   PixelsPerInch = 96
   TextHeight = 13
-  object Label2: TLabel
-    Left = 32
-    Top = 405
-    Width = 158
-    Height = 26
-    Anchors = [akLeft, akBottom]
-    Caption = 'Resize the form to see effect on the responsive list'
-    WordWrap = True
-    ExplicitTop = 449
-  end
-  object Label1: TLabel
-    Left = 32
-    Top = 20
-    Width = 33
-    Height = 13
-    Caption = 'Car list'
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 274
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 90
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 50
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'ResponsiveList'
+      Font.Name = 'Segoe UI Semibold'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 50
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Resize the window: the number of columns follows its width'
+    end
   end
   object TMSFNCResponsiveList1: TTMSFNCResponsiveList
     Left = 32
-    Top = 39
+    Top = 111
     Width = 207
     Height = 361
     Cursor = crDefault
@@ -44,10 +81,8 @@ object Form3: TForm3
     HorzScrollBar.Tracking = True
     VertScrollBar.Range = 447
     VertScrollBar.Tracking = True
-    Anchors = [akLeft, akTop, akRight, akBottom]
     ReadOnly = True
     TabOrder = 0
-    BorderColor = clNone
     Conditions = <
       item
         Columns = 0
@@ -99,5 +134,16 @@ object Form3: TForm3
         ControlName = ''
       end>
     Version = '1.2.0.0'
+    Align = alClient
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

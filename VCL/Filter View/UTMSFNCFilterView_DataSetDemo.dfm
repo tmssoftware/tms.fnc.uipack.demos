@@ -2,9 +2,9 @@ object FilterViewDemoForm: TFilterViewDemoForm
   Left = 0
   Top = 0
   ActiveControl = TMSFNCDataGrid1
-  Caption = 'TMS FNC Filter View DataSet Demo'
-  ClientHeight = 501
-  ClientWidth = 934
+  Caption = 'TMS FNC UI Pack - FilterView - data set'
+  ClientHeight = 720
+  ClientWidth = 1100
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -149,16 +149,73 @@ object FilterViewDemoForm: TFilterViewDemoForm
   Position = poScreenCenter
   OnCreate = FormCreate
   TextHeight = 15
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 934
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 750
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 710
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'FilterView: data set'
+      Font.Name = 'Segoe UI Semibold'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 710
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Filter a data set with expression editors, a check box, a track bar and a combo box'
+    end
+  end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     AlignWithMargins = True
     Left = 225
     Top = 10
     Width = 699
     Height = 481
-    Margins.Left = 10
-    Margins.Top = 10
-    Margins.Right = 10
-    Margins.Bottom = 10
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -166,64 +223,39 @@ object FilterViewDemoForm: TFilterViewDemoForm
     ShowAcceleratorChar = False
     Footer.Bar.Buttons = <>
     Header.VisualGrouping.Layout.Font.Charset = DEFAULT_CHARSET
-    Header.VisualGrouping.Layout.Font.Color = clWindowText
     Header.VisualGrouping.Layout.Font.Height = -12
-    Header.VisualGrouping.Layout.Font.Name = 'Segoe UI'
     Header.VisualGrouping.Layout.Font.Style = []
     Header.Bar.Buttons = <>
     Adapter = TMSFNCDataGridDatabaseAdapter1
     CellAppearance.FilterMatchLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FilterMatchLayout.Font.Color = clWindowText
     CellAppearance.FilterMatchLayout.Font.Height = -12
-    CellAppearance.FilterMatchLayout.Font.Name = 'Segoe UI'
     CellAppearance.FilterMatchLayout.Font.Style = []
     CellAppearance.FilterInverseMatchLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FilterInverseMatchLayout.Font.Color = clWindowText
     CellAppearance.FilterInverseMatchLayout.Font.Height = -12
-    CellAppearance.FilterInverseMatchLayout.Font.Name = 'Segoe UI'
     CellAppearance.FilterInverseMatchLayout.Font.Style = []
     CellAppearance.BandLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.BandLayout.Font.Color = clWindowText
     CellAppearance.BandLayout.Font.Height = -11
-    CellAppearance.BandLayout.Font.Name = 'Segoe UI'
     CellAppearance.BandLayout.Font.Style = []
     CellAppearance.FixedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FixedLayout.Font.Color = clWindowText
     CellAppearance.FixedLayout.Font.Height = -11
-    CellAppearance.FixedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FixedLayout.Font.Style = []
-    CellAppearance.FixedSelectedLayout.Fill.Color = 15919071
     CellAppearance.FixedSelectedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FixedSelectedLayout.Font.Color = clWindowText
     CellAppearance.FixedSelectedLayout.Font.Height = -11
-    CellAppearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FixedSelectedLayout.Font.Style = []
-    CellAppearance.FocusedLayout.Fill.Color = 13346942
     CellAppearance.FocusedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FocusedLayout.Font.Color = clWhite
     CellAppearance.FocusedLayout.Font.Height = -11
-    CellAppearance.FocusedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FocusedLayout.Font.Style = []
     CellAppearance.GroupLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.GroupLayout.Font.Color = clSteelblue
     CellAppearance.GroupLayout.Font.Height = -11
-    CellAppearance.GroupLayout.Font.Name = 'Segoe UI'
     CellAppearance.GroupLayout.Font.Style = []
     CellAppearance.NormalLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.NormalLayout.Font.Color = clWindowText
     CellAppearance.NormalLayout.Font.Height = -11
-    CellAppearance.NormalLayout.Font.Name = 'Segoe UI'
     CellAppearance.NormalLayout.Font.Style = []
-    CellAppearance.SelectedLayout.Fill.Color = 15919071
     CellAppearance.SelectedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.SelectedLayout.Font.Color = clSteelblue
     CellAppearance.SelectedLayout.Font.Height = -11
-    CellAppearance.SelectedLayout.Font.Name = 'Segoe UI'
     CellAppearance.SelectedLayout.Font.Style = []
     CellAppearance.SummaryLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.SummaryLayout.Font.Color = clWindowText
     CellAppearance.SummaryLayout.Font.Height = -11
-    CellAppearance.SummaryLayout.Font.Name = 'Segoe UI'
     CellAppearance.SummaryLayout.Font.Style = []
     ColumnCount = 7
     Columns = <
@@ -613,9 +645,7 @@ object FilterViewDemoForm: TFilterViewDemoForm
     Designer = False
     FilterActions = <>
     FilterAppearance.Font.Charset = DEFAULT_CHARSET
-    FilterAppearance.Font.Color = clWindowText
     FilterAppearance.Font.Height = -11
-    FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
     Icons.ExpandIcon.Data = {
       1054544D53464E435356474269746D6170080200003C73766720786D6C6E733D
@@ -1016,13 +1046,12 @@ object FilterViewDemoForm: TFilterViewDemoForm
     Options.Mouse.ClickMargin = 0
     Options.Selection.Mode = gsmSingleRow
     RowCount = 53
-    Stroke.Color = clDarkgray
     ExplicitWidth = 693
     ExplicitHeight = 464
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
     Left = 752
-    Top = 264
+    Top = 336
     Width = 26
     Height = 26
     Visible = True
@@ -1064,18 +1093,16 @@ object FilterViewDemoForm: TFilterViewDemoForm
     Top = 10
     Width = 200
     Height = 481
-    Margins.Left = 10
-    Margins.Top = 10
-    Margins.Right = 5
-    Margins.Bottom = 10
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 16
     Align = alLeft
-    Color = clWhite
-    ParentColor = False
     TabOrder = 3
     AdaptToStyle = True
     OnFilterTextChanged = TMSFNCFilterView1FilterTextChanged
     ExplicitHeight = 464
-    object Label2: TLabel
+    object Label2: TTMSFNCHTMLText
       AlignWithMargins = True
       Left = 5
       Top = 318
@@ -1085,8 +1112,12 @@ object FilterViewDemoForm: TFilterViewDemoForm
       Margins.Top = 5
       Margins.Right = 5
       Align = alTop
-      Caption = 'Area:'
-      ExplicitWidth = 27
+      Text = 'Area:'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Font.Color = 2631720
     end
     object TMSFNCHTMLText1: TTMSFNCHTMLText
       Left = 0
@@ -1095,17 +1126,13 @@ object FilterViewDemoForm: TFilterViewDemoForm
       Height = 33
       Align = alTop
       ParentDoubleBuffered = False
-      Color = clBtnFace
       DoubleBuffered = True
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
       Font.Height = -18
-      Font.Name = 'Segoe UI'
       Font.Style = []
       TabOrder = 0
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
-      Stroke.Color = -1
       Text = '<FONT color="#3583b9"><B><U>Filter Database</U></B></FONT>'
     end
     object TMSFNCFilterViewPanel1: TTMSFNCFilterViewPanel
@@ -1125,23 +1152,13 @@ object FilterViewDemoForm: TFilterViewDemoForm
       GroupOperator = fgoOR
       Header.Text = 'Name'
       Header.Font.Charset = DEFAULT_CHARSET
-      Header.Font.Color = 4539717
       Header.Font.Height = -13
-      Header.Font.Name = 'Segoe UI'
       Header.Font.Style = [fsBold]
-      Header.Fill.Color = 16380654
       Header.Buttons = [pbExpander]
       Footer.Text = 'Footer'
       Footer.Font.Charset = DEFAULT_CHARSET
-      Footer.Font.Color = 4539717
       Footer.Font.Height = -13
-      Footer.Font.Name = 'Segoe UI'
       Footer.Font.Style = []
-      Footer.Fill.Color = 16380654
-      ButtonsAppearance.ButtonAppearance.NormalFill.Color = 14803425
-      ButtonsAppearance.ButtonAppearance.NormalStroke.Color = clDarkgray
-      ButtonsAppearance.ButtonAppearance.HoverFill.Color = 16511461
-      ButtonsAppearance.ButtonAppearance.HoverStroke.Color = 11632444
       ButtonsAppearance.ButtonAppearance.FlatStyle = True
       ButtonsAppearance.CollapseBitmap.Data = {
         1054544D53464E435356474269746D6170E00000003C7376672077696474683D
@@ -1190,7 +1207,7 @@ object FilterViewDemoForm: TFilterViewDemoForm
         696E656361703D22726F756E6422207374726F6B652D6C696E656A6F696E3D22
         726F756E6422207374726F6B652D77696474683D22322220643D226D37203130
         2035203520352D35222F3E0D0A3C2F7376673E0D0A}
-      object SecondConditionCheck: TCheckBox
+      object SecondConditionCheck: TTMSFNCCheckBox
         AlignWithMargins = True
         Left = 10
         Top = 110
@@ -1200,7 +1217,7 @@ object FilterViewDemoForm: TFilterViewDemoForm
         Margins.Top = 5
         Margins.Right = 5
         Align = alTop
-        Caption = 'Use Second Condition'
+        Text = 'Use Second Condition'
         TabOrder = 1
         OnClick = SecondConditionCheckClick
       end
@@ -1235,16 +1252,14 @@ object FilterViewDemoForm: TFilterViewDemoForm
       Margins.Bottom = 0
       Align = alTop
       ParentDoubleBuffered = False
-      Color = -1
       DoubleBuffered = True
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
       Font.Height = -12
-      Font.Name = 'Segoe UI'
       Font.Style = []
       TabOrder = 2
       Text = 'Hide extinct animals'
       FilterExpressions.DefaultFilterProperties.FilterFieldName = 'EXTINCT'
+      Font.Color = 2631720
       FilterExpressions = <
         item
           FilterFieldName = 'EXTINCT'
@@ -1254,7 +1269,7 @@ object FilterViewDemoForm: TFilterViewDemoForm
           PropertyValue = 'True'
         end>
     end
-    object Panel1: TPanel
+    object Panel1: TTMSFNCPanel
       AlignWithMargins = True
       Left = 5
       Top = 252
@@ -1265,29 +1280,35 @@ object FilterViewDemoForm: TFilterViewDemoForm
       Margins.Right = 5
       Margins.Bottom = 0
       Align = alTop
-      BevelEdges = []
-      BevelOuter = bvNone
-      Color = clWhite
-      ParentBackground = False
       TabOrder = 3
-      object Label1: TLabel
+      Header.Visible = False
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      object Label1: TTMSFNCHTMLText
         Left = 0
         Top = 0
         Width = 180
         Height = 21
         Align = alClient
-        Caption = 'Minimum Size (cm):'
-        ExplicitWidth = 107
-        ExplicitHeight = 15
+        Text = 'Minimum Size (cm):'
+        HorizontalTextAlign = gtaLeading
+        AutoSize = True
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
+        Font.Color = 2631720
       end
-      object SizeValueLbl: TLabel
+      object SizeValueLbl: TTMSFNCHTMLText
         Left = 180
         Top = 0
         Width = 6
         Height = 21
         Align = alRight
-        Caption = '0'
-        ExplicitHeight = 15
+        Text = '0'
+        HorizontalTextAlign = gtaLeading
+        AutoSize = True
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
+        Font.Color = 2631720
       end
     end
     object SizeTrackBar: TTMSFNCFilterViewTrackBar
@@ -1304,29 +1325,22 @@ object FilterViewDemoForm: TFilterViewDemoForm
       ParentDoubleBuffered = False
       DoubleBuffered = True
       TabOrder = 4
-      Appearance.ThumbStroke.Color = 12157749
       Appearance.ThumbStroke.Width = 2.000000000000000000
       Appearance.ThumbWidth = 16
       Appearance.ThumbShape = tsEllipse
-      Appearance.LineStroke.Color = 12157749
       Appearance.TickMarkSpacing = 10
-      Appearance.TickMarkStroke.Color = 12157749
       Appearance.TickMarkLabelFont.Charset = DEFAULT_CHARSET
-      Appearance.TickMarkLabelFont.Color = clWindowText
       Appearance.TickMarkLabelFont.Height = -12
-      Appearance.TickMarkLabelFont.Name = 'Segoe UI'
       Appearance.TickMarkLabelFont.Style = []
       Appearance.TrackLabelFont.Charset = DEFAULT_CHARSET
-      Appearance.TrackLabelFont.Color = clWindowText
       Appearance.TrackLabelFont.Height = -12
-      Appearance.TrackLabelFont.Name = 'Segoe UI'
       Appearance.TrackLabelFont.Style = []
       OnChanged = SizeTrackBarChanged
       FilterExpressions.DefaultFilterProperties.FilterFieldName = 'SIZE'
       FilterExpressions.DefaultFilterProperties.ExpressionOperator = feoLargerThanOrEqual
       FilterExpressions = <>
     end
-    object CustomAreaComboBox: TComboBox
+    object CustomAreaComboBox: TTMSFNCComboBox
       AlignWithMargins = True
       Left = 5
       Top = 337
@@ -1336,13 +1350,13 @@ object FilterViewDemoForm: TFilterViewDemoForm
       Margins.Top = 1
       Margins.Right = 5
       Align = alTop
-      Style = csDropDownList
       ItemIndex = 0
       TabOrder = 5
       Text = 'Programmatically Handled'
       OnChange = CustomAreaComboBoxChange
       Items.Strings = (
         'Programmatically Handled')
+      Style = csDropDownList
     end
   end
   object AnimalDataSet: TClientDataSet
@@ -2531,5 +2545,10 @@ object FilterViewDemoForm: TFilterViewDemoForm
     ScopeMappings = <>
     Left = 456
     Top = 256
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

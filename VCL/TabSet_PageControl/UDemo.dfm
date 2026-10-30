@@ -1,9 +1,9 @@
 object Form5: TForm5
   Left = 0
   Top = 0
-  Caption = 'TMS FNC TabSet/PageControl Demo'
-  ClientHeight = 408
-  ClientWidth = 653
+  Caption = 'TMS FNC UI Pack - TabSet and PageControl'
+  ClientHeight = 720
+  ClientWidth = 1000
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -150,6 +150,63 @@ object Form5: TForm5
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 653
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 469
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 429
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'PageControl and TabSet'
+      Font.Name = 'Segoe UI Semibold'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 429
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Close, insert and reorder tabs, open the tab list; the pages hold a data grid, tree view, image and rich editor'
+    end
+  end
   object TMSFNCPageControl1: TTMSFNCPageControl
     Left = 0
     Top = 0
@@ -157,52 +214,20 @@ object Form5: TForm5
     Height = 408
     Align = alClient
     ParentDoubleBuffered = False
-    Color = clBtnFace
     DoubleBuffered = True
     TabOrder = 0
     Fill.Kind = gfkNone
     Stroke.Kind = gskNone
     TabAppearance.Font.Charset = DEFAULT_CHARSET
-    TabAppearance.Font.Color = clWindowText
     TabAppearance.Font.Height = -11
-    TabAppearance.Font.Name = 'Tahoma'
     TabAppearance.Font.Style = []
-    TabAppearance.ProgressFill.Color = 16297243
-    TabAppearance.ProgressStroke.Color = 16297243
-    TabAppearance.Fill.Color = 16316397
-    TabAppearance.Stroke.Color = 11119017
-    TabAppearance.ActiveStroke.Color = 11119017
-    TabAppearance.DisabledFill.Color = 13882323
-    TabAppearance.DisabledStroke.Color = 11119017
-    TabAppearance.DownFill.Color = 15655897
-    TabAppearance.DownStroke.Color = 11119017
-    TabAppearance.HoverFill.Color = 16313827
-    TabAppearance.HoverStroke.Color = 11119017
     TabAppearance.CloseFill.Kind = gfkNone
-    TabAppearance.CloseFill.Color = 16316397
-    TabAppearance.CloseStroke.Color = 11119017
     TabAppearance.CloseStroke.Width = 2
-    TabAppearance.CloseDownFill.Color = 3937500
-    TabAppearance.CloseDownStroke.Color = clWhite
     TabAppearance.CloseDownStroke.Width = 2
-    TabAppearance.CloseHoverFill.Color = clRed
-    TabAppearance.CloseHoverStroke.Color = clWhite
     TabAppearance.CloseHoverStroke.Width = 2
-    TabAppearance.BadgeFill.Color = 42495
-    TabAppearance.BadgeStroke.Color = 139
     TabAppearance.BadgeFont.Charset = DEFAULT_CHARSET
-    TabAppearance.BadgeFont.Color = 139
     TabAppearance.BadgeFont.Height = -11
-    TabAppearance.BadgeFont.Name = 'Tahoma'
     TabAppearance.BadgeFont.Style = [fsBold]
-    ButtonAppearance.Fill.Color = 16316397
-    ButtonAppearance.Stroke.Color = 11119017
-    ButtonAppearance.DownFill.Color = 15655897
-    ButtonAppearance.DownStroke.Color = 11119017
-    ButtonAppearance.DisabledFill.Color = 13882323
-    ButtonAppearance.DisabledStroke.Color = 11119017
-    ButtonAppearance.HoverFill.Color = 16313827
-    ButtonAppearance.HoverStroke.Color = 11119017
     ButtonAppearance.CloseIcon.Data = {
       0954506E67496D61676589504E470D0A1A0A0000000D49484452000000100000
       001008060000001FF3FF61000000017352474200AECE1CE90000000467414D41
@@ -249,6 +274,11 @@ object Form5: TForm5
     Options.TabListButton = True
     TabSize.Margins.Left = 5.000000000000000000
     TabSize.Margins.Top = 15.000000000000000000
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Pages = <
       item
         Text = 'Mercedes'
@@ -339,18 +369,11 @@ object Form5: TForm5
         GroupsAppearance.TopSize = 50.000000000000000000
         GroupsAppearance.BottomSize = 50.000000000000000000
         GroupsAppearance.TopFont.Charset = DEFAULT_CHARSET
-        GroupsAppearance.TopFont.Color = clGray
         GroupsAppearance.TopFont.Height = -11
-        GroupsAppearance.TopFont.Name = 'Tahoma'
         GroupsAppearance.TopFont.Style = []
         GroupsAppearance.BottomFont.Charset = DEFAULT_CHARSET
-        GroupsAppearance.BottomFont.Color = clGray
         GroupsAppearance.BottomFont.Height = -11
-        GroupsAppearance.BottomFont.Name = 'Tahoma'
         GroupsAppearance.BottomFont.Style = []
-        GroupsAppearance.TopStroke.Color = 11119017
-        GroupsAppearance.BottomStroke.Color = 11119017
-        ColumnStroke.Color = -1
         Columns = <
           item
             Name = 'Column0'
@@ -568,51 +591,27 @@ object Form5: TForm5
         ColumnsAppearance.TopSize = 25.000000000000000000
         ColumnsAppearance.BottomSize = 25.000000000000000000
         ColumnsAppearance.TopFont.Charset = DEFAULT_CHARSET
-        ColumnsAppearance.TopFont.Color = clGray
         ColumnsAppearance.TopFont.Height = -11
-        ColumnsAppearance.TopFont.Name = 'Tahoma'
         ColumnsAppearance.TopFont.Style = []
         ColumnsAppearance.BottomFont.Charset = DEFAULT_CHARSET
-        ColumnsAppearance.BottomFont.Color = clGray
         ColumnsAppearance.BottomFont.Height = -11
-        ColumnsAppearance.BottomFont.Name = 'Tahoma'
         ColumnsAppearance.BottomFont.Style = []
-        ColumnsAppearance.TopStroke.Color = 11119017
-        ColumnsAppearance.BottomStroke.Color = 11119017
         NodesAppearance.ExpandWidth = 15.000000000000000000
         NodesAppearance.ExpandHeight = 15.000000000000000000
         NodesAppearance.LevelIndent = 20.000000000000000000
         NodesAppearance.FixedHeight = 25.000000000000000000
         NodesAppearance.VariableMinimumHeight = 25.000000000000000000
-        NodesAppearance.Fill.Color = -1
         NodesAppearance.Stroke.Kind = gskNone
-        NodesAppearance.Stroke.Color = 11119017
-        NodesAppearance.ColumnStroke.Color = -1
         NodesAppearance.LineStroke.Kind = gskDot
-        NodesAppearance.LineStroke.Color = 11119017
         NodesAppearance.Font.Charset = DEFAULT_CHARSET
-        NodesAppearance.Font.Color = clGray
         NodesAppearance.Font.Height = -11
-        NodesAppearance.Font.Name = 'Tahoma'
         NodesAppearance.Font.Style = []
-        NodesAppearance.SelectedFill.Color = 16297243
-        NodesAppearance.SelectedStroke.Color = 16297243
-        NodesAppearance.DisabledFill.Color = 11119017
         NodesAppearance.DisabledStroke.Kind = gskNone
-        NodesAppearance.DisabledStroke.Color = 11119017
-        NodesAppearance.ExtendedFill.Color = 16053492
-        NodesAppearance.ExtendedStroke.Color = 11119017
         NodesAppearance.ExtendedFont.Charset = DEFAULT_CHARSET
-        NodesAppearance.ExtendedFont.Color = clWindowText
         NodesAppearance.ExtendedFont.Height = -11
-        NodesAppearance.ExtendedFont.Name = 'Tahoma'
         NodesAppearance.ExtendedFont.Style = []
-        NodesAppearance.ExtendedSelectedFill.Color = 16297243
         NodesAppearance.ExtendedSelectedStroke.Kind = gskNone
-        NodesAppearance.ExtendedSelectedStroke.Color = 11119017
-        NodesAppearance.ExtendedDisabledFill.Color = 11119017
         NodesAppearance.ExtendedDisabledStroke.Kind = gskNone
-        NodesAppearance.ExtendedDisabledStroke.Color = 11119017
         NodesAppearance.ExpandNodeIcon.Data = {
           0954506E67496D61676589504E470D0A1A0A0000000D494844520000000B0000
           000B080200000026CEE071000000017352474200AECE1CE90000000467414D41
@@ -8508,57 +8507,39 @@ object Form5: TForm5
             Width = 68.000000000000000000
           end>
         TopRow = 1
-        Appearance.FixedLayout.Fill.Color = 15132390
         Appearance.FixedLayout.Font.Charset = DEFAULT_CHARSET
-        Appearance.FixedLayout.Font.Color = clWindowText
         Appearance.FixedLayout.Font.Height = -11
-        Appearance.FixedLayout.Font.Name = 'Tahoma'
         Appearance.FixedLayout.Font.Style = [fsBold]
-        Appearance.NormalLayout.Fill.Color = -1
         Appearance.NormalLayout.Font.Charset = DEFAULT_CHARSET
-        Appearance.NormalLayout.Font.Color = clWindowText
         Appearance.NormalLayout.Font.Height = -11
-        Appearance.NormalLayout.Font.Name = 'Tahoma'
         Appearance.NormalLayout.Font.Style = []
-        Appearance.GroupLayout.Fill.Color = 12817262
         Appearance.GroupLayout.Font.Charset = DEFAULT_CHARSET
-        Appearance.GroupLayout.Font.Color = clWhite
         Appearance.GroupLayout.Font.Height = -11
-        Appearance.GroupLayout.Font.Name = 'Tahoma'
         Appearance.GroupLayout.Font.Style = []
-        Appearance.SummaryLayout.Fill.Color = 14009785
         Appearance.SummaryLayout.Font.Charset = DEFAULT_CHARSET
-        Appearance.SummaryLayout.Font.Color = clWindowText
         Appearance.SummaryLayout.Font.Height = -11
-        Appearance.SummaryLayout.Font.Name = 'Tahoma'
         Appearance.SummaryLayout.Font.Style = []
-        Appearance.SelectedLayout.Fill.Color = 14599344
         Appearance.SelectedLayout.Font.Charset = DEFAULT_CHARSET
-        Appearance.SelectedLayout.Font.Color = clWhite
         Appearance.SelectedLayout.Font.Height = -11
-        Appearance.SelectedLayout.Font.Name = 'Tahoma'
         Appearance.SelectedLayout.Font.Style = []
-        Appearance.FocusedLayout.Fill.Color = 14599344
         Appearance.FocusedLayout.Font.Charset = DEFAULT_CHARSET
-        Appearance.FocusedLayout.Font.Color = clWhite
         Appearance.FocusedLayout.Font.Height = -11
-        Appearance.FocusedLayout.Font.Name = 'Tahoma'
         Appearance.FocusedLayout.Font.Style = []
-        Appearance.FixedSelectedLayout.Fill.Color = 14599344
         Appearance.FixedSelectedLayout.Font.Charset = DEFAULT_CHARSET
-        Appearance.FixedSelectedLayout.Font.Color = clWindowText
         Appearance.FixedSelectedLayout.Font.Height = -11
-        Appearance.FixedSelectedLayout.Font.Name = 'Tahoma'
         Appearance.FixedSelectedLayout.Font.Style = []
-        Appearance.BandLayout.Fill.Color = 14745599
         Appearance.BandLayout.Font.Charset = DEFAULT_CHARSET
-        Appearance.BandLayout.Font.Color = clWindowText
         Appearance.BandLayout.Font.Height = -11
-        Appearance.BandLayout.Font.Name = 'Tahoma'
         Appearance.BandLayout.Font.Style = []
         Appearance.ProgressLayout.Format = '%.0f%%'
         LeftCol = 1
         ScrollMode = scmItemScrolling
+        Align = alClient
+        AlignWithMargins = True
+        Margins.Left = 16
+        Margins.Top = 56
+        Margins.Right = 16
+        Margins.Bottom = 16
         object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
           Left = 304
           Top = 136
@@ -8886,10 +8867,13 @@ object Form5: TForm5
         DoubleBuffered = True
         TabOrder = 1
         Appearance.Fill.Kind = gfkGradient
-        Appearance.Fill.ColorTo = 15132390
-        Appearance.Stroke.Color = clGray
         OptionsMenu.ShowButton = False
       end
     end
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

@@ -14,6 +14,9 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    DemoHeader: TPanel;
+    DemoTitle: TLabel;
+    DemoDescription: TLabel;
     TMSFNCGrid1: TTMSFNCGrid;
     TMSFNCPageControl1: TTMSFNCPageControl;
     TMSFNCPageControl1Page0: TTMSFNCPageControlContainer;

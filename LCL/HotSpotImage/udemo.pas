@@ -13,6 +13,9 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    DemoHeader: TPanel;
+    DemoTitle: TLabel;
+    DemoDescription: TLabel;
     Label1: TLabel;
     TMSFNCHotSpotImage1: TTMSFNCHotSpotImage;
     Label2: TLabel;

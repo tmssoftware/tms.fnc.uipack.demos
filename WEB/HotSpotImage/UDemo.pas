@@ -1,5 +1,7 @@
 unit UDemo;
 
+{ demo-colors: the answer feedback colours (WebLabel2.Font.Color) and the hot spot colours for right (SelectedFill, Reset) and wrong answers (gcTomato) are the subject }
+
 interface
 
 uses
@@ -7,17 +9,27 @@ uses
   WEBLib.Forms, WEBLib.Dialogs, VCL.TMSFNCTypes, VCL.TMSFNCUtils,
   VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, Vcl.Controls, Vcl.StdCtrls,
   WEBLib.StdCtrls, Vcl.Imaging.jpeg, VCL.TMSFNCCustomControl, VCL.TMSFNCImage,
-  WEBLib.TMSFNCHotSpotImage, VCL.TMSFNCHotSpotImage;
+  WEBLib.TMSFNCHotSpotImage, VCL.TMSFNCHotSpotImage,
+  WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCButton, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector;
 
 type
   TForm2 = class(TWebForm)
     TMSFNCHotSpotImage1: TTMSFNCHotSpotImage;
-    WebLabel1: TWebLabel;
-    WebButton1: TWebButton;
-    WebLabel2: TWebLabel;
-    WebButton2: TWebButton;
-    WebLabel3: TWebLabel;
-    WebMemo1: TWebMemo;
+    ThemeManager: TTMSFNCThemeManager;
+    SettingsPanel: TTMSFNCPanel;
+    ThemeCaption: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    QuizCaption: TTMSFNCHTMLText;
+    WebButton2: TTMSFNCButton;
+    WebButton1: TTMSFNCButton;
+    ScoreCaption: TTMSFNCHTMLText;
+    WebLabel3: TTMSFNCHTMLText;
+    QuestionCaption: TTMSFNCHTMLText;
+    WebLabel1: TTMSFNCHTMLText;
+    AnswerCaption: TTMSFNCHTMLText;
+    WebLabel2: TTMSFNCHTMLText;
+    HelpCaption: TTMSFNCHTMLText;
+    HelpText: TTMSFNCHTMLText;
     procedure WebButton2Click(Sender: TObject);
     procedure WebButton1Click(Sender: TObject);
     procedure WebFormCreate(Sender: TObject);
@@ -54,7 +66,7 @@ begin
   Hints := not Hints;
   if Hints then
   begin
-    WebButton1.Caption := 'Hint On';
+    WebButton1.Text := 'Hint On';
     for I := 0 to TMSFNCHotSpotImage1.HotSpots.Count - 1 do
     begin
       TMSFNCHotSpotImage1.HotSpots[I].Appearance.HoverFill.Kind := gfkTexture;
@@ -62,7 +74,7 @@ begin
   end
   else
   begin
-    WebButton1.Caption := 'Hint Off';
+    WebButton1.Text := 'Hint Off';
     for I := 0 to TMSFNCHotSpotImage1.HotSpots.Count - 1 do
     begin
       TMSFNCHotSpotImage1.HotSpots[I].Appearance.HoverFill.Kind := gfkSolid;
@@ -78,18 +90,13 @@ begin
   Start := not Start;
   if Start then
   begin
-    WebButton2.Caption := 'Stop';
+    WebButton2.Text := 'Stop';
     for I := 0 to TMSFNCHotSpotImage1.HotSpots.Count - 1 do
     begin
       TMSFNCHotSpotImage1.HotSpots[I].Selected := False;
       TMSFNCHotSpotImage1.HotSpots[I].Appearance.SelectedFill.Kind := gfkSolid;
     end;
     TMSFNCHotSpotImage1.SelectedHotSpot := -1;
-
-    if WebLabel1.Font.Color = gcSteelBlue then
-      WebLabel1.Font.Color := gcOlivedrab
-    else
-      WebLabel1.Font.Color := gcSteelBlue;
 
     WebLabel1.Font.Style := [TFontStyle.fsBold];
 
@@ -99,8 +106,8 @@ begin
   end
   else
   begin
-    WebLabel1.Caption := 'Have a free look on how the different hover, down and selected states work.';
-    WebButton2.Caption := 'Start';
+    WebLabel1.Text := 'Have a free look on how the different hover, down and selected states work.';
+    WebButton2.Text := 'Start';
 
     for I := 0 to TMSFNCHotSpotImage1.HotSpots.Count - 1 do
     begin
@@ -119,13 +126,13 @@ begin
   FormContainer := 'appcontent';
   lbl := TLabel.Create(Self);
   lbl.ElementID := 'title';
-  lbl.Caption := 'TMS FNC UI Pack';
+  lbl.Caption := 'HotSpotImage: European capitals';
 
   lbl := TLabel.Create(Self);
   lbl.ElementID := 'description';
-  lbl.Caption := 'TMSFNCHotSpotImage Demo';
+  lbl.Caption := 'Click Start, then click the country that belongs to the capital you are asked for';
 
-  WebLabel1.Caption := 'Welcome click the start button to test your knowledge on Europe capitals';
+  WebLabel1.Text := 'Welcome click the start button to test your knowledge on Europe capitals';
   Hints := True;
 
   for I := 0 to TMSFNCHotSpotImage1.HotSpots.Count - 1 do
@@ -146,12 +153,12 @@ begin
     Point := 1;
     idx := Random(Length(cities));
 
-    WebLabel1.Caption := 'From which country is ' + cities[idx] + ' the capital';
+    WebLabel1.Text := 'From which country is ' + cities[idx] + ' the capital';
   end
   else
   begin
-    WebLabel1.Caption := 'Click start to begin';
-    WebLabel2.Caption := 'Your final score is:';
+    WebLabel1.Text := 'Click start to begin';
+    WebLabel2.Text := 'Your final score is:';
   end;
 end;
 
@@ -168,12 +175,12 @@ begin
     TMSFNCHotSpotImage1.HotSpots[I].Appearance.SelectedFill.Color := $0000CC99;
   end;
 
-  WebLabel2.Caption := '';
+  WebLabel2.Text := '';
   TMSFNCHotSpotImage1.Invalidate;
   Point := 1;
   Idx:= 0;
   Score := 0;
-  WebLabel3.Caption := score.ToString + '/10';
+  WebLabel3.Text := score.ToString + '/10';
 end;
 
 procedure TForm2.TMSFNCHotSpotImage1SelectedHotSpotChange(Sender: TObject; AIndex: Integer; var Allow: Boolean);
@@ -196,9 +203,9 @@ begin
     if TMSFNCHotSpotImage1.HotSpots[AIndex].Name = countries[idx] then
     begin
       WebLabel2.Font.Color := gcGreen;
-      WebLabel2.Caption := cities[idx] + ' is the capital of ' + countries[idx] + ' ('+Point.ToString+')';
+      WebLabel2.Text := cities[idx] + ' is the capital of ' + countries[idx] + ' ('+Point.ToString+')';
       Score := Score + Point;
-      WebLabel3.Caption := score.ToString + '/10';
+      WebLabel3.Text := score.ToString + '/10';
 
       Delete(cities, idx, 1);
       Delete(countries, idx, 1);
@@ -221,7 +228,7 @@ begin
         end;
 
         WebLabel2.Font.Color := gcRed;
-        WebLabel2.Caption := cities[idx] + ' is not the capital of ' + TMSFNCHotSpotImage1.HotSpots[AIndex].Name + ' but ' + countries[idx] + ' (Next question)';
+        WebLabel2.Text := cities[idx] + ' is not the capital of ' + TMSFNCHotSpotImage1.HotSpots[AIndex].Name + ' but ' + countries[idx] + ' (Next question)';
 
         Delete(cities, idx, 1);
         Delete(countries, idx, 1);
@@ -231,7 +238,7 @@ begin
       else
       begin
         WebLabel2.Font.Color := gcOrange;
-        WebLabel2.Caption := cities[idx] + ' is not the capital of ' + TMSFNCHotSpotImage1.HotSpots[AIndex].Name + ' ('+Point.ToString+')';
+        WebLabel2.Text := cities[idx] + ' is not the capital of ' + TMSFNCHotSpotImage1.HotSpots[AIndex].Name + ' ('+Point.ToString+')';
       end;
     end;
   end;

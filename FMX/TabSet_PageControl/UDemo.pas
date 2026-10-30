@@ -13,10 +13,16 @@ uses
   FMX.TMSFNCRichEditorToolBar, FMX.TMSFNCTypes, FMX.TMSFNCUtils,
   FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, System.Rtti,
   FMX.TMSFNCDataGridCell, FMX.TMSFNCDataGridBase, FMX.TMSFNCDataGridCore,
-  FMX.TMSFNCDataGridRenderer;
+  FMX.TMSFNCDataGridRenderer,
+  FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm1 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCPageControl1: TTMSFNCPageControl;
     TMSFNCPageControl1Page1: TTMSFNCPageControlContainer;
     TMSFNCPageControl1Page2: TTMSFNCPageControlContainer;
@@ -46,8 +52,6 @@ begin
   TMSFNCDataGrid1.LoadFromCSVData('CARS.csv');
   TMSFNCRichEditorFormatToolBar1.FontNamePicker.SelectedFontName := 'Tahoma';
   TMSFNCRichEditorFormatToolBar1.FontSizePicker.SelectedFontSize := 12;
-  Fill.Color := gcWhite;
-  Fill.Kind := TBrushKind.Solid;
 end;
 
 end.

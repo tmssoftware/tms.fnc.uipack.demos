@@ -7,13 +7,17 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.TMSFNCScrollControl,
   FMX.TMSFNCResponsiveList, FMX.TMSFNCTypes, FMX.TMSFNCUtils,
-  FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes;
+  FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes,
+  FMX.TMSFNCCustomControl, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm4 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCResponsiveList1: TTMSFNCResponsiveList;
-    Label1: TLabel;
-    Label2: TLabel;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }

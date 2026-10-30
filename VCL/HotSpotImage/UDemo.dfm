@@ -1,9 +1,9 @@
 object Form2: TForm2
   Left = 0
   Top = 0
-  Caption = 'HotSpotImageDemo'
-  ClientHeight = 768
-  ClientWidth = 734
+  Caption = 'TMS FNC UI Pack - HotSpotImage'
+  ClientHeight = 720
+  ClientWidth = 1100
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -147,65 +147,284 @@ object Form2: TForm2
     000000000000000000000000000000000000000000000000000000000000}
   OldCreateOrder = False
   OnCreate = FormCreate
-  DesignSize = (
-    734
-    768)
   PixelsPerInch = 96
   TextHeight = 13
-  object Label1: TLabel
-    Left = 8
-    Top = 8
-    Width = 718
-    Height = 17
-    Alignment = taCenter
-    Anchors = [akLeft, akTop, akRight]
-    AutoSize = False
-    Caption = 'Label1'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -15
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 734
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 550
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 510
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'HotSpotImage: European capitals'
+      Font.Name = 'Segoe UI Semibold'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 510
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Click Start, then click the country that belongs to the capital you are asked for'
+    end
   end
-  object Label2: TLabel
-    Left = 80
-    Top = 527
-    Width = 514
-    Height = 82
-    Anchors = [akLeft, akTop, akRight, akBottom]
-    AutoSize = False
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    ExplicitHeight = 22
-  end
-  object Label3: TLabel
-    Left = 600
-    Top = 587
-    Width = 49
-    Height = 22
-    Alignment = taRightJustify
-    Anchors = [akRight, akBottom]
-    AutoSize = False
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    ExplicitTop = 527
+  object SettingsPanel: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 16
+    Top = 72
+    Width = 300
+    Height = 632
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 16
+    Align = alLeft
+    TabOrder = 1
+    Header.Visible = False
+    object QuizCaption: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 16
+      Top = 12
+      Width = 268
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 12
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -15
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Quiz'
+      Font.Name = 'Segoe UI Semibold'
+    end
+    object Button2: TTMSFNCButton
+      AlignWithMargins = True
+      Left = 16
+      Top = 44
+      Width = 268
+      Height = 32
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 0
+      Text = 'Start'
+      Default = True
+      OnClick = Button2Click
+    end
+    object Button1: TTMSFNCButton
+      AlignWithMargins = True
+      Left = 16
+      Top = 84
+      Width = 268
+      Height = 32
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 1
+      Text = 'Hint On'
+      OnClick = Button1Click
+    end
+    object ScoreCaption: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 16
+      Top = 132
+      Width = 268
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 16
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -15
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Score'
+      Font.Name = 'Segoe UI Semibold'
+    end
+    object Label3: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 16
+      Top = 164
+      Width = 268
+      Height = 28
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -15
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = ''
+    end
+    object QuestionCaption: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 16
+      Top = 208
+      Width = 268
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 16
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -15
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Question'
+      Font.Name = 'Segoe UI Semibold'
+    end
+    object Label1: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 16
+      Top = 240
+      Width = 268
+      Height = 48
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -13
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = ''
+      WordWrapping = True
+    end
+    object AnswerCaption: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 16
+      Top = 304
+      Width = 268
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 16
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -15
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Answer'
+      Font.Name = 'Segoe UI Semibold'
+    end
+    object Label2: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 16
+      Top = 336
+      Width = 268
+      Height = 48
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -13
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = ''
+      WordWrapping = True
+    end
+    object HelpCaption: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 16
+      Top = 400
+      Width = 268
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 16
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -15
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'How to play'
+      Font.Name = 'Segoe UI Semibold'
+    end
+    object HelpText: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      AlignWithMargins = True
+      Left = 16
+      Top = 432
+      Width = 268
+      Height = 110
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -13
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Click Start: a capital is asked, click its country in the image. A wrong answer gets a second try for half a point, then the correct country turns red. Hint shows the flag when you hover.'
+      WordWrapping = True
+    end
   end
   object TMSFNCHotSpotImage1: TTMSFNCHotSpotImage
     Left = 8
-    Top = 31
+    Top = 103
     Width = 718.000000000000000000
     Height = 550.000000000000000000
     ParentDoubleBuffered = False
-    Anchors = [akLeft, akTop, akRight, akBottom]
     Color = clBtnFace
     DoubleBuffered = True
     TabOrder = 0
@@ -3935,58 +4154,16 @@ object Form2: TForm2
     SelectedHotSpot = 0
     OnSelectedHotSpotChange = TMSFNCHotSpotImage1SelectedHotSpotChange
     OnSelectedHotSpotChanged = TMSFNCHotSpotImage1SelectedHotSpotChanged
+    Align = alClient
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
   end
-  object Button1: TButton
-    Left = 8
-    Top = 584
-    Width = 66
-    Height = 25
-    Anchors = [akLeft, akBottom]
-    Caption = 'Hint On'
-    TabOrder = 1
-    OnClick = Button1Click
-  end
-  object Button2: TButton
-    Left = 655
-    Top = 584
-    Width = 75
-    Height = 25
-    Anchors = [akRight, akBottom]
-    Caption = 'Start'
-    TabOrder = 2
-    OnClick = Button2Click
-  end
-  object Memo1: TMemo
-    Left = 8
-    Top = 615
-    Width = 718
-    Height = 142
-    Anchors = [akLeft, akRight, akBottom]
-    Enabled = False
-    Lines.Strings = (
-      
-        'In this demo we will show you how our TMSFNCHotSpotImage works i' +
-        'n a fun interactive way.'
-      
-        'We'#39've added some European countries as HotSpots and you can test' +
-        ' your knowledge on their captial cities.'
-      
-        'When you click Start: The capital will be shown of one of the co' +
-        'untries you can then click on them in the image.'
-      
-        'In case you are correct the country you'#39've picked will become gr' +
-        'een, if you are wrong there is no need to be devastaded, '
-      
-        'you have another try for half a point. If you are wrong again th' +
-        'e correct country will turn red.'
-      
-        'If you want to try again you can use the '#39'Reset'#39' button, this wi' +
-        'll clear the image and your score.'
-      ''
-      
-        'If you want to make it a little easier '#39'Hint On/Off'#39' gives you t' +
-        'he possibility to show or hide the flag when hovering.'
-      'Good Luck!')
-    TabOrder = 3
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

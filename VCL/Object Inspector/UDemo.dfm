@@ -1,9 +1,9 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Object Inspector Demo'
-  ClientHeight = 647
-  ClientWidth = 1002
+  Caption = 'TMS FNC UI Pack - ObjectInspector'
+  ClientHeight = 720
+  ClientWidth = 1100
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,9 +15,66 @@ object Form130: TForm130
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 1002
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 818
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 778
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'ObjectInspector'
+      Font.Name = 'Segoe UI Semibold'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 778
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Pick a control: the inspector shows its properties and edits them live'
+    end
+  end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
     Left = 609
-    Top = 359
+    Top = 431
     Width = 26
     Height = 26
     Visible = True
@@ -903,12 +960,12 @@ object Form130: TForm130
     AlignWithMargins = True
     Left = 5
     Top = 31
-    Width = 300
+    Width = 360
     Height = 611
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 5
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 16
     Align = alLeft
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -917,18 +974,11 @@ object Form130: TForm130
     GroupsAppearance.TopSize = 50.000000000000000000
     GroupsAppearance.BottomSize = 50.000000000000000000
     GroupsAppearance.TopFont.Charset = DEFAULT_CHARSET
-    GroupsAppearance.TopFont.Color = clBlack
     GroupsAppearance.TopFont.Height = -11
-    GroupsAppearance.TopFont.Name = 'Tahoma'
     GroupsAppearance.TopFont.Style = []
     GroupsAppearance.BottomFont.Charset = DEFAULT_CHARSET
-    GroupsAppearance.BottomFont.Color = clBlack
     GroupsAppearance.BottomFont.Height = -11
-    GroupsAppearance.BottomFont.Name = 'Tahoma'
     GroupsAppearance.BottomFont.Style = []
-    GroupsAppearance.TopStroke.Color = 11119017
-    GroupsAppearance.BottomStroke.Color = 11119017
-    ColumnStroke.Color = -1
     Columns = <
       item
         Name = 'Column0'
@@ -989,57 +1039,30 @@ object Form130: TForm130
     ColumnsAppearance.TopSize = 25.000000000000000000
     ColumnsAppearance.BottomSize = 25.000000000000000000
     ColumnsAppearance.TopFont.Charset = DEFAULT_CHARSET
-    ColumnsAppearance.TopFont.Color = clBlack
     ColumnsAppearance.TopFont.Height = -11
-    ColumnsAppearance.TopFont.Name = 'Tahoma'
     ColumnsAppearance.TopFont.Style = []
     ColumnsAppearance.BottomFont.Charset = DEFAULT_CHARSET
-    ColumnsAppearance.BottomFont.Color = clBlack
     ColumnsAppearance.BottomFont.Height = -11
-    ColumnsAppearance.BottomFont.Name = 'Tahoma'
     ColumnsAppearance.BottomFont.Style = []
-    ColumnsAppearance.TopStroke.Color = 11119017
-    ColumnsAppearance.BottomStroke.Color = 11119017
     NodesAppearance.ExpandWidth = 15.000000000000000000
     NodesAppearance.ExpandHeight = 15.000000000000000000
     NodesAppearance.LevelIndent = 20.000000000000000000
     NodesAppearance.FixedHeight = 25.000000000000000000
     NodesAppearance.VariableMinimumHeight = 25.000000000000000000
-    NodesAppearance.Fill.Color = -1
     NodesAppearance.Stroke.Kind = gskNone
-    NodesAppearance.Stroke.Color = 11119017
-    NodesAppearance.ColumnStroke.Color = -1
     NodesAppearance.LineStroke.Kind = gskDot
-    NodesAppearance.LineStroke.Color = 11119017
     NodesAppearance.Font.Charset = DEFAULT_CHARSET
-    NodesAppearance.Font.Color = clBlack
     NodesAppearance.Font.Height = -11
-    NodesAppearance.Font.Name = 'Tahoma'
     NodesAppearance.Font.Style = []
     NodesAppearance.TitleFont.Charset = DEFAULT_CHARSET
-    NodesAppearance.TitleFont.Color = clBlack
     NodesAppearance.TitleFont.Height = -11
-    NodesAppearance.TitleFont.Name = 'Tahoma'
     NodesAppearance.TitleFont.Style = []
-    NodesAppearance.SelectedFontColor = clBlack
-    NodesAppearance.SelectedFill.Color = 15790320
-    NodesAppearance.SelectedStroke.Color = 15790320
-    NodesAppearance.DisabledFill.Color = 11119017
     NodesAppearance.DisabledStroke.Kind = gskNone
-    NodesAppearance.DisabledStroke.Color = 11119017
-    NodesAppearance.ExtendedFill.Color = 16053492
-    NodesAppearance.ExtendedStroke.Color = 11119017
     NodesAppearance.ExtendedFont.Charset = DEFAULT_CHARSET
-    NodesAppearance.ExtendedFont.Color = clWindowText
     NodesAppearance.ExtendedFont.Height = -11
-    NodesAppearance.ExtendedFont.Name = 'Tahoma'
     NodesAppearance.ExtendedFont.Style = []
-    NodesAppearance.ExtendedSelectedFill.Color = 16297243
     NodesAppearance.ExtendedSelectedStroke.Kind = gskNone
-    NodesAppearance.ExtendedSelectedStroke.Color = 11119017
-    NodesAppearance.ExtendedDisabledFill.Color = 11119017
     NodesAppearance.ExtendedDisabledStroke.Kind = gskNone
-    NodesAppearance.ExtendedDisabledStroke.Color = 11119017
     NodesAppearance.ExpandNodeIcon.Data = {
       0954506E67496D61676589504E470D0A1A0A0000000D494844520000000B0000
       000B080200000026CEE071000000017352474200AECE1CE90000000467414D41
@@ -1079,43 +1102,45 @@ object Form130: TForm130
     ExplicitTop = 8
     ExplicitHeight = 400
   end
-  object Panel1: TPanel
+  object Panel1: TTMSFNCPanel
     AlignWithMargins = True
     Left = 310
     Top = 31
     Width = 687
     Height = 611
-    Margins.Left = 0
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 5
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
-    BevelOuter = bvNone
-    BorderStyle = bsSingle
-    Ctl3D = False
-    ParentCtl3D = False
     TabOrder = 2
+    Header.Visible = False
   end
-  object ComboBox1: TComboBox
+  object ComboBox1: TTMSFNCComboBox
     AlignWithMargins = True
     Left = 5
     Top = 5
     Width = 992
-    Height = 21
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 0
+    Height = 32
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 8
     Align = alTop
-    Style = csDropDownList
     TabOrder = 3
     OnChange = ComboBox1Change
     Items.Strings = (
-      'TButton'
-      'TLabel'
-      'TListBox'
+      'TTMSFNCButton'
+      'TTMSFNCHTMLText'
+      'TTMSFNCListBox'
       'TTMSFNCImage'
       'TTMSFNCTreeView'
       'TTMSFNCPlanner')
+    Style = csDropDownList
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

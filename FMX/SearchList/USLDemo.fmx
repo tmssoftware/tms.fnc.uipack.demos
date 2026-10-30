@@ -1,38 +1,94 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Search list demo'
-  ClientHeight = 377
-  ClientWidth = 732
+  Caption = 'TMS FNC UI Pack - SearchList'
+  ClientHeight = 720
+  ClientWidth = 1100
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
-  object GroupBox1: TGroupBox
-    Position.X = 8.000000000000000000
-    Position.Y = 16.000000000000000000
-    Size.Width = 281.000000000000000000
-    Size.Height = 353.000000000000000000
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 732.000000000000000000
+    Size.Height = 72.000000000000000000
     Size.PlatformDefault = False
-    Text = 'Dictionary lookup'
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 508.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'SearchList'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 508.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Type to filter the lists, with a result limit and filtering on the description'
+    end
+  end
+  object GroupBox1: TTMSFNCPanel
+    Position.X = 8.000000000000000000
+    Position.Y = 88.000000000000000000
+    Size.Width = 330.000000000000000000
+    Size.Height = 632.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 1
+    Header.Text = 'Dictionary lookup'
+    Header.Visible = True
+    Header.Size = 24.000000000000000000
+    Align = Left
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     object TMSFNCSearchList1: TTMSFNCSearchList
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Font.Size = 14.000000000000000000
-      Font.Name = 'Segoe UI'
       Position.X = 16.000000000000000000
-      Position.Y = 56.000000000000000000
-      Size.Width = 250.000000000000000000
-      Size.Height = 225.000000000000000000
+      Position.Y = 64.000000000000000000
+      Size.Width = 298.000000000000000000
+      Size.Height = 466.000000000000000000
       Size.PlatformDefault = False
-      Appearance.CategoryFont.Name = 'Segoe UI'
-      Appearance.DescriptionFont.Name = 'Segoe UI'
       Appearance.DescriptionControlFont = False
-      Appearance.FilterCountFont.Name = 'Segoe UI'
       Appearance.FilterCountFormat = '(%d)'
-      Appearance.ItemCategoryFont.Color = x0000A5FF
-      Appearance.ItemCategoryFont.Name = 'Segoe UI'
       Appearance.ItemCategoryFormat = 'in %s'
       FilterCondition.AutoSelect = False
       Categories = <>
@@ -42,44 +98,23 @@ object Form1: TForm1
         end>
       Items = <>
       Version = '1.0.0.0'
+      Anchors = [akLeft, akTop, akRight, akBottom]
     end
     object TMSFNCSearchEdit1: TTMSFNCSearchEdit
       Position.X = 16.000000000000000000
-      Position.Y = 320.000000000000000000
-      Size.Width = 249.000000000000000000
-      Size.Height = 23.000000000000000000
+      Position.Y = 584.000000000000000000
+      Size.Width = 298.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
-      Appearance.CategoryFont.Name = 'Segoe UI'
-      Appearance.DescriptionFont.Name = 'Segoe UI'
       Appearance.DescriptionControlFont = False
-      Appearance.FilterCountFont.Name = 'Segoe UI'
       Appearance.FilterCountFormat = '(%d)'
-      Appearance.ItemCategoryFont.Color = x0000A5FF
-      Appearance.ItemCategoryFont.Name = 'Segoe UI'
       Appearance.ItemCategoryFormat = 'in %s'
       Categories = <>
       CategoryButton.Appearance.Rounding = 0.000000000000000000
-      CategoryButton.Appearance.InnerStroke.Color = claWhite
       CategoryButton.Appearance.NormalFill.Kind = gfkGradient
-      CategoryButton.Appearance.NormalFill.Color = xFFF9FBFC
-      CategoryButton.Appearance.NormalFill.ColorTo = xFFE6EBEB
-      CategoryButton.Appearance.NormalFill.ColorMirror = xFFDCDCEC
-      CategoryButton.Appearance.NormalFill.ColorMirrorTo = xFFDCE1EC
-      CategoryButton.Appearance.NormalStroke.Color = claGray
       CategoryButton.Appearance.HoverFill.Kind = gfkGradient
-      CategoryButton.Appearance.HoverFill.Color = xFFE5E7E8
-      CategoryButton.Appearance.HoverFill.ColorTo = xFFD2D7D7
-      CategoryButton.Appearance.HoverFill.ColorMirror = xFFC8C8D8
-      CategoryButton.Appearance.HoverFill.ColorMirrorTo = xFFC8CDD8
-      CategoryButton.Appearance.HoverStroke.Color = claGray
       CategoryButton.Appearance.DownFill.Kind = gfkGradient
-      CategoryButton.Appearance.DownFill.Color = xFFDBDDDE
-      CategoryButton.Appearance.DownFill.ColorTo = xFFC8CDCD
-      CategoryButton.Appearance.DownFill.ColorMirror = xFFBEBECE
-      CategoryButton.Appearance.DownFill.ColorMirrorTo = xFFBEC3CE
-      CategoryButton.Appearance.DownStroke.Color = claGray
-      CategoryButton.Appearance.DisabledStroke.Color = claGray
       CategoryButton.Bitmaps = <>
       CategoryButton.Visible = False
       Columns = <
@@ -113,77 +148,74 @@ object Form1: TForm1
             end>
         end>
       SearchButton.Appearance.Rounding = 0.000000000000000000
-      SearchButton.Appearance.InnerStroke.Color = claWhite
       SearchButton.Appearance.NormalFill.Kind = gfkGradient
-      SearchButton.Appearance.NormalFill.Color = xFFF9FBFC
-      SearchButton.Appearance.NormalFill.ColorTo = xFFE6EBEB
-      SearchButton.Appearance.NormalFill.ColorMirror = xFFDCDCEC
-      SearchButton.Appearance.NormalFill.ColorMirrorTo = xFFDCE1EC
-      SearchButton.Appearance.NormalStroke.Color = claGray
       SearchButton.Appearance.HoverFill.Kind = gfkGradient
-      SearchButton.Appearance.HoverFill.Color = xFFE5E7E8
-      SearchButton.Appearance.HoverFill.ColorTo = xFFD2D7D7
-      SearchButton.Appearance.HoverFill.ColorMirror = xFFC8C8D8
-      SearchButton.Appearance.HoverFill.ColorMirrorTo = xFFC8CDD8
-      SearchButton.Appearance.HoverStroke.Color = claGray
       SearchButton.Appearance.DownFill.Kind = gfkGradient
-      SearchButton.Appearance.DownFill.Color = xFFDBDDDE
-      SearchButton.Appearance.DownFill.ColorTo = xFFC8CDCD
-      SearchButton.Appearance.DownFill.ColorMirror = xFFBEBECE
-      SearchButton.Appearance.DownFill.ColorMirrorTo = xFFBEC3CE
-      SearchButton.Appearance.DownStroke.Color = claGray
-      SearchButton.Appearance.DisabledStroke.Color = claGray
       SearchButton.Text = '...'
       SearchButton.Bitmaps = <>
       SearchButton.Visible = False
+      Anchors = [akLeft, akRight, akBottom]
     end
-    object Edit1: TEdit
+    object Edit1: TTMSFNCEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       TabOrder = 3
       Position.X = 16.000000000000000000
-      Position.Y = 24.000000000000000000
+      Position.Y = 32.000000000000000000
       OnChangeTracking = Edit1ChangeTracking
+      Size.Width = 298.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Anchors = [akLeft, akTop, akRight]
     end
-    object ckSearchLimit: TCheckBox
+    object ckSearchLimit: TTMSFNCCheckBox
       Position.X = 16.000000000000000000
-      Position.Y = 288.000000000000000000
+      Position.Y = 546.000000000000000000
       TabOrder = 4
       Text = 'Limit search results to:'
       OnChange = ckSearchLimitChange
+      Size.Width = 170.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Anchors = [akLeft, akBottom]
     end
-    object Edit3: TEdit
+    object Edit3: TTMSFNCEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       TabOrder = 5
       KeyboardType = NumberPad
       Text = '10'
-      Position.X = 165.000000000000000000
-      Position.Y = 288.000000000000000000
+      Position.X = 214.000000000000000000
+      Position.Y = 542.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Anchors = [akRight, akBottom]
     end
   end
-  object GroupBox2: TGroupBox
+  object GroupBox2: TTMSFNCPanel
     Position.X = 296.000000000000000000
-    Position.Y = 16.000000000000000000
-    Size.Width = 417.000000000000000000
-    Size.Height = 353.000000000000000000
+    Position.Y = 88.000000000000000000
+    Size.Width = 722.000000000000000000
+    Size.Height = 632.000000000000000000
     Size.PlatformDefault = False
-    Text = 'Car list lookup'
     TabOrder = 0
+    Header.Text = 'Car list lookup'
+    Header.Visible = True
+    Header.Size = 24.000000000000000000
+    Align = Client
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     object TMSFNCSearchList2: TTMSFNCSearchList
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Font.Size = 14.000000000000000000
-      Font.Name = 'Segoe UI'
       Position.X = 16.000000000000000000
-      Position.Y = 56.000000000000000000
-      Size.Width = 385.000000000000000000
-      Size.Height = 243.000000000000000000
+      Position.Y = 64.000000000000000000
+      Size.Width = 690.000000000000000000
+      Size.Height = 508.000000000000000000
       Size.PlatformDefault = False
-      Appearance.CategoryFont.Name = 'Segoe UI'
-      Appearance.DescriptionFont.Name = 'Segoe UI'
       Appearance.DescriptionControlFont = False
-      Appearance.FilterCountFont.Name = 'Segoe UI'
       Appearance.FilterCountFormat = '(%d)'
-      Appearance.ItemCategoryFont.Color = x0000A5FF
-      Appearance.ItemCategoryFont.Name = 'Segoe UI'
       Appearance.ItemCategoryFormat = 'in %s'
       FilterCondition.AutoSelect = False
       Categories = <>
@@ -193,44 +225,23 @@ object Form1: TForm1
         end>
       Items = <>
       Version = '1.0.0.0'
+      Anchors = [akLeft, akTop, akRight, akBottom]
     end
     object TMSFNCSearchEdit2: TTMSFNCSearchEdit
       Position.X = 16.000000000000000000
-      Position.Y = 320.000000000000000000
-      Size.Width = 385.000000000000000000
-      Size.Height = 23.000000000000000000
+      Position.Y = 584.000000000000000000
+      Size.Width = 690.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 2
-      Appearance.CategoryFont.Name = 'Segoe UI'
-      Appearance.DescriptionFont.Name = 'Segoe UI'
       Appearance.DescriptionControlFont = False
-      Appearance.FilterCountFont.Name = 'Segoe UI'
       Appearance.FilterCountFormat = '(%d)'
-      Appearance.ItemCategoryFont.Color = x0000A5FF
-      Appearance.ItemCategoryFont.Name = 'Segoe UI'
       Appearance.ItemCategoryFormat = 'in %s'
       Categories = <>
       CategoryButton.Appearance.Rounding = 0.000000000000000000
-      CategoryButton.Appearance.InnerStroke.Color = claWhite
       CategoryButton.Appearance.NormalFill.Kind = gfkGradient
-      CategoryButton.Appearance.NormalFill.Color = xFFF9FBFC
-      CategoryButton.Appearance.NormalFill.ColorTo = xFFE6EBEB
-      CategoryButton.Appearance.NormalFill.ColorMirror = xFFDCDCEC
-      CategoryButton.Appearance.NormalFill.ColorMirrorTo = xFFDCE1EC
-      CategoryButton.Appearance.NormalStroke.Color = claGray
       CategoryButton.Appearance.HoverFill.Kind = gfkGradient
-      CategoryButton.Appearance.HoverFill.Color = xFFE5E7E8
-      CategoryButton.Appearance.HoverFill.ColorTo = xFFD2D7D7
-      CategoryButton.Appearance.HoverFill.ColorMirror = xFFC8C8D8
-      CategoryButton.Appearance.HoverFill.ColorMirrorTo = xFFC8CDD8
-      CategoryButton.Appearance.HoverStroke.Color = claGray
       CategoryButton.Appearance.DownFill.Kind = gfkGradient
-      CategoryButton.Appearance.DownFill.Color = xFFDBDDDE
-      CategoryButton.Appearance.DownFill.ColorTo = xFFC8CDCD
-      CategoryButton.Appearance.DownFill.ColorMirror = xFFBEBECE
-      CategoryButton.Appearance.DownFill.ColorMirrorTo = xFFBEC3CE
-      CategoryButton.Appearance.DownStroke.Color = claGray
-      CategoryButton.Appearance.DisabledStroke.Color = claGray
       CategoryButton.Bitmaps = <>
       CategoryButton.Visible = False
       Columns = <
@@ -264,52 +275,40 @@ object Form1: TForm1
             end>
         end>
       SearchButton.Appearance.Rounding = 0.000000000000000000
-      SearchButton.Appearance.InnerStroke.Color = claWhite
       SearchButton.Appearance.NormalFill.Kind = gfkGradient
-      SearchButton.Appearance.NormalFill.Color = xFFF9FBFC
-      SearchButton.Appearance.NormalFill.ColorTo = xFFE6EBEB
-      SearchButton.Appearance.NormalFill.ColorMirror = xFFDCDCEC
-      SearchButton.Appearance.NormalFill.ColorMirrorTo = xFFDCE1EC
-      SearchButton.Appearance.NormalStroke.Color = claGray
       SearchButton.Appearance.HoverFill.Kind = gfkGradient
-      SearchButton.Appearance.HoverFill.Color = xFFE5E7E8
-      SearchButton.Appearance.HoverFill.ColorTo = xFFD2D7D7
-      SearchButton.Appearance.HoverFill.ColorMirror = xFFC8C8D8
-      SearchButton.Appearance.HoverFill.ColorMirrorTo = xFFC8CDD8
-      SearchButton.Appearance.HoverStroke.Color = claGray
       SearchButton.Appearance.DownFill.Kind = gfkGradient
-      SearchButton.Appearance.DownFill.Color = xFFDBDDDE
-      SearchButton.Appearance.DownFill.ColorTo = xFFC8CDCD
-      SearchButton.Appearance.DownFill.ColorMirror = xFFBEBECE
-      SearchButton.Appearance.DownFill.ColorMirrorTo = xFFBEC3CE
-      SearchButton.Appearance.DownStroke.Color = claGray
-      SearchButton.Appearance.DisabledStroke.Color = claGray
       SearchButton.Text = '...'
       SearchButton.Bitmaps = <>
       SearchButton.Visible = False
+      Anchors = [akLeft, akRight, akBottom]
     end
-    object Edit2: TEdit
+    object Edit2: TTMSFNCEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       TabOrder = 3
       Position.X = 16.000000000000000000
-      Position.Y = 24.000000000000000000
+      Position.Y = 32.000000000000000000
       OnChangeTracking = Edit2ChangeTracking
+      Size.Width = 300.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Anchors = [akLeft, akTop, akRight]
     end
-    object ckDescr: TCheckBox
-      Position.X = 184.000000000000000000
-      Position.Y = 24.000000000000000000
-      Size.Width = 153.000000000000000000
-      Size.Height = 19.000000000000000000
+    object ckDescr: TTMSFNCCheckBox
+      Position.X = 332.000000000000000000
+      Position.Y = 36.000000000000000000
+      Size.Width = 200.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 4
       Text = 'Filter also description'
       OnChange = ckDescrChange
     end
     object TMSFNCToolBarColorPicker1: TTMSFNCToolBarColorPicker
-      Position.X = 352.000000000000000000
-      Position.Y = 24.000000000000000000
+      Position.X = 658.000000000000000000
+      Position.Y = 32.000000000000000000
       Size.Width = 48.000000000000000000
-      Size.Height = 24.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 5
       Font.Name = 'Segoe UI'
@@ -343,6 +342,7 @@ object Form1: TForm1
       OnColorSelected = TMSFNCToolBarColorPicker1ColorSelected
       SelectedColor = claRed
       SelectedItemIndex = 16
+      Anchors = [akTop, akRight]
       Items = <
         item
           Color = claBlack
@@ -465,5 +465,10 @@ object Form1: TForm1
           Color = claWhite
         end>
     end
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

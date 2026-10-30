@@ -11,10 +11,16 @@ uses
   VCL.TMSFNCImage, VCL.TMSFNCTreeViewBase, VCL.TMSFNCTreeViewData,
   VCL.TMSFNCCustomTreeView, VCL.TMSFNCTreeView, VCL.TMSFNCCustomComponent,
   VCL.TMSFNCBitmapContainer, VCL.TMSFNCTypes, VCL.TMSFNCUtils,
-  VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes;
+  VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes,
+  VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm5 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCPageControl1: TTMSFNCPageControl;
     TMSFNCPageControl1Page0: TTMSFNCPageControlContainer;
     TMSFNCPageControl1Page1: TTMSFNCPageControlContainer;
@@ -44,7 +50,6 @@ begin
   TMSFNCGrid1.LoadFromCSV('CARS.csv');
   TMSFNCRichEditorFormatToolBar1.FontNamePicker.SelectedFontName := 'Tahoma';
   TMSFNCRichEditorFormatToolBar1.FontSizePicker.SelectedFontSize := 12;
-  Color := gcWhite;
 end;
 
 end.

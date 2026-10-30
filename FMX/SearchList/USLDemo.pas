@@ -1,5 +1,7 @@
 unit USLDemo;
 
+{ demo-colors: the highlight text colours (green, and the colour picker) are the subject of this demo }
+
 interface
 
 uses
@@ -8,21 +10,27 @@ uses
   FMX.TMSFNCCustomControl, FMX.TMSFNCSearchEdit, FMX.TMSFNCScrollControl,
   FMX.TMSFNCSearchList, FMX.Controls.Presentation, FMX.StdCtrls, System.UIConsts,
   FMX.TMSFNCCustomPicker, FMX.TMSFNCColorPicker, FMX.TMSFNCToolBar,
-  FMX.TMSFNCTypes;
+  FMX.TMSFNCTypes,
+  FMX.TMSFNCCheckBox, FMX.TMSFNCEdit, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector, FMX.TMSFNCUtils;
 
 type
   TForm1 = class(TForm)
-    GroupBox1: TGroupBox;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    GroupBox1: TTMSFNCPanel;
     TMSFNCSearchList1: TTMSFNCSearchList;
     TMSFNCSearchEdit1: TTMSFNCSearchEdit;
-    GroupBox2: TGroupBox;
+    GroupBox2: TTMSFNCPanel;
     TMSFNCSearchList2: TTMSFNCSearchList;
     TMSFNCSearchEdit2: TTMSFNCSearchEdit;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    ckSearchLimit: TCheckBox;
-    Edit3: TEdit;
-    ckDescr: TCheckBox;
+    Edit1: TTMSFNCEdit;
+    Edit2: TTMSFNCEdit;
+    ckSearchLimit: TTMSFNCCheckBox;
+    Edit3: TTMSFNCEdit;
+    ckDescr: TTMSFNCCheckBox;
     TMSFNCToolBarColorPicker1: TTMSFNCToolBarColorPicker;
     procedure FormCreate(Sender: TObject);
     procedure Edit1ChangeTracking(Sender: TObject);
@@ -46,9 +54,18 @@ implementation
 
 {$R *.fmx}
 
+// the data files sit in the project folder; a build in a platform subfolder (Win32\Debug) finds them two levels up
+function DataFile(const AName: string): string;
+begin
+  if FileExists('.\' + AName) then
+    Result := '.\' + AName
+  else
+    Result := '.\..\..\' + AName;
+end;
+
 procedure TForm1.ckSearchLimitChange(Sender: TObject);
 begin
-  if ckSearchLimit.IsChecked then
+  if ckSearchLimit.Checked then
     TMSFNCSearchList1.FilterCondition.MaxCategoryItems := StrToInt(Edit3.Text)
   else
     TMSFNCSearchList1.FilterCondition.MaxCategoryItems := 0;
@@ -56,7 +73,7 @@ end;
 
 procedure TForm1.ckDescrChange(Sender: TObject);
 begin
-  if ckDescr.IsChecked then
+  if ckDescr.Checked then
     TMSFNCSearchList2.FilterCondition.FilterData := fdAll
   else
     TMSFNCSearchList2.FilterCondition.FilterData := fdText;
@@ -91,7 +108,7 @@ begin
   cols.Delimiter := ',';
   cols.StrictDelimiter := true;
 
-  sl.LoadFromFile('.\..\..\carlist.txt');
+  sl.LoadFromFile(DataFile('carlist.txt'));
 
   TMSFNCSearchList2.ItemHeight := 70;
   TMSFNCSearchList2.Categories.Clear;
@@ -108,7 +125,6 @@ begin
   TMSFNCSearchList2.Columns.Add;
   TMSFNCSearchList2.Columns[1].ControlFont := true;
   TMSFNCSearchList2.Appearance.DescriptionControlFont := false;
-  TMSFNCSearchList2.Appearance.DescriptionFont.Color := clGray;
   TMSFNCSearchList2.Appearance.DescriptionFont.Style := [TFontStyle.fsItalic];
   TMSFNCSearchList2.FilterCondition.Categories := true;
   TMSFNCSearchList2.FilterCondition.CategoryItems := true;
@@ -137,7 +153,7 @@ begin
     sli.Descriptions[1] := cols[1];
     sli.CategoryID := StrToInt(cols[3]);
 
-    sli.Columns[0].Picture.LoadFromFile('.\..\..\'+cols[2]);
+    sli.Columns[0].Picture.LoadFromFile(DataFile(cols[2]));
   end;
 
   TMSFNCSearchList2.Items.Sort(1, sdUp, false);
@@ -166,7 +182,7 @@ var
   catid: integer;
 begin
   sl := TStringList.Create;
-  sl.LoadFromFile('.\..\..\dictionary.txt');
+  sl.LoadFromFile(DataFile('dictionary.txt'));
 
   TMSFNCSearchList1.BeginUpdate;
 

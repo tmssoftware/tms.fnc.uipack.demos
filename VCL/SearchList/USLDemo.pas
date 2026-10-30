@@ -1,36 +1,44 @@
 unit USLDemo;
 
+{ demo-colors: the highlight text colours (green, and the colour chosen with the swatch) are the subject of this demo }
+
 interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VCL.TMSFNCCustomControl,
   VCL.TMSFNCSearchEdit, VCL.TMSFNCScrollControl, VCL.TMSFNCSearchList,
-  Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.CheckLst, Vcl.Samples.Spin, VCL.TMSFNCTypes;
+  Vcl.ExtCtrls, Vcl.StdCtrls, VCL.TMSFNCCheckedListBox, VCL.TMSFNCSpinEdit, VCL.TMSFNCListBox, VCL.TMSFNCTypes,
+  VCL.TMSFNCCheckBox, VCL.TMSFNCEdit, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector, VCL.TMSFNCUtils;
 
 type
   TForm1 = class(TForm)
-    GroupBox1: TGroupBox;
-    Edit1: TEdit;
-    ckSearchLimit: TCheckBox;
-    SpinEdit1: TSpinEdit;
-    GroupBox2: TGroupBox;
-    Edit2: TEdit;
-    ckDescr: TCheckBox;
-    Panel1: TPanel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    GroupBox1: TTMSFNCPanel;
+    Edit1: TTMSFNCEdit;
+    ckSearchLimit: TTMSFNCCheckBox;
+    SpinEdit1: TTMSFNCSpinEdit;
+    GroupBox2: TTMSFNCPanel;
+    Edit2: TTMSFNCEdit;
+    ckDescr: TTMSFNCCheckBox;
+    Panel1: TTMSFNCPanel;
     Shape1: TShape;
     ColorDialog1: TColorDialog;
     TMSFNCSearchList1: TTMSFNCSearchList;
     TMSFNCSearchList2: TTMSFNCSearchList;
     TMSFNCSearchEdit1: TTMSFNCSearchEdit;
     TMSFNCSearchEdit2: TTMSFNCSearchEdit;
-    CheckListBox1: TCheckListBox;
+    CheckListBox1: TTMSFNCCheckedListBox;
     procedure FormCreate(Sender: TObject);
     procedure Edit1Change(Sender: TObject);
     procedure Edit2Change(Sender: TObject);
     procedure ckDescrClick(Sender: TObject);
     procedure Panel1Click(Sender: TObject);
-    procedure CheckListBox1ClickCheck(Sender: TObject);
+    procedure CheckListBox1ItemCheckChanged(Sender: TObject; AItem: TTMSFNCCheckedListBoxItem);
     procedure ckSearchLimitClick(Sender: TObject);
   private
     { Private declarations }
@@ -47,7 +55,16 @@ implementation
 
 {$R *.dfm}
 
-procedure TForm1.CheckListBox1ClickCheck(Sender: TObject);
+// the data files sit in the project folder; a build in a platform subfolder (Win32\Debug) finds them two levels up
+function DataFile(const AName: string): string;
+begin
+  if FileExists('.\' + AName) then
+    Result := '.\' + AName
+  else
+    Result := '.\..\..\' + AName;
+end;
+
+procedure TForm1.CheckListBox1ItemCheckChanged(Sender: TObject; AItem: TTMSFNCCheckedListBoxItem);
 var
   i: integer;
 begin
@@ -70,7 +87,7 @@ end;
 procedure TForm1.ckSearchLimitClick(Sender: TObject);
 begin
   if ckSearchLimit.Checked then
-    TMSFNCSearchList1.FilterCondition.MaxCategoryItems := SpinEdit1.Value
+    TMSFNCSearchList1.FilterCondition.MaxCategoryItems := Round(SpinEdit1.Value)
   else
     TMSFNCSearchList1.FilterCondition.MaxCategoryItems := 0;
 end;
@@ -104,7 +121,7 @@ begin
   cols.Delimiter := ',';
   cols.StrictDelimiter := true;
 
-  sl.LoadFromFile('.\..\..\carlist.txt');
+  sl.LoadFromFile(DataFile('carlist.txt'));
 
   TMSFNCSearchList2.ItemHeight := 70;
   TMSFNCSearchList2.Categories.Clear;
@@ -121,7 +138,6 @@ begin
   TMSFNCSearchList2.Columns.Add;
   TMSFNCSearchList2.Columns[1].ControlFont := true;
   TMSFNCSearchList2.Appearance.DescriptionControlFont := false;
-  TMSFNCSearchList2.Appearance.DescriptionFont.Color := clGray;
   TMSFNCSearchList2.Appearance.DescriptionFont.Style := [fsItalic];
   TMSFNCSearchList2.FilterCondition.Categories := true;
   TMSFNCSearchList2.FilterCondition.CategoryItems := true;
@@ -148,7 +164,7 @@ begin
     sli.Descriptions[1] := cols[1];
     sli.CategoryID := StrToInt(cols[3]);
 
-    sli.Columns[0].Picture.LoadFromFile('.\..\..\'+cols[2]);
+    sli.Columns[0].Picture.LoadFromFile(DataFile(cols[2]));
   end;
 
   TMSFNCSearchList2.Items.Sort(1, sdUp, false);
@@ -157,7 +173,7 @@ begin
 
   for i := 0 to TMSFNCSearchList2.Categories.Count - 1 do
   begin
-    CheckListBox1.Items.Add(TMSFNCSearchList2.Categories[i].Caption);
+    CheckListBox1.AddItem(TMSFNCSearchList2.Categories[i].Caption);
     CheckListBox1.Checked[i] := true;
   end;
 
@@ -181,7 +197,7 @@ var
   catid: integer;
 begin
   sl := TStringList.Create;
-  sl.LoadFromFile('.\..\..\dictionary.txt');
+  sl.LoadFromFile(DataFile('dictionary.txt'));
 
   TMSFNCSearchList1.BeginUpdate;
 

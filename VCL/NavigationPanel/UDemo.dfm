@@ -1,8 +1,8 @@
 object Form5: TForm5
   Left = 0
   Top = 0
-  Caption = 'TMS FNC NavigationPanel Demo'
-  ClientHeight = 503
+  Caption = 'TMS FNC UI Pack - NavigationPanel'
+  ClientHeight = 575
   ClientWidth = 788
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -148,50 +148,95 @@ object Form5: TForm5
   Position = poScreenCenter
   OnCreate = FormCreate
   TextHeight = 13
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 788
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 604
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 564
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'NavigationPanel'
+      Font.Name = 'Segoe UI Semibold'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 564
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Pick an entry to show a grid, tree view or image; collapse the panel to its compact mode'
+    end
+  end
   object TMSFNCNavigationPanel1: TTMSFNCNavigationPanel
     AlignWithMargins = True
     Left = 5
     Top = 5
     Width = 276
     Height = 493
-    Margins.Left = 5
-    Margins.Top = 5
+    Margins.Left = 16
+    Margins.Top = 0
     Margins.Right = 0
-    Margins.Bottom = 5
+    Margins.Bottom = 16
     Align = alLeft
     ParentDoubleBuffered = False
     DoubleBuffered = True
     TabOrder = 0
     BitmapContainer = TMSFNCBitmapContainer1
     ItemsAppearance.Font.Charset = DEFAULT_CHARSET
-    ItemsAppearance.Font.Color = clWindowText
     ItemsAppearance.Font.Height = -11
-    ItemsAppearance.Font.Name = 'Tahoma'
     ItemsAppearance.Font.Style = []
     ItemsAppearance.ActiveFont.Charset = DEFAULT_CHARSET
-    ItemsAppearance.ActiveFont.Color = clWhite
     ItemsAppearance.ActiveFont.Height = -11
-    ItemsAppearance.ActiveFont.Name = 'Tahoma'
     ItemsAppearance.ActiveFont.Style = []
     ItemsAppearance.HoverFont.Charset = DEFAULT_CHARSET
-    ItemsAppearance.HoverFont.Color = clWhite
     ItemsAppearance.HoverFont.Height = -11
-    ItemsAppearance.HoverFont.Name = 'Tahoma'
     ItemsAppearance.HoverFont.Style = []
     ItemsAppearance.DownFont.Charset = DEFAULT_CHARSET
-    ItemsAppearance.DownFont.Color = clWhite
     ItemsAppearance.DownFont.Height = -11
-    ItemsAppearance.DownFont.Name = 'Tahoma'
     ItemsAppearance.DownFont.Style = []
     ItemsAppearance.DisabledFont.Charset = DEFAULT_CHARSET
-    ItemsAppearance.DisabledFont.Color = clGray
     ItemsAppearance.DisabledFont.Height = -11
-    ItemsAppearance.DisabledFont.Name = 'Tahoma'
     ItemsAppearance.DisabledFont.Style = []
     ItemsAppearance.BadgeFont.Charset = DEFAULT_CHARSET
-    ItemsAppearance.BadgeFont.Color = clDarkred
     ItemsAppearance.BadgeFont.Height = -11
-    ItemsAppearance.BadgeFont.Name = 'Tahoma'
     ItemsAppearance.BadgeFont.Style = [fsBold]
     Panels = <>
     OnItemClick = TMSFNCNavigationPanel1ItemClick
@@ -200,7 +245,7 @@ object Form5: TForm5
   end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
     Left = 621
-    Top = 8
+    Top = 80
     Width = 26
     Height = 26
     Visible = True
@@ -246,24 +291,20 @@ object Form5: TForm5
         Tag = 0
       end>
   end
-  object Panel1: TPanel
+  object Panel1: TTMSFNCPanel
     AlignWithMargins = True
     Left = 286
     Top = 5
     Width = 497
     Height = 493
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 5
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
-    BevelOuter = bvNone
-    BorderStyle = bsSingle
-    Caption = 'Panel1'
-    Ctl3D = False
-    ParentCtl3D = False
     TabOrder = 2
     Visible = False
+    Header.Visible = False
     object TMSFNCDataGrid1: TTMSFNCDataGrid
       AlignWithMargins = True
       Left = 5
@@ -279,44 +320,28 @@ object Form5: TForm5
       DoubleBuffered = True
       TabOrder = 0
       CellAppearance.BandLayout.Font.Charset = DEFAULT_CHARSET
-      CellAppearance.BandLayout.Font.Color = clWindowText
       CellAppearance.BandLayout.Font.Height = -11
-      CellAppearance.BandLayout.Font.Name = 'Segoe UI'
       CellAppearance.BandLayout.Font.Style = []
       CellAppearance.FixedLayout.Font.Charset = DEFAULT_CHARSET
-      CellAppearance.FixedLayout.Font.Color = clWindowText
       CellAppearance.FixedLayout.Font.Height = -11
-      CellAppearance.FixedLayout.Font.Name = 'Segoe UI'
       CellAppearance.FixedLayout.Font.Style = []
       CellAppearance.FixedSelectedLayout.Font.Charset = DEFAULT_CHARSET
-      CellAppearance.FixedSelectedLayout.Font.Color = clWindowText
       CellAppearance.FixedSelectedLayout.Font.Height = -11
-      CellAppearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
       CellAppearance.FixedSelectedLayout.Font.Style = []
       CellAppearance.FocusedLayout.Font.Charset = DEFAULT_CHARSET
-      CellAppearance.FocusedLayout.Font.Color = clWindowText
       CellAppearance.FocusedLayout.Font.Height = -11
-      CellAppearance.FocusedLayout.Font.Name = 'Segoe UI'
       CellAppearance.FocusedLayout.Font.Style = []
       CellAppearance.GroupLayout.Font.Charset = DEFAULT_CHARSET
-      CellAppearance.GroupLayout.Font.Color = clWindowText
       CellAppearance.GroupLayout.Font.Height = -11
-      CellAppearance.GroupLayout.Font.Name = 'Segoe UI'
       CellAppearance.GroupLayout.Font.Style = []
       CellAppearance.NormalLayout.Font.Charset = DEFAULT_CHARSET
-      CellAppearance.NormalLayout.Font.Color = clWindowText
       CellAppearance.NormalLayout.Font.Height = -11
-      CellAppearance.NormalLayout.Font.Name = 'Segoe UI'
       CellAppearance.NormalLayout.Font.Style = []
       CellAppearance.SelectedLayout.Font.Charset = DEFAULT_CHARSET
-      CellAppearance.SelectedLayout.Font.Color = clWindowText
       CellAppearance.SelectedLayout.Font.Height = -11
-      CellAppearance.SelectedLayout.Font.Name = 'Segoe UI'
       CellAppearance.SelectedLayout.Font.Style = []
       CellAppearance.SummaryLayout.Font.Charset = DEFAULT_CHARSET
-      CellAppearance.SummaryLayout.Font.Color = clWindowText
       CellAppearance.SummaryLayout.Font.Height = -11
-      CellAppearance.SummaryLayout.Font.Name = 'Segoe UI'
       CellAppearance.SummaryLayout.Font.Style = []
       Icons.ExpandIcon.Data = {
         1054544D53464E435356474269746D6170080200003C73766720786D6C6E733D
@@ -747,31 +772,25 @@ object Form5: TForm5
           Width = 68.000000000000000000
         end>
       FilterAppearance.Font.Charset = DEFAULT_CHARSET
-      FilterAppearance.Font.Color = clWindowText
       FilterAppearance.Font.Height = -11
-      FilterAppearance.Font.Name = 'Segoe UI'
       FilterAppearance.Font.Style = []
       Options.Mouse.ClickMargin = 0
     end
   end
-  object Panel3: TPanel
+  object Panel3: TTMSFNCPanel
     AlignWithMargins = True
     Left = 286
     Top = 5
     Width = 497
     Height = 493
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 5
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
-    BevelOuter = bvNone
-    BorderStyle = bsSingle
-    Caption = 'Panel3'
-    Ctl3D = False
-    ParentCtl3D = False
     TabOrder = 3
     Visible = False
+    Header.Visible = False
     object TMSFNCImage1: TTMSFNCImage
       AlignWithMargins = True
       Left = 5
@@ -784,7 +803,6 @@ object Form5: TForm5
       Margins.Bottom = 5
       Align = alClient
       ParentDoubleBuffered = False
-      Color = clBtnFace
       DoubleBuffered = True
       TabOrder = 0
       Bitmaps = <
@@ -1124,24 +1142,20 @@ object Form5: TForm5
         end>
     end
   end
-  object Panel2: TPanel
+  object Panel2: TTMSFNCPanel
     AlignWithMargins = True
     Left = 286
     Top = 5
     Width = 497
     Height = 493
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 5
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
-    BevelOuter = bvNone
-    BorderStyle = bsSingle
-    Caption = 'Panel2'
-    Ctl3D = False
-    ParentCtl3D = False
     TabOrder = 4
     Visible = False
+    Header.Visible = False
     object TMSFNCTreeView1: TTMSFNCTreeView
       AlignWithMargins = True
       Left = 5
@@ -1160,14 +1174,10 @@ object Form5: TForm5
       GroupsAppearance.TopSize = 50.000000000000000000
       GroupsAppearance.BottomSize = 50.000000000000000000
       GroupsAppearance.TopFont.Charset = DEFAULT_CHARSET
-      GroupsAppearance.TopFont.Color = clGray
       GroupsAppearance.TopFont.Height = -11
-      GroupsAppearance.TopFont.Name = 'Tahoma'
       GroupsAppearance.TopFont.Style = []
       GroupsAppearance.BottomFont.Charset = DEFAULT_CHARSET
-      GroupsAppearance.BottomFont.Color = clGray
       GroupsAppearance.BottomFont.Height = -11
-      GroupsAppearance.BottomFont.Name = 'Tahoma'
       GroupsAppearance.BottomFont.Style = []
       Columns = <
         item
@@ -1368,14 +1378,10 @@ object Form5: TForm5
       ColumnsAppearance.TopSize = 25.000000000000000000
       ColumnsAppearance.BottomSize = 25.000000000000000000
       ColumnsAppearance.TopFont.Charset = DEFAULT_CHARSET
-      ColumnsAppearance.TopFont.Color = clGray
       ColumnsAppearance.TopFont.Height = -11
-      ColumnsAppearance.TopFont.Name = 'Tahoma'
       ColumnsAppearance.TopFont.Style = []
       ColumnsAppearance.BottomFont.Charset = DEFAULT_CHARSET
-      ColumnsAppearance.BottomFont.Color = clGray
       ColumnsAppearance.BottomFont.Height = -11
-      ColumnsAppearance.BottomFont.Name = 'Tahoma'
       ColumnsAppearance.BottomFont.Style = []
       NodesAppearance.ExpandWidth = 15.000000000000000000
       NodesAppearance.ExpandHeight = 15.000000000000000000
@@ -1383,19 +1389,13 @@ object Form5: TForm5
       NodesAppearance.FixedHeight = 25.000000000000000000
       NodesAppearance.VariableMinimumHeight = 25.000000000000000000
       NodesAppearance.Font.Charset = DEFAULT_CHARSET
-      NodesAppearance.Font.Color = clGray
       NodesAppearance.Font.Height = -11
-      NodesAppearance.Font.Name = 'Tahoma'
       NodesAppearance.Font.Style = []
       NodesAppearance.TitleFont.Charset = DEFAULT_CHARSET
-      NodesAppearance.TitleFont.Color = clWindowText
       NodesAppearance.TitleFont.Height = -11
-      NodesAppearance.TitleFont.Name = 'Tahoma'
       NodesAppearance.TitleFont.Style = []
       NodesAppearance.ExtendedFont.Charset = DEFAULT_CHARSET
-      NodesAppearance.ExtendedFont.Color = clWindowText
       NodesAppearance.ExtendedFont.Height = -11
-      NodesAppearance.ExtendedFont.Name = 'Tahoma'
       NodesAppearance.ExtendedFont.Style = []
       NodesAppearance.ExpandNodeIcon.Data = {
         0954506E67496D61676589504E470D0A1A0A0000000D494844520000000B0000
@@ -1432,5 +1432,10 @@ object Form5: TForm5
       DefaultViewJSONOptions.NameHTMLTemplate = '<#NAME>'
       DefaultViewJSONOptions.ValueHTMLTemplate = '<#VALUE>'
     end
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end
