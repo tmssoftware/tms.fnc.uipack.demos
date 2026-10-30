@@ -14,15 +14,19 @@ uses
   VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes,
   VCL.TMSFNCDataGridCell, VCL.TMSFNCDataGridData, VCL.TMSFNCDataGridBase,
   VCL.TMSFNCDataGridCore, VCL.TMSFNCDataGridRenderer, WEBLib.StdCtrls,
-  VCL.TMSFNCCustomControl, VCL.TMSFNCDataGrid, WEBLib.Controls, WEBLib.ExtCtrls;
+  VCL.TMSFNCCustomControl, VCL.TMSFNCDataGrid, WEBLib.Controls, WEBLib.ExtCtrls,
+  WEBLib.TMSFNCPanel, WEBLib.TMSFNCButton, WEBLib.TMSFNCTheme,
+  WEBLib.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TWebForm)
     lblTitle: TWebLabel;
     lblDescription: TWebLabel;
-    Panel1: TWebPanel;
-    Button1: TWebButton;
-    Button2: TWebButton;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    Button1: TTMSFNCButton;
+    Button2: TTMSFNCButton;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);

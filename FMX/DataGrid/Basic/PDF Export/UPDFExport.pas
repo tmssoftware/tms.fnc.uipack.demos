@@ -1,5 +1,7 @@
 unit UPDFExport;
 
+{ demo-colors: TMSFNCDataGrid1.Layouts, ACell.Layout.Font.Color - the coloured cells are what the export carries }
+
 interface
 
 uses
@@ -11,16 +13,22 @@ uses
   FMX.TMSFNCCustomScrollControl, FMX.TMSFNCDataGridData, FMX.TMSFNCCustomGrid,
   FMX.TMSFNCDataGrid, FMX.TMSFNCDataGridCell, FMX.TMSFNCGraphics,
   FMX.TMSFNCGraphicsTypes, FMX.TMSFNCDataGridBase, FMX.TMSFNCDataGridCore,
-  FMX.TMSFNCDataGridRenderer, System.Rtti;
+  FMX.TMSFNCDataGridRenderer, System.Rtti,
+  FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
-    Panel1: TPanel;
-    Button2: TButton;
+    Panel1: TTMSFNCPanel;
+    Button2: TTMSFNCButton;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     TMSFNCDataGridPDFIO1: TTMSFNCDataGridPDFIO;
-    CheckBox1: TCheckBox;
+    CheckBox1: TTMSFNCCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure TMSFNCDataGridPDFIO1GetFooter(Sender, AExportObject: TObject;
@@ -87,7 +95,7 @@ procedure TForm130.TMSFNCDataGrid1BeforeDrawCell(Sender: TObject;
   AGraphics: TTMSFNCGraphics; ACell: TTMSFNCDataGridCell;
   var ACanDraw: Boolean);
 begin
-  if CheckBox1.IsChecked and ACell.IsExporting then
+  if CheckBox1.Checked and ACell.IsExporting then
     ACell.DrawElements := [gcdText, gcdStroke];
 end;
 

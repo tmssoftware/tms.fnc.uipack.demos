@@ -1,5 +1,7 @@
 unit UEditing;
 
+{ demo-colors: TMSFNCDataGrid1.Layouts - random cell colours shown by the colour picker column }
+
 interface
 
 uses
@@ -9,10 +11,16 @@ uses
   VCL.TMSFNCCustomScrollControl, VCL.TMSFNCDataGridData, VCL.TMSFNCCustomGrid,
   VCL.TMSFNCDataGrid, VCL.TMSFNCDataGridCell, VCL.TMSFNCTypes, VCL.TMSFNCUtils,
   VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCDataGridBase,
-  VCL.TMSFNCDataGridCore, VCL.TMSFNCDataGridRenderer, Rtti;
+  VCL.TMSFNCDataGridCore, VCL.TMSFNCDataGridRenderer, Rtti,
+  VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     procedure FormCreate(Sender: TObject);
     procedure TMSFNCDataGrid1GetInplaceEditorProperties(Sender: TObject;

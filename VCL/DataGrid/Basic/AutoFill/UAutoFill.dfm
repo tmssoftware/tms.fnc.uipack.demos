@@ -2,7 +2,7 @@ object FormAutoFill: TFormAutoFill
   Left = 0
   Top = 0
   Caption = 'TMS FNC DataGrid AutoFill Demo'
-  ClientHeight = 600
+  ClientHeight = 660
   ClientWidth = 1000
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -13,49 +13,100 @@ object FormAutoFill: TFormAutoFill
   Position = poScreenCenter
   OnCreate = FormCreate
   TextHeight = 15
-  object PanelTop: TPanel
+  object DemoHeader: TTMSFNCPanel
     Left = 0
     Top = 0
     Width = 1000
-    Height = 73
+    Height = 72
     Align = alTop
-    BevelOuter = bvNone
     TabOrder = 0
-    object LblInstructions: TLabel
-      Left = 8
-      Top = 42
-      Width = 796
-      Height = 15
-      Caption = 
-        'Select cells with seed values (rows 1-2), then drag the fill han' +
-        'dle (small square at selection corner) to auto-fill. Try differe' +
-        'nt columns for various patterns.'
-      WordWrap = True
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 816
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
     end
-    object BtnResetData: TButton
-      Left = 8
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 776
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'DataGrid auto fill'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 776
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Select cells with seed values (rows 1-2), then drag the fill handle at the selection corner to fill a series'
+    end
+  end
+  object PanelTop: TTMSFNCPanel
+    Left = 0
+    Top = 72
+    Width = 1000
+    Height = 48
+    Align = alTop
+    TabOrder = 0
+    Header.Visible = False
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 12
+    object BtnResetData: TTMSFNCButton
+      Left = 16
       Top = 8
       Width = 100
-      Height = 28
-      Caption = 'Reset Data'
+      Height = 32
+      Text = 'Reset Data'
       TabOrder = 0
       OnClick = BtnResetDataClick
     end
-    object BtnFillNumbers: TButton
-      Left = 116
+    object BtnFillNumbers: TTMSFNCButton
+      Left = 124
       Top = 8
-      Width = 100
-      Height = 28
-      Caption = 'Fill Numbers'
+      Width = 112
+      Height = 32
+      Text = 'Fill Numbers'
       TabOrder = 1
       OnClick = BtnFillNumbersClick
     end
-    object BtnFillDates: TButton
-      Left = 224
+    object BtnFillDates: TTMSFNCButton
+      Left = 244
       Top = 8
       Width = 100
-      Height = 28
-      Caption = 'Fill Dates'
+      Height = 32
+      Text = 'Fill Dates'
       TabOrder = 2
       OnClick = BtnFillDatesClick
     end
@@ -66,10 +117,10 @@ object FormAutoFill: TFormAutoFill
     Top = 83
     Width = 980
     Height = 507
-    Margins.Left = 10
-    Margins.Top = 10
-    Margins.Right = 10
-    Margins.Bottom = 10
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -77,65 +128,53 @@ object FormAutoFill: TFormAutoFill
     ShowAcceleratorChar = False
     Footer.Bar.Buttons = <>
     Header.VisualGrouping.Layout.Font.Charset = DEFAULT_CHARSET
-    Header.VisualGrouping.Layout.Font.Color = clWindowText
     Header.VisualGrouping.Layout.Font.Height = -12
     Header.VisualGrouping.Layout.Font.Name = 'Segoe UI'
     Header.VisualGrouping.Layout.Font.Style = []
     Header.Bar.Buttons = <>
     CellAppearance.FilterMatchLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FilterMatchLayout.Font.Color = clWindowText
     CellAppearance.FilterMatchLayout.Font.Height = -12
     CellAppearance.FilterMatchLayout.Font.Name = 'Segoe UI'
     CellAppearance.FilterMatchLayout.Font.Style = []
     CellAppearance.FilterInverseMatchLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FilterInverseMatchLayout.Font.Color = clWindowText
     CellAppearance.FilterInverseMatchLayout.Font.Height = -12
     CellAppearance.FilterInverseMatchLayout.Font.Name = 'Segoe UI'
     CellAppearance.FilterInverseMatchLayout.Font.Style = []
     CellAppearance.BandLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.BandLayout.Font.Color = clWindowText
     CellAppearance.BandLayout.Font.Height = -12
     CellAppearance.BandLayout.Font.Name = 'Segoe UI'
     CellAppearance.BandLayout.Font.Style = []
     CellAppearance.FixedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FixedLayout.Font.Color = clWindowText
     CellAppearance.FixedLayout.Font.Height = -12
     CellAppearance.FixedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FixedLayout.Font.Style = []
     CellAppearance.FixedSelectedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FixedSelectedLayout.Font.Color = clWindowText
     CellAppearance.FixedSelectedLayout.Font.Height = -12
     CellAppearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FixedSelectedLayout.Font.Style = []
     CellAppearance.FocusedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FocusedLayout.Font.Color = clWindowText
     CellAppearance.FocusedLayout.Font.Height = -12
     CellAppearance.FocusedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FocusedLayout.Font.Style = []
     CellAppearance.GroupLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.GroupLayout.Font.Color = clWindowText
     CellAppearance.GroupLayout.Font.Height = -12
     CellAppearance.GroupLayout.Font.Name = 'Segoe UI'
     CellAppearance.GroupLayout.Font.Style = []
     CellAppearance.NormalLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.NormalLayout.Font.Color = clWindowText
     CellAppearance.NormalLayout.Font.Height = -12
     CellAppearance.NormalLayout.Font.Name = 'Segoe UI'
     CellAppearance.NormalLayout.Font.Style = []
     CellAppearance.SelectedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.SelectedLayout.Font.Color = clWindowText
     CellAppearance.SelectedLayout.Font.Height = -12
     CellAppearance.SelectedLayout.Font.Name = 'Segoe UI'
     CellAppearance.SelectedLayout.Font.Style = []
     CellAppearance.SummaryLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.SummaryLayout.Font.Color = clWindowText
     CellAppearance.SummaryLayout.Font.Height = -12
     CellAppearance.SummaryLayout.Font.Name = 'Segoe UI'
     CellAppearance.SummaryLayout.Font.Style = []
     Columns = <>
     FilterActions = <>
     FilterAppearance.Font.Charset = DEFAULT_CHARSET
-    FilterAppearance.Font.Color = clWindowText
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
@@ -533,5 +572,10 @@ object FormAutoFill: TFormAutoFill
       2066696C6C2D72756C653D226576656E6F6464222069643D2243686576726F6E
       5F5269676874222F3E3C672F3E3C672F3E3C672F3E3C672F3E3C672F3E3C672F
       3E3C2F7376673E}
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

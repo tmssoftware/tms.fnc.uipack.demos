@@ -2,67 +2,111 @@ object Form130: TForm130
   Left = 0
   Top = 0
   Caption = 'TMS FNC Data Grid Merging Demo'
-  ClientHeight = 540
-  ClientWidth = 736
+  ClientHeight = 660
+  ClientWidth = 1000
   Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
-  object Panel1: TPanel
+  object DemoHeader: TTMSFNCPanel
     Align = Top
-    Padding.Left = 5.000000000000000000
-    Padding.Top = 5.000000000000000000
-    Padding.Right = 5.000000000000000000
-    Margins.Left = 10.000000000000000000
-    Margins.Top = 10.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 10.000000000000000000
-    Position.X = 10.000000000000000000
-    Position.Y = 10.000000000000000000
-    Size.Width = 716.000000000000000000
-    Size.Height = 79.000000000000000000
+    Size.Width = 736.000000000000000000
+    Size.Height = 72.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    object Button1: TButton
-      Position.X = 13.000000000000000000
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
       Position.Y = 12.000000000000000000
-      Size.Width = 84.000000000000000000
-      Size.Height = 22.000000000000000000
+      Size.Width = 512.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'DataGrid cell merging'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 512.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Select a range of cells and merge it, or split a merged cell'
+    end
+  end
+  object Panel1: TTMSFNCPanel
+    Align = Top
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 12.000000000000000000
+    Size.Width = 716.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Header.Visible = False
+    object Button1: TTMSFNCButton
+      Position.X = 16.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
       Text = 'Merge'
-      TextSettings.Trimming = None
       OnClick = Button1Click
     end
-    object Button2: TButton
-      Position.X = 13.000000000000000000
-      Position.Y = 44.000000000000000000
-      Size.Width = 84.000000000000000000
-      Size.Height = 22.000000000000000000
+    object Button2: TTMSFNCButton
+      Position.X = 124.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       Text = 'Split'
-      TextSettings.Trimming = None
       OnClick = Button2Click
     end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Align = Client
-    Margins.Left = 10.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 10.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     Size.Width = 716.000000000000000000
     Size.Height = 431.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
-    CellAppearance.FixedSelectedLayout.Fill.Color = claLightsteelblue
-    CellAppearance.FocusedLayout.Fill.Color = claLightsteelblue
-    CellAppearance.FocusedLayout.Font.Color = claWhite
-    CellAppearance.GroupLayout.Font.Color = claSteelblue
-    CellAppearance.SelectedLayout.Fill.Color = claLightsteelblue
-    CellAppearance.SelectedLayout.Font.Color = claWhite
     Icons.ExpandIcon.PNG = {
       89504E470D0A1A0A0000000D4948445200000020000000200806000000737A7A
       F40000000473424954080808087C0864880000001A494441545885EDC1010100
@@ -308,6 +352,11 @@ object Form130: TForm130
       2E35362032332032352E3132222F3E3C2F673E3C2F7376673E0D0A}
     Columns = <>
     Options.Mouse.ClickMargin = 0
-    Stroke.Color = claDarkgray
+    Margins.Top = 0.000000000000000000
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

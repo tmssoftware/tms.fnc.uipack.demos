@@ -14,12 +14,17 @@ uses
   VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCDataGridCell,
   VCL.TMSFNCDataGridData, VCL.TMSFNCDataGridBase, VCL.TMSFNCDataGridCore,
   VCL.TMSFNCDataGridRenderer, VCL.TMSFNCCustomControl, VCL.TMSFNCDataGrid,
-  System.Rtti;
+  System.Rtti,
+  WEBLib.TMSFNCPanel, WEBLib.TMSFNCButton, WEBLib.TMSFNCTheme,
+  WEBLib.TMSFNCThemeSelector;
 
 type
   TFormAutoFill = class(TWebForm)
     lblTitle: TWebLabel;
     lblDescription: TWebLabel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoBar: TTMSFNCPanel;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     procedure FormCreate(Sender: TObject);
   private
@@ -48,8 +53,8 @@ implementation
 
 procedure TFormAutoFill.FormCreate(Sender: TObject);
 begin
-  lblTitle.Caption := 'TMS FNC DataGrid AutoFill Demo';
-  lblDescription.Caption := 'Select cells with seed values (rows 1-2), then drag the fill handle to auto-fill. Patterns: numbers, dates, times, days, custom lists.';
+  lblTitle.Caption := 'DataGrid auto fill';
+  lblDescription.Caption := 'Select cells with seed values (rows 1-2), then drag the fill handle at the selection corner to fill a series';
 
   SetupGrid;
   SetupCustomLists;

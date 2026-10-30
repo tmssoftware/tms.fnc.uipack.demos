@@ -10,13 +10,19 @@ uses
   VCL.TMSFNCDataGrid, VCL.TMSFNCTypes,
   VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes,
   VCL.TMSFNCDataGridBase, VCL.TMSFNCDataGridCell, VCL.TMSFNCDataGridCore,
-  VCL.TMSFNCDataGridRenderer, System.Rtti, Vcl.ExtCtrls;
+  VCL.TMSFNCDataGridRenderer, System.Rtti, Vcl.ExtCtrls,
+  VCL.TMSFNCButton, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Panel1: TPanel;
-    Button1: TButton;
-    Button2: TButton;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    Button1: TTMSFNCButton;
+    Button2: TTMSFNCButton;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -55,9 +61,9 @@ begin
   FGrouped := not FGrouped;
   Button2.Visible := FGrouped;
   if FGrouped then
-    Button1.Caption := 'Ungroup'
+    Button1.Text := 'Ungroup'
   else
-    Button1.Caption := 'Group';
+    Button1.Text := 'Group';
 end;
 
 procedure TForm130.Button2Click(Sender: TObject);
