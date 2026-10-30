@@ -22,10 +22,16 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms,
   FMX.TMSFNCTypes, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes,
   FMX.TMSFNCCustomControl, FMX.TMSFNCDataGrid,
-  FMX.TMSFNCDataGridConditionalFormatting;
+  FMX.TMSFNCDataGridConditionalFormatting,
+  FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector, FMX.TMSFNCUtils;
 
 type
   TfrmConditionalFormatting = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     procedure FormCreate(Sender: TObject);
   private
     FGrid: TTMSFNCDataGrid;
@@ -38,6 +44,8 @@ var
   frmConditionalFormatting: TfrmConditionalFormatting;
 
 implementation
+
+{ demo-colors: FGrid.ConditionalFormatting - the rule colours are the subject of this demo }
 
 {$R *.fmx}
 
@@ -106,6 +114,9 @@ begin
   FGrid := TTMSFNCDataGrid.Create(Self);
   FGrid.Parent := Self;
   FGrid.Align := TAlignLayout.Client;
+  FGrid.Margins.Left := 16;
+  FGrid.Margins.Right := 16;
+  FGrid.Margins.Bottom := 16;
   FGrid.BeginUpdate;
   try
     FGrid.FixedColumnCount := 0;
@@ -163,6 +174,7 @@ begin
     Priority := 10;
     ApplyToEntireRow := True;
     Appearance.Fill.Color := gcLightgoldenrodyellow;
+    Appearance.Font.Color := gcBlack; // fixed light fill: readable in Dark too
     Appearance.Font.Style := [TFontStyle.fsBold];
   end;
 
@@ -184,7 +196,7 @@ begin
   with FGrid.ConditionalFormatting.AddCellValueRule(COL_GROWTH, gfcLess, '0') do
     Appearance.Font.Color := gcRed;
   with FGrid.ConditionalFormatting.AddCellValueRule(COL_GROWTH, gfcGreater, '0') do
-    Appearance.Font.Color := gcGreen;
+    Appearance.Font.Color := gcSeagreen;
   FGrid.ConditionalFormatting.AddIconSet(COL_GROWTH, gisTrafficLights3);
 
   // CSAT: 5-level icon set.
@@ -192,7 +204,7 @@ begin
 
   // Status: text rules.
   with FGrid.ConditionalFormatting.AddTextRule(COL_STATUS, gfcEqual, 'Active') do
-    Appearance.Font.Color := gcGreen;
+    Appearance.Font.Color := gcSeagreen;
   with FGrid.ConditionalFormatting.AddTextRule(COL_STATUS, gfcEqual, 'At Risk') do
   begin
     Appearance.Fill.Color := gcOldlace;
