@@ -3,15 +3,49 @@ object Form1: TForm1
   Height = 406
   Top = 274
   Width = 549
-  Caption = 'TMS FNC TrackBar and RangeSlider Demo'
-  ClientHeight = 406
+  Caption = 'TMS FNC UI Pack - TrackBar and RangeSlider'
+  ClientHeight = 478
   ClientWidth = 549
   Position = poScreenCenter
   LCLVersion = '1.8.2.0'
+  object DemoHeader: TPanel
+    Left = 0
+    Height = 72
+    Top = 0
+    Width = 549
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 72
+    ClientWidth = 549
+    TabOrder = 0
+    object DemoTitle: TLabel
+      Left = 24
+      Height = 30
+      Top = 12
+      Width = 501
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'TrackBar and RangeSlider'
+      Font.Height = -20
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object DemoDescription: TLabel
+      Left = 24
+      Height = 20
+      Top = 42
+      Width = 501
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Drag the thumbs and try the options of both sliders'
+      Font.Color = clGrayText
+      ParentFont = False
+    end
+  end
   object Panel1: TPanel
     Left = 8
     Height = 392
-    Top = 8
+    Top = 80
     Width = 260
     ClientHeight = 392
     ClientWidth = 260
@@ -275,7 +309,7 @@ object Form1: TForm1
   object Panel2: TPanel
     Left = 280
     Height = 392
-    Top = 8
+    Top = 80
     Width = 260
     ClientHeight = 392
     ClientWidth = 260

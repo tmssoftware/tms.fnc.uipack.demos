@@ -1,9 +1,9 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC TrackBar and RangeSlider Demo'
-  ClientHeight = 383
-  ClientWidth = 542
+  Caption = 'TMS FNC UI Pack - TrackBar and RangeSlider'
+  ClientHeight = 620
+  ClientWidth = 664
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,51 +14,128 @@ object Form130: TForm130
   Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
-  object Panel1: TPanel
-    Left = 8
-    Top = 8
-    Width = 260
-    Height = 369
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 542
+    Height = 72
+    Align = alTop
     TabOrder = 0
-    object Label1: TLabel
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 358
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 318
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'TrackBar and RangeSlider'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 318
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Drag the thumbs and try the options of both sliders'
+    end
+  end
+  object Panel1: TTMSFNCPanel
+    Left = 8
+    Top = 80
+    Width = 304
+    Height = 369
+    TabOrder = 1
+    Header.Visible = False
+    Align = alLeft
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 8
+    Margins.Bottom = 16
+    object Label1: TTMSFNCHTMLText
       Left = 16
-      Top = 16
-      Width = 74
-      Height = 23
-      Caption = 'TrackBar'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -19
-      Font.Name = 'Tahoma'
+      Top = 12
+      Width = 272
+      Height = 24
+      Text = 'TrackBar'
+      Font.Height = -17
       Font.Style = []
-      ParentFont = False
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Font.Name = 'Segoe UI Semibold'
     end
-    object Label2: TLabel
+    object Label2: TTMSFNCHTMLText
       Left = 16
-      Top = 45
-      Width = 83
-      Height = 13
-      Caption = 'Selected value: 0'
+      Top = 44
+      Width = 272
+      Height = 24
+      Text = 'Selected value: 0'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label3: TLabel
-      Left = 112
-      Top = 264
-      Width = 51
-      Height = 13
-      Caption = 'Frequency'
+    object Label3: TTMSFNCHTMLText
+      Left = 16
+      Top = 352
+      Width = 272
+      Height = 24
+      Text = 'Frequency'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label6: TLabel
-      Left = 112
-      Top = 311
-      Width = 82
-      Height = 13
-      Caption = 'Tick mark division'
+    object Label6: TTMSFNCHTMLText
+      Left = 16
+      Top = 432
+      Width = 272
+      Height = 24
+      Text = 'Tick mark division'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
     object TMSFNCTrackBar1: TTMSFNCTrackBar
-      Left = 9
-      Top = 112
-      Width = 240
-      Height = 65
+      Left = 16
+      Top = 144
+      Width = 272
+      Height = 80
       ParentDoubleBuffered = False
       Color = clBtnFace
       DoubleBuffered = True
@@ -68,100 +145,109 @@ object Form130: TForm130
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
       OnValueChanged = TMSFNCTrackBar2ValueChanged
+      Anchors = [akLeft, akTop, akRight]
     end
-    object CheckBox1: TCheckBox
+    object CheckBox1: TTMSFNCCheckBox
       Tag = 10
-      Left = 112
-      Top = 193
-      Width = 137
-      Height = 17
-      Caption = 'Show tick mark values'
+      Left = 16
+      Top = 240
+      Width = 272
+      Height = 24
+      Text = 'Show tick mark values'
       Checked = True
-      State = cbChecked
       TabOrder = 1
       OnClick = CheckBox1Change
+      Checked = True
     end
-    object CheckBox5: TCheckBox
-      Left = 112
-      Top = 239
-      Width = 97
-      Height = 17
-      Caption = 'Show buttons'
+    object CheckBox5: TTMSFNCCheckBox
+      Left = 16
+      Top = 304
+      Width = 272
+      Height = 24
+      Text = 'Show buttons'
       TabOrder = 2
       OnClick = CheckBox5Change
     end
-    object Panel3: TPanel
-      Left = 110
-      Top = 279
-      Width = 139
-      Height = 27
-      BevelOuter = bvNone
+    object Panel3: TTMSFNCPanel
+      Left = 16
+      Top = 384
+      Width = 176
+      Height = 32
       TabOrder = 3
-      object RadioButton1: TRadioButton
-        Left = 2
-        Top = 5
-        Width = 33
-        Height = 17
-        Caption = '1'
+      Header.Visible = False
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      object RadioButton1: TTMSFNCRadioButton
+        Left = 8
+        Top = 4
+        Width = 72
+        Height = 24
+        Text = '1'
         Checked = True
         TabOrder = 0
         TabStop = True
         OnClick = RadioButton1Change
+        GroupName = 'Panel3'
       end
-      object RadioButton2: TRadioButton
-        Left = 41
-        Top = 5
-        Width = 49
-        Height = 17
-        Caption = '2'
+      object RadioButton2: TTMSFNCRadioButton
+        Left = 88
+        Top = 4
+        Width = 72
+        Height = 24
+        Text = '2'
         TabOrder = 1
         OnClick = RadioButton2Change
+        GroupName = 'Panel3'
       end
     end
-    object CheckBox3: TCheckBox
-      Left = 112
-      Top = 216
-      Width = 97
-      Height = 17
-      Caption = 'Horizontal'
+    object CheckBox3: TTMSFNCCheckBox
+      Left = 16
+      Top = 272
+      Width = 272
+      Height = 24
+      Text = 'Horizontal'
       Checked = True
-      State = cbChecked
       TabOrder = 4
       OnClick = CheckBox3Change
+      Checked = True
     end
-    object Panel4: TPanel
-      Left = 110
-      Top = 330
-      Width = 139
-      Height = 27
-      BevelOuter = bvNone
+    object Panel4: TTMSFNCPanel
+      Left = 16
+      Top = 464
+      Width = 176
+      Height = 32
       TabOrder = 5
-      object RadioButton3: TRadioButton
-        Left = 2
-        Top = 5
-        Width = 33
-        Height = 17
-        Caption = '5'
+      Header.Visible = False
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      object RadioButton3: TTMSFNCRadioButton
+        Left = 8
+        Top = 4
+        Width = 72
+        Height = 24
+        Text = '5'
         TabOrder = 0
         OnClick = RadioButton3Change
+        GroupName = 'Panel4'
       end
-      object RadioButton4: TRadioButton
-        Left = 41
-        Top = 5
-        Width = 49
-        Height = 17
-        Caption = '10'
+      object RadioButton4: TTMSFNCRadioButton
+        Left = 88
+        Top = 4
+        Width = 72
+        Height = 24
+        Text = '10'
         Checked = True
         TabOrder = 1
         TabStop = True
         OnClick = RadioButton4Change
+        GroupName = 'Panel4'
       end
     end
     object TMSFNCTrackBar2: TTMSFNCTrackBar
-      Left = 9
-      Top = 64
-      Width = 240
-      Height = 51
+      Left = 16
+      Top = 80
+      Width = 272
+      Height = 56
       ParentDoubleBuffered = False
       Color = clBtnFace
       DoubleBuffered = True
@@ -267,54 +353,75 @@ object Form130: TForm130
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
       OnValueChanged = TMSFNCTrackBar2ValueChanged
+      Anchors = [akLeft, akTop, akRight]
     end
   end
-  object Panel2: TPanel
+  object Panel2: TTMSFNCPanel
     Left = 274
-    Top = 8
+    Top = 80
     Width = 260
     Height = 369
-    TabOrder = 1
-    object Label4: TLabel
+    TabOrder = 2
+    Header.Visible = False
+    Align = alClient
+    AlignWithMargins = True
+    Margins.Left = 8
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
+    object Label4: TTMSFNCHTMLText
       Left = 16
-      Top = 15
-      Width = 101
-      Height = 23
-      Caption = 'RangeSlider'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -19
-      Font.Name = 'Tahoma'
+      Top = 12
+      Width = 272
+      Height = 24
+      Text = 'RangeSlider'
+      Font.Height = -17
       Font.Style = []
-      ParentFont = False
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Font.Name = 'Segoe UI Semibold'
     end
-    object Label5: TLabel
+    object Label5: TTMSFNCHTMLText
       Left = 16
       Top = 44
-      Width = 162
-      Height = 13
-      Caption = 'Selected left: 0 - Selected right: 8'
+      Width = 272
+      Height = 24
+      Text = 'Selected left: 0 - Selected right: 8'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label7: TLabel
-      Left = 112
-      Top = 264
-      Width = 51
-      Height = 13
-      Caption = 'Frequency'
+    object Label7: TTMSFNCHTMLText
+      Left = 16
+      Top = 352
+      Width = 272
+      Height = 24
+      Text = 'Frequency'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label8: TLabel
-      Left = 112
-      Top = 311
-      Width = 82
-      Height = 13
-      Caption = 'Tick mark division'
+    object Label8: TTMSFNCHTMLText
+      Left = 16
+      Top = 432
+      Width = 272
+      Height = 24
+      Text = 'Tick mark division'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
     object TMSFNCRangeSlider1: TTMSFNCRangeSlider
       Tag = 30
-      Left = 8
-      Top = 112
-      Width = 240
-      Height = 65
+      Left = 16
+      Top = 144
+      Width = 272
+      Height = 80
       ParentDoubleBuffered = False
       Color = clBtnFace
       DoubleBuffered = True
@@ -326,103 +433,112 @@ object Form130: TForm130
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
       OnValueChanged = TMSFNCRangeSlider1ValueChanged
+      Anchors = [akLeft, akTop, akRight]
     end
-    object CheckBox2: TCheckBox
+    object CheckBox2: TTMSFNCCheckBox
       Tag = 20
-      Left = 112
-      Top = 193
-      Width = 137
-      Height = 17
-      Caption = 'Show tick mark values'
+      Left = 16
+      Top = 240
+      Width = 272
+      Height = 24
+      Text = 'Show tick mark values'
       Checked = True
-      State = cbChecked
       TabOrder = 1
       OnClick = CheckBox1Change
-    end
-    object CheckBox4: TCheckBox
-      Left = 112
-      Top = 216
-      Width = 97
-      Height = 17
-      Caption = 'Horizontal'
       Checked = True
-      State = cbChecked
+    end
+    object CheckBox4: TTMSFNCCheckBox
+      Left = 16
+      Top = 272
+      Width = 272
+      Height = 24
+      Text = 'Horizontal'
+      Checked = True
       TabOrder = 2
       OnClick = CheckBox4Change
-    end
-    object CheckBox6: TCheckBox
-      Left = 112
-      Top = 239
-      Width = 97
-      Height = 17
-      Caption = 'Show track label'
       Checked = True
-      State = cbChecked
+    end
+    object CheckBox6: TTMSFNCCheckBox
+      Left = 16
+      Top = 304
+      Width = 272
+      Height = 24
+      Text = 'Show track label'
+      Checked = True
       TabOrder = 3
       OnClick = CheckBox6Change
+      Checked = True
     end
-    object Panel5: TPanel
-      Left = 110
-      Top = 278
-      Width = 139
-      Height = 27
-      BevelOuter = bvNone
+    object Panel5: TTMSFNCPanel
+      Left = 16
+      Top = 384
+      Width = 176
+      Height = 32
       TabOrder = 4
-      object RadioButton5: TRadioButton
-        Left = 2
-        Top = 5
-        Width = 33
-        Height = 17
-        Caption = '1'
+      Header.Visible = False
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      object RadioButton5: TTMSFNCRadioButton
+        Left = 8
+        Top = 4
+        Width = 72
+        Height = 24
+        Text = '1'
         TabOrder = 0
         OnClick = RadioButton5Change
+        GroupName = 'Panel5'
       end
-      object RadioButton6: TRadioButton
-        Left = 41
-        Top = 5
-        Width = 49
-        Height = 17
-        Caption = '2'
+      object RadioButton6: TTMSFNCRadioButton
+        Left = 88
+        Top = 4
+        Width = 72
+        Height = 24
+        Text = '2'
         Checked = True
         TabOrder = 1
         TabStop = True
         OnClick = RadioButton6Change
+        GroupName = 'Panel5'
       end
     end
-    object Panel6: TPanel
-      Left = 110
-      Top = 330
-      Width = 139
-      Height = 27
-      BevelOuter = bvNone
+    object Panel6: TTMSFNCPanel
+      Left = 16
+      Top = 464
+      Width = 176
+      Height = 32
       TabOrder = 5
-      object RadioButton7: TRadioButton
-        Left = 2
-        Top = 5
-        Width = 33
-        Height = 17
-        Caption = '5'
+      Header.Visible = False
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      object RadioButton7: TTMSFNCRadioButton
+        Left = 8
+        Top = 4
+        Width = 72
+        Height = 24
+        Text = '5'
         Checked = True
         TabOrder = 0
         TabStop = True
         OnClick = RadioButton7Change
+        GroupName = 'Panel6'
       end
-      object RadioButton8: TRadioButton
-        Left = 41
-        Top = 5
-        Width = 49
-        Height = 17
-        Caption = '10'
+      object RadioButton8: TTMSFNCRadioButton
+        Left = 88
+        Top = 4
+        Width = 72
+        Height = 24
+        Text = '10'
         TabOrder = 1
         OnClick = RadioButton8Change
+        GroupName = 'Panel6'
       end
     end
     object TMSFNCRangeSlider2: TTMSFNCRangeSlider
       Tag = 31
-      Left = 8
-      Top = 63
-      Width = 240
-      Height = 51
+      Left = 16
+      Top = 80
+      Width = 272
+      Height = 56
       ParentDoubleBuffered = False
       Color = clBtnFace
       DoubleBuffered = True
@@ -601,6 +717,12 @@ object Form130: TForm130
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
       OnValueChanged = TMSFNCRangeSlider1ValueChanged
+      Anchors = [akLeft, akTop, akRight]
     end
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

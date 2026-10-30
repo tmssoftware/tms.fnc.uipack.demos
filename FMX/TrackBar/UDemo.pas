@@ -7,36 +7,42 @@ uses
   FMX.StdCtrls, FMX.Types, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.Controls.Presentation,
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes,
   FMX.TMSFNCTrackBar, FMX.TMSFNCCustomControl, FMX.TMSFNCRangeSlider,
-  FMX.TMSFNCCustomComponent, FMX.TMSFNCBitmapContainer;
+  FMX.TMSFNCCustomComponent, FMX.TMSFNCBitmapContainer,
+  FMX.TMSFNCCheckBox, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCRadioButton, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Panel1: TPanel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
     TMSFNCRangeSlider1: TTMSFNCRangeSlider;
     TMSFNCTrackBar1: TTMSFNCTrackBar;
-    Label1: TLabel;
-    Label2: TLabel;
-    CheckBox1: TCheckBox;
-    Panel2: TPanel;
-    Label4: TLabel;
-    Label5: TLabel;
-    CheckBox2: TCheckBox;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
-    CheckBox5: TCheckBox;
-    CheckBox6: TCheckBox;
-    RadioButton1: TRadioButton;
-    RadioButton2: TRadioButton;
-    RadioButton3: TRadioButton;
-    RadioButton4: TRadioButton;
-    Label3: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
-    RadioButton5: TRadioButton;
-    RadioButton6: TRadioButton;
-    RadioButton7: TRadioButton;
-    RadioButton8: TRadioButton;
+    Label1: TTMSFNCHTMLText;
+    Label2: TTMSFNCHTMLText;
+    CheckBox1: TTMSFNCCheckBox;
+    Panel2: TTMSFNCPanel;
+    Label4: TTMSFNCHTMLText;
+    Label5: TTMSFNCHTMLText;
+    CheckBox2: TTMSFNCCheckBox;
+    CheckBox3: TTMSFNCCheckBox;
+    CheckBox4: TTMSFNCCheckBox;
+    CheckBox5: TTMSFNCCheckBox;
+    CheckBox6: TTMSFNCCheckBox;
+    RadioButton1: TTMSFNCRadioButton;
+    RadioButton2: TTMSFNCRadioButton;
+    RadioButton3: TTMSFNCRadioButton;
+    RadioButton4: TTMSFNCRadioButton;
+    Label3: TTMSFNCHTMLText;
+    Label6: TTMSFNCHTMLText;
+    Label7: TTMSFNCHTMLText;
+    Label8: TTMSFNCHTMLText;
+    RadioButton5: TTMSFNCRadioButton;
+    RadioButton6: TTMSFNCRadioButton;
+    RadioButton7: TTMSFNCRadioButton;
+    RadioButton8: TTMSFNCRadioButton;
     TMSFNCTrackBar2: TTMSFNCTrackBar;
     TMSFNCRangeSlider2: TTMSFNCRangeSlider;
     procedure TMSFNCTrackBar2ValueChanged(Sender: TObject; AValue: Single);
@@ -70,15 +76,15 @@ implementation
 
 procedure TForm130.CheckBox1Change(Sender: TObject);
 begin
-  case (Sender as TCheckBox).Tag of
-    10: TMSFNCTrackBar1.Appearance.TickMarkLabel := Checkbox1.IsChecked;
-    20: TMSFNCRangeSlider1.Appearance.TickMarkLabel := Checkbox2.IsChecked;
+  case (Sender as TTMSFNCCheckBox).Tag of
+    10: TMSFNCTrackBar1.Appearance.TickMarkLabel := Checkbox1.Checked;
+    20: TMSFNCRangeSlider1.Appearance.TickMarkLabel := Checkbox2.Checked;
   end;
 end;
 
 procedure TForm130.CheckBox3Change(Sender: TObject);
 begin
-  if CheckBox3.IsChecked then
+  if CheckBox3.Checked then
     TMSFNCTrackBar1.Appearance.Orientation := tboHorizontal
   else
     TMSFNCTrackBar1.Appearance.Orientation := tboVertical;
@@ -86,7 +92,7 @@ end;
 
 procedure TForm130.CheckBox4Change(Sender: TObject);
 begin
-  if CheckBox4.IsChecked then
+  if CheckBox4.Checked then
     TMSFNCRangeSlider1.Appearance.Orientation := tboHorizontal
   else
     TMSFNCRangeSlider1.Appearance.Orientation := tboVertical;
@@ -94,15 +100,15 @@ end;
 
 procedure TForm130.CheckBox5Change(Sender: TObject);
 begin
-  if CheckBox5.IsChecked then
+  if CheckBox5.Checked then
     TMSFNCTrackBar1.Appearance.ButtonShape := bsRounded
   else
-    TMSFNCTrackBar1.Appearance.ButtonShape := bsNone;
+    TMSFNCTrackBar1.Appearance.ButtonShape := bsNoButton;
 end;
 
 procedure TForm130.CheckBox6Change(Sender: TObject);
 begin
-  if CheckBox6.IsChecked then
+  if CheckBox6.Checked then
     TMSFNCRangeSlider1.Appearance.TrackLabelPosition := tlpTopCenter
   else
     TMSFNCRangeSlider1.Appearance.TrackLabelPosition := tlpNone;

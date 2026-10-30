@@ -13,6 +13,9 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    DemoHeader: TPanel;
+    DemoTitle: TLabel;
+    DemoDescription: TLabel;
     CheckBox1: TCheckBox;
     CheckBox2: TCheckBox;
     CheckBox3: TCheckBox;
@@ -105,7 +108,7 @@ begin
   if CheckBox5.Checked then
   TMSFNCTrackBar1.Appearance.ButtonShape := bsRounded
   else
-    TMSFNCTrackBar1.Appearance.ButtonShape := bsNone;
+    TMSFNCTrackBar1.Appearance.ButtonShape := bsNoButton;
 end;
 
 procedure TForm1.CheckBox6Change(Sender: TObject);

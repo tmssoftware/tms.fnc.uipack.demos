@@ -6,40 +6,46 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Types,
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes,
-  VCL.TMSFNCRangeSlider, VCL.TMSFNCCustomControl, VCL.TMSFNCTrackBar;
+  VCL.TMSFNCRangeSlider, VCL.TMSFNCCustomControl, VCL.TMSFNCTrackBar,
+  VCL.TMSFNCCheckBox, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCRadioButton, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Panel1: TPanel;
-    Panel2: TPanel;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    Panel2: TTMSFNCPanel;
+    Label1: TTMSFNCHTMLText;
+    Label2: TTMSFNCHTMLText;
+    Label3: TTMSFNCHTMLText;
+    Label4: TTMSFNCHTMLText;
+    Label5: TTMSFNCHTMLText;
     TMSFNCTrackBar1: TTMSFNCTrackBar;
     TMSFNCRangeSlider1: TTMSFNCRangeSlider;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
-    CheckBox5: TCheckBox;
-    CheckBox6: TCheckBox;
-    RadioButton1: TRadioButton;
-    RadioButton2: TRadioButton;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
-    Panel3: TPanel;
-    Panel4: TPanel;
-    RadioButton3: TRadioButton;
-    RadioButton4: TRadioButton;
-    Panel5: TPanel;
-    RadioButton5: TRadioButton;
-    RadioButton6: TRadioButton;
-    Panel6: TPanel;
-    RadioButton7: TRadioButton;
-    RadioButton8: TRadioButton;
+    CheckBox1: TTMSFNCCheckBox;
+    CheckBox2: TTMSFNCCheckBox;
+    CheckBox3: TTMSFNCCheckBox;
+    CheckBox4: TTMSFNCCheckBox;
+    CheckBox5: TTMSFNCCheckBox;
+    CheckBox6: TTMSFNCCheckBox;
+    RadioButton1: TTMSFNCRadioButton;
+    RadioButton2: TTMSFNCRadioButton;
+    Label6: TTMSFNCHTMLText;
+    Label7: TTMSFNCHTMLText;
+    Label8: TTMSFNCHTMLText;
+    Panel3: TTMSFNCPanel;
+    Panel4: TTMSFNCPanel;
+    RadioButton3: TTMSFNCRadioButton;
+    RadioButton4: TTMSFNCRadioButton;
+    Panel5: TTMSFNCPanel;
+    RadioButton5: TTMSFNCRadioButton;
+    RadioButton6: TTMSFNCRadioButton;
+    Panel6: TTMSFNCPanel;
+    RadioButton7: TTMSFNCRadioButton;
+    RadioButton8: TTMSFNCRadioButton;
     TMSFNCTrackBar2: TTMSFNCTrackBar;
     TMSFNCRangeSlider2: TTMSFNCRangeSlider;
     procedure TMSFNCTrackBar2ValueChanged(Sender: TObject; AValue: Single);
@@ -73,7 +79,7 @@ implementation
 
 procedure TForm130.CheckBox1Change(Sender: TObject);
 begin
-  case (Sender as TCheckBox).Tag of
+  case (Sender as TTMSFNCCheckBox).Tag of
     10: TMSFNCTrackBar1.Appearance.TickMarkLabel := Checkbox1.Checked;
     20: TMSFNCRangeSlider1.Appearance.TickMarkLabel := Checkbox2.Checked;
   end;
@@ -100,7 +106,7 @@ begin
   if CheckBox5.Checked then
     TMSFNCTrackBar1.Appearance.ButtonShape := bsRounded
   else
-    TMSFNCTrackBar1.Appearance.ButtonShape := bsNone;
+    TMSFNCTrackBar1.Appearance.ButtonShape := bsNoButton;
 end;
 
 procedure TForm130.CheckBox6Change(Sender: TObject);
@@ -125,14 +131,14 @@ procedure TForm130.TMSFNCRangeSlider1ValueChanged(Sender: TObject;
   AValue: Single; ALeft: Boolean);
 begin
   case (Sender as TTMSFNCRangeSlider).Tag of
-    30: Label5.Caption := 'Selected left: ' + FloatTostr(TMSFNCRangeSlider1.ValueLeft) + ' - Selected right: ' + FloatToStr(TMSFNCRangeSlider1.ValueRight);
-    31: Label5.Caption := 'Selected left: ' + FloatTostr(TMSFNCRangeSlider2.ValueLeft) + ' - Selected right: ' + FloatToStr(TMSFNCRangeSlider2.ValueRight);
+    30: Label5.Text := 'Selected left: ' + FloatTostr(TMSFNCRangeSlider1.ValueLeft) + ' - Selected right: ' + FloatToStr(TMSFNCRangeSlider1.ValueRight);
+    31: Label5.Text := 'Selected left: ' + FloatTostr(TMSFNCRangeSlider2.ValueLeft) + ' - Selected right: ' + FloatToStr(TMSFNCRangeSlider2.ValueRight);
   end;
 end;
 
 procedure TForm130.TMSFNCTrackBar2ValueChanged(Sender: TObject; AValue: Single);
 begin
-  Label2.Caption := 'Selected value: ' + FloatToStr(AValue);
+  Label2.Text := 'Selected value: ' + FloatToStr(AValue);
 end;
 
 procedure TForm130.RadioButton3Change(Sender: TObject);
