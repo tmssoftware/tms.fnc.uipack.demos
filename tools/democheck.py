@@ -322,7 +322,7 @@ def region_contrast(img, rect):
     crop = img.crop((x0 + 3, y0 + 3, x1 - 3, y1 - 3)).convert("RGB")  # inside the border
     if crop.width * crop.height > 400 * 120:
         crop = crop.resize((min(crop.width, 400), min(crop.height, 120)))
-    px = list(crop.getdata())
+    px = list(crop.get_flattened_data() if hasattr(crop, "get_flattened_data") else crop.getdata())
     counts = {}
     for p in px:
         q = (p[0] >> 3, p[1] >> 3, p[2] >> 3)
@@ -333,7 +333,7 @@ def region_contrast(img, rect):
     far = [p for p in dist if abs(p[0] - bg[0]) + abs(p[1] - bg[1]) + abs(p[2] - bg[2]) > 60]
     share = len(far) / max(1, len(px))
     if share < 0.004:
-        return {"bg": bg, "ink": None, "ratio": None, "ink": None, "share": round(share, 4)}
+        return {"bg": bg, "ink": None, "ratio": None, "share": round(share, 4)}
     top = dist[: max(3, len(far) // 4)]
     ink = tuple(sorted(c[i] for c in top)[len(top) // 2] for i in range(3))
     return {"bg": bg, "ink": ink, "ratio": round(contrast(bg, ink), 2), "share": round(share, 4)}
