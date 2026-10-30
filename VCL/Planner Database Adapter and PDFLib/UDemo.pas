@@ -1,5 +1,7 @@
 unit UDemo;
 
+{ demo-colors: the item colours (Color field of the data set, DefaultItem font colours) are the subject }
+
 interface
 
 uses
@@ -10,14 +12,22 @@ uses
   VCL.TMSFNCPlannerItemEditorRecurrency, VCL.TMSFNCCustomComponent,
   VCL.TMSFNCPlannerDatabaseAdapter, VCL.TMSFNCCustomControl,
   VCL.TMSFNCPlannerBase, VCL.TMSFNCPlannerData, Vcl.StdCtrls, Vcl.ExtCtrls,
-  VCL.TMSFNCPDFLib, VCL.TMSFNCPDFIO, VCL.TMSFNCGraphicsPDFEngine, VCL.TMSFNCTypes;
+  VCL.TMSFNCPDFLib, VCL.TMSFNCPDFIO, VCL.TMSFNCGraphicsPDFEngine, VCL.TMSFNCTypes,
+  VCL.TMSFNCButton, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm3 = class(TForm)
-    Panel1: TPanel;
-    Label1: TLabel;
-    Button1: TButton;
-    Label2: TLabel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    SettingsPanel: TTMSFNCPanel;
+    DataCaption: TTMSFNCHTMLText;
+    ExportCaption: TTMSFNCHTMLText;
+    AboutCaption: TTMSFNCHTMLText;
+    Button1: TTMSFNCButton;
+    Label2: TTMSFNCHTMLText;
     TMSFNCPlanner1: TTMSFNCPlanner;
     TMSFNCPlannerDatabaseAdapter1: TTMSFNCPlannerDatabaseAdapter;
     TMSFNCPlannerItemEditorRecurrency1: TTMSFNCPlannerItemEditorRecurrency;
@@ -25,7 +35,7 @@ type
     DataSource1: TDataSource;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     TMSFNCPDFLib1: TTMSFNCPDFLib;
-    Button2: TButton;
+    Button2: TTMSFNCButton;
     procedure Button1Click(Sender: TObject);
     procedure TMSFNCPlanner1AfterNavigateToDateTime(Sender: TObject;
       ADirection: TTMSFNCPlannerNavigationDirection; ACurrentDateTime,
@@ -56,9 +66,9 @@ procedure TForm3.Button1Click(Sender: TObject);
 begin
   ClientDataSet1.Active := not ClientDataSet1.Active;
   if ClientDataSet1.Active then
-    Button1.Caption := 'Disconnect'
+    Button1.Text := 'Disconnect'
   else
-    Button1.Caption := 'Connect';
+    Button1.Text := 'Connect';
 end;
 
 procedure TForm3.Button2Click(Sender: TObject);
@@ -166,7 +176,7 @@ begin
   TMSFNCPlanner1.TimeLineAppearance.LeftSize := TMSFNCPlanner1.ScalePaintValue(200);
   TMSFNCPlanner1.PositionsAppearance.TopSize := TMSFNCPlanner1.ScalePaintValue(120);
   TMSFNCPlanner1.Resources.Clear;
-  TMSFNCPlanner1.PositionsAppearance.TopFont.Size := 14;
+  TMSFNCPlanner1.PositionsAppearance.TopFont.Size := 10;
   for I := 0 to TMSFNCBitmapContainer1.Items.Count - 1 do
   begin
     res := TMSFNCPlanner1.Resources.Add;

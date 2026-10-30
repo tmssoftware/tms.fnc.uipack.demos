@@ -3,8 +3,8 @@ object Form1: TForm1
   Height = 1365
   Top = 233
   Width = 2340
-  Caption = 'FNC Planner Data Adapter Demo'
-  ClientHeight = 1365
+  Caption = 'TMS FNC UI Pack - Planner Database Adapter and PDFLib'
+  ClientHeight = 1437
   ClientWidth = 2340
   DesignTimePPI = 144
   Icon.Data = {
@@ -146,6 +146,40 @@ object Form1: TForm1
   }
   OnCreate = FormCreate
   LCLVersion = '2.0.6.0'
+  object DemoHeader: TPanel
+    Left = 0
+    Height = 72
+    Top = 0
+    Width = 2340
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 72
+    ClientWidth = 2340
+    TabOrder = 0
+    object DemoTitle: TLabel
+      Left = 24
+      Height = 30
+      Top = 12
+      Width = 2292
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Planner Database Adapter: modeling agency'
+      Font.Height = -20
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object DemoDescription: TLabel
+      Left = 24
+      Height = 20
+      Top = 42
+      Width = 2292
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'A TClientDataSet behind the planner: edit an item and it is saved, reconnect to reload, export the week to PDF'
+      Font.Color = clGrayText
+      ParentFont = False
+    end
+  end
   object Panel1: TPanel
     Left = 0
     Height = 122
@@ -501,7 +535,7 @@ object Form1: TForm1
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
     Left = 888
     Height = 26
-    Top = 552
+    Top = 624
     Width = 26
     Visible = True
     Items = <    
@@ -3011,7 +3045,7 @@ object Form1: TForm1
   object TMSFNCPlannerDatabaseAdapter1: TTMSFNCPlannerDatabaseAdapter
     Left = 1320
     Height = 26
-    Top = 384
+    Top = 456
     Width = 26
     Visible = True
     OnFieldsToItem = TMSFNCPlannerDatabaseAdapter1FieldsToItem
@@ -3019,7 +3053,7 @@ object Form1: TForm1
   object TMSFNCPDFLib1: TTMSFNCPDFLib
     Left = 648
     Height = 26
-    Top = 216
+    Top = 288
     Width = 26
     Visible = True
   end

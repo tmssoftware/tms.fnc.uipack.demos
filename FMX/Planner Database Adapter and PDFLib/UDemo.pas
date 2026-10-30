@@ -1,5 +1,7 @@
 unit UDemo;
 
+{ demo-colors: the item colours (Color field of the data set, DefaultItem font colours) are the subject }
+
 interface
 
 uses
@@ -10,21 +12,29 @@ uses
   FMX.TMSFNCPlannerDatabaseAdapter, FMX.TMSFNCCustomControl,
   FMX.TMSFNCPlannerBase, FMX.TMSFNCPlannerData, FMX.TMSFNCCustomComponent,
   FMX.TMSFNCBitmapContainer, FMX.Controls.Presentation, Data.DB,
-  Datasnap.DBClient, FMX.TMSFNCPDFLib, FMX.TMSFNCPDFIO, FMX.TMSFNCGraphicsPDFEngine;
+  Datasnap.DBClient, FMX.TMSFNCPDFLib, FMX.TMSFNCPDFIO, FMX.TMSFNCGraphicsPDFEngine,
+  FMX.TMSFNCButton, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm3 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     ClientDataSet1: TClientDataSet;
-    Panel1: TPanel;
+    SettingsPanel: TTMSFNCPanel;
+    DataCaption: TTMSFNCHTMLText;
+    ExportCaption: TTMSFNCHTMLText;
+    AboutCaption: TTMSFNCHTMLText;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     TMSFNCPlanner1: TTMSFNCPlanner;
     TMSFNCPlannerDatabaseAdapter1: TTMSFNCPlannerDatabaseAdapter;
     TMSFNCPlannerItemEditorRecurrency1: TTMSFNCPlannerItemEditorRecurrency;
-    Button1: TButton;
-    Label1: TLabel;
-    Label2: TLabel;
+    Button1: TTMSFNCButton;
+    Label2: TTMSFNCHTMLText;
     DataSource1: TDataSource;
-    Button2: TButton;
+    Button2: TTMSFNCButton;
     TMSFNCPDFLib1: TTMSFNCPDFLib;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -149,7 +159,7 @@ begin
   TMSFNCPlanner1.TimeLineAppearance.LeftSize := 200;
   TMSFNCPlanner1.PositionsAppearance.TopSize := 120;
   TMSFNCPlanner1.Resources.Clear;
-  TMSFNCPlanner1.PositionsAppearance.TopFont.Size := 18;
+  TMSFNCPlanner1.PositionsAppearance.TopFont.Size := 13;
   for I := 0 to TMSFNCBitmapContainer1.Items.Count - 1 do
   begin
     res := TMSFNCPlanner1.Resources.Add;

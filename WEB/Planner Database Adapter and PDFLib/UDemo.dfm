@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Width = 1235
-  Height = 857
-  Caption = 'TMSFNCCloudBase Demo'
+  Width = 1200
+  Height = 720
+  Caption = 'TMS FNC UI Pack - Planner Database Adapter and PDFLib'
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -10,61 +10,125 @@ object Form1: TForm1
   FormContainer = 'appcontent'
   ParentFont = False
   OnCreate = WebFormCreate
-  object WebPanel1: TWebPanel
-    Left = 0
+  object SettingsPanel: TTMSFNCPanel
+    Left = 16
     Top = 0
-    Width = 1235
-    Height = 105
-    HeightPercent = 100.000000000000000000
-    WidthPercent = 100.000000000000000000
-    Align = alTop
-    BorderColor = clSilver
-    BorderStyle = bsSingle
-    object WebLabel1: TWebLabel
-      Left = 24
-      Top = 14
-      Width = 232
-      Height = 29
-      Caption = 'TMS Modeling Agency'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -24
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      HeightPercent = 100.000000000000000000
-      ParentFont = False
-      WidthPercent = 100.000000000000000000
+    Width = 260
+    Height = 600
+    Margins.Left = 16
+    Margins.Top = 16
+    Margins.Right = 0
+    Margins.Bottom = 16
+    AlignWithMargins = True
+    Align = alLeft
+    TabOrder = 1
+    Header.Visible = False
+    object ThemeCaption: TTMSFNCHTMLText
+      Left = 16
+      Top = 12
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 12
+      Margins.Right = 16
+      Margins.Bottom = 0
+      AlignWithMargins = True
+      Align = alTop
+      Font.Height = -15
+      Font.Name = 'Segoe UI Semibold'
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Theme'
     end
-    object WebLabel2: TWebLabel
-      Left = 382
-      Top = 0
-      Width = 853
-      Height = 105
-      Align = alRight
-      Caption = 
-        'Interact with one of the items and change the title and/or text.' +
-        ' The data is automatically persisted in the database (TWebClient' +
-        'DataSet). The items for Audrea and Pamella are recurrent, when c' +
-        'licking on the arrow buttons in the positions area the items wil' +
-        'l be reloaded. Editing is done through a new custom editor speci' +
-        'fically designed to edit recurrency.'
-      HeightPercent = 100.000000000000000000
-      Layout = tlCenter
-      WordWrap = True
-      WidthPercent = 100.000000000000000000
-      ExplicitHeight = 26
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Left = 16
+      Top = 48
+      Width = 228
+      Height = 36
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      AlignWithMargins = True
+      Align = alTop
+      TabOrder = 20
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
     end
-    object WebButton1: TWebButton
-      Left = 24
-      Top = 59
-      Width = 105
-      Height = 40
-      Caption = 'Export to PDF'
-      ChildOrder = 2
-      HeightPercent = 100.000000000000000000
-      Visible = False
-      WidthPercent = 100.000000000000000000
+    object ExportCaption: TTMSFNCHTMLText
+      Left = 16
+      Top = 88
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 16
+      Margins.Right = 16
+      Margins.Bottom = 0
+      AlignWithMargins = True
+      Align = alTop
+      Font.Height = -15
+      Font.Name = 'Segoe UI Semibold'
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Export'
+    end
+    object ExportButton: TTMSFNCButton
+      Left = 16
+      Top = 120
+      Width = 228
+      Height = 32
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      AlignWithMargins = True
+      Align = alTop
+      TabOrder = 0
+      Text = 'Export to PDF'
       OnClick = WebButton1Click
+    end
+    object AboutCaption: TTMSFNCHTMLText
+      Left = 16
+      Top = 168
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 16
+      Margins.Right = 16
+      Margins.Bottom = 0
+      AlignWithMargins = True
+      Align = alTop
+      Font.Height = -15
+      Font.Name = 'Segoe UI Semibold'
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'How it works'
+    end
+    object AboutText: TTMSFNCHTMLText
+      Left = 16
+      Top = 196
+      Width = 228
+      Height = 160
+      Margins.Left = 16
+      Margins.Top = 4
+      Margins.Right = 16
+      Margins.Bottom = 0
+      AlignWithMargins = True
+      Align = alTop
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      WordWrapping = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Change the title or text of an item: the change is saved in the TWebClientDataSet. The items of Audrea and Pamella recur: the arrows in the positions area reload them. Items are edited with the recurrency editor.'
     end
   end
   object TMSFNCPlanner1: TTMSFNCPlanner
@@ -75,38 +139,22 @@ object Form1: TForm1
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Arial'
     Font.Style = []
     ParentFont = False
     TabOrder = 1
     DefaultItem.StartTime = 44120.270833333340000000
     DefaultItem.EndTime = 44120.375000000000000000
-    GridCellAppearance.VerticalStroke.Color = 11119017
-    GridCellAppearance.HorizontalStroke.Color = 11119017
-    GridCellAppearance.HorizontalSubStroke.Color = 13882323
-    GridCellAppearance.InActiveFill.Color = 16774625
     GridCellAppearance.Fill.Kind = gfkNone
-    GridCellAppearance.DisabledFill.Color = 15132390
     Groups = <>
     GroupsAppearance.TopSize = 50.000000000000000000
     GroupsAppearance.BottomSize = 50.000000000000000000
     GroupsAppearance.TopFill.Kind = gfkNone
     GroupsAppearance.BottomFill.Kind = gfkNone
-    GroupsAppearance.TopFont.Charset = DEFAULT_CHARSET
-    GroupsAppearance.TopFont.Color = clGray
     GroupsAppearance.TopFont.Height = -11
-    GroupsAppearance.TopFont.Name = 'Tahoma'
     GroupsAppearance.TopFont.Style = []
-    GroupsAppearance.BottomFont.Charset = DEFAULT_CHARSET
-    GroupsAppearance.BottomFont.Color = clGray
     GroupsAppearance.BottomFont.Height = -11
-    GroupsAppearance.BottomFont.Name = 'Tahoma'
     GroupsAppearance.BottomFont.Style = []
-    GroupsAppearance.TopStroke.Color = 11119017
-    GroupsAppearance.BottomStroke.Color = 11119017
     Items = <
       item
         Text = 'Notes'
@@ -119,30 +167,12 @@ object Form1: TForm1
     PositionsAppearance.Size = 100.000000000000000000
     PositionsAppearance.TopSize = 50.000000000000000000
     PositionsAppearance.BottomSize = 50.000000000000000000
-    PositionsAppearance.TopFont.Charset = DEFAULT_CHARSET
-    PositionsAppearance.TopFont.Color = clGray
     PositionsAppearance.TopFont.Height = -11
-    PositionsAppearance.TopFont.Name = 'Tahoma'
     PositionsAppearance.TopFont.Style = []
-    PositionsAppearance.BottomFont.Charset = DEFAULT_CHARSET
-    PositionsAppearance.BottomFont.Color = clGray
     PositionsAppearance.BottomFont.Height = -11
-    PositionsAppearance.BottomFont.Name = 'Tahoma'
     PositionsAppearance.BottomFont.Style = []
     PositionsAppearance.TopFill.Kind = gfkNone
     PositionsAppearance.BottomFill.Kind = gfkNone
-    PositionsAppearance.TopStroke.Color = 11119017
-    PositionsAppearance.BottomStroke.Color = 11119017
-    PositionsAppearance.TopNavigationButtonStroke.Color = 11119017
-    PositionsAppearance.BottomNavigationButtonStroke.Color = 11119017
-    PositionsAppearance.TopNavigationButtonHoverFill.Color = 16774625
-    PositionsAppearance.BottomNavigationButtonHoverFill.Color = 16774625
-    PositionsAppearance.TopNavigationButtonHoverStroke.Color = 11119017
-    PositionsAppearance.BottomNavigationButtonHoverStroke.Color = 11119017
-    PositionsAppearance.TopNavigationButtonDownFill.Color = 16176533
-    PositionsAppearance.BottomNavigationButtonDownFill.Color = 16176533
-    PositionsAppearance.TopNavigationButtonDownStroke.Color = 11119017
-    PositionsAppearance.BottomNavigationButtonDownStroke.Color = 11119017
     PositionsAppearance.TopLeftNavigationButtonSize = 18.000000000000000000
     PositionsAppearance.TopRightNavigationButtonSize = 18.000000000000000000
     PositionsAppearance.BottomLeftNavigationButtonSize = 18.000000000000000000
@@ -160,26 +190,15 @@ object Form1: TForm1
         Name = 'Resource2'
         Text = 'Audi'
       end>
-    SelectionAppearance.Fill.Color = 16176533
     TimeLine.DisplayUnitSize = 25.000000000000000000
     TimeLine.ViewStart = 44120.166666666660000000
     TimeLineAppearance.LeftSize = 50.000000000000000000
     TimeLineAppearance.RightSize = 50.000000000000000000
     TimeLineAppearance.LeftFill.Kind = gfkNone
     TimeLineAppearance.RightFill.Kind = gfkNone
-    TimeLineAppearance.LeftStroke.Color = 11119017
-    TimeLineAppearance.RightStroke.Color = 11119017
-    TimeLineAppearance.LeftSubStroke.Color = 13882323
-    TimeLineAppearance.RightSubStroke.Color = 13882323
-    TimeLineAppearance.LeftFont.Charset = DEFAULT_CHARSET
-    TimeLineAppearance.LeftFont.Color = clGray
     TimeLineAppearance.LeftFont.Height = -19
-    TimeLineAppearance.LeftFont.Name = 'Tahoma'
     TimeLineAppearance.LeftFont.Style = []
-    TimeLineAppearance.RightFont.Charset = DEFAULT_CHARSET
-    TimeLineAppearance.RightFont.Color = clGray
     TimeLineAppearance.RightFont.Height = -19
-    TimeLineAppearance.RightFont.Name = 'Tahoma'
     TimeLineAppearance.RightFont.Style = []
     TimeLineAppearance.LeftSubUnitFontSize = 10.000000000000000000
     TimeLineAppearance.RightSubUnitFontSize = 10.000000000000000000
@@ -322,72 +341,39 @@ object Form1: TForm1
       9FEE3DD3BD6BCDD326EA2745171C629C8DFA614C7F54161D003D1E001D003D1E
       001D003D1E001D003D1E001D003D1B0FF007F323929E3365F6E3000000004945
       4E44AE426082}
-    ItemsAppearance.LinkStroke.Color = 11119017
     ItemsAppearance.LinkStroke.Width = 2.000000000000000000
     ItemsAppearance.LinkArrowSize = 7.000000000000000000
     ItemsAppearance.TitleStroke.Kind = gskNone
-    ItemsAppearance.TitleStroke.Color = 11119017
-    ItemsAppearance.TitleFont.Charset = DEFAULT_CHARSET
-    ItemsAppearance.TitleFont.Color = clWindowText
     ItemsAppearance.TitleFont.Height = -16
-    ItemsAppearance.TitleFont.Name = 'Arial'
     ItemsAppearance.TitleFont.Style = [fsBold]
-    ItemsAppearance.Fill.Color = 11119017
     ItemsAppearance.Stroke.Kind = gskNone
-    ItemsAppearance.Stroke.Color = 11119017
-    ItemsAppearance.Font.Charset = DEFAULT_CHARSET
-    ItemsAppearance.Font.Color = clWindowText
     ItemsAppearance.Font.Height = -11
-    ItemsAppearance.Font.Name = 'Arial'
     ItemsAppearance.Font.Style = []
     ItemsAppearance.SelectedTitleStroke.Kind = gskNone
-    ItemsAppearance.SelectedTitleStroke.Color = 11119017
-    ItemsAppearance.SelectedTitleFont.Charset = DEFAULT_CHARSET
-    ItemsAppearance.SelectedTitleFont.Color = clWindowText
     ItemsAppearance.SelectedTitleFont.Height = -16
-    ItemsAppearance.SelectedTitleFont.Name = 'Tahoma'
     ItemsAppearance.SelectedTitleFont.Style = [fsBold]
     ItemsAppearance.ActiveTitleStroke.Kind = gskNone
-    ItemsAppearance.ActiveTitleStroke.Color = 11119017
-    ItemsAppearance.ActiveTitleFont.Charset = DEFAULT_CHARSET
-    ItemsAppearance.ActiveTitleFont.Color = clWindowText
     ItemsAppearance.ActiveTitleFont.Height = -16
-    ItemsAppearance.ActiveTitleFont.Name = 'Tahoma'
     ItemsAppearance.ActiveTitleFont.Style = [fsBold]
-    ItemsAppearance.SelectedFill.Color = 16297243
     ItemsAppearance.SelectedStroke.Kind = gskNone
-    ItemsAppearance.SelectedStroke.Color = 11119017
-    ItemsAppearance.SelectedFont.Charset = DEFAULT_CHARSET
-    ItemsAppearance.SelectedFont.Color = clWindowText
     ItemsAppearance.SelectedFont.Height = -11
-    ItemsAppearance.SelectedFont.Name = 'Tahoma'
     ItemsAppearance.SelectedFont.Style = []
-    ItemsAppearance.ActiveFill.Color = 16297243
     ItemsAppearance.ActiveStroke.Kind = gskNone
-    ItemsAppearance.ActiveStroke.Color = 11119017
-    ItemsAppearance.ActiveFont.Charset = DEFAULT_CHARSET
-    ItemsAppearance.ActiveFont.Color = clWindowText
     ItemsAppearance.ActiveFont.Height = -11
-    ItemsAppearance.ActiveFont.Name = 'Tahoma'
     ItemsAppearance.ActiveFont.Style = []
-    ItemsAppearance.DisabledTitleFill.Color = 11119017
     ItemsAppearance.DisabledTitleStroke.Kind = gskNone
-    ItemsAppearance.DisabledTitleStroke.Color = 11119017
-    ItemsAppearance.DisabledTitleFont.Charset = DEFAULT_CHARSET
-    ItemsAppearance.DisabledTitleFont.Color = clWindowText
     ItemsAppearance.DisabledTitleFont.Height = -16
-    ItemsAppearance.DisabledTitleFont.Name = 'Tahoma'
     ItemsAppearance.DisabledTitleFont.Style = [fsBold]
-    ItemsAppearance.DisabledFill.Color = 11119017
     ItemsAppearance.DisabledStroke.Kind = gskNone
-    ItemsAppearance.DisabledStroke.Color = 11119017
-    ItemsAppearance.DisabledFont.Charset = DEFAULT_CHARSET
-    ItemsAppearance.DisabledFont.Color = clWindowText
     ItemsAppearance.DisabledFont.Height = -11
-    ItemsAppearance.DisabledFont.Name = 'Tahoma'
     ItemsAppearance.DisabledFont.Style = []
     OnAfterNavigateToDateTime = TMSFNCPlanner1AfterNavigateToDateTime
     OnIsDateTimeSub = TMSFNCPlanner1IsDateTimeSub
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 16
+    Margins.Right = 16
+    Margins.Bottom = 16
   end
   object TMSFNCPlannerDatabaseAdapter1: TTMSFNCPlannerDatabaseAdapter
     Left = 896
@@ -3010,5 +2996,10 @@ object Form1: TForm1
     DataSet = WebClientDataSet1
     Left = 592
     Top = 488
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 760
+    Top = 160
   end
 end

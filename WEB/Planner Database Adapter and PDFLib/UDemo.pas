@@ -1,5 +1,7 @@
 unit UDemo;
 
+{ demo-colors: the item colours (Color field of the data set, DefaultItem font colours) are the subject }
+
 interface
 
 uses
@@ -9,19 +11,24 @@ uses
   VCL.TMSFNCPlannerDatabaseAdapter, VCL.TMSFNCCustomControl,
   VCL.TMSFNCPlannerBase, VCL.TMSFNCPlannerData, Vcl.Controls, Vcl.StdCtrls,
   WEBLib.StdCtrls, WEBLib.ExtCtrls, WEBLib.TMSFNCPDFLib, WEBLib.TMSFNCPDFIO, WEBLib.TMSFNCGraphicsPDFEngine,
-  VCL.TMSFNCPDFLib, WEBLib.TMSFNCTypes, VCL.TMSFNCTypes, VCL.TMSFNCUtils;
+  VCL.TMSFNCPDFLib, WEBLib.TMSFNCTypes, VCL.TMSFNCTypes, VCL.TMSFNCUtils,
+  WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCButton, WEBLib.TMSFNCComboBox, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector;
 
 type
   TForm1 = class(TWebForm)
-    WebPanel1: TWebPanel;
-    WebLabel1: TWebLabel;
-    WebLabel2: TWebLabel;
+    ThemeManager: TTMSFNCThemeManager;
+    SettingsPanel: TTMSFNCPanel;
+    ThemeCaption: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    ExportCaption: TTMSFNCHTMLText;
+    ExportButton: TTMSFNCButton;
+    AboutCaption: TTMSFNCHTMLText;
+    AboutText: TTMSFNCHTMLText;
     TMSFNCPlanner1: TTMSFNCPlanner;
     TMSFNCPlannerDatabaseAdapter1: TTMSFNCPlannerDatabaseAdapter;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     WebClientDataSet1: TWebClientDataSet;
     WebDataSource1: TWebDataSource;
-    WebButton1: TWebButton;
     procedure WebFormCreate(Sender: TObject);
     procedure DoFontCacheReady(Sender: TObject);
     procedure WebButton1Click(Sender: TObject);
@@ -53,7 +60,7 @@ uses
 
 procedure TForm1.DoFontCacheReady(Sender: TObject);
 begin
-  WebButton1.Visible := True;
+  ExportButton.Enabled := True;
 end;
 
 procedure TForm1.LoadData;
@@ -394,13 +401,13 @@ begin
   FormContainer := 'appcontent';
   lbl := TWebLabel.Create(Self);
   lbl.ElementID := 'title';
-  lbl.Caption := 'TMSFNCPlanner and Database with TMSFNCPDFLib Demo';
+  lbl.Caption := 'Planner Database Adapter: modeling agency';
 
   lbl := TWebLabel.Create(Self);
   lbl.ElementID := 'description';
-  lbl.Caption := 'How to combine a TMSFNCPlanner with a database and export the data to a PDF.';
+  lbl.Caption := 'A TWebClientDataSet behind the planner: edit an item and it is saved, export the week to PDF';
 
-  WebButton1.Visible := False;
+  ExportButton.Enabled := False;
   Application.OnFontCacheReady := DoFontCacheReady;
   AddFontToCache('https://download.tmssoftware.com/tmsweb/pdf/fonts/Roboto-Regular.ttf');
 
@@ -421,7 +428,7 @@ begin
   TMSFNCPlanner1.TimeLineAppearance.LeftSize := 200;
   TMSFNCPlanner1.PositionsAppearance.TopSize := 120;
   TMSFNCPlanner1.Resources.Clear;
-  TMSFNCPlanner1.PositionsAppearance.TopFont.Size := 14;
+  TMSFNCPlanner1.PositionsAppearance.TopFont.Size := 10;
   for I := 0 to TMSFNCBitmapContainer1.Items.Count - 1 do
   begin
     res := TMSFNCPlanner1.Resources.Add;
