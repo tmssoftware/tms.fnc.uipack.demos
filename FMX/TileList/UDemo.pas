@@ -1,5 +1,7 @@
 ﻿unit UDemo;
 
+{ demo-colors: the tile colours (dark tiles, light text and icons, FormCreate) are the subject: the demo's icons are white glyphs }
+
 interface
 
 uses
@@ -82,6 +84,17 @@ end;
 procedure TForm2.CheckBox4Change(Sender: TObject);
 begin
   TMSFNCTileList1.BeginUpdate;
+
+  TMSFNCTileList1.Appearance.Fill.Color := gcDimgray;
+  TMSFNCTileList1.Appearance.Stroke.Color := gcDimgray;
+  TMSFNCTileList1.Appearance.FillHover.Color := gcGray;
+  TMSFNCTileList1.Appearance.StrokeHover.Color := gcGray;
+  TMSFNCTileList1.Appearance.FillDown.Color := gcSteelblue;
+  TMSFNCTileList1.Appearance.StrokeDown.Color := gcSteelblue;
+  TMSFNCTileList1.Appearance.FillSelected.Color := gcSteelblue;
+  TMSFNCTileList1.Appearance.StrokeSelected.Color := gcSteelblue;
+  TMSFNCTileList1.Appearance.TitleFont.Color := gcWhite;
+  TMSFNCTileList1.Appearance.DescriptionFont.Color := gcWhite;
   TMSFNCTileList1.Header.ArrowLeft.Visible := CheckBox4.Checked;
   TMSFNCTileList1.Header.ArrowRight.Visible := CheckBox4.Checked;
   TMSFNCTileList1.Footer.ArrowLeft.Visible := CheckBox4.Checked;
