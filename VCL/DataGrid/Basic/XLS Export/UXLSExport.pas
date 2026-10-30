@@ -1,5 +1,7 @@
 unit UXLSExport;
 
+{ demo-colors: TMSFNCDataGrid1.Layouts, ACell.Layout.Font.Color - the coloured cells are what the export carries }
+
 interface
 
 uses
@@ -10,13 +12,19 @@ uses
   VCL.TMSFNCDataGrid, VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCCustomComponent,
   VCL.TMSFNCDataGridExcelIO, VCL.TMSFNCDataGridCell, VCL.TMSFNCBitmapContainer,
   VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCDataGridBase,
-  VCL.TMSFNCDataGridCore, VCL.TMSFNCDataGridRenderer, System.Rtti, Vcl.ExtCtrls;
+  VCL.TMSFNCDataGridCore, VCL.TMSFNCDataGridRenderer, System.Rtti, Vcl.ExtCtrls,
+  VCL.TMSFNCButton, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Panel1: TPanel;
-    Button1: TButton;
-    Button2: TButton;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    Button1: TTMSFNCButton;
+    Button2: TTMSFNCButton;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     TMSFNCDataGridExcelIO1: TTMSFNCDataGridExcelIO;

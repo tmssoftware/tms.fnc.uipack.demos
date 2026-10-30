@@ -1,5 +1,7 @@
 unit UXLSExport;
 
+{ demo-colors: TMSFNCDataGrid1.Layouts, ACell.Layout.Font.Color - the coloured cells are what the export carries }
+
 interface
 
 uses
@@ -10,13 +12,19 @@ uses
   FMX.TMSFNCDataGrid, FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCCustomComponent,
   FMX.TMSFNCDataGridExcelIO, FMX.TMSFNCDataGridCell, FMX.TMSFNCBitmapContainer,
   FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCDataGridBase,
-  FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer, System.Rtti;
+  FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer, System.Rtti,
+  FMX.TMSFNCButton, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Panel1: TPanel;
-    Button1: TButton;
-    Button2: TButton;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    Button1: TTMSFNCButton;
+    Button2: TTMSFNCButton;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     TMSFNCDataGridExcelIO1: TTMSFNCDataGridExcelIO;
