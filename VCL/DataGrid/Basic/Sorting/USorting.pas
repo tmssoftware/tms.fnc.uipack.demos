@@ -10,10 +10,16 @@ uses
   VCL.TMSFNCDataGrid, VCL.TMSFNCTypes,
   VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes,
   VCL.TMSFNCDataGridBase, VCL.TMSFNCDataGridCell, VCL.TMSFNCDataGridCore,
-  VCL.TMSFNCDataGridRenderer, System.Rtti;
+  VCL.TMSFNCDataGridRenderer, System.Rtti,
+  VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     procedure FormCreate(Sender: TObject);
   private

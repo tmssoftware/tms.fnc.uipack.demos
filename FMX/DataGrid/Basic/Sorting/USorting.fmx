@@ -2,33 +2,82 @@ object Form130: TForm130
   Left = 0
   Top = 0
   Caption = 'TMS FNC Data Grid Sorting Demo'
-  ClientHeight = 540
-  ClientWidth = 736
+  ClientHeight = 660
+  ClientWidth = 1000
   Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 736.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 512.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'DataGrid sorting'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 512.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Click a column header to sort the grid, click again to reverse the order'
+    end
+  end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Align = Client
     DisableFocusEffect = False
-    Margins.Left = 10.000000000000000000
-    Margins.Top = 10.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 10.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     Size.Width = 716.000000000000000000
     Size.Height = 520.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     CellAppearance.FixedLayout.Fill.Kind = gfkGradient
-    CellAppearance.FixedLayout.Fill.ColorTo = xFFD9D9D9
-    CellAppearance.FixedSelectedLayout.Fill.Color = claLightsteelblue
-    CellAppearance.FocusedLayout.Fill.Color = claLightsteelblue
-    CellAppearance.FocusedLayout.Font.Color = claWhite
-    CellAppearance.GroupLayout.Font.Color = claSteelblue
-    CellAppearance.SelectedLayout.Fill.Color = claLightsteelblue
-    CellAppearance.SelectedLayout.Font.Color = claWhite
     Icons.ExpandIcon.PNG = {
       89504E470D0A1A0A0000000D4948445200000020000000200806000000737A7A
       F40000000473424954080808087C0864880000001A494441545885EDC1010100
@@ -313,6 +362,10 @@ object Form130: TForm130
         Settings = [gcsAppearance]
       end>
     Options.Mouse.ClickMargin = 0
-    Stroke.Color = claDarkgray
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end
