@@ -1,130 +1,242 @@
 object Form2: TForm2
   Left = 0
   Top = 0
-  Caption = 'TMS FNC TileList Demo'
-  ClientHeight = 618
-  ClientWidth = 544
+  Caption = 'TMS FNC UI Pack - TileList'
+  ClientHeight = 720
+  ClientWidth = 1000
   Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
-  object Rectangle1: TRectangle
+  object DemoHeader: TTMSFNCPanel
     Align = Top
-    Fill.Color = claWhite
     Size.Width = 544.000000000000000000
-    Size.Height = 105.000000000000000000
+    Size.Height = 72.000000000000000000
     Size.PlatformDefault = False
-    Stroke.Color = claWhitesmoke
-    object CheckBox1: TCheckBox
-      StyledSettings = [Family, Size, Style]
-      Position.X = 16.000000000000000000
-      Position.Y = 16.000000000000000000
-      Size.Width = 105.000000000000000000
-      Size.Height = 19.000000000000000000
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 320.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'TileList'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 320.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Tiles in pages or scrolling, horizontal or vertical, with header, footer and drag to reorder'
+    end
+  end
+  object SettingsPanel: TTMSFNCPanel
+    Align = Left
+    Margins.Left = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+    Position.Y = 72.000000000000000000
+    Size.Width = 260.000000000000000000
+    Size.Height = 632.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Header.Visible = False
+    object NavCaption: TTMSFNCHTMLText
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 12.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 15.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Navigation mode'
+    end
+    object RadioButton1: TTMSFNCRadioButton
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 4.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 40.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Paging'
+      Checked = True
+      GroupName = 'navigation'
+      OnClick = RadioButton1Change
+    end
+    object RadioButton2: TTMSFNCRadioButton
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 4.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 68.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Scrolling'
+      GroupName = 'navigation'
+      OnClick = RadioButton2Change
+    end
+    object OrientCaption: TTMSFNCHTMLText
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 16.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 108.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 15.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Orientation'
+    end
+    object RadioButton3: TTMSFNCRadioButton
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 4.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 136.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Horizontal'
+      Checked = True
+      GroupName = 'orientation'
+      OnClick = RadioButton3Change
+    end
+    object RadioButton4: TTMSFNCRadioButton
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 4.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 164.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Text = 'Vertical'
+      GroupName = 'orientation'
+      OnClick = RadioButton4Change
+    end
+    object OptionsCaption: TTMSFNCHTMLText
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 16.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 204.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 15.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Options'
+    end
+    object CheckBox1: TTMSFNCCheckBox
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 236.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
       Text = 'Header'
       OnChange = CheckBox1Change
     end
-    object GroupBox1: TGroupBox
-      StyledSettings = [Family, Size, Style, Other]
-      Position.X = 265.000000000000000000
-      Position.Y = 16.000000000000000000
-      Size.Width = 137.000000000000000000
-      Size.Height = 73.000000000000000000
+    object CheckBox2: TTMSFNCCheckBox
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 268.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
-      Text = 'Navigation mode'
-      TabOrder = 2
-      object RadioButton1: TRadioButton
-        StyledSettings = [Family, Size, Style]
-        GroupName = 'navigation'
-        IsChecked = True
-        Position.X = 8.000000000000000000
-        Position.Y = 24.000000000000000000
-        TabOrder = 38
-        Text = 'Paging'
-        OnChange = RadioButton1Change
-      end
-      object RadioButton2: TRadioButton
-        StyledSettings = [Family, Size, Style]
-        GroupName = 'navigation'
-        Position.X = 8.000000000000000000
-        Position.Y = 46.000000000000000000
-        TabOrder = 40
-        Text = 'Scrolling'
-        OnChange = RadioButton2Change
-      end
+      TabOrder = 5
+      Text = 'Footer'
+      Checked = True
+      OnChange = CheckBox2Change
     end
-    object GroupBox2: TGroupBox
-      StyledSettings = [Family, Size, Style, Other]
-      Position.X = 410.000000000000000000
-      Position.Y = 16.000000000000000000
-      Size.Width = 120.000000000000000000
-      Size.Height = 73.000000000000000000
-      Size.PlatformDefault = False
-      Text = 'Orientation'
-      TabOrder = 3
-      object RadioButton3: TRadioButton
-        StyledSettings = [Family, Size, Style]
-        GroupName = 'orientation'
-        IsChecked = True
-        Position.X = 8.000000000000000000
-        Position.Y = 24.000000000000000000
-        Size.Width = 89.000000000000000000
-        Size.Height = 19.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 38
-        Text = 'Horizontal'
-        OnChange = RadioButton3Change
-      end
-      object RadioButton4: TRadioButton
-        StyledSettings = [Family, Size, Style]
-        GroupName = 'orientation'
-        Position.X = 8.000000000000000000
-        Position.Y = 46.000000000000000000
-        Size.Width = 89.000000000000000000
-        Size.Height = 19.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 40
-        Text = 'Vertical'
-        OnChange = RadioButton4Change
-      end
-    end
-    object CheckBox4: TCheckBox
-      StyledSettings = [Family, Size, Style]
-      Position.X = 16.000000000000000000
-      Position.Y = 70.000000000000000000
-      Size.Width = 105.000000000000000000
-      Size.Height = 19.000000000000000000
+    object CheckBox3: TTMSFNCCheckBox
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 300.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 6
-      Text = 'Show arrows'
-      OnChange = CheckBox4Change
-    end
-    object CheckBox3: TCheckBox
-      StyledSettings = [Family, Size, Style]
-      Position.X = 137.000000000000000000
-      Position.Y = 16.000000000000000000
-      Size.Width = 105.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 4
       Text = 'Enable drag'
       OnChange = CheckBox3Change
     end
-    object CheckBox2: TCheckBox
-      StyledSettings = [Family, Size, Style]
-      IsChecked = True
-      Position.X = 16.000000000000000000
-      Position.Y = 43.000000000000000000
-      Size.Width = 105.000000000000000000
-      Size.Height = 19.000000000000000000
+    object CheckBox4: TTMSFNCCheckBox
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 332.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 1
-      Text = 'Footer'
-      OnChange = CheckBox2Change
+      TabOrder = 7
+      Text = 'Show arrows'
+      OnChange = CheckBox4Change
     end
   end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
@@ -132,7 +244,7 @@ object Form2: TForm2
     Size.Height = 39.000000000000000000
     Size.PlatformDefault = False
     Position.X = 187.000000000000000000
-    Position.Y = 58.000000000000000000
+    Position.Y = 130.000000000000000000
     Items = <
       item
         Bitmap.PNG = {
@@ -845,5 +957,14 @@ object Form2: TForm2
     Footer.ArrowRight.ArrowDownFill.Color = claDimgray
     Footer.ArrowRight.ArrowHoverFill.Color = claDimgray
     OnItemClick = TMSFNCTileList1ItemClick
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

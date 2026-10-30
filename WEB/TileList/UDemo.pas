@@ -9,25 +9,31 @@ uses
   VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes,
   VCL.TMSFNCCustomControl, VCL.TMSFNCCustomPicker, VCL.TMSFNCColorPicker, Types,
   VCL.TMSFNCTableView, VCL.TMSFNCChat, VCL.TMSFNCCustomScrollControl,
-  VCL.TMSFNCTileList, VCL.TMSFNCCustomComponent, VCL.TMSFNCBitmapContainer;
+  VCL.TMSFNCTileList, VCL.TMSFNCCustomComponent, VCL.TMSFNCBitmapContainer,
+  WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton,
+  WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector;
 
 type
   TForm43 = class(TWebForm)
     WebLabel3: TWebLabel;
     WebLabel4: TWebLabel;
-    WebPanel1: TWebPanel;
-    WebGroupBox1: TWebGroupBox;
-    WebGroupBox2: TWebGroupBox;
-    WebCheckBox1: TWebCheckBox;
-    WebCheckBox2: TWebCheckBox;
-    WebCheckBox3: TWebCheckBox;
-    WebCheckBox4: TWebCheckBox;
+    ThemeManager: TTMSFNCThemeManager;
+    SettingsPanel: TTMSFNCPanel;
+    ThemeCaption: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    NavCaption: TTMSFNCHTMLText;
+    WebRadioButton1: TTMSFNCRadioButton;
+    WebRadioButton2: TTMSFNCRadioButton;
+    OrientCaption: TTMSFNCHTMLText;
+    WebRadioButton3: TTMSFNCRadioButton;
+    WebRadioButton4: TTMSFNCRadioButton;
+    OptionsCaption: TTMSFNCHTMLText;
+    WebCheckBox1: TTMSFNCCheckBox;
+    WebCheckBox2: TTMSFNCCheckBox;
+    WebCheckBox3: TTMSFNCCheckBox;
+    WebCheckBox4: TTMSFNCCheckBox;
     TMSFNCTileList1: TTMSFNCTileList;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
-    WebRadioButton1: TWebRadioButton;
-    WebRadioButton2: TWebRadioButton;
-    WebRadioButton3: TWebRadioButton;
-    WebRadioButton4: TWebRadioButton;
     procedure WebCheckBox1Click(Sender: TObject);
     procedure WebCheckBox2Click(Sender: TObject);
     procedure WebCheckBox4Click(Sender: TObject);
@@ -88,43 +94,14 @@ var
 begin
   TMSFNCTileList1.BeginUpdate;
 
-  TMSFNCTileList1.Header.Fill.Color := gcDimgray;
-  TMSFNCTileList1.Header.Stroke.Color := gcDimgray;
-  TMSFNCTileList1.Header.ArrowLeft.Fill.Color := gcDimgray;
-  TMSFNCTileList1.Header.ArrowLeft.DownFill.Color := gcDimgray;
-  TMSFNCTileList1.Header.ArrowLeft.HoverFill.Color := gcDimgray;
-  TMSFNCTileList1.Header.ArrowLeft.Stroke.Color := gcDimgray;
-  TMSFNCTileList1.Header.ArrowLeft.DownStroke.Color := gcDimgray;
-  TMSFNCTileList1.Header.ArrowLeft.HoverStroke.Color := gcDimgray;
-  TMSFNCTileList1.Header.ArrowLeft.ArrowFill.Color := gcWhite;
-  TMSFNCTileList1.Header.ArrowLeft.ArrowDownFill.Color := gcWhite;
-  TMSFNCTileList1.Header.ArrowLeft.ArrowHoverFill.Color := gcWhite;
   TMSFNCTileList1.Header.ArrowLeft.Visible := False;
   TMSFNCTileList1.Header.ArrowRight.Assign(TMSFNCTileList1.Header.ArrowLeft);
-  TMSFNCTileList1.Header.Bullets.Fill.Color := gcWhite;
-  TMSFNCTileList1.Header.Bullets.Stroke.Color := gcWhite;
-  TMSFNCTileList1.Header.Bullets.SelectedFill.Color := gcDeepskyblue;
-  TMSFNCTileList1.Header.Bullets.SelectedStroke.Color := gcDeepskyblue;
 
-  TMSFNCTileList1.Footer.Fill.Assign(TMSFNCTileList1.Header.Fill);
-  TMSFNCTileList1.Footer.Stroke.Assign(TMSFNCTileList1.Header.Stroke);
   TMSFNCTileList1.Footer.ArrowRight.Assign(TMSFNCTileList1.Header.ArrowRight);
   TMSFNCTileList1.Footer.ArrowLeft.Assign(TMSFNCTileList1.Header.ArrowLeft);
-  TMSFNCTileList1.Footer.Bullets.Assign(TMSFNCTileList1.Header.Bullets);
 
   TMSFNCTileList1.Header.Visible := False;
 
-  //appearance
-  TMSFNCTileList1.Appearance.Fill.Color := gcGray;
-  TMSFNCTileList1.Appearance.Stroke.Color := gcGray;
-  TMSFNCTileList1.Appearance.FillHover.Color := gcLightgray;
-  TMSFNCTileList1.Appearance.StrokeHover.Color := gcLightGray;
-  TMSFNCTileList1.Appearance.FillDown.Color := gcDeepskyblue;
-  TMSFNCTileList1.Appearance.StrokeDown.Color := gcDeepskyblue;
-  TMSFNCTileList1.Appearance.FillSelected.Color := gcDeepskyblue;
-  TMSFNCTileList1.Appearance.StrokeSelected.Color := gcDeepskyblue;
-  TMSFNCTileList1.Appearance.TitleFont.Color := gcWhite;
-  TMSFNCTileList1.Appearance.DescriptionFont.Color := gcWhite;
 
   TMSFNCTileList1.Items.Clear;
   for I := 0 to 13 do
@@ -144,6 +121,8 @@ end;
 
 procedure TForm43.WebRadioButton1Click(Sender: TObject);
 begin
+  if not WebRadioButton1.Checked then
+    Exit;
   TMSFNCTileList1.BeginUpdate;
   TMSFNCTileList1.NavigationMode := tlnmPage;
   TMSFNCTileList1.Header.Visible := WebCheckBox1.Checked;
@@ -153,6 +132,8 @@ end;
 
 procedure TForm43.WebRadioButton2Click(Sender: TObject);
 begin
+  if not WebRadioButton2.Checked then
+    Exit;
   TMSFNCTileList1.BeginUpdate;
   TMSFNCTileList1.NavigationMode := tlnmScroll;
   TMSFNCTileList1.Header.Visible := False;
@@ -162,11 +143,15 @@ end;
 
 procedure TForm43.WebRadioButton3Click(Sender: TObject);
 begin
+  if not WebRadioButton3.Checked then
+    Exit;
   TMSFNCTileList1.Orientation := tloHorizontal;
 end;
 
 procedure TForm43.WebRadioButton4Click(Sender: TObject);
 begin
+  if not WebRadioButton4.Checked then
+    Exit;
   TMSFNCTileList1.Orientation := tloVertical;
 end;
 

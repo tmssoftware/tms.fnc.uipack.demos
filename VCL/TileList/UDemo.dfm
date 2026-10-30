@@ -1,9 +1,9 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC TileList Demo'
-  ClientHeight = 594
-  ClientWidth = 497
+  Caption = 'TMS FNC UI Pack - TileList'
+  ClientHeight = 720
+  ClientWidth = 1000
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,110 +13,259 @@ object Form130: TForm130
   Position = poScreenCenter
   OnCreate = FormCreate
   TextHeight = 13
-  object Panel1: TPanel
+  object DemoHeader: TTMSFNCPanel
     Left = 0
     Top = 0
     Width = 497
-    Height = 113
+    Height = 72
     Align = alTop
-    BevelOuter = bvNone
-    Color = 16119285
-    ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 531
-    object CheckBox1: TCheckBox
-      Left = 16
-      Top = 16
-      Width = 97
-      Height = 17
-      Caption = 'Header'
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 313
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
       TabOrder = 0
-      OnClick = CheckBox1Click
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
     end
-    object CheckBox2: TCheckBox
-      Left = 16
-      Top = 48
-      Width = 97
-      Height = 17
-      Caption = 'Footer'
-      Checked = True
-      State = cbChecked
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 273
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
       TabOrder = 1
-      OnClick = CheckBox2Click
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'TileList'
     end
-    object CheckBox3: TCheckBox
-      Left = 119
-      Top = 16
-      Width = 97
-      Height = 17
-      Caption = 'Enable drag'
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 273
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
       TabOrder = 2
-      OnClick = CheckBox3Click
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Tiles in pages or scrolling, horizontal or vertical, with header, footer and drag to reorder'
     end
-    object CheckBox4: TCheckBox
+  end
+  object SettingsPanel: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 16
+    Top = 72
+    Width = 260
+    Height = 632
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 16
+    Align = alLeft
+    TabOrder = 1
+    Header.Visible = False
+    object NavCaption: TTMSFNCHTMLText
+      AlignWithMargins = True
       Left = 16
-      Top = 80
-      Width = 97
-      Height = 17
-      Caption = 'Show arrows'
+      Top = 12
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 12
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -15
+      Font.Name = 'Segoe UI Semibold'
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Navigation mode'
+    end
+    object RadioButton1: TTMSFNCRadioButton
+      AlignWithMargins = True
+      Left = 16
+      Top = 40
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 4
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 0
+      Text = 'Paging'
+      Checked = True
+      GroupName = 'navigation'
+      OnClick = RadioButton1Click
+    end
+    object RadioButton2: TTMSFNCRadioButton
+      AlignWithMargins = True
+      Left = 16
+      Top = 68
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 4
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 1
+      Text = 'Scrolling'
+      GroupName = 'navigation'
+      OnClick = RadioButton2Click
+    end
+    object OrientCaption: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 16
+      Top = 108
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 16
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -15
+      Font.Name = 'Segoe UI Semibold'
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Orientation'
+    end
+    object RadioButton3: TTMSFNCRadioButton
+      AlignWithMargins = True
+      Left = 16
+      Top = 136
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 4
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 2
+      Text = 'Horizontal'
+      Checked = True
+      GroupName = 'orientation'
+      OnClick = RadioButton3Click
+    end
+    object RadioButton4: TTMSFNCRadioButton
+      AlignWithMargins = True
+      Left = 16
+      Top = 164
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 4
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
       TabOrder = 3
-      OnClick = CheckBox4Click
+      Text = 'Vertical'
+      GroupName = 'orientation'
+      OnClick = RadioButton4Click
     end
-    object GroupBox1: TGroupBox
-      Left = 222
-      Top = 16
-      Width = 115
-      Height = 81
-      Caption = 'Navigation mode'
+    object OptionsCaption: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 16
+      Top = 204
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 16
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -15
+      Font.Name = 'Segoe UI Semibold'
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Options'
+    end
+    object CheckBox1: TTMSFNCCheckBox
+      AlignWithMargins = True
+      Left = 16
+      Top = 236
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
       TabOrder = 4
-      object RadioButton1: TRadioButton
-        Left = 11
-        Top = 21
-        Width = 113
-        Height = 17
-        Caption = 'Paging'
-        Checked = True
-        TabOrder = 0
-        TabStop = True
-        OnClick = RadioButton1Click
-      end
-      object RadioButton2: TRadioButton
-        Left = 11
-        Top = 52
-        Width = 113
-        Height = 17
-        Caption = 'Scrolling'
-        TabOrder = 1
-        OnClick = RadioButton2Click
-      end
+      Text = 'Header'
+      OnChange = CheckBox1Click
     end
-    object GroupBox2: TGroupBox
-      Left = 352
-      Top = 16
-      Width = 121
-      Height = 81
-      Caption = 'Orientation'
+    object CheckBox2: TTMSFNCCheckBox
+      AlignWithMargins = True
+      Left = 16
+      Top = 268
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
       TabOrder = 5
-      object RadioButton3: TRadioButton
-        Left = 16
-        Top = 21
-        Width = 113
-        Height = 17
-        Caption = 'Horizontal'
-        Checked = True
-        TabOrder = 0
-        TabStop = True
-        OnClick = RadioButton3Click
-      end
-      object RadioButton4: TRadioButton
-        Left = 16
-        Top = 52
-        Width = 113
-        Height = 17
-        Caption = 'Vertical'
-        TabOrder = 1
-        OnClick = RadioButton4Click
-      end
+      Text = 'Footer'
+      Checked = True
+      OnChange = CheckBox2Click
+    end
+    object CheckBox3: TTMSFNCCheckBox
+      AlignWithMargins = True
+      Left = 16
+      Top = 300
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 6
+      Text = 'Enable drag'
+      OnChange = CheckBox3Click
+    end
+    object CheckBox4: TTMSFNCCheckBox
+      AlignWithMargins = True
+      Left = 16
+      Top = 332
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 7
+      Text = 'Show arrows'
+      OnChange = CheckBox4Click
     end
   end
   object TMSFNCTileList1: TTMSFNCTileList
@@ -221,10 +370,15 @@ object Form130: TForm130
     ExplicitTop = 176
     ExplicitWidth = 400
     ExplicitHeight = 400
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
   end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
     Left = 152
-    Top = 68
+    Top = 140
     Width = 39
     Height = 39
     Visible = True
@@ -515,5 +669,10 @@ object Form130: TForm130
         Name = 'store.svg'
         Tag = 0
       end>
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

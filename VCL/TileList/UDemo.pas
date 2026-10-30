@@ -7,23 +7,30 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Types,
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes,
   VCL.TMSFNCCustomControl, VCL.TMSFNCCustomScrollControl, VCL.TMSFNCTileList,
-  VCL.TMSFNCCustomComponent, VCL.TMSFNCBitmapContainer;
+  VCL.TMSFNCCustomComponent, VCL.TMSFNCBitmapContainer,
+  VCL.TMSFNCCheckBox, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCRadioButton, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Panel1: TPanel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    SettingsPanel: TTMSFNCPanel;
+    NavCaption: TTMSFNCHTMLText;
+    RadioButton1: TTMSFNCRadioButton;
+    RadioButton2: TTMSFNCRadioButton;
+    OrientCaption: TTMSFNCHTMLText;
+    RadioButton3: TTMSFNCRadioButton;
+    RadioButton4: TTMSFNCRadioButton;
+    OptionsCaption: TTMSFNCHTMLText;
+    CheckBox1: TTMSFNCCheckBox;
+    CheckBox2: TTMSFNCCheckBox;
+    CheckBox3: TTMSFNCCheckBox;
+    CheckBox4: TTMSFNCCheckBox;
     TMSFNCTileList1: TTMSFNCTileList;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
-    GroupBox1: TGroupBox;
-    GroupBox2: TGroupBox;
-    RadioButton1: TRadioButton;
-    RadioButton2: TRadioButton;
-    RadioButton3: TRadioButton;
-    RadioButton4: TRadioButton;
     procedure FormCreate(Sender: TObject);
     procedure TMSFNCTileList1ItemClick(Sender: TObject; AItemIndex: Integer);
     procedure CheckBox1Click(Sender: TObject);
@@ -88,43 +95,14 @@ var
 begin
   TMSFNCTileList1.BeginUpdate;
 
-  TMSFNCTileList1.Header.Fill.Color := gcDimgray;
-  TMSFNCTileList1.Header.Stroke.Color := gcDimgray;
-  TMSFNCTileList1.Header.ArrowLeft.Fill.Color := gcDimgray;
-  TMSFNCTileList1.Header.ArrowLeft.DownFill.Color := gcDimgray;
-  TMSFNCTileList1.Header.ArrowLeft.HoverFill.Color := gcDimgray;
-  TMSFNCTileList1.Header.ArrowLeft.Stroke.Color := gcDimgray;
-  TMSFNCTileList1.Header.ArrowLeft.DownStroke.Color := gcDimgray;
-  TMSFNCTileList1.Header.ArrowLeft.HoverStroke.Color := gcDimgray;
-  TMSFNCTileList1.Header.ArrowLeft.ArrowFill.Color := gcWhite;
-  TMSFNCTileList1.Header.ArrowLeft.ArrowDownFill.Color := gcWhite;
-  TMSFNCTileList1.Header.ArrowLeft.ArrowHoverFill.Color := gcWhite;
   TMSFNCTileList1.Header.ArrowLeft.Visible := False;
   TMSFNCTileList1.Header.ArrowRight.Assign(TMSFNCTileList1.Header.ArrowLeft);
-  TMSFNCTileList1.Header.Bullets.Fill.Color := gcWhite;
-  TMSFNCTileList1.Header.Bullets.Stroke.Color := gcWhite;
-  TMSFNCTileList1.Header.Bullets.SelectedFill.Color := gcDeepskyblue;
-  TMSFNCTileList1.Header.Bullets.SelectedStroke.Color := gcDeepskyblue;
 
-  TMSFNCTileList1.Footer.Fill.Assign(TMSFNCTileList1.Header.Fill);
-  TMSFNCTileList1.Footer.Stroke.Assign(TMSFNCTileList1.Header.Stroke);
   TMSFNCTileList1.Footer.ArrowRight.Assign(TMSFNCTileList1.Header.ArrowRight);
   TMSFNCTileList1.Footer.ArrowLeft.Assign(TMSFNCTileList1.Header.ArrowLeft);
-  TMSFNCTileList1.Footer.Bullets.Assign(TMSFNCTileList1.Header.Bullets);
 
   TMSFNCTileList1.Header.Visible := False;
 
-  //appearance
-  TMSFNCTileList1.Appearance.Fill.Color := gcGray;
-  TMSFNCTileList1.Appearance.Stroke.Color := gcGray;
-  TMSFNCTileList1.Appearance.FillHover.Color := gcLightgray;
-  TMSFNCTileList1.Appearance.StrokeHover.Color := gcLightGray;
-  TMSFNCTileList1.Appearance.FillDown.Color := gcDeepskyblue;
-  TMSFNCTileList1.Appearance.StrokeDown.Color := gcDeepskyblue;
-  TMSFNCTileList1.Appearance.FillSelected.Color := gcDeepskyblue;
-  TMSFNCTileList1.Appearance.StrokeSelected.Color := gcDeepskyblue;
-  TMSFNCTileList1.Appearance.TitleFont.Color := gcWhite;
-  TMSFNCTileList1.Appearance.DescriptionFont.Color := gcWhite;
 
   TMSFNCTileList1.Items.Clear;
   for I := 0 to 13 do

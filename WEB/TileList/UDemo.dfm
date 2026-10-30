@@ -1,6 +1,7 @@
 object Form43: TForm43
-  Width = 739
-  Height = 676
+  Caption = 'TMS FNC UI Pack - TileList'
+  Width = 1000
+  Height = 720
   FormContainer = 'appcontent'
   OnCreate = WebFormCreate
   object WebLabel3: TWebLabel
@@ -8,7 +9,7 @@ object Form43: TForm43
     Top = 93
     Width = 122
     Height = 15
-    Caption = 'TMS FNC TileList demo'
+    Caption = 'TileList'
     ElementID = 'title'
     HeightPercent = 100.000000000000000000
     WidthPercent = 100.000000000000000000
@@ -18,135 +19,243 @@ object Form43: TForm43
     Top = 112
     Width = 280
     Height = 15
-    Caption = 'Shows the various configurability of TTMSFNCTileList'
+    Caption = 'Tiles in pages or scrolling, horizontal or vertical, with header, footer and drag to reorder'
     ElementID = 'description'
     HeightPercent = 100.000000000000000000
     WidthPercent = 100.000000000000000000
   end
-  object WebPanel1: TWebPanel
-    Left = 0
+  object SettingsPanel: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 16
     Top = 0
-    Width = 739
-    Height = 137
-    Align = alTop
-    ChildOrder = 2
-    ExplicitWidth = 736
-    object WebGroupBox1: TWebGroupBox
-      Left = 304
-      Top = 14
-      Width = 177
-      Height = 94
-      BorderColor = clSilver
-      Caption = 'Navigation mode'
-      object WebRadioButton1: TWebRadioButton
-        Left = 16
-        Top = 24
-        Width = 113
-        Height = 22
-        Caption = 'Paging'
-        Checked = True
-        Color = clNone
-        GroupName = 'navigation'
-        HeightPercent = 100.000000000000000000
-        WidthPercent = 100.000000000000000000
-        OnClick = WebRadioButton1Click
-      end
-      object WebRadioButton2: TWebRadioButton
-        Left = 16
-        Top = 52
-        Width = 113
-        Height = 22
-        Caption = 'Scrolling'
-        Checked = False
-        ChildOrder = 1
-        Color = clNone
-        GroupName = 'navigation'
-        HeightPercent = 100.000000000000000000
-        WidthPercent = 100.000000000000000000
-        OnClick = WebRadioButton2Click
-      end
+    Width = 260
+    Height = 600
+    Margins.Left = 16
+    Margins.Top = 16
+    Margins.Right = 0
+    Margins.Bottom = 16
+    Align = alLeft
+    TabOrder = 1
+    Header.Visible = False
+    object ThemeCaption: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 16
+      Top = 12
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 12
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -15
+      Font.Name = 'Segoe UI Semibold'
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Theme'
     end
-    object WebGroupBox2: TWebGroupBox
-      Left = 504
-      Top = 16
-      Width = 177
-      Height = 92
-      BorderColor = clSilver
-      Caption = 'Orientation'
-      ChildOrder = 1
-      object WebRadioButton3: TWebRadioButton
-        Left = 16
-        Top = 22
-        Width = 113
-        Height = 22
-        Caption = 'Horizontal'
-        Checked = True
-        Color = clNone
-        GroupName = 'orientation'
-        HeightPercent = 100.000000000000000000
-        WidthPercent = 100.000000000000000000
-        OnClick = WebRadioButton3Click
-      end
-      object WebRadioButton4: TWebRadioButton
-        Left = 16
-        Top = 50
-        Width = 113
-        Height = 22
-        Caption = 'Vertical'
-        Checked = False
-        ChildOrder = 1
-        Color = clNone
-        GroupName = 'orientation'
-        HeightPercent = 100.000000000000000000
-        WidthPercent = 100.000000000000000000
-        OnClick = WebRadioButton4Click
-      end
-    end
-    object WebCheckBox1: TWebCheckBox
-      Left = 24
-      Top = 16
-      Width = 113
-      Height = 22
-      Caption = 'Header'
-      ChildOrder = 2
-      HeightPercent = 100.000000000000000000
-      WidthPercent = 100.000000000000000000
-      OnClick = WebCheckBox1Click
-    end
-    object WebCheckBox2: TWebCheckBox
-      Left = 24
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 16
       Top = 44
-      Width = 113
-      Height = 22
-      Caption = 'Footer'
+      Width = 228
+      Height = 36
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object NavCaption: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 16
+      Top = 96
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 16
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -15
+      Font.Name = 'Segoe UI Semibold'
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Navigation mode'
+    end
+    object WebRadioButton1: TTMSFNCRadioButton
+      AlignWithMargins = True
+      Left = 16
+      Top = 124
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 4
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 1
+      Text = 'Paging'
       Checked = True
-      ChildOrder = 3
-      HeightPercent = 100.000000000000000000
-      State = cbChecked
-      WidthPercent = 100.000000000000000000
-      OnClick = WebCheckBox2Click
+      GroupName = 'navigation'
+      OnChange = WebRadioButton1Click
     end
-    object WebCheckBox3: TWebCheckBox
-      Left = 168
-      Top = 16
-      Width = 113
-      Height = 22
-      Caption = 'Enable drag'
-      ChildOrder = 4
-      HeightPercent = 100.000000000000000000
-      WidthPercent = 100.000000000000000000
-      OnClick = WebCheckBox3Click
+    object WebRadioButton2: TTMSFNCRadioButton
+      AlignWithMargins = True
+      Left = 16
+      Top = 152
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 4
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 2
+      Text = 'Scrolling'
+      GroupName = 'navigation'
+      OnChange = WebRadioButton2Click
     end
-    object WebCheckBox4: TWebCheckBox
-      Left = 24
-      Top = 72
-      Width = 113
-      Height = 22
-      Caption = 'Show arrows'
-      ChildOrder = 5
-      HeightPercent = 100.000000000000000000
-      WidthPercent = 100.000000000000000000
-      OnClick = WebCheckBox4Click
+    object OrientCaption: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 16
+      Top = 192
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 16
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -15
+      Font.Name = 'Segoe UI Semibold'
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Orientation'
+    end
+    object WebRadioButton3: TTMSFNCRadioButton
+      AlignWithMargins = True
+      Left = 16
+      Top = 220
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 4
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 3
+      Text = 'Horizontal'
+      Checked = True
+      GroupName = 'orientation'
+      OnChange = WebRadioButton3Click
+    end
+    object WebRadioButton4: TTMSFNCRadioButton
+      AlignWithMargins = True
+      Left = 16
+      Top = 248
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 4
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 4
+      Text = 'Vertical'
+      GroupName = 'orientation'
+      OnChange = WebRadioButton4Click
+    end
+    object OptionsCaption: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 16
+      Top = 288
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 16
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -15
+      Font.Name = 'Segoe UI Semibold'
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Options'
+    end
+    object WebCheckBox1: TTMSFNCCheckBox
+      AlignWithMargins = True
+      Left = 16
+      Top = 320
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 5
+      Text = 'Header'
+      OnChange = WebCheckBox1Click
+    end
+    object WebCheckBox2: TTMSFNCCheckBox
+      AlignWithMargins = True
+      Left = 16
+      Top = 352
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 6
+      Text = 'Footer'
+      Checked = True
+      OnChange = WebCheckBox2Click
+    end
+    object WebCheckBox3: TTMSFNCCheckBox
+      AlignWithMargins = True
+      Left = 16
+      Top = 384
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 7
+      Text = 'Enable drag'
+      OnChange = WebCheckBox3Click
+    end
+    object WebCheckBox4: TTMSFNCCheckBox
+      AlignWithMargins = True
+      Left = 16
+      Top = 416
+      Width = 228
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 8
+      Text = 'Show arrows'
+      OnChange = WebCheckBox4Click
     end
   end
   object TMSFNCTileList1: TTMSFNCTileList
@@ -154,7 +263,7 @@ object Form43: TForm43
     Top = 137
     Width = 739
     Height = 504
-    Align = alTop
+    Align = alClient
     TabOrder = 1
     BitmapContainer = TMSFNCBitmapContainer1
     Items = <
@@ -246,6 +355,11 @@ object Form43: TForm43
     Footer.ArrowRight.ArrowFill.Color = 6908265
     Footer.ArrowRight.ArrowDownFill.Color = 6908265
     Footer.ArrowRight.ArrowHoverFill.Color = 6908265
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 16
+    Margins.Right = 16
+    Margins.Bottom = 16
   end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
     Left = 208
@@ -540,5 +654,10 @@ object Form43: TForm43
         Name = 'store.svg'
         Tag = 0
       end>
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 760
+    Top = 160
   end
 end
