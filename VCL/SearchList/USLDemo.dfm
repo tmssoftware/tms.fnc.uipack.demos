@@ -75,7 +75,7 @@ object Form1: TForm1
     Left = 8
     Top = 96
     Width = 330
-    Height = 345
+    Height = 632
     TabOrder = 0
     Header.Text = 'Dictionary lookup'
     Header.Visible = True
@@ -237,8 +237,8 @@ object Form1: TForm1
   object GroupBox2: TTMSFNCPanel
     Left = 295
     Top = 96
-    Width = 549
-    Height = 345
+    Width = 722
+    Height = 632
     TabOrder = 2
     Header.Text = 'Car lookup'
     Header.Visible = True
