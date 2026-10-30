@@ -1,5 +1,7 @@
 unit UPDFExport;
 
+{ demo-colors: TMSFNCDataGrid1.Layouts, ACell.Layout.Font.Color - the coloured cells are what the export carries }
+
 interface
 
 uses
@@ -11,16 +13,22 @@ uses
   VCL.TMSFNCCustomScrollControl, VCL.TMSFNCDataGridData, VCL.TMSFNCCustomGrid,
   VCL.TMSFNCDataGrid, VCL.TMSFNCDataGridCell, VCL.TMSFNCGraphics,
   VCL.TMSFNCGraphicsTypes, VCL.TMSFNCDataGridBase, VCL.TMSFNCDataGridCore,
-  VCL.TMSFNCDataGridRenderer, System.Rtti, Vcl.ExtCtrls;
+  VCL.TMSFNCDataGridRenderer, System.Rtti, Vcl.ExtCtrls,
+  VCL.TMSFNCButton, VCL.TMSFNCCheckBox, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
-    Panel1: TPanel;
-    Button2: TButton;
+    Panel1: TTMSFNCPanel;
+    Button2: TTMSFNCButton;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     TMSFNCDataGridPDFIO1: TTMSFNCDataGridPDFIO;
-    CheckBox1: TCheckBox;
+    CheckBox1: TTMSFNCCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure TMSFNCDataGridPDFIO1GetFooter(Sender, AExportObject: TObject;
