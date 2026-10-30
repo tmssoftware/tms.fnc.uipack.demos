@@ -136,7 +136,7 @@ object Form130: TForm130
       AlignWithMargins = True
       Left = 519
       Top = 11
-      Width = 132
+      Width = 170
       Height = 26
       Margins.Left = 10
       Margins.Top = 10
@@ -152,7 +152,7 @@ object Form130: TForm130
       AlignWithMargins = True
       Left = 671
       Top = 11
-      Width = 132
+      Width = 170
       Height = 26
       Margins.Left = 10
       Margins.Top = 10

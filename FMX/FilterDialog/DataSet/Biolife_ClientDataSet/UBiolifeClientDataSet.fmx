@@ -130,7 +130,7 @@ object Form130: TForm130
       Margins.Bottom = 10.000000000000000000
       Position.X = 520.000000000000000000
       Position.Y = 10.000000000000000000
-      Size.Width = 132.000000000000000000
+      Size.Width = 170.000000000000000000
       Size.Height = 27.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 4
@@ -145,7 +145,7 @@ object Form130: TForm130
       Margins.Bottom = 10.000000000000000000
       Position.X = 672.000000000000000000
       Position.Y = 10.000000000000000000
-      Size.Width = 132.000000000000000000
+      Size.Width = 170.000000000000000000
       Size.Height = 27.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 3
