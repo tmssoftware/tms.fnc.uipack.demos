@@ -163,12 +163,6 @@ object Form130: TForm130
     Size.PlatformDefault = False
     TabOrder = 2
     Adapter = TMSFNCDataGridDatabaseAdapter1
-    CellAppearance.FixedSelectedLayout.Fill.Color = xFFDFE7F2
-    CellAppearance.FocusedLayout.Fill.Color = xFF7EA8CB
-    CellAppearance.FocusedLayout.Font.Color = claWhite
-    CellAppearance.GroupLayout.Font.Color = claSteelblue
-    CellAppearance.SelectedLayout.Fill.Color = xFFDFE7F2
-    CellAppearance.SelectedLayout.Font.Color = claSteelblue
     ColumnCount = 8
     Columns = <
       item
@@ -478,7 +472,6 @@ object Form130: TForm130
     Options.Mouse.ClickMargin = 0
     Options.Selection.Mode = gsmSingleRow
     RowCount = 4
-    Stroke.Color = claDarkgray
     Margins.Top = 0.000000000000000000
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
@@ -572,11 +565,6 @@ object Form130: TForm130
     FilterText = '[Category] LIKE '#39'C%'#39
     DataSet = ClientDataSet1
     Options.UILanguage.OrOperatorText = 'OR'
-    Appearance.GroupFont.Color = claWhite
-    Appearance.ExpressionColumnFont.Color = claWhite
-    Appearance.ExpressionOperatorFont.Color = claWhite
-    Appearance.ExpressionValueFont.Color = claWhite
-    Appearance.DropDownHoverFont.Color = xFF2D2D2D
     Appearance.ItemControlsMargins.Left = 2.000000000000000000
     Appearance.ItemControlsMargins.Top = 4.000000000000000000
     Appearance.ItemControlsMargins.Right = 18.000000000000000000

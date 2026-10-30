@@ -132,12 +132,6 @@ object Form130: TForm130
     Size.PlatformDefault = False
     TabOrder = 2
     Adapter = TMSFNCDataGridDatabaseAdapter1
-    CellAppearance.FixedSelectedLayout.Fill.Color = xFFDFE7F2
-    CellAppearance.FocusedLayout.Fill.Color = xFF7EA8CB
-    CellAppearance.FocusedLayout.Font.Color = claWhite
-    CellAppearance.GroupLayout.Font.Color = claSteelblue
-    CellAppearance.SelectedLayout.Fill.Color = xFFDFE7F2
-    CellAppearance.SelectedLayout.Font.Color = claSteelblue
     Icons.ExpandIcon.PNG = {
       89504E470D0A1A0A0000000D4948445200000020000000200806000000737A7A
       F40000000473424954080808087C0864880000001A494441545885EDC1010100
@@ -387,7 +381,6 @@ object Form130: TForm130
     Options.Mouse.ClickMargin = 0
     Options.Selection.Mode = gsmSingleRow
     RowCount = 1
-    Stroke.Color = claDarkgray
     Margins.Top = 0.000000000000000000
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
@@ -448,11 +441,6 @@ object Form130: TForm130
     Position.Y = 528.000000000000000000
     DataSet = FDTable1
     Options.UILanguage.OrOperatorText = 'OR'
-    Appearance.GroupFont.Color = claWhite
-    Appearance.ExpressionColumnFont.Color = claWhite
-    Appearance.ExpressionOperatorFont.Color = claWhite
-    Appearance.ExpressionValueFont.Color = claWhite
-    Appearance.DropDownHoverFont.Color = xFF2D2D2D
     Appearance.ItemControlsMargins.Left = 2.000000000000000000
     Appearance.ItemControlsMargins.Top = 4.000000000000000000
     Appearance.ItemControlsMargins.Right = 18.000000000000000000
