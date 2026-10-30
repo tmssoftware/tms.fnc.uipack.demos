@@ -1,9 +1,9 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC ListEditor Demo'
-  ClientHeight = 326
-  ClientWidth = 462
+  Caption = 'TMS FNC UI Pack - ListEditor'
+  ClientHeight = 600
+  ClientWidth = 800
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,43 +15,115 @@ object Form130: TForm130
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object GroupBox1: TGroupBox
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 462
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 278
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 238
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'ListEditor'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 238
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Edit lists of items inline, or click an item in the read-only list to see its details'
+    end
+  end
+  object GroupBox1: TTMSFNCPanel
     AlignWithMargins = True
     Left = 10
     Top = 10
-    Width = 442
-    Height = 145
-    Margins.Left = 10
-    Margins.Top = 10
-    Margins.Right = 10
-    Margins.Bottom = 0
+    Width = 768
+    Height = 232
     Align = alTop
-    Caption = 'Interaction / Editing and selecting values'
-    TabOrder = 0
-    object Label1: TLabel
-      Left = 0
-      Top = 0
-      Width = 3
-      Height = 13
-    end
-    object Label2: TLabel
+    TabOrder = 1
+    Header.Visible = False
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 8
+    object Section1: TTMSFNCHTMLText
       Left = 16
-      Top = 24
-      Width = 265
-      Height = 26
-      Caption = 
+      Top = 12
+      Width = 420
+      Height = 24
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 0
+      Font.Height = -17
+      Font.Name = 'Segoe UI Semibold'
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Editing and selecting values'
+    end
+    object Label2: TTMSFNCHTMLText
+      Left = 16
+      Top = 44
+      Width = 420
+      Height = 40
+      Text = 
         'Add items to the list by pressing enter. Use cursor keys to navi' +
         'gate in the list. Press DEL to delete values.'
-      WordWrap = True
+      WordWrapping = True
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
     end
     object TMSFNCListEditor1: TTMSFNCListEditor
       Left = 16
-      Top = 72
-      Width = 150
-      Height = 65
+      Top = 96
+      Width = 420
+      Height = 56
       ParentDoubleBuffered = False
       DoubleBuffered = True
-      TabOrder = 0
+      TabOrder = 1
       Items = <
         item
           Text = 'Sun'
@@ -81,61 +153,88 @@ object Form130: TForm130
       ItemAppearance.Font.Style = []
       Stroke.Color = 11119017
     end
-    object Button1: TButton
-      Left = 192
-      Top = 72
-      Width = 75
-      Height = 25
-      Caption = 'Get Values'
-      TabOrder = 1
+    object Button1: TTMSFNCButton
+      Left = 16
+      Top = 168
+      Width = 120
+      Height = 32
+      Text = 'Get Values'
+      TabOrder = 2
       OnClick = Button1Click
     end
-    object ListBox1: TListBox
-      Left = 304
-      Top = 24
-      Width = 121
-      Height = 113
-      ItemHeight = 13
-      TabOrder = 2
+    object ListBox1: TTMSFNCListBox
+      Left = 456
+      Top = 44
+      Width = 296
+      Height = 176
+      Anchors = [akTop, akRight]
+      TabOrder = 3
+      Items = <>
+      Header.Visible = False
     end
   end
-  object GroupBox2: TGroupBox
+  object GroupBox2: TTMSFNCPanel
     AlignWithMargins = True
     Left = 10
     Top = 165
     Width = 442
-    Height = 151
-    Margins.Left = 10
-    Margins.Top = 10
-    Margins.Right = 10
-    Margins.Bottom = 10
+    Height = 159
     Align = alClient
-    Caption = 'Readonly list'
-    TabOrder = 1
-    object Label3: TLabel
+    TabOrder = 2
+    Header.Visible = False
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
+    object Section2: TTMSFNCHTMLText
+      Left = 16
+      Top = 12
+      Width = 420
+      Height = 24
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 0
+      Font.Height = -17
+      Font.Name = 'Segoe UI Semibold'
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Read-only list'
+    end
+    object Label3: TTMSFNCHTMLText
       AlignWithMargins = True
       Left = 16
-      Top = 24
-      Width = 205
-      Height = 13
-      Caption = 'Click on an item in the list to see the detail.'
+      Top = 44
+      Width = 420
+      Height = 24
+      Text = 'Click on an item in the list to see the detail.'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
     end
-    object Label4: TLabel
-      Left = 258
-      Top = 63
-      Width = 160
-      Height = 57
+    object Label4: TTMSFNCHTMLText
+      Left = 16
+      Top = 160
+      Width = 720
+      Height = 48
       AutoSize = False
-      WordWrap = True
+      WordWrapping = True
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Anchors = [akLeft, akTop, akRight]
     end
     object TMSFNCListEditor2: TTMSFNCListEditor
       Left = 16
-      Top = 56
-      Width = 217
-      Height = 75
+      Top = 80
+      Width = 420
+      Height = 64
       ParentDoubleBuffered = False
       DoubleBuffered = True
-      TabOrder = 0
+      TabOrder = 1
       ReadOnly = True
       OnItemClick = TMSFNCListEditor2ItemClick
       Items = <
@@ -326,5 +425,10 @@ object Form130: TForm130
       ItemAppearance.Font.Style = []
       Stroke.Color = 11119017
     end
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

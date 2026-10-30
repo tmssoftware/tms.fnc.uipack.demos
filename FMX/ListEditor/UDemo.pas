@@ -4,20 +4,28 @@ interface
 
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, FMX.Forms,
-  FMX.TMSFNCCustomControl, FMX.TMSFNCCustomScrollControl, FMX.TMSFNCListEditor,
+  FMX.TMSFNCCustomControl, FMX.TMSFNCCustomScrollControl, FMX.TMSFNCListEditor, FMX.TMSFNCListBox,
   FMX.StdCtrls, FMX.Layouts, FMX.ListBox, FMX.Types, FMX.Controls,
-  FMX.Controls.Presentation;
+  FMX.Controls.Presentation,
+  FMX.TMSFNCButton, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector, FMX.TMSFNCTypes, FMX.TMSFNCUtils;
 
 type
   TForm1 = class(TForm)
-    GroupBox1: TGroupBox;
-    Label1: TLabel;
-    ListBox1: TListBox;
-    Button1: TButton;
-    GroupBox2: TGroupBox;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Section2: TTMSFNCHTMLText;
+    Section1: TTMSFNCHTMLText;
+    GroupBox1: TTMSFNCPanel;
+    Label1: TTMSFNCHTMLText;
+    ListBox1: TTMSFNCListBox;
+    Button1: TTMSFNCButton;
+    GroupBox2: TTMSFNCPanel;
     TMSFNCListEditor2: TTMSFNCListEditor;
-    Label2: TLabel;
-    Label3: TLabel;
+    Label2: TTMSFNCHTMLText;
+    Label3: TTMSFNCHTMLText;
     TMSFNCListEditor1: TTMSFNCListEditor;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -41,7 +49,7 @@ var
 begin
   ListBox1.Items.Clear;
   for i := 0 to TMSFNCListEditor1.Items.Count - 1 do
-    ListBox1.Items.Add(TMSFNCListEditor1.Items[i].Text);
+    ListBox1.Items.Add.Text := TMSFNCListEditor1.Items[i].Text;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);

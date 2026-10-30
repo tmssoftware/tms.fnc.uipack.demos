@@ -13,6 +13,9 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    DemoHeader: TPanel;
+    DemoTitle: TLabel;
+    DemoDescription: TLabel;
     Button1: TButton;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
