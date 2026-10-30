@@ -3,8 +3,8 @@ object Form1: TForm1
   Height = 763
   Top = 145
   Width = 750
-  Caption = 'HotSpotImage Demo'
-  ClientHeight = 763
+  Caption = 'TMS FNC UI Pack - HotSpotImage'
+  ClientHeight = 835
   ClientWidth = 750
   Icon.Data = {
     BE1000000000010001002020000001002000A810000016000000280000002000
@@ -146,10 +146,44 @@ object Form1: TForm1
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '2.0.6.0'
+  object DemoHeader: TPanel
+    Left = 0
+    Height = 72
+    Top = 0
+    Width = 750
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 72
+    ClientWidth = 750
+    TabOrder = 0
+    object DemoTitle: TLabel
+      Left = 24
+      Height = 30
+      Top = 12
+      Width = 702
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'HotSpotImage: European capitals'
+      Font.Height = -20
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object DemoDescription: TLabel
+      Left = 24
+      Height = 20
+      Top = 42
+      Width = 702
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Click Start, then click the country that belongs to the capital you are asked for'
+      Font.Color = clGrayText
+      ParentFont = False
+    end
+  end
   object Label1: TLabel
     Left = 8
     Height = 17
-    Top = 8
+    Top = 80
     Width = 718
     Alignment = taCenter
     Anchors = [akTop, akLeft, akRight]
@@ -164,7 +198,7 @@ object Form1: TForm1
   object Label2: TLabel
     Left = 80
     Height = 25
-    Top = 584
+    Top = 656
     Width = 514
     Anchors = [akTop, akLeft, akRight, akBottom]
     AutoSize = False
@@ -177,7 +211,7 @@ object Form1: TForm1
   object Label3: TLabel
     Left = 600
     Height = 22
-    Top = 587
+    Top = 659
     Width = 49
     Alignment = taRightJustify
     Anchors = [akRight, akBottom]
@@ -191,7 +225,7 @@ object Form1: TForm1
   object Button1: TButton
     Left = 8
     Height = 25
-    Top = 584
+    Top = 656
     Width = 66
     Anchors = [akLeft, akBottom]
     Caption = 'Hint On'
@@ -201,7 +235,7 @@ object Form1: TForm1
   object Button2: TButton
     Left = 655
     Height = 25
-    Top = 584
+    Top = 656
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Start'
@@ -211,7 +245,7 @@ object Form1: TForm1
   object Memo1: TMemo
     Left = 8
     Height = 142
-    Top = 615
+    Top = 687
     Width = 718
     Anchors = [akLeft, akRight, akBottom]
     Enabled = False
@@ -231,7 +265,7 @@ object Form1: TForm1
   object TMSFNCHotSpotImage1: TTMSFNCHotSpotImage
     Left = 8
     Height = 550
-    Top = 31
+    Top = 103
     Width = 718
     Anchors = [akTop, akLeft, akRight, akBottom]
     Color = clBtnFace

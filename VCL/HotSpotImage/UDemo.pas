@@ -1,5 +1,7 @@
 unit UDemo;
 
+{ demo-colors: the answer feedback colours (Label2.Font.Color) and the hot spot colours for right (SelectedFill, Reset) and wrong answers (gcTomato) are the subject }
+
 interface
 
 uses
@@ -8,17 +10,29 @@ uses
   VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCProgressBar,
   VCL.TMSFNCCustomControl, VCL.TMSFNCPanel, Vcl.StdCtrls, System.Threading,
   VCL.TMSFNCWaitingIndicator, Vcl.Imaging.jpeg, VCL.TMSFNCImage,
-  VCL.TMSFNCHotSpotImage;
+  VCL.TMSFNCHotSpotImage,
+  VCL.TMSFNCButton, VCL.TMSFNCHTMLText, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm2 = class(TForm)
-    Label1: TLabel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    SettingsPanel: TTMSFNCPanel;
+    QuizCaption: TTMSFNCHTMLText;
+    Button2: TTMSFNCButton;
+    Button1: TTMSFNCButton;
+    ScoreCaption: TTMSFNCHTMLText;
+    Label3: TTMSFNCHTMLText;
+    QuestionCaption: TTMSFNCHTMLText;
+    Label1: TTMSFNCHTMLText;
+    AnswerCaption: TTMSFNCHTMLText;
+    Label2: TTMSFNCHTMLText;
+    HelpCaption: TTMSFNCHTMLText;
+    HelpText: TTMSFNCHTMLText;
     TMSFNCHotSpotImage1: TTMSFNCHotSpotImage;
-    Label2: TLabel;
-    Label3: TLabel;
-    Button1: TButton;
-    Button2: TButton;
-    Memo1: TMemo;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -56,7 +70,7 @@ begin
     Hints := not Hints;
     if Hints then
     begin
-      Button1.Caption := 'Hint On';
+      Button1.Text := 'Hint On';
       for I := 0 to TMSFNCHotSpotImage1.HotSpots.Count - 1 do
       begin
         TMSFNCHotSpotImage1.HotSpots[I].Appearance.HoverFill.Kind := gfkTexture;
@@ -64,7 +78,7 @@ begin
     end
     else
     begin
-      Button1.Caption := 'Hint Off';
+      Button1.Text := 'Hint Off';
       for I := 0 to TMSFNCHotSpotImage1.HotSpots.Count - 1 do
       begin
         TMSFNCHotSpotImage1.HotSpots[I].Appearance.HoverFill.Kind := gfkSolid;
@@ -81,7 +95,7 @@ begin
   Start := not Start;
   if Start then
   begin
-    Button2.Caption := 'Stop';
+    Button2.Text := 'Stop';
 
     for I := 0 to TMSFNCHotSpotImage1.HotSpots.Count - 1 do
     begin
@@ -89,11 +103,6 @@ begin
       TMSFNCHotSpotImage1.HotSpots[I].Appearance.SelectedFill.Kind := gfkSolid;
     end;
     TMSFNCHotSpotImage1.SelectedHotSpot := -1;
-
-    if Label1.Font.Color = gcSteelBlue then
-      Label1.Font.Color := gcOlivedrab
-    else
-      Label1.Font.Color := gcSteelBlue;
 
     Label1.Font.Style := [TFontStyle.fsBold];
 
@@ -104,7 +113,7 @@ begin
   end
   else
   begin
-    Button2.Caption := 'Start';
+    Button2.Text := 'Start';
 
     for I := 0 to TMSFNCHotSpotImage1.HotSpots.Count - 1 do
     begin
@@ -118,7 +127,7 @@ procedure TForm2.FormCreate(Sender: TObject);
 var
   I: Integer;
 begin
-  Label1.Caption := 'Welcome click the start button to test your knowledge on Europe capitals';
+  Label1.Text := 'Welcome click the start button to test your knowledge on Europe capitals';
   Hints := True;
 
   for I := 0 to TMSFNCHotSpotImage1.HotSpots.Count - 1 do
@@ -134,12 +143,12 @@ begin
     Point := 1;
     idx := Random(Length(cities));
 
-    Label1.Caption := 'From which country is ' + cities[idx] + ' the capital';
+    Label1.Text := 'From which country is ' + cities[idx] + ' the capital';
   end
   else
   begin
-    Label1.Caption := 'Click start to begin';
-    Label2.Caption := 'Your final score is:';
+    Label1.Text := 'Click start to begin';
+    Label2.Text := 'Your final score is:';
   end;
 end;
 
@@ -156,12 +165,12 @@ begin
     TMSFNCHotSpotImage1.HotSpots[I].Appearance.SelectedFill.Color := $0000CC99;
   end;
 
-  Label2.Caption := '';
+  Label2.Text := '';
   TMSFNCHotSpotImage1.Invalidate;
   Point := 1;
   Idx:= 0;
   Score := 0;
-  Label3.Caption := score.ToString + '/10';
+  Label3.Text := score.ToString + '/10';
 end;
 
 procedure TForm2.TMSFNCHotSpotImage1SelectedHotSpotChange(Sender: TObject;
@@ -186,9 +195,9 @@ begin
     if TMSFNCHotSpotImage1.HotSpots[AIndex].Name = countries[idx] then
     begin
       Label2.Font.Color := gcGreen;
-      Label2.Caption := cities[idx] + ' is the capital of ' + countries[idx] + ' ('+Point.ToString+')';
+      Label2.Text := cities[idx] + ' is the capital of ' + countries[idx] + ' ('+Point.ToString+')';
       Score := Score + Point;
-      Label3.Caption := score.ToString + '/10';
+      Label3.Text := score.ToString + '/10';
 
       Delete(cities, idx, 1);
       Delete(countries, idx, 1);
@@ -211,7 +220,7 @@ begin
         end;
 
         Label2.Font.Color := gcRed;
-        Label2.Caption := cities[idx] + ' is not the capital of ' + TMSFNCHotSpotImage1.HotSpots[AIndex].Name + ' but ' + countries[idx] + ' (Next question)';
+        Label2.Text := cities[idx] + ' is not the capital of ' + TMSFNCHotSpotImage1.HotSpots[AIndex].Name + ' but ' + countries[idx] + ' (Next question)';
 
         Delete(cities, idx, 1);
         Delete(countries, idx, 1);
@@ -221,7 +230,7 @@ begin
       else
       begin
         Label2.Font.Color := gcOrange;
-        Label2.Caption := cities[idx] + ' is not the capital of ' + TMSFNCHotSpotImage1.HotSpots[AIndex].Name + ' ('+Point.ToString+')';
+        Label2.Text := cities[idx] + ' is not the capital of ' + TMSFNCHotSpotImage1.HotSpots[AIndex].Name + ' ('+Point.ToString+')';
       end;
     end;
   end;

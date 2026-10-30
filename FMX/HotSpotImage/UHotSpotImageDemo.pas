@@ -1,23 +1,37 @@
 unit UHotSpotImageDemo;
 
+{ demo-colors: the answer feedback colours (Label2.Font.Color) and the wrong-answer colour of the hot spot (gcTomato) are the subject }
+
 interface
 
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes,
-  FMX.StdCtrls, FMX.Controls.Presentation, FMX.TMSFNCCustomControl,
-  FMX.TMSFNCImage, FMX.TMSFNCHotSpotImage, FMX.ScrollBox, FMX.Memo;
+  FMX.TMSFNCCustomControl,
+  FMX.TMSFNCImage, FMX.TMSFNCHotSpotImage,
+  FMX.TMSFNCButton, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm2 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    SettingsPanel: TTMSFNCPanel;
+    QuizCaption: TTMSFNCHTMLText;
+    Button1: TTMSFNCButton;
+    Button2: TTMSFNCButton;
+    ScoreCaption: TTMSFNCHTMLText;
+    Label3: TTMSFNCHTMLText;
+    QuestionCaption: TTMSFNCHTMLText;
+    Label1: TTMSFNCHTMLText;
+    AnswerCaption: TTMSFNCHTMLText;
+    Label2: TTMSFNCHTMLText;
+    HelpCaption: TTMSFNCHTMLText;
+    HelpText: TTMSFNCHTMLText;
     TMSFNCHotSpotImage1: TTMSFNCHotSpotImage;
-    Label1: TLabel;
-    Button1: TButton;
-    Label2: TLabel;
-    Label3: TLabel;
-    Button2: TButton;
-    Memo1: TMemo;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure TMSFNCHotSpotImage1SelectedHotSpotChanged(Sender: TObject;
@@ -60,11 +74,6 @@ begin
       TMSFNCHotSpotImage1.HotSpots[I].Appearance.SelectedFill.Kind := gfkSolid;
     end;
     TMSFNCHotSpotImage1.SelectedHotSpot := -1;
-
-    if Label1.FontColor = gcSteelBlue then
-      Label1.FontColor := gcOlivedrab
-    else
-      Label1.FontColor := gcSteelBlue;
 
     Label1.Font.Style := [TFontStyle.fsBold];
 
@@ -178,7 +187,7 @@ begin
   begin
     if TMSFNCHotSpotImage1.HotSpots[AIndex].Name = countries[idx] then
     begin
-      Label2.FontColor := gcGreen;
+      Label2.Font.Color := gcGreen;
       Label2.Text := cities[idx] + ' is the capital of ' + countries[idx] + ' ('+Point.ToString+')';
       Score := Score + Point;
       Label3.Text := score.ToString + '/10';
@@ -201,7 +210,7 @@ begin
           TMSFNCHotSpotImage1.HotSpots[hsIdx].Selected := True;
         end;
 
-        Label2.FontColor := gcRed;
+        Label2.Font.Color := gcRed;
         Label2.Text := cities[idx] + ' is not the capital of ' + TMSFNCHotSpotImage1.HotSpots[AIndex].Name + ' but ' + countries[idx] + ' (Next question)';
 
         Delete(cities, idx, 1);
@@ -211,7 +220,7 @@ begin
       end
       else
       begin
-        Label2.FontColor := gcOrange;
+        Label2.Font.Color := gcOrange;
         Label2.Text := cities[idx] + ' is not the capital of ' + TMSFNCHotSpotImage1.HotSpots[AIndex].Name + ' ('+Point.ToString+')';
       end;
     end;

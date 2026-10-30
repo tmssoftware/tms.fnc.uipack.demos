@@ -1,19 +1,262 @@
 object Form2: TForm2
   Left = 0
   Top = 0
-  Caption = 'HotSpotImage Demo'
-  ClientHeight = 754
-  ClientWidth = 751
+  Caption = 'TMS FNC UI Pack - HotSpotImage'
+  ClientHeight = 720
+  ClientWidth = 1100
   Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 751.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 527.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'HotSpotImage: European capitals'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 527.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Click Start, then click the country that belongs to the capital you are asked for'
+    end
+  end
+  object SettingsPanel: TTMSFNCPanel
+    Align = Left
+    Margins.Left = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+    Position.Y = 72.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 632.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Header.Visible = False
+    object QuizCaption: TTMSFNCHTMLText
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 12.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 268.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 15.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Quiz'
+    end
+    object Button1: TTMSFNCButton
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 44.000000000000000000
+      Size.Width = 268.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Start'
+      Default = True
+      OnClick = Button1Click
+    end
+    object Button2: TTMSFNCButton
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 84.000000000000000000
+      Size.Width = 268.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Hint On'
+      OnClick = Button2Click
+    end
+    object ScoreCaption: TTMSFNCHTMLText
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 16.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 132.000000000000000000
+      Size.Width = 268.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 15.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Score'
+    end
+    object Label3: TTMSFNCHTMLText
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 164.000000000000000000
+      Size.Width = 268.000000000000000000
+      Size.Height = 28.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 15.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = ''
+    end
+    object QuestionCaption: TTMSFNCHTMLText
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 16.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 208.000000000000000000
+      Size.Width = 268.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 15.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Question'
+    end
+    object Label1: TTMSFNCHTMLText
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 240.000000000000000000
+      Size.Width = 268.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = ''
+    end
+    object AnswerCaption: TTMSFNCHTMLText
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 16.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 304.000000000000000000
+      Size.Width = 268.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 15.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Answer'
+    end
+    object Label2: TTMSFNCHTMLText
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 336.000000000000000000
+      Size.Width = 268.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = ''
+    end
+    object HelpCaption: TTMSFNCHTMLText
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 16.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 400.000000000000000000
+      Size.Width = 268.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 15.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'How to play'
+    end
+    object HelpText: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 432.000000000000000000
+      Size.Width = 268.000000000000000000
+      Size.Height = 110.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Click Start: a capital is asked, click its country in the image. A wrong answer gets a second try for half a point, then the correct country turns red. Hint shows the flag when you hover.'
+    end
+  end
   object TMSFNCHotSpotImage1: TTMSFNCHotSpotImage
-    Anchors = [akLeft, akTop, akRight, akBottom]
     Position.X = 8.000000000000000000
-    Position.Y = 40.000000000000000000
+    Position.Y = 112.000000000000000000
     Size.Width = 729.000000000000000000
     Size.Height = 489.000000000000000000
     Size.PlatformDefault = False
@@ -8931,99 +9174,15 @@ object Form2: TForm2
     SelectedHotSpot = 0
     OnSelectedHotSpotChange = TMSFNCHotSpotImage1SelectedHotSpotChange
     OnSelectedHotSpotChanged = TMSFNCHotSpotImage1SelectedHotSpotChanged
+    Align = Client
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
   end
-  object Label1: TLabel
-    Anchors = [akLeft, akTop, akRight]
-    StyledSettings = [Family]
-    Size.Width = 745.000000000000000000
-    Size.Height = 33.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.Font.Size = 15.000000000000000000
-    TextSettings.HorzAlign = Center
-    Text = 'Label1'
-    TabOrder = 1
-  end
-  object Button1: TButton
-    Anchors = [akRight, akBottom]
-    Position.X = 656.000000000000000000
-    Position.Y = 536.000000000000000000
-    Size.Width = 80.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 2
-    Text = 'Start'
-    OnClick = Button1Click
-  end
-  object Label2: TLabel
-    Anchors = [akLeft, akRight, akBottom]
-    StyledSettings = []
-    Position.X = 88.000000000000000000
-    Position.Y = 536.000000000000000000
-    Size.Width = 441.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.Font.Family = 'Arial'
-    TextSettings.Font.Size = 15.000000000000000000
-    TabOrder = 5
-  end
-  object Label3: TLabel
-    Anchors = [akLeft, akRight, akBottom]
-    StyledSettings = [Family, Style, FontColor]
-    Position.X = 552.000000000000000000
-    Position.Y = 536.000000000000000000
-    Size.Width = 97.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.Font.Size = 15.000000000000000000
-    TabOrder = 3
-  end
-  object Button2: TButton
-    Anchors = [akLeft, akBottom]
-    Position.X = 8.000000000000000000
-    Position.Y = 536.000000000000000000
-    Size.Width = 73.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 4
-    Text = 'Hint On'
-    OnClick = Button2Click
-  end
-  object Memo1: TMemo
-    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-    DataDetectorTypes = []
-    Lines.Strings = (
-      
-        'In this demo we will show you how our TMSFNCHotSpotImage works i' +
-        'n a fun interactive way.'
-      
-        'We'#39've added some European countries as HotSpots and you can test' +
-        ' your knowledge on their captial cities.'
-      
-        'When you click Start: The capital will be shown of one of the co' +
-        'untries you can then click on them in the image.'
-      
-        'In case you are correct the country you'#39've picked will become gr' +
-        'een, if you are wrong there is no need to be devastaded, '
-      
-        'you have another try for half a point. If you are wrong again th' +
-        'e correct country will turn red.'
-      
-        'If you want to try again you can use the '#39'Reset'#39' button, this wi' +
-        'll clear the image and your score.'
-      ''
-      
-        'If you want to make it a little easier '#39'Hint On/Off'#39' gives you t' +
-        'he possibility to show or hide the flag when hovering.'
-      'Good Luck!')
-    Anchors = [akLeft, akRight, akBottom]
-    Enabled = False
-    Position.X = 8.000000000000000000
-    Position.Y = 568.000000000000000000
-    Size.Width = 729.000000000000000000
-    Size.Height = 177.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 6
-    Viewport.Width = 725.000000000000000000
-    Viewport.Height = 173.000000000000000000
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end
