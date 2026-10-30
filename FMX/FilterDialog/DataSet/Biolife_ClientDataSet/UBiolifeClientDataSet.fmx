@@ -2,28 +2,85 @@ object Form130: TForm130
   Left = 0
   Top = 0
   ActiveControl = TMSFNCDataGrid1
-  Caption = 'TMS FNC DataSet Filter Dialog Demo'
-  ClientHeight = 540
-  ClientWidth = 934
+  Caption = 'TMS FNC UI Pack - FilterDialog - fish table'
+  ClientHeight = 720
+  ClientWidth = 1100
   Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
-  object Panel1: TPanel
+  object DemoHeader: TTMSFNCPanel
     Align = Top
-    Margins.Left = 10.000000000000000000
-    Margins.Top = 10.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 10.000000000000000000
+    Size.Width = 934.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 710.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'FilterDialog: fish table'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 710.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Build a filter with the filter dialog or type the filter text; the grid follows the data set'
+    end
+  end
+  object Panel1: TTMSFNCPanel
+    Align = Top
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 0.000000000000000000
     Position.X = 10.000000000000000000
     Position.Y = 66.000000000000000000
     Size.Width = 914.000000000000000000
-    Size.Height = 47.000000000000000000
+    Size.Height = 48.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    object Button2: TButton
+    Header.Visible = False
+    object Button2: TTMSFNCButton
       Position.X = 117.000000000000000000
       Position.Y = 12.000000000000000000
       Size.Width = 132.000000000000000000
@@ -31,7 +88,6 @@ object Form130: TForm130
       Size.PlatformDefault = False
       TabOrder = 0
       Text = 'Expand / Collapse'
-      TextSettings.Trimming = None
       Visible = False
     end
     object BindNavigator1: TBindNavigator
@@ -50,7 +106,7 @@ object Form130: TForm130
       xRadius = 4.000000000000000000
       yRadius = 4.000000000000000000
     end
-    object ActiveBtn: TButton
+    object ActiveBtn: TTMSFNCButton
       Align = Right
       Margins.Left = 10.000000000000000000
       Margins.Top = 10.000000000000000000
@@ -63,12 +119,11 @@ object Form130: TForm130
       Size.PlatformDefault = False
       TabOrder = 2
       Text = 'Activate'
-      TextSettings.Trimming = None
       OnClick = ActiveBtnClick
     end
-    object CheckBox1: TCheckBox
+    object CheckBox1: TTMSFNCCheckBox
       Align = Right
-      IsChecked = True
+      Checked = True
       Margins.Left = 10.000000000000000000
       Margins.Top = 10.000000000000000000
       Margins.Right = 10.000000000000000000
@@ -82,7 +137,7 @@ object Form130: TForm130
       Text = 'Show Picture Fields'
       OnChange = CheckBox1Change
     end
-    object CheckBox2: TCheckBox
+    object CheckBox2: TTMSFNCCheckBox
       Align = Right
       Margins.Left = 10.000000000000000000
       Margins.Top = 10.000000000000000000
@@ -100,9 +155,9 @@ object Form130: TForm130
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Align = Client
-    Margins.Left = 10.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 10.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     Size.Width = 914.000000000000000000
     Size.Height = 407.000000000000000000
     Size.PlatformDefault = False
@@ -424,13 +479,14 @@ object Form130: TForm130
     Options.Selection.Mode = gsmSingleRow
     RowCount = 4
     Stroke.Color = claDarkgray
+    Margins.Top = 0.000000000000000000
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
     Size.Width = 26.000000000000000000
     Size.Height = 26.000000000000000000
     Size.PlatformDefault = False
     Position.X = 752.000000000000000000
-    Position.Y = 264.000000000000000000
+    Position.Y = 336.000000000000000000
     Columns = <
       item
         FieldName = 'Species No'
@@ -466,18 +522,20 @@ object Form130: TForm130
       end>
     DataSource = DataSource1
   end
-  object Panel2: TPanel
+  object Panel2: TTMSFNCPanel
     Align = Top
-    Margins.Left = 10.000000000000000000
-    Margins.Top = 10.000000000000000000
-    Margins.Right = 10.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
     Position.X = 10.000000000000000000
     Position.Y = 10.000000000000000000
     Size.Width = 914.000000000000000000
-    Size.Height = 46.000000000000000000
+    Size.Height = 48.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 7
-    object FilterTextEdit: TEdit
+    Header.Visible = False
+    Margins.Bottom = 8.000000000000000000
+    object FilterTextEdit: TTMSFNCEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Align = Client
       TabOrder = 0
@@ -489,7 +547,7 @@ object Form130: TForm130
       Size.Height = 26.000000000000000000
       Size.PlatformDefault = False
     end
-    object FilterDialogBtn: TButton
+    object FilterDialogBtn: TTMSFNCButton
       Align = Right
       Margins.Left = 10.000000000000000000
       Margins.Top = 10.000000000000000000
@@ -502,7 +560,6 @@ object Form130: TForm130
       Size.PlatformDefault = False
       TabOrder = 1
       Text = 'Dialog'
-      TextSettings.Trimming = None
       OnClick = FilterDialogBtnClick
     end
   end
@@ -511,7 +568,7 @@ object Form130: TForm130
     Size.Height = 26.000000000000000000
     Size.PlatformDefault = False
     Position.X = 128.000000000000000000
-    Position.Y = 352.000000000000000000
+    Position.Y = 424.000000000000000000
     FilterText = '[Category] LIKE '#39'C%'#39
     DataSet = ClientDataSet1
     Options.UILanguage.OrOperatorText = 'OR'
@@ -35054,5 +35111,10 @@ object Form130: TForm130
     ScopeMappings = <>
     Left = 544
     Top = 320
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

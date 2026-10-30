@@ -1,92 +1,148 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Margins.Left = 5
-  Margins.Top = 5
-  Margins.Right = 5
-  Margins.Bottom = 5
+  Margins.Left = 3
+  Margins.Top = 3
+  Margins.Right = 3
+  Margins.Bottom = 3
   ActiveControl = TMSFNCDataGrid1
-  Caption = 'TMS FNC DataSet Filter Dialog Demo'
-  ClientHeight = 810
-  ClientWidth = 1410
+  Caption = 'TMS FNC UI Pack - FilterDialog - customers'
+  ClientHeight = 720
+  ClientWidth = 1100
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -18
+  Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
   Position = poScreenCenter
   OnCreate = FormCreate
-  PixelsPerInch = 144
-  TextHeight = 25
-  object Panel1: TPanel
-    AlignWithMargins = True
-    Left = 15
-    Top = 98
-    Width = 1380
-    Height = 71
-    Margins.Left = 15
-    Margins.Top = 15
-    Margins.Right = 15
-    Margins.Bottom = 15
+  PixelsPerInch = 96
+  TextHeight = 13
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 940
+    Height = 72
     Align = alTop
     TabOrder = 0
-    object Button2: TButton
-      Left = 176
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 756
       Top = 18
-      Width = 198
-      Height = 33
-      Margins.Left = 5
-      Margins.Top = 5
-      Margins.Right = 5
-      Margins.Bottom = 5
-      Caption = 'Expand / Collapse'
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 716
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'FilterDialog: customers'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 716
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Build a filter with the filter dialog or type the filter text; the data comes from SQLite'
+    end
+  end
+  object Panel1: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 10
+    Top = 65
+    Width = 920
+    Height = 48
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 0
+    Align = alTop
+    TabOrder = 0
+    Header.Visible = False
+    object Button2: TTMSFNCButton
+      Left = 117
+      Top = 12
+      Width = 132
+      Height = 22
+      Margins.Left = 3
+      Margins.Top = 3
+      Margins.Right = 3
+      Margins.Bottom = 3
+      Text = 'Expand / Collapse'
       TabOrder = 0
       Visible = False
-      WordWrap = True
     end
     object BindNavigator1: TBindNavigator
       AlignWithMargins = True
-      Left = 16
-      Top = 16
-      Width = 540
-      Height = 39
-      Margins.Left = 15
-      Margins.Top = 15
-      Margins.Right = 15
-      Margins.Bottom = 15
+      Left = 11
+      Top = 11
+      Width = 360
+      Height = 26
+      Margins.Left = 10
+      Margins.Top = 10
+      Margins.Right = 10
+      Margins.Bottom = 10
       DataSource = BindSourceDB1
       Align = alLeft
       Orientation = orHorizontal
       TabOrder = 1
     end
-    object ActiveBtn: TButton
+    object ActiveBtn: TTMSFNCButton
       AlignWithMargins = True
-      Left = 1244
-      Top = 16
-      Width = 120
-      Height = 39
-      Margins.Left = 15
-      Margins.Top = 15
-      Margins.Right = 15
-      Margins.Bottom = 15
+      Left = 829
+      Top = 11
+      Width = 80
+      Height = 26
+      Margins.Left = 10
+      Margins.Top = 10
+      Margins.Right = 10
+      Margins.Bottom = 10
       Align = alRight
-      Caption = 'Activate'
+      Text = 'Activate'
       TabOrder = 2
-      WordWrap = True
       OnClick = ActiveBtnClick
     end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     AlignWithMargins = True
-    Left = 15
-    Top = 189
-    Width = 1380
-    Height = 606
-    Margins.Left = 15
-    Margins.Top = 5
-    Margins.Right = 15
-    Margins.Bottom = 15
+    Left = 10
+    Top = 126
+    Width = 920
+    Height = 404
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -94,45 +150,45 @@ object Form130: TForm130
     Adapter = TMSFNCDataGridDatabaseAdapter1
     CellAppearance.BandLayout.Font.Charset = DEFAULT_CHARSET
     CellAppearance.BandLayout.Font.Color = clWindowText
-    CellAppearance.BandLayout.Font.Height = -17
+    CellAppearance.BandLayout.Font.Height = -11
     CellAppearance.BandLayout.Font.Name = 'Segoe UI'
     CellAppearance.BandLayout.Font.Style = []
     CellAppearance.FixedLayout.Font.Charset = DEFAULT_CHARSET
     CellAppearance.FixedLayout.Font.Color = clWindowText
-    CellAppearance.FixedLayout.Font.Height = -17
+    CellAppearance.FixedLayout.Font.Height = -11
     CellAppearance.FixedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FixedLayout.Font.Style = []
     CellAppearance.FixedSelectedLayout.Fill.Color = 15919071
     CellAppearance.FixedSelectedLayout.Font.Charset = DEFAULT_CHARSET
     CellAppearance.FixedSelectedLayout.Font.Color = clWindowText
-    CellAppearance.FixedSelectedLayout.Font.Height = -17
+    CellAppearance.FixedSelectedLayout.Font.Height = -11
     CellAppearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FixedSelectedLayout.Font.Style = []
     CellAppearance.FocusedLayout.Fill.Color = 13346942
     CellAppearance.FocusedLayout.Font.Charset = DEFAULT_CHARSET
     CellAppearance.FocusedLayout.Font.Color = clWhite
-    CellAppearance.FocusedLayout.Font.Height = -17
+    CellAppearance.FocusedLayout.Font.Height = -11
     CellAppearance.FocusedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FocusedLayout.Font.Style = []
     CellAppearance.GroupLayout.Font.Charset = DEFAULT_CHARSET
     CellAppearance.GroupLayout.Font.Color = clSteelblue
-    CellAppearance.GroupLayout.Font.Height = -17
+    CellAppearance.GroupLayout.Font.Height = -11
     CellAppearance.GroupLayout.Font.Name = 'Segoe UI'
     CellAppearance.GroupLayout.Font.Style = []
     CellAppearance.NormalLayout.Font.Charset = DEFAULT_CHARSET
     CellAppearance.NormalLayout.Font.Color = clWindowText
-    CellAppearance.NormalLayout.Font.Height = -17
+    CellAppearance.NormalLayout.Font.Height = -11
     CellAppearance.NormalLayout.Font.Name = 'Segoe UI'
     CellAppearance.NormalLayout.Font.Style = []
     CellAppearance.SelectedLayout.Fill.Color = 15919071
     CellAppearance.SelectedLayout.Font.Charset = DEFAULT_CHARSET
     CellAppearance.SelectedLayout.Font.Color = clSteelblue
-    CellAppearance.SelectedLayout.Font.Height = -17
+    CellAppearance.SelectedLayout.Font.Height = -11
     CellAppearance.SelectedLayout.Font.Name = 'Segoe UI'
     CellAppearance.SelectedLayout.Font.Style = []
     CellAppearance.SummaryLayout.Font.Charset = DEFAULT_CHARSET
     CellAppearance.SummaryLayout.Font.Color = clWindowText
-    CellAppearance.SummaryLayout.Font.Height = -17
+    CellAppearance.SummaryLayout.Font.Height = -11
     CellAppearance.SummaryLayout.Font.Name = 'Segoe UI'
     CellAppearance.SummaryLayout.Font.Style = []
     Icons.ExpandIcon.Data = {
@@ -348,11 +404,11 @@ object Form130: TForm130
       32222F3E3C2F673E3C2F7376673E}
     ColumnCount = 0
     Columns = <>
-    DefaultColumnWidth = 112.000000000000000000
-    DefaultRowHeight = 45.000000000000000000
+    DefaultColumnWidth = 74.666666666666671404
+    DefaultRowHeight = 30.000000000000000000
     FilterAppearance.Font.Charset = DEFAULT_CHARSET
     FilterAppearance.Font.Color = clWindowText
-    FilterAppearance.Font.Height = -11
+    FilterAppearance.Font.Height = -7
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
     Options.Column.Stretching.Enabled = True
@@ -362,128 +418,134 @@ object Form130: TForm130
     Stroke.Color = clDarkgray
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
-    Left = 1128
-    Top = 396
-    Width = 26
-    Height = 26
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 5
+    Left = 752
+    Top = 336
+    Width = 17
+    Height = 17
+    Margins.Left = 3
+    Margins.Top = 3
+    Margins.Right = 3
+    Margins.Bottom = 3
     Visible = True
     DataSource = DataSource1
     Columns = <>
   end
-  object Panel2: TPanel
+  object Panel2: TTMSFNCPanel
     AlignWithMargins = True
-    Left = 15
-    Top = 15
-    Width = 1380
-    Height = 68
-    Margins.Left = 15
-    Margins.Top = 15
-    Margins.Right = 15
-    Margins.Bottom = 0
+    Left = 10
+    Top = 10
+    Width = 920
+    Height = 48
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 8
     Align = alTop
     TabOrder = 4
-    object FilterTextEdit: TEdit
+    Header.Visible = False
+    object FilterTextEdit: TTMSFNCEdit
       AlignWithMargins = True
-      Left = 16
-      Top = 16
-      Width = 1198
-      Height = 36
-      Margins.Left = 15
-      Margins.Top = 15
-      Margins.Right = 15
-      Margins.Bottom = 15
+      Left = 11
+      Top = 11
+      Width = 799
+      Height = 24
+      Margins.Left = 10
+      Margins.Top = 10
+      Margins.Right = 10
+      Margins.Bottom = 10
       Align = alClient
       TabOrder = 0
-      ExplicitHeight = 33
+      ExplicitHeight = 22
     end
-    object FilterBtn: TButton
+    object FilterBtn: TTMSFNCButton
       AlignWithMargins = True
-      Left = 1244
-      Top = 16
-      Width = 120
-      Height = 36
-      Margins.Left = 15
-      Margins.Top = 15
-      Margins.Right = 15
-      Margins.Bottom = 15
+      Left = 829
+      Top = 11
+      Width = 80
+      Height = 24
+      Margins.Left = 10
+      Margins.Top = 10
+      Margins.Right = 10
+      Margins.Bottom = 10
       Align = alRight
-      Caption = 'Filter'
+      Text = 'Filter'
       TabOrder = 1
       OnClick = FilterBtnClick
     end
   end
   object TMSFNCDataSetFilterDialog1: TTMSFNCDataSetFilterDialog
-    Left = 168
-    Top = 684
-    Width = 26
-    Height = 26
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 5
+    Left = 112
+    Top = 528
+    Width = 17
+    Height = 17
+    Margins.Left = 3
+    Margins.Top = 3
+    Margins.Right = 3
+    Margins.Bottom = 3
     Visible = True
     DataSet = FDTable1
     Options.UILanguage.OrOperatorText = 'OR'
     Appearance.GroupFont.Charset = DEFAULT_CHARSET
     Appearance.GroupFont.Color = clWhite
-    Appearance.GroupFont.Height = -17
+    Appearance.GroupFont.Height = -11
     Appearance.GroupFont.Name = 'Segoe UI'
     Appearance.GroupFont.Style = []
     Appearance.ExpressionColumnFont.Charset = DEFAULT_CHARSET
     Appearance.ExpressionColumnFont.Color = clWhite
-    Appearance.ExpressionColumnFont.Height = -17
+    Appearance.ExpressionColumnFont.Height = -11
     Appearance.ExpressionColumnFont.Name = 'Segoe UI'
     Appearance.ExpressionColumnFont.Style = []
     Appearance.ExpressionOperatorFont.Charset = DEFAULT_CHARSET
     Appearance.ExpressionOperatorFont.Color = clWhite
-    Appearance.ExpressionOperatorFont.Height = -17
+    Appearance.ExpressionOperatorFont.Height = -11
     Appearance.ExpressionOperatorFont.Name = 'Segoe UI'
     Appearance.ExpressionOperatorFont.Style = []
     Appearance.ExpressionValueFont.Charset = DEFAULT_CHARSET
     Appearance.ExpressionValueFont.Color = clWhite
-    Appearance.ExpressionValueFont.Height = -17
+    Appearance.ExpressionValueFont.Height = -11
     Appearance.ExpressionValueFont.Name = 'Segoe UI'
     Appearance.ExpressionValueFont.Style = []
     Appearance.DropDownHoverFont.Charset = DEFAULT_CHARSET
     Appearance.DropDownHoverFont.Color = 2960685
-    Appearance.DropDownHoverFont.Height = -11
+    Appearance.DropDownHoverFont.Height = -7
     Appearance.DropDownHoverFont.Name = 'Segoe UI'
     Appearance.DropDownHoverFont.Style = []
-    Appearance.Indent = 30
-    Appearance.ItemHeight = 45
-    Appearance.ItemRounding = 6
-    Appearance.ItemControlsMargins.Left = 3.000000000000000000
-    Appearance.ItemControlsMargins.Top = 6.000000000000000000
-    Appearance.ItemControlsMargins.Right = 27.000000000000000000
-    Appearance.ItemControlsMargins.Bottom = 6.000000000000000000
+    Appearance.Indent = 20
+    Appearance.ItemHeight = 30
+    Appearance.ItemRounding = 4
+    Appearance.ItemControlsMargins.Left = 2.000000000000000000
+    Appearance.ItemControlsMargins.Top = 4.000000000000000000
+    Appearance.ItemControlsMargins.Right = 18.000000000000000000
+    Appearance.ItemControlsMargins.Bottom = 4.000000000000000000
   end
   object DataSource1: TDataSource
     DataSet = FDTable1
-    Left = 754
-    Top = 307
+    Left = 503
+    Top = 205
   end
   object BindSourceDB1: TBindSourceDB
     DataSet = FDTable1
     ScopeMappings = <>
-    Left = 760
-    Top = 392
+    Left = 507
+    Top = 261
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
       'Database=fddemo.sdb'
       'DriverID=SQLite')
     LoginPrompt = False
-    Left = 746
-    Top = 195
+    Left = 497
+    Top = 130
   end
   object FDTable1: TFDTable
     Connection = FDConnection1
     TableName = 'Customers'
-    Left = 674
-    Top = 315
+    Left = 449
+    Top = 210
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

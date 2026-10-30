@@ -18,23 +18,29 @@ uses
   FireDAC.Phys.SQLiteWrapper.Stat, FireDAC.VCLUI.Wait, FireDAC.Stan.Param,
   FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, Vcl.Buttons, Vcl.Bind.Navigator, Vcl.ExtCtrls,
-  VCL.TMSFNCCustomDialog, VCL.TMSFNCFilterDialog;
+  VCL.TMSFNCCustomDialog, VCL.TMSFNCFilterDialog,
+  VCL.TMSFNCButton, VCL.TMSFNCEdit, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Panel1: TPanel;
-    Button2: TButton;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    Button2: TTMSFNCButton;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     BindNavigator1: TBindNavigator;
     TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter;
     DataSource1: TDataSource;
-    ActiveBtn: TButton;
+    ActiveBtn: TTMSFNCButton;
     BindSourceDB1: TBindSourceDB;
     FDConnection1: TFDConnection;
     FDTable1: TFDTable;
-    Panel2: TPanel;
-    FilterTextEdit: TEdit;
-    FilterBtn: TButton;
+    Panel2: TTMSFNCPanel;
+    FilterTextEdit: TTMSFNCEdit;
+    FilterBtn: TTMSFNCButton;
     TMSFNCDataSetFilterDialog1: TTMSFNCDataSetFilterDialog;
     procedure ActiveBtnClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -75,9 +81,9 @@ end;
 procedure TForm130.SetText;
 begin
   if FDTable1.Active then
-    ActiveBtn.Caption := 'Deactivate'
+    ActiveBtn.Text := 'Deactivate'
   else
-    ActiveBtn.Caption := 'Activate';
+    ActiveBtn.Text := 'Activate';
 end;
 
 end.

@@ -12,24 +12,30 @@ uses
   Data.DB, FMX.TMSFNCCustomComponent, FMX.TMSFNCDataGridDatabaseAdapter,
   Datasnap.DBClient, FMX.Layouts, Fmx.Bind.Navigator, FMX.TMSFNCDataGrid,
   Data.Bind.Components, Data.Bind.DBScope, TMS.TMSFNCFilterBuilder, FMX.TMSFNCFilterDialog,
-  FMX.TMSFNCCustomDialog;
+  FMX.TMSFNCCustomDialog,
+  FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCEdit, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Panel1: TPanel;
-    Button2: TButton;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    Button2: TTMSFNCButton;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     BindNavigator1: TBindNavigator;
     ClientDataSet1: TClientDataSet;
     TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter;
     DataSource1: TDataSource;
-    ActiveBtn: TButton;
+    ActiveBtn: TTMSFNCButton;
     BindSourceDB1: TBindSourceDB;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    Panel2: TPanel;
-    FilterTextEdit: TEdit;
-    FilterDialogBtn: TButton;
+    CheckBox1: TTMSFNCCheckBox;
+    CheckBox2: TTMSFNCCheckBox;
+    Panel2: TTMSFNCPanel;
+    FilterTextEdit: TTMSFNCEdit;
+    FilterDialogBtn: TTMSFNCButton;
     TMSFNCDataSetFilterDialog1: TTMSFNCDataSetFilterDialog;
     procedure ActiveBtnClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -67,12 +73,12 @@ end;
 
 procedure TForm130.CheckBox1Change(Sender: TObject);
 begin
-  TMSFNCDataGridDatabaseAdapter1.ShowPictureFields := CheckBox1.IsChecked;
+  TMSFNCDataGridDatabaseAdapter1.ShowPictureFields := CheckBox1.Checked;
 end;
 
 procedure TForm130.CheckBox2Change(Sender: TObject);
 begin
-  TMSFNCDataGridDatabaseAdapter1.ShowMemoFields := CheckBox2.IsChecked;
+  TMSFNCDataGridDatabaseAdapter1.ShowMemoFields := CheckBox2.Checked;
 end;
 
 procedure TForm130.FormCreate(Sender: TObject);
