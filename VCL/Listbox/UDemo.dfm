@@ -1,9 +1,9 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Listbox Demo'
-  ClientHeight = 491
-  ClientWidth = 645
+  Caption = 'TMS FNC UI Pack - Listbox'
+  ClientHeight = 560
+  ClientWidth = 960
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,21 +15,171 @@ object Form130: TForm130
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object Label1: TLabel
-    Left = 8
-    Top = 368
-    Width = 224
-    Height = 13
-    Caption = 'Drag && Drop an item from one list to the other.'
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 645
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 461
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 421
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Listbox'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 421
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Drag an item from one list to the other, then try sorting, filtering and lookup'
+    end
+  end
+  object SettingsPanel: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 260
+    Height = 400
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 8
+    Margins.Bottom = 16
+    Align = alLeft
+    TabOrder = 1
+    Header.Visible = False
+    object SettingsCaption: TTMSFNCHTMLText
+      Left = 16
+      Top = 16
+      Width = 228
+      Height = 24
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 0
+      Font.Height = -17
+      Font.Name = 'Segoe UI Semibold'
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Options'
+    end
+    object CheckBox1: TTMSFNCCheckBox
+      Left = 16
+      Top = 52
+      Width = 228
+      Height = 24
+      Text = 'Header'
+      Checked = True
+      TabOrder = 1
+      OnChange = CheckBox1Click
+      Checked = True
+      Anchors = [akLeft, akTop, akRight]
+    end
+    object CheckBox2: TTMSFNCCheckBox
+      Left = 16
+      Top = 84
+      Width = 228
+      Height = 24
+      Text = 'Sorting'
+      TabOrder = 2
+      OnChange = CheckBox2Click
+      Anchors = [akLeft, akTop, akRight]
+    end
+    object CheckBox3: TTMSFNCCheckBox
+      Left = 16
+      Top = 116
+      Width = 228
+      Height = 24
+      Text = 'Filtering'
+      TabOrder = 3
+      OnChange = CheckBox3Click
+      Anchors = [akLeft, akTop, akRight]
+    end
+    object CheckBox4: TTMSFNCCheckBox
+      Left = 16
+      Top = 148
+      Width = 228
+      Height = 24
+      Text = 'Lookup'
+      TabOrder = 4
+      OnChange = CheckBox4Click
+      Anchors = [akLeft, akTop, akRight]
+    end
+    object LookupHint: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Left = 16
+      Top = 184
+      Width = 228
+      Height = 56
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 5
+      HorizontalTextAlign = gtaLeading
+      WordWrapping = True
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Lookup: select the first item, then type characters on the keyboard to navigate.'
+    end
+    object Label1: TTMSFNCHTMLText
+      Left = 16
+      Top = 248
+      Width = 228
+      Height = 56
+      Text = 'Drag & drop a selected item from one list to the other.'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Anchors = [akLeft, akTop, akRight]
+      TextRole = htrSecondary
+      WordWrapping = True
+    end
   end
   object TMSFNCListBox1: TTMSFNCListBox
     Left = 8
-    Top = 8
-    Width = 313
+    Top = 80
+    Width = 320
     Height = 345
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    TabOrder = 0
+    TabOrder = 2
     ItemsAppearance.Font.Charset = DEFAULT_CHARSET
     ItemsAppearance.Font.Color = clGray
     ItemsAppearance.Font.Height = -11
@@ -69,15 +219,21 @@ object Form130: TForm130
     Header.Stroke.Color = 11119017
     Header.Size = 25.000000000000000000
     Header.SortIndicatorColor = 11829830
+    Align = alLeft
+    AlignWithMargins = True
+    Margins.Left = 8
+    Margins.Top = 0
+    Margins.Right = 8
+    Margins.Bottom = 16
   end
   object TMSFNCListBox2: TTMSFNCListBox
     Left = 327
-    Top = 8
+    Top = 80
     Width = 306
     Height = 345
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    TabOrder = 1
+    TabOrder = 3
     ItemsAppearance.Font.Charset = DEFAULT_CHARSET
     ItemsAppearance.Font.Color = clGray
     ItemsAppearance.Font.Height = -11
@@ -102,10 +258,16 @@ object Form130: TForm130
     Header.Stroke.Color = 11119017
     Header.Size = 25.000000000000000000
     Header.SortIndicatorColor = 11829830
+    Align = alClient
+    AlignWithMargins = True
+    Margins.Left = 8
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
   end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
     Left = 609
-    Top = 359
+    Top = 431
     Width = 26
     Height = 26
     Visible = True
@@ -987,44 +1149,9 @@ object Form130: TForm130
         Tag = 0
       end>
   end
-  object CheckBox1: TCheckBox
-    Left = 8
-    Top = 392
-    Width = 97
-    Height = 17
-    Caption = 'Header'
-    Checked = True
-    State = cbChecked
-    TabOrder = 3
-    OnClick = CheckBox1Click
-  end
-  object CheckBox2: TCheckBox
-    Left = 8
-    Top = 415
-    Width = 97
-    Height = 17
-    Caption = 'Sorting'
-    TabOrder = 4
-    OnClick = CheckBox2Click
-  end
-  object CheckBox3: TCheckBox
-    Left = 8
-    Top = 438
-    Width = 97
-    Height = 17
-    Caption = 'Filtering'
-    TabOrder = 5
-    OnClick = CheckBox3Click
-  end
-  object CheckBox4: TCheckBox
-    Left = 8
-    Top = 461
-    Width = 417
-    Height = 17
-    Caption = 
-      'Lookup (select the first item, then type characters on the keybo' +
-      'ard to navigate)'
-    TabOrder = 6
-    OnClick = CheckBox4Click
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

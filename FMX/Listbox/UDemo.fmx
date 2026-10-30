@@ -1,22 +1,184 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Listbox Demo'
-  ClientHeight = 547
-  ClientWidth = 581
+  Caption = 'TMS FNC UI Pack - Listbox'
+  ClientHeight = 560
+  ClientWidth = 960
   Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
-  object TMSFNCListBox1: TTMSFNCListBox
-    Position.X = 16.000000000000000000
-    Position.Y = 16.000000000000000000
-    Size.Width = 265.000000000000000000
-    Size.Height = 377.000000000000000000
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 581.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 357.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Listbox'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 357.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Drag an item from one list to the other, then try sorting, filtering and lookup'
+    end
+  end
+  object SettingsPanel: TTMSFNCPanel
+    Align = Left
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 8.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+    Position.X = 0.000000000000000000
+    Position.Y = 0.000000000000000000
+    Size.Width = 260.000000000000000000
+    Size.Height = 400.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
+    Header.Visible = False
+    object SettingsCaption: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Font.Size = 13.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Options'
+    end
+    object CheckBox1: TTMSFNCCheckBox
+      Checked = True
+      Position.X = 16.000000000000000000
+      Position.Y = 52.000000000000000000
+      TabOrder = 1
+      Text = 'Header'
+      OnChange = CheckBox1Change
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Anchors = [akLeft, akTop, akRight]
+    end
+    object CheckBox2: TTMSFNCCheckBox
+      Position.X = 16.000000000000000000
+      Position.Y = 84.000000000000000000
+      TabOrder = 2
+      Text = 'Sorting'
+      OnChange = CheckBox2Change
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Anchors = [akLeft, akTop, akRight]
+    end
+    object CheckBox3: TTMSFNCCheckBox
+      Position.X = 16.000000000000000000
+      Position.Y = 116.000000000000000000
+      TabOrder = 3
+      Text = 'Filtering'
+      OnChange = CheckBox3Change
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Anchors = [akLeft, akTop, akRight]
+    end
+    object CheckBox4: TTMSFNCCheckBox
+      Position.X = 16.000000000000000000
+      Position.Y = 148.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      Text = 'Lookup'
+      OnChange = CheckBox4Change
+      Anchors = [akLeft, akTop, akRight]
+    end
+    object LookupHint: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 184.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 56.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 5
+      HorizontalTextAlign = gtaLeading
+      WordWrapping = True
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Lookup: select the first item, then type characters on the keyboard to navigate.'
+    end
+    object Label1: TTMSFNCHTMLText
+      AutoSize = True
+      Position.X = 16.000000000000000000
+      Position.Y = 248.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 56.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Drag & drop a selected item from one list to the other.'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Anchors = [akLeft, akTop, akRight]
+      TextRole = htrSecondary
+      WordWrapping = True
+    end
+  end
+  object TMSFNCListBox1: TTMSFNCListBox
+    Position.X = 16.000000000000000000
+    Position.Y = 88.000000000000000000
+    Size.Width = 320.000000000000000000
+    Size.Height = 377.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
     ItemsAppearance.Font.Color = claGray
     ItemsAppearance.Font.Name = 'Segoe UI'
     ItemsAppearance.Fill.Color = claNull
@@ -49,14 +211,19 @@ object Form130: TForm130
     Header.Font.Name = 'Segoe UI'
     Header.Stroke.Color = claDarkgray
     Header.Size = 25.000000000000000000
+    Align = Left
+    Margins.Left = 8.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 8.000000000000000000
+    Margins.Bottom = 16.000000000000000000
   end
   object TMSFNCListBox2: TTMSFNCListBox
     Position.X = 296.000000000000000000
-    Position.Y = 16.000000000000000000
+    Position.Y = 88.000000000000000000
     Size.Width = 273.000000000000000000
     Size.Height = 377.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 0
+    TabOrder = 3
     ItemsAppearance.Font.Color = claGray
     ItemsAppearance.Font.Name = 'Segoe UI'
     ItemsAppearance.Fill.Color = claNull
@@ -74,37 +241,18 @@ object Form130: TForm130
     Header.Font.Name = 'Segoe UI'
     Header.Stroke.Color = claDarkgray
     Header.Size = 25.000000000000000000
-  end
-  object Label1: TLabel
-    AutoSize = True
-    Position.X = 16.000000000000000000
-    Position.Y = 400.000000000000000000
-    Size.Width = 553.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'Drag & Drop a selected item from one listbox to the other.'
-  end
-  object CheckBox1: TCheckBox
-    IsChecked = True
-    Position.X = 16.000000000000000000
-    Position.Y = 424.000000000000000000
-    TabOrder = 6
-    Text = 'Header'
-    OnChange = CheckBox1Change
-  end
-  object CheckBox2: TCheckBox
-    Position.X = 16.000000000000000000
-    Position.Y = 448.000000000000000000
-    TabOrder = 5
-    Text = 'Sorting'
-    OnChange = CheckBox2Change
+    Align = Client
+    Margins.Left = 8.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
   end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
     Size.Width = 24.000000000000000000
     Size.Height = 24.000000000000000000
     Size.PlatformDefault = False
     Position.X = 544.000000000000000000
-    Position.Y = 400.000000000000000000
+    Position.Y = 472.000000000000000000
     Items = <
       item
         Bitmap.PNG = {
@@ -1058,23 +1206,9 @@ object Form130: TForm130
         Tag = 0
       end>
   end
-  object CheckBox3: TCheckBox
-    Position.X = 16.000000000000000000
-    Position.Y = 472.000000000000000000
-    TabOrder = 4
-    Text = 'Filtering'
-    OnChange = CheckBox3Change
-  end
-  object CheckBox4: TCheckBox
-    Position.X = 16.000000000000000000
-    Position.Y = 496.000000000000000000
-    Size.Width = 545.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 3
-    Text = 
-      'Lookup (select the first item, then type characters on the keybo' +
-      'ard to navigate)'
-    OnChange = CheckBox4Change
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

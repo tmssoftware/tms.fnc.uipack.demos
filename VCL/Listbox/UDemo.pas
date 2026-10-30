@@ -7,18 +7,27 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VCL.TMSFNCCustomControl,
   VCL.TMSFNCListBox, VCL.TMSFNCCustomComponent, VCL.TMSFNCBitmapContainer,
   Vcl.StdCtrls, VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics,
-  VCL.TMSFNCGraphicsTypes;
+  VCL.TMSFNCGraphicsTypes,
+  VCL.TMSFNCCheckBox, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    LookupHint: TTMSFNCHTMLText;
+    SettingsCaption: TTMSFNCHTMLText;
+    SettingsPanel: TTMSFNCPanel;
     TMSFNCListBox1: TTMSFNCListBox;
     TMSFNCListBox2: TTMSFNCListBox;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
-    Label1: TLabel;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
+    Label1: TTMSFNCHTMLText;
+    CheckBox1: TTMSFNCCheckBox;
+    CheckBox2: TTMSFNCCheckBox;
+    CheckBox3: TTMSFNCCheckBox;
+    CheckBox4: TTMSFNCCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
     procedure CheckBox2Click(Sender: TObject);
@@ -79,10 +88,8 @@ begin
   TMSFNCListBox1.Header.Text := 'Birthday shopping list';
   TMSFNCListBox1.Header.Visible := True;
   TMSFNCListBox1.Header.HorizontalTextAlign := gtaLeading;
-  TMSFNCListBox1.Header.Fill.Color := gcLightgoldenrodyellow;
   TMSFNCListBox1.Header.Size := TMSFNCListBox1.ScalePaintValue(40);
   TMSFNCListBox1.Header.Font.Size := TMSFNCListBox1.ScalePaintValue(14);
-  TMSFNCListBox1.Header.Font.Color := gcBlack;
 
   TMSFNCListBox1.Interaction.DragDropMode := ldmMove;
   TMSFNCListBox2.Interaction.DragDropMode := ldmMove;

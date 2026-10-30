@@ -3,16 +3,50 @@ object Form1: TForm1
   Height = 502
   Top = 258
   Width = 646
-  Caption = 'TMS FNC Listbox Demo'
-  ClientHeight = 502
+  Caption = 'TMS FNC UI Pack - Listbox'
+  ClientHeight = 574
   ClientWidth = 646
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '1.6.0.4'
+  object DemoHeader: TPanel
+    Left = 0
+    Height = 72
+    Top = 0
+    Width = 646
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 72
+    ClientWidth = 646
+    TabOrder = 0
+    object DemoTitle: TLabel
+      Left = 24
+      Height = 30
+      Top = 12
+      Width = 598
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Listbox'
+      Font.Height = -20
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object DemoDescription: TLabel
+      Left = 24
+      Height = 20
+      Top = 42
+      Width = 598
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Drag an item from one list to the other, then try sorting, filtering and lookup'
+      Font.Color = clGrayText
+      ParentFont = False
+    end
+  end
   object Label1: TLabel
     Left = 8
     Height = 15
-    Top = 368
+    Top = 440
     Width = 248
     Caption = 'Drag && Drop an item from one list to the other.'
     ParentColor = False
@@ -20,7 +54,7 @@ object Form1: TForm1
   object TMSFNCListBox1: TTMSFNCListBox
     Left = 8
     Height = 345
-    Top = 8
+    Top = 80
     Width = 313
     DoubleBuffered = True
     TabOrder = 0
@@ -62,7 +96,7 @@ object Form1: TForm1
   object TMSFNCListBox2: TTMSFNCListBox
     Left = 327
     Height = 345
-    Top = 8
+    Top = 80
     Width = 306
     DoubleBuffered = True
     TabOrder = 1
@@ -89,7 +123,7 @@ object Form1: TForm1
   object CheckBox1: TCheckBox
     Left = 8
     Height = 19
-    Top = 392
+    Top = 464
     Width = 58
     Caption = 'Header'
     Checked = True
@@ -100,7 +134,7 @@ object Form1: TForm1
   object CheckBox2: TCheckBox
     Left = 8
     Height = 19
-    Top = 415
+    Top = 487
     Width = 58
     Caption = 'Sorting'
     OnChange = CheckBox2Change
@@ -109,7 +143,7 @@ object Form1: TForm1
   object CheckBox3: TCheckBox
     Left = 8
     Height = 19
-    Top = 438
+    Top = 510
     Width = 63
     Caption = 'Filtering'
     OnChange = CheckBox3Change
@@ -118,7 +152,7 @@ object Form1: TForm1
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
     Left = 512
     Height = 24
-    Top = 376
+    Top = 448
     Width = 24
     Items = <    
       item
@@ -971,7 +1005,7 @@ object Form1: TForm1
   object CheckBox4: TCheckBox
     Left = 8
     Height = 19
-    Top = 461
+    Top = 533
     Width = 435
     Caption = 'Lookup (select the first item, then type characters on the keyboard to navigate)'
     OnChange = CheckBox4Change

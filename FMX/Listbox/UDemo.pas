@@ -7,18 +7,27 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls,
   FMX.Controls.Presentation, FMX.TMSFNCCustomControl, FMX.TMSFNCListBox,
   FMX.TMSFNCCustomComponent, FMX.TMSFNCBitmapContainer, FMX.TMSFNCTypes,
-  FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes;
+  FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes,
+  FMX.TMSFNCCheckBox, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    LookupHint: TTMSFNCHTMLText;
+    SettingsCaption: TTMSFNCHTMLText;
+    SettingsPanel: TTMSFNCPanel;
     TMSFNCListBox1: TTMSFNCListBox;
     TMSFNCListBox2: TTMSFNCListBox;
-    Label1: TLabel;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
+    Label1: TTMSFNCHTMLText;
+    CheckBox1: TTMSFNCCheckBox;
+    CheckBox2: TTMSFNCCheckBox;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
+    CheckBox3: TTMSFNCCheckBox;
+    CheckBox4: TTMSFNCCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure CheckBox2Change(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
@@ -39,12 +48,12 @@ implementation
 
 procedure TForm130.CheckBox1Change(Sender: TObject);
 begin
-  TMSFNCListBox1.Header.Visible := CheckBox1.IsChecked;
+  TMSFNCListBox1.Header.Visible := CheckBox1.Checked;
 end;
 
 procedure TForm130.CheckBox2Change(Sender: TObject);
 begin
-  if CheckBox2.IsChecked then
+  if CheckBox2.Checked then
     TMSFNCListBox1.Interaction.Sorting := lcsNormal
   else
   begin
@@ -55,7 +64,7 @@ end;
 
 procedure TForm130.CheckBox3Change(Sender: TObject);
 begin
-  if CheckBox3.IsChecked then
+  if CheckBox3.Checked then
     TMSFNCListBox1.Interaction.Filtering.Enabled := True
   else
   begin
@@ -66,7 +75,7 @@ end;
 
 procedure TForm130.CheckBox4Change(Sender: TObject);
 begin
-  TMSFNCListBox1.Interaction.Lookup.Enabled := CheckBox4.IsChecked;
+  TMSFNCListBox1.Interaction.Lookup.Enabled := CheckBox4.Checked;
 end;
 
 procedure TForm130.FormCreate(Sender: TObject);
@@ -79,10 +88,8 @@ begin
   TMSFNCListBox1.Header.Text := 'Birthday shopping list';
   TMSFNCListBox1.Header.Visible := True;
   TMSFNCListBox1.Header.HorizontalTextAlign := gtaLeading;
-  TMSFNCListBox1.Header.Fill.Color := gcLightgoldenrodyellow;
   TMSFNCListBox1.Header.Size := 40;
   TMSFNCListBox1.Header.Font.Size := 14;
-  TMSFNCListBox1.Header.Font.Color := gcBlack;
 
   TMSFNCListBox1.Interaction.DragDropMode := ldmMove;
   TMSFNCListBox2.Interaction.DragDropMode := ldmMove;

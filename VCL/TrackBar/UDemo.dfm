@@ -156,7 +156,7 @@ object Form130: TForm130
       Text = 'Show tick mark values'
       Checked = True
       TabOrder = 1
-      OnClick = CheckBox1Change
+      OnChange = CheckBox1Change
       Checked = True
     end
     object CheckBox5: TTMSFNCCheckBox
@@ -166,7 +166,7 @@ object Form130: TForm130
       Height = 24
       Text = 'Show buttons'
       TabOrder = 2
-      OnClick = CheckBox5Change
+      OnChange = CheckBox5Change
     end
     object Panel3: TTMSFNCPanel
       Left = 16
@@ -186,7 +186,7 @@ object Form130: TForm130
         Checked = True
         TabOrder = 0
         TabStop = True
-        OnClick = RadioButton1Change
+        OnChange = RadioButton1Change
         GroupName = 'Panel3'
       end
       object RadioButton2: TTMSFNCRadioButton
@@ -196,7 +196,7 @@ object Form130: TForm130
         Height = 24
         Text = '2'
         TabOrder = 1
-        OnClick = RadioButton2Change
+        OnChange = RadioButton2Change
         GroupName = 'Panel3'
       end
     end
@@ -208,7 +208,7 @@ object Form130: TForm130
       Text = 'Horizontal'
       Checked = True
       TabOrder = 4
-      OnClick = CheckBox3Change
+      OnChange = CheckBox3Change
       Checked = True
     end
     object Panel4: TTMSFNCPanel
@@ -227,7 +227,7 @@ object Form130: TForm130
         Height = 24
         Text = '5'
         TabOrder = 0
-        OnClick = RadioButton3Change
+        OnChange = RadioButton3Change
         GroupName = 'Panel4'
       end
       object RadioButton4: TTMSFNCRadioButton
@@ -239,7 +239,7 @@ object Form130: TForm130
         Checked = True
         TabOrder = 1
         TabStop = True
-        OnClick = RadioButton4Change
+        OnChange = RadioButton4Change
         GroupName = 'Panel4'
       end
     end
@@ -444,7 +444,7 @@ object Form130: TForm130
       Text = 'Show tick mark values'
       Checked = True
       TabOrder = 1
-      OnClick = CheckBox1Change
+      OnChange = CheckBox1Change
       Checked = True
     end
     object CheckBox4: TTMSFNCCheckBox
@@ -455,7 +455,7 @@ object Form130: TForm130
       Text = 'Horizontal'
       Checked = True
       TabOrder = 2
-      OnClick = CheckBox4Change
+      OnChange = CheckBox4Change
       Checked = True
     end
     object CheckBox6: TTMSFNCCheckBox
@@ -466,7 +466,7 @@ object Form130: TForm130
       Text = 'Show track label'
       Checked = True
       TabOrder = 3
-      OnClick = CheckBox6Change
+      OnChange = CheckBox6Change
       Checked = True
     end
     object Panel5: TTMSFNCPanel
@@ -485,7 +485,7 @@ object Form130: TForm130
         Height = 24
         Text = '1'
         TabOrder = 0
-        OnClick = RadioButton5Change
+        OnChange = RadioButton5Change
         GroupName = 'Panel5'
       end
       object RadioButton6: TTMSFNCRadioButton
@@ -497,7 +497,7 @@ object Form130: TForm130
         Checked = True
         TabOrder = 1
         TabStop = True
-        OnClick = RadioButton6Change
+        OnChange = RadioButton6Change
         GroupName = 'Panel5'
       end
     end
@@ -519,7 +519,7 @@ object Form130: TForm130
         Checked = True
         TabOrder = 0
         TabStop = True
-        OnClick = RadioButton7Change
+        OnChange = RadioButton7Change
         GroupName = 'Panel6'
       end
       object RadioButton8: TTMSFNCRadioButton
@@ -529,7 +529,7 @@ object Form130: TForm130
         Height = 24
         Text = '10'
         TabOrder = 1
-        OnClick = RadioButton8Change
+        OnChange = RadioButton8Change
         GroupName = 'Panel6'
       end
     end
