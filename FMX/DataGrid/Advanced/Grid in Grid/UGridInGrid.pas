@@ -10,17 +10,23 @@ uses
   FMX.TMSFNCDataGridCell, FMX.TMSFNCDataGridData, FMX.TMSFNCDataGridBase,
   FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer, FMX.TMSFNCPDFIO,
   FMX.TMSFNCDataGridPDFIO, FMX.TMSFNCCustomComponent, FMX.TMSFNCBitmapContainer,
-  FMX.TMSFNCDataGrid;
+  FMX.TMSFNCDataGrid,
+  FMX.TMSFNCButton, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
-    Panel1: TPanel;
-    Button1: TButton;
-    Button2: TButton;
+    Panel1: TTMSFNCPanel;
+    Button1: TTMSFNCButton;
+    Button2: TTMSFNCButton;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     TMSFNCDataGridPDFIO1: TTMSFNCDataGridPDFIO;
-    Button3: TButton;
+    Button3: TTMSFNCButton;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -70,7 +76,7 @@ procedure TForm130.DoCollapse(Sender: TObject);
 var
   t: Integer;
 begin
-  t := (Sender as TButton).Tag;
+  t := (Sender as TTMSFNCButton).Tag;
   TMSFNCDataGrid1.ToggleNode(t);
 end;
 
@@ -78,7 +84,7 @@ procedure TForm130.FormCreate(Sender: TObject);
 var
   I, K: Integer;
   g: TTMSFNCDataGridRenderer;
-  b: TButton;
+  b: TTMSFNCButton;
   idx, m, nr: Integer;
 begin
   TMSFNCDataGrid1.BeginUpdate;
@@ -104,7 +110,7 @@ begin
     nr := idx;
     TMSFNCDataGrid1.Cells[0, idx] := (I + 1).ToString;
     TMSFNCDataGrid1.Cells[1, idx] := 'Click on the node icon or button to expand/collapse this row';
-    b := TButton.Create(Self);
+    b := TTMSFNCButton.Create(Self);
     b.OnClick := DoCollapse;
     b.Tag := idx;
     TMSFNCDataGrid1.Controls[1, idx] := b;
@@ -205,11 +211,11 @@ begin
   if Assigned(c) then
   begin
     t := c.Tag;
-    if c is TButton then
+    if c is TTMSFNCButton then
     begin
       case TMSFNCDataGrid1.RowNodeState[t] of
-        grnsCollapsed: (c as TButton).Text := 'Expand';
-        grnsExpanded: (c as TButton).Text := 'Collapse';
+        grnsCollapsed: (c as TTMSFNCButton).Text := 'Expand';
+        grnsExpanded: (c as TTMSFNCButton).Text := 'Collapse';
       end;
     end;
   end;
