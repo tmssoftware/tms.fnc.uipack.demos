@@ -8606,6 +8606,11 @@ object Form1: TForm1
           2032322E352032372E33382032392E34342032302E34342032382E3536203139
           2E35362032332032352E3132222F3E3C2F673E3C2F7376673E0D0A}
         ColumnCount = 5
+        Align = Client
+        Margins.Left = 16.000000000000000000
+        Margins.Top = 56.000000000000000000
+        Margins.Right = 16.000000000000000000
+        Margins.Bottom = 16.000000000000000000
         Columns = <
           item
             Width = 68.000000000000000000

@@ -8534,6 +8534,12 @@ object Form5: TForm5
         Appearance.ProgressLayout.Format = '%.0f%%'
         LeftCol = 1
         ScrollMode = scmItemScrolling
+        Align = alClient
+        AlignWithMargins = True
+        Margins.Left = 16
+        Margins.Top = 56
+        Margins.Right = 16
+        Margins.Bottom = 16
         object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
           Left = 304
           Top = 136
