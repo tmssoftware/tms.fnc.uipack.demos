@@ -2,14 +2,70 @@ object FilterViewDataGridForm: TFilterViewDataGridForm
   Left = 0
   Top = 0
   ActiveControl = TMSFNCDataGrid1
-  Caption = 'TMS FNC FilterView DataGrid Filtering'
-  ClientHeight = 480
-  ClientWidth = 956
+  Caption = 'TMS FNC UI Pack - FilterView - data grid'
+  ClientHeight = 720
+  ClientWidth = 1100
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 956.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 732.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'FilterView: data grid'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 732.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Filter the grid with the filter view: expressions, buttons and a calendar'
+    end
+  end
   object TMSFNCFilterView1: TTMSFNCFilterView
     Align = Left
     Size.Width = 200.000000000000000000
@@ -34,6 +90,10 @@ object FilterViewDataGridForm: TFilterViewDataGridForm
     OnFilterTextChanged = TMSFNCFilterView1FilterTextChanged
     Viewport.Width = 200.000000000000000000
     Viewport.Height = 480.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 0.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     object TMSFNCFilterView1_FilterPanel1_FilterExpressionValueEdit1: TTMSFNCFilterViewExpressionValueEdit
       Align = Top
       Margins.Left = 5.000000000000000000
@@ -1297,5 +1357,14 @@ object FilterViewDataGridForm: TFilterViewDataGridForm
       2069643D2243686576726F6E5F5269676874222F3E3C672F3E3C672F3E3C672F
       3E3C672F3E3C672F3E3C672F3E3C2F7376673E0D0A}
     Options.Filtering.Actions = [gdfaApplyAppearance]
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

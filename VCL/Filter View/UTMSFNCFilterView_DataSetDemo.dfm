@@ -2,9 +2,9 @@ object FilterViewDemoForm: TFilterViewDemoForm
   Left = 0
   Top = 0
   ActiveControl = TMSFNCDataGrid1
-  Caption = 'TMS FNC Filter View DataSet Demo'
-  ClientHeight = 501
-  ClientWidth = 934
+  Caption = 'TMS FNC UI Pack - FilterView - data set'
+  ClientHeight = 720
+  ClientWidth = 1100
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -149,16 +149,73 @@ object FilterViewDemoForm: TFilterViewDemoForm
   Position = poScreenCenter
   OnCreate = FormCreate
   TextHeight = 15
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 934
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 750
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 710
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'FilterView: data set'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 710
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Filter a data set with expression editors, a check box, a track bar and a combo box'
+    end
+  end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     AlignWithMargins = True
     Left = 225
     Top = 10
     Width = 699
     Height = 481
-    Margins.Left = 10
-    Margins.Top = 10
-    Margins.Right = 10
-    Margins.Bottom = 10
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -1022,7 +1079,7 @@ object FilterViewDemoForm: TFilterViewDemoForm
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
     Left = 752
-    Top = 264
+    Top = 336
     Width = 26
     Height = 26
     Visible = True
@@ -1064,10 +1121,10 @@ object FilterViewDemoForm: TFilterViewDemoForm
     Top = 10
     Width = 200
     Height = 481
-    Margins.Left = 10
-    Margins.Top = 10
-    Margins.Right = 5
-    Margins.Bottom = 10
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 16
     Align = alLeft
     Color = clWhite
     ParentColor = False
@@ -1075,7 +1132,7 @@ object FilterViewDemoForm: TFilterViewDemoForm
     AdaptToStyle = True
     OnFilterTextChanged = TMSFNCFilterView1FilterTextChanged
     ExplicitHeight = 464
-    object Label2: TLabel
+    object Label2: TTMSFNCHTMLText
       AlignWithMargins = True
       Left = 5
       Top = 318
@@ -1085,8 +1142,11 @@ object FilterViewDemoForm: TFilterViewDemoForm
       Margins.Top = 5
       Margins.Right = 5
       Align = alTop
-      Caption = 'Area:'
-      ExplicitWidth = 27
+      Text = 'Area:'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
     object TMSFNCHTMLText1: TTMSFNCHTMLText
       Left = 0
@@ -1190,7 +1250,7 @@ object FilterViewDemoForm: TFilterViewDemoForm
         696E656361703D22726F756E6422207374726F6B652D6C696E656A6F696E3D22
         726F756E6422207374726F6B652D77696474683D22322220643D226D37203130
         2035203520352D35222F3E0D0A3C2F7376673E0D0A}
-      object SecondConditionCheck: TCheckBox
+      object SecondConditionCheck: TTMSFNCCheckBox
         AlignWithMargins = True
         Left = 10
         Top = 110
@@ -1200,7 +1260,7 @@ object FilterViewDemoForm: TFilterViewDemoForm
         Margins.Top = 5
         Margins.Right = 5
         Align = alTop
-        Caption = 'Use Second Condition'
+        Text = 'Use Second Condition'
         TabOrder = 1
         OnClick = SecondConditionCheckClick
       end
@@ -1254,7 +1314,7 @@ object FilterViewDemoForm: TFilterViewDemoForm
           PropertyValue = 'True'
         end>
     end
-    object Panel1: TPanel
+    object Panel1: TTMSFNCPanel
       AlignWithMargins = True
       Left = 5
       Top = 252
@@ -1265,29 +1325,31 @@ object FilterViewDemoForm: TFilterViewDemoForm
       Margins.Right = 5
       Margins.Bottom = 0
       Align = alTop
-      BevelEdges = []
-      BevelOuter = bvNone
-      Color = clWhite
-      ParentBackground = False
       TabOrder = 3
-      object Label1: TLabel
+      Header.Visible = False
+      object Label1: TTMSFNCHTMLText
         Left = 0
         Top = 0
         Width = 180
         Height = 21
         Align = alClient
-        Caption = 'Minimum Size (cm):'
-        ExplicitWidth = 107
-        ExplicitHeight = 15
+        Text = 'Minimum Size (cm):'
+        HorizontalTextAlign = gtaLeading
+        AutoSize = True
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
       end
-      object SizeValueLbl: TLabel
+      object SizeValueLbl: TTMSFNCHTMLText
         Left = 180
         Top = 0
         Width = 6
         Height = 21
         Align = alRight
-        Caption = '0'
-        ExplicitHeight = 15
+        Text = '0'
+        HorizontalTextAlign = gtaLeading
+        AutoSize = True
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
       end
     end
     object SizeTrackBar: TTMSFNCFilterViewTrackBar
@@ -1326,7 +1388,7 @@ object FilterViewDemoForm: TFilterViewDemoForm
       FilterExpressions.DefaultFilterProperties.ExpressionOperator = feoLargerThanOrEqual
       FilterExpressions = <>
     end
-    object CustomAreaComboBox: TComboBox
+    object CustomAreaComboBox: TTMSFNCComboBox
       AlignWithMargins = True
       Left = 5
       Top = 337
@@ -1336,13 +1398,13 @@ object FilterViewDemoForm: TFilterViewDemoForm
       Margins.Top = 1
       Margins.Right = 5
       Align = alTop
-      Style = csDropDownList
       ItemIndex = 0
       TabOrder = 5
       Text = 'Programmatically Handled'
       OnChange = CustomAreaComboBoxChange
       Items.Strings = (
         'Programmatically Handled')
+      Style = csDropDownList
     end
   end
   object AnimalDataSet: TClientDataSet
@@ -2531,5 +2593,10 @@ object FilterViewDemoForm: TFilterViewDemoForm
     ScopeMappings = <>
     Left = 456
     Top = 256
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

@@ -14,10 +14,16 @@ uses
   Data.Bind.Components, Data.Bind.DBScope, FMX.TMSFNCFilterView,
   FMX.TMSFNCHTMLText, FMX.TMSFNCTrackBar, FMX.TMSFNCHTMLImageContainer,
   FMX.TMSFNCCheckBox, FMX.ListBox, FMX.TMSFNCPanel, TMS.TMSFNCFilterBuilder, TMS.TMSFNCValue,
-  TMS.TMSFNCFilterStructure;
+  TMS.TMSFNCFilterStructure,
+  FMX.TMSFNCComboBox, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TFilterViewDemoForm = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter;
     DataSource1: TDataSource;
@@ -26,14 +32,14 @@ type
     TMSFNCFilterView1: TTMSFNCFilterView;
     TMSFNCHTMLText1: TTMSFNCHTMLText;
     ExtinctCheck: TTMSFNCFilterViewCheckBox;
-    Label1: TLabel;
+    Label1: TTMSFNCHTMLText;
     SizeTrackBar: TTMSFNCFilterViewTrackBar;
-    SizeValueLbl: TLabel;
+    SizeValueLbl: TTMSFNCHTMLText;
     TMSFNCFilterViewExpressionValueEdit1: TTMSFNCFilterViewExpressionValueEdit;
-    CustomAreaComboBox: TComboBox;
-    LblArea: TLabel;
+    CustomAreaComboBox: TTMSFNCComboBox;
+    LblArea: TTMSFNCHTMLText;
     TMSFNCFilterViewPanel1: TTMSFNCFilterViewPanel;
-    SecondCondition: TCheckBox;
+    SecondCondition: TTMSFNCCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure SizeTrackBarChanged(Sender: TObject);
     procedure TMSFNCFilterView1FilterTextChanged(Sender: TObject; AFilterText: string);
@@ -65,7 +71,7 @@ implementation
 procedure TFilterViewDemoForm.SecondConditionChange(Sender: TObject);
 begin
   TMSFNCFilterViewPanel1.BeginUpdate;
-  if SecondCondition.IsChecked then
+  if SecondCondition.Checked then
   begin
     if not Assigned(NameCombo2) then
     begin

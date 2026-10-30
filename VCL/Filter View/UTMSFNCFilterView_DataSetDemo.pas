@@ -15,10 +15,16 @@ uses
   Vcl.ExtCtrls, VCL.TMSFNCPanel, VCL.TMSFNCHTMLText,
   VCL.TMSFNCHTMLImageContainer, VCL.TMSFNCCheckBox, VCL.TMSFNCFilterView,
   VCL.TMSFNCTrackBar, TMS.TMSFNCFilterBuilder, TMS.TMSFNCValue,
-  TMS.TMSFNCFilterStructure;
+  TMS.TMSFNCFilterStructure,
+  VCL.TMSFNCComboBox, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TFilterViewDemoForm = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     AnimalDataSet: TClientDataSet;
     TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter;
@@ -27,14 +33,14 @@ type
     TMSFNCFilterView1: TTMSFNCFilterView;
     TMSFNCHTMLText1: TTMSFNCHTMLText;
     TMSFNCFilterViewPanel1: TTMSFNCFilterViewPanel;
-    SecondConditionCheck: TCheckBox;
+    SecondConditionCheck: TTMSFNCCheckBox;
     ExtinctCheck: TTMSFNCFilterViewCheckBox;
-    Panel1: TPanel;
-    Label1: TLabel;
-    SizeValueLbl: TLabel;
+    Panel1: TTMSFNCPanel;
+    Label1: TTMSFNCHTMLText;
+    SizeValueLbl: TTMSFNCHTMLText;
     SizeTrackBar: TTMSFNCFilterViewTrackBar;
-    Label2: TLabel;
-    CustomAreaComboBox: TComboBox;
+    Label2: TTMSFNCHTMLText;
+    CustomAreaComboBox: TTMSFNCComboBox;
     NameCombo1: TTMSFNCFilterViewExpressionValueEdit;
     procedure FormCreate(Sender: TObject);
     procedure SizeTrackBarChanged(Sender: TObject);
@@ -76,16 +82,16 @@ begin
       NameCombo2.Top := 800;
       NameCombo2.ShowNameLabel := False;
       if TMSFNCFilterViewPanel1.GroupOperator = fgoAND then
-        SecondConditionCheck.Caption := TMSFNCFilterView1.UILanguage.AndOperatorText
+        SecondConditionCheck.Text := TMSFNCFilterView1.UILanguage.AndOperatorText
       else
-        SecondConditionCheck.Caption := TMSFNCFilterView1.UILanguage.OrOperatorText;
+        SecondConditionCheck.Text := TMSFNCFilterView1.UILanguage.OrOperatorText;
     end;
   end
   else if Assigned(NameCombo2) then
   begin
     secondValue := NameCombo2.FilterExpression.FilterValue;
     secondEO := NameCombo2.FilterExpression.ExpressionOperator;
-    SecondConditionCheck.Caption := 'Add second condition';
+    SecondConditionCheck.Text := 'Add second condition';
     FreeAndNil(NameCombo2);
   end;
   TMSFNCFilterViewPanel1.EndUpdate;
@@ -202,7 +208,7 @@ end;
 
 procedure TFilterViewDemoForm.SizeTrackBarChanged(Sender: TObject);
 begin
-  SizeValueLbl.Caption := SizeTrackBar.Value.ToString;
+  SizeValueLbl.Text := SizeTrackBar.Value.ToString;
 end;
 
 end.
