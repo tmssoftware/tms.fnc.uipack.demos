@@ -172,10 +172,10 @@ object Form2: TForm2
       Align = alTop
       Font.Height = -13
       HorizontalTextAlign = gtaLeading
-      Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
       Text = ''
+      WordWrapping = True
     end
     object AnswerCaption: TTMSFNCHTMLText
       AlignWithMargins = True
@@ -209,10 +209,10 @@ object Form2: TForm2
       Align = alTop
       Font.Height = -13
       HorizontalTextAlign = gtaLeading
-      Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
       Text = ''
+      WordWrapping = True
     end
     object HelpCaption: TTMSFNCHTMLText
       AlignWithMargins = True
@@ -247,10 +247,10 @@ object Form2: TForm2
       Align = alTop
       Font.Height = -13
       HorizontalTextAlign = gtaLeading
-      Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
       Text = 'Click Start: a capital is asked, click its country in the image. A wrong answer gets a second try for half a point, then the correct country turns red. Hint shows the flag when you hover.'
+      WordWrapping = True
     end
   end
   object TMSFNCHotSpotImage1: TTMSFNCHotSpotImage
