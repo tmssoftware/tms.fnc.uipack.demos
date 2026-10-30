@@ -155,7 +155,9 @@ def find_root(d):
 
 
 def sources(args):
-    return [Path(args.core) / "Source", Path(args.uipack) / "Source"]
+    """Overlay folders first (patched copies of product units, e.g. to get past a product bug on
+    one platform), then the Core and UI Pack sources."""
+    return [Path(p) for p in (getattr(args, "overlay", None) or [])] + [Path(args.core) / "Source", Path(args.uipack) / "Source"]
 
 
 def scratch_dpr(proj, out, extra_units=()):
@@ -187,7 +189,7 @@ def make_empty_res(path, out, delphi="13"):
 
 
 def dcu_cache(args, delphi, fw, platform):
-    d = work_root(args) / "dcu-cache" / f"d{delphi}-{fw}-{platform}"
+    d = work_root(args) / "dcu-cache" / (f"d{delphi}-{fw}-{platform}" + ("-overlay" if getattr(args, "overlay", None) else ""))
     d.mkdir(parents=True, exist_ok=True)
     return d
 
@@ -487,6 +489,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--core", default=str(WORKSPACE / "tms.fnc.core-theming"))
     ap.add_argument("--uipack", default=str(WORKSPACE / "tms.fnc.uipack-theming"))
+    ap.add_argument("--overlay", action="append", help="folders searched before the sources (patched product units)")
     ap.add_argument("--work", help="scratch build folder (default %%TEMP%%/claude/democheck)")
     ap.add_argument("--out", default=str(HARNESS / "results" / "demos-pilot"))
     sub = ap.add_subparsers(dest="cmd", required=True)
