@@ -1,7 +1,5 @@
 ﻿unit UDemo;
 
-{ demo-colors: the tile colours (dark tiles, light text and icons, FormCreate) are the subject: the demo's icons are white glyphs }
-
 interface
 
 uses
@@ -83,16 +81,6 @@ procedure TForm43.WebCheckBox4Click(Sender: TObject);
 begin
   TMSFNCTileList1.BeginUpdate;
 
-  TMSFNCTileList1.Appearance.Fill.Color := gcDimgray;
-  TMSFNCTileList1.Appearance.Stroke.Color := gcDimgray;
-  TMSFNCTileList1.Appearance.FillHover.Color := gcGray;
-  TMSFNCTileList1.Appearance.StrokeHover.Color := gcGray;
-  TMSFNCTileList1.Appearance.FillDown.Color := gcSteelblue;
-  TMSFNCTileList1.Appearance.StrokeDown.Color := gcSteelblue;
-  TMSFNCTileList1.Appearance.FillSelected.Color := gcSteelblue;
-  TMSFNCTileList1.Appearance.StrokeSelected.Color := gcSteelblue;
-  TMSFNCTileList1.Appearance.TitleFont.Color := gcWhite;
-  TMSFNCTileList1.Appearance.DescriptionFont.Color := gcWhite;
   TMSFNCTileList1.Header.ArrowLeft.Visible := WebCheckBox4.Checked;
   TMSFNCTileList1.Header.ArrowRight.Visible := WebCheckBox4.Checked;
   TMSFNCTileList1.Footer.ArrowLeft.Visible := WebCheckBox4.Checked;
