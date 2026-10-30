@@ -54,6 +54,15 @@ implementation
 
 {$R *.fmx}
 
+// the data files sit in the project folder; a build in a platform subfolder (Win32\Debug) finds them two levels up
+function DataFile(const AName: string): string;
+begin
+  if FileExists('.\' + AName) then
+    Result := '.\' + AName
+  else
+    Result := '.\..\..\' + AName;
+end;
+
 procedure TForm1.ckSearchLimitChange(Sender: TObject);
 begin
   if ckSearchLimit.Checked then
@@ -99,7 +108,7 @@ begin
   cols.Delimiter := ',';
   cols.StrictDelimiter := true;
 
-  sl.LoadFromFile('.\..\..\carlist.txt');
+  sl.LoadFromFile(DataFile('carlist.txt'));
 
   TMSFNCSearchList2.ItemHeight := 70;
   TMSFNCSearchList2.Categories.Clear;
@@ -144,7 +153,7 @@ begin
     sli.Descriptions[1] := cols[1];
     sli.CategoryID := StrToInt(cols[3]);
 
-    sli.Columns[0].Picture.LoadFromFile('.\..\..\'+cols[2]);
+    sli.Columns[0].Picture.LoadFromFile(DataFile(cols[2]));
   end;
 
   TMSFNCSearchList2.Items.Sort(1, sdUp, false);
@@ -173,7 +182,7 @@ var
   catid: integer;
 begin
   sl := TStringList.Create;
-  sl.LoadFromFile('.\..\..\dictionary.txt');
+  sl.LoadFromFile(DataFile('dictionary.txt'));
 
   TMSFNCSearchList1.BeginUpdate;
 
