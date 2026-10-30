@@ -1,5 +1,7 @@
 unit UDemo;
 
+{ demo-colors: the more-option colours (FormCreate) and the accessory badge (ItemAppearance.Accessory*) }
+
 interface
 
 uses
@@ -8,20 +10,25 @@ uses
   VCL.TMSFNCBitmapContainer, VCL.TMSFNCTypes, VCL.TMSFNCUtils,
   VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCCustomControl,
   VCL.TMSFNCTableView, Vcl.ExtCtrls, VCL.TMSFNCImage, VCL.TMSFNCHTMLText,
-  Vcl.StdCtrls;
+  Vcl.StdCtrls,
+  VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm5 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     TMSFNCBitmapContainer2: TTMSFNCBitmapContainer;
     TMSFNCTableView1: TTMSFNCTableView;
-    Panel1: TPanel;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
+    Panel1: TTMSFNCPanel;
+    Label1: TTMSFNCHTMLText;
+    Label2: TTMSFNCHTMLText;
+    Label3: TTMSFNCHTMLText;
     TMSFNCHTMLText1: TTMSFNCHTMLText;
     TMSFNCImage1: TTMSFNCImage;
-    Label4: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure TMSFNCTableView1BeforeItemShowDetailControl(Sender: TObject;
       AItem: TTMSFNCTableViewItem; ADetailControl: TControl;
@@ -170,7 +177,7 @@ end;
 procedure TForm5.TMSFNCTableView1BeforeItemShowDetailControl(Sender: TObject;
   AItem: TTMSFNCTableViewItem; ADetailControl: TControl; var AAllow: Boolean);
 begin
-  Label2.Caption := 'Name : ' + AItem.HTMLTemplateItems.Values['NAME'];
+  Label2.Text := 'Name : ' + AItem.HTMLTemplateItems.Values['NAME'];
   TMSFNCHTMLText1.Text := AItem.HTMLTemplateItems.Values['DESCRIPTION'];
   TMSFNCImage1.Bitmaps.Clear;
   TMSFNCImage1.Bitmaps.Add.BitmapName := AItem.HTMLTemplateItems.Values['NAME'] + '.png';

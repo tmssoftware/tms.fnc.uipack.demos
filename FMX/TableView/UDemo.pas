@@ -1,5 +1,7 @@
 ﻿unit UDemo;
 
+{ demo-colors: the more-option colours (FormCreate) and the accessory badge (ItemAppearance.Accessory*) }
+
 interface
 
 uses
@@ -8,17 +10,22 @@ uses
   FMX.TMSFNCCustomComponent, FMX.TMSFNCBitmapContainer, FMX.TMSFNCTypes,
   FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.StdCtrls,
   FMX.Controls.Presentation, FMX.TMSFNCCustomControl, FMX.TMSFNCTableView,
-  FMX.TMSFNCHTMLText, FMX.TMSFNCImage;
+  FMX.TMSFNCHTMLText, FMX.TMSFNCImage,
+  FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm1 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     TMSFNCTableView1: TTMSFNCTableView;
-    Panel1: TPanel;
-    Label2: TLabel;
-    Label3: TLabel;
+    Panel1: TTMSFNCPanel;
+    Label2: TTMSFNCHTMLText;
+    Label3: TTMSFNCHTMLText;
     TMSFNCHTMLText1: TTMSFNCHTMLText;
-    Label1: TLabel;
     TMSFNCImage1: TTMSFNCImage;
     TMSFNCBitmapContainer2: TTMSFNCBitmapContainer;
     procedure FormCreate(Sender: TObject);

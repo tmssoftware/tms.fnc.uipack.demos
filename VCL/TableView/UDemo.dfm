@@ -1,9 +1,9 @@
 object Form5: TForm5
   Left = 0
   Top = 0
-  Caption = 'TMS FNC TableView Demo'
-  ClientHeight = 663
-  ClientWidth = 510
+  Caption = 'TMS FNC UI Pack - TableView'
+  ClientHeight = 720
+  ClientWidth = 560
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -150,25 +150,66 @@ object Form5: TForm5
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object Label4: TLabel
-    AlignWithMargins = True
-    Left = 5
-    Top = 5
-    Width = 500
-    Height = 13
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 0
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 510
+    Height = 72
     Align = alTop
-    Caption = 
-      'Swipe right to left on the item to show more options, click on t' +
-      'he item to show the detail.'
-    ExplicitWidth = 424
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 326
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 286
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'TableView: car brands'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 286
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Swipe an item to the left for options, click it for details'
+    end
   end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
     Left = 8
-    Top = 8
+    Top = 80
     Width = 26
     Height = 26
     Visible = True
@@ -1564,7 +1605,7 @@ object Form5: TForm5
   end
   object TMSFNCBitmapContainer2: TTMSFNCBitmapContainer
     Left = 40
-    Top = 8
+    Top = 80
     Width = 26
     Height = 26
     Visible = True
@@ -17996,28 +18037,18 @@ object Form5: TForm5
     Top = 23
     Width = 500
     Height = 635
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 5
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
     TabOrder = 2
-    Stroke.Color = 13420488
-    ItemAppearance.Font.Charset = DEFAULT_CHARSET
-    ItemAppearance.Font.Color = clBlack
     ItemAppearance.Font.Height = -11
-    ItemAppearance.Font.Name = 'Tahoma'
     ItemAppearance.Font.Style = []
-    ItemAppearance.Fill.Color = -1
-    ItemAppearance.Stroke.Color = 13420488
-    ItemAppearance.SelectedFill.Color = 14277081
-    ItemAppearance.SelectedStroke.Color = 14277081
     ItemAppearance.DisabledFill.Kind = gfkNone
-    ItemAppearance.DisabledFill.Color = 11119017
     ItemAppearance.DisabledStroke.Kind = gskNone
-    ItemAppearance.DisabledStroke.Color = 11119017
     ItemAppearance.FixedHeight = 25.000000000000000000
     ItemAppearance.AccessoryDetailBitmaps = <>
     ItemAppearance.AccessoryFont.Charset = DEFAULT_CHARSET
@@ -18028,65 +18059,39 @@ object Form5: TForm5
     ItemAppearance.AccessoryStroke.Color = clBlack
     ItemAppearance.AccessoryFill.Color = 3329434
     DefaultItem.VerticalTextAlign = gtaCenter
-    DefaultItem.SelectedTextColor = clBlack
     Items = <
       item
         Text = 'Mercedes'
         VerticalTextAlign = gtaCenter
-        SelectedTextColor = clBlack
       end
       item
         Text = 'Audi'
         VerticalTextAlign = gtaCenter
-        SelectedTextColor = clBlack
       end
       item
         Text = 'BMW'
         VerticalTextAlign = gtaCenter
-        SelectedTextColor = clBlack
       end
       item
         Text = 'Land Rover'
         VerticalTextAlign = gtaCenter
-        SelectedTextColor = clBlack
       end
       item
         Text = 'Bugatti'
         VerticalTextAlign = gtaCenter
-        SelectedTextColor = clBlack
       end>
     Header.Text = 'Item List'
-    Header.Fill.Color = 16382457
-    Header.Font.Charset = DEFAULT_CHARSET
-    Header.Font.Color = clBlack
     Header.Font.Height = -11
-    Header.Font.Name = 'Tahoma'
     Header.Font.Style = []
-    Header.Stroke.Color = 11711154
     Header.Height = 30.000000000000000000
-    Footer.Fill.Color = 16382457
-    Footer.Font.Charset = DEFAULT_CHARSET
-    Footer.Font.Color = clBlack
     Footer.Font.Height = -11
-    Footer.Font.Name = 'Tahoma'
     Footer.Font.Style = []
-    Footer.Stroke.Color = 11711154
     Footer.Height = 30.000000000000000000
     Interaction.AnimationFactor = 2.500000000000000000
-    LookupBar.Font.Charset = DEFAULT_CHARSET
-    LookupBar.Font.Color = clWindowText
     LookupBar.Font.Height = -11
-    LookupBar.Font.Name = 'Tahoma'
     LookupBar.Font.Style = []
-    LookupBar.InActiveFont.Charset = DEFAULT_CHARSET
-    LookupBar.InActiveFont.Color = clSilver
     LookupBar.InActiveFont.Height = -11
-    LookupBar.InActiveFont.Name = 'Tahoma'
     LookupBar.InActiveFont.Style = []
-    LookupBar.Stroke.Color = clWhite
-    LookupBar.DownFill.Color = 16382457
-    LookupBar.DownStroke.Color = 16382457
-    Reload.Stroke.Color = 11119017
     Reload.Stroke.Width = 2.000000000000000000
     Categories = <>
     MoreOptions = <>
@@ -18097,47 +18102,50 @@ object Form5: TForm5
     MoreOptionAppearance.Font.Style = []
     MoreOptionAppearance.Fill.Color = 11829830
     MoreOptionAppearance.Stroke.Color = 11829830
-    CategoryAppearance.Font.Charset = DEFAULT_CHARSET
-    CategoryAppearance.Font.Color = clWindowText
     CategoryAppearance.Font.Height = -11
-    CategoryAppearance.Font.Name = 'Tahoma'
     CategoryAppearance.Font.Style = []
-    CategoryAppearance.Fill.Color = 16053492
-    CategoryAppearance.Stroke.Color = 11119017
     OnItemSelectionChanged = TMSFNCTableView1ItemSelectionChanged
     OnItemMoreOptionClick = TMSFNCTableView1ItemMoreOptionClick
     OnBeforeItemShowDetailControl = TMSFNCTableView1BeforeItemShowDetailControl
-    object Panel1: TPanel
+    object Panel1: TTMSFNCPanel
       Left = 24
       Top = 176
       Width = 425
       Height = 377
-      BevelOuter = bvNone
-      BorderStyle = bsSingle
-      Caption = 'Panel1'
-      Ctl3D = False
-      ParentCtl3D = False
       TabOrder = 1
-      object Label1: TLabel
+      Header.Visible = False
+      object Label1: TTMSFNCHTMLText
         Left = 8
         Top = 8
         Width = 52
         Height = 13
-        Caption = 'Car Details'
+        Text = 'Car Details'
+        HorizontalTextAlign = gtaLeading
+        AutoSize = True
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
       end
-      object Label2: TLabel
+      object Label2: TTMSFNCHTMLText
         Left = 8
         Top = 40
         Width = 31
         Height = 13
-        Caption = 'Name:'
+        Text = 'Name:'
+        HorizontalTextAlign = gtaLeading
+        AutoSize = True
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
       end
-      object Label3: TLabel
+      object Label3: TTMSFNCHTMLText
         Left = 8
         Top = 72
         Width = 57
         Height = 13
-        Caption = 'Description:'
+        Text = 'Description:'
+        HorizontalTextAlign = gtaLeading
+        AutoSize = True
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
       end
       object TMSFNCHTMLText1: TTMSFNCHTMLText
         AlignWithMargins = True
@@ -18151,19 +18159,14 @@ object Form5: TForm5
         Margins.Bottom = 0
         Align = alTop
         ParentDoubleBuffered = False
-        Color = clBtnFace
         DoubleBuffered = True
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
         Font.Height = -11
-        Font.Name = 'Tahoma'
         Font.Style = []
         TabOrder = 0
         AutoSize = True
         HorizontalTextAlign = gtaLeading
         Fill.Kind = gfkNone
         Stroke.Kind = gskNone
-        Stroke.Color = -1
         Text = 'TTMSFNCHTMLText'
         VerticalTextAlign = gtaLeading
         WordWrapping = True
@@ -18187,5 +18190,10 @@ object Form5: TForm5
         BitmapContainer = TMSFNCBitmapContainer2
       end
     end
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

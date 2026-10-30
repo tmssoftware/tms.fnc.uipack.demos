@@ -1,21 +1,77 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'TMS FNC TableView Demo'
-  ClientHeight = 662
-  ClientWidth = 493
+  Caption = 'TMS FNC UI Pack - TableView'
+  ClientHeight = 720
+  ClientWidth = 560
   Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 493.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 269.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'TableView: car brands'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 269.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Swipe an item to the left for options, click it for details'
+    end
+  end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
     Size.Width = 26.000000000000000000
     Size.Height = 26.000000000000000000
     Size.PlatformDefault = False
     Position.X = 8.000000000000000000
-    Position.Y = 8.000000000000000000
+    Position.Y = 80.000000000000000000
     Items = <
       item
         Bitmap.PNG = {
@@ -1183,24 +1239,16 @@ object Form1: TForm1
   end
   object TMSFNCTableView1: TTMSFNCTableView
     Align = Client
-    Margins.Left = 5.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     Size.Width = 483.000000000000000000
     Size.Height = 626.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    Stroke.Color = xFFC8C7CC
-    ItemAppearance.Font.Name = 'Segoe UI'
-    ItemAppearance.Fill.Color = claNull
-    ItemAppearance.Stroke.Color = xFFC8C7CC
-    ItemAppearance.SelectedFill.Color = xFFD9D9D9
-    ItemAppearance.SelectedStroke.Color = xFFD9D9D9
     ItemAppearance.DisabledFill.Kind = gfkNone
-    ItemAppearance.DisabledFill.Color = claDarkgray
     ItemAppearance.DisabledStroke.Kind = gskNone
-    ItemAppearance.DisabledStroke.Color = claDarkgray
     ItemAppearance.FixedHeight = 25.000000000000000000
     ItemAppearance.AccessoryDetailBitmaps = <>
     ItemAppearance.AccessoryFont.Color = claDarkred
@@ -1209,49 +1257,30 @@ object Form1: TForm1
     ItemAppearance.AccessoryStroke.Color = claBlack
     ItemAppearance.AccessoryFill.Color = claYellowgreen
     DefaultItem.VerticalTextAlign = gtaCenter
-    DefaultItem.SelectedTextColor = claBlack
     Items = <
       item
         Text = 'Mercedes'
         VerticalTextAlign = gtaCenter
-        SelectedTextColor = claBlack
       end
       item
         Text = 'Audi'
         VerticalTextAlign = gtaCenter
-        SelectedTextColor = claBlack
       end
       item
         Text = 'BMW'
         VerticalTextAlign = gtaCenter
-        SelectedTextColor = claBlack
       end
       item
         Text = 'Land Rover'
         VerticalTextAlign = gtaCenter
-        SelectedTextColor = claBlack
       end
       item
         Text = 'Bugatti'
         VerticalTextAlign = gtaCenter
-        SelectedTextColor = claBlack
       end>
     Header.Text = 'Item List'
-    Header.Fill.Color = xFFF9F9F9
-    Header.Font.Name = 'Segoe UI'
-    Header.Stroke.Color = xFFB2B2B2
     Header.Height = 30.000000000000000000
-    Footer.Fill.Color = xFFF9F9F9
-    Footer.Font.Name = 'Segoe UI'
-    Footer.Stroke.Color = xFFB2B2B2
     Footer.Height = 30.000000000000000000
-    LookupBar.Font.Name = 'Segoe UI'
-    LookupBar.InActiveFont.Color = claSilver
-    LookupBar.InActiveFont.Name = 'Segoe UI'
-    LookupBar.Stroke.Color = claWhite
-    LookupBar.DownFill.Color = xFFF9F9F9
-    LookupBar.DownStroke.Color = xFFF9F9F9
-    Reload.Stroke.Color = claDarkgray
     Reload.Stroke.Width = 2.000000000000000000
     Categories = <>
     MoreOptions = <>
@@ -1259,21 +1288,19 @@ object Form1: TForm1
     MoreOptionAppearance.Font.Name = 'Segoe UI'
     MoreOptionAppearance.Fill.Color = claSteelblue
     MoreOptionAppearance.Stroke.Color = claSteelblue
-    CategoryAppearance.Font.Name = 'Segoe UI'
-    CategoryAppearance.Fill.Color = xFFF4F4F4
-    CategoryAppearance.Stroke.Color = claDarkgray
     OnItemSelectionChanged = TMSFNCTableView1ItemSelectionChanged
     OnItemMoreOptionClick = TMSFNCTableView1ItemMoreOptionClick
     OnBeforeItemShowDetailControl = TMSFNCTableView1BeforeItemShowDetailControl
   end
-  object Panel1: TPanel
+  object Panel1: TTMSFNCPanel
     Position.X = 24.000000000000000000
-    Position.Y = 160.000000000000000000
+    Position.Y = 232.000000000000000000
     Size.Width = 369.000000000000000000
     Size.Height = 329.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
-    object Label2: TLabel
+    Header.Visible = False
+    object Label2: TTMSFNCHTMLText
       AutoSize = True
       Position.X = 8.000000000000000000
       Position.Y = 12.000000000000000000
@@ -1282,8 +1309,11 @@ object Form1: TForm1
       Size.PlatformDefault = False
       Text = 'Name: '
       TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label3: TLabel
+    object Label3: TTMSFNCHTMLText
       AutoSize = True
       Position.X = 8.000000000000000000
       Position.Y = 40.000000000000000000
@@ -1292,6 +1322,9 @@ object Form1: TForm1
       Size.PlatformDefault = False
       Text = 'Description:'
       TabOrder = 0
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
     object TMSFNCHTMLText1: TTMSFNCHTMLText
       Align = Top
@@ -1305,11 +1338,9 @@ object Form1: TForm1
       Size.PlatformDefault = False
       TabOrder = 2
       AutoSize = True
-      Font.Name = 'Segoe UI'
       HorizontalTextAlign = gtaLeading
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
-      Stroke.Color = claNull
       Text = 'TTMSFNCHTMLText'
       VerticalTextAlign = gtaLeading
       WordWrapping = True
@@ -1328,29 +1359,12 @@ object Form1: TForm1
       BitmapContainer = TMSFNCBitmapContainer2
     end
   end
-  object Label1: TLabel
-    Align = Top
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.X = 5.000000000000000000
-    Position.Y = 5.000000000000000000
-    Size.Width = 483.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = 
-      'Swipe right to left on the item to show more options, click on t' +
-      'he item to show the detail.'
-    TabOrder = 2
-  end
   object TMSFNCBitmapContainer2: TTMSFNCBitmapContainer
     Size.Width = 26.000000000000000000
     Size.Height = 26.000000000000000000
     Size.PlatformDefault = False
     Position.X = 160.000000000000000000
-    Position.Y = 40.000000000000000000
+    Position.Y = 112.000000000000000000
     Items = <
       item
         Bitmap.PNG = {
@@ -17432,5 +17446,10 @@ object Form1: TForm1
         Name = 'Volvo.png'
         Tag = 0
       end>
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end
