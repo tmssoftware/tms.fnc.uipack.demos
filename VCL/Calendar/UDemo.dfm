@@ -2,7 +2,7 @@ object Form130: TForm130
   Left = 0
   Top = 0
   Caption = 'TMS FNC UI Pack - Calendar and DatePicker'
-  ClientHeight = 752
+  ClientHeight = 764
   ClientWidth = 688
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -324,7 +324,7 @@ object Form130: TForm130
     Left = 16
     Top = 424
     Width = 320
-    Height = 312
+    Height = 324
     TabOrder = 3
     Header.Visible = False
     object Label1: TTMSFNCHTMLText
@@ -362,7 +362,7 @@ object Form130: TForm130
       Left = 12
       Top = 200
       Width = 296
-      Height = 104
+      Height = 112
       TabOrder = 1
       Header.Visible = True
       Header.Text = 'Navigation'
@@ -387,7 +387,7 @@ object Form130: TForm130
     end
     object RadioButton6: TTMSFNCRadioButton
       Left = 24
-      Top = 246
+      Top = 248
       Width = 270
       Height = 20
       Text = 'By month'
@@ -397,7 +397,7 @@ object Form130: TForm130
     end
     object RadioButton7: TTMSFNCRadioButton
       Left = 24
-      Top = 264
+      Top = 268
       Width = 270
       Height = 20
       Text = 'By year'
@@ -407,7 +407,7 @@ object Form130: TForm130
     end
     object RadioButton8: TTMSFNCRadioButton
       Left = 24
-      Top = 282
+      Top = 288
       Width = 270
       Height = 20
       Text = 'By custom (10 years)'
@@ -429,7 +429,7 @@ object Form130: TForm130
     Left = 352
     Top = 424
     Width = 320
-    Height = 312
+    Height = 324
     TabOrder = 5
     Header.Visible = False
     object Label3: TTMSFNCHTMLText
@@ -458,7 +458,7 @@ object Form130: TForm130
       Left = 12
       Top = 112
       Width = 296
-      Height = 104
+      Height = 112
       TabOrder = 1
       Header.Visible = True
       Header.Text = 'Arrows'
@@ -486,7 +486,7 @@ object Form130: TForm130
     end
     object RadioButton2: TTMSFNCRadioButton
       Left = 24
-      Top = 158
+      Top = 160
       Width = 270
       Height = 20
       Text = 'Triangle'
@@ -496,7 +496,7 @@ object Form130: TForm130
     end
     object RadioButton3: TTMSFNCRadioButton
       Left = 24
-      Top = 176
+      Top = 180
       Width = 270
       Height = 20
       Text = 'Bitmap'
@@ -506,7 +506,7 @@ object Form130: TForm130
     end
     object RadioButton4: TTMSFNCRadioButton
       Left = 24
-      Top = 194
+      Top = 200
       Width = 270
       Height = 20
       Text = 'Custom'
