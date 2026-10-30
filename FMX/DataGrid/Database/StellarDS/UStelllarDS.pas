@@ -12,40 +12,46 @@ uses
   Data.DB, FMX.TMSFNCCustomComponent, FMX.TMSFNCDataGridDatabaseAdapter,
   Datasnap.DBClient, FMX.Layouts, Fmx.Bind.Navigator, FMX.TMSFNCDataGrid,
   Data.Bind.Components, Data.Bind.DBScope,
-  FMX.TMSFNCCloudStellarDataStoreDataSet, FMX.TMSFNCCloudImage;
+  FMX.TMSFNCCloudStellarDataStoreDataSet, FMX.TMSFNCCloudImage,
+  FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCEdit, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Z: TPanel;
-    Button2: TButton;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Z: TTMSFNCPanel;
+    Button2: TTMSFNCButton;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     BindNavigator1: TBindNavigator;
     TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter;
     DataSource1: TDataSource;
     BindSourceDB1: TBindSourceDB;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    Panel1: TPanel;
-    Button3: TButton;
-    Edit1: TEdit;
-    Label1: TLabel;
-    Button4: TButton;
-    Button5: TButton;
-    pnAuth: TPanel;
-    Label5: TLabel;
-    edClientID: TEdit;
-    edSecret: TEdit;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label3: TLabel;
-    edCallbackURL: TEdit;
-    lbConnected: TLabel;
-    btConnect: TButton;
-    Label4: TLabel;
-    Label8: TLabel;
+    CheckBox1: TTMSFNCCheckBox;
+    CheckBox2: TTMSFNCCheckBox;
+    Panel1: TTMSFNCPanel;
+    Button3: TTMSFNCButton;
+    Edit1: TTMSFNCEdit;
+    Label1: TTMSFNCHTMLText;
+    Button4: TTMSFNCButton;
+    Button5: TTMSFNCButton;
+    pnAuth: TTMSFNCPanel;
+    Label5: TTMSFNCHTMLText;
+    edClientID: TTMSFNCEdit;
+    edSecret: TTMSFNCEdit;
+    Label6: TTMSFNCHTMLText;
+    Label7: TTMSFNCHTMLText;
+    Label3: TTMSFNCHTMLText;
+    edCallbackURL: TTMSFNCEdit;
+    lbConnected: TTMSFNCHTMLText;
+    btConnect: TTMSFNCButton;
+    Label4: TTMSFNCHTMLText;
+    Label8: TTMSFNCHTMLText;
     TMSFNCCloudImage1: TTMSFNCCloudImage;
-    Label10: TLabel;
-    edProjectID: TEdit;
+    Label10: TTMSFNCHTMLText;
+    edProjectID: TTMSFNCEdit;
     TMSFNCCloudStellarDataStoreDataSetFMX1: TTMSFNCCloudStellarDataStoreDataSetFMX;
     procedure FormCreate(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
@@ -120,12 +126,12 @@ end;
 
 procedure TForm130.CheckBox1Change(Sender: TObject);
 begin
-  TMSFNCDataGridDatabaseAdapter1.ShowPictureFields := CheckBox1.IsChecked;
+  TMSFNCDataGridDatabaseAdapter1.ShowPictureFields := CheckBox1.Checked;
 end;
 
 procedure TForm130.CheckBox2Change(Sender: TObject);
 begin
-  TMSFNCDataGridDatabaseAdapter1.ShowMemoFields := CheckBox2.IsChecked;
+  TMSFNCDataGridDatabaseAdapter1.ShowMemoFields := CheckBox2.Checked;
 end;
 
 procedure TForm130.DoConnected(Sender: TObject);
