@@ -2,8 +2,8 @@ object Form130: TForm130
   Left = 0
   Top = 0
   Caption = 'TMS FNC Data Grid Grouping Demo'
-  ClientHeight = 540
-  ClientWidth = 934
+  ClientHeight = 660
+  ClientWidth = 1000
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,37 +13,93 @@ object Form130: TForm130
   Position = poScreenCenter
   OnCreate = FormCreate
   TextHeight = 15
-  object Panel1: TPanel
-    AlignWithMargins = True
-    Left = 10
-    Top = 10
-    Width = 914
-    Height = 47
-    Margins.Left = 10
-    Margins.Top = 10
-    Margins.Right = 10
-    Margins.Bottom = 10
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 934
+    Height = 72
     Align = alTop
     TabOrder = 0
-    object Button1: TButton
-      Left = 13
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 750
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
       Top = 12
-      Width = 92
-      Height = 22
-      Caption = 'Group'
+      Width = 710
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
       TabOrder = 1
-      WordWrap = True
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'DataGrid grouping'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 710
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Group the rows on a column, then expand or collapse the groups'
+    end
+  end
+  object Panel1: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 10
+    Top = 72
+    Width = 914
+    Height = 48
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 12
+    Align = alTop
+    TabOrder = 0
+    Header.Visible = False
+    object Button1: TTMSFNCButton
+      Left = 16
+      Top = 8
+      Width = 100
+      Height = 32
+      Text = 'Group'
+      TabOrder = 1
       OnClick = Button1Click
     end
-    object Button2: TButton
-      Left = 117
-      Top = 12
-      Width = 132
-      Height = 22
-      Caption = 'Expand / Collapse'
+    object Button2: TTMSFNCButton
+      Left = 124
+      Top = 8
+      Width = 160
+      Height = 32
+      Text = 'Expand / Collapse'
       TabOrder = 0
       Visible = False
-      WordWrap = True
       OnClick = Button2Click
     end
   end
@@ -53,53 +109,42 @@ object Form130: TForm130
     Top = 70
     Width = 914
     Height = 460
-    Margins.Left = 10
-    Margins.Right = 10
-    Margins.Bottom = 10
+    Margins.Left = 16
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
     TabOrder = 1
     CellAppearance.BandLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.BandLayout.Font.Color = clWindowText
     CellAppearance.BandLayout.Font.Height = -11
     CellAppearance.BandLayout.Font.Name = 'Segoe UI'
     CellAppearance.BandLayout.Font.Style = []
     CellAppearance.FixedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FixedLayout.Font.Color = clWindowText
     CellAppearance.FixedLayout.Font.Height = -11
     CellAppearance.FixedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FixedLayout.Font.Style = []
-    CellAppearance.FixedSelectedLayout.Fill.Color = 15919071
     CellAppearance.FixedSelectedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FixedSelectedLayout.Font.Color = clWindowText
     CellAppearance.FixedSelectedLayout.Font.Height = -11
     CellAppearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FixedSelectedLayout.Font.Style = []
-    CellAppearance.FocusedLayout.Fill.Color = 13346942
     CellAppearance.FocusedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FocusedLayout.Font.Color = clWhite
     CellAppearance.FocusedLayout.Font.Height = -11
     CellAppearance.FocusedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FocusedLayout.Font.Style = []
     CellAppearance.GroupLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.GroupLayout.Font.Color = clSteelblue
     CellAppearance.GroupLayout.Font.Height = -11
     CellAppearance.GroupLayout.Font.Name = 'Segoe UI'
     CellAppearance.GroupLayout.Font.Style = []
     CellAppearance.NormalLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.NormalLayout.Font.Color = clWindowText
     CellAppearance.NormalLayout.Font.Height = -11
     CellAppearance.NormalLayout.Font.Name = 'Segoe UI'
     CellAppearance.NormalLayout.Font.Style = []
-    CellAppearance.SelectedLayout.Fill.Color = 15919071
     CellAppearance.SelectedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.SelectedLayout.Font.Color = clSteelblue
     CellAppearance.SelectedLayout.Font.Height = -11
     CellAppearance.SelectedLayout.Font.Name = 'Segoe UI'
     CellAppearance.SelectedLayout.Font.Style = []
     CellAppearance.SummaryLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.SummaryLayout.Font.Color = clWindowText
     CellAppearance.SummaryLayout.Font.Height = -11
     CellAppearance.SummaryLayout.Font.Name = 'Segoe UI'
     CellAppearance.SummaryLayout.Font.Style = []
@@ -316,11 +361,15 @@ object Form130: TForm130
       32222F3E3C2F673E3C2F7376673E}
     Columns = <>
     FilterAppearance.Font.Charset = DEFAULT_CHARSET
-    FilterAppearance.Font.Color = clWindowText
     FilterAppearance.Font.Height = -11
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
     Options.Mouse.ClickMargin = 0
-    Stroke.Color = clDarkgray
+    Margins.Top = 0
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

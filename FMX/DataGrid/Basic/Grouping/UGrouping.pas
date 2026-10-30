@@ -10,13 +10,19 @@ uses
   FMX.TMSFNCDataGrid, FMX.TMSFNCTypes,
   FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes,
   FMX.TMSFNCDataGridBase, FMX.TMSFNCDataGridCell, FMX.TMSFNCDataGridCore,
-  FMX.TMSFNCDataGridRenderer, System.Rtti;
+  FMX.TMSFNCDataGridRenderer, System.Rtti,
+  FMX.TMSFNCButton, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Panel1: TPanel;
-    Button1: TButton;
-    Button2: TButton;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    Button1: TTMSFNCButton;
+    Button2: TTMSFNCButton;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
