@@ -62,6 +62,7 @@ type
     procedure TextChanged(Sender: TObject);
     procedure TitleChanged(Sender: TObject);
     procedure ColorSelected(Sender: TObject; AColor: TTMSFNCGraphicsColor);
+    procedure ApplyCardColor(AItem: TTMSFNCKanbanBoardItem; AColor: TTMSFNCGraphicsColor);
     {$IFDEF FMX}
     procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: WideChar; Shift: TShiftState);
     {$ENDIF}
@@ -93,7 +94,31 @@ begin
 
   it := FKanbanBoard.SelectedItem;
   if Assigned(it) then
-    it.Color := AColor;
+    ApplyCardColor(it, AColor);
+end;
+
+{ A card without a colour of its own (white) takes the card colours of the theme; a coloured card
+  keeps its colour in every theme (the colour is the card's data) with text that stays readable on
+  it: dark text, white on Indian red. }
+procedure TKanbanBoardLogic.ApplyCardColor(AItem: TTMSFNCKanbanBoardItem; AColor: TTMSFNCGraphicsColor);
+begin
+  {$IFDEF LCL}
+  AItem.UseDefaultAppearance := False;
+  {$ELSE}
+  AItem.UseDefaultAppearance := AColor = gcWhite;
+  {$ENDIF}
+  AItem.Color := AColor;
+  if AColor = gcIndianred then
+  begin
+    AItem.TitleColor := gcWhite;
+    AItem.TextColor := gcWhite;
+  end
+  else if AColor <> gcWhite then
+  begin
+    { not gcBlack: that is the default, which a theme replaces by its own text colour }
+    AItem.TitleColor := MakeGraphicsColor(32, 32, 32);
+    AItem.TextColor := MakeGraphicsColor(32, 32, 32);
+  end;
 end;
 
 destructor TKanbanBoardLogic.Destroy;
@@ -104,25 +129,21 @@ end;
 procedure TKanbanBoardLogic.DoCustomizeColumn(Sender: TObject;
   AColumn: TTMSFNCKanbanBoardColumn; ATableView: TTMSFNCKanbanBoardTableView);
 begin
+  {$IFDEF LCL}
   if Assigned(ATableView) then
   begin
     ATableView.TreeView.GroupsAppearance.BottomStroke.Color := cl;
     ATableView.TreeView.GroupsAppearance.TopStroke.Color := cl;
   end;
+  {$ENDIF}
 end;
 
 procedure TKanbanBoardLogic.DoFieldsToItem(Sender: TObject; AFields: TFields;
   AItem: TTMSFNCKanbanBoardItem);
 begin
   AItem.Expandable := True;
-  AItem.UseDefaultAppearance := False;
-  AItem.Color := AFields.FieldByName('Color').AsInteger;
+  ApplyCardColor(AItem, AFields.FieldByName('Color').AsInteger);
   AItem.MarkColor := gcOrange;
-  if AItem.Color = gcIndianred then
-  begin
-    AItem.TitleColor := gcWhite;
-    AItem.TextColor := gcWhite;
-  end;
 
   case AFields.FieldByName('Priority').AsInteger of
     1: AItem.MarkType := [kbmtLeft];
@@ -216,16 +237,16 @@ begin
   h.Text := 'Supported interactions:<ul><li>Drag & Drop<li>Selection<li>Expand/Collapse<li>Sorting<li>Filtering<li>Delete / Insert key to delete / add items</ul>';
   h.ShowAcceleratorChar := False;
   h.HorizontalTextAlign := gtaLeading;
-  h.Left := 5;
+  h.Left := 12;
   h.Top := Round(p.Header.Size) + 5;
-  h.Width := p.Width - 5;
-  h.Height := h.ScalePaintValue(125);
+  h.Width := p.Width - 24;
+  h.Height := h.ScalePaintValue(150);
 
   lt := TTMSFNCHTMLText.Create(p);
   lt.Parent := p;
   lt.AutoSize := True;
   lt.Text := 'Title:';
-  lt.Left := 5;
+  lt.Left := 12;
   lt.Top := h.Top + h.Height + 10;
 
   FTitle := TTMSFNCEdit.Create(p);
@@ -245,7 +266,7 @@ begin
   l.Parent := p;
   l.AutoSize := True;
   l.Text := 'Text:';
-  l.Left := 5;
+  l.Left := 12;
   l.Top := lt.Top + lt.Height + 10;
 
   FText := TMemo.Create(p);
@@ -267,7 +288,7 @@ begin
   l.Parent := p;
   l.AutoSize := True;
   l.Text := 'Color:';
-  l.Left := 5;
+  l.Left := 12;
   {$IFDEF FMX}
   l.Top := FText.Position.Y + FText.Height + 10;
   {$ENDIF}
@@ -285,29 +306,31 @@ begin
   FKanbanBoard := TTMSFNCKanbanBoard.Create(FForm);
   FKanbanBoard.BeginUpdate;
 
-  cl := MakeGraphicsColor(240, 240, 240);
-
   FKanbanBoard.BitmapContainer := ABitmapContainer;
   FKanbanBoard.Parent := FForm;
   FKanbanBoard.ControlAlignment := caClient;
   FKanbanBoard.ColumnsAppearance.Margins.Left := FKanbanBoard.ScalePaintValue(50);
   FKanbanBoard.ColumnsAppearance.Margins.Top := FKanbanBoard.ScalePaintValue(50);
+  TTMSFNCUtils.SetFontSize(FKanbanBoard.ColumnsAppearance.HeaderFont, FKanbanBoard.ScalePaintValue(20));
+  TTMSFNCUtils.SetFontSize(FKanbanBoard.ItemsAppearance.TitleFont, FKanbanBoard.ScalePaintValue(16));
+
+  {$IFDEF LCL}
+  { LCL has no theme manager: the classic light gray board }
+  cl := MakeGraphicsColor(240, 240, 240);
   FKanbanBoard.ColumnsAppearance.HeaderFill.Color := cl;
   FKanbanBoard.ColumnsAppearance.HeaderStroke.Color := cl;
   FKanbanBoard.ColumnsAppearance.FooterFill.Color := cl;
   FKanbanBoard.ColumnsAppearance.FooterStroke.Color := cl;
   FKanbanBoard.ColumnsAppearance.Fill.Color := cl;
   FKanbanBoard.ColumnsAppearance.Stroke.Color := cl;
-  TTMSFNCUtils.SetFontSize(FKanbanBoard.ColumnsAppearance.HeaderFont, FKanbanBoard.ScalePaintValue(20));
-
   FKanbanBoard.ItemsAppearance.SelectedFill.Color := gcLightsteelblue;
   FKanbanBoard.ItemsAppearance.SelectedStroke.Color := cl;
-  TTMSFNCUtils.SetFontSize(FKanbanBoard.ItemsAppearance.TitleFont, FKanbanBoard.ScalePaintValue(16));
   FKanbanBoard.ItemsAppearance.Fill.Color := gcWhite;
   FKanbanBoard.ItemsAppearance.Stroke.Color := cl;
-
   FKanbanBoard.Fill.Color := cl;
   FKanbanBoard.Stroke.Color := cl;
+  {$ENDIF}
+  { other frameworks: the colours come from the theme (TTMSFNCThemeManager on the form) }
 
   FKanbanBoard.Interaction.DragDropMode := kbdmMove;
 

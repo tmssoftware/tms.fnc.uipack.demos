@@ -13,7 +13,7 @@ uses
   VCL.TMSFNCCustomControl, VCL.TMSFNCKanbanBoard, VCL.TMSFNCKanbanBoardDatabaseAdapter,
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes,
   VCL.TMSFNCCustomComponent, VCL.TMSFNCCustomScrollControl,
-  VCL.TMSFNCBitmapContainer;
+  VCL.TMSFNCBitmapContainer, VCL.TMSFNCPanel, VCL.TMSFNCHTMLText, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
   {$ENDIF}
 
   {$IFDEF WEBLIB}
@@ -23,7 +23,8 @@ uses
   WEBLib.TMSFNCTypes, WEBLib.TMSFNCUtils, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCGraphicsTypes,
   WEBLib.TMSFNCCustomComponent, WEBLib.TMSFNCCustomScrollControl, WEBLib.Controls,
   WEBLIB.TMSFNCBitmapContainer, Vcl.Controls, VCL.TMSFNCCustomComponent,
-  VCL.TMSFNCBitmapContainer;
+  VCL.TMSFNCBitmapContainer, WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCTheme,
+  WEBLib.TMSFNCThemeSelector;
   {$ENDIF}
 
   {$IFDEF FMX}
@@ -31,16 +32,22 @@ uses
   FMX.Types, FMX.Forms, FMX.Controls, FMX.Graphics, FMX.Dialogs, UBL,
   FMX.TMSFNCCustomControl, FMX.TMSFNCKanbanBoard, FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics,
   FMX.TMSFNCGraphicsTypes, FMX.TMSFNCKanbanBoardDatabaseAdapter,
-  FMX.TMSFNCCustomComponent, FMX.TMSFNCBitmapContainer;
+  FMX.TMSFNCCustomComponent, FMX.TMSFNCBitmapContainer, FMX.TMSFNCPanel, FMX.TMSFNCHTMLText,
+  FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
   {$ENDIF}
 
   {$IFDEF LCL}
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, UBL, LCLTMSFNCBitmapContainer;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, UBL, LCLTMSFNCBitmapContainer;
   {$ENDIF}
 
 type
   {$IFDEF WEBLIB}
   TForm1 = class(TWebForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -51,6 +58,18 @@ type
   {$ENDIF}
   {$IFNDEF WEBLIB}
   TForm1 = class(TForm)
+    {$IFDEF LCL}
+    { LCL has no theme manager: a native header }
+    DemoHeader: TPanel;
+    DemoTitle: TLabel;
+    DemoDescription: TLabel;
+    {$ELSE}
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    {$ENDIF}
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
