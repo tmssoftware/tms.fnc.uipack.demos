@@ -1,8 +1,8 @@
 object Form5: TForm5
   Left = 0
   Top = 0
-  Caption = 'TMS FNC TabSet/PageControl Demo'
-  ClientHeight = 408
+  Caption = 'TMS FNC UI Pack - TabSet and PageControl'
+  ClientHeight = 480
   ClientWidth = 653
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -150,6 +150,63 @@ object Form5: TForm5
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 653
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 469
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 429
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'PageControl and TabSet'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 429
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Close, insert and reorder tabs, open the tab list; the pages hold a data grid, tree view, image and rich editor'
+    end
+  end
   object TMSFNCPageControl1: TTMSFNCPageControl
     Left = 0
     Top = 0
@@ -249,6 +306,11 @@ object Form5: TForm5
     Options.TabListButton = True
     TabSize.Margins.Left = 5.000000000000000000
     TabSize.Margins.Top = 15.000000000000000000
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Pages = <
       item
         Text = 'Mercedes'
@@ -8891,5 +8953,10 @@ object Form5: TForm5
         OptionsMenu.ShowButton = False
       end
     end
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

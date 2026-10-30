@@ -1,8 +1,8 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'TMS FNC TabSet / PageControl Demo'
-  ClientHeight = 405
+  Caption = 'TMS FNC UI Pack - TabSet and PageControl'
+  ClientHeight = 477
   ClientWidth = 657
   Position = ScreenCenter
   FormFactor.Width = 320
@@ -10,6 +10,62 @@ object Form1: TForm1
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 657.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 433.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'PageControl and TabSet'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 433.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Close, insert and reorder tabs, open the tab list; the pages hold a data grid, tree view, image and rich editor'
+    end
+  end
   object TMSFNCPageControl1: TTMSFNCPageControl
     Align = Client
     DisableFocusEffect = False
@@ -119,6 +175,9 @@ object Form1: TForm1
     Options.TabListButton = True
     TabSize.Margins.Left = 5.000000000000000000
     TabSize.Margins.Top = 15.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     Pages = <
       item
         Text = 'Preferences'
@@ -8587,7 +8646,7 @@ object Form1: TForm1
     Size.Height = 26.000000000000000000
     Size.PlatformDefault = False
     Position.X = 624.000000000000000000
-    Position.Y = 200.000000000000000000
+    Position.Y = 272.000000000000000000
     Items = <
       item
         Bitmap.PNG = {
@@ -8889,5 +8948,10 @@ object Form1: TForm1
         Name = '_0045_Map.png'
         Tag = 0
       end>
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end
