@@ -157,7 +157,8 @@ def find_root(d):
 def sources(args):
     """Overlay folders first (patched copies of product units, e.g. to get past a product bug on
     one platform), then the Core and UI Pack sources."""
-    return [Path(p) for p in (getattr(args, "overlay", None) or [])] + [Path(args.core) / "Source", Path(args.uipack) / "Source"]
+    return [Path(p) for p in (getattr(args, "overlay", None) or [])] + [Path(args.core) / "Source", Path(args.uipack) / "Source",
+                                                                          Path(args.uipack) / "Source" / "xlsAdapter"]
 
 
 def scratch_dpr(proj, out, extra_units=()):
