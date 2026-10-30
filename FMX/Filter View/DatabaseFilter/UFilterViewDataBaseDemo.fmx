@@ -653,6 +653,7 @@ object FilterViewDemoForm: TFilterViewDemoForm
       TabOrder = 2
       Text = 'Hide extinct animals'
       FilterExpressions.DefaultFilterProperties.FilterFieldName = 'EXTINCT'
+      Font.Color = xFF282828
       FilterExpressions = <
         item
           FilterFieldName = 'EXTINCT'
@@ -676,6 +677,7 @@ object FilterViewDemoForm: TFilterViewDemoForm
       HorizontalTextAlign = gtaLeading
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
+      Font.Color = xFF282828
       object SizeValueLbl: TTMSFNCHTMLText
         Align = Right
         Margins.Right = 10.000000000000000000
@@ -688,6 +690,7 @@ object FilterViewDemoForm: TFilterViewDemoForm
         HorizontalTextAlign = gtaTrailing
         Fill.Kind = gfkNone
         Stroke.Kind = gskNone
+        Font.Color = xFF282828
       end
     end
     object SizeTrackBar: TTMSFNCFilterViewTrackBar
@@ -742,6 +745,7 @@ object FilterViewDemoForm: TFilterViewDemoForm
       HorizontalTextAlign = gtaLeading
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
+      Font.Color = xFF282828
     end
     object TMSFNCFilterViewPanel1: TTMSFNCFilterViewPanel
       Align = Top
