@@ -15,7 +15,8 @@ uses
   VCL.TMSFNCCustomSelector, VCL.TMSFNCDigitalTimeSelector, VCL.TMSFNCPanel,
   VCL.TMSFNCColorSelector, VCL.TMSFNCColorPicker, VCL.TMSFNCColorWheel,
   VCL.TMSFNCHTMLText, VCL.TMSFNCFontDialog, VCL.TMSFNCDateTimePicker,
-  VCL.TMSFNCCustomScrollControl, VCL.TMSFNCListEditor, VCL.TMSFNCControlPicker;
+  VCL.TMSFNCCustomScrollControl, VCL.TMSFNCListEditor, VCL.TMSFNCControlPicker,
+  VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TButtonEx = class(TButton, ITMSFNCControlPickerBase)
@@ -31,15 +32,20 @@ type
   end;
 
   TForm130 = class(TForm)
-    Label1: TLabel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Label1: TTMSFNCHTMLText;
     TMSFNCControlPicker1: TTMSFNCControlPicker;
     TMSFNCTreeView1: TTMSFNCTreeView;
-    Label2: TLabel;
+    Label2: TTMSFNCHTMLText;
     TMSFNCControlPicker2: TTMSFNCControlPicker;
     TMSFNCControlPicker3: TTMSFNCControlPicker;
-    Label3: TLabel;
+    Label3: TTMSFNCHTMLText;
     TMSFNCControlPicker4: TTMSFNCControlPicker;
-    Label4: TLabel;
+    Label4: TTMSFNCHTMLText;
     TMSFNCListEditor1: TTMSFNCListEditor;
     ListBox1: TListBox;
     procedure TMSFNCControlPicker3SetContent(Sender: TObject; var AText: string; var AAllow: Boolean);

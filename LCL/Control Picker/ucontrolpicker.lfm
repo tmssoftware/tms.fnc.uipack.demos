@@ -3,8 +3,8 @@ object Form1: TForm1
   Height = 453
   Top = 146
   Width = 607
-  Caption = 'TMS FNC ControlPicker Demo'
-  ClientHeight = 453
+  Caption = 'TMS FNC UI Pack - ControlPicker'
+  ClientHeight = 525
   ClientWidth = 607
   Icon.Data = {
     BE1000000000010001002020000001002000A810000016000000280000002000
@@ -146,10 +146,44 @@ object Form1: TForm1
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '2.0.6.0'
+  object DemoHeader: TPanel
+    Left = 0
+    Height = 72
+    Top = 0
+    Width = 607
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 72
+    ClientWidth = 607
+    TabOrder = 0
+    object DemoTitle: TLabel
+      Left = 24
+      Height = 30
+      Top = 12
+      Width = 559
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'ControlPicker'
+      Font.Height = -20
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object DemoDescription: TLabel
+      Left = 24
+      Height = 20
+      Top = 42
+      Width = 559
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Pick values from any control: a tree view, a list editor, a native list box or a button'
+      Font.Color = clGrayText
+      ParentFont = False
+    end
+  end
   object Label1: TLabel
     Left = 24
     Height = 15
-    Top = 16
+    Top = 88
     Width = 101
     Caption = 'TTMSFNCTreeView:'
     ParentColor = False
@@ -157,7 +191,7 @@ object Form1: TForm1
   object TMSFNCControlPicker1: TTMSFNCControlPicker
     Left = 24
     Height = 22
-    Top = 40
+    Top = 112
     Width = 150
     DoubleBuffered = True
     TabOrder = 0
@@ -173,7 +207,7 @@ object Form1: TForm1
   object Label2: TLabel
     Left = 24
     Height = 15
-    Top = 80
+    Top = 152
     Width = 104
     Caption = 'TTMSFNCListEditor:'
     ParentColor = False
@@ -181,7 +215,7 @@ object Form1: TForm1
   object TMSFNCControlPicker2: TTMSFNCControlPicker
     Left = 24
     Height = 22
-    Top = 104
+    Top = 176
     Width = 150
     DoubleBuffered = True
     TabOrder = 1
@@ -195,7 +229,7 @@ object Form1: TForm1
   object Label3: TLabel
     Left = 248
     Height = 15
-    Top = 16
+    Top = 88
     Width = 202
     Caption = 'Basic content for TListBox with events:'
     ParentColor = False
@@ -203,7 +237,7 @@ object Form1: TForm1
   object TMSFNCControlPicker3: TTMSFNCControlPicker
     Left = 248
     Height = 22
-    Top = 40
+    Top = 112
     Width = 150
     DoubleBuffered = True
     TabOrder = 2
@@ -219,7 +253,7 @@ object Form1: TForm1
   object Label4: TLabel
     Left = 248
     Height = 15
-    Top = 80
+    Top = 152
     Width = 115
     Caption = 'Button Base Interface:'
     ParentColor = False
@@ -227,7 +261,7 @@ object Form1: TForm1
   object TMSFNCControlPicker4: TTMSFNCControlPicker
     Left = 248
     Height = 22
-    Top = 104
+    Top = 176
     Width = 150
     DoubleBuffered = True
     TabOrder = 3
@@ -241,7 +275,7 @@ object Form1: TForm1
   object ListBox1: TListBox
     Left = 344
     Height = 184
-    Top = 152
+    Top = 224
     Width = 150
     Items.Strings = (
       'One'
@@ -262,7 +296,7 @@ object Form1: TForm1
   object TMSFNCTreeView1: TTMSFNCTreeView
     Left = 24
     Height = 276
-    Top = 151
+    Top = 223
     Width = 300
     DoubleBuffered = True
     TabOrder = 5
@@ -516,7 +550,7 @@ object Form1: TForm1
   object TMSFNCListEditor1: TTMSFNCListEditor
     Left = 344
     Height = 75
-    Top = 352
+    Top = 424
     Width = 150
     DoubleBuffered = True
     TabOrder = 6

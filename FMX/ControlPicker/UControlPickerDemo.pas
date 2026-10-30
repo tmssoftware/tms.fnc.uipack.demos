@@ -9,7 +9,8 @@ uses
   FMX.Layouts, FMX.ListBox, FMX.TMSFNCCustomScrollControl, FMX.TMSFNCListEditor,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.TMSFNCTreeViewBase,
   FMX.TMSFNCTreeViewData, FMX.TMSFNCCustomTreeView, FMX.TMSFNCTreeView,
-  FMX.TMSFNCCustomControl, FMX.TMSFNCCustomPicker, FMX.TMSFNCControlPicker;
+  FMX.TMSFNCCustomControl, FMX.TMSFNCCustomPicker, FMX.TMSFNCControlPicker,
+  FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TButtonEx = class(TButton, ITMSFNCControlPickerBase)
@@ -24,17 +25,22 @@ type
   end;
 
   TForm2 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCControlPicker1: TTMSFNCControlPicker;
     TMSFNCTreeView1: TTMSFNCTreeView;
-    Label1: TLabel;
-    Label2: TLabel;
+    Label1: TTMSFNCHTMLText;
+    Label2: TTMSFNCHTMLText;
     TMSFNCControlPicker2: TTMSFNCControlPicker;
-    Label3: TLabel;
+    Label3: TTMSFNCHTMLText;
     TMSFNCControlPicker3: TTMSFNCControlPicker;
     TMSFNCListEditor1: TTMSFNCListEditor;
     ListBox1: TListBox;
     TMSFNCControlPicker4: TTMSFNCControlPicker;
-    Label4: TLabel;
+    Label4: TTMSFNCHTMLText;
     procedure TMSFNCControlPicker3SetContent(Sender: TObject; var AText: string;
       var AAllow: Boolean);
     procedure TMSFNCControlPicker3AdjustDropDownHeight(Sender: TObject;

@@ -1,9 +1,9 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC ControlPicker Demo'
-  ClientHeight = 503
-  ClientWidth = 585
+  Caption = 'TMS FNC UI Pack - ControlPicker'
+  ClientHeight = 600
+  ClientWidth = 640
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,47 +15,122 @@ object Form130: TForm130
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object Label1: TLabel
-    Left = 16
-    Top = 16
-    Width = 94
-    Height = 13
-    Caption = 'TTMSFNCTreeView:'
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 585
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 401
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 361
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'ControlPicker'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 361
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Pick values from any control: a tree view, a list editor, a native list box or a button'
+    end
   end
-  object Label2: TLabel
-    Left = 16
-    Top = 72
-    Width = 94
-    Height = 13
-    Caption = 'TTMSFNCListEditor:'
+  object Label1: TTMSFNCHTMLText
+    Left = 24
+    Top = 88
+    Width = 280
+    Height = 24
+    Text = 'TTMSFNCTreeView:'
+    HorizontalTextAlign = gtaLeading
+    AutoSize = True
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    TextRole = htrSecondary
   end
-  object Label3: TLabel
+  object Label2: TTMSFNCHTMLText
+    Left = 24
+    Top = 168
+    Width = 280
+    Height = 24
+    Text = 'TTMSFNCListEditor:'
+    HorizontalTextAlign = gtaLeading
+    AutoSize = True
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    TextRole = htrSecondary
+  end
+  object Label3: TTMSFNCHTMLText
     Left = 336
-    Top = 16
-    Width = 187
-    Height = 13
-    Caption = 'Basic content for TListBox with events:'
+    Top = 88
+    Width = 280
+    Height = 24
+    Text = 'Basic content for TListBox with events:'
+    HorizontalTextAlign = gtaLeading
+    AutoSize = True
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    TextRole = htrSecondary
   end
-  object Label4: TLabel
+  object Label4: TTMSFNCHTMLText
     Left = 336
-    Top = 72
-    Width = 110
-    Height = 13
-    Caption = 'Button Base Interface:'
+    Top = 168
+    Width = 280
+    Height = 24
+    Text = 'Button Base Interface:'
+    HorizontalTextAlign = gtaLeading
+    AutoSize = True
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    TextRole = htrSecondary
   end
   object TMSFNCControlPicker1: TTMSFNCControlPicker
-    Left = 16
-    Top = 35
-    Width = 150
-    Height = 22
+    Left = 24
+    Top = 112
+    Width = 240
+    Height = 32
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
     Font.Style = []
-    TabOrder = 0
+    TabOrder = 1
     Control = TMSFNCTreeView1
     DropDownControlHeight = 150.000000000000000000
     DropDownControlWidth = 150.000000000000000000
@@ -66,25 +141,21 @@ object Form130: TForm130
     Text = 'TTMSFNCControlPicker'
   end
   object TMSFNCTreeView1: TTMSFNCTreeView
-    Left = 8
-    Top = 184
-    Width = 300
-    Height = 276
+    Left = 24
+    Top = 256
+    Width = 288
+    Height = 236
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    TabOrder = 1
+    TabOrder = 2
     Groups = <>
     GroupsAppearance.TopSize = 50.000000000000000000
     GroupsAppearance.BottomSize = 50.000000000000000000
-    GroupsAppearance.TopFont.Charset = DEFAULT_CHARSET
     GroupsAppearance.TopFont.Color = clBlack
     GroupsAppearance.TopFont.Height = -11
-    GroupsAppearance.TopFont.Name = 'Tahoma'
     GroupsAppearance.TopFont.Style = []
-    GroupsAppearance.BottomFont.Charset = DEFAULT_CHARSET
     GroupsAppearance.BottomFont.Color = clBlack
     GroupsAppearance.BottomFont.Height = -11
-    GroupsAppearance.BottomFont.Name = 'Tahoma'
     GroupsAppearance.BottomFont.Style = []
     GroupsAppearance.TopStroke.Color = 11119017
     GroupsAppearance.BottomStroke.Color = 11119017
@@ -96,24 +167,18 @@ object Form130: TForm130
         Width = 100.000000000000000000
         Fill.Color = -1
         Stroke.Color = 11119017
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
-        Font.Name = 'Tahoma'
         Font.Style = []
         TopFill.Kind = gfkNone
         TopStroke.Color = 11119017
-        TopFont.Charset = DEFAULT_CHARSET
         TopFont.Color = clWindowText
         TopFont.Height = -11
-        TopFont.Name = 'Tahoma'
         TopFont.Style = []
         BottomFill.Kind = gfkNone
         BottomStroke.Color = 11119017
-        BottomFont.Charset = DEFAULT_CHARSET
         BottomFont.Color = clWindowText
         BottomFont.Height = -11
-        BottomFont.Name = 'Tahoma'
         BottomFont.Style = []
       end
       item
@@ -122,24 +187,18 @@ object Form130: TForm130
         Width = 100.000000000000000000
         Fill.Color = -1
         Stroke.Color = 11119017
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
-        Font.Name = 'Tahoma'
         Font.Style = []
         TopFill.Kind = gfkNone
         TopStroke.Color = 11119017
-        TopFont.Charset = DEFAULT_CHARSET
         TopFont.Color = clWindowText
         TopFont.Height = -11
-        TopFont.Name = 'Tahoma'
         TopFont.Style = []
         BottomFill.Kind = gfkNone
         BottomStroke.Color = 11119017
-        BottomFont.Charset = DEFAULT_CHARSET
         BottomFont.Color = clWindowText
         BottomFont.Height = -11
-        BottomFont.Name = 'Tahoma'
         BottomFont.Style = []
       end
       item
@@ -148,24 +207,18 @@ object Form130: TForm130
         Width = 100.000000000000000000
         Fill.Color = -1
         Stroke.Color = 11119017
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
-        Font.Name = 'Tahoma'
         Font.Style = []
         TopFill.Kind = gfkNone
         TopStroke.Color = 11119017
-        TopFont.Charset = DEFAULT_CHARSET
         TopFont.Color = clWindowText
         TopFont.Height = -11
-        TopFont.Name = 'Tahoma'
         TopFont.Style = []
         BottomFill.Kind = gfkNone
         BottomStroke.Color = 11119017
-        BottomFont.Charset = DEFAULT_CHARSET
         BottomFont.Color = clWindowText
         BottomFont.Height = -11
-        BottomFont.Name = 'Tahoma'
         BottomFont.Style = []
       end>
     Nodes = <
@@ -305,15 +358,11 @@ object Form130: TForm130
       end>
     ColumnsAppearance.TopSize = 25.000000000000000000
     ColumnsAppearance.BottomSize = 25.000000000000000000
-    ColumnsAppearance.TopFont.Charset = DEFAULT_CHARSET
     ColumnsAppearance.TopFont.Color = clBlack
     ColumnsAppearance.TopFont.Height = -11
-    ColumnsAppearance.TopFont.Name = 'Tahoma'
     ColumnsAppearance.TopFont.Style = []
-    ColumnsAppearance.BottomFont.Charset = DEFAULT_CHARSET
     ColumnsAppearance.BottomFont.Color = clBlack
     ColumnsAppearance.BottomFont.Height = -11
-    ColumnsAppearance.BottomFont.Name = 'Tahoma'
     ColumnsAppearance.BottomFont.Style = []
     ColumnsAppearance.TopStroke.Color = 11119017
     ColumnsAppearance.BottomStroke.Color = 11119017
@@ -328,15 +377,11 @@ object Form130: TForm130
     NodesAppearance.ColumnStroke.Color = -1
     NodesAppearance.LineStroke.Kind = gskDot
     NodesAppearance.LineStroke.Color = 11119017
-    NodesAppearance.Font.Charset = DEFAULT_CHARSET
     NodesAppearance.Font.Color = clBlack
     NodesAppearance.Font.Height = -11
-    NodesAppearance.Font.Name = 'Tahoma'
     NodesAppearance.Font.Style = []
-    NodesAppearance.TitleFont.Charset = DEFAULT_CHARSET
     NodesAppearance.TitleFont.Color = clBlack
     NodesAppearance.TitleFont.Height = -11
-    NodesAppearance.TitleFont.Name = 'Tahoma'
     NodesAppearance.TitleFont.Style = []
     NodesAppearance.SelectedFill.Color = 16297243
     NodesAppearance.SelectedStroke.Color = 16297243
@@ -345,10 +390,8 @@ object Form130: TForm130
     NodesAppearance.DisabledStroke.Color = 11119017
     NodesAppearance.ExtendedFill.Color = 16053492
     NodesAppearance.ExtendedStroke.Color = 11119017
-    NodesAppearance.ExtendedFont.Charset = DEFAULT_CHARSET
     NodesAppearance.ExtendedFont.Color = clWindowText
     NodesAppearance.ExtendedFont.Height = -11
-    NodesAppearance.ExtendedFont.Name = 'Tahoma'
     NodesAppearance.ExtendedFont.Style = []
     NodesAppearance.ExtendedSelectedFill.Color = 16297243
     NodesAppearance.ExtendedSelectedStroke.Kind = gskNone
@@ -390,18 +433,16 @@ object Form130: TForm130
       AE426082}
   end
   object TMSFNCControlPicker2: TTMSFNCControlPicker
-    Left = 16
-    Top = 91
-    Width = 150
-    Height = 22
+    Left = 24
+    Top = 192
+    Width = 240
+    Height = 32
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
     Font.Style = []
-    TabOrder = 2
+    TabOrder = 3
     Control = TMSFNCListEditor1
     DropDownControlHeight = 150.000000000000000000
     DropDownControlWidth = 150.000000000000000000
@@ -409,17 +450,15 @@ object Form130: TForm130
   end
   object TMSFNCControlPicker3: TTMSFNCControlPicker
     Left = 336
-    Top = 35
-    Width = 150
-    Height = 22
+    Top = 112
+    Width = 240
+    Height = 32
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
     Font.Style = []
-    TabOrder = 3
+    TabOrder = 4
     Control = ListBox1
     DropDownControlHeight = 150.000000000000000000
     DropDownControlWidth = 150.000000000000000000
@@ -429,30 +468,28 @@ object Form130: TForm130
   end
   object TMSFNCControlPicker4: TTMSFNCControlPicker
     Left = 336
-    Top = 91
-    Width = 150
-    Height = 22
+    Top = 192
+    Width = 240
+    Height = 32
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'Tahoma'
     Font.Style = []
-    TabOrder = 4
+    TabOrder = 5
     DropDownControlHeight = 150.000000000000000000
     DropDownControlWidth = 150.000000000000000000
     DropDownHeightMode = chmControl
     Text = 'TTMSFNCControlPicker'
   end
   object TMSFNCListEditor1: TTMSFNCListEditor
-    Left = 336
-    Top = 385
-    Width = 137
-    Height = 75
+    Left = 24
+    Top = 504
+    Width = 288
+    Height = 80
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    TabOrder = 5
+    TabOrder = 6
     Items = <
       item
         Text = 'One'
@@ -486,18 +523,16 @@ object Form130: TForm130
     ItemAppearance.FillSelected.ColorTo = 14183971
     ItemAppearance.StrokeNormal.Color = 14124408
     ItemAppearance.StrokeSelected.Color = 14183971
-    ItemAppearance.Font.Charset = DEFAULT_CHARSET
     ItemAppearance.Font.Color = clWindowText
     ItemAppearance.Font.Height = -11
-    ItemAppearance.Font.Name = 'Tahoma'
     ItemAppearance.Font.Style = []
     Stroke.Color = 11119017
   end
   object ListBox1: TListBox
     Left = 336
-    Top = 184
-    Width = 137
-    Height = 195
+    Top = 256
+    Width = 240
+    Height = 236
     ItemHeight = 13
     Items.Strings = (
       'One'
@@ -510,7 +545,12 @@ object Form130: TForm130
       'Eight'
       'Nine'
       'Ten')
-    TabOrder = 6
+    TabOrder = 7
     OnClick = ListBox1Click
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

@@ -1,44 +1,97 @@
 object Form2: TForm2
   Left = 0
   Top = 0
-  Caption = 'ControlPicker Demo'
-  ClientHeight = 475
-  ClientWidth = 620
+  Caption = 'TMS FNC UI Pack - ControlPicker'
+  ClientHeight = 600
+  ClientWidth = 640
   Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 620.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 396.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'ControlPicker'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 396.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Pick values from any control: a tree view, a list editor, a native list box or a button'
+    end
+  end
   object TMSFNCControlPicker1: TTMSFNCControlPicker
     Position.X = 24.000000000000000000
-    Position.Y = 56.000000000000000000
-    Size.Width = 150.000000000000000000
-    Size.Height = 22.000000000000000000
+    Position.Y = 112.000000000000000000
+    Size.Width = 240.000000000000000000
+    Size.Height = 32.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 2
+    TabOrder = 1
     Control = TMSFNCTreeView1
     DropDownControlHeight = 150.000000000000000000
     DropDownControlWidth = 150.000000000000000000
     DropDownHeightMode = chmControl
     DropDownWidthMode = cwmControl
-    Font.Name = 'Segoe UI'
     ItemHeight = 25.000000000000000000
     ItemWidth = 100.000000000000000000
     Text = 'TTMSFNCControlPicker'
   end
   object TMSFNCTreeView1: TTMSFNCTreeView
-    Position.X = 16.000000000000000000
-    Position.Y = 168.000000000000000000
-    Size.Width = 300.000000000000000000
-    Size.Height = 276.000000000000000000
+    Position.X = 24.000000000000000000
+    Position.Y = 256.000000000000000000
+    Size.Width = 288.000000000000000000
+    Size.Height = 236.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 3
+    TabOrder = 2
     Groups = <>
     GroupsAppearance.TopSize = 50.000000000000000000
     GroupsAppearance.BottomSize = 50.000000000000000000
-    GroupsAppearance.TopFont.Name = 'Segoe UI'
-    GroupsAppearance.BottomFont.Name = 'Segoe UI'
     GroupsAppearance.TopStroke.Color = claDarkgray
     GroupsAppearance.BottomStroke.Color = claDarkgray
     ColumnStroke.Color = claNull
@@ -49,13 +102,10 @@ object Form2: TForm2
         Width = 100.000000000000000000
         Fill.Color = claNull
         Stroke.Color = claDarkgray
-        Font.Name = 'Segoe UI'
         TopFill.Kind = gfkNone
         TopStroke.Color = claDarkgray
-        TopFont.Name = 'Segoe UI'
         BottomFill.Kind = gfkNone
         BottomStroke.Color = claDarkgray
-        BottomFont.Name = 'Segoe UI'
       end
       item
         Name = 'Column1'
@@ -63,13 +113,10 @@ object Form2: TForm2
         Width = 100.000000000000000000
         Fill.Color = claNull
         Stroke.Color = claDarkgray
-        Font.Name = 'Segoe UI'
         TopFill.Kind = gfkNone
         TopStroke.Color = claDarkgray
-        TopFont.Name = 'Segoe UI'
         BottomFill.Kind = gfkNone
         BottomStroke.Color = claDarkgray
-        BottomFont.Name = 'Segoe UI'
       end
       item
         Name = 'Column2'
@@ -77,13 +124,10 @@ object Form2: TForm2
         Width = 100.000000000000000000
         Fill.Color = claNull
         Stroke.Color = claDarkgray
-        Font.Name = 'Segoe UI'
         TopFill.Kind = gfkNone
         TopStroke.Color = claDarkgray
-        TopFont.Name = 'Segoe UI'
         BottomFill.Kind = gfkNone
         BottomStroke.Color = claDarkgray
-        BottomFont.Name = 'Segoe UI'
       end>
     Nodes = <
       item
@@ -222,8 +266,6 @@ object Form2: TForm2
       end>
     ColumnsAppearance.TopSize = 25.000000000000000000
     ColumnsAppearance.BottomSize = 25.000000000000000000
-    ColumnsAppearance.TopFont.Name = 'Segoe UI'
-    ColumnsAppearance.BottomFont.Name = 'Segoe UI'
     ColumnsAppearance.TopStroke.Color = claDarkgray
     ColumnsAppearance.BottomStroke.Color = claDarkgray
     NodesAppearance.ExpandWidth = 15.000000000000000000
@@ -237,8 +279,6 @@ object Form2: TForm2
     NodesAppearance.ColumnStroke.Color = claNull
     NodesAppearance.LineStroke.Kind = gskDot
     NodesAppearance.LineStroke.Color = claDarkgray
-    NodesAppearance.Font.Name = 'Segoe UI'
-    NodesAppearance.TitleFont.Name = 'Segoe UI'
     NodesAppearance.SelectedFill.Color = xFF1BADF8
     NodesAppearance.SelectedStroke.Color = xFF1BADF8
     NodesAppearance.DisabledFill.Color = claDarkgray
@@ -246,7 +286,6 @@ object Form2: TForm2
     NodesAppearance.DisabledStroke.Color = claDarkgray
     NodesAppearance.ExtendedFill.Color = xFFF4F4F4
     NodesAppearance.ExtendedStroke.Color = claDarkgray
-    NodesAppearance.ExtendedFont.Name = 'Segoe UI'
     NodesAppearance.ExtendedSelectedFill.Color = xFF1BADF8
     NodesAppearance.ExtendedSelectedStroke.Kind = gskNone
     NodesAppearance.ExtendedSelectedStroke.Color = claDarkgray
@@ -281,60 +320,76 @@ object Form2: TForm2
       178FE63C381835180E869EC143ADCE636000009C2E12F3AF5420C80000000049
       454E44AE426082}
   end
-  object Label1: TLabel
+  object Label1: TTMSFNCHTMLText
     Position.X = 24.000000000000000000
-    Position.Y = 32.000000000000000000
+    Position.Y = 88.000000000000000000
     Text = 'TTMSFNCTreeView:'
-    TabOrder = 7
+    TabOrder = 3
+    Size.Width = 280.000000000000000000
+    Size.Height = 24.000000000000000000
+    Size.PlatformDefault = False
+    HorizontalTextAlign = gtaLeading
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    TextRole = htrSecondary
   end
-  object Label2: TLabel
+  object Label2: TTMSFNCHTMLText
     Position.X = 24.000000000000000000
-    Position.Y = 96.000000000000000000
+    Position.Y = 168.000000000000000000
     Text = 'TTMSFNCListEditor:'
-    TabOrder = 6
+    TabOrder = 4
+    Size.Width = 280.000000000000000000
+    Size.Height = 24.000000000000000000
+    Size.PlatformDefault = False
+    HorizontalTextAlign = gtaLeading
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    TextRole = htrSecondary
   end
   object TMSFNCControlPicker2: TTMSFNCControlPicker
     Position.X = 24.000000000000000000
-    Position.Y = 120.000000000000000000
-    Size.Width = 150.000000000000000000
-    Size.Height = 22.000000000000000000
+    Position.Y = 192.000000000000000000
+    Size.Width = 240.000000000000000000
+    Size.Height = 32.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 1
+    TabOrder = 5
     Control = TMSFNCListEditor1
     DropDownControlHeight = 150.000000000000000000
     DropDownControlWidth = 150.000000000000000000
-    Font.Name = 'Segoe UI'
     Text = 'TTMSFNCControlPicker'
   end
-  object Label3: TLabel
-    Position.X = 352.000000000000000000
-    Position.Y = 32.000000000000000000
-    Size.Width = 217.000000000000000000
-    Size.Height = 17.000000000000000000
+  object Label3: TTMSFNCHTMLText
+    Position.X = 336.000000000000000000
+    Position.Y = 88.000000000000000000
+    Size.Width = 280.000000000000000000
+    Size.Height = 24.000000000000000000
     Size.PlatformDefault = False
     Text = 'Basic content for TListBox with events:'
-    TabOrder = 4
+    TabOrder = 6
+    HorizontalTextAlign = gtaLeading
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    TextRole = htrSecondary
   end
   object TMSFNCControlPicker3: TTMSFNCControlPicker
-    Position.X = 352.000000000000000000
-    Position.Y = 56.000000000000000000
-    Size.Width = 150.000000000000000000
-    Size.Height = 22.000000000000000000
+    Position.X = 336.000000000000000000
+    Position.Y = 112.000000000000000000
+    Size.Width = 240.000000000000000000
+    Size.Height = 32.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 0
+    TabOrder = 7
     Control = ListBox1
     DropDownControlHeight = 150.000000000000000000
     DropDownControlWidth = 150.000000000000000000
-    Font.Name = 'Segoe UI'
     Text = 'TTMSFNCControlPicker'
     OnAdjustDropDownHeight = TMSFNCControlPicker3AdjustDropDownHeight
     OnSetContent = TMSFNCControlPicker3SetContent
   end
   object TMSFNCListEditor1: TTMSFNCListEditor
-    Position.X = 352.000000000000000000
-    Position.Y = 368.000000000000000000
-    Size.Width = 145.000000000000000000
-    Size.Height = 75.000000000000000000
+    Position.X = 24.000000000000000000
+    Position.Y = 504.000000000000000000
+    Size.Width = 288.000000000000000000
+    Size.Height = 80.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 8
     Items = <
@@ -370,14 +425,13 @@ object Form2: TForm2
     ItemAppearance.FillSelected.ColorTo = xFF236ED8
     ItemAppearance.StrokeNormal.Color = xFF7885D7
     ItemAppearance.StrokeSelected.Color = xFF236ED8
-    ItemAppearance.Font.Name = 'Segoe UI'
     Stroke.Color = claDarkgray
   end
   object ListBox1: TListBox
-    Position.X = 352.000000000000000000
-    Position.Y = 168.000000000000000000
-    Size.Width = 200.000000000000000000
-    Size.Height = 193.000000000000000000
+    Position.X = 336.000000000000000000
+    Position.Y = 256.000000000000000000
+    Size.Width = 240.000000000000000000
+    Size.Height = 236.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 9
     OnClick = ListBox1Click
@@ -401,25 +455,33 @@ object Form2: TForm2
     Viewport.Height = 189.000000000000000000
   end
   object TMSFNCControlPicker4: TTMSFNCControlPicker
-    Position.X = 352.000000000000000000
-    Position.Y = 120.000000000000000000
-    Size.Width = 150.000000000000000000
-    Size.Height = 22.000000000000000000
+    Position.X = 336.000000000000000000
+    Position.Y = 192.000000000000000000
+    Size.Width = 240.000000000000000000
+    Size.Height = 32.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 10
     DropDownControlHeight = 150.000000000000000000
     DropDownControlWidth = 150.000000000000000000
     DropDownHeightMode = chmControl
-    Font.Name = 'Segoe UI'
     Text = 'TTMSFNCControlPicker'
   end
-  object Label4: TLabel
-    Position.X = 352.000000000000000000
-    Position.Y = 96.000000000000000000
-    Size.Width = 137.000000000000000000
-    Size.Height = 17.000000000000000000
+  object Label4: TTMSFNCHTMLText
+    Position.X = 336.000000000000000000
+    Position.Y = 168.000000000000000000
+    Size.Width = 280.000000000000000000
+    Size.Height = 24.000000000000000000
     Size.PlatformDefault = False
     Text = 'Button Base Interface:'
-    TabOrder = 5
+    TabOrder = 11
+    HorizontalTextAlign = gtaLeading
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    TextRole = htrSecondary
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end
