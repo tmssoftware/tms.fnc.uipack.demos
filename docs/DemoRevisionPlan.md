@@ -63,3 +63,17 @@ runs `democheck.py shoot` through `heavy.py`.
 2. LCL: decide whether LCL demos are compiled anywhere (no Lazarus FNC packages on this machine).
 3. WEB: the command-line TMS WEB compiler cannot build units shared through `{$IFDEF}` form classes
    (Kanban Board, also before the pilot); verify those in the IDE or give WEB its own unit.
+
+## Product findings from the pilot (not fixed here: product code)
+
+1. FMX macOS/iOS/Android: `FMX.TMSFNCURLBitmapContainer.pas` (theming Core since 1be39ab) does not
+   compile: `GetCurrentThreadId` is undeclared outside Windows (line 608; `TThread.Current.ThreadID`
+   works everywhere), and on Android `TThread.Synchronize(TThread.CurrentThread, ...)` (line 877)
+   finds no overload inside the thread class. Every FMX application that uses Core fails on these
+   platforms. The pilot's cross-platform checks used a patched copy (`democheck.py --overlay`).
+2. FMX macOS x64: `FMX.TMSFNCDigitalTimePicker.pas` line 407 calls `GetMXCSR` under `{$IFDEF CPUX64}`
+   (Windows only); the Pickers demo fails for osx64.
+3. A form without FNC controls is not coloured by the theme manager (Core demos colour it themselves).
+4. Fluent Dark: the DataGrid expand/collapse icons are not visible (VCL); under a theme the TreeView
+   node check box overlaps the node image (TreeView demo, FMX and VCL).
+5. `TTMSFNCDatePicker` at its default width (90) clips the date under a theme.
