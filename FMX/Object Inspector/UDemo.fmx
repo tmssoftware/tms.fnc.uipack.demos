@@ -1040,11 +1040,6 @@ object Form130: TForm130
     Groups = <>
     GroupsAppearance.TopSize = 50.000000000000000000
     GroupsAppearance.BottomSize = 50.000000000000000000
-    GroupsAppearance.TopFont.Name = 'Segoe UI'
-    GroupsAppearance.BottomFont.Name = 'Segoe UI'
-    GroupsAppearance.TopStroke.Color = claDarkgray
-    GroupsAppearance.BottomStroke.Color = claDarkgray
-    ColumnStroke.Color = claNull
     Columns = <
       item
         Name = 'Column0'
@@ -1080,38 +1075,16 @@ object Form130: TForm130
     ColumnsAppearance.StretchAll = False
     ColumnsAppearance.TopSize = 25.000000000000000000
     ColumnsAppearance.BottomSize = 25.000000000000000000
-    ColumnsAppearance.TopFont.Name = 'Segoe UI'
-    ColumnsAppearance.BottomFont.Name = 'Segoe UI'
-    ColumnsAppearance.TopStroke.Color = claDarkgray
-    ColumnsAppearance.BottomStroke.Color = claDarkgray
     NodesAppearance.ExpandWidth = 15.000000000000000000
     NodesAppearance.ExpandHeight = 15.000000000000000000
     NodesAppearance.LevelIndent = 20.000000000000000000
     NodesAppearance.FixedHeight = 25.000000000000000000
     NodesAppearance.VariableMinimumHeight = 25.000000000000000000
-    NodesAppearance.Fill.Color = claNull
     NodesAppearance.Stroke.Kind = gskNone
-    NodesAppearance.Stroke.Color = claDarkgray
-    NodesAppearance.ColumnStroke.Color = claNull
     NodesAppearance.LineStroke.Kind = gskDot
-    NodesAppearance.LineStroke.Color = claDarkgray
-    NodesAppearance.Font.Name = 'Segoe UI'
-    NodesAppearance.TitleFont.Name = 'Segoe UI'
-    NodesAppearance.SelectedFontColor = claBlack
-    NodesAppearance.SelectedFill.Color = xFFF0F0F0
-    NodesAppearance.SelectedStroke.Color = xFFF0F0F0
-    NodesAppearance.DisabledFill.Color = claDarkgray
     NodesAppearance.DisabledStroke.Kind = gskNone
-    NodesAppearance.DisabledStroke.Color = claDarkgray
-    NodesAppearance.ExtendedFill.Color = xFFF4F4F4
-    NodesAppearance.ExtendedStroke.Color = claDarkgray
-    NodesAppearance.ExtendedFont.Name = 'Segoe UI'
-    NodesAppearance.ExtendedSelectedFill.Color = xFF1BADF8
     NodesAppearance.ExtendedSelectedStroke.Kind = gskNone
-    NodesAppearance.ExtendedSelectedStroke.Color = claDarkgray
-    NodesAppearance.ExtendedDisabledFill.Color = claDarkgray
     NodesAppearance.ExtendedDisabledStroke.Kind = gskNone
-    NodesAppearance.ExtendedDisabledStroke.Color = claDarkgray
     NodesAppearance.ExpandNodeIcon.PNG = {
       89504E470D0A1A0A0000000D494844520000000B0000000B0806000000A9AC77
       26000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
