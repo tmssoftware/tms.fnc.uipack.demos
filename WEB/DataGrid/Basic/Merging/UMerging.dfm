@@ -1,6 +1,6 @@
 object Form130: TForm130
-  Width = 736
-  Height = 540
+  Width = 1000
+  Height = 640
   Caption = 'TMS FNC Data Grid Merging Demo'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,7 +16,7 @@ object Form130: TForm130
     Top = 8
     Width = 22
     Height = 15
-    Caption = 'Title'
+    Caption = 'DataGrid cell merging'
     Color = clBtnFace
     ElementID = 'title'
     HeightPercent = 100.000000000000000000
@@ -27,44 +27,58 @@ object Form130: TForm130
     Top = 38
     Width = 60
     Height = 15
-    Caption = 'Description'
+    Caption = 'Select a range of cells and merge it, or split a merged cell'
     Color = clBtnFace
     ElementID = 'description'
     HeightPercent = 100.000000000000000000
     WidthPercent = 100.000000000000000000
   end
-  object Panel1: TWebPanel
+  object Panel1: TTMSFNCPanel
     AlignWithMargins = True
     Left = 10
     Top = 10
     Width = 716
-    Height = 79
-    Margins.Left = 10
-    Margins.Top = 10
-    Margins.Right = 10
-    Margins.Bottom = 10
+    Height = 48
+    Margins.Left = 16
+    Margins.Top = 16
+    Margins.Right = 16
+    Margins.Bottom = 12
     Align = alTop
     TabOrder = 0
-    object Button1: TWebButton
-      Left = 13
-      Top = 12
-      Width = 84
-      Height = 22
-      Caption = 'Merge'
-      HeightPercent = 100.000000000000000000
+    Header.Visible = False
+    object Button1: TTMSFNCButton
+      Left = 16
+      Top = 8
+      Width = 100
+      Height = 32
+      Text = 'Merge'
       TabOrder = 1
-      WidthPercent = 100.000000000000000000
       OnClick = Button1Click
     end
-    object Button2: TWebButton
-      Left = 13
-      Top = 44
-      Width = 84
-      Height = 22
-      Caption = 'Split'
-      HeightPercent = 100.000000000000000000
-      WidthPercent = 100.000000000000000000
+    object Button2: TTMSFNCButton
+      Left = 124
+      Top = 8
+      Width = 100
+      Height = 32
+      Text = 'Split'
       OnClick = Button2Click
+    end
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 600
+      Top = 6
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 6
+      Margins.Right = 16
+      Margins.Bottom = 6
+      Align = alRight
+      TabOrder = 3
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
     end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
@@ -73,53 +87,43 @@ object Form130: TForm130
     Top = 102
     Width = 716
     Height = 428
-    Margins.Left = 10
-    Margins.Right = 10
-    Margins.Bottom = 10
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
     TabOrder = 1
     CellAppearance.BandLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.BandLayout.Font.Color = clWindowText
     CellAppearance.BandLayout.Font.Height = -11
     CellAppearance.BandLayout.Font.Name = 'Segoe UI'
     CellAppearance.BandLayout.Font.Style = []
     CellAppearance.FixedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FixedLayout.Font.Color = clWindowText
     CellAppearance.FixedLayout.Font.Height = -11
     CellAppearance.FixedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FixedLayout.Font.Style = []
-    CellAppearance.FixedSelectedLayout.Fill.Color = clLightsteelblue
     CellAppearance.FixedSelectedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FixedSelectedLayout.Font.Color = clWindowText
     CellAppearance.FixedSelectedLayout.Font.Height = -11
     CellAppearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FixedSelectedLayout.Font.Style = []
-    CellAppearance.FocusedLayout.Fill.Color = clLightsteelblue
     CellAppearance.FocusedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FocusedLayout.Font.Color = clWhite
     CellAppearance.FocusedLayout.Font.Height = -11
     CellAppearance.FocusedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FocusedLayout.Font.Style = []
     CellAppearance.GroupLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.GroupLayout.Font.Color = clSteelblue
     CellAppearance.GroupLayout.Font.Height = -11
     CellAppearance.GroupLayout.Font.Name = 'Segoe UI'
     CellAppearance.GroupLayout.Font.Style = []
     CellAppearance.NormalLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.NormalLayout.Font.Color = clWindowText
     CellAppearance.NormalLayout.Font.Height = -11
     CellAppearance.NormalLayout.Font.Name = 'Segoe UI'
     CellAppearance.NormalLayout.Font.Style = []
-    CellAppearance.SelectedLayout.Fill.Color = clLightsteelblue
     CellAppearance.SelectedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.SelectedLayout.Font.Color = clWhite
     CellAppearance.SelectedLayout.Font.Height = -11
     CellAppearance.SelectedLayout.Font.Name = 'Segoe UI'
     CellAppearance.SelectedLayout.Font.Style = []
     CellAppearance.SummaryLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.SummaryLayout.Font.Color = clWindowText
     CellAppearance.SummaryLayout.Font.Height = -11
     CellAppearance.SummaryLayout.Font.Name = 'Segoe UI'
     CellAppearance.SummaryLayout.Font.Style = []
@@ -375,11 +379,14 @@ object Form130: TForm130
       32222F3E3C2F673E3C2F7376673E}
     Columns = <>
     FilterAppearance.Font.Charset = DEFAULT_CHARSET
-    FilterAppearance.Font.Color = clWindowText
     FilterAppearance.Font.Height = -11
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
     Options.Mouse.ClickMargin = 0
-    Stroke.Color = clDarkgray
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 760
+    Top = 160
   end
 end
