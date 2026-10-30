@@ -1,5 +1,7 @@
 unit UDemo;
 
+{ demo-colors: TMSFNCCalendar2, TMSFNCDatePicker2 (the customized look is the subject) }
+
 interface
 
 uses
@@ -9,35 +11,41 @@ uses
   FMX.TMSFNCCustomComponent, FMX.TMSFNCBitmapContainer, FMX.TMSFNCCustomControl,
   FMX.TMSFNCTreeViewBase, FMX.TMSFNCTreeViewData, FMX.TMSFNCCustomTreeView,
   FMX.TMSFNCTreeView, FMX.Layouts, FMX.ListBox, FMX.TMSFNCCustomPicker,
-  FMX.TMSFNCDatePicker, FMX.TMSFNCCalendar;
+  FMX.TMSFNCDatePicker, FMX.TMSFNCCalendar,
+  FMX.TMSFNCCheckBox, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCRadioButton, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector, FMX.TMSFNCListBox;
 
 type
   TForm130 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCCalendar1: TTMSFNCCalendar;
     TMSFNCCalendar2: TTMSFNCCalendar;
     TMSFNCDatePicker1: TTMSFNCDatePicker;
     TMSFNCDatePicker2: TTMSFNCDatePicker;
-    Panel1: TPanel;
-    Panel2: TPanel;
-    Label1: TLabel;
-    ListBox1: TListBox;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
-    GroupBox1: TGroupBox;
-    RadioButton1: TRadioButton;
-    RadioButton2: TRadioButton;
-    RadioButton3: TRadioButton;
-    RadioButton4: TRadioButton;
-    GroupBox2: TGroupBox;
-    RadioButton5: TRadioButton;
-    RadioButton6: TRadioButton;
-    RadioButton7: TRadioButton;
-    RadioButton8: TRadioButton;
-    Label2: TLabel;
+    Panel1: TTMSFNCPanel;
+    Panel2: TTMSFNCPanel;
+    Label1: TTMSFNCHTMLText;
+    ListBox1: TTMSFNCListBox;
+    CheckBox1: TTMSFNCCheckBox;
+    CheckBox2: TTMSFNCCheckBox;
+    CheckBox3: TTMSFNCCheckBox;
+    CheckBox4: TTMSFNCCheckBox;
+    GroupBox1: TTMSFNCPanel;
+    RadioButton1: TTMSFNCRadioButton;
+    RadioButton2: TTMSFNCRadioButton;
+    RadioButton3: TTMSFNCRadioButton;
+    RadioButton4: TTMSFNCRadioButton;
+    GroupBox2: TTMSFNCPanel;
+    RadioButton5: TTMSFNCRadioButton;
+    RadioButton6: TTMSFNCRadioButton;
+    RadioButton7: TTMSFNCRadioButton;
+    RadioButton8: TTMSFNCRadioButton;
+    Label2: TTMSFNCHTMLText;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
-    Label3: TLabel;
+    Label3: TTMSFNCHTMLText;
     procedure CheckBox1Click(Sender: TObject);
     procedure CheckBox2Click(Sender: TObject);
     procedure CheckBox4Click(Sender: TObject);
@@ -77,18 +85,18 @@ implementation
 
 procedure TForm130.CheckBox1Click(Sender: TObject);
 begin
-  TMSFNCCalendar1.Interaction.SwipeOnHeader := not CheckBox1.IsChecked;
-  TMSFNCDatePicker1.Interaction.SwipeOnHeader := not CheckBox1.IsChecked;
+  TMSFNCCalendar1.Interaction.SwipeOnHeader := not CheckBox1.Checked;
+  TMSFNCDatePicker1.Interaction.SwipeOnHeader := not CheckBox1.Checked;
 end;
 
 procedure TForm130.CheckBox2Click(Sender: TObject);
 begin
-  TMSFNCCalendar1.Interaction.MultiSelect := not CheckBox2.IsChecked;
+  TMSFNCCalendar1.Interaction.MultiSelect := not CheckBox2.Checked;
 end;
 
 procedure TForm130.CheckBox4Click(Sender: TObject);
 begin
-  if not CheckBox4.IsChecked then
+  if not CheckBox4.Checked then
   begin
     TMSFNCCalendar2.WeekNumberAppearance.Visible := True;
     TMSFNCCalendar2.DateAppearance.ShowDaysBefore := True;
@@ -160,15 +168,15 @@ end;
 
 procedure TForm130.CheckBox3Click(Sender: TObject);
 begin
-  TMSFNCDatePicker2.Editable := not CheckBox3.IsChecked;
+  TMSFNCDatePicker2.Editable := not CheckBox3.Checked;
 end;
 
 procedure TForm130.FormCreate(Sender: TObject);
 var
   y, m, d, I: Integer;
 begin
-  RadioButton1.IsChecked := True;
-  RadioButton6.IsChecked := True;
+  RadioButton1.Checked := True;
+  RadioButton6.Checked := True;
 
   y := TMSFNCCalendar1.CurrentYear;
   m := TMSFNCCalendar1.CurrentMonth;
@@ -178,7 +186,7 @@ begin
   TMSFNCDatePicker1.SelectedDate := TMSFNCCalendar1.Date;
   TMSFNCDatePicker2.SelectedDate := TMSFNCCalendar2.Date;
 
-  ListBox1.Items.Add(DateToStr(TMSFNCCalendar1.SelectedDate));
+  ListBox1.AddItem(DateToStr(TMSFNCCalendar1.SelectedDate));
 
   TMSFNCCalendar2.ShowHint := True;
   TMSFNCDatePicker2.ShowHint := True;
@@ -305,10 +313,10 @@ procedure TForm130.TMSFNCCalendar1SelectDate(Sender: TObject; ADate: TDate);
 var
   I, c: Integer;
 begin
-  ListBox1.Clear;
+  ListBox1.Items.Clear;
   c := TMSFNCCalendar1.SelectedDates.Count - 1;
   for I := 0 to c do
-    ListBox1.Items.Add(DateToStr(TMSFNCCalendar1.SelectedDates.Items[I].Date));
+    ListBox1.AddItem(DateToStr(TMSFNCCalendar1.SelectedDates.Items[I].Date));
 
   TMSFNCDatePicker1.SelectedDate := TMSFNCCalendar1.SelectedDates.Items[c].Date;
 end;
@@ -318,9 +326,9 @@ procedure TForm130.TMSFNCCalendar1SelectMultiDate(Sender: TObject; AStartDate,
 var
   I: Integer;
 begin
-  ListBox1.Clear;
+  ListBox1.Items.Clear;
   for I := 0 to TMSFNCCalendar1.SelectedDates.Count - 1 do
-    ListBox1.Items.Add(DateToStr(TMSFNCCalendar1.SelectedDates.Items[I].Date));
+    ListBox1.AddItem(DateToStr(TMSFNCCalendar1.SelectedDates.Items[I].Date));
 end;
 
 procedure TForm130.TMSFNCCalendar1YearChanged(Sender: TObject; AYear: Integer);
@@ -365,8 +373,8 @@ begin
 end;
 procedure TForm130.TMSFNCDatePicker1DateSelected(Sender: TObject; ADate: TDate);
 begin
-  ListBox1.Clear;
-  ListBox1.Items.Add(DateToStr(TMSFNCDatePicker1.SelectedDate));
+  ListBox1.Items.Clear;
+  ListBox1.AddItem(DateToStr(TMSFNCDatePicker1.SelectedDate));
   TMSFNCCalendar1.SelectADate(TMSFNCDatePicker1.SelectedDate);
 end;
 

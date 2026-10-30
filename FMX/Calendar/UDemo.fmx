@@ -1,27 +1,81 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Calendar Demo'
-  ClientHeight = 585
-  ClientWidth = 501
+  Caption = 'TMS FNC UI Pack - Calendar and DatePicker'
+  ClientHeight = 752
+  ClientWidth = 688
   Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 501.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 277.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Calendar and DatePicker'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 277.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Date selection, navigation modes, badges and a customized look'
+    end
+  end
   object TMSFNCCalendar1: TTMSFNCCalendar
-    Position.X = 8.000000000000000000
-    Position.Y = 8.000000000000000000
-    Size.Width = 235.000000000000000000
-    Size.Height = 235.000000000000000000
+    Position.X = 16.000000000000000000
+    Position.Y = 88.000000000000000000
+    Size.Width = 320.000000000000000000
+    Size.Height = 280.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 6
     Header.Arrow.ArrowLeftBitmap = <>
     Header.Arrow.ArrowRightBitmap = <>
-    Header.Fill.Color = xFFE4E4E4
     Header.Font.Name = 'Segoe UI'
-    Footer.Fill.Color = xFFE4E4E4
     Footer.Font.Name = 'Segoe UI'
     Month = 5
     Year = 2018
@@ -44,11 +98,9 @@ object Form130: TForm130
     DateAppearance.DisabledFont.Name = 'Segoe UI'
     DateAppearance.DisabledStroke.Color = claNull
     DateAppearance.DateBeforeFill.Color = claNull
-    DateAppearance.DateBeforeFont.Color = xFFA0A0A0
     DateAppearance.DateBeforeFont.Name = 'Segoe UI'
     DateAppearance.DateBeforeStroke.Color = claNull
     DateAppearance.DateAfterFill.Color = claNull
-    DateAppearance.DateAFterFont.Color = xFFA0A0A0
     DateAppearance.DateAFterFont.Name = 'Segoe UI'
     DateAppearance.DateAfterStroke.Color = claNull
     DateAppearance.TodayFill.Color = claNull
@@ -69,10 +121,10 @@ object Form130: TForm130
   object TMSFNCCalendar2: TTMSFNCCalendar
     ShowHint = True
     Color = xFFC0DCC0
-    Position.X = 256.000000000000000000
-    Position.Y = 8.000000000000000000
-    Size.Width = 235.000000000000000000
-    Size.Height = 235.000000000000000000
+    Position.X = 352.000000000000000000
+    Position.Y = 88.000000000000000000
+    Size.Width = 320.000000000000000000
+    Size.Height = 280.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 7
     BitmapContainer = TMSFNCBitmapContainer1
@@ -119,11 +171,9 @@ object Form130: TForm130
     DateAppearance.ShowDaysBefore = True
     DateAppearance.ShowDaysAfter = True
     DateAppearance.DateBeforeFill.Color = claNull
-    DateAppearance.DateBeforeFont.Color = xFFA0A0A0
     DateAppearance.DateBeforeFont.Name = 'Segoe UI'
     DateAppearance.DateBeforeStroke.Color = claNull
     DateAppearance.DateAfterFill.Color = claNull
-    DateAppearance.DateAFterFont.Color = xFFA0A0A0
     DateAppearance.DateAFterFont.Name = 'Segoe UI'
     DateAppearance.DateAfterStroke.Color = claNull
     DateAppearance.TodayFill.Color = claNull
@@ -139,10 +189,10 @@ object Form130: TForm130
     OnCustomArrowDraw = TMSFNCCalendar2CustomArrowDraw
   end
   object TMSFNCDatePicker1: TTMSFNCDatePicker
-    Position.X = 8.000000000000000000
-    Position.Y = 248.000000000000000000
-    Size.Width = 90.000000000000000000
-    Size.Height = 22.000000000000000000
+    Position.X = 16.000000000000000000
+    Position.Y = 376.000000000000000000
+    Size.Width = 160.000000000000000000
+    Size.Height = 32.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 8
     FirstDay = 1
@@ -150,7 +200,6 @@ object Form130: TForm130
     BadgeSize = 14
     Header.Arrow.ArrowLeftBitmap = <>
     Header.Arrow.ArrowRightBitmap = <>
-    Header.Fill.Color = xFFE4E4E4
     Header.Font.Name = 'Segoe UI'
     Footer.Fill.Color = xFFE4E4E4
     Footer.Font.Name = 'Segoe UI'
@@ -198,10 +247,10 @@ object Form130: TForm130
   end
   object TMSFNCDatePicker2: TTMSFNCDatePicker
     ShowHint = True
-    Position.X = 256.000000000000000000
-    Position.Y = 248.000000000000000000
-    Size.Width = 90.000000000000000000
-    Size.Height = 22.000000000000000000
+    Position.X = 352.000000000000000000
+    Position.Y = 376.000000000000000000
+    Size.Width = 160.000000000000000000
+    Size.Height = 32.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 9
     BitmapContainer = TMSFNCBitmapContainer1
@@ -270,208 +319,220 @@ object Form130: TForm130
     CalendarStroke.Color = claDarkgreen
     OnCustomArrowDraw = TMSFNCDatePicker2CustomArrowDraw
   end
-  object Panel1: TPanel
-    Position.X = 8.000000000000000000
-    Position.Y = 280.000000000000000000
-    Size.Width = 235.000000000000000000
-    Size.Height = 297.000000000000000000
+  object Panel1: TTMSFNCPanel
+    Position.X = 16.000000000000000000
+    Position.Y = 424.000000000000000000
+    Size.Width = 320.000000000000000000
+    Size.Height = 312.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 10
-    object Label1: TLabel
-      Position.X = 8.000000000000000000
-      Position.Y = 48.000000000000000000
-      Size.Width = 218.000000000000000000
-      Size.Height = 17.000000000000000000
+    Header.Visible = False
+    object Label1: TTMSFNCHTMLText
+      Position.X = 12.000000000000000000
+      Position.Y = 52.000000000000000000
+      Size.Width = 296.000000000000000000
+      Size.Height = 20.000000000000000000
       Size.PlatformDefault = False
       Text = 'Selected dates:'
       TabOrder = 0
+      HorizontalTextAlign = gtaLeading
+      WordWrapping = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object ListBox1: TListBox
-      Position.X = 8.000000000000000000
-      Position.Y = 64.000000000000000000
-      Size.Width = 218.000000000000000000
-      Size.Height = 56.000000000000000000
+    object ListBox1: TTMSFNCListBox
+      Position.X = 12.000000000000000000
+      Position.Y = 72.000000000000000000
+      Size.Width = 296.000000000000000000
+      Size.Height = 64.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
-      DisableFocusEffect = True
-      DefaultItemStyles.ItemStyle = ''
-      DefaultItemStyles.GroupHeaderStyle = ''
-      DefaultItemStyles.GroupFooterStyle = ''
-      Viewport.Width = 214.000000000000000000
-      Viewport.Height = 52.000000000000000000
     end
-    object CheckBox1: TCheckBox
-      Position.X = 8.000000000000000000
-      Position.Y = 152.000000000000000000
-      Size.Width = 217.000000000000000000
-      Size.Height = 19.000000000000000000
+    object CheckBox1: TTMSFNCCheckBox
+      Position.X = 12.000000000000000000
+      Position.Y = 170.000000000000000000
+      Size.Width = 296.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 2
       Text = 'Swipe on header'
       OnClick = CheckBox1Click
     end
-    object CheckBox2: TCheckBox
-      Position.X = 8.000000000000000000
-      Position.Y = 128.000000000000000000
-      Size.Width = 217.000000000000000000
-      Size.Height = 19.000000000000000000
+    object CheckBox2: TTMSFNCCheckBox
+      Position.X = 12.000000000000000000
+      Position.Y = 144.000000000000000000
+      Size.Width = 296.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 3
       Text = 'Enable multiselection'
       OnClick = CheckBox2Click
     end
-    object GroupBox2: TGroupBox
-      Position.X = 8.000000000000000000
-      Position.Y = 176.000000000000000000
-      Size.Width = 218.000000000000000000
-      Size.Height = 113.000000000000000000
+    object GroupBox2: TTMSFNCPanel
+      Position.X = 12.000000000000000000
+      Position.Y = 200.000000000000000000
+      Size.Width = 296.000000000000000000
+      Size.Height = 104.000000000000000000
       Size.PlatformDefault = False
-      Text = 'Navigation'
       TabOrder = 4
-      object RadioButton5: TRadioButton
+      Header.Text = 'Navigation'
+      Header.Visible = True
+      Header.Size = 24.000000000000000000
+      object RadioButton5: TTMSFNCRadioButton
         GroupName = 'GroupBox2'
-        Position.X = 8.000000000000000000
-        Position.Y = 16.000000000000000000
-        Size.Width = 201.000000000000000000
-        Size.Height = 19.000000000000000000
+        Position.X = 12.000000000000000000
+        Position.Y = 28.000000000000000000
+        Size.Width = 270.000000000000000000
+        Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
         Text = 'By focused date'
         OnClick = RadioButton5Click
       end
-      object RadioButton6: TRadioButton
+      object RadioButton6: TTMSFNCRadioButton
         GroupName = 'GroupBox2'
-        Position.X = 8.000000000000000000
-        Position.Y = 40.000000000000000000
-        Size.Width = 201.000000000000000000
-        Size.Height = 19.000000000000000000
+        Position.X = 12.000000000000000000
+        Position.Y = 46.000000000000000000
+        Size.Width = 270.000000000000000000
+        Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
         Text = 'By month'
         OnClick = RadioButton6Click
       end
-      object RadioButton7: TRadioButton
+      object RadioButton7: TTMSFNCRadioButton
         GroupName = 'GroupBox2'
-        Position.X = 8.000000000000000000
+        Position.X = 12.000000000000000000
         Position.Y = 64.000000000000000000
-        Size.Width = 201.000000000000000000
-        Size.Height = 19.000000000000000000
+        Size.Width = 270.000000000000000000
+        Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 2
         Text = 'By year'
         OnClick = RadioButton7Click
       end
-      object RadioButton8: TRadioButton
+      object RadioButton8: TTMSFNCRadioButton
         GroupName = 'GroupBox2'
-        Position.X = 8.000000000000000000
-        Position.Y = 88.000000000000000000
-        Size.Width = 201.000000000000000000
-        Size.Height = 19.000000000000000000
+        Position.X = 12.000000000000000000
+        Position.Y = 82.000000000000000000
+        Size.Width = 270.000000000000000000
+        Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 3
         Text = 'By custom (10 years)'
         OnClick = RadioButton8Click
       end
     end
-    object Label2: TLabel
-      Position.X = 8.000000000000000000
+    object Label2: TTMSFNCHTMLText
+      Position.X = 12.000000000000000000
       Position.Y = 8.000000000000000000
-      Size.Width = 218.000000000000000000
-      Size.Height = 33.000000000000000000
+      Size.Width = 296.000000000000000000
+      Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
       Text = 'The Calendar and the DatePicker above are in sync via events.'
       TabOrder = 5
+      HorizontalTextAlign = gtaLeading
+      WordWrapping = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
   end
-  object Panel2: TPanel
-    Position.X = 256.000000000000000000
-    Position.Y = 280.000000000000000000
-    Size.Width = 235.000000000000000000
-    Size.Height = 297.000000000000000000
+  object Panel2: TTMSFNCPanel
+    Position.X = 352.000000000000000000
+    Position.Y = 424.000000000000000000
+    Size.Width = 320.000000000000000000
+    Size.Height = 312.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 11
-    object CheckBox3: TCheckBox
-      Position.X = 8.000000000000000000
+    Header.Visible = False
+    object CheckBox3: TTMSFNCCheckBox
+      Position.X = 12.000000000000000000
       Position.Y = 56.000000000000000000
-      Size.Width = 217.000000000000000000
-      Size.Height = 19.000000000000000000
+      Size.Width = 296.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       Text = 'Editable DatePicker field'
       OnClick = CheckBox3Click
     end
-    object CheckBox4: TCheckBox
-      IsChecked = True
-      Position.X = 8.000000000000000000
-      Position.Y = 80.000000000000000000
-      Size.Width = 217.000000000000000000
-      Size.Height = 19.000000000000000000
+    object CheckBox4: TTMSFNCCheckBox
+      Checked = True
+      Position.X = 12.000000000000000000
+      Position.Y = 82.000000000000000000
+      Size.Width = 296.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
       Text = 'Customize look'
       OnClick = CheckBox4Click
     end
-    object GroupBox1: TGroupBox
-      Position.X = 8.000000000000000000
-      Position.Y = 104.000000000000000000
-      Size.Width = 218.000000000000000000
-      Size.Height = 113.000000000000000000
+    object GroupBox1: TTMSFNCPanel
+      Position.X = 12.000000000000000000
+      Position.Y = 112.000000000000000000
+      Size.Width = 296.000000000000000000
+      Size.Height = 104.000000000000000000
       Size.PlatformDefault = False
-      Text = 'Arrows'
       TabOrder = 2
-      object RadioButton1: TRadioButton
+      Header.Text = 'Arrows'
+      Header.Visible = True
+      Header.Size = 24.000000000000000000
+      object RadioButton1: TTMSFNCRadioButton
         GroupName = 'GroupBox1'
-        Position.X = 8.000000000000000000
-        Position.Y = 16.000000000000000000
-        Size.Width = 201.000000000000000000
-        Size.Height = 19.000000000000000000
+        Position.X = 12.000000000000000000
+        Position.Y = 28.000000000000000000
+        Size.Width = 270.000000000000000000
+        Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
         Text = 'Arrow'
         OnClick = RadioButton1Click
       end
-      object RadioButton2: TRadioButton
+      object RadioButton2: TTMSFNCRadioButton
         GroupName = 'GroupBox1'
-        Position.X = 8.000000000000000000
-        Position.Y = 40.000000000000000000
-        Size.Width = 201.000000000000000000
-        Size.Height = 19.000000000000000000
+        Position.X = 12.000000000000000000
+        Position.Y = 46.000000000000000000
+        Size.Width = 270.000000000000000000
+        Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
         Text = 'Triangle'
         OnClick = RadioButton2Click
       end
-      object RadioButton3: TRadioButton
+      object RadioButton3: TTMSFNCRadioButton
         GroupName = 'GroupBox1'
-        Position.X = 8.000000000000000000
+        Position.X = 12.000000000000000000
         Position.Y = 64.000000000000000000
-        Size.Width = 201.000000000000000000
-        Size.Height = 19.000000000000000000
+        Size.Width = 270.000000000000000000
+        Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 2
         Text = 'Bitmap'
         OnClick = RadioButton3Click
       end
-      object RadioButton4: TRadioButton
+      object RadioButton4: TTMSFNCRadioButton
         GroupName = 'GroupBox1'
-        Position.X = 8.000000000000000000
-        Position.Y = 88.000000000000000000
-        Size.Width = 201.000000000000000000
-        Size.Height = 19.000000000000000000
+        Position.X = 12.000000000000000000
+        Position.Y = 82.000000000000000000
+        Size.Width = 270.000000000000000000
+        Size.Height = 20.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 3
         Text = 'Custom'
         OnClick = RadioButton4Click
       end
     end
-    object Label3: TLabel
-      Position.X = 8.000000000000000000
+    object Label3: TTMSFNCHTMLText
+      Position.X = 12.000000000000000000
       Position.Y = 8.000000000000000000
-      Size.Width = 217.000000000000000000
-      Size.Height = 33.000000000000000000
+      Size.Width = 296.000000000000000000
+      Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
       Text = 'Hover any date that has a badge indicator to see the hints.'
       TabOrder = 3
+      HorizontalTextAlign = gtaLeading
+      WordWrapping = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
   end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
@@ -479,7 +540,7 @@ object Form130: TForm130
     Size.Height = 26.000000000000000000
     Size.PlatformDefault = False
     Position.X = 216.000000000000000000
-    Position.Y = 248.000000000000000000
+    Position.Y = 320.000000000000000000
     Items = <
       item
         Bitmap.PNG = {
@@ -576,5 +637,10 @@ object Form130: TForm130
         Name = 'left_32.png'
         Tag = 0
       end>
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

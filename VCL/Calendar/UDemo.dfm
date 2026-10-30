@@ -1,9 +1,9 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Calendar Demo'
-  ClientHeight = 594
-  ClientWidth = 499
+  Caption = 'TMS FNC UI Pack - Calendar and DatePicker'
+  ClientHeight = 752
+  ClientWidth = 688
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,25 +15,78 @@ object Form130: TForm130
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 499
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 315
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 275
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Calendar and DatePicker'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 275
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Date selection, navigation modes, badges and a customized look'
+    end
+  end
   object TMSFNCCalendar1: TTMSFNCCalendar
-    Left = 8
-    Top = 8
-    Width = 235
-    Height = 235
+    Left = 16
+    Top = 88
+    Width = 320
+    Height = 280
     ParentDoubleBuffered = False
     DoubleBuffered = True
     TabOrder = 0
     Header.Arrow.ArrowLeftBitmap = <>
     Header.Arrow.ArrowRightBitmap = <>
-    Header.Fill.Color = 15000804
     Header.Font.Charset = DEFAULT_CHARSET
-    Header.Font.Color = clWindowText
     Header.Font.Height = -11
     Header.Font.Name = 'Tahoma'
     Header.Font.Style = []
-    Footer.Fill.Color = 15000804
     Footer.Font.Charset = DEFAULT_CHARSET
-    Footer.Font.Color = clWindowText
     Footer.Font.Height = -11
     Footer.Font.Name = 'Tahoma'
     Footer.Font.Style = []
@@ -41,68 +94,41 @@ object Form130: TForm130
     Year = 2018
     Events = <>
     WeekNumberAppearance.Font.Charset = DEFAULT_CHARSET
-    WeekNumberAppearance.Font.Color = clWindowText
     WeekNumberAppearance.Font.Height = -11
     WeekNumberAppearance.Font.Name = 'Tahoma'
     WeekNumberAppearance.Font.Style = []
-    WeekNumberAppearance.Fill.Color = -1
-    WeekNumberAppearance.Stroke.Color = -1
-    DayNameAppearance.Fill.Color = -1
     DayNameAppearance.Font.Charset = DEFAULT_CHARSET
-    DayNameAppearance.Font.Color = clWindowText
     DayNameAppearance.Font.Height = -11
     DayNameAppearance.Font.Name = 'Tahoma'
     DayNameAppearance.Font.Style = []
-    DayNameAppearance.Stroke.Color = -1
-    DateAppearance.Fill.Color = -1
     DateAppearance.Font.Charset = DEFAULT_CHARSET
-    DateAppearance.Font.Color = clWindowText
     DateAppearance.Font.Height = -11
     DateAppearance.Font.Name = 'Tahoma'
     DateAppearance.Font.Style = []
-    DateAppearance.Stroke.Color = -1
-    DateAppearance.SelectedFill.Color = 16748574
     DateAppearance.SelectedFont.Charset = DEFAULT_CHARSET
-    DateAppearance.SelectedFont.Color = clWhite
     DateAppearance.SelectedFont.Height = -11
     DateAppearance.SelectedFont.Name = 'Tahoma'
     DateAppearance.SelectedFont.Style = []
-    DateAppearance.SelectedStroke.Color = 16748574
-    DateAppearance.DisabledFill.Color = -1
     DateAppearance.DisabledFont.Charset = DEFAULT_CHARSET
-    DateAppearance.DisabledFont.Color = 13882323
     DateAppearance.DisabledFont.Height = -11
     DateAppearance.DisabledFont.Name = 'Tahoma'
     DateAppearance.DisabledFont.Style = []
-    DateAppearance.DisabledStroke.Color = -1
-    DateAppearance.DateBeforeFill.Color = -1
     DateAppearance.DateBeforeFont.Charset = DEFAULT_CHARSET
-    DateAppearance.DateBeforeFont.Color = clMedGray
     DateAppearance.DateBeforeFont.Height = -11
     DateAppearance.DateBeforeFont.Name = 'Tahoma'
     DateAppearance.DateBeforeFont.Style = []
-    DateAppearance.DateBeforeStroke.Color = -1
-    DateAppearance.DateAfterFill.Color = -1
     DateAppearance.DateAFterFont.Charset = DEFAULT_CHARSET
-    DateAppearance.DateAFterFont.Color = clMedGray
     DateAppearance.DateAFterFont.Height = -11
     DateAppearance.DateAFterFont.Name = 'Tahoma'
     DateAppearance.DateAFterFont.Style = []
-    DateAppearance.DateAfterStroke.Color = -1
-    DateAppearance.TodayFill.Color = -1
     DateAppearance.TodayFont.Charset = DEFAULT_CHARSET
-    DateAppearance.TodayFont.Color = clRed
     DateAppearance.TodayFont.Height = -11
     DateAppearance.TodayFont.Name = 'Tahoma'
     DateAppearance.TodayFont.Style = []
-    DateAppearance.TodayStroke.Color = -1
-    DateAppearance.BadgeFill.Color = clRed
     DateAppearance.BadgeFont.Charset = DEFAULT_CHARSET
-    DateAppearance.BadgeFont.Color = clWhite
     DateAppearance.BadgeFont.Height = -9
     DateAppearance.BadgeFont.Name = 'Tahoma'
     DateAppearance.BadgeFont.Style = []
-    DateAppearance.BadgeStroke.Color = clRed
     OnSelectDate = TMSFNCCalendar1SelectDate
     OnSelectMultiDate = TMSFNCCalendar1SelectMultiDate
     OnYearChanged = TMSFNCCalendar1YearChanged
@@ -110,10 +136,10 @@ object Form130: TForm130
     OnCustomNavigation = TMSFNCCalendar1CustomNavigation
   end
   object TMSFNCDatePicker1: TTMSFNCDatePicker
-    Left = 8
-    Top = 249
-    Width = 90
-    Height = 22
+    Left = 16
+    Top = 376
+    Width = 160
+    Height = 32
     ParentDoubleBuffered = False
     DoubleBuffered = True
     TabOrder = 1
@@ -122,9 +148,7 @@ object Form130: TForm130
     BadgeSize = 14
     Header.Arrow.ArrowLeftBitmap = <>
     Header.Arrow.ArrowRightBitmap = <>
-    Header.Fill.Color = 15000804
     Header.Font.Charset = DEFAULT_CHARSET
-    Header.Font.Color = clWindowText
     Header.Font.Height = -11
     Header.Font.Name = 'Tahoma'
     Header.Font.Style = []
@@ -144,17 +168,14 @@ object Form130: TForm130
     WeekNumberAppearance.Font.Name = 'Tahoma'
     WeekNumberAppearance.Font.Style = []
     WeekNumberAppearance.Fill.Color = -1
-    WeekNumberAppearance.Stroke.Color = -1
     DateAppearance.Fill.Color = -1
     DateAppearance.Font.Charset = DEFAULT_CHARSET
     DateAppearance.Font.Color = clWindowText
     DateAppearance.Font.Height = -11
     DateAppearance.Font.Name = 'Tahoma'
     DateAppearance.Font.Style = []
-    DateAppearance.Stroke.Color = -1
     DateAppearance.SelectedFill.Color = 16748574
     DateAppearance.SelectedFont.Charset = DEFAULT_CHARSET
-    DateAppearance.SelectedFont.Color = clWhite
     DateAppearance.SelectedFont.Height = -11
     DateAppearance.SelectedFont.Name = 'Tahoma'
     DateAppearance.SelectedFont.Style = []
@@ -165,31 +186,26 @@ object Form130: TForm130
     DateAppearance.DisabledFont.Height = -11
     DateAppearance.DisabledFont.Name = 'Tahoma'
     DateAppearance.DisabledFont.Style = []
-    DateAppearance.DisabledStroke.Color = -1
     DateAppearance.DateBeforeFill.Color = -1
     DateAppearance.DateBeforeFont.Charset = DEFAULT_CHARSET
     DateAppearance.DateBeforeFont.Color = clMedGray
     DateAppearance.DateBeforeFont.Height = -11
     DateAppearance.DateBeforeFont.Name = 'Tahoma'
     DateAppearance.DateBeforeFont.Style = []
-    DateAppearance.DateBeforeStroke.Color = -1
     DateAppearance.DateAfterFill.Color = -1
     DateAppearance.DateAFterFont.Charset = DEFAULT_CHARSET
     DateAppearance.DateAFterFont.Color = clMedGray
     DateAppearance.DateAFterFont.Height = -11
     DateAppearance.DateAFterFont.Name = 'Tahoma'
     DateAppearance.DateAFterFont.Style = []
-    DateAppearance.DateAfterStroke.Color = -1
     DateAppearance.TodayFill.Color = -1
     DateAppearance.TodayFont.Charset = DEFAULT_CHARSET
     DateAppearance.TodayFont.Color = clRed
     DateAppearance.TodayFont.Height = -11
     DateAppearance.TodayFont.Name = 'Tahoma'
     DateAppearance.TodayFont.Style = []
-    DateAppearance.TodayStroke.Color = -1
     DateAppearance.BadgeFill.Color = clRed
     DateAppearance.BadgeFont.Charset = DEFAULT_CHARSET
-    DateAppearance.BadgeFont.Color = clWhite
     DateAppearance.BadgeFont.Height = -9
     DateAppearance.BadgeFont.Name = 'Tahoma'
     DateAppearance.BadgeFont.Style = []
@@ -200,16 +216,15 @@ object Form130: TForm130
     DayNameAppearance.Font.Height = -11
     DayNameAppearance.Font.Name = 'Tahoma'
     DayNameAppearance.Font.Style = []
-    DayNameAppearance.Stroke.Color = -1
     OnYearChanged = TMSFNCDatePicker1YearChanged
     OnMonthChanged = TMSFNCDatePicker1MonthChanged
     OnCustomNavigation = TMSFNCDatePicker1CustomNavigation
   end
   object TMSFNCDatePicker2: TTMSFNCDatePicker
-    Left = 256
-    Top = 249
-    Width = 90
-    Height = 22
+    Left = 352
+    Top = 376
+    Width = 160
+    Height = 32
     ParentDoubleBuffered = False
     DoubleBuffered = True
     ParentShowHint = False
@@ -251,17 +266,14 @@ object Form130: TForm130
     WeekNumberAppearance.Font.Name = 'Tahoma'
     WeekNumberAppearance.Font.Style = []
     WeekNumberAppearance.Fill.Color = -1
-    WeekNumberAppearance.Stroke.Color = -1
     DateAppearance.Fill.Color = -1
     DateAppearance.Font.Charset = DEFAULT_CHARSET
     DateAppearance.Font.Color = clWindowText
     DateAppearance.Font.Height = -11
     DateAppearance.Font.Name = 'Tahoma'
     DateAppearance.Font.Style = []
-    DateAppearance.Stroke.Color = -1
     DateAppearance.SelectedFill.Color = 3329330
     DateAppearance.SelectedFont.Charset = DEFAULT_CHARSET
-    DateAppearance.SelectedFont.Color = clWhite
     DateAppearance.SelectedFont.Height = -11
     DateAppearance.SelectedFont.Name = 'Tahoma'
     DateAppearance.SelectedFont.Style = []
@@ -272,7 +284,6 @@ object Form130: TForm130
     DateAppearance.DisabledFont.Height = -11
     DateAppearance.DisabledFont.Name = 'Tahoma'
     DateAppearance.DisabledFont.Style = []
-    DateAppearance.DisabledStroke.Color = -1
     DateAppearance.ShowDaysBefore = True
     DateAppearance.ShowDaysAfter = True
     DateAppearance.DateBeforeFill.Color = -1
@@ -281,24 +292,20 @@ object Form130: TForm130
     DateAppearance.DateBeforeFont.Height = -11
     DateAppearance.DateBeforeFont.Name = 'Tahoma'
     DateAppearance.DateBeforeFont.Style = []
-    DateAppearance.DateBeforeStroke.Color = -1
     DateAppearance.DateAfterFill.Color = -1
     DateAppearance.DateAFterFont.Charset = DEFAULT_CHARSET
     DateAppearance.DateAFterFont.Color = clMedGray
     DateAppearance.DateAFterFont.Height = -11
     DateAppearance.DateAFterFont.Name = 'Tahoma'
     DateAppearance.DateAFterFont.Style = []
-    DateAppearance.DateAfterStroke.Color = -1
     DateAppearance.TodayFill.Color = -1
     DateAppearance.TodayFont.Charset = DEFAULT_CHARSET
     DateAppearance.TodayFont.Color = clRed
     DateAppearance.TodayFont.Height = -11
     DateAppearance.TodayFont.Name = 'Tahoma'
     DateAppearance.TodayFont.Style = []
-    DateAppearance.TodayStroke.Color = -1
     DateAppearance.BadgeFill.Color = clRed
     DateAppearance.BadgeFont.Charset = DEFAULT_CHARSET
-    DateAppearance.BadgeFont.Color = clWhite
     DateAppearance.BadgeFont.Height = -9
     DateAppearance.BadgeFont.Name = 'Tahoma'
     DateAppearance.BadgeFont.Style = []
@@ -309,185 +316,208 @@ object Form130: TForm130
     DayNameAppearance.Font.Height = -11
     DayNameAppearance.Font.Name = 'Tahoma'
     DayNameAppearance.Font.Style = []
-    DayNameAppearance.Stroke.Color = -1
     CalendarFill.Color = clMoneyGreen
     CalendarStroke.Color = 25600
     OnCustomArrowDraw = TMSFNCDatePicker2CustomArrowDraw
   end
-  object Panel1: TPanel
-    Left = 8
-    Top = 277
-    Width = 235
-    Height = 308
+  object Panel1: TTMSFNCPanel
+    Left = 16
+    Top = 424
+    Width = 320
+    Height = 312
     TabOrder = 3
-    object Label1: TLabel
-      Left = 8
-      Top = 56
-      Width = 75
-      Height = 13
-      Caption = 'Selected dates:'
+    Header.Visible = False
+    object Label1: TTMSFNCHTMLText
+      Left = 12
+      Top = 52
+      Width = 296
+      Height = 20
+      Text = 'Selected dates:'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      WordWrapping = True
     end
-    object Label2: TLabel
-      Left = 8
-      Top = 11
-      Width = 213
-      Height = 26
-      Caption = 'The Calendar and the DatePicker above are in sync via events.'
-      WordWrap = True
+    object Label2: TTMSFNCHTMLText
+      Left = 12
+      Top = 8
+      Width = 296
+      Height = 40
+      Text = 'The Calendar and the DatePicker above are in sync via events.'
+      WordWrapping = True
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object CheckBox1: TCheckBox
-      Left = 8
-      Top = 160
-      Width = 217
-      Height = 17
-      Caption = 'Swipe on header'
+    object CheckBox1: TTMSFNCCheckBox
+      Left = 12
+      Top = 170
+      Width = 296
+      Height = 24
+      Text = 'Swipe on header'
       TabOrder = 0
       OnClick = CheckBox1Click
     end
-    object RadioGroup1: TRadioGroup
-      Left = 8
-      Top = 183
-      Width = 217
-      Height = 112
-      Caption = 'Navigation'
-      TabOrder = 1
-    end
-    object ListBox1: TListBox
-      Left = 8
-      Top = 75
-      Width = 217
-      Height = 56
-      ItemHeight = 13
-      TabOrder = 2
-    end
-    object RadioButton5: TRadioButton
-      Left = 16
+    object RadioGroup1: TTMSFNCPanel
+      Left = 12
       Top = 200
-      Width = 201
-      Height = 17
-      Caption = 'By focused date'
+      Width = 296
+      Height = 104
+      TabOrder = 1
+      Header.Visible = True
+      Header.Text = 'Navigation'
+      Header.Size = 24.000000000000000000
+      TabStop = False
+    end
+    object ListBox1: TTMSFNCListBox
+      Left = 12
+      Top = 72
+      Width = 296
+      Height = 64
+    end
+    object RadioButton5: TTMSFNCRadioButton
+      Left = 24
+      Top = 228
+      Width = 270
+      Height = 20
+      Text = 'By focused date'
       TabOrder = 3
       OnClick = RadioButton5Click
+      GroupName = 'Panel1'
     end
-    object RadioButton6: TRadioButton
-      Left = 16
-      Top = 223
-      Width = 201
-      Height = 17
-      Caption = 'By month'
+    object RadioButton6: TTMSFNCRadioButton
+      Left = 24
+      Top = 246
+      Width = 270
+      Height = 20
+      Text = 'By month'
       TabOrder = 4
       OnClick = RadioButton6Click
+      GroupName = 'Panel1'
     end
-    object RadioButton7: TRadioButton
-      Left = 16
-      Top = 246
-      Width = 201
-      Height = 17
-      Caption = 'By year'
+    object RadioButton7: TTMSFNCRadioButton
+      Left = 24
+      Top = 264
+      Width = 270
+      Height = 20
+      Text = 'By year'
       TabOrder = 5
       OnClick = RadioButton7Click
+      GroupName = 'Panel1'
     end
-    object RadioButton8: TRadioButton
-      Left = 16
-      Top = 269
-      Width = 201
-      Height = 17
-      Caption = 'By custom (10 years)'
+    object RadioButton8: TTMSFNCRadioButton
+      Left = 24
+      Top = 282
+      Width = 270
+      Height = 20
+      Text = 'By custom (10 years)'
       TabOrder = 6
       OnClick = RadioButton8Click
+      GroupName = 'Panel1'
+    end
+    object CheckBox2: TTMSFNCCheckBox
+      Left = 12
+      Top = 144
+      Width = 296
+      Height = 24
+      Text = 'Enable multiselection'
+      TabOrder = 4
+      OnClick = CheckBox2Click
     end
   end
-  object CheckBox2: TCheckBox
-    Left = 16
-    Top = 414
-    Width = 217
-    Height = 17
-    Caption = 'Enable multiselection'
-    TabOrder = 4
-    OnClick = CheckBox2Click
-  end
-  object Panel2: TPanel
-    Left = 256
-    Top = 277
-    Width = 235
-    Height = 308
+  object Panel2: TTMSFNCPanel
+    Left = 352
+    Top = 424
+    Width = 320
+    Height = 312
     TabOrder = 5
-    object Label3: TLabel
-      Left = 8
-      Top = 11
-      Width = 217
-      Height = 26
-      Caption = 'Hover any date that has a badge indicator to see the hints.'
-      WordWrap = True
+    Header.Visible = False
+    object Label3: TTMSFNCHTMLText
+      Left = 12
+      Top = 8
+      Width = 296
+      Height = 40
+      Text = 'Hover any date that has a badge indicator to see the hints.'
+      WordWrapping = True
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object CheckBox4: TCheckBox
-      Left = 8
-      Top = 79
-      Width = 217
-      Height = 17
-      Caption = 'Customize look'
+    object CheckBox4: TTMSFNCCheckBox
+      Left = 12
+      Top = 82
+      Width = 296
+      Height = 24
+      Text = 'Customize look'
       Checked = True
-      State = cbChecked
       TabOrder = 0
       OnClick = CheckBox4Click
+      Checked = True
     end
-    object RadioGroup2: TRadioGroup
-      Left = 8
-      Top = 102
-      Width = 217
-      Height = 112
-      Caption = 'Arrows'
+    object RadioGroup2: TTMSFNCPanel
+      Left = 12
+      Top = 112
+      Width = 296
+      Height = 104
       TabOrder = 1
+      Header.Visible = True
+      Header.Text = 'Arrows'
+      Header.Size = 24.000000000000000000
+      TabStop = False
     end
-    object CheckBox3: TCheckBox
-      Left = 8
+    object CheckBox3: TTMSFNCCheckBox
+      Left = 12
       Top = 56
-      Width = 217
-      Height = 17
-      Caption = 'Editable DatePicker field'
+      Width = 296
+      Height = 24
+      Text = 'Editable DatePicker field'
       TabOrder = 2
       OnClick = CheckBox3Click
     end
-    object RadioButton1: TRadioButton
-      Left = 16
-      Top = 120
-      Width = 201
-      Height = 17
-      Caption = 'Arrow'
+    object RadioButton1: TTMSFNCRadioButton
+      Left = 24
+      Top = 140
+      Width = 270
+      Height = 20
+      Text = 'Arrow'
       TabOrder = 3
       OnClick = RadioButton1Click
+      GroupName = 'Panel2'
     end
-    object RadioButton2: TRadioButton
-      Left = 16
-      Top = 143
-      Width = 201
-      Height = 17
-      Caption = 'Triangle'
+    object RadioButton2: TTMSFNCRadioButton
+      Left = 24
+      Top = 158
+      Width = 270
+      Height = 20
+      Text = 'Triangle'
       TabOrder = 4
       OnClick = RadioButton2Click
+      GroupName = 'Panel2'
     end
-    object RadioButton3: TRadioButton
-      Left = 16
-      Top = 166
-      Width = 201
-      Height = 17
-      Caption = 'Bitmap'
+    object RadioButton3: TTMSFNCRadioButton
+      Left = 24
+      Top = 176
+      Width = 270
+      Height = 20
+      Text = 'Bitmap'
       TabOrder = 5
       OnClick = RadioButton3Click
+      GroupName = 'Panel2'
     end
-    object RadioButton4: TRadioButton
-      Left = 16
-      Top = 189
-      Width = 201
-      Height = 17
-      Caption = 'Custom'
+    object RadioButton4: TTMSFNCRadioButton
+      Left = 24
+      Top = 194
+      Width = 270
+      Height = 20
+      Text = 'Custom'
       TabOrder = 6
       OnClick = RadioButton4Click
+      GroupName = 'Panel2'
     end
   end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
     Left = 217
-    Top = 249
+    Top = 321
     Width = 26
     Height = 26
     Visible = True
@@ -760,10 +790,10 @@ object Form130: TForm130
       end>
   end
   object TMSFNCCalendar2: TTMSFNCCalendar
-    Left = 256
-    Top = 8
-    Width = 235
-    Height = 235
+    Left = 352
+    Top = 88
+    Width = 320
+    Height = 280
     ParentDoubleBuffered = False
     Color = clMoneyGreen
     DoubleBuffered = True
@@ -801,71 +831,51 @@ object Form130: TForm130
     Events = <>
     WeekNumberAppearance.Visible = True
     WeekNumberAppearance.Font.Charset = DEFAULT_CHARSET
-    WeekNumberAppearance.Font.Color = clWindowText
     WeekNumberAppearance.Font.Height = -11
     WeekNumberAppearance.Font.Name = 'Tahoma'
     WeekNumberAppearance.Font.Style = []
-    WeekNumberAppearance.Fill.Color = -1
-    WeekNumberAppearance.Stroke.Color = -1
-    DayNameAppearance.Fill.Color = -1
     DayNameAppearance.Font.Charset = DEFAULT_CHARSET
-    DayNameAppearance.Font.Color = clWindowText
     DayNameAppearance.Font.Height = -11
     DayNameAppearance.Font.Name = 'Tahoma'
     DayNameAppearance.Font.Style = []
-    DayNameAppearance.Stroke.Color = -1
-    DateAppearance.Fill.Color = -1
     DateAppearance.Font.Charset = DEFAULT_CHARSET
-    DateAppearance.Font.Color = clWindowText
     DateAppearance.Font.Height = -11
     DateAppearance.Font.Name = 'Tahoma'
     DateAppearance.Font.Style = []
-    DateAppearance.Stroke.Color = -1
     DateAppearance.SelectedFill.Color = 3329330
     DateAppearance.SelectedFont.Charset = DEFAULT_CHARSET
-    DateAppearance.SelectedFont.Color = clWhite
     DateAppearance.SelectedFont.Height = -11
     DateAppearance.SelectedFont.Name = 'Tahoma'
     DateAppearance.SelectedFont.Style = []
     DateAppearance.SelectedStroke.Color = 3329330
-    DateAppearance.DisabledFill.Color = -1
     DateAppearance.DisabledFont.Charset = DEFAULT_CHARSET
-    DateAppearance.DisabledFont.Color = 13882323
     DateAppearance.DisabledFont.Height = -11
     DateAppearance.DisabledFont.Name = 'Tahoma'
     DateAppearance.DisabledFont.Style = []
-    DateAppearance.DisabledStroke.Color = -1
     DateAppearance.ShowDaysBefore = True
     DateAppearance.ShowDaysAfter = True
-    DateAppearance.DateBeforeFill.Color = -1
     DateAppearance.DateBeforeFont.Charset = DEFAULT_CHARSET
-    DateAppearance.DateBeforeFont.Color = clMedGray
     DateAppearance.DateBeforeFont.Height = -11
     DateAppearance.DateBeforeFont.Name = 'Tahoma'
     DateAppearance.DateBeforeFont.Style = []
-    DateAppearance.DateBeforeStroke.Color = -1
-    DateAppearance.DateAfterFill.Color = -1
     DateAppearance.DateAFterFont.Charset = DEFAULT_CHARSET
-    DateAppearance.DateAFterFont.Color = clMedGray
     DateAppearance.DateAFterFont.Height = -11
     DateAppearance.DateAFterFont.Name = 'Tahoma'
     DateAppearance.DateAFterFont.Style = []
-    DateAppearance.DateAfterStroke.Color = -1
-    DateAppearance.TodayFill.Color = -1
     DateAppearance.TodayFont.Charset = DEFAULT_CHARSET
-    DateAppearance.TodayFont.Color = clRed
     DateAppearance.TodayFont.Height = -11
     DateAppearance.TodayFont.Name = 'Tahoma'
     DateAppearance.TodayFont.Style = []
-    DateAppearance.TodayStroke.Color = -1
-    DateAppearance.BadgeFill.Color = clRed
     DateAppearance.BadgeFont.Charset = DEFAULT_CHARSET
-    DateAppearance.BadgeFont.Color = clWhite
     DateAppearance.BadgeFont.Height = -9
     DateAppearance.BadgeFont.Name = 'Tahoma'
     DateAppearance.BadgeFont.Style = []
-    DateAppearance.BadgeStroke.Color = clRed
     LineAppearance.Stroke.Color = 25600
     OnCustomArrowDraw = TMSFNCCalendar2CustomArrowDraw
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

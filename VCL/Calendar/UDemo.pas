@@ -1,5 +1,7 @@
 unit UDemo;
 
+{ demo-colors: TMSFNCCalendar2, TMSFNCDatePicker2 (the customized look is the subject) }
+
 interface
 
 uses
@@ -8,35 +10,41 @@ uses
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes,
   VCL.TMSFNCCustomPicker, VCL.TMSFNCDatePicker, VCL.TMSFNCCustomControl,
   VCL.TMSFNCCalendar, VCL.TMSFNCCustomComponent, VCL.TMSFNCBitmapContainer,
-  VCL.TMSFNCPanel;
+  VCL.TMSFNCPanel,
+  VCL.TMSFNCCheckBox, VCL.TMSFNCHTMLText, VCL.TMSFNCRadioButton, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector, VCL.TMSFNCListBox, VCL.TMSFNCTreeViewBase;
 
 type
   TForm130 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCCalendar1: TTMSFNCCalendar;
     TMSFNCCalendar2: TTMSFNCCalendar;
     TMSFNCDatePicker1: TTMSFNCDatePicker;
     TMSFNCDatePicker2: TTMSFNCDatePicker;
-    Panel1: TPanel;
-    Panel2: TPanel;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
-    RadioGroup1: TRadioGroup;
-    RadioGroup2: TRadioGroup;
+    Panel1: TTMSFNCPanel;
+    Panel2: TTMSFNCPanel;
+    CheckBox1: TTMSFNCCheckBox;
+    CheckBox2: TTMSFNCCheckBox;
+    CheckBox3: TTMSFNCCheckBox;
+    CheckBox4: TTMSFNCCheckBox;
+    RadioGroup1: TTMSFNCPanel;
+    RadioGroup2: TTMSFNCPanel;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
-    ListBox1: TListBox;
-    Label1: TLabel;
-    Label2: TLabel;
-    RadioButton1: TRadioButton;
-    RadioButton2: TRadioButton;
-    RadioButton3: TRadioButton;
-    RadioButton4: TRadioButton;
-    RadioButton5: TRadioButton;
-    RadioButton6: TRadioButton;
-    RadioButton7: TRadioButton;
-    RadioButton8: TRadioButton;
-    Label3: TLabel;
+    ListBox1: TTMSFNCListBox;
+    Label1: TTMSFNCHTMLText;
+    Label2: TTMSFNCHTMLText;
+    RadioButton1: TTMSFNCRadioButton;
+    RadioButton2: TTMSFNCRadioButton;
+    RadioButton3: TTMSFNCRadioButton;
+    RadioButton4: TTMSFNCRadioButton;
+    RadioButton5: TTMSFNCRadioButton;
+    RadioButton6: TTMSFNCRadioButton;
+    RadioButton7: TTMSFNCRadioButton;
+    RadioButton8: TTMSFNCRadioButton;
+    Label3: TTMSFNCHTMLText;
     procedure CheckBox1Click(Sender: TObject);
     procedure CheckBox2Click(Sender: TObject);
     procedure CheckBox4Click(Sender: TObject);
@@ -177,7 +185,7 @@ begin
   TMSFNCDatePicker1.SelectedDate := TMSFNCCalendar1.Date;
   TMSFNCDatePicker2.SelectedDate := TMSFNCCalendar2.Date;
 
-  ListBox1.Items.Add(DateToStr(TMSFNCCalendar1.SelectedDate));
+  ListBox1.AddItem(DateToStr(TMSFNCCalendar1.SelectedDate));
 
   TMSFNCCalendar2.ShowHint := True;
   TMSFNCDatePicker2.ShowHint := True;
@@ -304,10 +312,10 @@ procedure TForm130.TMSFNCCalendar1SelectDate(Sender: TObject; ADate: TDate);
 var
   I, c: Integer;
 begin
-  ListBox1.Clear;
+  ListBox1.Items.Clear;
   c := TMSFNCCalendar1.SelectedDates.Count - 1;
   for I := 0 to c do
-    ListBox1.Items.Add(DateToStr(TMSFNCCalendar1.SelectedDates.Items[I].Date));
+    ListBox1.AddItem(DateToStr(TMSFNCCalendar1.SelectedDates.Items[I].Date));
 
   TMSFNCDatePicker1.SelectedDate := TMSFNCCalendar1.SelectedDates.Items[c].Date;
 end;
@@ -317,9 +325,9 @@ procedure TForm130.TMSFNCCalendar1SelectMultiDate(Sender: TObject; AStartDate,
 var
   I: Integer;
 begin
-  ListBox1.Clear;
+  ListBox1.Items.Clear;
   for I := 0 to TMSFNCCalendar1.SelectedDates.Count - 1 do
-    ListBox1.Items.Add(DateToStr(TMSFNCCalendar1.SelectedDates.Items[I].Date));
+    ListBox1.AddItem(DateToStr(TMSFNCCalendar1.SelectedDates.Items[I].Date));
 end;
 
 procedure TForm130.TMSFNCCalendar1YearChanged(Sender: TObject; AYear: Integer);
@@ -364,8 +372,8 @@ begin
 end;
 procedure TForm130.TMSFNCDatePicker1DateSelected(Sender: TObject; ADate: TDate);
 begin
-  ListBox1.Clear;
-  ListBox1.Items.Add(DateToStr(TMSFNCDatePicker1.SelectedDate));
+  ListBox1.Items.Clear;
+  ListBox1.AddItem(DateToStr(TMSFNCDatePicker1.SelectedDate));
   TMSFNCCalendar1.SelectADate(TMSFNCDatePicker1.SelectedDate);
 end;
 

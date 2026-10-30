@@ -1,18 +1,52 @@
 object Form1: TForm1
   Left = 354
-  Height = 600
+  Height = 672
   Top = 214
   Width = 492
   Caption = 'TMS FNC Calendar'
-  ClientHeight = 600
+  ClientHeight = 672
   ClientWidth = 492
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '1.8.2.0'
+  object DemoHeader: TPanel
+    Left = 0
+    Height = 72
+    Top = 0
+    Width = 492
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 72
+    ClientWidth = 492
+    TabOrder = 0
+    object DemoTitle: TLabel
+      Left = 24
+      Height = 30
+      Top = 12
+      Width = 444
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Calendar and DatePicker'
+      Font.Height = -20
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object DemoDescription: TLabel
+      Left = 24
+      Height = 20
+      Top = 42
+      Width = 444
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Date selection, navigation modes, badges and a customized look'
+      Font.Color = clGrayText
+      ParentFont = False
+    end
+  end
   object TMSFNCCalendar2: TTMSFNCCalendar
     Left = 248
     Height = 235
-    Top = 8
+    Top = 80
     Width = 235
     Color = clMoneyGreen
     DoubleBuffered = True
@@ -72,7 +106,7 @@ object Form1: TForm1
   object TMSFNCDatePicker1: TTMSFNCDatePicker
     Left = 8
     Height = 22
-    Top = 248
+    Top = 320
     Width = 90
     DoubleBuffered = True
     TabOrder = 1
@@ -121,7 +155,7 @@ object Form1: TForm1
   object TMSFNCDatePicker2: TTMSFNCDatePicker
     Left = 248
     Height = 22
-    Top = 248
+    Top = 320
     Width = 90
     DoubleBuffered = True
     TabOrder = 2
@@ -185,7 +219,7 @@ object Form1: TForm1
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
     Left = 217
     Height = 26
-    Top = 248
+    Top = 320
     Width = 26
     Visible = True
     Items = <    
@@ -464,7 +498,7 @@ object Form1: TForm1
   object Panel1: TPanel
     Left = 8
     Height = 312
-    Top = 280
+    Top = 352
     Width = 235
     ClientHeight = 312
     ClientWidth = 235
@@ -570,7 +604,7 @@ object Form1: TForm1
   object Panel2: TPanel
     Left = 248
     Height = 312
-    Top = 280
+    Top = 352
     Width = 235
     ClientHeight = 312
     ClientWidth = 235
@@ -661,7 +695,7 @@ object Form1: TForm1
   object TMSFNCCalendar1: TTMSFNCCalendar
     Left = 8
     Height = 235
-    Top = 8
+    Top = 80
     Width = 235
     DoubleBuffered = True
     TabOrder = 6
