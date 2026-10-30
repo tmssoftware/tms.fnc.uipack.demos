@@ -9,14 +9,20 @@ uses
   Vcl.StdCtrls, VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics,
   VCL.TMSFNCGraphicsTypes, Vcl.ExtCtrls, VCL.TMSFNCTreeViewBase,
   VCL.TMSFNCTreeViewData, VCL.TMSFNCCustomTreeView, VCL.TMSFNCTreeView,
-  VCL.TMSFNCObjectInspector, VCL.TMSFNCImage, VCL.TMSFNCPlanner;
+  VCL.TMSFNCObjectInspector, VCL.TMSFNCImage, VCL.TMSFNCPlanner,
+  VCL.TMSFNCComboBox, VCL.TMSFNCButton, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     TMSFNCObjectInspector1: TTMSFNCObjectInspector;
-    Panel1: TPanel;
-    ComboBox1: TComboBox;
+    Panel1: TTMSFNCPanel;
+    ComboBox1: TTMSFNCComboBox;
     procedure ComboBox1Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
@@ -41,20 +47,24 @@ begin
   case ComboBox1.ItemIndex of
     0:
     begin
-      FActiveControl := TButton.Create(Panel1);
-      (FActiveControl as TButton).Caption := 'Hello World';
+      FActiveControl := TTMSFNCButton.Create(Panel1);
+      (FActiveControl as TTMSFNCButton).Text := 'Hello World';
+      FActiveControl.Width := 120;
+      FActiveControl.Height := 32;
     end;
     1:
     begin
-      FActiveControl := TLabel.Create(Panel1);
-      (FActiveControl as TLabel).Caption := 'Hello World';
+      FActiveControl := TTMSFNCHTMLText.Create(Panel1);
+      (FActiveControl as TTMSFNCHTMLText).Text := 'Hello World';
+      FActiveControl.Width := 120;
+      FActiveControl.Height := 32;
     end;
     2:
     begin
-      FActiveControl := TListBox.Create(Self);
-      (FActiveControl as TListBox).Items.Add('BMW');
-      (FActiveControl as TListBox).Items.Add('Audi');
-      (FActiveControl as TListBox).Items.Add('Mercedes');
+      FActiveControl := TTMSFNCListBox.Create(Self);
+      (FActiveControl as TTMSFNCListBox).Items.Add('BMW');
+      (FActiveControl as TTMSFNCListBox).Items.Add('Audi');
+      (FActiveControl as TTMSFNCListBox).Items.Add('Mercedes');
     end;
     3:
     begin

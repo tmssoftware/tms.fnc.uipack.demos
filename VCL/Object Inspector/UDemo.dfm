@@ -1,9 +1,9 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Object Inspector Demo'
-  ClientHeight = 647
-  ClientWidth = 1002
+  Caption = 'TMS FNC UI Pack - ObjectInspector'
+  ClientHeight = 720
+  ClientWidth = 1100
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,9 +15,66 @@ object Form130: TForm130
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 1002
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 818
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 778
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'ObjectInspector'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 778
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Pick a control: the inspector shows its properties and edits them live'
+    end
+  end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
     Left = 609
-    Top = 359
+    Top = 431
     Width = 26
     Height = 26
     Visible = True
@@ -903,12 +960,12 @@ object Form130: TForm130
     AlignWithMargins = True
     Left = 5
     Top = 31
-    Width = 300
+    Width = 360
     Height = 611
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 5
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 16
     Align = alLeft
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -1079,43 +1136,45 @@ object Form130: TForm130
     ExplicitTop = 8
     ExplicitHeight = 400
   end
-  object Panel1: TPanel
+  object Panel1: TTMSFNCPanel
     AlignWithMargins = True
     Left = 310
     Top = 31
     Width = 687
     Height = 611
-    Margins.Left = 0
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 5
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
-    BevelOuter = bvNone
-    BorderStyle = bsSingle
-    Ctl3D = False
-    ParentCtl3D = False
     TabOrder = 2
+    Header.Visible = False
   end
-  object ComboBox1: TComboBox
+  object ComboBox1: TTMSFNCComboBox
     AlignWithMargins = True
     Left = 5
     Top = 5
     Width = 992
-    Height = 21
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 0
+    Height = 32
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 8
     Align = alTop
-    Style = csDropDownList
     TabOrder = 3
     OnChange = ComboBox1Change
     Items.Strings = (
-      'TButton'
-      'TLabel'
-      'TListBox'
+      'TTMSFNCButton'
+      'TTMSFNCHTMLText'
+      'TTMSFNCListBox'
       'TTMSFNCImage'
       'TTMSFNCTreeView'
       'TTMSFNCPlanner')
+    Style = csDropDownList
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end
