@@ -1,9 +1,9 @@
 object Form2: TForm2
   Left = 0
   Top = 0
-  Caption = 'Demo ProgressBar, Rating and Waiting Indicator'
-  ClientHeight = 480
-  ClientWidth = 439
+  Caption = 'TMS FNC UI Pack - Progress bar and Rating'
+  ClientHeight = 520
+  ClientWidth = 560
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -148,6 +148,63 @@ object Form2: TForm2
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 439
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 255
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 215
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Progress bar, rating and waiting indicator'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 215
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Rate the product: every rating moves the progress bar, a full bar enables Submit'
+    end
+  end
   object TMSFNCPanel1: TTMSFNCPanel
     Left = 0
     Top = 0
@@ -156,82 +213,113 @@ object Form2: TForm2
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    TabOrder = 0
+    TabOrder = 1
     Sections = <>
-    SectionsAppearance.Font.Charset = DEFAULT_CHARSET
     SectionsAppearance.Font.Color = clWindowText
     SectionsAppearance.Font.Height = -11
-    SectionsAppearance.Font.Name = 'Tahoma'
     SectionsAppearance.Font.Style = []
     SectionsAppearance.Fill.Color = 15790320
     Header.Text = 'Happiness Survey'
-    Header.Font.Charset = DEFAULT_CHARSET
     Header.Font.Color = clWindowText
     Header.Font.Height = -11
-    Header.Font.Name = 'Segoe UI'
     Header.Font.Style = []
     Header.Fill.Color = 15000804
     Footer.Text = 'Footer'
-    Footer.Font.Charset = DEFAULT_CHARSET
     Footer.Font.Color = clWindowText
     Footer.Font.Height = -11
-    Footer.Font.Name = 'Segoe UI'
     Footer.Font.Style = []
     Footer.Fill.Color = 15000804
-    object Label1: TLabel
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
+    Header.Visible = False
+    object Label1: TTMSFNCHTMLText
       Left = 24
-      Top = 69
-      Width = 131
-      Height = 13
-      Caption = 'Quality of the components:'
+      Top = 16
+      Width = 320
+      Height = 24
+      Text = 'Quality of the components:'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label2: TLabel
-      Left = 288
-      Top = 94
-      Width = 121
-      Height = 13
-      Caption = '(Slide from progress end)'
+    object Label2: TTMSFNCHTMLText
+      Left = 256
+      Top = 48
+      Width = 240
+      Height = 24
+      Text = '(Slide from progress end)'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      TextRole = htrSecondary
     end
-    object Label3: TLabel
+    object Label3: TTMSFNCHTMLText
       Left = 24
-      Top = 124
-      Width = 109
-      Height = 13
-      Caption = 'Range of components:'
+      Top = 96
+      Width = 320
+      Height = 24
+      Text = 'Range of components:'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label4: TLabel
-      Left = 288
-      Top = 149
-      Width = 89
-      Height = 13
-      Caption = '(Click to set value)'
+    object Label4: TTMSFNCHTMLText
+      Left = 256
+      Top = 128
+      Width = 240
+      Height = 24
+      Text = '(Click to set value)'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      TextRole = htrSecondary
     end
-    object Label5: TLabel
+    object Label5: TTMSFNCHTMLText
       Left = 24
-      Top = 181
-      Width = 91
-      Height = 13
-      Caption = 'Quality of support:'
+      Top = 176
+      Width = 320
+      Height = 24
+      Text = 'Quality of support:'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label7: TLabel
+    object Label7: TTMSFNCHTMLText
       Left = 24
-      Top = 237
-      Width = 67
-      Height = 13
-      Caption = 'Love for TMS:'
+      Top = 256
+      Width = 320
+      Height = 24
+      Text = 'Love for TMS:'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label8: TLabel
-      Left = 288
-      Top = 262
-      Width = 112
-      Height = 13
-      Caption = '*Can only be 3 or more'
+    object Label8: TTMSFNCHTMLText
+      Left = 256
+      Top = 288
+      Width = 240
+      Height = 24
+      Text = '*Can only be 3 or more'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      TextRole = htrSecondary
     end
     object TMSFNCRating1: TTMSFNCRating
-      Left = 72
-      Top = 88
+      Left = 24
+      Top = 44
       Width = 200
-      Height = 22
+      Height = 32
       ParentDoubleBuffered = False
       DoubleBuffered = True
       TabOrder = 0
@@ -261,17 +349,13 @@ object Form2: TForm2
         3E0D0A3C2F673E0D0A3C673E0D0A3C2F673E0D0A3C673E0D0A3C2F673E0D0A3C
         673E0D0A3C2F673E0D0A3C673E0D0A3C2F673E0D0A3C2F7376673E0D0A}
       Appearance.DefaultLevelFill.Color = 16297243
-      Appearance.DefaultLevelFont.Charset = DEFAULT_CHARSET
       Appearance.DefaultLevelFont.Color = clWindowText
       Appearance.DefaultLevelFont.Height = -11
-      Appearance.DefaultLevelFont.Name = 'Tahoma'
       Appearance.DefaultLevelFont.Style = []
       Appearance.DefaultLevelStroke.Kind = gskNone
       Appearance.DefaultLevelStroke.Color = clWhite
-      Appearance.Font.Charset = DEFAULT_CHARSET
       Appearance.Font.Color = clWindowText
       Appearance.Font.Height = -11
-      Appearance.Font.Name = 'Tahoma'
       Appearance.Font.Style = []
       Appearance.InActiveBitmap.Data = {
         1054544D53464E435356474269746D6170C00500003C3F786D6C207665727369
@@ -333,10 +417,10 @@ object Form2: TForm2
       OnValueChanged = TMSFNCRating1ValueChanged
     end
     object TMSFNCRating2: TTMSFNCRating
-      Left = 72
-      Top = 143
+      Left = 24
+      Top = 124
       Width = 200
-      Height = 22
+      Height = 32
       ParentDoubleBuffered = False
       DoubleBuffered = True
       TabOrder = 1
@@ -366,17 +450,13 @@ object Form2: TForm2
         3E0D0A3C2F673E0D0A3C673E0D0A3C2F673E0D0A3C673E0D0A3C2F673E0D0A3C
         673E0D0A3C2F673E0D0A3C673E0D0A3C2F673E0D0A3C2F7376673E0D0A}
       Appearance.DefaultLevelFill.Color = 16297243
-      Appearance.DefaultLevelFont.Charset = DEFAULT_CHARSET
       Appearance.DefaultLevelFont.Color = clWindowText
       Appearance.DefaultLevelFont.Height = -11
-      Appearance.DefaultLevelFont.Name = 'Tahoma'
       Appearance.DefaultLevelFont.Style = []
       Appearance.DefaultLevelStroke.Kind = gskNone
       Appearance.DefaultLevelStroke.Color = clWhite
-      Appearance.Font.Charset = DEFAULT_CHARSET
       Appearance.Font.Color = clWindowText
       Appearance.Font.Height = -11
-      Appearance.Font.Name = 'Tahoma'
       Appearance.Font.Style = []
       Appearance.InActiveBitmap.Data = {
         1054544D53464E435356474269746D6170C00500003C3F786D6C207665727369
@@ -440,10 +520,10 @@ object Form2: TForm2
       OnValueChanged = TMSFNCRating2ValueChanged
     end
     object TMSFNCRating3: TTMSFNCRating
-      Left = 72
-      Top = 200
+      Left = 24
+      Top = 204
       Width = 200
-      Height = 22
+      Height = 32
       ParentDoubleBuffered = False
       DoubleBuffered = True
       TabOrder = 2
@@ -473,17 +553,13 @@ object Form2: TForm2
         3E0D0A3C2F673E0D0A3C673E0D0A3C2F673E0D0A3C673E0D0A3C2F673E0D0A3C
         673E0D0A3C2F673E0D0A3C673E0D0A3C2F673E0D0A3C2F7376673E0D0A}
       Appearance.DefaultLevelFill.Color = 16297243
-      Appearance.DefaultLevelFont.Charset = DEFAULT_CHARSET
       Appearance.DefaultLevelFont.Color = clWindowText
       Appearance.DefaultLevelFont.Height = -11
-      Appearance.DefaultLevelFont.Name = 'Tahoma'
       Appearance.DefaultLevelFont.Style = []
       Appearance.DefaultLevelStroke.Kind = gskNone
       Appearance.DefaultLevelStroke.Color = clWhite
-      Appearance.Font.Charset = DEFAULT_CHARSET
       Appearance.Font.Color = clWindowText
       Appearance.Font.Height = -11
-      Appearance.Font.Name = 'Tahoma'
       Appearance.Font.Style = []
       Appearance.InActiveBitmap.Data = {
         1054544D53464E435356474269746D6170C00500003C3F786D6C207665727369
@@ -546,20 +622,16 @@ object Form2: TForm2
       Layout.ValueType = pvtValue
       Levels = <
         item
-          ActiveFont.Charset = DEFAULT_CHARSET
           ActiveFont.Color = clWindowText
           ActiveFont.Height = -11
-          ActiveFont.Name = 'Segoe UI'
           ActiveFont.Style = []
           Fill.Color = 3937500
           Stroke.Kind = gskNone
           Stroke.Color = clWhite
         end
         item
-          ActiveFont.Charset = DEFAULT_CHARSET
           ActiveFont.Color = clWindowText
           ActiveFont.Height = -11
-          ActiveFont.Name = 'Segoe UI'
           ActiveFont.Style = []
           Fill.Color = 1818619
           LevelPosition = 20.000000000000000000
@@ -567,10 +639,8 @@ object Form2: TForm2
           Stroke.Color = clWhite
         end
         item
-          ActiveFont.Charset = DEFAULT_CHARSET
           ActiveFont.Color = clWindowText
           ActiveFont.Height = -11
-          ActiveFont.Name = 'Segoe UI'
           ActiveFont.Style = []
           Fill.Color = 7075826
           LevelPosition = 60.000000000000000000
@@ -578,10 +648,8 @@ object Form2: TForm2
           Stroke.Color = clWhite
         end
         item
-          ActiveFont.Charset = DEFAULT_CHARSET
           ActiveFont.Color = clWindowText
           ActiveFont.Height = -11
-          ActiveFont.Name = 'Tahoma'
           ActiveFont.Style = []
           Fill.Color = 5304400
           LevelPosition = 80.000000000000000000
@@ -594,10 +662,10 @@ object Form2: TForm2
       OnValueChanged = TMSFNCRating3ValueChanged
     end
     object TMSFNCRating4: TTMSFNCRating
-      Left = 72
-      Top = 256
+      Left = 24
+      Top = 284
       Width = 200
-      Height = 22
+      Height = 32
       ParentDoubleBuffered = False
       DoubleBuffered = True
       TabOrder = 3
@@ -626,17 +694,13 @@ object Form2: TForm2
         6C6C3A234646373937393B222F3E3C2F673E3C2F673E3C672069643D224C6179
         65725F31222F3E3C2F7376673E}
       Appearance.DefaultLevelFill.Color = 16297243
-      Appearance.DefaultLevelFont.Charset = DEFAULT_CHARSET
       Appearance.DefaultLevelFont.Color = clWindowText
       Appearance.DefaultLevelFont.Height = -11
-      Appearance.DefaultLevelFont.Name = 'Tahoma'
       Appearance.DefaultLevelFont.Style = []
       Appearance.DefaultLevelStroke.Kind = gskNone
       Appearance.DefaultLevelStroke.Color = clWhite
-      Appearance.Font.Charset = DEFAULT_CHARSET
       Appearance.Font.Color = clWindowText
       Appearance.Font.Height = -11
-      Appearance.Font.Name = 'Tahoma'
       Appearance.Font.Style = []
       Appearance.InActiveBitmap.Data = {
         1054544D53464E435356474269746D6170C00500003C3F786D6C207665727369
@@ -702,24 +766,20 @@ object Form2: TForm2
     end
     object TMSFNCProgressBar1: TTMSFNCProgressBar
       Left = 24
-      Top = 376
-      Width = 393
-      Height = 20
+      Top = 344
+      Width = 480
+      Height = 24
       ParentDoubleBuffered = False
       DoubleBuffered = True
       TabOrder = 4
       Appearance.DefaultLevelFill.Color = 16297243
-      Appearance.DefaultLevelFont.Charset = DEFAULT_CHARSET
       Appearance.DefaultLevelFont.Color = clWindowText
       Appearance.DefaultLevelFont.Height = -11
-      Appearance.DefaultLevelFont.Name = 'Tahoma'
       Appearance.DefaultLevelFont.Style = []
       Appearance.DefaultLevelStroke.Kind = gskNone
       Appearance.DefaultLevelStroke.Color = clWhite
-      Appearance.Font.Charset = DEFAULT_CHARSET
       Appearance.Font.Color = clWindowText
       Appearance.Font.Height = -11
-      Appearance.Font.Name = 'Tahoma'
       Appearance.Font.Style = []
       Appearance.Stroke.Color = 11119017
       Layout.Rounding = 10.000000000000000000
@@ -729,22 +789,23 @@ object Form2: TForm2
       Maximum = 100.000000000000000000
       Minimum = 0.000000000000000000
       Value = 0.000000000000000000
+      Anchors = [akLeft, akTop, akRight]
     end
-    object Button1: TButton
-      Left = 184
-      Top = 402
-      Width = 75
-      Height = 25
-      Caption = 'Submit'
+    object Button1: TTMSFNCButton
+      Left = 24
+      Top = 384
+      Width = 120
+      Height = 32
+      Text = 'Submit'
       TabOrder = 5
       Visible = False
       OnClick = Button1Click
     end
     object TMSFNCWaitingIndicator1: TTMSFNCWaitingIndicator
-      Left = 336
-      Top = 376
-      Width = 100
-      Height = 100
+      Left = 160
+      Top = 372
+      Width = 56
+      Height = 56
       ParentDoubleBuffered = False
       DoubleBuffered = True
       TabOrder = 6
@@ -809,5 +870,10 @@ object Form2: TForm2
       AnimationSpeed = 4.000000000000000000
       OverlayParent = True
     end
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

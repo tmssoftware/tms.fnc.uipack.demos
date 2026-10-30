@@ -3,8 +3,8 @@ object Form1: TForm1
   Height = 720
   Top = 327
   Width = 658
-  Caption = 'Demo ProgressBar, Rating and Waiting Indicator'
-  ClientHeight = 720
+  Caption = 'TMS FNC UI Pack - Progress bar and Rating'
+  ClientHeight = 792
   ClientWidth = 658
   DesignTimePPI = 144
   Icon.Data = {
@@ -145,6 +145,40 @@ object Form1: TForm1
     0000
   }
   LCLVersion = '2.0.6.0'
+  object DemoHeader: TPanel
+    Left = 0
+    Height = 72
+    Top = 0
+    Width = 658
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 72
+    ClientWidth = 658
+    TabOrder = 0
+    object DemoTitle: TLabel
+      Left = 24
+      Height = 30
+      Top = 12
+      Width = 610
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Progress bar, rating and waiting indicator'
+      Font.Height = -20
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object DemoDescription: TLabel
+      Left = 24
+      Height = 20
+      Top = 42
+      Width = 610
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Rate the product: every rating moves the progress bar, a full bar enables Submit'
+      Font.Color = clGrayText
+      ParentFont = False
+    end
+  end
   object TMSFNCPanel1: TTMSFNCPanel
     Left = 0
     Height = 720

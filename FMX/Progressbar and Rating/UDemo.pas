@@ -7,24 +7,30 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes,
   FMX.TMSFNCProgressBar, FMX.TMSFNCCustomControl, FMX.TMSFNCWaitingIndicator,
-  FMX.Controls.Presentation, FMX.StdCtrls, FMX.TMSFNCPanel, System.Threading;
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.TMSFNCPanel, System.Threading,
+  FMX.TMSFNCButton, FMX.TMSFNCHTMLText, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm2 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCPanel1: TTMSFNCPanel;
-    Label1: TLabel;
+    Label1: TTMSFNCHTMLText;
     TMSFNCRating1: TTMSFNCRating;
-    Label2: TLabel;
-    Label3: TLabel;
+    Label2: TTMSFNCHTMLText;
+    Label3: TTMSFNCHTMLText;
     TMSFNCRating2: TTMSFNCRating;
-    Label4: TLabel;
+    Label4: TTMSFNCHTMLText;
     TMSFNCProgressBar1: TTMSFNCProgressBar;
-    Button1: TButton;
-    Label5: TLabel;
+    Button1: TTMSFNCButton;
+    Label5: TTMSFNCHTMLText;
     TMSFNCRating3: TTMSFNCRating;
-    Label6: TLabel;
+    Label6: TTMSFNCHTMLText;
     TMSFNCRating4: TTMSFNCRating;
-    Label7: TLabel;
+    Label7: TTMSFNCHTMLText;
     TMSFNCWaitingIndicator1: TTMSFNCWaitingIndicator;
     procedure TMSFNCRating1ValueChanged(Sender: TObject; AValue: Single);
     procedure TMSFNCRating2ValueChanged(Sender: TObject; AValue: Single);

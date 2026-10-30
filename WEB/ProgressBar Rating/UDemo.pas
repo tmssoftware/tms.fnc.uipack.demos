@@ -7,20 +7,26 @@ uses
   WEBLib.Forms, WEBLib.Dialogs, VCL.TMSFNCTypes, VCL.TMSFNCUtils,
   VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, Vcl.Controls,
   VCL.TMSFNCCustomControl, VCL.TMSFNCPanel, VCL.TMSFNCProgressBar, Vcl.StdCtrls,
-  WEBLib.StdCtrls, VCL.TMSFNCWaitingIndicator, WEBLib.ExtCtrls;
+  WEBLib.StdCtrls, WEBLib.TMSFNCButton, VCL.TMSFNCWaitingIndicator, WEBLib.ExtCtrls,
+  WEBLib.TMSFNCCustomControl, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCGraphicsTypes, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCPanel, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector, WEBLib.TMSFNCTypes, WEBLib.TMSFNCUtils;
 
 type
   TForm2 = class(TWebForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCPanel1: TTMSFNCPanel;
-    WebLabel1: TWebLabel;
-    WebLabel2: TWebLabel;
-    WebLabel3: TWebLabel;
-    WebLabel4: TWebLabel;
-    WebLabel5: TWebLabel;
-    WebLabel7: TWebLabel;
-    WebLabel8: TWebLabel;
+    WebLabel1: TTMSFNCHTMLText;
+    WebLabel2: TTMSFNCHTMLText;
+    WebLabel3: TTMSFNCHTMLText;
+    WebLabel4: TTMSFNCHTMLText;
+    WebLabel5: TTMSFNCHTMLText;
+    WebLabel7: TTMSFNCHTMLText;
+    WebLabel8: TTMSFNCHTMLText;
     TMSFNCProgressBar1: TTMSFNCProgressBar;
-    WebButton1: TWebButton;
+    WebButton1: TTMSFNCButton;
     TMSFNCWaitingIndicator1: TTMSFNCWaitingIndicator;
     WebTimer1: TWebTimer;
     TMSFNCRating1: TTMSFNCRating;

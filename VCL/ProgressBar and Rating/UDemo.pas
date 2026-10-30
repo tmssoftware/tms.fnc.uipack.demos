@@ -7,23 +7,29 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VCL.TMSFNCTypes, VCL.TMSFNCUtils,
   VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCProgressBar,
   VCL.TMSFNCCustomControl, VCL.TMSFNCPanel, Vcl.StdCtrls, System.Threading,
-  VCL.TMSFNCWaitingIndicator;
+  VCL.TMSFNCWaitingIndicator,
+  VCL.TMSFNCButton, VCL.TMSFNCHTMLText, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm2 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCPanel1: TTMSFNCPanel;
     TMSFNCRating1: TTMSFNCRating;
-    Label1: TLabel;
-    Label3: TLabel;
+    Label1: TTMSFNCHTMLText;
+    Label3: TTMSFNCHTMLText;
     TMSFNCRating2: TTMSFNCRating;
-    Label4: TLabel;
-    Label5: TLabel;
+    Label4: TTMSFNCHTMLText;
+    Label5: TTMSFNCHTMLText;
     TMSFNCRating3: TTMSFNCRating;
-    Label7: TLabel;
+    Label7: TTMSFNCHTMLText;
     TMSFNCRating4: TTMSFNCRating;
-    Label8: TLabel;
+    Label8: TTMSFNCHTMLText;
     TMSFNCProgressBar1: TTMSFNCProgressBar;
-    Button1: TButton;
+    Button1: TTMSFNCButton;
     TMSFNCWaitingIndicator1: TTMSFNCWaitingIndicator;
     procedure TMSFNCRating1ValueChanged(Sender: TObject; AValue: Single);
     procedure TMSFNCRating2ValueChanged(Sender: TObject; AValue: Single);

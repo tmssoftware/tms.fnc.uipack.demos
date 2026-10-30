@@ -1,38 +1,102 @@
 object Form2: TForm2
   Left = 0
   Top = 0
-  Caption = 'Demo Progress Bar, Rating and Waiting Indicator'
-  ClientHeight = 480
-  ClientWidth = 440
+  Caption = 'TMS FNC UI Pack - Progress bar and Rating'
+  ClientHeight = 520
+  ClientWidth = 560
   Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   DesignerMasterStyle = 0
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 440.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 216.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Progress bar, rating and waiting indicator'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 216.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Rate the product: every rating moves the progress bar, a full bar enables Submit'
+    end
+  end
   object TMSFNCPanel1: TTMSFNCPanel
     Align = Client
     Padding.Top = 28.000000000000000000
     Size.Width = 440.000000000000000000
     Size.Height = 480.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 0
+    TabOrder = 1
     Sections = <>
     Header.Text = 'Happiness Survey'
     Footer.Text = 'Footer'
-    object Label1: TLabel
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+    Header.Visible = False
+    object Label1: TTMSFNCHTMLText
       Position.X = 24.000000000000000000
-      Position.Y = 64.000000000000000000
-      Size.Width = 161.000000000000000000
-      Size.Height = 25.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 320.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       Text = 'Quality of the components:'
       TabOrder = 0
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
     object TMSFNCRating1: TTMSFNCRating
-      Position.X = 72.000000000000000000
-      Position.Y = 88.000000000000000000
+      Position.X = 24.000000000000000000
+      Position.Y = 44.000000000000000000
       Size.Width = 200.000000000000000000
-      Size.Height = 22.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
       Appearance.ActiveBitmap.PNG = {
@@ -126,28 +190,38 @@ object Form2: TForm2
       Value = 1.000000000000000000
       OnValueChanged = TMSFNCRating1ValueChanged
     end
-    object Label2: TLabel
-      Position.X = 288.000000000000000000
-      Position.Y = 94.000000000000000000
-      Size.Width = 145.000000000000000000
-      Size.Height = 17.000000000000000000
+    object Label2: TTMSFNCHTMLText
+      Position.X = 256.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 240.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       Text = '(Slide from progress end)'
       TabOrder = 2
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      TextRole = htrSecondary
     end
-    object Label3: TLabel
+    object Label3: TTMSFNCHTMLText
       Position.X = 24.000000000000000000
-      Position.Y = 128.000000000000000000
-      Text = 'Quality of support:'
-      TabOrder = 8
+      Position.Y = 96.000000000000000000
+      Text = 'Range of components:'
+      TabOrder = 3
+      Size.Width = 320.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
     object TMSFNCRating2: TTMSFNCRating
-      Position.X = 72.000000000000000000
-      Position.Y = 152.000000000000000000
+      Position.X = 24.000000000000000000
+      Position.Y = 124.000000000000000000
       Size.Width = 200.000000000000000000
-      Size.Height = 22.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 9
+      TabOrder = 4
       Appearance.ActiveBitmap.PNG = {
         89504E470D0A1A0A0000000D49484452000000360000003608060000008C456A
         DD0000000473424954080808087C08648800000022494441546881EDC1310100
@@ -241,34 +315,49 @@ object Form2: TForm2
       Value = 0.000000000000000000
       OnValueChanged = TMSFNCRating2ValueChanged
     end
-    object Label4: TLabel
-      Position.X = 288.000000000000000000
-      Position.Y = 158.000000000000000000
+    object Label4: TTMSFNCHTMLText
+      Position.X = 256.000000000000000000
+      Position.Y = 128.000000000000000000
       Text = '(Click to set value)'
-      TabOrder = 10
+      TabOrder = 5
+      Size.Width = 240.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      TextRole = htrSecondary
     end
-    object Button1: TButton
-      Position.X = 180.000000000000000000
-      Position.Y = 440.000000000000000000
-      TabOrder = 11
+    object Button1: TTMSFNCButton
+      Position.X = 24.000000000000000000
+      Position.Y = 384.000000000000000000
+      TabOrder = 6
       Text = 'Submit'
-      TextSettings.Trimming = None
       Visible = False
       OnClick = Button1Click
+      Size.Width = 120.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
     end
-    object Label5: TLabel
+    object Label5: TTMSFNCHTMLText
       Position.X = 24.000000000000000000
-      Position.Y = 192.000000000000000000
+      Position.Y = 176.000000000000000000
       Text = 'Quality of support:'
-      TabOrder = 3
+      TabOrder = 7
+      Size.Width = 320.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
     object TMSFNCRating3: TTMSFNCRating
-      Position.X = 72.000000000000000000
-      Position.Y = 216.000000000000000000
+      Position.X = 24.000000000000000000
+      Position.Y = 204.000000000000000000
       Size.Width = 200.000000000000000000
-      Size.Height = 22.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 4
+      TabOrder = 8
       Appearance.ActiveBitmap.PNG = {
         89504E470D0A1A0A0000000D49484452000000360000003608060000008C456A
         DD0000000473424954080808087C08648800000022494441546881EDC1310100
@@ -383,19 +472,25 @@ object Form2: TForm2
       Value = 0.000000000000000000
       OnValueChanged = TMSFNCRating3ValueChanged
     end
-    object Label6: TLabel
+    object Label6: TTMSFNCHTMLText
       Position.X = 24.000000000000000000
       Position.Y = 256.000000000000000000
       Text = 'Love for TMS:'
-      TabOrder = 5
+      TabOrder = 9
+      Size.Width = 320.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
     object TMSFNCRating4: TTMSFNCRating
-      Position.X = 72.000000000000000000
-      Position.Y = 280.000000000000000000
+      Position.X = 24.000000000000000000
+      Position.Y = 284.000000000000000000
       Size.Width = 200.000000000000000000
-      Size.Height = 22.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 6
+      TabOrder = 10
       Appearance.ActiveBitmap.PNG = {
         89504E470D0A1A0A0000000D4948445200000200000002000806000000F478D4
         FA0000000473424954080808087C0864880000040F49444154789CEDC1310100
@@ -520,20 +615,24 @@ object Form2: TForm2
       OnValueChange = TMSFNCRating4ValueChange
       OnValueChanged = TMSFNCRating4ValueChanged
     end
-    object Label7: TLabel
-      Position.X = 288.000000000000000000
-      Position.Y = 286.000000000000000000
-      Size.Width = 137.000000000000000000
-      Size.Height = 17.000000000000000000
+    object Label7: TTMSFNCHTMLText
+      Position.X = 256.000000000000000000
+      Position.Y = 288.000000000000000000
+      Size.Width = 240.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       Text = '*Can only be 3 or more'
-      TabOrder = 7
+      TabOrder = 11
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      TextRole = htrSecondary
     end
     object TMSFNCWaitingIndicator1: TTMSFNCWaitingIndicator
-      Position.X = 336.000000000000000000
-      Position.Y = 376.000000000000000000
-      Size.Width = 100.000000000000000000
-      Size.Height = 100.000000000000000000
+      Position.X = 160.000000000000000000
+      Position.Y = 372.000000000000000000
+      Size.Width = 56.000000000000000000
+      Size.Height = 56.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 12
       Active = False
@@ -664,11 +763,11 @@ object Form2: TForm2
       OverlayParent = True
     end
     object TMSFNCProgressBar1: TTMSFNCProgressBar
-      Anchors = [akLeft, akRight, akBottom]
-      Position.X = 56.000000000000000000
-      Position.Y = 416.000000000000000000
-      Size.Width = 330.000000000000000000
-      Size.Height = 20.000000000000000000
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 344.000000000000000000
+      Size.Width = 480.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 13
       Layout.Rounding = 10.000000000000000000
@@ -680,5 +779,10 @@ object Form2: TForm2
       CustomValue = ''
       Value = 0.000000000000000000
     end
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end
