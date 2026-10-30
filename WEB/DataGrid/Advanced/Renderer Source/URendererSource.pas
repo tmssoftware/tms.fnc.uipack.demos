@@ -15,18 +15,21 @@ uses
   WEBLib.Controls, WEBLib.ExtCtrls, VCL.TMSFNCTypes, VCL.TMSFNCUtils,
   VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCDataGridCell,
   VCL.TMSFNCDataGridData, VCL.TMSFNCDataGridBase, VCL.TMSFNCDataGridCore,
-  VCL.TMSFNCDataGridRenderer, VCL.TMSFNCCustomControl, VCL.TMSFNCDataGrid;
+  VCL.TMSFNCDataGridRenderer, VCL.TMSFNCCustomControl, VCL.TMSFNCDataGrid,
+  WEBLib.TMSFNCButton, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCPanel, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector;
 
 type
   TFormRendererSource = class(TWebForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     lblTitle: TWebLabel;
     lblDescription: TWebLabel;
-    Panel1: TWebPanel;
-    btnSales: TWebButton;
-    btnInventory: TWebButton;
-    btnDefault: TWebButton;
-    btnAddRow: TWebButton;
-    lblStatus: TWebLabel;
+    Panel1: TTMSFNCPanel;
+    btnSales: TTMSFNCButton;
+    btnInventory: TTMSFNCButton;
+    btnDefault: TTMSFNCButton;
+    btnAddRow: TTMSFNCButton;
+    lblStatus: TTMSFNCHTMLText;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     procedure FormCreate(Sender: TObject);
     procedure btnSalesClick(Sender: TObject);
@@ -237,7 +240,7 @@ end;
 
 procedure TFormRendererSource.UpdateStatus(const ALayerName: string);
 begin
-  lblStatus.Caption := Format('Active layer: %s   -   %d columns x %d rows',
+  lblStatus.Text := Format('Active layer: %s   -   %d columns x %d rows',
     [ALayerName, TMSFNCDataGrid1.ColumnCount, TMSFNCDataGrid1.RowCount]);
 end;
 

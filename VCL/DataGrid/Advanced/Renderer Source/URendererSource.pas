@@ -10,16 +10,22 @@ uses
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics,
   VCL.TMSFNCGraphicsTypes, VCL.TMSFNCDataGridBase,
   VCL.TMSFNCDataGridCell, VCL.TMSFNCDataGridCore,
-  VCL.TMSFNCDataGridRenderer, System.Rtti;
+  VCL.TMSFNCDataGridRenderer, System.Rtti,
+  VCL.TMSFNCButton, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TFormRendererSource = class(TForm)
-    Panel1: TPanel;
-    btnSales: TButton;
-    btnInventory: TButton;
-    btnDefault: TButton;
-    btnAddRow: TButton;
-    lblStatus: TLabel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    btnSales: TTMSFNCButton;
+    btnInventory: TTMSFNCButton;
+    btnDefault: TTMSFNCButton;
+    btnAddRow: TTMSFNCButton;
+    lblStatus: TTMSFNCHTMLText;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     procedure FormCreate(Sender: TObject);
     procedure btnSalesClick(Sender: TObject);
@@ -230,7 +236,7 @@ end;
 
 procedure TFormRendererSource.UpdateStatus(const ALayerName: string);
 begin
-  lblStatus.Caption := Format('Active layer: %s   -   %d columns x %d rows',
+  lblStatus.Text := Format('Active layer: %s   -   %d columns x %d rows',
     [ALayerName, TMSFNCDataGrid1.ColumnCount, TMSFNCDataGrid1.RowCount]);
 end;
 
