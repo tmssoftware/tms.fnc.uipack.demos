@@ -99,3 +99,6 @@ __pycache__/
 .DS_Store
 Thumbs.db
 Desktop.ini
+
+# demo tools (tools/README.md)
+__pycache__/
