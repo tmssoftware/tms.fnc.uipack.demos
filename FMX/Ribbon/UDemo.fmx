@@ -2,9 +2,9 @@ object Form130: TForm130
   Left = 0
   Top = 0
   BorderStyle = None
-  Caption = 'TMS FNC Ribbon Demo'
-  ClientHeight = 480
-  ClientWidth = 637
+  Caption = 'TMS FNC UI Pack - Ribbon'
+  ClientHeight = 640
+  ClientWidth = 960
   Padding.Left = 1.000000000000000000
   Padding.Top = 1.000000000000000000
   Padding.Right = 1.000000000000000000
@@ -1623,5 +1623,10 @@ object Form130: TForm130
         Progress.ShowIndication = False
       end>
     BitmapContainer = TMSFNCBitmapContainer1
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

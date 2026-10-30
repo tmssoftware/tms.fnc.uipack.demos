@@ -9,10 +9,12 @@ uses
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes,
   VCL.TMSFNCScrollControl, VCL.TMSFNCRichEditorBase, VCL.TMSFNCPageControl,
   VCL.TMSFNCTabSet, VCL.TMSFNCHTMLText, VCL.TMSFNCToolBar,
-  VCL.TMSFNCCustomControl, VCL.TMSFNCStatusBar;
+  VCL.TMSFNCCustomControl, VCL.TMSFNCStatusBar,
+  VCL.TMSFNCTheme;
 
 type
   TForm130 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     TMSFNCRichEditor1: TTMSFNCRichEditor;
     TMSFNCRibbon1: TTMSFNCRibbon;

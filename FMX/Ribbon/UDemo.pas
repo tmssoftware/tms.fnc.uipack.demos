@@ -9,10 +9,12 @@ uses
   FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes,
   FMX.TMSFNCScrollControl, FMX.TMSFNCRichEditorBase, FMX.TMSFNCPageControl,
   FMX.TMSFNCTabSet, FMX.TMSFNCHTMLText, FMX.TMSFNCToolBar,
-  FMX.TMSFNCCustomControl, FMX.TMSFNCStatusBar;
+  FMX.TMSFNCCustomControl, FMX.TMSFNCStatusBar,
+  FMX.TMSFNCTheme;
 
 type
   TForm130 = class(TTMSFNCRibbonForm)
+    ThemeManager: TTMSFNCThemeManager;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     TMSFNCRibbon1: TTMSFNCRibbon;
     TMSFNCRibbon1QAT: TTMSFNCRibbonQAT;
