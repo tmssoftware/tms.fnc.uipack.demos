@@ -11,22 +11,28 @@ uses
   FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer, Data.Bind.Controls,
   Data.DB, FMX.TMSFNCCustomComponent, FMX.TMSFNCDataGridDatabaseAdapter,
   Datasnap.DBClient, FMX.Layouts, Fmx.Bind.Navigator, FMX.TMSFNCDataGrid,
-  Data.Bind.Components, Data.Bind.DBScope;
+  Data.Bind.Components, Data.Bind.DBScope,
+  FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Panel1: TPanel;
-    Button2: TButton;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    Button2: TTMSFNCButton;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     BindNavigator1: TBindNavigator;
     ClientDataSet1: TClientDataSet;
     TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter;
     DataSource1: TDataSource;
-    Button1: TButton;
+    Button1: TTMSFNCButton;
     BindSourceDB1: TBindSourceDB;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    CheckBox3: TCheckBox;
+    CheckBox1: TTMSFNCCheckBox;
+    CheckBox2: TTMSFNCCheckBox;
+    CheckBox3: TTMSFNCCheckBox;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
@@ -69,12 +75,12 @@ end;
 
 procedure TForm130.CheckBox2Change(Sender: TObject);
 begin
-  TMSFNCDataGridDatabaseAdapter1.ShowMemoFields := CheckBox2.IsChecked;
+  TMSFNCDataGridDatabaseAdapter1.ShowMemoFields := CheckBox2.Checked;
 end;
 
 procedure TForm130.CheckBox3Change(Sender: TObject);
 begin
-  TMSFNCDataGridDatabaseAdapter1.ShowPictureFields := CheckBox3.IsChecked;
+  TMSFNCDataGridDatabaseAdapter1.ShowPictureFields := CheckBox3.Checked;
 end;
 
 procedure TForm130.FormCreate(Sender: TObject);
