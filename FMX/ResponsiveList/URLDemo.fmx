@@ -69,7 +69,6 @@ object Form4: TForm4
     Touch.InteractiveGestures = [LongTap, DoubleTap]
     Cursor = crDefault
     Font.Size = 14.000000000000000000
-    Font.Name = 'Segoe UI'
     Position.X = 40.000000000000000000
     Position.Y = 120.000000000000000000
     Size.Width = 233.000000000000000000

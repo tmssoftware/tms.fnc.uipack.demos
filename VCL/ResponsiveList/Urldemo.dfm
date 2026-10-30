@@ -48,13 +48,13 @@ object Form3: TForm3
       Height = 30
       Anchors = [akLeft, akTop, akRight]
       Font.Height = -20
-      Font.Name = 'Segoe UI Semibold'
       TabOrder = 1
       HorizontalTextAlign = gtaLeading
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
       Text = 'ResponsiveList'
+      Font.Name = 'Segoe UI Semibold'
     end
     object DemoDescription: TTMSFNCHTMLText
       Left = 24
@@ -83,7 +83,6 @@ object Form3: TForm3
     VertScrollBar.Tracking = True
     ReadOnly = True
     TabOrder = 0
-    BorderColor = clNone
     Conditions = <
       item
         Columns = 0
