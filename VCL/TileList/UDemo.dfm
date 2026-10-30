@@ -47,13 +47,13 @@ object Form130: TForm130
       Height = 30
       Anchors = [akLeft, akTop, akRight]
       Font.Height = -20
-      Font.Name = 'Segoe UI Semibold'
       TabOrder = 1
       HorizontalTextAlign = gtaLeading
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
       Text = 'TileList'
+      Font.Name = 'Segoe UI Semibold'
     end
     object DemoDescription: TTMSFNCHTMLText
       Left = 24
@@ -95,12 +95,12 @@ object Form130: TForm130
       Margins.Bottom = 0
       Align = alTop
       Font.Height = -15
-      Font.Name = 'Segoe UI Semibold'
       HorizontalTextAlign = gtaLeading
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
       Text = 'Navigation mode'
+      Font.Name = 'Segoe UI Semibold'
     end
     object RadioButton1: TTMSFNCRadioButton
       AlignWithMargins = True
@@ -147,12 +147,12 @@ object Form130: TForm130
       Margins.Bottom = 0
       Align = alTop
       Font.Height = -15
-      Font.Name = 'Segoe UI Semibold'
       HorizontalTextAlign = gtaLeading
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
       Text = 'Orientation'
+      Font.Name = 'Segoe UI Semibold'
     end
     object RadioButton3: TTMSFNCRadioButton
       AlignWithMargins = True
@@ -199,12 +199,12 @@ object Form130: TForm130
       Margins.Bottom = 0
       Align = alTop
       Font.Height = -15
-      Font.Name = 'Segoe UI Semibold'
       HorizontalTextAlign = gtaLeading
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
       Text = 'Options'
+      Font.Name = 'Segoe UI Semibold'
     end
     object CheckBox1: TTMSFNCCheckBox
       AlignWithMargins = True
@@ -314,57 +314,13 @@ object Form130: TForm130
     Appearance.BadgeFont.Height = -11
     Appearance.BadgeFont.Name = 'Segoe UI'
     Appearance.BadgeFont.Style = [fsBold]
-    Appearance.Stroke.Color = 11119017
-    Appearance.Fill.Color = 16578806
-    Appearance.StrokeHover.Color = 10061943
-    Appearance.FillHover.Color = 16441019
-    Appearance.StrokeDown.Color = 9470064
-    Appearance.FillDown.Color = 16039284
-    Appearance.StrokeSelected.Color = 5197615
-    Appearance.FillSelected.Color = 16039284
-    Appearance.StrokeDisabled.Color = 11119017
-    Appearance.FillDisabled.Color = clSilver
     Appearance.TitleFont.Charset = DEFAULT_CHARSET
-    Appearance.TitleFont.Color = clBlack
     Appearance.TitleFont.Height = -11
-    Appearance.TitleFont.Name = 'Segoe UI'
     Appearance.TitleFont.Style = []
     Appearance.DescriptionFont.Charset = DEFAULT_CHARSET
-    Appearance.DescriptionFont.Color = clBlack
     Appearance.DescriptionFont.Height = -11
-    Appearance.DescriptionFont.Name = 'Segoe UI'
     Appearance.DescriptionFont.Style = []
     Columns = 3
-    Header.Fill.Color = 16380654
-    Header.Bullets.SelectedFill.Color = clGray
-    Header.Bullets.SelectedStroke.Color = clGray
-    Header.ArrowLeft.Fill.Color = 16380654
-    Header.ArrowLeft.DownFill.Color = 16380654
-    Header.ArrowLeft.HoverFill.Color = 16380654
-    Header.ArrowLeft.ArrowFill.Color = 6908265
-    Header.ArrowLeft.ArrowDownFill.Color = 6908265
-    Header.ArrowLeft.ArrowHoverFill.Color = 6908265
-    Header.ArrowRight.Fill.Color = 16380654
-    Header.ArrowRight.DownFill.Color = 16380654
-    Header.ArrowRight.HoverFill.Color = 16380654
-    Header.ArrowRight.ArrowFill.Color = 6908265
-    Header.ArrowRight.ArrowDownFill.Color = 6908265
-    Header.ArrowRight.ArrowHoverFill.Color = 6908265
-    Footer.Fill.Color = 16380654
-    Footer.Bullets.SelectedFill.Color = clGray
-    Footer.Bullets.SelectedStroke.Color = clGray
-    Footer.ArrowLeft.Fill.Color = 16380654
-    Footer.ArrowLeft.DownFill.Color = 16380654
-    Footer.ArrowLeft.HoverFill.Color = 16380654
-    Footer.ArrowLeft.ArrowFill.Color = 6908265
-    Footer.ArrowLeft.ArrowDownFill.Color = 6908265
-    Footer.ArrowLeft.ArrowHoverFill.Color = 6908265
-    Footer.ArrowRight.Fill.Color = 16380654
-    Footer.ArrowRight.DownFill.Color = 16380654
-    Footer.ArrowRight.HoverFill.Color = 16380654
-    Footer.ArrowRight.ArrowFill.Color = 6908265
-    Footer.ArrowRight.ArrowDownFill.Color = 6908265
-    Footer.ArrowRight.ArrowHoverFill.Color = 6908265
     OnItemClick = TMSFNCTileList1ItemClick
     ExplicitLeft = 16
     ExplicitTop = 176
