@@ -1,436 +1,68 @@
 object Form3: TForm3
   Left = 0
   Top = 0
-  Caption = 'Timeline Positions'
-  ClientHeight = 630
-  ClientWidth = 780
+  Caption = 'TMS FNC UI Pack - Timeline Positions'
+  ClientHeight = 640
+  ClientWidth = 1000
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   DesignerMasterStyle = 0
-  object ScrollBox1: TScrollBox
-    Align = Client
-    Size.Width = 530.000000000000000000
-    Size.Height = 430.000000000000000000
+  Position = ScreenCenter
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 780.000000000000000000
+    Size.Height = 72.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    Viewport.Width = 530.000000000000000000
-    Viewport.Height = 430.000000000000000000
-    object PanelSettings: TPanel
-      Align = Top
-      Size.Width = 530.000000000000000000
-      Size.Height = 217.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 1
-      object Label1: TLabel
-        StyledSettings = [Family, FontColor]
-        Position.X = 8.000000000000000000
-        Position.Y = 64.000000000000000000
-        TextSettings.Font.Size = 14.000000000000000000
-        TextSettings.Font.StyleExt = {00070000000000000004000000}
-        TextSettings.Trimming = None
-        Text = 'Division'
-        TabOrder = 1
-      end
-      object Label2: TLabel
-        Position.X = 40.000000000000000000
-        Position.Y = 89.000000000000000000
-        Size.Width = 65.000000000000000000
-        Size.Height = 17.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Trimming = None
-        Text = 'Position:'
-        TabOrder = 6
-      end
-      object DivPosLeft: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 144.000000000000000000
-        Position.Y = 84.000000000000000000
-        TabOrder = 18
-        Text = 'TopLeft'
-        TextSettings.Trimming = None
-        OnClick = DivPosLeftClick
-      end
-      object DivPosMiddle: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 232.000000000000000000
-        Position.Y = 84.000000000000000000
-        TabOrder = 8
-        Text = 'Middle'
-        TextSettings.Trimming = None
-        OnClick = DivPosMiddleClick
-      end
-      object DivPosRight: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 320.000000000000000000
-        Position.Y = 84.000000000000000000
-        TabOrder = 14
-        Text = 'BottomRight'
-        TextSettings.Trimming = None
-        OnClick = DivPosRightClick
-      end
-      object BtnTextCenter: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 232.000000000000000000
-        Position.Y = 140.000000000000000000
-        TabOrder = 15
-        Text = 'Center'
-        TextSettings.Trimming = None
-        OnClick = BtnTextCenterClick
-      end
-      object BtnTextHor: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 144.000000000000000000
-        Position.Y = 173.000000000000000000
-        TabOrder = 19
-        Text = 'Horizontal'
-        TextSettings.Trimming = None
-        OnClick = BtnTextHorClick
-      end
-      object BtnTextLeading: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 144.000000000000000000
-        Position.Y = 140.000000000000000000
-        TabOrder = 16
-        Text = 'Leading'
-        TextSettings.Trimming = None
-        OnClick = BtnTextLeadingClick
-      end
-      object BtnTextLeft: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 320.000000000000000000
-        Position.Y = 173.000000000000000000
-        TabOrder = 13
-        Text = 'Left'
-        TextSettings.Trimming = None
-        OnClick = BtnTextLeftClick
-      end
-      object BtnTextRight: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 408.000000000000000000
-        Position.Y = 173.000000000000000000
-        TabOrder = 11
-        Text = 'Right'
-        TextSettings.Trimming = None
-        OnClick = BtnTextRightClick
-      end
-      object BtnTextTrailing: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 320.000000000000000000
-        Position.Y = 140.000000000000000000
-        TabOrder = 9
-        Text = 'Trailing'
-        TextSettings.Trimming = None
-        OnClick = BtnTextTrailingClick
-      end
-      object BtnTextUpDown: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 232.000000000000000000
-        Position.Y = 173.000000000000000000
-        TabOrder = 10
-        Text = 'Upside Down'
-        TextSettings.Trimming = None
-        OnClick = BtnTextUpDownClick
-      end
-      object Label3: TLabel
-        StyledSettings = [Family, FontColor]
-        Position.X = 8.000000000000000000
-        Position.Y = 120.000000000000000000
-        TextSettings.Font.Size = 14.000000000000000000
-        TextSettings.Font.StyleExt = {00070000000000000004000000}
-        TextSettings.Trimming = None
-        Text = 'Text'
-        TabOrder = 2
-      end
-      object Label4: TLabel
-        Position.X = 40.000000000000000000
-        Position.Y = 145.000000000000000000
-        Size.Width = 65.000000000000000000
-        Size.Height = 17.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Trimming = None
-        Text = 'Position:'
-        TabOrder = 5
-      end
-      object Label5: TLabel
-        Position.X = 40.000000000000000000
-        Position.Y = 178.000000000000000000
-        Size.Width = 65.000000000000000000
-        Size.Height = 17.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Trimming = None
-        Text = 'Angle:'
-        TabOrder = 3
-      end
-      object BtnTLLeft: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 144.000000000000000000
-        Position.Y = 28.000000000000000000
-        TabOrder = 17
-        Text = 'TopLeft'
-        TextSettings.Trimming = None
-        OnClick = BtnTLLeftClick
-      end
-      object BtnTLCenter: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 232.000000000000000000
-        Position.Y = 28.000000000000000000
-        TabOrder = 7
-        Text = 'Middle'
-        TextSettings.Trimming = None
-        OnClick = BtnTLCenterClick
-      end
-      object BtnTLRight: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 320.000000000000000000
-        Position.Y = 28.000000000000000000
-        TabOrder = 12
-        Text = 'BottomRight'
-        TextSettings.Trimming = None
-        OnClick = BtnTLRightClick
-      end
-      object Label6: TLabel
-        StyledSettings = [Family, FontColor]
-        Position.X = 8.000000000000000000
-        Position.Y = 8.000000000000000000
-        TextSettings.Font.Size = 14.000000000000000000
-        TextSettings.Font.StyleExt = {00070000000000000004000000}
-        TextSettings.Trimming = None
-        Text = 'Timeline'
-        TabOrder = 0
-      end
-      object Label7: TLabel
-        Position.X = 40.000000000000000000
-        Position.Y = 33.000000000000000000
-        Size.Width = 65.000000000000000000
-        Size.Height = 17.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Trimming = None
-        Text = 'Position:'
-        TabOrder = 4
-      end
-    end
-    object Panel1: TPanel
-      Align = Top
-      Position.Y = 217.000000000000000000
-      Size.Width = 530.000000000000000000
-      Size.Height = 208.000000000000000000
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
-      object Button4: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 232.000000000000000000
-        Position.Y = 103.000000000000000000
-        TabOrder = 18
-        Text = 'Center'
-        TextSettings.Trimming = None
-        OnClick = Button4Click
-      end
-      object Button5: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 144.000000000000000000
-        Position.Y = 153.000000000000000000
-        TabOrder = 22
-        Text = 'Horizontal'
-        TextSettings.Trimming = None
-        OnClick = Button5Click
-      end
-      object Button6: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 144.000000000000000000
-        Position.Y = 103.000000000000000000
-        TabOrder = 20
-        Text = 'Leading'
-        TextSettings.Trimming = None
-        OnClick = Button6Click
-      end
-      object Button7: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 320.000000000000000000
-        Position.Y = 153.000000000000000000
-        TabOrder = 16
-        Text = 'Left'
-        TextSettings.Trimming = None
-        OnClick = Button7Click
-      end
-      object Button8: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 408.000000000000000000
-        Position.Y = 153.000000000000000000
-        TabOrder = 12
-        Text = 'Right'
-        TextSettings.Trimming = None
-        OnClick = Button8Click
-      end
-      object Button9: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 320.000000000000000000
-        Position.Y = 103.000000000000000000
-        TabOrder = 10
-        Text = 'Trailing'
-        TextSettings.Trimming = None
-        OnClick = Button9Click
-      end
-      object Button10: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 232.000000000000000000
-        Position.Y = 153.000000000000000000
-        TabOrder = 11
-        Text = 'Upside Down'
-        TextSettings.Trimming = None
-        OnClick = Button10Click
-      end
-      object Label10: TLabel
-        StyledSettings = [Family, FontColor]
-        Position.X = 8.000000000000000000
-        Position.Y = 88.000000000000000000
-        TextSettings.Font.Size = 14.000000000000000000
-        TextSettings.Font.StyleExt = {00070000000000000004000000}
-        TextSettings.Trimming = None
-        Text = 'Text'
-        TabOrder = 1
-      end
-      object Label11: TLabel
-        Position.X = 40.000000000000000000
-        Position.Y = 108.000000000000000000
-        Size.Width = 65.000000000000000000
-        Size.Height = 17.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Trimming = None
-        Text = 'Hor Align:'
-        TabOrder = 6
-      end
-      object Label12: TLabel
-        Position.X = 40.000000000000000000
-        Position.Y = 158.000000000000000000
-        Size.Width = 65.000000000000000000
-        Size.Height = 17.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Trimming = None
-        Text = 'Angle:'
-        TabOrder = 2
-      end
-      object Button11: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 144.000000000000000000
-        Position.Y = 28.000000000000000000
-        TabOrder = 21
-        Text = 'TopLeft'
-        TextSettings.Trimming = None
-        OnClick = Button11Click
-      end
-      object Button12: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 232.000000000000000000
-        Position.Y = 28.000000000000000000
-        TabOrder = 8
-        Text = 'Middle'
-        TextSettings.Trimming = None
-        OnClick = Button12Click
-      end
-      object Button13: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 320.000000000000000000
-        Position.Y = 28.000000000000000000
-        TabOrder = 14
-        Text = 'BottomRight'
-        TextSettings.Trimming = None
-        OnClick = Button13Click
-      end
-      object Label13: TLabel
-        StyledSettings = [Family, FontColor]
-        Position.X = 8.000000000000000000
-        Position.Y = 8.000000000000000000
-        TextSettings.Font.Size = 14.000000000000000000
-        TextSettings.Font.StyleExt = {00070000000000000004000000}
-        TextSettings.Trimming = None
-        Text = 'Annotation'
-        TabOrder = 0
-      end
-      object Label14: TLabel
-        Position.X = 40.000000000000000000
-        Position.Y = 33.000000000000000000
-        Size.Width = 65.000000000000000000
-        Size.Height = 17.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Trimming = None
-        Text = 'Position:'
-        TabOrder = 3
-      end
-      object Button14: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 144.000000000000000000
-        Position.Y = 128.000000000000000000
-        TabOrder = 19
-        Text = 'Leading'
-        TextSettings.Trimming = None
-        OnClick = Button14Click
-      end
-      object Button15: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 232.000000000000000000
-        Position.Y = 128.000000000000000000
-        TabOrder = 17
-        Text = 'Center'
-        TextSettings.Trimming = None
-        OnClick = Button15Click
-      end
-      object Button16: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 320.000000000000000000
-        Position.Y = 128.000000000000000000
-        TabOrder = 9
-        Text = 'Trailing'
-        TextSettings.Trimming = None
-        OnClick = Button16Click
-      end
-      object Label9: TLabel
-        Position.X = 40.000000000000000000
-        Position.Y = 133.000000000000000000
-        Size.Width = 65.000000000000000000
-        Size.Height = 17.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Trimming = None
-        Text = 'Ver Align'
-        TabOrder = 5
-      end
-      object Button1: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 144.000000000000000000
-        Position.Y = 58.000000000000000000
-        TabOrder = 15
-        Text = 'Leading'
-        TextSettings.Trimming = None
-        OnClick = Button1Click
-      end
-      object Button2: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 232.000000000000000000
-        Position.Y = 58.000000000000000000
-        TabOrder = 13
-        Text = 'Center'
-        TextSettings.Trimming = None
-        OnClick = Button2Click
-      end
-      object Button3: TButton
-        StyledSettings = [Family, Size, Style]
-        Position.X = 320.000000000000000000
-        Position.Y = 58.000000000000000000
-        TabOrder = 7
-        Text = 'Trailing'
-        TextSettings.Trimming = None
-        OnClick = Button3Click
-      end
-      object Label8: TLabel
-        Position.X = 40.000000000000000000
-        Position.Y = 63.000000000000000000
-        Size.Width = 65.000000000000000000
-        Size.Height = 17.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Trimming = None
-        Text = 'Alignment'
-        TabOrder = 4
-      end
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 556.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Timeline positions'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 556.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'The same settings on a horizontal and a vertical timeline: move the line, the divisions, the annotations and the section texts'
     end
   end
   object TMSFNCTimeline1: TTMSFNCTimeline
@@ -526,6 +158,10 @@ object Form3: TForm3
     Layout.IndicatorHoverBehavior = tlibBoth
     Range.MinimumDate = 45437.000000000000000000
     Range.MaximumDate = 45457.000000000000000000
+    Position.Y = 72.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     Sections = <
       item
         Appearance.Font.Color = claWhite
@@ -553,8 +189,8 @@ object Form3: TForm3
   object TMSFNCTimeline2: TTMSFNCTimeline
     Color = xFFE2A670
     Align = Left
-    Position.Y = 200.000000000000000000
-    Size.Width = 250.000000000000000000
+    Position.Y = 288.000000000000000000
+    Size.Width = 260.000000000000000000
     Size.Height = 430.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
@@ -648,6 +284,9 @@ object Form3: TForm3
     Layout.IndicatorHoverBehavior = tlibBoth
     Range.MinimumDate = 45437.000000000000000000
     Range.MaximumDate = 45457.000000000000000000
+    Position.X = 0.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     Sections = <
       item
         Appearance.Font.Color = claWhite
@@ -672,5 +311,430 @@ object Form3: TForm3
         StartTimelineDate = 45443.333333333340000000
         EndTimelineDate = 45449.666666666660000000
       end>
+  end
+  object TimelinePanel: TTMSFNCPanel
+    Align = Left
+    Margins.Left = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+    Position.X = 300.000000000000000000
+    Position.Y = 288.000000000000000000
+    Size.Width = 320.000000000000000000
+    Size.Height = 600.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    Header.Visible = False
+    object TimelineCaption: TTMSFNCHTMLText
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 12.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 36.000000000000000000
+      Size.Width = 288.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 15.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Timeline and divisions'
+    end
+    object TimelinePositionRow: TTMSFNCPanel
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 76.000000000000000000
+      Size.Width = 288.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Header.Visible = False
+      object TimelinePositionLabel: TTMSFNCHTMLText
+        TextRole = htrSecondary
+        Align = Left
+        Size.Width = 112.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        HorizontalTextAlign = gtaLeading
+        Trimming = gttCharacter
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
+        Text = 'Line position'
+      end
+      object TimelinePositionCombo: TTMSFNCComboBox
+        Align = Client
+        Size.Width = 176.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Style = csDropDownList
+        Items.Strings = (
+          'Top / left'
+          'Middle'
+          'Bottom / right')
+        ItemIndex = 1
+        OnChange = SettingChange
+      end
+    end
+    object DivisionPositionRow: TTMSFNCPanel
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 116.000000000000000000
+      Size.Width = 288.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Header.Visible = False
+      object DivisionPositionLabel: TTMSFNCHTMLText
+        TextRole = htrSecondary
+        Align = Left
+        Size.Width = 112.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        HorizontalTextAlign = gtaLeading
+        Trimming = gttCharacter
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
+        Text = 'Divisions'
+      end
+      object DivisionPositionCombo: TTMSFNCComboBox
+        Align = Client
+        Size.Width = 176.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Style = csDropDownList
+        Items.Strings = (
+          'Top / left'
+          'Middle'
+          'Bottom / right')
+        ItemIndex = 1
+        OnChange = SettingChange
+      end
+    end
+    object DivisionTextRow: TTMSFNCPanel
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 156.000000000000000000
+      Size.Width = 288.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Header.Visible = False
+      object DivisionTextLabel: TTMSFNCHTMLText
+        TextRole = htrSecondary
+        Align = Left
+        Size.Width = 112.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        HorizontalTextAlign = gtaLeading
+        Trimming = gttCharacter
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
+        Text = 'Division text'
+      end
+      object DivisionTextCombo: TTMSFNCComboBox
+        Align = Client
+        Size.Width = 176.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Style = csDropDownList
+        Items.Strings = (
+          'Leading'
+          'Center'
+          'Trailing')
+        ItemIndex = 1
+        OnChange = SettingChange
+      end
+    end
+    object DivisionAngleRow: TTMSFNCPanel
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 196.000000000000000000
+      Size.Width = 288.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Header.Visible = False
+      object DivisionAngleLabel: TTMSFNCHTMLText
+        TextRole = htrSecondary
+        Align = Left
+        Size.Width = 112.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        HorizontalTextAlign = gtaLeading
+        Trimming = gttCharacter
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
+        Text = 'Division angle'
+      end
+      object DivisionAngleCombo: TTMSFNCComboBox
+        Align = Client
+        Size.Width = 176.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Style = csDropDownList
+        Items.Strings = (
+          'Horizontal'
+          'Upside down'
+          'Left'
+          'Right')
+        ItemIndex = 0
+        OnChange = SettingChange
+      end
+    end
+  end
+  object AnnotationPanel: TTMSFNCPanel
+    Align = Left
+    Margins.Left = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+    Position.X = 640.000000000000000000
+    Position.Y = 288.000000000000000000
+    Size.Width = 320.000000000000000000
+    Size.Height = 600.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    Header.Visible = False
+    object AnnotationCaption: TTMSFNCHTMLText
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 12.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 36.000000000000000000
+      Size.Width = 288.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 15.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Annotations and sections'
+    end
+    object AnnotationPositionRow: TTMSFNCPanel
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 76.000000000000000000
+      Size.Width = 288.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Header.Visible = False
+      object AnnotationPositionLabel: TTMSFNCHTMLText
+        TextRole = htrSecondary
+        Align = Left
+        Size.Width = 112.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        HorizontalTextAlign = gtaLeading
+        Trimming = gttCharacter
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
+        Text = 'Annotations'
+      end
+      object AnnotationPositionCombo: TTMSFNCComboBox
+        Align = Client
+        Size.Width = 176.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Style = csDropDownList
+        Items.Strings = (
+          'Top / left'
+          'Middle'
+          'Bottom / right')
+        ItemIndex = 0
+        OnChange = SettingChange
+      end
+    end
+    object AnnotationAlignRow: TTMSFNCPanel
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 116.000000000000000000
+      Size.Width = 288.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Header.Visible = False
+      object AnnotationAlignLabel: TTMSFNCHTMLText
+        TextRole = htrSecondary
+        Align = Left
+        Size.Width = 112.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        HorizontalTextAlign = gtaLeading
+        Trimming = gttCharacter
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
+        Text = 'Alignment'
+      end
+      object AnnotationAlignCombo: TTMSFNCComboBox
+        Align = Client
+        Size.Width = 176.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Style = csDropDownList
+        Items.Strings = (
+          'Leading'
+          'Center'
+          'Trailing')
+        ItemIndex = 1
+        OnChange = SettingChange
+      end
+    end
+    object TextHorizontalRow: TTMSFNCPanel
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 156.000000000000000000
+      Size.Width = 288.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Header.Visible = False
+      object TextHorizontalLabel: TTMSFNCHTMLText
+        TextRole = htrSecondary
+        Align = Left
+        Size.Width = 112.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        HorizontalTextAlign = gtaLeading
+        Trimming = gttCharacter
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
+        Text = 'Text horizontal'
+      end
+      object TextHorizontalCombo: TTMSFNCComboBox
+        Align = Client
+        Size.Width = 176.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Style = csDropDownList
+        Items.Strings = (
+          'Leading'
+          'Center'
+          'Trailing')
+        ItemIndex = 1
+        OnChange = SettingChange
+      end
+    end
+    object TextVerticalRow: TTMSFNCPanel
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 196.000000000000000000
+      Size.Width = 288.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Header.Visible = False
+      object TextVerticalLabel: TTMSFNCHTMLText
+        TextRole = htrSecondary
+        Align = Left
+        Size.Width = 112.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        HorizontalTextAlign = gtaLeading
+        Trimming = gttCharacter
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
+        Text = 'Text vertical'
+      end
+      object TextVerticalCombo: TTMSFNCComboBox
+        Align = Client
+        Size.Width = 176.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Style = csDropDownList
+        Items.Strings = (
+          'Leading'
+          'Center'
+          'Trailing')
+        ItemIndex = 1
+        OnChange = SettingChange
+      end
+    end
+    object TextAngleRow: TTMSFNCPanel
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 236.000000000000000000
+      Size.Width = 288.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Header.Visible = False
+      object TextAngleLabel: TTMSFNCHTMLText
+        TextRole = htrSecondary
+        Align = Left
+        Size.Width = 112.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        HorizontalTextAlign = gtaLeading
+        Trimming = gttCharacter
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
+        Text = 'Text angle'
+      end
+      object TextAngleCombo: TTMSFNCComboBox
+        Align = Client
+        Size.Width = 176.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Style = csDropDownList
+        Items.Strings = (
+          'Horizontal'
+          'Upside down'
+          'Left'
+          'Right')
+        ItemIndex = 0
+        OnChange = SettingChange
+      end
+    end
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

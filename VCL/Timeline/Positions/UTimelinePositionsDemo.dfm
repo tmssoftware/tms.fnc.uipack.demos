@@ -1,9 +1,9 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Timeline Positions'
-  ClientHeight = 686
-  ClientWidth = 782
+  Caption = 'TMS FNC UI Pack - Timeline Positions'
+  ClientHeight = 640
+  ClientWidth = 1000
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -146,9 +146,67 @@ object Form1: TForm1
     0000000000000000000000000000000000000000000000000000000000000000
     000000000000000000000000000000000000000000000000000000000000}
   TextHeight = 15
-  object TMSFNCTimeline1: TTMSFNCTimeline
+  Position = poScreenCenter
+  object DemoHeader: TTMSFNCPanel
     Left = 0
     Top = 0
+    Width = 782
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 598
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 558
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Timeline positions'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 558
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'The same settings on a horizontal and a vertical timeline: move the line, the divisions, the annotations and the section texts'
+    end
+  end
+  object TMSFNCTimeline1: TTMSFNCTimeline
+    Left = 0
+    Top = 72
     Width = 782
     Height = 200
     Align = alTop
@@ -321,434 +379,16 @@ object Form1: TForm1
         EndTimelineDate = 45449.700000000000000000
       end>
     ExplicitWidth = 776
-  end
-  object ScrollBox1: TScrollBox
-    Left = 250
-    Top = 200
-    Width = 532
-    Height = 486
-    Align = alClient
-    TabOrder = 1
-    ExplicitWidth = 526
-    ExplicitHeight = 469
-    object Panel1: TPanel
-      Left = 0
-      Top = 233
-      Width = 528
-      Height = 240
-      Align = alTop
-      TabOrder = 0
-      ExplicitWidth = 496
-      object Label1: TLabel
-        Left = 16
-        Top = 16
-        Width = 87
-        Height = 21
-        Caption = 'Annotation'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -16
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object Label2: TLabel
-        Left = 37
-        Top = 43
-        Width = 46
-        Height = 15
-        Caption = 'Position:'
-      end
-      object Label4: TLabel
-        Left = 37
-        Top = 75
-        Width = 59
-        Height = 15
-        Caption = 'Alignment:'
-      end
-      object Label7: TLabel
-        Left = 16
-        Top = 104
-        Width = 32
-        Height = 21
-        Caption = 'Text'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -16
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object Label8: TLabel
-        Left = 37
-        Top = 131
-        Width = 57
-        Height = 15
-        Caption = 'Hor. Align:'
-      end
-      object Label5: TLabel
-        Left = 37
-        Top = 163
-        Width = 53
-        Height = 15
-        Caption = 'Ver. Align:'
-      end
-      object Label3: TLabel
-        Left = 37
-        Top = 194
-        Width = 34
-        Height = 15
-        Caption = 'Angle:'
-      end
-      object BtnAnnoLeft: TButton
-        Left = 136
-        Top = 39
-        Width = 75
-        Height = 25
-        Caption = 'TopLeft'
-        TabOrder = 0
-        OnClick = BtnAnnoLeftClick
-      end
-      object BtnAnnoMiddle: TButton
-        Left = 224
-        Top = 39
-        Width = 75
-        Height = 25
-        Caption = 'Middle'
-        TabOrder = 1
-        OnClick = BtnAnnoMiddleClick
-      end
-      object BtnAnnoRight: TButton
-        Left = 312
-        Top = 39
-        Width = 75
-        Height = 25
-        Caption = 'BottomRight'
-        TabOrder = 2
-        OnClick = BtnAnnoRightClick
-      end
-      object BtnAnnoLeading: TButton
-        Left = 136
-        Top = 71
-        Width = 75
-        Height = 25
-        Caption = 'Leading'
-        TabOrder = 3
-        OnClick = BtnAnnoLeadingClick
-      end
-      object BtnAnnoCenter: TButton
-        Left = 224
-        Top = 71
-        Width = 75
-        Height = 25
-        Caption = 'Center'
-        TabOrder = 4
-        OnClick = BtnAnnoCenterClick
-      end
-      object BtnAnnoTrailing: TButton
-        Left = 312
-        Top = 71
-        Width = 75
-        Height = 25
-        Caption = 'Trailing'
-        TabOrder = 5
-        OnClick = BtnAnnoTrailingClick
-      end
-      object BtnAnnoTxtHorLeading: TButton
-        Left = 136
-        Top = 127
-        Width = 75
-        Height = 25
-        Caption = 'Leading'
-        TabOrder = 6
-        OnClick = BtnAnnoTxtHorLeadingClick
-      end
-      object BtnAnnoTxtHorCenter: TButton
-        Left = 224
-        Top = 127
-        Width = 75
-        Height = 25
-        Caption = 'Center'
-        TabOrder = 7
-        OnClick = BtnAnnoTxtHorCenterClick
-      end
-      object BtnAnnoTxtHorTrailing: TButton
-        Left = 312
-        Top = 127
-        Width = 75
-        Height = 25
-        Caption = 'Trailing'
-        TabOrder = 8
-        OnClick = BtnAnnoTxtHorTrailingClick
-      end
-      object BtnAnnoTxtVerLeading: TButton
-        Left = 136
-        Top = 159
-        Width = 75
-        Height = 25
-        Caption = 'Leading'
-        TabOrder = 9
-        OnClick = BtnAnnoTxtVerLeadingClick
-      end
-      object BtnAnnoTxtVerCenter: TButton
-        Left = 224
-        Top = 159
-        Width = 75
-        Height = 25
-        Caption = 'Center'
-        TabOrder = 10
-        OnClick = BtnAnnoTxtVerCenterClick
-      end
-      object BtnAnnoTxtVerTrailing: TButton
-        Left = 312
-        Top = 159
-        Width = 75
-        Height = 25
-        Caption = 'Trailing'
-        TabOrder = 11
-        OnClick = BtnAnnoTxtVerTrailingClick
-      end
-      object BtnAnnoTxtHor: TButton
-        Left = 136
-        Top = 190
-        Width = 75
-        Height = 25
-        Caption = 'Horizontal'
-        TabOrder = 12
-        OnClick = BtnAnnoTxtHorClick
-      end
-      object BtnAnnoTxtUpDown: TButton
-        Left = 224
-        Top = 190
-        Width = 75
-        Height = 25
-        Caption = 'Upside Down'
-        TabOrder = 13
-        OnClick = BtnAnnoTxtUpDownClick
-      end
-      object BtnAnnoTxtLeft: TButton
-        Left = 312
-        Top = 190
-        Width = 75
-        Height = 25
-        Caption = 'Left'
-        TabOrder = 14
-        OnClick = BtnAnnoTxtLeftClick
-      end
-      object BtnAnnoTxtRight: TButton
-        Left = 400
-        Top = 190
-        Width = 75
-        Height = 25
-        Caption = 'Right'
-        TabOrder = 15
-        OnClick = BtnAnnoTxtRightClick
-      end
-    end
-    object Panel2: TPanel
-      Left = 0
-      Top = 0
-      Width = 528
-      Height = 233
-      Align = alTop
-      TabOrder = 1
-      ExplicitWidth = 496
-      object Label6: TLabel
-        Left = 16
-        Top = 16
-        Width = 67
-        Height = 21
-        Caption = 'Timeline'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -16
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object Label9: TLabel
-        Left = 37
-        Top = 43
-        Width = 46
-        Height = 15
-        Caption = 'Position:'
-      end
-      object Label10: TLabel
-        Left = 16
-        Top = 72
-        Width = 63
-        Height = 21
-        Caption = 'Division'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -16
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object Label11: TLabel
-        Left = 37
-        Top = 99
-        Width = 46
-        Height = 15
-        Caption = 'Position:'
-      end
-      object Label12: TLabel
-        Left = 16
-        Top = 128
-        Width = 32
-        Height = 21
-        Caption = 'Text'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -16
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object Label13: TLabel
-        Left = 37
-        Top = 155
-        Width = 46
-        Height = 15
-        Caption = 'Position:'
-      end
-      object Label14: TLabel
-        Left = 37
-        Top = 187
-        Width = 34
-        Height = 15
-        Caption = 'Angle:'
-      end
-      object BtnTlLeft: TButton
-        Left = 136
-        Top = 39
-        Width = 75
-        Height = 25
-        Caption = 'TopLeft'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Segoe UI'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 0
-        OnClick = BtnTlLeftClick
-      end
-      object BtnTlMiddle: TButton
-        Left = 224
-        Top = 39
-        Width = 75
-        Height = 25
-        Caption = 'Middle'
-        TabOrder = 1
-        OnClick = BtnTlMiddleClick
-      end
-      object BtnTlRight: TButton
-        Left = 312
-        Top = 39
-        Width = 75
-        Height = 25
-        Caption = 'BottomRight'
-        TabOrder = 2
-        OnClick = BtnTlRightClick
-      end
-      object BtnDivLeft: TButton
-        Left = 136
-        Top = 95
-        Width = 75
-        Height = 25
-        Caption = 'TopLeft'
-        TabOrder = 3
-        OnClick = BtnDivLeftClick
-      end
-      object BtnDivMiddle: TButton
-        Left = 224
-        Top = 95
-        Width = 75
-        Height = 25
-        Caption = 'Middle'
-        TabOrder = 4
-        OnClick = BtnDivMiddleClick
-      end
-      object BtnDivRight: TButton
-        Left = 312
-        Top = 95
-        Width = 75
-        Height = 25
-        Caption = 'BottomRight'
-        TabOrder = 5
-        OnClick = BtnDivRightClick
-      end
-      object BtnTxtLeading: TButton
-        Left = 136
-        Top = 151
-        Width = 75
-        Height = 25
-        Caption = 'Leading'
-        TabOrder = 6
-        OnClick = BtnTxtLeadingClick
-      end
-      object BtnTxtCenter: TButton
-        Left = 224
-        Top = 151
-        Width = 75
-        Height = 25
-        Caption = 'Center'
-        TabOrder = 7
-        OnClick = BtnTxtCenterClick
-      end
-      object BtnTxtTrailing: TButton
-        Left = 312
-        Top = 151
-        Width = 75
-        Height = 25
-        Caption = 'Trailing'
-        TabOrder = 8
-        OnClick = BtnTxtTrailingClick
-      end
-      object BtnTxtHor: TButton
-        Left = 136
-        Top = 183
-        Width = 75
-        Height = 25
-        Caption = 'Horizontal'
-        TabOrder = 9
-        OnClick = BtnTxtHorClick
-      end
-      object BtnTxtUpDown: TButton
-        Left = 224
-        Top = 183
-        Width = 75
-        Height = 25
-        Caption = 'Upside Down'
-        TabOrder = 10
-        OnClick = BtnTxtUpDownClick
-      end
-      object BtnTxtLeft: TButton
-        Left = 312
-        Top = 183
-        Width = 75
-        Height = 25
-        Caption = 'Left'
-        TabOrder = 11
-        OnClick = BtnTxtLeftClick
-      end
-      object BtnTxtRight: TButton
-        Left = 400
-        Top = 183
-        Width = 75
-        Height = 25
-        Caption = 'Right'
-        TabOrder = 12
-        OnClick = BtnTxtRightClick
-      end
-    end
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
   end
   object TMSFNCTimeline2: TTMSFNCTimeline
     Left = 0
-    Top = 200
-    Width = 250
+    Top = 288
+    Width = 260
     Height = 486
     Align = alLeft
     ParentDoubleBuffered = False
@@ -926,5 +566,479 @@ object Form1: TForm1
         EndTimelineDate = 45449.700000000000000000
       end>
     ExplicitHeight = 469
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 16
+  end
+  object TimelinePanel: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 292
+    Top = 288
+    Width = 320
+    Height = 600
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 16
+    Align = alLeft
+    TabOrder = 3
+    Header.Visible = False
+    object TimelineCaption: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 16
+      Top = 12
+      Width = 288
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 12
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -15
+      Font.Name = 'Segoe UI Semibold'
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Timeline and divisions'
+    end
+    object TimelinePositionRow: TTMSFNCPanel
+      AlignWithMargins = True
+      Left = 16
+      Top = 44
+      Width = 288
+      Height = 32
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 0
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Header.Visible = False
+      object TimelinePositionLabel: TTMSFNCHTMLText
+        Left = 0
+        Top = 0
+        Width = 112
+        Height = 32
+        Align = alLeft
+        TextRole = htrSecondary
+        HorizontalTextAlign = gtaLeading
+        Trimming = gttCharacter
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
+        Text = 'Line position'
+      end
+      object TimelinePositionCombo: TTMSFNCComboBox
+        Left = 112
+        Top = 0
+        Width = 176
+        Height = 32
+        Align = alClient
+        TabOrder = 0
+        Style = csDropDownList
+        Items.Strings = (
+          'Top / left'
+          'Middle'
+          'Bottom / right')
+        ItemIndex = 1
+        OnChange = SettingChange
+      end
+    end
+    object DivisionPositionRow: TTMSFNCPanel
+      AlignWithMargins = True
+      Left = 16
+      Top = 84
+      Width = 288
+      Height = 32
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 1
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Header.Visible = False
+      object DivisionPositionLabel: TTMSFNCHTMLText
+        Left = 0
+        Top = 0
+        Width = 112
+        Height = 32
+        Align = alLeft
+        TextRole = htrSecondary
+        HorizontalTextAlign = gtaLeading
+        Trimming = gttCharacter
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
+        Text = 'Divisions'
+      end
+      object DivisionPositionCombo: TTMSFNCComboBox
+        Left = 112
+        Top = 0
+        Width = 176
+        Height = 32
+        Align = alClient
+        TabOrder = 0
+        Style = csDropDownList
+        Items.Strings = (
+          'Top / left'
+          'Middle'
+          'Bottom / right')
+        ItemIndex = 1
+        OnChange = SettingChange
+      end
+    end
+    object DivisionTextRow: TTMSFNCPanel
+      AlignWithMargins = True
+      Left = 16
+      Top = 124
+      Width = 288
+      Height = 32
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 2
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Header.Visible = False
+      object DivisionTextLabel: TTMSFNCHTMLText
+        Left = 0
+        Top = 0
+        Width = 112
+        Height = 32
+        Align = alLeft
+        TextRole = htrSecondary
+        HorizontalTextAlign = gtaLeading
+        Trimming = gttCharacter
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
+        Text = 'Division text'
+      end
+      object DivisionTextCombo: TTMSFNCComboBox
+        Left = 112
+        Top = 0
+        Width = 176
+        Height = 32
+        Align = alClient
+        TabOrder = 0
+        Style = csDropDownList
+        Items.Strings = (
+          'Leading'
+          'Center'
+          'Trailing')
+        ItemIndex = 1
+        OnChange = SettingChange
+      end
+    end
+    object DivisionAngleRow: TTMSFNCPanel
+      AlignWithMargins = True
+      Left = 16
+      Top = 164
+      Width = 288
+      Height = 32
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 3
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Header.Visible = False
+      object DivisionAngleLabel: TTMSFNCHTMLText
+        Left = 0
+        Top = 0
+        Width = 112
+        Height = 32
+        Align = alLeft
+        TextRole = htrSecondary
+        HorizontalTextAlign = gtaLeading
+        Trimming = gttCharacter
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
+        Text = 'Division angle'
+      end
+      object DivisionAngleCombo: TTMSFNCComboBox
+        Left = 112
+        Top = 0
+        Width = 176
+        Height = 32
+        Align = alClient
+        TabOrder = 0
+        Style = csDropDownList
+        Items.Strings = (
+          'Horizontal'
+          'Upside down'
+          'Left'
+          'Right')
+        ItemIndex = 0
+        OnChange = SettingChange
+      end
+    end
+  end
+  object AnnotationPanel: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 628
+    Top = 288
+    Width = 320
+    Height = 600
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 16
+    Align = alLeft
+    TabOrder = 4
+    Header.Visible = False
+    object AnnotationCaption: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 16
+      Top = 12
+      Width = 288
+      Height = 24
+      Margins.Left = 16
+      Margins.Top = 12
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      Font.Height = -15
+      Font.Name = 'Segoe UI Semibold'
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Annotations and sections'
+    end
+    object AnnotationPositionRow: TTMSFNCPanel
+      AlignWithMargins = True
+      Left = 16
+      Top = 44
+      Width = 288
+      Height = 32
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 0
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Header.Visible = False
+      object AnnotationPositionLabel: TTMSFNCHTMLText
+        Left = 0
+        Top = 0
+        Width = 112
+        Height = 32
+        Align = alLeft
+        TextRole = htrSecondary
+        HorizontalTextAlign = gtaLeading
+        Trimming = gttCharacter
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
+        Text = 'Annotations'
+      end
+      object AnnotationPositionCombo: TTMSFNCComboBox
+        Left = 112
+        Top = 0
+        Width = 176
+        Height = 32
+        Align = alClient
+        TabOrder = 0
+        Style = csDropDownList
+        Items.Strings = (
+          'Top / left'
+          'Middle'
+          'Bottom / right')
+        ItemIndex = 0
+        OnChange = SettingChange
+      end
+    end
+    object AnnotationAlignRow: TTMSFNCPanel
+      AlignWithMargins = True
+      Left = 16
+      Top = 84
+      Width = 288
+      Height = 32
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 1
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Header.Visible = False
+      object AnnotationAlignLabel: TTMSFNCHTMLText
+        Left = 0
+        Top = 0
+        Width = 112
+        Height = 32
+        Align = alLeft
+        TextRole = htrSecondary
+        HorizontalTextAlign = gtaLeading
+        Trimming = gttCharacter
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
+        Text = 'Alignment'
+      end
+      object AnnotationAlignCombo: TTMSFNCComboBox
+        Left = 112
+        Top = 0
+        Width = 176
+        Height = 32
+        Align = alClient
+        TabOrder = 0
+        Style = csDropDownList
+        Items.Strings = (
+          'Leading'
+          'Center'
+          'Trailing')
+        ItemIndex = 1
+        OnChange = SettingChange
+      end
+    end
+    object TextHorizontalRow: TTMSFNCPanel
+      AlignWithMargins = True
+      Left = 16
+      Top = 124
+      Width = 288
+      Height = 32
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 2
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Header.Visible = False
+      object TextHorizontalLabel: TTMSFNCHTMLText
+        Left = 0
+        Top = 0
+        Width = 112
+        Height = 32
+        Align = alLeft
+        TextRole = htrSecondary
+        HorizontalTextAlign = gtaLeading
+        Trimming = gttCharacter
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
+        Text = 'Text horizontal'
+      end
+      object TextHorizontalCombo: TTMSFNCComboBox
+        Left = 112
+        Top = 0
+        Width = 176
+        Height = 32
+        Align = alClient
+        TabOrder = 0
+        Style = csDropDownList
+        Items.Strings = (
+          'Leading'
+          'Center'
+          'Trailing')
+        ItemIndex = 1
+        OnChange = SettingChange
+      end
+    end
+    object TextVerticalRow: TTMSFNCPanel
+      AlignWithMargins = True
+      Left = 16
+      Top = 164
+      Width = 288
+      Height = 32
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 3
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Header.Visible = False
+      object TextVerticalLabel: TTMSFNCHTMLText
+        Left = 0
+        Top = 0
+        Width = 112
+        Height = 32
+        Align = alLeft
+        TextRole = htrSecondary
+        HorizontalTextAlign = gtaLeading
+        Trimming = gttCharacter
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
+        Text = 'Text vertical'
+      end
+      object TextVerticalCombo: TTMSFNCComboBox
+        Left = 112
+        Top = 0
+        Width = 176
+        Height = 32
+        Align = alClient
+        TabOrder = 0
+        Style = csDropDownList
+        Items.Strings = (
+          'Leading'
+          'Center'
+          'Trailing')
+        ItemIndex = 1
+        OnChange = SettingChange
+      end
+    end
+    object TextAngleRow: TTMSFNCPanel
+      AlignWithMargins = True
+      Left = 16
+      Top = 204
+      Width = 288
+      Height = 32
+      Margins.Left = 16
+      Margins.Top = 8
+      Margins.Right = 16
+      Margins.Bottom = 0
+      Align = alTop
+      TabOrder = 4
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Header.Visible = False
+      object TextAngleLabel: TTMSFNCHTMLText
+        Left = 0
+        Top = 0
+        Width = 112
+        Height = 32
+        Align = alLeft
+        TextRole = htrSecondary
+        HorizontalTextAlign = gtaLeading
+        Trimming = gttCharacter
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
+        Text = 'Text angle'
+      end
+      object TextAngleCombo: TTMSFNCComboBox
+        Left = 112
+        Top = 0
+        Width = 176
+        Height = 32
+        Align = alClient
+        TabOrder = 0
+        Style = csDropDownList
+        Items.Strings = (
+          'Horizontal'
+          'Upside down'
+          'Left'
+          'Right')
+        ItemIndex = 0
+        OnChange = SettingChange
+      end
+    end
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end
