@@ -14,6 +14,9 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    DemoHeader: TPanel;
+    DemoTitle: TLabel;
+    DemoDescription: TLabel;
     Panel1: TPanel;
     TMSFNCPlanner1: TTMSFNCPlanner;
     ComboBox1: TComboBox;

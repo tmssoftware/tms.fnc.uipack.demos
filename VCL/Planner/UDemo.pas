@@ -1,5 +1,8 @@
 unit UDemo;
 
+{ demo-colors: the item colours set in AddItems and the today / weekend colours of
+  DrawCustomPositionText and TMSFNCPlanner1BeforeDrawTimeText (the item colours are the subject) }
+
 interface
 
 uses
@@ -7,21 +10,31 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, VCL.TMSFNCCustomControl, VCL.TMSFNCGraphics,
   VCL.TMSFNCPlannerBase, VCL.TMSFNCPlannerData, VCL.TMSFNCPlanner, Vcl.ExtCtrls, Types, VCL.TMSFNCBitmapContainer,
   VCL.TMSFNCCustomComponent, DateUtils, Math, VCL.TMSFNCTypes, VCL.TMSFNCUtils,
-  VCL.TMSFNCGraphicsTypes;
+  VCL.TMSFNCGraphicsTypes,
+  VCL.TMSFNCCheckBox, VCL.TMSFNCComboBox, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCRadioButton, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Panel1: TPanel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    SettingsPanel: TTMSFNCPanel;
+    ViewCaption: TTMSFNCHTMLText;
+    LayoutCaption: TTMSFNCHTMLText;
+    TodayCaption: TTMSFNCHTMLText;
+    HintText: TTMSFNCHTMLText;
     TMSFNCPlanner1: TTMSFNCPlanner;
-    ComboBox1: TComboBox;
-    ComboBox2: TComboBox;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    CheckBox1: TCheckBox;
-    RadioButton1: TRadioButton;
-    RadioButton2: TRadioButton;
-    RadioButton3: TRadioButton;
+    ComboBox1: TTMSFNCComboBox;
+    ComboBox2: TTMSFNCComboBox;
+    Label1: TTMSFNCHTMLText;
+    Label2: TTMSFNCHTMLText;
+    Label3: TTMSFNCHTMLText;
+    CheckBox1: TTMSFNCCheckBox;
+    RadioButton1: TTMSFNCRadioButton;
+    RadioButton2: TTMSFNCRadioButton;
+    RadioButton3: TTMSFNCRadioButton;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     procedure ComboBox1Change(Sender: TObject);
     procedure TMSFNCPlanner1ItemAnchorClick(Sender: TObject;
@@ -78,44 +91,20 @@ begin
   TMSFNCPlanner1.Interaction.UpdateMode := pumDialog;
   TMSFNCPlanner1.ModeSettings.StartTime := dt;
 
-  Color := MakeGraphicsColor(237, 243, 248);
-  TMSFNCPlanner1.Fill.Color := Color;
-  Panel1.Color := Color;
-
-  TMSFNCPlanner1.TimeLineAppearance.LeftStroke.Color := Color;
-  TMSFNCPlanner1.TimeLineAppearance.LeftFont.Color := MakeGraphicsColor(115, 115, 115);
   TMSFNCPlanner1.TimeLineAppearance.LeftFont.Style := [TFontStyle.fsBold];
   TMSFNCPlanner1.TimeLineAppearance.LeftFont.Size := 14;
   TMSFNCPlanner1.TimeLineAppearance.LeftSubUnitFontSize := 8;
 
   TMSFNCPlanner1.Positions.Count := 7;
   TMSFNCPlanner1.Positions.Format := 'dddd d';
-  TMSFNCPlanner1.PositionsAppearance.TopStroke.Color := Color;
-  TMSFNCPlanner1.PositionsAppearance.TopFont.Color := MakeGraphicsColor(115, 115, 115);
   TMSFNCPlanner1.PositionsAppearance.TopFont.Size := 12;
-  TMSFNCPlanner1.PositionsAppearance.TopFont.Color := MakeGraphicsColor(115, 115, 115);
 
-  TMSFNCPlanner1.GroupsAppearance.TopStroke.Color := Color;
-  TMSFNCPlanner1.GroupsAppearance.TopFont.Color := MakeGraphicsColor(115, 115, 115);
   TMSFNCPlanner1.GroupsAppearance.TopFont.Size := 12;
-  TMSFNCPlanner1.GroupsAppearance.TopFont.Color := MakeGraphicsColor(115, 115, 115);
 
   TMSFNCPlanner1.GridCellAppearance.Fill.Kind := gfkSolid;
-  TMSFNCPlanner1.Margins.Left := 10;
-  TMSFNCPlanner1.Margins.Bottom := 10;
   TMSFNCPlanner1.StretchScrollBars := False;
 
-  Label1.Width := 1000;
-  Label1.AutoSize := True;
-  Label1.Font.Size := 20;
-  Label1.Font.Color := MakeGraphicsColor(115, 115, 115);
-  Label1.Caption := FormatDateTime('d mmmm, yyyy', dt) + ' (week ' + inttostr(WeekOf(dt))+')';
-  Label1.Align := alRight;
-  Label1.Margins.Bottom := 10;
-  Label1.Margins.Right := 10;
-  Label1.Margins.Top := 10;
-  TMSFNCPlanner1.ItemsAppearance.MoveAreaColor := gcDarkgray;
-  TMSFNCPlanner1.ItemsAppearance.SizeAreaColor := gcDarkgray;
+  Label1.Text := FormatDateTime('d mmmm yyyy', dt) + ', week ' + IntToStr(WeekOf(dt));
 
   for I := 0 to TMSFNCPlanner1.Resources.Count - 1 do
   begin
@@ -353,7 +342,7 @@ begin
   if TMSFNCPlanner1.Mode = pmMultiResDay then
   begin
     AGraphics.Stroke.Kind := gskSolid;
-    AGraphics.Stroke.Color := gcDarkgray;
+    AGraphics.Stroke.Color := TMSFNCPlanner1.GridCellAppearance.VerticalStroke.Color;
     ADefaultDraw := False;
     AGraphics.DrawLine(PointF(ARect.Left, ARect.Top + 1), PointF(ARect.Right, ARect.Top + 1));
   end;
