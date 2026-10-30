@@ -8,21 +8,26 @@ uses
   VCL.TMSFNCTreeViewBase, VCL.TMSFNCTreeViewData, VCL.TMSFNCCustomTreeView,
   VCL.TMSFNCTreeView, Vcl.StdCtrls, VCL.TMSFNCCustomComponent,
   VCL.TMSFNCBitmapContainer, Vcl.ExtCtrls, VCL.TMSFNCTypes, VCL.TMSFNCUtils,
-  VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, Types;
+  VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, Types,
+  VCL.TMSFNCCheckBox, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Label1: TLabel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCTreeView1: TTMSFNCTreeView;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
-    Panel1: TPanel;
-    Label2: TLabel;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
-    CheckBox5: TCheckBox;
-    CheckBox6: TCheckBox;
+    Panel1: TTMSFNCPanel;
+    Label2: TTMSFNCHTMLText;
+    CheckBox1: TTMSFNCCheckBox;
+    CheckBox2: TTMSFNCCheckBox;
+    CheckBox3: TTMSFNCCheckBox;
+    CheckBox4: TTMSFNCCheckBox;
+    CheckBox5: TTMSFNCCheckBox;
+    CheckBox6: TTMSFNCCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure CheckBox3Click(Sender: TObject);
     procedure CheckBox2Click(Sender: TObject);

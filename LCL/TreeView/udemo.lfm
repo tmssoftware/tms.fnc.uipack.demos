@@ -1,14 +1,48 @@
 object Form1: TForm1
   Left = 583
-  Height = 650
+  Height = 722
   Top = 193
   Width = 1200
   Caption = 'TMS FNC TreeView'
-  ClientHeight = 650
+  ClientHeight = 722
   ClientWidth = 1200
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '1.6.0.4'
+  object DemoHeader: TPanel
+    Left = 0
+    Height = 72
+    Top = 0
+    Width = 1200
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 72
+    ClientWidth = 1200
+    TabOrder = 0
+    object DemoTitle: TLabel
+      Left = 24
+      Height = 30
+      Top = 12
+      Width = 1152
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'TreeView'
+      Font.Height = -20
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object DemoDescription: TLabel
+      Left = 24
+      Height = 20
+      Top = 42
+      Width = 1152
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'A birthday shopping list: HTML text, progress bars, inline editing, sorting, filtering and clipboard'
+      Font.Color = clGrayText
+      ParentFont = False
+    end
+  end
   object Label1: TLabel
     Left = 10
     Height = 25

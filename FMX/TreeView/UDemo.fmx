@@ -2,7 +2,7 @@ object Form130: TForm130
   Left = 0
   Top = 0
   Caption = 'TMS FNC TreeView Demo'
-  ClientHeight = 650
+  ClientHeight = 722
   ClientWidth = 1200
   Position = ScreenCenter
   FormFactor.Width = 320
@@ -10,145 +10,186 @@ object Form130: TForm130
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
-  object Label1: TLabel
+  object DemoHeader: TTMSFNCPanel
     Align = Top
-    AutoSize = True
-    StyledSettings = [Family, Style, FontColor]
-    Margins.Left = 10.000000000000000000
-    Margins.Top = 10.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Position.X = 10.000000000000000000
-    Position.Y = 10.000000000000000000
-    Size.Width = 1180.000000000000000000
-    Size.Height = 30.000000000000000000
+    Size.Width = 1200.000000000000000000
+    Size.Height = 72.000000000000000000
     Size.PlatformDefault = False
-    TextSettings.Font.Size = 22.000000000000000000
-    TextSettings.WordWrap = False
-    Text = 'Birthday shopping list'
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 976.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'TreeView'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 976.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'A birthday shopping list: HTML text, progress bars, inline editing, sorting, filtering and clipboard'
+    end
   end
-  object Panel1: TPanel
+  object Panel1: TTMSFNCPanel
     Align = Left
-    Margins.Left = 10.000000000000000000
-    Margins.Top = 10.000000000000000000
-    Margins.Bottom = 10.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     Position.X = 10.000000000000000000
     Position.Y = 50.000000000000000000
-    Size.Width = 215.000000000000000000
+    Size.Width = 260.000000000000000000
     Size.Height = 590.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    object CheckBox1: TCheckBox
+    Header.Visible = False
+    object CheckBox1: TTMSFNCCheckBox
       Align = Top
-      IsChecked = True
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 5.000000000000000000
+      Checked = True
+      Margins.Left = 12.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 12.000000000000000000
       Position.X = 5.000000000000000000
       Position.Y = 95.000000000000000000
       Size.Width = 205.000000000000000000
-      Size.Height = 19.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 6
       Text = 'Expand All / Collapse All'
       OnChange = CheckBox1Change
     end
-    object Label2: TLabel
+    object Label2: TTMSFNCHTMLText
       Align = MostTop
-      AutoSize = True
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 5.000000000000000000
+      Margins.Left = 12.000000000000000000
+      Margins.Top = 12.000000000000000000
+      Margins.Right = 12.000000000000000000
+      Margins.Bottom = 4.000000000000000000
       Position.X = 5.000000000000000000
       Position.Y = 5.000000000000000000
       Size.Width = 205.000000000000000000
-      Size.Height = 80.000000000000000000
+      Size.Height = 110.000000000000000000
       Size.PlatformDefault = False
       Text = 
         '[Enter amount] can be edited by clicking on the text. The rightm' +
         'ost column can be used to set a shipping method through the buil' +
         't-in TComboBox editor.'
+      HorizontalTextAlign = gtaLeading
+      WordWrapping = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object CheckBox2: TCheckBox
+    object CheckBox2: TTMSFNCCheckBox
       Align = Top
-      Margins.Left = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 5.000000000000000000
+      Margins.Left = 12.000000000000000000
+      Margins.Right = 12.000000000000000000
       Position.X = 5.000000000000000000
       Position.Y = 119.000000000000000000
       Size.Width = 205.000000000000000000
-      Size.Height = 19.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 5
       Text = 'Custom Column Appearance'
       OnChange = CheckBox2Change
+      Margins.Top = 8.000000000000000000
     end
-    object CheckBox3: TCheckBox
+    object CheckBox3: TTMSFNCCheckBox
       Align = Top
-      IsChecked = True
-      Margins.Left = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 5.000000000000000000
+      Checked = True
+      Margins.Left = 12.000000000000000000
+      Margins.Right = 12.000000000000000000
       Position.X = 5.000000000000000000
       Position.Y = 143.000000000000000000
       Size.Width = 205.000000000000000000
-      Size.Height = 19.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 4
       Text = 'Hide Column'
       OnChange = CheckBox3Change
+      Margins.Top = 8.000000000000000000
     end
-    object CheckBox4: TCheckBox
+    object CheckBox4: TTMSFNCCheckBox
       Align = Top
-      Margins.Left = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 5.000000000000000000
+      Margins.Left = 12.000000000000000000
+      Margins.Right = 12.000000000000000000
       Position.X = 5.000000000000000000
       Position.Y = 167.000000000000000000
       Size.Width = 205.000000000000000000
-      Size.Height = 19.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 3
       Text = 'Clipboard Support'
       OnChange = CheckBox4Change
+      Margins.Top = 8.000000000000000000
     end
-    object CheckBox5: TCheckBox
+    object CheckBox5: TTMSFNCCheckBox
       Align = Top
-      Margins.Left = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 5.000000000000000000
+      Margins.Left = 12.000000000000000000
+      Margins.Right = 12.000000000000000000
       Position.X = 5.000000000000000000
       Position.Y = 191.000000000000000000
       Size.Width = 205.000000000000000000
-      Size.Height = 19.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 2
       Text = 'Sorting (Click on column header)'
       OnChange = CheckBox5Change
+      Margins.Top = 8.000000000000000000
     end
-    object CheckBox6: TCheckBox
+    object CheckBox6: TTMSFNCCheckBox
       Align = Top
-      Margins.Left = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 5.000000000000000000
+      Margins.Left = 12.000000000000000000
+      Margins.Right = 12.000000000000000000
       Position.X = 5.000000000000000000
       Position.Y = 215.000000000000000000
       Size.Width = 205.000000000000000000
-      Size.Height = 19.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
       Text = 'Filtering'
       OnChange = CheckBox6Change
+      Margins.Top = 8.000000000000000000
     end
   end
   object TMSFNCTreeView1: TTMSFNCTreeView
     Align = Client
     DisableFocusEffect = False
-    Margins.Left = 10.000000000000000000
-    Margins.Top = 10.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 10.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     Size.Width = 955.000000000000000000
     Size.Height = 590.000000000000000000
     Size.PlatformDefault = False
@@ -378,7 +419,7 @@ object Form130: TForm130
     Size.Height = 26.000000000000000000
     Size.PlatformDefault = False
     Position.X = 248.000000000000000000
-    Position.Y = 16.000000000000000000
+    Position.Y = 88.000000000000000000
     Items = <
       item
         Bitmap.PNG = {
@@ -1903,5 +1944,10 @@ object Form130: TForm130
         Name = 'pie1.png'
         Tag = 0
       end>
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

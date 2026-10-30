@@ -8,21 +8,26 @@ uses
   FMX.TMSFNCCustomTreeView, FMX.TMSFNCTreeView, FMX.StdCtrls, FMX.Types,
   FMX.Controls, FMX.Forms, FMX.TMSFNCBitmapContainer, FMX.TMSFNCCustomComponent,
   FMX.Controls.Presentation, FMX.TMSFNCTypes, FMX.TMSFNCUtils,
-  FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes;
+  FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes,
+  FMX.TMSFNCCheckBox, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Label1: TLabel;
-    Panel1: TPanel;
-    CheckBox1: TCheckBox;
-    Label2: TLabel;
-    CheckBox2: TCheckBox;
-    CheckBox3: TCheckBox;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    CheckBox1: TTMSFNCCheckBox;
+    Label2: TTMSFNCHTMLText;
+    CheckBox2: TTMSFNCCheckBox;
+    CheckBox3: TTMSFNCCheckBox;
     TMSFNCTreeView1: TTMSFNCTreeView;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
-    CheckBox4: TCheckBox;
-    CheckBox5: TCheckBox;
-    CheckBox6: TCheckBox;
+    CheckBox4: TTMSFNCCheckBox;
+    CheckBox5: TTMSFNCCheckBox;
+    CheckBox6: TTMSFNCCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
     procedure CheckBox3Change(Sender: TObject);
@@ -54,7 +59,7 @@ uses
 
 procedure TForm130.CheckBox1Change(Sender: TObject);
 begin
-  if CheckBox1.IsChecked then
+  if CheckBox1.Checked then
     TMSFNCTreeView1.ExpandAll
   else
     TMSFNCTreeView1.CollapseAll;
@@ -62,18 +67,18 @@ end;
 
 procedure TForm130.CheckBox2Change(Sender: TObject);
 begin
-  TMSFNCTreeView1.Columns[2].UseDefaultAppearance := not CheckBox2.IsChecked;
+  TMSFNCTreeView1.Columns[2].UseDefaultAppearance := not CheckBox2.Checked;
 end;
 
 procedure TForm130.CheckBox3Change(Sender: TObject);
 begin
-  TMSFNCTreeView1.Columns[1].Visible := CheckBox3.IsChecked;
+  TMSFNCTreeView1.Columns[1].Visible := CheckBox3.Checked;
   TMSFNCTreeView1.ColumnsAppearance.StretchAll := not TMSFNCTreeView1.Columns[1].Visible;
 end;
 
 procedure TForm130.CheckBox4Change(Sender: TObject);
 begin
-  if CheckBox4.IsChecked then
+  if CheckBox4.Checked then
     TMSFNCTreeView1.Interaction.ClipboardMode := tcmFull
   else
     TMSFNCTreeView1.Interaction.ClipboardMode := tcmNone;
@@ -83,7 +88,7 @@ procedure TForm130.CheckBox5Change(Sender: TObject);
 var
   I: Integer;
 begin
-  if CheckBox5.IsChecked then
+  if CheckBox5.Checked then
   begin
     for I := 0 to TMSFNCTreeView1.Columns.Count - 1 do
       TMSFNCTreeView1.Columns[I].Sorting := tcsRecursive;
@@ -100,9 +105,9 @@ var
   I: Integer;
 begin
   for I := 0 to TMSFNCTreeView1.Columns.Count - 1 do
-    TMSFNCTreeView1.Columns[I].Filtering.Enabled := CheckBox6.IsChecked;
+    TMSFNCTreeView1.Columns[I].Filtering.Enabled := CheckBox6.Checked;
 
-  if CheckBox6.IsChecked then
+  if CheckBox6.Checked then
     TMSFNCTreeView1.Columns[2].HorizontalTextAlign := gtaLeading
   else
     TMSFNCTreeView1.Columns[2].HorizontalTextAlign := gtaTrailing

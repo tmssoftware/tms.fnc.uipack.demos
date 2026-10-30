@@ -3,7 +3,7 @@ object Form130: TForm130
   Top = 0
   ActiveControl = TMSFNCTreeView1
   Caption = 'TMS FNC TreeView Demo'
-  ClientHeight = 612
+  ClientHeight = 684
   ClientWidth = 1184
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -14,25 +14,62 @@ object Form130: TForm130
   Position = poScreenCenter
   OnCreate = FormCreate
   TextHeight = 13
-  object Label1: TLabel
-    AlignWithMargins = True
-    Left = 10
-    Top = 10
-    Width = 1164
-    Height = 25
-    Margins.Left = 10
-    Margins.Top = 10
-    Margins.Right = 10
-    Margins.Bottom = 0
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 1184
+    Height = 72
     Align = alTop
-    Caption = 'Birthday Shopping List'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -21
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    ExplicitWidth = 211
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 1000
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 960
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'TreeView'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 960
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'A birthday shopping list: HTML text, progress bars, inline editing, sorting, filtering and clipboard'
+    end
   end
   object TMSFNCTreeView1: TTMSFNCTreeView
     AlignWithMargins = True
@@ -40,10 +77,10 @@ object Form130: TForm130
     Top = 45
     Width = 969
     Height = 557
-    Margins.Left = 10
-    Margins.Top = 10
-    Margins.Right = 10
-    Margins.Bottom = 10
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -284,12 +321,10 @@ object Form130: TForm130
     NodesAppearance.Font.Name = 'Tahoma'
     NodesAppearance.Font.Style = []
     NodesAppearance.TitleFont.Charset = DEFAULT_CHARSET
-    NodesAppearance.TitleFont.Color = clWindowText
     NodesAppearance.TitleFont.Height = -11
     NodesAppearance.TitleFont.Name = 'Tahoma'
     NodesAppearance.TitleFont.Style = []
     NodesAppearance.ExtendedFont.Charset = DEFAULT_CHARSET
-    NodesAppearance.ExtendedFont.Color = clWindowText
     NodesAppearance.ExtendedFont.Height = -11
     NodesAppearance.ExtendedFont.Name = 'Tahoma'
     NodesAppearance.ExtendedFont.Style = []
@@ -1710,130 +1745,137 @@ object Form130: TForm130
         end>
     end
   end
-  object Panel1: TPanel
+  object Panel1: TTMSFNCPanel
     AlignWithMargins = True
     Left = 10
     Top = 45
-    Width = 185
+    Width = 260
     Height = 557
-    Margins.Left = 10
-    Margins.Top = 10
+    Margins.Left = 16
+    Margins.Top = 0
     Margins.Right = 0
-    Margins.Bottom = 10
+    Margins.Bottom = 16
     Align = alLeft
-    BevelOuter = bvNone
-    BorderStyle = bsSingle
-    Ctl3D = False
-    ParentCtl3D = False
     TabOrder = 1
-    ExplicitHeight = 556
-    object Label2: TLabel
+    Header.Visible = False
+    object Label2: TTMSFNCHTMLText
       AlignWithMargins = True
       Left = 3
       Top = 3
       Width = 177
-      Height = 65
+      Height = 100
       Align = alTop
-      Caption = 
+      Text = 
         '[Enter amount] can be edited by clicking on the text. The rightm' +
         'ost column can be used to set a shipping method through the buil' +
         't-in TComboBox editor.'
-      WordWrap = True
-      ExplicitWidth = 176
+      WordWrapping = True
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Margins.Left = 12
+      Margins.Top = 12
+      Margins.Right = 12
+      Margins.Bottom = 4
     end
-    object CheckBox1: TCheckBox
+    object CheckBox1: TTMSFNCCheckBox
       AlignWithMargins = True
       Left = 5
       Top = 76
       Width = 173
-      Height = 17
-      Margins.Left = 5
-      Margins.Top = 5
-      Margins.Right = 5
-      Margins.Bottom = 5
+      Height = 24
+      Margins.Left = 12
+      Margins.Top = 8
+      Margins.Right = 12
+      Margins.Bottom = 0
       Align = alTop
-      Caption = 'Expand All / Collapse All'
+      Text = 'Expand All / Collapse All'
       Checked = True
-      State = cbChecked
       TabOrder = 0
       OnClick = CheckBox1Click
+      Checked = True
     end
-    object CheckBox2: TCheckBox
+    object CheckBox2: TTMSFNCCheckBox
       AlignWithMargins = True
       Left = 5
       Top = 103
       Width = 173
-      Height = 17
-      Margins.Left = 5
-      Margins.Top = 5
-      Margins.Right = 5
-      Margins.Bottom = 5
+      Height = 24
+      Margins.Left = 12
+      Margins.Top = 8
+      Margins.Right = 12
+      Margins.Bottom = 0
       Align = alTop
-      Caption = 'Custom Column Appearance'
+      Text = 'Custom Column Appearance'
       TabOrder = 1
       OnClick = CheckBox2Click
     end
-    object CheckBox3: TCheckBox
+    object CheckBox3: TTMSFNCCheckBox
       AlignWithMargins = True
       Left = 5
       Top = 130
       Width = 173
-      Height = 17
-      Margins.Left = 5
-      Margins.Top = 5
-      Margins.Right = 5
-      Margins.Bottom = 5
+      Height = 24
+      Margins.Left = 12
+      Margins.Top = 8
+      Margins.Right = 12
+      Margins.Bottom = 0
       Align = alTop
-      Caption = 'Hide Column'
+      Text = 'Hide Column'
       Checked = True
-      State = cbChecked
       TabOrder = 2
       OnClick = CheckBox3Click
+      Checked = True
     end
-    object CheckBox4: TCheckBox
+    object CheckBox4: TTMSFNCCheckBox
       AlignWithMargins = True
       Left = 5
       Top = 157
       Width = 173
-      Height = 17
-      Margins.Left = 5
-      Margins.Top = 5
-      Margins.Right = 5
-      Margins.Bottom = 5
+      Height = 24
+      Margins.Left = 12
+      Margins.Top = 8
+      Margins.Right = 12
+      Margins.Bottom = 0
       Align = alTop
-      Caption = 'Clipboard Support'
+      Text = 'Clipboard Support'
       TabOrder = 3
       OnClick = CheckBox4Click
     end
-    object CheckBox5: TCheckBox
+    object CheckBox5: TTMSFNCCheckBox
       AlignWithMargins = True
       Left = 5
       Top = 211
       Width = 173
-      Height = 17
-      Margins.Left = 5
-      Margins.Top = 5
-      Margins.Right = 5
-      Margins.Bottom = 5
+      Height = 24
+      Margins.Left = 12
+      Margins.Top = 8
+      Margins.Right = 12
+      Margins.Bottom = 0
       Align = alTop
-      Caption = 'Filtering'
+      Text = 'Filtering'
       TabOrder = 4
       OnClick = CheckBox5Click
     end
-    object CheckBox6: TCheckBox
+    object CheckBox6: TTMSFNCCheckBox
       AlignWithMargins = True
       Left = 5
       Top = 184
       Width = 173
-      Height = 17
-      Margins.Left = 5
-      Margins.Top = 5
-      Margins.Right = 5
-      Margins.Bottom = 5
+      Height = 24
+      Margins.Left = 12
+      Margins.Top = 8
+      Margins.Right = 12
+      Margins.Bottom = 0
       Align = alTop
-      Caption = 'Sorting (click on column header)'
+      Text = 'Sorting (click on column header)'
       TabOrder = 5
       OnClick = CheckBox6Click
     end
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end
