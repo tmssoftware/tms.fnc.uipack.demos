@@ -1,5 +1,7 @@
 unit UTimelineCustomDrawingDemo;
 
+{ demo-colors: TMSFNCTimeline1 (custom drawing: the timeline colours and the colours drawn in code are the subject) }
+
 interface
 
 uses
@@ -8,7 +10,8 @@ uses
   VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCCustomComponent,
   VCL.TMSFNCBitmapContainer, Vcl.Controls, VCL.TMSFNCCustomControl,
   VCL.TMSFNCCustomScrollControl, Vcl.StdCtrls, WEBLib.StdCtrls,
-  VCL.TMSFNCTimeline, Generics.Collections;
+  VCL.TMSFNCTimeline, Generics.Collections,
+  WEBLib.TMSFNCCustomControl, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCGraphicsTypes, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCPanel, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector, WEBLib.TMSFNCTypes, WEBLib.TMSFNCUtils;
 
 type
   TTimelineItem = record
@@ -19,15 +22,18 @@ type
   TTimelineItemList = class(TList<TTimelineItem>);
 
   TForm1 = class(TWebForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCTimeline1: TTMSFNCTimeline;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
-    WebButton1: TWebButton;
     procedure TMSFNCTimeline1BeforeDrawIndicatorAnnotation(Sender: TObject; AGraphics: TTMSFNCGraphics; AIndicator: TTMSFNCTimelineIndicator;
       var ADrawingParams: TTMSFNCTimelineAnnotationDrawingParams; var AAllow, ADefaultDraw: Boolean);
     procedure TMSFNCTimeline1AfterDrawIndicatorAnnotation(Sender: TObject; AGraphics: TTMSFNCGraphics; AIndicator: TTMSFNCTimelineIndicator; ADrawingParams: TTMSFNCTimelineAnnotationDrawingParams);
     procedure TMSFNCTimeline1UpdateIndicatorDisplay(Sender: TObject; AIndicator: TTMSFNCTimelineIndicator; var AIndicatorDrawingParams: TTMSFNCTimelineIndicatorDrawingParams; var AAdd: Boolean);
     procedure WebFormCreate(Sender: TObject);
-    procedure WebButton1Click(Sender: TObject);
   private
     { Private declarations }
     TimelineItemsList: TTimelineItemList;
@@ -45,15 +51,10 @@ uses
 
 {$R *.dfm}
 
-procedure TForm1.WebButton1Click(Sender: TObject);
-begin
-  TMSFNCTimeline1.BeginUpdate;
-  TMSFNCTimeline1.EndUpdate;
-end;
-
 procedure TForm1.WebFormCreate(Sender: TObject);
 var
  it: TTimelineItem;
+ I: Integer;
 begin
   TimelineItemsList := TTimelineItemList.Create;
 
@@ -91,6 +92,10 @@ begin
   it.Name := 'Pinterest';
   it.Text := 'A social Curation website for sharing and categorizing images found online.';
   TimelineItemsList.Add(it);
+
+  // the annotation texts span several lines
+  for I := 0 to TMSFNCTimeline1.Indicators.Count - 1 do
+    TMSFNCTimeline1.Indicators[I].Annotation.Appearance.TextWordWrap := True;
 end;
 
 procedure TForm1.TMSFNCTimeline1AfterDrawIndicatorAnnotation(Sender: TObject; AGraphics: TTMSFNCGraphics; AIndicator: TTMSFNCTimelineIndicator; ADrawingParams: TTMSFNCTimelineAnnotationDrawingParams);

@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Width = 791
-  Height = 895
+  Width = 700
+  Height = 720
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
@@ -8,9 +8,67 @@ object Form1: TForm1
   Font.Style = []
   ParentFont = False
   OnCreate = WebFormCreate
-  object TMSFNCTimeline1: TTMSFNCTimeline
+  Caption = 'TMS FNC UI Pack - Timeline Custom Drawing'
+  object DemoHeader: TTMSFNCPanel
     Left = 0
     Top = 0
+    Width = 800
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 616
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 576
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Timeline custom drawing: social media'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 576
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Indicator icons, annotation lines and texts drawn in code'
+    end
+  end
+  object TMSFNCTimeline1: TTMSFNCTimeline
+    Left = 0
+    Top = 72
     Width = 791
     Height = 895
     Align = alClient
@@ -426,10 +484,15 @@ object Form1: TForm1
     OnBeforeDrawIndicatorAnnotation = TMSFNCTimeline1BeforeDrawIndicatorAnnotation
     OnAfterDrawIndicatorAnnotation = TMSFNCTimeline1AfterDrawIndicatorAnnotation
     OnUpdateIndicatorDisplay = TMSFNCTimeline1UpdateIndicatorDisplay
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
   end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
     Left = 672
-    Top = 32
+    Top = 104
     Width = 39
     Height = 39
     Visible = True
@@ -2101,15 +2164,9 @@ object Form1: TForm1
         Tag = 0
       end>
   end
-  object WebButton1: TWebButton
-    Left = 576
-    Top = 120
-    Width = 96
-    Height = 25
-    Caption = 'WebButton1'
-    ChildOrder = 2
-    HeightPercent = 100.000000000000000000
-    WidthPercent = 100.000000000000000000
-    OnClick = WebButton1Click
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

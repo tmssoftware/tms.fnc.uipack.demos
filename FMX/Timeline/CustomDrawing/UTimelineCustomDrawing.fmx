@@ -1,14 +1,71 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Timeline Custom Drawing Demo'
-  ClientHeight = 880
-  ClientWidth = 640
+  Caption = 'TMS FNC UI Pack - Timeline Custom Drawing'
+  ClientHeight = 720
+  ClientWidth = 680
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
+  Position = ScreenCenter
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 640.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 416.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Timeline custom drawing: project milestones'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 416.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Indicators, connection lines and HTML annotations drawn in code'
+    end
+  end
   object TMSFNCTimeline1: TTMSFNCTimeline
     Align = Client
     Size.Width = 640.000000000000000000
@@ -22,9 +79,6 @@ object Form1: TForm1
     Appearance.DivisionFont.Size = 10.000000000000000000
     Appearance.DefaultIndicatorAppearance.Stroke.Width = 2.000000000000000000
     Appearance.DefaultIndicatorAppearance.SelectedStroke.Width = 2.000000000000000000
-    Appearance.DefaultAnnotationAppearance.Font.Color = xFF454545
-    Appearance.DefaultAnnotationAppearance.HoverFont.Color = xFF454545
-    Appearance.DefaultAnnotationAppearance.SelectedFont.Color = xFF454545
     Appearance.DefaultAnnotationAppearance.TextMargins.Left = 2.000000000000000000
     Appearance.DefaultAnnotationAppearance.TextMargins.Top = 2.000000000000000000
     Appearance.DefaultAnnotationAppearance.TextMargins.Right = 2.000000000000000000
@@ -52,9 +106,6 @@ object Form1: TForm1
         Appearance.Stroke.Width = 2.000000000000000000
         Appearance.SelectedStroke.Width = 2.000000000000000000
         Appearance.Size = 20
-        Annotation.Appearance.Font.Color = xFF454545
-        Annotation.Appearance.HoverFont.Color = xFF454545
-        Annotation.Appearance.SelectedFont.Color = xFF454545
         Annotation.Appearance.TextMargins.Left = 2.000000000000000000
         Annotation.Appearance.TextMargins.Top = 2.000000000000000000
         Annotation.Appearance.TextMargins.Right = 2.000000000000000000
@@ -69,9 +120,6 @@ object Form1: TForm1
         Appearance.Stroke.Width = 2.000000000000000000
         Appearance.SelectedStroke.Width = 2.000000000000000000
         Appearance.Size = 0
-        Annotation.Appearance.Font.Color = xFF454545
-        Annotation.Appearance.HoverFont.Color = xFF454545
-        Annotation.Appearance.SelectedFont.Color = xFF454545
         Annotation.Appearance.TextMargins.Left = 2.000000000000000000
         Annotation.Appearance.TextMargins.Top = 2.000000000000000000
         Annotation.Appearance.TextMargins.Right = 2.000000000000000000
@@ -88,9 +136,6 @@ object Form1: TForm1
         Appearance.Stroke.Width = 2.000000000000000000
         Appearance.SelectedStroke.Width = 2.000000000000000000
         Appearance.Size = 0
-        Annotation.Appearance.Font.Color = xFF454545
-        Annotation.Appearance.HoverFont.Color = xFF454545
-        Annotation.Appearance.SelectedFont.Color = xFF454545
         Annotation.Appearance.TextMargins.Left = 2.000000000000000000
         Annotation.Appearance.TextMargins.Top = 2.000000000000000000
         Annotation.Appearance.TextMargins.Right = 2.000000000000000000
@@ -107,9 +152,6 @@ object Form1: TForm1
         Appearance.Stroke.Width = 2.000000000000000000
         Appearance.SelectedStroke.Width = 2.000000000000000000
         Appearance.Size = 0
-        Annotation.Appearance.Font.Color = xFF454545
-        Annotation.Appearance.HoverFont.Color = xFF454545
-        Annotation.Appearance.SelectedFont.Color = xFF454545
         Annotation.Appearance.TextMargins.Left = 2.000000000000000000
         Annotation.Appearance.TextMargins.Top = 2.000000000000000000
         Annotation.Appearance.TextMargins.Right = 2.000000000000000000
@@ -126,9 +168,6 @@ object Form1: TForm1
         Appearance.Stroke.Width = 2.000000000000000000
         Appearance.SelectedStroke.Width = 2.000000000000000000
         Appearance.Size = 0
-        Annotation.Appearance.Font.Color = xFF454545
-        Annotation.Appearance.HoverFont.Color = xFF454545
-        Annotation.Appearance.SelectedFont.Color = xFF454545
         Annotation.Appearance.TextMargins.Left = 2.000000000000000000
         Annotation.Appearance.TextMargins.Top = 2.000000000000000000
         Annotation.Appearance.TextMargins.Right = 2.000000000000000000
@@ -149,9 +188,6 @@ object Form1: TForm1
         Appearance.Stroke.Width = 2.000000000000000000
         Appearance.SelectedStroke.Width = 2.000000000000000000
         Appearance.Size = 20
-        Annotation.Appearance.Font.Color = xFF454545
-        Annotation.Appearance.HoverFont.Color = xFF454545
-        Annotation.Appearance.SelectedFont.Color = xFF454545
         Annotation.Appearance.TextMargins.Left = 2.000000000000000000
         Annotation.Appearance.TextMargins.Top = 2.000000000000000000
         Annotation.Appearance.TextMargins.Right = 2.000000000000000000
@@ -194,6 +230,9 @@ object Form1: TForm1
     OnBeforeDrawIndicatorAnnotation = TMSFNCTimeline1BeforeDrawIndicatorAnnotation
     OnAfterDrawIndicatorAnnotation = TMSFNCTimeline1AfterDrawIndicatorAnnotation
     OnUpdateIndicatorDisplay = TMSFNCTimeline1UpdateIndicatorDisplay
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
       Size.Width = 39.000000000000000000
       Size.Height = 39.000000000000000000
@@ -1001,5 +1040,10 @@ object Form1: TForm1
           Tag = 0
         end>
     end
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

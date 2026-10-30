@@ -1,5 +1,7 @@
 unit UTimelineCustomDrawing;
 
+{ demo-colors: TMSFNCTimeline1 (custom drawing: the timeline colours and the colours drawn in code are the subject) }
+
 interface
 
 uses
@@ -7,7 +9,8 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes,
   FMX.TMSFNCCustomControl, FMX.TMSFNCCustomScrollControl, FMX.TMSFNCTimeline, Generics.Collections,
-  FMX.TMSFNCCustomComponent, FMX.TMSFNCBitmapContainer;
+  FMX.TMSFNCCustomComponent, FMX.TMSFNCBitmapContainer,
+  FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TTimelineItem = record
@@ -21,6 +24,11 @@ type
 
 
   TForm1 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCTimeline1: TTMSFNCTimeline;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     procedure TMSFNCTimeline1UpdateIndicatorDisplay(Sender: TObject;
@@ -160,7 +168,7 @@ begin
     end;
 
     txt := txt + '<FONT size="20" color="' + TTMSFNCGraphics.ColorToHTML(TimelineItemsList[AIndicator.Index - 1].Color) + '"><B>' + TimelineItemsList[AIndicator.Index - 1].Name + '</FONT><br>'
-                          +'<FONT size="16" color="#294842">' + TimelineItemsList[AIndicator.Index - 1].Date + '</FONT></B><br>';
+                          +'<FONT size="16" color="' + TTMSFNCGraphics.ColorToHTML(TMSFNCTimeline1.Appearance.DefaultAnnotationAppearance.Font.Color) + '">' + TimelineItemsList[AIndicator.Index - 1].Date + '</FONT></B><br>';
 //                          +'<FONT size="14" color="#141213">' + TimelineItemsList[AIndicator.Index - 1].Text + '</FONT></P>';
 
     ADrawingParams.Text := txt;

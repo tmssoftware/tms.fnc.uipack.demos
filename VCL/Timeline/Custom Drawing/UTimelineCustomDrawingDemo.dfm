@@ -1,9 +1,9 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Timeline Custom Draw Demo'
-  ClientHeight = 941
-  ClientWidth = 689
+  Caption = 'TMS FNC UI Pack - Timeline Custom Drawing'
+  ClientHeight = 720
+  ClientWidth = 700
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,6 +12,64 @@ object Form1: TForm1
   Font.Style = []
   OnCreate = FormCreate
   TextHeight = 15
+  Position = poScreenCenter
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 689
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 505
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 465
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Timeline custom drawing: social media'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 465
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Indicator icons, annotation lines and texts drawn in code'
+    end
+  end
   object TMSFNCTimeline1: TTMSFNCTimeline
     Left = 0
     Top = 0
@@ -432,10 +490,15 @@ object Form1: TForm1
     OnUpdateIndicatorDisplay = TMSFNCTimeline1UpdateIndicatorDisplay
     ExplicitWidth = 683
     ExplicitHeight = 924
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
   end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
     Left = 672
-    Top = 32
+    Top = 104
     Width = 39
     Height = 39
     Visible = True
@@ -2106,5 +2169,10 @@ object Form1: TForm1
         Name = 'tumblr.png'
         Tag = 0
       end>
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

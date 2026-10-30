@@ -1,5 +1,7 @@
 unit UTimelineCustomDrawingDemo;
 
+{ demo-colors: TMSFNCTimeline1 (custom drawing: the timeline colours and the colours drawn in code are the subject) }
+
 interface
 
 uses
@@ -7,7 +9,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VCL.TMSFNCTypes, VCL.TMSFNCUtils,
   VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCCustomControl, System.Types,
   VCL.TMSFNCCustomScrollControl, VCL.TMSFNCTimeline, VCL.TMSFNCCustomComponent,
-  VCL.TMSFNCBitmapContainer, Generics.Collections;
+  VCL.TMSFNCBitmapContainer, Generics.Collections,
+  VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TTimelineItem = record
@@ -18,6 +21,11 @@ type
   TTimelineItemList = class(TList<TTimelineItem>);
 
   TForm1 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCTimeline1: TTMSFNCTimeline;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     procedure TMSFNCTimeline1BeforeDrawIndicatorAnnotation(Sender: TObject; AGraphics: TTMSFNCGraphics; AIndicator: TTMSFNCTimelineIndicator;
@@ -42,6 +50,7 @@ implementation
 procedure TForm1.FormCreate(Sender: TObject);
 var
  it: TTimelineItem;
+ I: Integer;
 begin
   TimelineItemsList := TTimelineItemList.Create;
 
@@ -79,6 +88,10 @@ begin
   it.Name := 'Pinterest';
   it.Text := 'A social Curation website for sharing and categorizing images found online.';
   TimelineItemsList.Add(it);
+
+  // the annotation texts span several lines
+  for I := 0 to TMSFNCTimeline1.Indicators.Count - 1 do
+    TMSFNCTimeline1.Indicators[I].Annotation.Appearance.TextWordWrap := True;
 end;
 
 procedure TForm1.TMSFNCTimeline1AfterDrawIndicatorAnnotation(Sender: TObject; AGraphics: TTMSFNCGraphics; AIndicator: TTMSFNCTimelineIndicator; ADrawingParams: TTMSFNCTimelineAnnotationDrawingParams);
