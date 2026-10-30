@@ -9,13 +9,19 @@ uses
   FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, System.Rtti,
   FMX.TMSFNCDataGridCell, FMX.TMSFNCDataGridData, FMX.TMSFNCDataGridBase,
   FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer, FMX.TMSFNCDataGrid,
-  FMX.TMSFNCCustomComponent, FMX.TMSFNCPDFIO, FMX.TMSFNCDataGridPDFIO;
+  FMX.TMSFNCCustomComponent, FMX.TMSFNCPDFIO, FMX.TMSFNCDataGridPDFIO,
+  FMX.TMSFNCButton, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
-    Panel1: TPanel;
-    Button1: TButton;
+    Panel1: TTMSFNCPanel;
+    Button1: TTMSFNCButton;
     TMSFNCDataGridPDFIO1: TTMSFNCDataGridPDFIO;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -45,7 +51,7 @@ end;
 
 procedure TForm130.FormCreate(Sender: TObject);
 var
-  b: TButton;
+  b: TTMSFNCButton;
   I: Integer;
   g: TTMSFNCDataGridRenderer;
 begin
@@ -58,72 +64,72 @@ begin
   TMSFNCDataGrid1.RowHeights[3] := 100;
   TMSFNCDataGrid1.RowHeights[4] := 100;
 
-  b := TButton.Create(Self);
+  b := TTMSFNCButton.Create(Self);
   b.Text := 'Left';
   TMSFNCDataGrid1.Controls[0, 1] := b;
   TMSFNCDataGrid1.ControlAligns[0, 1] := gcaLeft;
 
-  b := TButton.Create(Self);
+  b := TTMSFNCButton.Create(Self);
   b.Text := 'Top';
   TMSFNCDataGrid1.Controls[1, 1] := b;
   TMSFNCDataGrid1.ControlAligns[1, 1] := gcaTop;
 
-  b := TButton.Create(Self);
+  b := TTMSFNCButton.Create(Self);
   b.Text := 'Right';
   TMSFNCDataGrid1.Controls[2, 1] := b;
   TMSFNCDataGrid1.ControlAligns[2, 1] := gcaRight;
 
-  b := TButton.Create(Self);
+  b := TTMSFNCButton.Create(Self);
   b.Text := 'Bottom';
   TMSFNCDataGrid1.Controls[3, 1] := b;
   TMSFNCDataGrid1.ControlAligns[3, 1] := gcaBottom;
 
-  b := TButton.Create(Self);
+  b := TTMSFNCButton.Create(Self);
   b.Text := 'Client';
   TMSFNCDataGrid1.Controls[4, 1] := b;
   TMSFNCDataGrid1.ControlAligns[4, 1] := gcaClient;
 
-  b := TButton.Create(Self);
+  b := TTMSFNCButton.Create(Self);
   b.Text := 'Top Left';
   TMSFNCDataGrid1.Controls[0, 2] := b;
   TMSFNCDataGrid1.ControlPositions[0, 2] := gcpTopLeft;
 
-  b := TButton.Create(Self);
+  b := TTMSFNCButton.Create(Self);
   b.Text := 'Top Center';
   TMSFNCDataGrid1.Controls[1, 2] := b;
   TMSFNCDataGrid1.ControlPositions[1, 2] := gcpTopCenter;
 
-  b := TButton.Create(Self);
+  b := TTMSFNCButton.Create(Self);
   b.Text := 'Top Right';
   TMSFNCDataGrid1.Controls[2, 2] := b;
   TMSFNCDataGrid1.ControlPositions[2, 2] := gcpTopRight;
 
-  b := TButton.Create(Self);
+  b := TTMSFNCButton.Create(Self);
   b.Text := 'Center Left';
   TMSFNCDataGrid1.Controls[0, 3] := b;
   TMSFNCDataGrid1.ControlPositions[0, 3] := gcpCenterLeft;
 
-  b := TButton.Create(Self);
+  b := TTMSFNCButton.Create(Self);
   b.Text := 'Center Center';
   TMSFNCDataGrid1.Controls[1, 3] := b;
   TMSFNCDataGrid1.ControlPositions[1, 3] := gcpCenterCenter;
 
-  b := TButton.Create(Self);
+  b := TTMSFNCButton.Create(Self);
   b.Text := 'Center Right';
   TMSFNCDataGrid1.Controls[2, 3] := b;
   TMSFNCDataGrid1.ControlPositions[2, 3] := gcpCenterRight;
 
-  b := TButton.Create(Self);
+  b := TTMSFNCButton.Create(Self);
   b.Text := 'Bottom Left';
   TMSFNCDataGrid1.Controls[0, 4] := b;
   TMSFNCDataGrid1.ControlPositions[0, 4] := gcpBottomLeft;
 
-  b := TButton.Create(Self);
+  b := TTMSFNCButton.Create(Self);
   b.Text := 'Bottom Center';
   TMSFNCDataGrid1.Controls[1, 4] := b;
   TMSFNCDataGrid1.ControlPositions[1, 4] := gcpBottomCenter;
 
-  b := TButton.Create(Self);
+  b := TTMSFNCButton.Create(Self);
   b.Text := 'Bottom Right';
   TMSFNCDataGrid1.Controls[2, 4] := b;
   TMSFNCDataGrid1.ControlPositions[2, 4] := gcpBottomRight;

@@ -2,8 +2,8 @@ object Form130: TForm130
   Left = 0
   Top = 0
   Caption = 'TMS FNC Data Grid Cell Controls Demo'
-  ClientHeight = 740
-  ClientWidth = 1173
+  ClientHeight = 720
+  ClientWidth = 1100
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,16 +13,73 @@ object Form130: TForm130
   Position = poScreenCenter
   OnCreate = FormCreate
   TextHeight = 15
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 1173
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 989
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 949
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'DataGrid cell controls'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 949
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Buttons placed in cells, aligned and positioned inside the cell'
+    end
+  end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     AlignWithMargins = True
     Left = 10
     Top = 62
     Width = 1153
     Height = 668
-    Margins.Left = 10
-    Margins.Top = 10
-    Margins.Right = 10
-    Margins.Bottom = 10
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -240,39 +297,39 @@ object Form130: TForm130
       32222F3E3C2F673E3C2F7376673E}
     ColumnCount = 10
     Options.Mouse.ClickMargin = 0
-    Stroke.Color = clDarkgray
   end
-  object Panel1: TPanel
+  object Panel1: TTMSFNCPanel
     AlignWithMargins = True
     Left = 10
-    Top = 10
+    Top = 72
     Width = 1153
-    Height = 39
-    Margins.Left = 10
-    Margins.Top = 10
-    Margins.Right = 10
+    Height = 48
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
     Align = alTop
     TabOrder = 2
-    object Button1: TButton
+    Header.Visible = False
+    Margins.Bottom = 12
+    object Button1: TTMSFNCButton
       AlignWithMargins = True
-      Left = 6
-      Top = 6
-      Width = 97
-      Height = 27
+      Left = 16
+      Top = 8
+      Width = 128
+      Height = 32
       Margins.Left = 5
       Margins.Top = 5
       Margins.Right = 5
       Margins.Bottom = 5
       Align = alLeft
-      Caption = 'Export To PDF'
+      Text = 'Export To PDF'
       TabOrder = 0
-      WordWrap = True
       OnClick = Button1Click
     end
   end
   object TMSFNCDataGridPDFIO1: TTMSFNCDataGridPDFIO
     Left = 152
-    Top = 19
+    Top = 91
     Width = 26
     Height = 26
     Visible = True
@@ -300,5 +357,10 @@ object Form130: TForm130
     Options.PageNumberMargins.Bottom = 5.000000000000000000
     Options.PageNumberFormat = '%d'
     Options.PageNumberFont.Name = 'Arial'
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

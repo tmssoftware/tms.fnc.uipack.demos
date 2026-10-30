@@ -2,21 +2,77 @@ object Form130: TForm130
   Left = 0
   Top = 0
   Caption = 'TMS FNC Data Grid Cell Controls Demo'
-  ClientHeight = 740
-  ClientWidth = 1173
+  ClientHeight = 720
+  ClientWidth = 1100
   Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 1173.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 949.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'DataGrid cell controls'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 949.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Buttons placed in cells, aligned and positioned inside the cell'
+    end
+  end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Align = Client
     DisableFocusEffect = False
-    Margins.Left = 10.000000000000000000
-    Margins.Top = 10.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 10.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     Size.Width = 1153.000000000000000000
     Size.Height = 671.000000000000000000
     Size.PlatformDefault = False
@@ -276,31 +332,25 @@ object Form130: TForm130
     Options.Mouse.ClickMargin = 0
     Stroke.Color = claDarkgray
   end
-  object Panel1: TPanel
+  object Panel1: TTMSFNCPanel
     Align = Top
-    Margins.Left = 10.000000000000000000
-    Margins.Top = 10.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Position.X = 10.000000000000000000
-    Position.Y = 10.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
     Size.Width = 1153.000000000000000000
-    Size.Height = 39.000000000000000000
+    Size.Height = 48.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
-    object Button1: TButton
-      Align = Left
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 5.000000000000000000
-      Position.X = 5.000000000000000000
-      Position.Y = 5.000000000000000000
-      Size.Width = 97.000000000000000000
-      Size.Height = 29.000000000000000000
+    Header.Visible = False
+    Margins.Bottom = 12.000000000000000000
+    object Button1: TTMSFNCButton
+      Position.X = 16.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 128.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
       Text = 'Export To PDF'
-      TextSettings.Trimming = None
       OnClick = Button1Click
     end
   end
@@ -309,7 +359,7 @@ object Form130: TForm130
     Size.Height = 26.000000000000000000
     Size.PlatformDefault = False
     Position.X = 152.000000000000000000
-    Position.Y = 19.000000000000000000
+    Position.Y = 91.000000000000000000
     DataGrid = TMSFNCDataGrid1
     Options.DefaultFont.Name = 'Arial'
     Options.Header = 'TMS PDF Header'
@@ -334,5 +384,10 @@ object Form130: TForm130
     Options.PageNumberMargins.Bottom = 5.000000000000000000
     Options.PageNumberFormat = '%d'
     Options.PageNumberFont.Name = 'Arial'
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end
