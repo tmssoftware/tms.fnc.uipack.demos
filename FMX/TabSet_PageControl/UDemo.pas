@@ -46,8 +46,6 @@ begin
   TMSFNCDataGrid1.LoadFromCSVData('CARS.csv');
   TMSFNCRichEditorFormatToolBar1.FontNamePicker.SelectedFontName := 'Tahoma';
   TMSFNCRichEditorFormatToolBar1.FontSizePicker.SelectedFontSize := 12;
-  Fill.Color := gcWhite;
-  Fill.Kind := TBrushKind.Solid;
 end;
 
 end.

@@ -11,18 +11,24 @@ uses
   FMX.TMSFNCTreeViewData, FMX.TMSFNCCustomTreeView, FMX.TMSFNCTreeView,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.TMSFNCCustomControl,
   FMX.TMSFNCNavigationPanel, FMX.TMSFNCPanel, FMX.ListBox, FMX.TMSFNCColorPicker,
-  FMX.Calendar, FMX.TMSFNCColorSelector, FMX.TMSFNCTypes, FMX.TMSFNCUtils,
+  FMX.TMSFNCCalendar, FMX.TMSFNCButton, FMX.TMSFNCTrackBar, FMX.TMSFNCColorSelector, FMX.TMSFNCTypes, FMX.TMSFNCUtils,
   FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, System.Rtti,
   FMX.TMSFNCDataGridCell, FMX.TMSFNCDataGridBase, FMX.TMSFNCDataGridCore,
-  FMX.TMSFNCDataGridRenderer;
+  FMX.TMSFNCDataGridRenderer,
+  FMX.TMSFNCHTMLText, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm1 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     TMSFNCNavigationPanel1: TTMSFNCNavigationPanel;
-    Panel1: TPanel;
-    Panel2: TPanel;
-    Panel3: TPanel;
+    Panel1: TTMSFNCPanel;
+    Panel2: TTMSFNCPanel;
+    Panel3: TTMSFNCPanel;
     TMSFNCTreeView1: TTMSFNCTreeView;
     TMSFNCImage1: TTMSFNCImage;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
@@ -47,18 +53,16 @@ implementation
 procedure TForm1.FormCreate(Sender: TObject);
 var
   pnl: TTMSFNCPanel;
-  btn: TButton;
-  tr: TTrackBar;
+  btn: TTMSFNCButton;
+  tr: TTMSFNCTrackBar;
   co: TTMSFNCColorPicker;
   img: TTMSFNCImage;
   I: Integer;
-  cal: TCalendar;
+  cal: TTMSFNCCalendar;
 const
   pnls: array[0..2] of string = ('Grid', 'Treeview', 'Image');
 begin
   TMSFNCDataGrid1.LoadFromCSVData('CARS.csv');
-  Fill.Color := gcWhite;
-  Fill.Kind := TBrushKind.Solid;
   for I := 0 to Length(pnls) -  1 do
   begin
     with TMSFNCNavigationPanel1.Panels.Add do
@@ -96,10 +100,12 @@ begin
         img.Bitmaps.AddBitmapName(pnls[I]);
         img.Height := 75;
         img.Width := 75;
-        cal := TCalendar.Create(pnl);
+        cal := TTMSFNCCalendar.Create(pnl);
         cal.Parent := pnl;
         cal.Position.X := img.Position.X + img.Width + 10;
         cal.Position.Y := img.Position.Y;
+        cal.Width := 160;
+        cal.Height := 180;
         co.Width := cal.Width + 10 + img.Width;
         Control := pnl;
       end;
@@ -108,14 +114,14 @@ begin
         Text := 'Settings';
         pnl := TTMSFNCPanel.Create(Self);
         pnl.Header.Visible := False;
-        btn := TButton.Create(pnl);
+        btn := TTMSFNCButton.Create(pnl);
         btn.Parent := pnl;
         btn.Position.X := 10;
         btn.Position.Y := 10;
         btn.Width := 150;
         btn.Height := 30;
         btn.Text := 'Hello World !';
-        tr := TTrackBar.Create(pnl);
+        tr := TTMSFNCTrackBar.Create(pnl);
         tr.Parent := pnl;
         tr.Position.X := btn.Position.X;
         tr.Position.Y := btn.Position.Y + btn.Height + 10;

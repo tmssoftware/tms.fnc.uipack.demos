@@ -1,8 +1,8 @@
 object Form5: TForm5
   Left = 0
   Top = 0
-  Caption = 'TMS FNC NavigationPanel Demo'
-  ClientHeight = 503
+  Caption = 'TMS FNC UI Pack - NavigationPanel'
+  ClientHeight = 575
   ClientWidth = 788
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -148,16 +148,73 @@ object Form5: TForm5
   Position = poScreenCenter
   OnCreate = FormCreate
   TextHeight = 13
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 788
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 604
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 564
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'NavigationPanel'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 564
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Pick an entry to show a grid, tree view or image; collapse the panel to its compact mode'
+    end
+  end
   object TMSFNCNavigationPanel1: TTMSFNCNavigationPanel
     AlignWithMargins = True
     Left = 5
     Top = 5
     Width = 276
     Height = 493
-    Margins.Left = 5
-    Margins.Top = 5
+    Margins.Left = 16
+    Margins.Top = 0
     Margins.Right = 0
-    Margins.Bottom = 5
+    Margins.Bottom = 16
     Align = alLeft
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -200,7 +257,7 @@ object Form5: TForm5
   end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
     Left = 621
-    Top = 8
+    Top = 80
     Width = 26
     Height = 26
     Visible = True
@@ -246,24 +303,20 @@ object Form5: TForm5
         Tag = 0
       end>
   end
-  object Panel1: TPanel
+  object Panel1: TTMSFNCPanel
     AlignWithMargins = True
     Left = 286
     Top = 5
     Width = 497
     Height = 493
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 5
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
-    BevelOuter = bvNone
-    BorderStyle = bsSingle
-    Caption = 'Panel1'
-    Ctl3D = False
-    ParentCtl3D = False
     TabOrder = 2
     Visible = False
+    Header.Visible = False
     object TMSFNCDataGrid1: TTMSFNCDataGrid
       AlignWithMargins = True
       Left = 5
@@ -754,24 +807,20 @@ object Form5: TForm5
       Options.Mouse.ClickMargin = 0
     end
   end
-  object Panel3: TPanel
+  object Panel3: TTMSFNCPanel
     AlignWithMargins = True
     Left = 286
     Top = 5
     Width = 497
     Height = 493
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 5
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
-    BevelOuter = bvNone
-    BorderStyle = bsSingle
-    Caption = 'Panel3'
-    Ctl3D = False
-    ParentCtl3D = False
     TabOrder = 3
     Visible = False
+    Header.Visible = False
     object TMSFNCImage1: TTMSFNCImage
       AlignWithMargins = True
       Left = 5
@@ -1124,24 +1173,20 @@ object Form5: TForm5
         end>
     end
   end
-  object Panel2: TPanel
+  object Panel2: TTMSFNCPanel
     AlignWithMargins = True
     Left = 286
     Top = 5
     Width = 497
     Height = 493
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 5
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
-    BevelOuter = bvNone
-    BorderStyle = bsSingle
-    Caption = 'Panel2'
-    Ctl3D = False
-    ParentCtl3D = False
     TabOrder = 4
     Visible = False
+    Header.Visible = False
     object TMSFNCTreeView1: TTMSFNCTreeView
       AlignWithMargins = True
       Left = 5
@@ -1432,5 +1477,10 @@ object Form5: TForm5
       DefaultViewJSONOptions.NameHTMLTemplate = '<#NAME>'
       DefaultViewJSONOptions.ValueHTMLTemplate = '<#VALUE>'
     end
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

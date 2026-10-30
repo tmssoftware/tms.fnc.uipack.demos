@@ -3,8 +3,8 @@ object Form1: TForm1
   Height = 503
   Top = 414
   Width = 788
-  Caption = 'TMS FNC NavigationPanel Demo'
-  ClientHeight = 503
+  Caption = 'TMS FNC UI Pack - NavigationPanel'
+  ClientHeight = 575
   ClientWidth = 788
   Icon.Data = {
     BE1000000000010001002020000001002000A810000016000000280000002000
@@ -146,6 +146,40 @@ object Form1: TForm1
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '1.6.0.4'
+  object DemoHeader: TPanel
+    Left = 0
+    Height = 72
+    Top = 0
+    Width = 788
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 72
+    ClientWidth = 788
+    TabOrder = 0
+    object DemoTitle: TLabel
+      Left = 24
+      Height = 30
+      Top = 12
+      Width = 740
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'NavigationPanel'
+      Font.Height = -20
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object DemoDescription: TLabel
+      Left = 24
+      Height = 20
+      Top = 42
+      Width = 740
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Pick an entry to show a grid, tree view or image; collapse the panel to its compact mode'
+      Font.Color = clGrayText
+      ParentFont = False
+    end
+  end
   object TMSFNCNavigationPanel1: TTMSFNCNavigationPanel
     Left = 5
     Height = 493
