@@ -1,18 +1,52 @@
 object Form1: TForm1
   Left = 266
-  Height = 787
+  Height = 859
   Top = 749
   Width = 1099
   Caption = 'TMS FNC Pickers'
-  ClientHeight = 787
+  ClientHeight = 859
   ClientWidth = 1099
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '1.8.2.0'
+  object DemoHeader: TPanel
+    Left = 0
+    Height = 72
+    Top = 0
+    Width = 1099
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 72
+    ClientWidth = 1099
+    TabOrder = 0
+    object DemoTitle: TLabel
+      Left = 24
+      Height = 30
+      Top = 12
+      Width = 1051
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Pickers and selectors'
+      Font.Height = -20
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object DemoDescription: TLabel
+      Left = 24
+      Height = 20
+      Top = 42
+      Width = 1051
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Time, date/time, fill and stroke kind, color and font pickers and selectors'
+      Font.Color = clGrayText
+      ParentFont = False
+    end
+  end
   object Panel1: TPanel
     Left = 8
     Height = 196
-    Top = 404
+    Top = 476
     Width = 425
     ClientHeight = 196
     ClientWidth = 425
@@ -225,7 +259,7 @@ object Form1: TForm1
   object Panel2: TPanel
     Left = 8
     Height = 391
-    Top = 8
+    Top = 80
     Width = 425
     ClientHeight = 391
     ClientWidth = 425
@@ -425,7 +459,7 @@ object Form1: TForm1
   object Panel3: TPanel
     Left = 440
     Height = 538
-    Top = 8
+    Top = 80
     Width = 274
     ClientHeight = 538
     ClientWidth = 274
@@ -822,7 +856,7 @@ object Form1: TForm1
   object Panel4: TPanel
     Left = 720
     Height = 770
-    Top = 8
+    Top = 80
     Width = 368
     ClientHeight = 770
     ClientWidth = 368
@@ -1433,7 +1467,7 @@ object Form1: TForm1
   object Panel5: TPanel
     Left = 440
     Height = 226
-    Top = 552
+    Top = 624
     Width = 274
     ClientHeight = 226
     ClientWidth = 274
@@ -1483,7 +1517,7 @@ object Form1: TForm1
   object Panel6: TPanel
     Left = 8
     Height = 173
-    Top = 605
+    Top = 677
     Width = 426
     ClientHeight = 173
     ClientWidth = 426

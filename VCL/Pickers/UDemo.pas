@@ -14,13 +14,19 @@ uses
   VCL.TMSFNCFillKindPicker, VCL.TMSFNCFillKindSelector, VCL.TMSFNCAnalogTimeSelector,
   VCL.TMSFNCCustomSelector, VCL.TMSFNCDigitalTimeSelector, VCL.TMSFNCPanel,
   VCL.TMSFNCColorSelector, VCL.TMSFNCColorPicker, VCL.TMSFNCColorWheel,
-  VCL.TMSFNCHTMLText, VCL.TMSFNCFontDialog, VCL.TMSFNCDateTimePicker;
+  VCL.TMSFNCHTMLText, VCL.TMSFNCFontDialog, VCL.TMSFNCDateTimePicker,
+  VCL.TMSFNCButton, VCL.TMSFNCCheckBox, VCL.TMSFNCEdit, VCL.TMSFNCRadioButton, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Panel1: TPanel;
-    Panel2: TPanel;
-    Panel3: TPanel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    Panel2: TTMSFNCPanel;
+    Panel3: TTMSFNCPanel;
     TMSFNCAnalogTimePicker1: TTMSFNCAnalogTimePicker;
     TMSFNCDigitalTimePicker1: TTMSFNCDigitalTimePicker;
     TMSFNCDigitalTimeSelector1: TTMSFNCDigitalTimeSelector;
@@ -29,66 +35,66 @@ type
     TMSFNCFillKindPicker1: TTMSFNCFillKindPicker;
     TMSFNCStrokeKindPicker1: TTMSFNCStrokeKindPicker;
     TMSFNCPanel1: TTMSFNCPanel;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
-    Label10: TLabel;
-    Label11: TLabel;
-    Label12: TLabel;
-    Label13: TLabel;
-    Label14: TLabel;
-    Label15: TLabel;
-    Edit1: TEdit;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
-    GroupBox1: TGroupBox;
-    RadioButton1: TRadioButton;
-    RadioButton2: TRadioButton;
-    GroupBox2: TGroupBox;
-    RadioButton3: TRadioButton;
-    RadioButton4: TRadioButton;
-    RadioButton5: TRadioButton;
-    GroupBox3: TGroupBox;
-    RadioButton6: TRadioButton;
-    RadioButton7: TRadioButton;
-    RadioButton8: TRadioButton;
+    Label1: TTMSFNCHTMLText;
+    Label2: TTMSFNCHTMLText;
+    Label3: TTMSFNCHTMLText;
+    Label4: TTMSFNCHTMLText;
+    Label5: TTMSFNCHTMLText;
+    Label6: TTMSFNCHTMLText;
+    Label7: TTMSFNCHTMLText;
+    Label8: TTMSFNCHTMLText;
+    Label9: TTMSFNCHTMLText;
+    Label10: TTMSFNCHTMLText;
+    Label11: TTMSFNCHTMLText;
+    Label12: TTMSFNCHTMLText;
+    Label13: TTMSFNCHTMLText;
+    Label14: TTMSFNCHTMLText;
+    Label15: TTMSFNCHTMLText;
+    Edit1: TTMSFNCEdit;
+    CheckBox1: TTMSFNCCheckBox;
+    CheckBox2: TTMSFNCCheckBox;
+    CheckBox3: TTMSFNCCheckBox;
+    CheckBox4: TTMSFNCCheckBox;
+    GroupBox1: TTMSFNCPanel;
+    RadioButton1: TTMSFNCRadioButton;
+    RadioButton2: TTMSFNCRadioButton;
+    GroupBox2: TTMSFNCPanel;
+    RadioButton3: TTMSFNCRadioButton;
+    RadioButton4: TTMSFNCRadioButton;
+    RadioButton5: TTMSFNCRadioButton;
+    GroupBox3: TTMSFNCPanel;
+    RadioButton6: TTMSFNCRadioButton;
+    RadioButton7: TTMSFNCRadioButton;
+    RadioButton8: TTMSFNCRadioButton;
     TMSFNCAnalogTimeSelector1: TTMSFNCAnalogTimeSelector;
-    Panel4: TPanel;
-    Label16: TLabel;
-    Label17: TLabel;
-    Label18: TLabel;
-    Label19: TLabel;
-    Label20: TLabel;
-    GroupBox4: TGroupBox;
-    RadioButton9: TRadioButton;
-    RadioButton10: TRadioButton;
-    RadioButton11: TRadioButton;
+    Panel4: TTMSFNCPanel;
+    Label16: TTMSFNCHTMLText;
+    Label17: TTMSFNCHTMLText;
+    Label18: TTMSFNCHTMLText;
+    Label19: TTMSFNCHTMLText;
+    Label20: TTMSFNCHTMLText;
+    GroupBox4: TTMSFNCPanel;
+    RadioButton9: TTMSFNCRadioButton;
+    RadioButton10: TTMSFNCRadioButton;
+    RadioButton11: TTMSFNCRadioButton;
     TMSFNCColorWheel1: TTMSFNCColorWheel;
     TMSFNCPanel2: TTMSFNCPanel;
     TMSFNCColorPicker1: TTMSFNCColorPicker;
     TMSFNCColorSelector1: TTMSFNCColorSelector;
-    Panel5: TPanel;
-    Label21: TLabel;
-    Button1: TButton;
+    Panel5: TTMSFNCPanel;
+    Label21: TTMSFNCHTMLText;
+    Button1: TTMSFNCButton;
     TMSFNCFontDialog1: TTMSFNCFontDialog;
     TMSFNCHTMLText1: TTMSFNCHTMLText;
-    Panel6: TPanel;
-    Label22: TLabel;
-    Label23: TLabel;
-    Label24: TLabel;
-    CheckBox5: TCheckBox;
-    GroupBox5: TGroupBox;
-    RadioButton12: TRadioButton;
+    Panel6: TTMSFNCPanel;
+    Label22: TTMSFNCHTMLText;
+    Label23: TTMSFNCHTMLText;
+    Label24: TTMSFNCHTMLText;
+    CheckBox5: TTMSFNCCheckBox;
+    GroupBox5: TTMSFNCPanel;
+    RadioButton12: TTMSFNCRadioButton;
     TMSFNCDateTimePicker1: TTMSFNCDateTimePicker;
-    RadioButton13: TRadioButton;
+    RadioButton13: TTMSFNCRadioButton;
     procedure CheckBox2Click(Sender: TObject);
     procedure CheckBox3Click(Sender: TObject);
     procedure CheckBox4Click(Sender: TObject);
@@ -193,7 +199,7 @@ begin
   TMSFNCPanel1.Fill.ColorTo := gcGray;
   TMSFNCPanel1.Stroke.Color := gcBlack;
 
-  Label24.Caption := FormatDateTime('ddddd tt', TMSFNCDateTimePicker1.SelectedDateTime);
+  Label24.Text := FormatDateTime('ddddd tt', TMSFNCDateTimePicker1.SelectedDateTime);
 end;
 
 procedure TForm130.RadioButton10Click(Sender: TObject);
@@ -272,13 +278,13 @@ end;
 procedure TForm130.TMSFNCAnalogTimePicker1TimeSelected(Sender: TObject;
   ATime: TTime);
 begin
-  Label15.Caption := TimeToStr(ATime);
+  Label15.Text := TimeToStr(ATime);
 end;
 
 procedure TForm130.TMSFNCAnalogTimeSelector1TimeChanged(Sender: TObject;
   ATime: TTime);
 begin
-  Label8.Caption := TimeToStr(ATime);
+  Label8.Text := TimeToStr(ATime);
 end;
 
 procedure TForm130.TMSFNCColorPicker1ColorSelected(Sender: TObject;
@@ -302,19 +308,19 @@ end;
 procedure TForm130.TMSFNCDateTimePicker1DateTimeChanged(Sender: TObject;
   ADateTime: TDateTime);
 begin
-  Label24.Caption := FormatDateTime('ddddd tt', ADateTime);
+  Label24.Text := FormatDateTime('ddddd tt', ADateTime);
 end;
 
 procedure TForm130.TMSFNCDigitalTimePicker1TimeSelected(Sender: TObject;
   ATime: TTime);
 begin
-  Label15.Caption := TimeToStr(ATime);
+  Label15.Text := TimeToStr(ATime);
 end;
 
 procedure TForm130.TMSFNCDigitalTimeSelector1TimeSelected(Sender: TObject;
   ATime: TTime);
 begin
-  Label8.Caption := TimeToStr(ATime)
+  Label8.Text := TimeToStr(ATime)
 end;
 
 procedure TForm130.TMSFNCFillKindPicker1FillKindSelected(Sender: TObject;

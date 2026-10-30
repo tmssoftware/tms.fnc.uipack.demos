@@ -14,44 +14,50 @@ uses
   FMX.TMSFNCAnalogTimePicker, FMX.TMSFNCCustomSelector,
   FMX.TMSFNCDigitalTimeSelector, FMX.TMSFNCAnalogTimeSelector, FMX.TMSFNCPanel, FMX.Edit,
   FMX.TMSFNCColorSelector, FMX.TMSFNCColorPicker, FMX.TMSFNCColorWheel,
-  FMX.TMSFNCHTMLText, FMX.TMSFNCFontDialog, FMX.TMSFNCDateTimePicker;
+  FMX.TMSFNCHTMLText, FMX.TMSFNCFontDialog, FMX.TMSFNCDateTimePicker,
+  FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCEdit, FMX.TMSFNCRadioButton, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Panel1: TPanel;
-    Panel2: TPanel;
-    Panel3: TPanel;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
-    Label10: TLabel;
-    Label11: TLabel;
-    Label12: TLabel;
-    Label13: TLabel;
-    Label14: TLabel;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
-    GroupBox1: TGroupBox;
-    RadioButton1: TRadioButton;
-    RadioButton2: TRadioButton;
-    GroupBox2: TGroupBox;
-    RadioButton3: TRadioButton;
-    RadioButton4: TRadioButton;
-    RadioButton5: TRadioButton;
-    GroupBox3: TGroupBox;
-    RadioButton6: TRadioButton;
-    RadioButton7: TRadioButton;
-    RadioButton8: TRadioButton;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    Panel2: TTMSFNCPanel;
+    Panel3: TTMSFNCPanel;
+    Label1: TTMSFNCHTMLText;
+    Label2: TTMSFNCHTMLText;
+    Label3: TTMSFNCHTMLText;
+    Label4: TTMSFNCHTMLText;
+    Label5: TTMSFNCHTMLText;
+    Label6: TTMSFNCHTMLText;
+    Label7: TTMSFNCHTMLText;
+    Label8: TTMSFNCHTMLText;
+    Label9: TTMSFNCHTMLText;
+    Label10: TTMSFNCHTMLText;
+    Label11: TTMSFNCHTMLText;
+    Label12: TTMSFNCHTMLText;
+    Label13: TTMSFNCHTMLText;
+    Label14: TTMSFNCHTMLText;
+    CheckBox1: TTMSFNCCheckBox;
+    CheckBox2: TTMSFNCCheckBox;
+    CheckBox3: TTMSFNCCheckBox;
+    CheckBox4: TTMSFNCCheckBox;
+    GroupBox1: TTMSFNCPanel;
+    RadioButton1: TTMSFNCRadioButton;
+    RadioButton2: TTMSFNCRadioButton;
+    GroupBox2: TTMSFNCPanel;
+    RadioButton3: TTMSFNCRadioButton;
+    RadioButton4: TTMSFNCRadioButton;
+    RadioButton5: TTMSFNCRadioButton;
+    GroupBox3: TTMSFNCPanel;
+    RadioButton6: TTMSFNCRadioButton;
+    RadioButton7: TTMSFNCRadioButton;
+    RadioButton8: TTMSFNCRadioButton;
     TMSFNCPanel1: TTMSFNCPanel;
-    Label15: TLabel;
+    Label15: TTMSFNCHTMLText;
     TMSFNCDigitalTimeSelector1: TTMSFNCDigitalTimeSelector;
     TMSFNCAnalogTimePicker1: TTMSFNCAnalogTimePicker;
     TMSFNCDigitalTimePicker1: TTMSFNCDigitalTimePicker;
@@ -59,36 +65,36 @@ type
     TMSFNCStrokeKindSelector1: TTMSFNCStrokeKindSelector;
     TMSFNCFillKindPicker1: TTMSFNCFillKindPicker;
     TMSFNCStrokeKindPicker1: TTMSFNCStrokeKindPicker;
-    Edit1: TEdit;
+    Edit1: TTMSFNCEdit;
     TMSFNCAnalogTimeSelector1: TTMSFNCAnalogTimeSelector;
-    Panel4: TPanel;
-    Label16: TLabel;
+    Panel4: TTMSFNCPanel;
+    Label16: TTMSFNCHTMLText;
     TMSFNCColorWheel1: TTMSFNCColorWheel;
     TMSFNCPanel2: TTMSFNCPanel;
-    Label17: TLabel;
+    Label17: TTMSFNCHTMLText;
     TMSFNCColorPicker1: TTMSFNCColorPicker;
     TMSFNCColorSelector1: TTMSFNCColorSelector;
-    Label18: TLabel;
-    GroupBox4: TGroupBox;
-    RadioButton9: TRadioButton;
-    RadioButton10: TRadioButton;
-    RadioButton11: TRadioButton;
-    Label19: TLabel;
-    Label20: TLabel;
-    Panel5: TPanel;
-    Label21: TLabel;
+    Label18: TTMSFNCHTMLText;
+    GroupBox4: TTMSFNCPanel;
+    RadioButton9: TTMSFNCRadioButton;
+    RadioButton10: TTMSFNCRadioButton;
+    RadioButton11: TTMSFNCRadioButton;
+    Label19: TTMSFNCHTMLText;
+    Label20: TTMSFNCHTMLText;
+    Panel5: TTMSFNCPanel;
+    Label21: TTMSFNCHTMLText;
     TMSFNCFontDialog1: TTMSFNCFontDialog;
-    Button1: TButton;
+    Button1: TTMSFNCButton;
     TMSFNCHTMLText1: TTMSFNCHTMLText;
-    Panel6: TPanel;
-    Label22: TLabel;
-    Label23: TLabel;
+    Panel6: TTMSFNCPanel;
+    Label22: TTMSFNCHTMLText;
+    Label23: TTMSFNCHTMLText;
     TMSFNCDateTimePicker1: TTMSFNCDateTimePicker;
-    CheckBox5: TCheckBox;
-    GroupBox5: TGroupBox;
-    RadioButton12: TRadioButton;
-    RadioButton13: TRadioButton;
-    Label24: TLabel;
+    CheckBox5: TTMSFNCCheckBox;
+    GroupBox5: TTMSFNCPanel;
+    RadioButton12: TTMSFNCRadioButton;
+    RadioButton13: TTMSFNCRadioButton;
+    Label24: TTMSFNCHTMLText;
     procedure RadioButton1Change(Sender: TObject);
     procedure RadioButton2Change(Sender: TObject);
     procedure RadioButton3Change(Sender: TObject);
@@ -148,30 +154,30 @@ end;
 
 procedure TForm130.CheckBox1Change(Sender: TObject);
 begin
-  TMSFNCAnalogTimePicker1.Editable := CheckBox1.IsChecked;
-  TMSFNCDigitalTimePicker1.Editable := CheckBox1.IsChecked;
+  TMSFNCAnalogTimePicker1.Editable := CheckBox1.Checked;
+  TMSFNCDigitalTimePicker1.Editable := CheckBox1.Checked;
 end;
 
 procedure TForm130.CheckBox2Change(Sender: TObject);
 begin
-  TMSFNCAnalogTimeSelector1.Settings.Auto := CheckBox2.IsChecked;
-  TMSFNCAnalogTimeSelector1.Appearance.ShowSecondPointer := CheckBox2.IsChecked;
+  TMSFNCAnalogTimeSelector1.Settings.Auto := CheckBox2.Checked;
+  TMSFNCAnalogTimeSelector1.Appearance.ShowSecondPointer := CheckBox2.Checked;
 end;
 
 procedure TForm130.CheckBox3Change(Sender: TObject);
 begin
-  TMSFNCAnalogTimeSelector1.Settings.ReadOnly := CheckBox3.IsChecked;
+  TMSFNCAnalogTimeSelector1.Settings.ReadOnly := CheckBox3.Checked;
 end;
 
 procedure TForm130.CheckBox4Change(Sender: TObject);
 begin
-  if CheckBox4.IsChecked then
+  if CheckBox4.Checked then
     TMSFNCAnalogTimeSelector1.Style := wsBlackWhite
   else
   begin
     TMSFNCAnalogTimeSelector1.Style := wsClassic;
     TMSFNCAnalogTimeSelector1.Appearance.InitializeDefault;
-    TMSFNCAnalogTimeSelector1.Appearance.ShowSecondPointer := CheckBox2.IsChecked;
+    TMSFNCAnalogTimeSelector1.Appearance.ShowSecondPointer := CheckBox2.Checked;
   end;
 end;
 
@@ -185,7 +191,7 @@ end;
 
 procedure TForm130.CheckBox5Change(Sender: TObject);
 begin
-  TMSFNCDateTimePicker1.Editable := CheckBox5.IsChecked;
+  TMSFNCDateTimePicker1.Editable := CheckBox5.Checked;
 end;
 
 procedure TForm130.FormCreate(Sender: TObject);

@@ -2,7 +2,7 @@ object Form130: TForm130
   Left = 0
   Top = 0
   Caption = 'TMS FNC Pickers Demo'
-  ClientHeight = 769
+  ClientHeight = 841
   ClientWidth = 1115
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,7 +15,64 @@ object Form130: TForm130
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object Panel2: TPanel
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 1115
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 931
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 891
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Pickers and selectors'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 891
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Time, date/time, fill and stroke kind, color and font pickers and selectors'
+    end
+  end
+  object Panel2: TTMSFNCPanel
     AlignWithMargins = True
     Left = 3
     Top = 3
@@ -23,52 +80,67 @@ object Form130: TForm130
     Height = 763
     Align = alLeft
     TabOrder = 0
-    object Label6: TLabel
+    Header.Visible = False
+    object Label6: TTMSFNCHTMLText
       Left = 8
       Top = 14
       Width = 406
       Height = 23
       AutoSize = False
-      Caption = 'Watch and Digital Time Selector'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Text = 'Watch and Digital Time Selector'
       Font.Height = -19
-      Font.Name = 'Tahoma'
       Font.Style = []
-      ParentFont = False
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label7: TLabel
+    object Label7: TTMSFNCHTMLText
       Left = 8
       Top = 43
       Width = 68
       Height = 13
-      Caption = 'Selected time:'
+      Text = 'Selected time:'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label8: TLabel
-      Left = 82
+    object Label8: TTMSFNCHTMLText
+      Left = 104
       Top = 43
       Width = 44
       Height = 13
-      Caption = '00:00:00'
+      Text = '00:00:00'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label9: TLabel
+    object Label9: TTMSFNCHTMLText
       Left = 194
       Top = 249
       Width = 42
       Height = 13
-      Caption = 'Interval:'
+      Text = 'Interval:'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label10: TLabel
+    object Label10: TTMSFNCHTMLText
       Left = 8
       Top = 248
       Width = 175
       Height = 88
       AutoSize = False
-      Caption = 
+      Text = 
         'To select the hour, click inside the watch. To select the minute' +
         ', click outside of the watch. To change the AM/PM, click the AM/' +
         'PM rectangle.'
-      WordWrap = True
+      WordWrapping = True
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
     object TMSFNCDigitalTimeSelector1: TTMSFNCDigitalTimeSelector
       Left = 194
@@ -78,53 +150,41 @@ object Form130: TForm130
       ParentDoubleBuffered = False
       DoubleBuffered = True
       TabOrder = 0
-      Appearance.Stroke.Color = 11119017
-      Appearance.Fill.Color = 15329769
-      Appearance.StrokeHover.Color = 10061943
-      Appearance.FillHover.Color = 13419707
-      Appearance.StrokeDown.Color = 9470064
-      Appearance.FillDown.Color = 13156536
-      Appearance.StrokeSelected.Color = 5197615
-      Appearance.FillSelected.Color = 13156536
-      Appearance.StrokeDisabled.Color = 11119017
-      Appearance.FillDisabled.Color = clSilver
-      Appearance.SeparatorStroke.Color = 11119017
       Appearance.Font.Charset = DEFAULT_CHARSET
-      Appearance.Font.Color = clWindowText
       Appearance.Font.Height = -11
       Appearance.Font.Name = 'Tahoma'
       Appearance.Font.Style = []
       EndTime = 0.999988425925926000
       OnTimeSelected = TMSFNCDigitalTimeSelector1TimeSelected
     end
-    object CheckBox2: TCheckBox
+    object CheckBox2: TTMSFNCCheckBox
       Left = 17
-      Top = 327
+      Top = 344
       Width = 97
       Height = 17
-      Caption = 'Auto'
+      Text = 'Auto'
       TabOrder = 1
       OnClick = CheckBox2Click
     end
-    object CheckBox3: TCheckBox
+    object CheckBox3: TTMSFNCCheckBox
       Left = 17
-      Top = 350
+      Top = 367
       Width = 97
       Height = 17
-      Caption = 'Read only'
+      Text = 'Read only'
       TabOrder = 2
       OnClick = CheckBox3Click
     end
-    object CheckBox4: TCheckBox
+    object CheckBox4: TTMSFNCCheckBox
       Left = 16
-      Top = 373
+      Top = 390
       Width = 97
       Height = 17
-      Caption = 'Customize'
+      Text = 'Customize'
       TabOrder = 3
       OnClick = CheckBox4Click
     end
-    object Edit1: TEdit
+    object Edit1: TTMSFNCEdit
       Left = 242
       Top = 246
       Width = 172
@@ -133,41 +193,46 @@ object Form130: TForm130
       Text = '5'
       OnChange = Edit1Change
     end
-    object GroupBox3: TGroupBox
+    object GroupBox3: TTMSFNCPanel
       Left = 189
       Top = 302
       Width = 220
-      Height = 88
-      Caption = 'Interval Unit'
+      Height = 96
       TabOrder = 4
-      object RadioButton6: TRadioButton
+      Header.Text = 'Interval Unit'
+      Header.Visible = True
+      Header.Size = 24.000000000000000000
+      object RadioButton6: TTMSFNCRadioButton
         Left = 6
-        Top = 17
+        Top = 25
         Width = 113
         Height = 17
-        Caption = 'Seconds'
+        Text = 'Seconds'
         TabOrder = 0
         OnClick = RadioButton6Click
+        GroupName = 'GroupBox3'
       end
-      object RadioButton7: TRadioButton
+      object RadioButton7: TTMSFNCRadioButton
         Left = 6
-        Top = 40
+        Top = 48
         Width = 113
         Height = 17
-        Caption = 'Minutes'
+        Text = 'Minutes'
         Checked = True
         TabOrder = 1
         TabStop = True
         OnClick = RadioButton7Click
+        GroupName = 'GroupBox3'
       end
-      object RadioButton8: TRadioButton
+      object RadioButton8: TTMSFNCRadioButton
         Left = 6
-        Top = 63
+        Top = 71
         Width = 113
         Height = 17
-        Caption = 'Hours'
+        Text = 'Hours'
         TabOrder = 2
         OnClick = RadioButton8Click
+        GroupName = 'GroupBox3'
       end
     end
     object TMSFNCAnalogTimeSelector1: TTMSFNCAnalogTimeSelector
@@ -176,104 +241,107 @@ object Form130: TForm130
       Width = 180
       Height = 180
       ParentDoubleBuffered = False
-      Color = clBtnFace
       DoubleBuffered = True
       TabOrder = 6
-      Fill.Color = -1
-      Stroke.Color = -1
-      Appearance.Stroke.Color = clBlack
       Appearance.Stroke.Width = 4.000000000000000000
-      Appearance.HourMark.Color = clBlack
       Appearance.HourFont.Charset = DEFAULT_CHARSET
-      Appearance.HourFont.Color = clBlack
       Appearance.HourFont.Height = -11
       Appearance.HourFont.Name = 'Tahoma'
       Appearance.HourFont.Style = []
-      Appearance.MinuteMark.Color = clBlack
-      Appearance.AMPMStroke.Color = clBlack
       Appearance.AMPMFont.Charset = DEFAULT_CHARSET
-      Appearance.AMPMFont.Color = clBlack
       Appearance.AMPMFont.Height = -11
       Appearance.AMPMFont.Name = 'Tahoma'
       Appearance.AMPMFont.Style = []
-      Appearance.HourPointer.Color = clBlack
       Appearance.HourPointer.Width = 4.000000000000000000
-      Appearance.MinutePointer.Color = clBlack
       Appearance.MinutePointer.Width = 3.000000000000000000
-      Appearance.SecondPointer.Color = clRed
-      Appearance.HourPointerShadow.Color = clMedGray
       Appearance.HourPointerShadow.Width = 4.000000000000000000
-      Appearance.MinutePointerShadow.Color = clMedGray
       Appearance.MinutePointerShadow.Width = 3.000000000000000000
-      Appearance.CenterPointFill.Color = clBlack
-      Appearance.CenterPointStroke.Color = clBlack
       OnTimeChanged = TMSFNCAnalogTimeSelector1TimeChanged
     end
-    object Panel1: TPanel
+    object Panel1: TTMSFNCPanel
       Left = 1
-      Top = 412
+      Top = 418
       Width = 423
       Height = 200
       Align = alBottom
       TabOrder = 7
-      object Label1: TLabel
+      Header.Visible = False
+      object Label1: TTMSFNCHTMLText
         Left = 7
         Top = 8
         Width = 347
         Height = 23
         AutoSize = False
-        Caption = 'Digital and Analog Time Picker'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
+        Text = 'Digital and Analog Time Picker'
         Font.Height = -19
-        Font.Name = 'Tahoma'
         Font.Style = []
-        ParentFont = False
+        HorizontalTextAlign = gtaLeading
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
       end
-      object Label2: TLabel
-        Left = 155
+      object Label2: TTMSFNCHTMLText
+        Left = 172
         Top = 48
         Width = 33
         Height = 13
-        Caption = 'Analog'
+        Text = 'Analog'
+        HorizontalTextAlign = gtaLeading
+        AutoSize = True
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
       end
-      object Label3: TLabel
-        Left = 264
+      object Label3: TTMSFNCHTMLText
+        Left = 280
         Top = 48
         Width = 29
         Height = 13
-        Caption = 'Digital'
+        Text = 'Digital'
+        HorizontalTextAlign = gtaLeading
+        AutoSize = True
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
       end
-      object Label4: TLabel
+      object Label4: TTMSFNCHTMLText
         Left = 8
         Top = 48
         Width = 68
         Height = 13
-        Caption = 'Selected time:'
+        Text = 'Selected time:'
+        HorizontalTextAlign = gtaLeading
+        AutoSize = True
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
       end
-      object Label5: TLabel
-        Left = 155
+      object Label5: TTMSFNCHTMLText
+        Left = 172
         Top = 107
         Width = 112
         Height = 13
-        Caption = 'Digital Time Picker only:'
+        Text = 'Digital Time Picker only:'
+        HorizontalTextAlign = gtaLeading
+        AutoSize = True
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
       end
-      object Label15: TLabel
-        Left = 82
+      object Label15: TTMSFNCHTMLText
+        Left = 104
         Top = 48
         Width = 44
         Height = 13
-        Caption = '00:00:00'
+        Text = '00:00:00'
+        HorizontalTextAlign = gtaLeading
+        AutoSize = True
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
       end
       object TMSFNCAnalogTimePicker1: TTMSFNCAnalogTimePicker
-        Left = 155
+        Left = 172
         Top = 67
         Width = 90
         Height = 22
         ParentDoubleBuffered = False
         DoubleBuffered = True
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
         Font.Height = -11
         Font.Name = 'Tahoma'
         Font.Style = []
@@ -309,35 +377,22 @@ object Form130: TForm130
         OnTimeSelected = TMSFNCAnalogTimePicker1TimeSelected
       end
       object TMSFNCDigitalTimePicker1: TTMSFNCDigitalTimePicker
-        Left = 264
+        Left = 280
         Top = 67
         Width = 90
         Height = 22
         ParentDoubleBuffered = False
         DoubleBuffered = True
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
         Font.Height = -11
         Font.Name = 'Tahoma'
         Font.Style = []
         TabOrder = 1
         DropDownWidth = 220.000000000000000000
         DropDownHeight = 150.000000000000000000
-        Appearance.Stroke.Color = 11119017
-        Appearance.Fill.Color = 15329769
-        Appearance.StrokeHover.Color = 10061943
-        Appearance.FillHover.Color = 13419707
-        Appearance.StrokeDown.Color = 9470064
-        Appearance.FillDown.Color = 13156536
-        Appearance.StrokeSelected.Color = 5197615
-        Appearance.FillSelected.Color = 13156536
-        Appearance.StrokeDisabled.Color = 11119017
-        Appearance.FillDisabled.Color = clSilver
         Appearance.VerticalSpacing = 0.041666667908430100
         Appearance.HorizontalSpacing = 0.041666667908430100
-        Appearance.SeparatorStroke.Color = 11119017
         Appearance.Font.Charset = DEFAULT_CHARSET
-        Appearance.Font.Color = clWindowText
         Appearance.Font.Height = 0
         Appearance.Font.Name = 'Tahoma'
         Appearance.Font.Style = []
@@ -345,159 +400,179 @@ object Form130: TForm130
         HeaderSize = 0
         OnTimeSelected = TMSFNCDigitalTimePicker1TimeSelected
       end
-      object CheckBox1: TCheckBox
+      object CheckBox1: TTMSFNCCheckBox
         Left = 8
         Top = 77
         Width = 97
         Height = 17
-        Caption = 'Editable'
+        Text = 'Editable'
         TabOrder = 2
         OnClick = CheckBox1Click
       end
-      object GroupBox1: TGroupBox
-        Left = 155
+      object GroupBox1: TTMSFNCPanel
+        Left = 172
         Top = 126
-        Width = 136
-        Height = 63
-        Caption = 'Start Time - End Time'
+        Width = 180
+        Height = 71
         TabOrder = 3
-        object RadioButton1: TRadioButton
+        Header.Text = 'Start Time - End Time'
+        Header.Visible = True
+        Header.Size = 24.000000000000000000
+        object RadioButton1: TTMSFNCRadioButton
           Left = 7
-          Top = 18
+          Top = 26
           Width = 124
           Height = 17
-          Caption = '00:00:00 - 23:59:59'
+          Text = '00:00:00 - 23:59:59'
           Checked = True
           TabOrder = 0
           TabStop = True
           OnClick = RadioButton1Click
+          GroupName = 'GroupBox1'
         end
-        object RadioButton2: TRadioButton
+        object RadioButton2: TTMSFNCRadioButton
           Left = 7
-          Top = 40
+          Top = 48
           Width = 124
           Height = 17
-          Caption = '08:00:00 - 16:30:00'
+          Text = '08:00:00 - 16:30:00'
           TabOrder = 1
           OnClick = RadioButton2Click
+          GroupName = 'GroupBox1'
         end
       end
-      object GroupBox2: TGroupBox
+      object GroupBox2: TTMSFNCPanel
         Left = 8
         Top = 100
         Width = 136
-        Height = 89
-        Caption = 'Time Format'
+        Height = 97
         TabOrder = 4
-        object RadioButton3: TRadioButton
+        Header.Text = 'Time Format'
+        Header.Visible = True
+        Header.Size = 24.000000000000000000
+        object RadioButton3: TTMSFNCRadioButton
           Left = 7
-          Top = 18
+          Top = 26
           Width = 113
           Height = 17
-          Caption = 'hh:nn:ss'
+          Text = 'hh:nn:ss'
           Checked = True
           TabOrder = 0
           TabStop = True
           OnClick = RadioButton3Click
+          GroupName = 'GroupBox2'
         end
-        object RadioButton4: TRadioButton
+        object RadioButton4: TTMSFNCRadioButton
           Left = 7
-          Top = 40
+          Top = 48
           Width = 113
           Height = 17
-          Caption = 'hh:nn:ss.zzz'
+          Text = 'hh:nn:ss.zzz'
           TabOrder = 1
           OnClick = RadioButton4Click
+          GroupName = 'GroupBox2'
         end
-        object RadioButton5: TRadioButton
+        object RadioButton5: TTMSFNCRadioButton
           Left = 7
-          Top = 63
+          Top = 71
           Width = 113
           Height = 17
-          Caption = 'hh:nn'
+          Text = 'hh:nn'
           TabOrder = 2
           OnClick = RadioButton5Click
+          GroupName = 'GroupBox2'
         end
       end
     end
-    object Panel6: TPanel
+    object Panel6: TTMSFNCPanel
       Left = 1
-      Top = 612
+      Top = 616
       Width = 423
       Height = 150
       Align = alBottom
       TabOrder = 8
-      object Label22: TLabel
+      Header.Visible = False
+      object Label22: TTMSFNCHTMLText
         Left = 7
         Top = 8
         Width = 391
         Height = 23
         AutoSize = False
-        Caption = 'DateTime Picker'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
+        Text = 'DateTime Picker'
         Font.Height = -19
-        Font.Name = 'Tahoma'
         Font.Style = []
-        ParentFont = False
+        HorizontalTextAlign = gtaLeading
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
       end
-      object Label23: TLabel
+      object Label23: TTMSFNCHTMLText
         Left = 8
         Top = 37
         Width = 68
         Height = 13
-        Caption = 'Selected time:'
+        Text = 'Selected time:'
+        HorizontalTextAlign = gtaLeading
+        AutoSize = True
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
       end
-      object Label24: TLabel
-        Left = 82
+      object Label24: TTMSFNCHTMLText
+        Left = 104
         Top = 37
         Width = 3
         Height = 13
+        HorizontalTextAlign = gtaLeading
+        AutoSize = True
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
       end
-      object CheckBox5: TCheckBox
+      object CheckBox5: TTMSFNCCheckBox
         Left = 8
         Top = 56
         Width = 97
         Height = 17
-        Caption = 'Editable'
+        Text = 'Editable'
         TabOrder = 0
         OnClick = CheckBox5Click
       end
-      object GroupBox5: TGroupBox
+      object GroupBox5: TTMSFNCPanel
         Left = 8
         Top = 79
-        Width = 136
-        Height = 63
-        Caption = 'Time picker mode'
+        Width = 170
+        Height = 71
         TabOrder = 1
-        object RadioButton12: TRadioButton
+        Header.Text = 'Time picker mode'
+        Header.Visible = True
+        Header.Size = 24.000000000000000000
+        object RadioButton12: TTMSFNCRadioButton
           Left = 7
-          Top = 18
+          Top = 26
           Width = 124
           Height = 17
-          Caption = 'Analog'
+          Text = 'Analog'
           TabOrder = 0
           OnClick = RadioButton12Click
+          GroupName = 'GroupBox5'
         end
-        object RadioButton13: TRadioButton
+        object RadioButton13: TTMSFNCRadioButton
           Left = 7
-          Top = 40
+          Top = 48
           Width = 124
           Height = 17
-          Caption = 'Digital'
+          Text = 'Digital'
           Checked = True
           TabOrder = 1
           TabStop = True
           OnClick = RadioButton13Click
+          GroupName = 'GroupBox5'
         end
       end
       object TMSFNCDateTimePicker1: TTMSFNCDateTimePicker
-        Left = 218
+        Left = 236
         Top = 34
         Width = 180
         Height = 22
         ParentDoubleBuffered = False
-        Color = 11119017
         DoubleBuffered = True
         TabOrder = 2
         SelectedDateTime = 43453.000000000000000000
@@ -505,7 +580,7 @@ object Form130: TForm130
       end
     end
   end
-  object Panel3: TPanel
+  object Panel3: TTMSFNCPanel
     AlignWithMargins = True
     Left = 434
     Top = 3
@@ -513,44 +588,56 @@ object Form130: TForm130
     Height = 763
     Align = alLeft
     TabOrder = 1
-    object Label11: TLabel
+    Header.Visible = False
+    object Label11: TTMSFNCHTMLText
       Left = 8
       Top = 8
       Width = 281
       Height = 23
       AutoSize = False
-      Caption = 'Fill/Stroke Kind Selector/Picker'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Text = 'Fill/Stroke Kind Selector/Picker'
       Font.Height = -19
-      Font.Name = 'Tahoma'
       Font.Style = []
-      ParentFont = False
-      WordWrap = True
+      WordWrapping = True
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label12: TLabel
+    object Label12: TTMSFNCHTMLText
       Left = 8
       Top = 374
       Width = 58
       Height = 13
-      Caption = 'Stroke Kind:'
+      Text = 'Stroke Kind:'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label13: TLabel
+    object Label13: TTMSFNCHTMLText
       Left = 8
       Top = 217
       Width = 39
       Height = 13
-      Caption = 'Fill Kind:'
+      Text = 'Fill Kind:'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label14: TLabel
+    object Label14: TTMSFNCHTMLText
       Left = 11
       Top = 49
       Width = 263
       Height = 26
-      Caption = 
+      Text = 
         'The Fill/Stroke Kind Selector and Picker are in sync via  events' +
         '.'
-      WordWrap = True
+      WordWrapping = True
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
     object TMSFNCFillKindSelector1: TTMSFNCFillKindSelector
       Left = 8
@@ -560,19 +647,7 @@ object Form130: TForm130
       ParentDoubleBuffered = False
       DoubleBuffered = True
       TabOrder = 0
-      Appearance.Stroke.Color = 11119017
-      Appearance.Fill.Color = 15329769
-      Appearance.StrokeHover.Color = 10061943
-      Appearance.FillHover.Color = 13419707
-      Appearance.StrokeDown.Color = 9470064
-      Appearance.FillDown.Color = 13156536
-      Appearance.StrokeSelected.Color = 5197615
-      Appearance.FillSelected.Color = 13156536
-      Appearance.StrokeDisabled.Color = 11119017
-      Appearance.FillDisabled.Color = clSilver
-      Appearance.SeparatorStroke.Color = 11119017
       Appearance.Font.Charset = DEFAULT_CHARSET
-      Appearance.Font.Color = clWindowText
       Appearance.Font.Height = -11
       Appearance.Font.Name = 'Tahoma'
       Appearance.Font.Style = []
@@ -603,19 +678,7 @@ object Form130: TForm130
       ParentDoubleBuffered = False
       DoubleBuffered = True
       TabOrder = 1
-      Appearance.Stroke.Color = 11119017
-      Appearance.Fill.Color = 15329769
-      Appearance.StrokeHover.Color = 10061943
-      Appearance.FillHover.Color = 13419707
-      Appearance.StrokeDown.Color = 9470064
-      Appearance.FillDown.Color = 13156536
-      Appearance.StrokeSelected.Color = 5197615
-      Appearance.FillSelected.Color = 13156536
-      Appearance.StrokeDisabled.Color = 11119017
-      Appearance.FillDisabled.Color = clSilver
-      Appearance.SeparatorStroke.Color = 11119017
       Appearance.Font.Charset = DEFAULT_CHARSET
-      Appearance.Font.Color = clWindowText
       Appearance.Font.Height = -11
       Appearance.Font.Name = 'Tahoma'
       Appearance.Font.Style = []
@@ -649,28 +712,15 @@ object Form130: TForm130
       ParentDoubleBuffered = False
       DoubleBuffered = True
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
       TabOrder = 2
       DropDownWidth = 121.000000000000000000
       DropDownHeight = 121.000000000000000000
-      Appearance.Stroke.Color = 11119017
-      Appearance.Fill.Color = 15329769
-      Appearance.StrokeHover.Color = 10061943
-      Appearance.FillHover.Color = 13419707
-      Appearance.StrokeDown.Color = 9470064
-      Appearance.FillDown.Color = 13156536
-      Appearance.StrokeSelected.Color = 5197615
-      Appearance.FillSelected.Color = 13156536
-      Appearance.StrokeDisabled.Color = 11119017
-      Appearance.FillDisabled.Color = clSilver
       Appearance.VerticalSpacing = 0.041666667908430100
       Appearance.HorizontalSpacing = 0.041666667908430100
-      Appearance.SeparatorStroke.Color = 11119017
       Appearance.Font.Charset = DEFAULT_CHARSET
-      Appearance.Font.Color = clWindowText
       Appearance.Font.Height = 0
       Appearance.Font.Name = 'Tahoma'
       Appearance.Font.Style = []
@@ -701,25 +751,12 @@ object Form130: TForm130
       ParentDoubleBuffered = False
       DoubleBuffered = True
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
       TabOrder = 3
       DropDownWidth = 130.000000000000000000
-      Appearance.Stroke.Color = 11119017
-      Appearance.Fill.Color = 15329769
-      Appearance.StrokeHover.Color = 10061943
-      Appearance.FillHover.Color = 13419707
-      Appearance.StrokeDown.Color = 9470064
-      Appearance.FillDown.Color = 13156536
-      Appearance.StrokeSelected.Color = 5197615
-      Appearance.FillSelected.Color = 13156536
-      Appearance.StrokeDisabled.Color = 11119017
-      Appearance.FillDisabled.Color = clSilver
-      Appearance.SeparatorStroke.Color = 11119017
       Appearance.Font.Charset = DEFAULT_CHARSET
-      Appearance.Font.Color = clWindowText
       Appearance.Font.Height = -11
       Appearance.Font.Name = 'Tahoma'
       Appearance.Font.Style = []
@@ -935,54 +972,48 @@ object Form130: TForm130
         8E0943BE060000000049454E44AE426082}
       Sections = <>
       SectionsAppearance.Font.Charset = DEFAULT_CHARSET
-      SectionsAppearance.Font.Color = clWindowText
       SectionsAppearance.Font.Height = -11
       SectionsAppearance.Font.Name = 'Tahoma'
       SectionsAppearance.Font.Style = []
-      SectionsAppearance.Fill.Color = 15790320
       Header.Text = 'Header'
       Header.Font.Charset = DEFAULT_CHARSET
-      Header.Font.Color = clWindowText
       Header.Font.Height = -11
       Header.Font.Name = 'Tahoma'
       Header.Font.Style = []
       Header.Visible = False
-      Header.Fill.Color = 15000804
       Footer.Text = 'Footer'
       Footer.Font.Charset = DEFAULT_CHARSET
-      Footer.Font.Color = clWindowText
       Footer.Font.Height = -11
       Footer.Font.Name = 'Tahoma'
       Footer.Font.Style = []
-      Footer.Fill.Color = 15000804
     end
-    object Panel5: TPanel
+    object Panel5: TTMSFNCPanel
       Left = 0
       Top = 552
       Width = 274
       Height = 209
       TabOrder = 5
-      object Label21: TLabel
+      Header.Visible = False
+      object Label21: TTMSFNCHTMLText
         Left = 8
         Top = 10
         Width = 218
         Height = 23
         AutoSize = False
-        Caption = 'Font dialog'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
+        Text = 'Font dialog'
         Font.Height = -19
-        Font.Name = 'Tahoma'
         Font.Style = []
-        ParentFont = False
-        WordWrap = True
+        WordWrapping = True
+        HorizontalTextAlign = gtaLeading
+        Fill.Kind = gfkNone
+        Stroke.Kind = gskNone
       end
-      object Button1: TButton
+      object Button1: TTMSFNCButton
         Left = 8
         Top = 51
         Width = 75
         Height = 25
-        Caption = 'Open'
+        Text = 'Open'
         TabOrder = 0
         OnClick = Button1Click
       end
@@ -1003,7 +1034,6 @@ object Form130: TForm130
         Color = clBtnFace
         DoubleBuffered = True
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
         Font.Height = -11
         Font.Name = 'Tahoma'
         Font.Style = []
@@ -1016,7 +1046,7 @@ object Form130: TForm130
       end
     end
   end
-  object Panel4: TPanel
+  object Panel4: TTMSFNCPanel
     AlignWithMargins = True
     Left = 740
     Top = 3
@@ -1024,86 +1054,107 @@ object Form130: TForm130
     Height = 763
     Align = alLeft
     TabOrder = 2
-    object Label16: TLabel
+    Header.Visible = False
+    object Label16: TTMSFNCHTMLText
       Left = 16
       Top = 8
       Width = 345
       Height = 23
       AutoSize = False
-      Caption = 'Color Selector/Picker and Color Wheel'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Text = 'Color Selector/Picker and Color Wheel'
       Font.Height = -19
-      Font.Name = 'Tahoma'
       Font.Style = []
-      ParentFont = False
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label17: TLabel
+    object Label17: TTMSFNCHTMLText
       Left = 8
       Top = 43
       Width = 71
       Height = 13
-      Caption = 'Selected color:'
+      Text = 'Selected color:'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label18: TLabel
+    object Label18: TTMSFNCHTMLText
       Left = 8
       Top = 120
       Width = 62
       Height = 13
-      Caption = 'Color Wheel:'
+      Text = 'Color Wheel:'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label19: TLabel
+    object Label19: TTMSFNCHTMLText
       Left = 8
       Top = 337
       Width = 151
       Height = 13
-      Caption = 'Color Selector and Color Picker:'
+      Text = 'Color Selector and Color Picker:'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label20: TLabel
+    object Label20: TTMSFNCHTMLText
       Left = 159
       Top = 360
       Width = 202
       Height = 39
-      Caption = 
+      Text = 
         'The mode selection will set the mode of the Color Selector and t' +
         'he Color Picker as well.'
-      WordWrap = True
+      WordWrapping = True
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object GroupBox4: TGroupBox
+    object GroupBox4: TTMSFNCPanel
       Left = 8
       Top = 356
       Width = 145
-      Height = 88
-      Caption = 'Mode'
+      Height = 96
       TabOrder = 0
-      object RadioButton9: TRadioButton
+      Header.Text = 'Mode'
+      Header.Visible = True
+      Header.Size = 24.000000000000000000
+      object RadioButton9: TTMSFNCRadioButton
         Left = 6
-        Top = 17
+        Top = 25
         Width = 113
         Height = 17
-        Caption = 'Simple'
+        Text = 'Simple'
         Checked = True
         TabOrder = 0
         TabStop = True
         OnClick = RadioButton9Click
+        GroupName = 'GroupBox4'
       end
-      object RadioButton10: TRadioButton
+      object RadioButton10: TTMSFNCRadioButton
         Left = 6
-        Top = 40
+        Top = 48
         Width = 113
         Height = 17
-        Caption = 'Extended'
+        Text = 'Extended'
         TabOrder = 1
         OnClick = RadioButton10Click
+        GroupName = 'GroupBox4'
       end
-      object RadioButton11: TRadioButton
+      object RadioButton11: TTMSFNCRadioButton
         Left = 6
-        Top = 63
-        Width = 113
+        Top = 71
+        Width = 135
         Height = 17
-        Caption = 'Extended More'
+        Text = 'Extended More'
         TabOrder = 2
         OnClick = RadioButton11Click
+        GroupName = 'GroupBox4'
       end
     end
     object TMSFNCColorWheel1: TTMSFNCColorWheel
@@ -1114,7 +1165,6 @@ object Form130: TForm130
       ParentDoubleBuffered = False
       DoubleBuffered = True
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
@@ -1310,26 +1360,20 @@ object Form130: TForm130
         8E0943BE060000000049454E44AE426082}
       Sections = <>
       SectionsAppearance.Font.Charset = DEFAULT_CHARSET
-      SectionsAppearance.Font.Color = clWindowText
       SectionsAppearance.Font.Height = -11
       SectionsAppearance.Font.Name = 'Tahoma'
       SectionsAppearance.Font.Style = []
-      SectionsAppearance.Fill.Color = 15790320
       Header.Text = 'Header'
       Header.Font.Charset = DEFAULT_CHARSET
-      Header.Font.Color = clWindowText
       Header.Font.Height = -11
       Header.Font.Name = 'Tahoma'
       Header.Font.Style = []
       Header.Visible = False
-      Header.Fill.Color = 15000804
       Footer.Text = 'Footer'
       Footer.Font.Charset = DEFAULT_CHARSET
-      Footer.Font.Color = clWindowText
       Footer.Font.Height = -11
       Footer.Font.Name = 'Tahoma'
       Footer.Font.Style = []
-      Footer.Fill.Color = 15000804
     end
     object TMSFNCColorPicker1: TTMSFNCColorPicker
       Left = 159
@@ -1339,28 +1383,15 @@ object Form130: TForm130
       ParentDoubleBuffered = False
       DoubleBuffered = True
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
       TabOrder = 3
       DropDownWidth = 200.000000000000000000
       DropDownHeight = 175.000000000000000000
-      Appearance.Stroke.Color = 11119017
-      Appearance.Fill.Color = 15329769
-      Appearance.StrokeHover.Color = 10061943
-      Appearance.FillHover.Color = 13419707
-      Appearance.StrokeDown.Color = 9470064
-      Appearance.FillDown.Color = 13156536
-      Appearance.StrokeSelected.Color = 5197615
-      Appearance.FillSelected.Color = 13156536
-      Appearance.StrokeDisabled.Color = 11119017
-      Appearance.FillDisabled.Color = clSilver
       Appearance.VerticalSpacing = 0.041666667908430100
       Appearance.HorizontalSpacing = 0.041666667908430100
-      Appearance.SeparatorStroke.Color = 11119017
       Appearance.Font.Charset = DEFAULT_CHARSET
-      Appearance.Font.Color = clWindowText
       Appearance.Font.Height = 0
       Appearance.Font.Name = 'Tahoma'
       Appearance.Font.Style = []
@@ -1513,19 +1544,7 @@ object Form130: TForm130
       ParentDoubleBuffered = False
       DoubleBuffered = True
       TabOrder = 4
-      Appearance.Stroke.Color = 11119017
-      Appearance.Fill.Color = 15329769
-      Appearance.StrokeHover.Color = 10061943
-      Appearance.FillHover.Color = 13419707
-      Appearance.StrokeDown.Color = 9470064
-      Appearance.FillDown.Color = 13156536
-      Appearance.StrokeSelected.Color = 5197615
-      Appearance.FillSelected.Color = 13156536
-      Appearance.StrokeDisabled.Color = 11119017
-      Appearance.FillDisabled.Color = clSilver
-      Appearance.SeparatorStroke.Color = 11119017
       Appearance.Font.Charset = DEFAULT_CHARSET
-      Appearance.Font.Color = clWindowText
       Appearance.Font.Height = -11
       Appearance.Font.Name = 'Tahoma'
       Appearance.Font.Style = []
@@ -1580,5 +1599,10 @@ object Form130: TForm130
         end>
       OnColorSelected = TMSFNCColorSelector1ColorSelected
     end
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end
