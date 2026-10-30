@@ -12,22 +12,25 @@ uses
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes,
   VCL.TMSFNCDataGridCell, VCL.TMSFNCDataGridData, VCL.TMSFNCDataGridBase,
   VCL.TMSFNCDataGridCore, VCL.TMSFNCDataGridRenderer, VCL.TMSFNCCustomControl,
-  VCL.TMSFNCDataGrid, WEBLib.StdCtrls, WEBLib.Controls, WEBLib.ExtCtrls;
+  VCL.TMSFNCDataGrid, WEBLib.StdCtrls, WEBLib.Controls, WEBLib.ExtCtrls,
+  WEBLib.TMSFNCButton, WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCComboBox, WEBLib.TMSFNCEdit, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCPanel, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TWebForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     lblTitle: TWebLabel;
     lblDescription: TWebLabel;
-    Panel1: TWebPanel;
-    Button1: TWebButton;
-    Edit1: TWebEdit;
-    Label1: TWebLabel;
-    Edit2: TWebEdit;
-    Label2: TWebLabel;
+    Panel1: TTMSFNCPanel;
+    Button1: TTMSFNCButton;
+    Edit1: TTMSFNCEdit;
+    Label1: TTMSFNCHTMLText;
+    Edit2: TTMSFNCEdit;
+    Label2: TTMSFNCHTMLText;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
-    CheckBox1: TWebCheckBox;
-    CheckBox2: TWebCheckBox;
-    ComboBox1: TWebComboBox;
+    CheckBox1: TTMSFNCCheckBox;
+    CheckBox2: TTMSFNCCheckBox;
+    ComboBox1: TTMSFNCComboBox;
     procedure Button1Click(Sender: TObject);
     procedure Edit1ChangeTracking(Sender: TObject);
     procedure FormCreate(Sender: TObject);

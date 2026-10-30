@@ -1,6 +1,6 @@
 object Form130: TForm130
-  Width = 1318
-  Height = 792
+  Width = 1280
+  Height = 720
   Caption = 'TMS FNC Data Grid Filtering Demo'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,7 +16,7 @@ object Form130: TForm130
     Top = 8
     Width = 22
     Height = 15
-    Caption = 'Title'
+    Caption = 'DataGrid filter row'
     Color = clBtnFace
     ElementID = 'title'
     HeightPercent = 100.000000000000000000
@@ -27,106 +27,112 @@ object Form130: TForm130
     Top = 38
     Width = 60
     Height = 15
-    Caption = 'Description'
+    Caption = 'Type in the filter row under the column headers to filter the data'
     Color = clBtnFace
     ElementID = 'description'
     HeightPercent = 100.000000000000000000
     WidthPercent = 100.000000000000000000
   end
-  object Panel1: TWebPanel
+  object Panel1: TTMSFNCPanel
     AlignWithMargins = True
     Left = 10
     Top = 10
     Width = 1298
-    Height = 95
-    Margins.Left = 10
-    Margins.Top = 10
-    Margins.Right = 10
-    Margins.Bottom = 10
+    Height = 84
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 12
     Align = alTop
     TabOrder = 0
-    object Label1: TWebLabel
-      Left = 12
-      Top = 5
-      Width = 175
-      Height = 15
-      Caption = 'Type brand name to start filtering'
-      HeightPercent = 100.000000000000000000
-      WordWrap = True
-      WidthPercent = 100.000000000000000000
+    Header.Visible = False
+    object Label1: TTMSFNCHTMLText
+      Left = 16
+      Top = 10
+      Width = 220
+      Height = 20
+      Text = 'Brand contains'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label2: TWebLabel
-      Left = 213
-      Top = 5
-      Width = 137
-      Height = 15
-      Caption = 'Type price to start filtering'
-      HeightPercent = 100.000000000000000000
-      WordWrap = True
-      WidthPercent = 100.000000000000000000
+    object Label2: TTMSFNCHTMLText
+      Left = 252
+      Top = 10
+      Width = 300
+      Height = 20
+      Text = 'Price'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Button1: TWebButton
-      Left = 12
-      Top = 59
-      Width = 182
-      Height = 22
-      Caption = 'Filter brands starting with A'
-      HeightPercent = 100.000000000000000000
+    object Button1: TTMSFNCButton
+      Left = 812
+      Top = 34
+      Width = 220
+      Height = 32
+      Text = 'Filter brands starting with A'
       TabOrder = 2
-      WidthPercent = 100.000000000000000000
       OnClick = Button1Click
     end
-    object Edit1: TWebEdit
-      Left = 12
-      Top = 29
-      Width = 181
-      Height = 23
-      HeightPercent = 100.000000000000000000
+    object Edit1: TTMSFNCEdit
+      Left = 16
+      Top = 34
+      Width = 220
+      Height = 32
       TabOrder = 1
-      WidthPercent = 100.000000000000000000
       OnChange = Edit1ChangeTracking
     end
-    object Edit2: TWebEdit
-      Left = 213
-      Top = 60
-      Width = 181
-      Height = 23
-      HeightPercent = 100.000000000000000000
-      WidthPercent = 100.000000000000000000
+    object Edit2: TTMSFNCEdit
+      Left = 410
+      Top = 34
+      Width = 142
+      Height = 32
       OnChange = Edit2ChangeTracking
     end
-    object CheckBox1: TWebCheckBox
-      Left = 416
-      Top = 31
-      Width = 185
-      Height = 19
-      Caption = 'Multi Column Filtering'
-      HeightPercent = 100.000000000000000000
+    object CheckBox1: TTMSFNCCheckBox
+      Left = 576
+      Top = 10
+      Width = 220
+      Height = 28
+      Text = 'Multi Column Filtering'
       TabOrder = 4
-      WidthPercent = 100.000000000000000000
-      OnClick = CheckBox1Change
+      OnChange = CheckBox1Change
     end
-    object CheckBox2: TWebCheckBox
-      Left = 416
-      Top = 61
-      Width = 185
-      Height = 19
-      Caption = 'Hide Empty Groups'
-      HeightPercent = 100.000000000000000000
+    object CheckBox2: TTMSFNCCheckBox
+      Left = 576
+      Top = 44
+      Width = 220
+      Height = 28
+      Text = 'Hide Empty Groups'
       TabOrder = 3
-      WidthPercent = 100.000000000000000000
-      OnClick = CheckBox2Change
+      OnChange = CheckBox2Change
     end
-    object ComboBox1: TWebComboBox
-      Left = 214
-      Top = 29
-      Width = 179
-      Height = 23
-      HeightPercent = 100.000000000000000000
+    object ComboBox1: TTMSFNCComboBox
+      Left = 252
+      Top = 34
+      Width = 150
+      Height = 32
       TabOrder = 5
-      WidthPercent = 100.000000000000000000
       OnChange = ComboBox1Change
-      ItemIndex = -1
+      Style = csDropDownList
+    end
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 1000
+      Top = 24
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 24
+      Margins.Right = 16
+      Margins.Bottom = 24
+      Align = alRight
+      TabOrder = 20
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
     end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
@@ -135,9 +141,9 @@ object Form130: TForm130
     Top = 118
     Width = 1298
     Height = 664
-    Margins.Left = 10
-    Margins.Right = 10
-    Margins.Bottom = 10
+    Margins.Left = 16
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -152,20 +158,16 @@ object Form130: TForm130
     CellAppearance.FixedLayout.Font.Height = -11
     CellAppearance.FixedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FixedLayout.Font.Style = []
-    CellAppearance.FixedSelectedLayout.Fill.Color = 15919071
     CellAppearance.FixedSelectedLayout.Font.Charset = DEFAULT_CHARSET
     CellAppearance.FixedSelectedLayout.Font.Color = clWindowText
     CellAppearance.FixedSelectedLayout.Font.Height = -11
     CellAppearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FixedSelectedLayout.Font.Style = []
-    CellAppearance.FocusedLayout.Fill.Color = 13346942
     CellAppearance.FocusedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FocusedLayout.Font.Color = clWhite
     CellAppearance.FocusedLayout.Font.Height = -11
     CellAppearance.FocusedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FocusedLayout.Font.Style = []
     CellAppearance.GroupLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.GroupLayout.Font.Color = clSteelblue
     CellAppearance.GroupLayout.Font.Height = -11
     CellAppearance.GroupLayout.Font.Name = 'Segoe UI'
     CellAppearance.GroupLayout.Font.Style = []
@@ -174,9 +176,7 @@ object Form130: TForm130
     CellAppearance.NormalLayout.Font.Height = -11
     CellAppearance.NormalLayout.Font.Name = 'Segoe UI'
     CellAppearance.NormalLayout.Font.Style = []
-    CellAppearance.SelectedLayout.Fill.Color = 15919071
     CellAppearance.SelectedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.SelectedLayout.Font.Color = clSteelblue
     CellAppearance.SelectedLayout.Font.Height = -11
     CellAppearance.SelectedLayout.Font.Name = 'Segoe UI'
     CellAppearance.SelectedLayout.Font.Style = []
@@ -270,70 +270,6 @@ object Form130: TForm130
       20643D224D31392C33314831325631352E32346C2D31312D3956314833305636
       2E32346C2D31312C395A6D2D362D3168355631342E37366C31312D3956324832
       56352E37366C31312C395A222F3E3C2F673E3C2F7376673E}
-    Icons.FilterTypeIcon.Data = {
-      1054544D53464E435356474269746D6170CB0700003C73766720786D6C6E733D
-      22687474703A2F2F7777772E77332E6F72672F323030302F7376672220786D6C
-      6E733A786C696E6B3D22687474703A2F2F7777772E77332E6F72672F31393939
-      2F786C696E6B222077696474683D22333222206865696768743D223332222076
-      696577426F783D22302030203332203332223E3C646566733E3C7374796C653E
-      2E636C732D317B66696C6C3A6E6F6E653B7D2E636C732D327B66696C6C3A2337
-      39373737343B7D2E636C732D337B66696C6C3A236661666166613B7D2E636C73
-      2D347B66696C6C3A233361336133383B7D2E636C732D357B66696C6C3A75726C
-      28234E65775F5061747465726E5F5377617463685F34293B7D3C2F7374796C65
-      3E3C7061747465726E2069643D224E65775F5061747465726E5F537761746368
-      5F342220646174612D6E616D653D224E6577205061747465726E205377617463
-      682034222077696474683D22363822206865696768743D223638222070617474
-      65726E556E6974733D227573657253706163654F6E557365222076696577426F
-      783D22302030203638203638223E3C7265637420636C6173733D22636C732D31
-      222077696474683D22363822206865696768743D223638222F3E3C7265637420
-      636C6173733D22636C732D32222077696474683D22363822206865696768743D
-      223638222F3E3C2F7061747465726E3E3C2F646566733E3C7469746C653E5465
-      78742D46696C7465723C2F7469746C653E3C672069643D224D61736B223E3C70
-      6F6C79676F6E20636C6173733D22636C732D332220706F696E74733D2232352E
-      35203920313920322E3520313920392032352E352039222F3E3C706174682063
-      6C6173733D22636C732D332220643D224D31382C313056324836563330483231
-      5632362E31384C31392E38342C323548385632344831382E38356C2D322D3248
-      3856323168385631394838563138683856313648385631354832347631683256
-      31305A4D382C396838763148385A6D302C3456313248323476315A222F3E3C70
-      6F6C79676F6E20636C6173733D22636C732D342220706F696E74733D22352031
-      2035203331203620333120323120333120323120333020362033302036203220
-      313820322031382E352032203139203220313920322E352032352E3520392032
-      36203920323620392E3520323620313020323620313620323720313620323720
-      392E372032372039203139203120352031222F3E3C706F6C79676F6E20636C61
-      73733D22636C732D342220706F696E74733D22323620313020323620392E3520
-      323620392032352E352039203139203920313920322E3520313920322031382E
-      3520322031382032203138203130203236203130222F3E3C7265637420636C61
-      73733D22636C732D332220783D22382220793D2239222077696474683D223822
-      206865696768743D2231222F3E3C7265637420636C6173733D22636C732D3522
-      20783D22382220793D2239222077696474683D223822206865696768743D2231
-      222F3E3C7265637420636C6173733D22636C732D332220783D22382220793D22
-      3132222077696474683D22313622206865696768743D2231222F3E3C72656374
-      20636C6173733D22636C732D352220783D22382220793D223132222077696474
-      683D22313622206865696768743D2231222F3E3C706F6C79676F6E20636C6173
-      733D22636C732D332220706F696E74733D223820313520382031362031362031
-      362032342031362032342031352038203135222F3E3C706F6C79676F6E20636C
-      6173733D22636C732D352220706F696E74733D22382031352038203136203136
-      2031362032342031362032342031352038203135222F3E3C7265637420636C61
-      73733D22636C732D332220783D22382220793D223138222077696474683D2238
-      22206865696768743D2231222F3E3C7265637420636C6173733D22636C732D35
-      2220783D22382220793D223138222077696474683D223822206865696768743D
-      2231222F3E3C706F6C79676F6E20636C6173733D22636C732D332220706F696E
-      74733D22382032322031362E38372032322031362032312E3132203136203231
-      20382032312038203232222F3E3C706F6C79676F6E20636C6173733D22636C73
-      2D352220706F696E74733D22382032322031362E38372032322031362032312E
-      313220313620323120382032312038203232222F3E3C706F6C79676F6E20636C
-      6173733D22636C732D332220706F696E74733D22382032352031392E38342032
-      352031382E383520323420382032342038203235222F3E3C706F6C79676F6E20
-      636C6173733D22636C732D352220706F696E74733D22382032352031392E3834
-      2032352031382E383520323420382032342038203235222F3E3C2F673E3C6720
-      69643D224F7665726C6179223E3C706F6C79676F6E20636C6173733D22636C73
-      2D332220706F696E74733D2233312E352031372E352031372E352031372E3520
-      31372E352032302E352032322E352032352E35362032322E352033312E352032
-      362E352033312E352032362E352032352E35362033312E352032302E35203331
-      2E352031372E35222F3E3C7061746820636C6173733D22636C732D342220643D
-      224D32372C33324832325632352E37376C2D352D352E30365631374833327633
-      2E37316C2D352C352E30365A6D2D342D3168335632352E33366C352D352E3037
-      56313848313876322E32396C352C352E30375A222F3E3C2F673E3C2F7376673E}
     Icons.SortAscendingIcon.Data = {
       1054544D53464E435356474269746D6170990300003C73766720786D6C6E733D
       22687474703A2F2F7777772E77332E6F72672F323030302F7376672220786D6C
@@ -403,6 +339,11 @@ object Form130: TForm130
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
     Options.Mouse.ClickMargin = 0
-    Stroke.Color = clDarkgray
+    Margins.Top = 0
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 760
+    Top = 160
   end
 end
