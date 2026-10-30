@@ -1,5 +1,7 @@
 unit UEditing;
 
+{ demo-colors: TMSFNCDataGrid1.Layouts - random cell colours shown by the colour picker column }
+
 interface
 
 uses
@@ -10,10 +12,16 @@ uses
   FMX.TMSFNCDataGrid, FMX.TMSFNCDataGridCell, FMX.TMSFNCTypes, FMX.TMSFNCUtils,
   FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCDataGridBase,
   FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer, FMX.ListBox,
-  FMX.DateTimeCtrls, FMX.Colors, FMX.EditBox, FMX.SpinBox, Rtti;
+  FMX.DateTimeCtrls, FMX.Colors, FMX.EditBox, FMX.SpinBox, Rtti,
+  FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     procedure FormCreate(Sender: TObject);
     procedure TMSFNCDataGrid1GetInplaceEditorProperties(Sender: TObject;
