@@ -1,5 +1,7 @@
 unit UTimeTableDemo;
 
+{ demo-colors: TMSFNCTimeline1 (custom drawing: the timeline colours and the colours drawn in code are the subject) }
+
 interface
 
 uses
@@ -8,10 +10,16 @@ uses
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes,
   FMX.TMSFNCCustomControl, FMX.TMSFNCCustomScrollControl, FMX.TMSFNCTimeline,
   FMX.TMSFNCCustomComponent, FMX.TMSFNCTimelineDatabaseAdapter, Data.DB,
-  Datasnap.DBClient;
+  Datasnap.DBClient,
+  FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm1 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCTimeline1: TTMSFNCTimeline;
     TMSFNCTimelineDatabaseAdapter1: TTMSFNCTimelineDatabaseAdapter;
     DataSource1: TDataSource;
