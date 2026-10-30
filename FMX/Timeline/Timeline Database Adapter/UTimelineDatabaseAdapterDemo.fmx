@@ -1,17 +1,129 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Timeline Database Adapter Demo'
-  ClientHeight = 440
-  ClientWidth = 1170
+  Caption = 'TMS FNC UI Pack - Timeline Database Adapter'
+  ClientHeight = 600
+  ClientWidth = 1200
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
+  Position = ScreenCenter
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 1170.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 946.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Timeline Database Adapter: history'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 946.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Sections and indicators read from a TClientDataSet with the Timeline Database Adapter'
+    end
+  end
+  object SettingsPanel: TTMSFNCPanel
+    Align = Left
+    Margins.Left = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+    Position.Y = 72.000000000000000000
+    Size.Width = 260.000000000000000000
+    Size.Height = 600.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Header.Visible = False
+    object DataCaption: TTMSFNCHTMLText
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 12.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 36.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 15.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Database'
+    end
+    object ConnectBtn: TTMSFNCButton
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 8.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 76.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Disconnect'
+      OnClick = ConnectBtnClick
+    end
+    object InfoText: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 16.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 212.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 120.000000000000000000
+      Size.PlatformDefault = False
+      HorizontalTextAlign = gtaLeading
+      WordWrapping = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'The sections (periods) and indicators (events) come from the HistoryData data set; their colours come from its Color field. Disconnect and connect again to reload them.'
+    end
+  end
   object TMSFNCTimeline1: TTMSFNCTimeline
-    Position.X = 8.000000000000000000
-    Position.Y = 38.000000000000000000
     Size.Width = 1154.000000000000000000
     Size.Height = 392.000000000000000000
     Size.PlatformDefault = False
@@ -21,9 +133,6 @@ object Form1: TForm1
     Appearance.DefaultIndicatorAppearance.SelectedStroke.Width = 2.000000000000000000
     Appearance.DefaultIndicatorAppearance.Size = 20
     Appearance.DefaultAnnotationAppearance.Font.Size = 14.000000000000000000
-    Appearance.DefaultAnnotationAppearance.Font.Color = xFF454545
-    Appearance.DefaultAnnotationAppearance.HoverFont.Color = xFF454545
-    Appearance.DefaultAnnotationAppearance.SelectedFont.Color = xFF454545
     Appearance.DefaultAnnotationAppearance.TextMargins.Left = 2.000000000000000000
     Appearance.DefaultAnnotationAppearance.TextMargins.Top = 2.000000000000000000
     Appearance.DefaultAnnotationAppearance.TextMargins.Right = 2.000000000000000000
@@ -46,9 +155,6 @@ object Form1: TForm1
         Appearance.Stroke.Width = 2.000000000000000000
         Appearance.SelectedStroke.Width = 2.000000000000000000
         Appearance.Size = 20
-        Annotation.Appearance.Font.Color = xFF454545
-        Annotation.Appearance.HoverFont.Color = xFF454545
-        Annotation.Appearance.SelectedFont.Color = xFF454545
         Annotation.Appearance.TextMargins.Left = 2.000000000000000000
         Annotation.Appearance.TextMargins.Top = 2.000000000000000000
         Annotation.Appearance.TextMargins.Right = 2.000000000000000000
@@ -91,21 +197,17 @@ object Form1: TForm1
         EndTimelineDate = 45526.666666666660000000
       end>
     OnBeforeDrawIndicator = TMSFNCTimeline1BeforeDrawIndicator
-  end
-  object ConnectBtn: TButton
-    Position.X = 8.000000000000000000
-    Position.Y = 8.000000000000000000
-    TabOrder = 1
-    Text = 'Disconnect'
-    TextSettings.Trimming = None
-    OnClick = ConnectBtnClick
+    Align = Client
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
   end
   object TMSFNCTimelineDatabaseAdapter1: TTMSFNCTimelineDatabaseAdapter
     Size.Width = 39.000000000000000000
     Size.Height = 39.000000000000000000
     Size.PlatformDefault = False
     Position.X = 1008.000000000000000000
-    Position.Y = 8.000000000000000000
+    Position.Y = 80.000000000000000000
     Item.DataSource = DataSource1
     OnFieldsToSection = TMSFNCTimelineDatabaseAdapter1FieldsToSection
     OnIndicatorRead = TMSFNCTimelineDatabaseAdapter1IndicatorRead
@@ -121,5 +223,10 @@ object Form1: TForm1
     DataSet = HistoryData
     Left = 1048
     Top = 8
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

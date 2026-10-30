@@ -1,5 +1,7 @@
 unit UTimelineDatabaseAdapterDemo;
 
+{ demo-colors: the section colours (Color field of HistoryData, DefaultSectionAppearance) are the subject }
+
 interface
 
 uses
@@ -8,12 +10,21 @@ uses
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes,
   VCL.TMSFNCCustomControl, VCL.TMSFNCCustomScrollControl, VCL.TMSFNCTimeline,
   VCL.StdCtrls, Data.DB, VCL.TMSFNCCustomComponent,
-  VCL.TMSFNCTimelineDatabaseAdapter, Datasnap.DBClient;
+  VCL.TMSFNCTimelineDatabaseAdapter, Datasnap.DBClient,
+  VCL.TMSFNCButton, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm1 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCTimeline1: TTMSFNCTimeline;
-    ConnectBtn: TButton;
+    SettingsPanel: TTMSFNCPanel;
+    DataCaption: TTMSFNCHTMLText;
+    ConnectBtn: TTMSFNCButton;
+    InfoText: TTMSFNCHTMLText;
     HistoryData: TClientDataSet;
     TMSFNCTimelineDatabaseAdapter1: TTMSFNCTimelineDatabaseAdapter;
     DataSource1: TDataSource;
@@ -48,9 +59,9 @@ begin
   TMSFNCTimelineDatabaseAdapter1.Active := not TMSFNCTimelineDatabaseAdapter1.Active;
 
   if TMSFNCTimelineDatabaseAdapter1.Active then
-    ConnectBtn.Caption := 'Disconnect'
+    ConnectBtn.Text := 'Disconnect'
   else
-    ConnectBtn.Caption := 'Connect';
+    ConnectBtn.Text := 'Connect';
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
@@ -160,6 +171,11 @@ begin
     ASection.Appearance.Fill.Color := c
   else
     ASection.Appearance.Fill.Color := TMSFNCTimeline1.Appearance.DefaultSectionAppearance.Fill.Color;
+
+  // dark text on the light section colours, also in a dark theme (the default text colour follows the theme)
+  ASection.Appearance.Font.Color := MakeGraphicsColor(40, 40, 40);
+  ASection.Appearance.HoverFont.Color := MakeGraphicsColor(40, 40, 40);
+  ASection.Appearance.SelectedFont.Color := MakeGraphicsColor(40, 40, 40);
 end;
 
 procedure TForm1.TMSFNCTimelineDatabaseAdapter1IndicatorRead(Sender: TObject;

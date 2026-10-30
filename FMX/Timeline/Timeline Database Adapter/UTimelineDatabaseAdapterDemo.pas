@@ -1,5 +1,7 @@
 unit UTimelineDatabaseAdapterDemo;
 
+{ demo-colors: the section colours (Color field of HistoryData, DefaultSectionAppearance) are the subject }
+
 interface
 
 uses
@@ -8,12 +10,21 @@ uses
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes,
   FMX.TMSFNCCustomControl, FMX.TMSFNCCustomScrollControl, FMX.TMSFNCTimeline,
   FMX.Controls.Presentation, FMX.StdCtrls, Data.DB, FMX.TMSFNCCustomComponent,
-  FMX.TMSFNCTimelineDatabaseAdapter, Datasnap.DBClient;
+  FMX.TMSFNCTimelineDatabaseAdapter, Datasnap.DBClient,
+  FMX.TMSFNCButton, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm1 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCTimeline1: TTMSFNCTimeline;
-    ConnectBtn: TButton;
+    SettingsPanel: TTMSFNCPanel;
+    DataCaption: TTMSFNCHTMLText;
+    ConnectBtn: TTMSFNCButton;
+    InfoText: TTMSFNCHTMLText;
     HistoryData: TClientDataSet;
     TMSFNCTimelineDatabaseAdapter1: TTMSFNCTimelineDatabaseAdapter;
     DataSource1: TDataSource;
@@ -160,6 +171,11 @@ begin
     ASection.Appearance.Fill.Color := c
   else
     ASection.Appearance.Fill.Color := TMSFNCTimeline1.Appearance.DefaultSectionAppearance.Fill.Color;
+
+  // dark text on the light section colours, also in a dark theme (the default text colour follows the theme)
+  ASection.Appearance.Font.Color := MakeGraphicsColor(40, 40, 40);
+  ASection.Appearance.HoverFont.Color := MakeGraphicsColor(40, 40, 40);
+  ASection.Appearance.SelectedFont.Color := MakeGraphicsColor(40, 40, 40);
 end;
 
 procedure TForm1.TMSFNCTimelineDatabaseAdapter1IndicatorRead(Sender: TObject;
