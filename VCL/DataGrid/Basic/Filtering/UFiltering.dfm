@@ -2,8 +2,8 @@ object Form130: TForm130
   Left = 0
   Top = 0
   Caption = 'TMS FNC Data Grid Filtering Demo'
-  ClientHeight = 540
-  ClientWidth = 849
+  ClientHeight = 612
+  ClientWidth = 1000
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,57 +13,122 @@ object Form130: TForm130
   Position = poScreenCenter
   OnCreate = FormCreate
   TextHeight = 15
-  object Panel1: TPanel
-    AlignWithMargins = True
-    Left = 10
-    Top = 10
-    Width = 829
-    Height = 89
-    Margins.Left = 10
-    Margins.Top = 10
-    Margins.Right = 10
-    Margins.Bottom = 10
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 849
+    Height = 72
     Align = alTop
     TabOrder = 0
-    object Label1: TLabel
-      Left = 12
-      Top = 5
-      Width = 175
-      Height = 15
-      Caption = 'Type brand name to start filtering'
-      WordWrap = True
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 665
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
     end
-    object Label2: TLabel
-      Left = 212
-      Top = 5
-      Width = 137
-      Height = 15
-      Caption = 'Type price to start filtering'
-      WordWrap = True
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 625
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'DataGrid filtering'
     end
-    object Button1: TButton
-      Left = 13
-      Top = 60
-      Width = 180
-      Height = 22
-      Caption = 'Filter brands starting with A'
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 625
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
       TabOrder = 2
-      WordWrap = True
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Filter from code with an expression, or with the filter buttons in the column headers'
+    end
+  end
+  object Panel1: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 10
+    Top = 72
+    Width = 829
+    Height = 84
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 12
+    Align = alTop
+    TabOrder = 0
+    Header.Visible = False
+    object Label1: TTMSFNCHTMLText
+      Left = 16
+      Top = 10
+      Width = 220
+      Height = 20
+      Text = 'Brand starts with'
+      WordWrapping = False
+      HorizontalTextAlign = gtaLeading
+      AutoSize = False
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object Label2: TTMSFNCHTMLText
+      Left = 252
+      Top = 10
+      Width = 160
+      Height = 20
+      Text = 'Price starts with'
+      WordWrapping = False
+      HorizontalTextAlign = gtaLeading
+      AutoSize = False
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object Button1: TTMSFNCButton
+      Left = 428
+      Top = 34
+      Width = 220
+      Height = 32
+      Text = 'Filter brands starting with A'
+      TabOrder = 2
       OnClick = Button1Click
     end
-    object Edit1: TEdit
-      Left = 12
-      Top = 29
-      Width = 181
-      Height = 23
+    object Edit1: TTMSFNCEdit
+      Left = 16
+      Top = 34
+      Width = 220
+      Height = 32
       TabOrder = 1
       OnChange = Edit1ChangeTracking
     end
-    object Edit2: TEdit
-      Left = 212
-      Top = 29
-      Width = 181
-      Height = 23
+    object Edit2: TTMSFNCEdit
+      Left = 252
+      Top = 34
+      Width = 160
+      Height = 32
       TabOrder = 0
       OnChange = Edit2ChangeTracking
     end
@@ -74,53 +139,42 @@ object Form130: TForm130
     Top = 112
     Width = 829
     Height = 418
-    Margins.Left = 10
-    Margins.Right = 10
-    Margins.Bottom = 10
+    Margins.Left = 16
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
     TabOrder = 1
     CellAppearance.BandLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.BandLayout.Font.Color = clWindowText
     CellAppearance.BandLayout.Font.Height = -11
     CellAppearance.BandLayout.Font.Name = 'Segoe UI'
     CellAppearance.BandLayout.Font.Style = []
     CellAppearance.FixedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FixedLayout.Font.Color = clWindowText
     CellAppearance.FixedLayout.Font.Height = -11
     CellAppearance.FixedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FixedLayout.Font.Style = []
-    CellAppearance.FixedSelectedLayout.Fill.Color = 15919071
     CellAppearance.FixedSelectedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FixedSelectedLayout.Font.Color = clWindowText
     CellAppearance.FixedSelectedLayout.Font.Height = -11
     CellAppearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FixedSelectedLayout.Font.Style = []
-    CellAppearance.FocusedLayout.Fill.Color = 13346942
     CellAppearance.FocusedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FocusedLayout.Font.Color = clWhite
     CellAppearance.FocusedLayout.Font.Height = -11
     CellAppearance.FocusedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FocusedLayout.Font.Style = []
     CellAppearance.GroupLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.GroupLayout.Font.Color = clSteelblue
     CellAppearance.GroupLayout.Font.Height = -11
     CellAppearance.GroupLayout.Font.Name = 'Segoe UI'
     CellAppearance.GroupLayout.Font.Style = []
     CellAppearance.NormalLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.NormalLayout.Font.Color = clWindowText
     CellAppearance.NormalLayout.Font.Height = -11
     CellAppearance.NormalLayout.Font.Name = 'Segoe UI'
     CellAppearance.NormalLayout.Font.Style = []
-    CellAppearance.SelectedLayout.Fill.Color = 15919071
     CellAppearance.SelectedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.SelectedLayout.Font.Color = clSteelblue
     CellAppearance.SelectedLayout.Font.Height = -11
     CellAppearance.SelectedLayout.Font.Name = 'Segoe UI'
     CellAppearance.SelectedLayout.Font.Style = []
     CellAppearance.SummaryLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.SummaryLayout.Font.Color = clWindowText
     CellAppearance.SummaryLayout.Font.Height = -11
     CellAppearance.SummaryLayout.Font.Name = 'Segoe UI'
     CellAppearance.SummaryLayout.Font.Style = []
@@ -337,12 +391,16 @@ object Form130: TForm130
       32222F3E3C2F673E3C2F7376673E}
     Columns = <>
     FilterAppearance.Font.Charset = DEFAULT_CHARSET
-    FilterAppearance.Font.Color = clWindowText
     FilterAppearance.Font.Height = -11
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
     OnGetCellProperties = TMSFNCDataGrid1GetCellProperties
     Options.Mouse.ClickMargin = 0
-    Stroke.Color = clDarkgray
+    Margins.Top = 0
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

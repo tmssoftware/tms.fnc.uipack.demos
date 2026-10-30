@@ -9,16 +9,22 @@ uses
   FMX.TMSFNCCustomScrollControl, FMX.TMSFNCDataGridData, FMX.TMSFNCCustomGrid,
   FMX.TMSFNCDataGrid, FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics,
   FMX.TMSFNCGraphicsTypes, FMX.TMSFNCDataGridBase, FMX.TMSFNCDataGridCell,
-  FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer, System.Rtti;
+  FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer, System.Rtti,
+  FMX.TMSFNCButton, FMX.TMSFNCEdit, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Panel1: TPanel;
-    Button1: TButton;
-    Edit1: TEdit;
-    Label1: TLabel;
-    Edit2: TEdit;
-    Label2: TLabel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    Button1: TTMSFNCButton;
+    Edit1: TTMSFNCEdit;
+    Label1: TTMSFNCHTMLText;
+    Edit2: TTMSFNCEdit;
+    Label2: TTMSFNCHTMLText;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     procedure Button1Click(Sender: TObject);
     procedure Edit1ChangeTracking(Sender: TObject);

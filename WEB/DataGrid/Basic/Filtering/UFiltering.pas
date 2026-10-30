@@ -13,18 +13,22 @@ uses
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes,
   VCL.TMSFNCDataGridCell, VCL.TMSFNCDataGridData, VCL.TMSFNCDataGridBase,
   VCL.TMSFNCDataGridCore, VCL.TMSFNCDataGridRenderer, VCL.TMSFNCCustomControl,
-  VCL.TMSFNCDataGrid, WEBLib.StdCtrls, WEBLib.Controls, WEBLib.ExtCtrls;
+  VCL.TMSFNCDataGrid, WEBLib.StdCtrls, WEBLib.Controls, WEBLib.ExtCtrls,
+  WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCButton, WEBLib.TMSFNCEdit, WEBLib.TMSFNCTheme,
+  WEBLib.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TWebForm)
     lblTitle: TWebLabel;
     lblDescription: TWebLabel;
-    Panel1: TWebPanel;
-    Button1: TWebButton;
-    Edit1: TWebEdit;
-    Label1: TWebLabel;
-    Edit2: TWebEdit;
-    Label2: TWebLabel;
+    ThemeManager: TTMSFNCThemeManager;
+    Panel1: TTMSFNCPanel;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Button1: TTMSFNCButton;
+    Edit1: TTMSFNCEdit;
+    Label1: TTMSFNCHTMLText;
+    Edit2: TTMSFNCEdit;
+    Label2: TTMSFNCHTMLText;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     procedure Button1Click(Sender: TObject);
     procedure Edit1ChangeTracking(Sender: TObject);

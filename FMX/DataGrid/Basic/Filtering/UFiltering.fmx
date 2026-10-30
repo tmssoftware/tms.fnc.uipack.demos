@@ -2,138 +2,146 @@ object Form130: TForm130
   Left = 0
   Top = 0
   Caption = 'TMS FNC Data Grid Filtering Demo'
-  ClientHeight = 540
-  ClientWidth = 849
+  ClientHeight = 612
+  ClientWidth = 1000
   Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
-  object Panel1: TPanel
+  object DemoHeader: TTMSFNCPanel
     Align = Top
-    Padding.Left = 5.000000000000000000
-    Padding.Top = 5.000000000000000000
-    Padding.Right = 5.000000000000000000
-    Margins.Left = 10.000000000000000000
-    Margins.Top = 10.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 10.000000000000000000
+    Size.Width = 849.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 625.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'DataGrid filtering'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 625.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Filter from code with an expression, or with the filter buttons in the column headers'
+    end
+  end
+  object Panel1: TTMSFNCPanel
+    Align = Top
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 12.000000000000000000
     Position.X = 10.000000000000000000
     Position.Y = 10.000000000000000000
     Size.Width = 829.000000000000000000
-    Size.Height = 89.000000000000000000
+    Size.Height = 84.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    object Button1: TButton
-      Position.X = 13.000000000000000000
-      Position.Y = 60.000000000000000000
-      Size.Width = 180.000000000000000000
-      Size.Height = 22.000000000000000000
+    Header.Visible = False
+    object Button1: TTMSFNCButton
+      Position.X = 428.000000000000000000
+      Position.Y = 34.000000000000000000
+      Size.Width = 220.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 2
       Text = 'Filter brands starting with A'
-      TextSettings.Trimming = None
       OnClick = Button1Click
     end
-    object Edit1: TEdit
+    object Edit1: TTMSFNCEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       TabOrder = 1
-      Position.X = 12.000000000000000000
-      Position.Y = 29.000000000000000000
-      Size.Width = 181.000000000000000000
-      Size.Height = 22.000000000000000000
+      Position.X = 16.000000000000000000
+      Position.Y = 34.000000000000000000
+      Size.Width = 220.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       OnChangeTracking = Edit1ChangeTracking
     end
-    object Label1: TLabel
-      Position.X = 12.000000000000000000
-      Position.Y = 5.000000000000000000
-      Size.Width = 185.000000000000000000
-      Size.Height = 15.000000000000000000
+    object Label1: TTMSFNCHTMLText
+      Position.X = 16.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 220.000000000000000000
+      Size.Height = 20.000000000000000000
       Size.PlatformDefault = False
-      TextSettings.Trimming = None
-      Text = 'Type brand name to start filtering'
+      Text = 'Brand starts with'
+      HorizontalTextAlign = gtaLeading
+      WordWrapping = False
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Edit2: TEdit
+    object Edit2: TTMSFNCEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       TabOrder = 0
-      Position.X = 212.000000000000000000
-      Position.Y = 29.000000000000000000
-      Size.Width = 181.000000000000000000
-      Size.Height = 22.000000000000000000
+      Position.X = 252.000000000000000000
+      Position.Y = 34.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       OnChangeTracking = Edit2ChangeTracking
     end
-    object Label2: TLabel
-      Position.X = 212.000000000000000000
-      Position.Y = 5.000000000000000000
-      Size.Width = 185.000000000000000000
-      Size.Height = 15.000000000000000000
+    object Label2: TTMSFNCHTMLText
+      Position.X = 252.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 20.000000000000000000
       Size.PlatformDefault = False
-      TextSettings.Trimming = None
-      Text = 'Type price to start filtering'
+      Text = 'Price starts with'
+      HorizontalTextAlign = gtaLeading
+      WordWrapping = False
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Align = Client
-    Margins.Left = 10.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 10.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     Size.Width = 829.000000000000000000
     Size.Height = 421.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
-    CellAppearance.FixedSelectedLayout.Fill.Color = xFFDFE7F2
-    CellAppearance.FocusedLayout.Fill.Color = xFF7EA8CB
-    CellAppearance.FocusedLayout.Font.Color = claWhite
-    CellAppearance.GroupLayout.Font.Color = claSteelblue
-    CellAppearance.SelectedLayout.Fill.Color = xFFDFE7F2
-    CellAppearance.SelectedLayout.Font.Color = claSteelblue
-    Icons.ExpandIcon.PNG = {
-      89504E470D0A1A0A0000000D4948445200000020000000200806000000737A7A
-      F40000000473424954080808087C0864880000001A494441545885EDC1010100
-      00008220FFAF6E484001000000EF06102000014701A0880000000049454E44AE
-      426082}
-    Icons.ExpandIcon.SVG = {
-      3C73766720786D6C6E733D22687474703A2F2F7777772E77332E6F72672F3230
-      30302F737667222077696474683D22333222206865696768743D223332222076
-      696577426F783D2230203020333220262378413B3332223E3C646566733E3C73
-      74796C653E2E636C732D317B66696C6C3A2330303030303B7D3C2F7374796C65
-      3E3C2F646566733E3C7469746C653E506C75733C2F7469746C653E0D0A093C67
-      2069643D2249636F6E223E3C7265637420636C6173733D22636C732D31222078
-      3D22372220793D223135222077696474683D22313822206865696768743D2231
-      222F3E3C7265637420636C6173733D22636C732D312220783D2231352220793D
-      2237222077696474683D223122206865696768743D223138222F3E3C72656374
-      20636C6173733D22636C732D312220783D22312220793D223122207769647468
-      3D223122206865696768743D223330222F3E3C7265637420636C6173733D2263
-      6C732D312220783D22312220793D2231222077696474683D2233302220686569
-      6768743D2231222F3E3C7265637420636C6173733D22636C732D312220783D22
-      33302220793D2231222077696474683D223122206865696768743D223330222F
-      3E3C7265637420636C6173733D22636C732D312220783D22312220793D223330
-      222077696474683D22333022206865696768743D2231222F3E3C2F673E3C2F73
-      76673E0D0A}
-    Icons.CollapseIcon.PNG = {
-      89504E470D0A1A0A0000000D4948445200000020000000200806000000737A7A
-      F40000000473424954080808087C0864880000001A494441545885EDC1010100
-      00008220FFAF6E484001000000EF06102000014701A0880000000049454E44AE
-      426082}
-    Icons.CollapseIcon.SVG = {
-      3C73766720786D6C6E733D22687474703A2F2F7777772E77332E6F72672F3230
-      30302F737667222077696474683D22333222206865696768743D223332222076
-      696577426F783D2230203020333220262378413B3332223E3C646566733E3C73
-      74796C653E2E636C732D317B66696C6C3A2330303030303B7D3C2F7374796C65
-      3E3C2F646566733E3C7469746C653E506C75733C2F7469746C653E0D0A093C67
-      2069643D2249636F6E223E3C7265637420636C6173733D22636C732D31222078
-      3D22372220793D223135222077696474683D22313822206865696768743D2231
-      222F3E3C7265637420636C6173733D22636C732D312220783D22312220793D22
-      31222077696474683D223122206865696768743D223330222F3E3C7265637420
-      636C6173733D22636C732D312220783D22312220793D2231222077696474683D
-      22333022206865696768743D2231222F3E3C7265637420636C6173733D22636C
-      732D312220783D2233302220793D2231222077696474683D2231222068656967
-      68743D223330222F3E3C7265637420636C6173733D22636C732D312220783D22
-      312220793D223330222077696474683D22333022206865696768743D2231222F
-      3E3C2F673E3C2F7376673E0D0A}
     Icons.FilterIcon.PNG = {
       89504E470D0A1A0A0000000D4948445200000020000000200806000000737A7A
       F40000000473424954080808087C0864880000001A494441545885EDC1010100
@@ -336,6 +344,10 @@ object Form130: TForm130
     Columns = <>
     OnGetCellProperties = TMSFNCDataGrid1GetCellProperties
     Options.Mouse.ClickMargin = 0
-    Stroke.Color = claDarkgray
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end
