@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'TMS FNC UI Pack - TabSet and PageControl'
-  ClientHeight = 477
-  ClientWidth = 657
+  ClientHeight = 720
+  ClientWidth = 1000
   Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
