@@ -11,29 +11,35 @@ uses
   FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer, Data.Bind.Controls,
   Data.DB, FMX.TMSFNCCustomComponent, FMX.TMSFNCDataGridDatabaseAdapter,
   Datasnap.DBClient, FMX.Layouts, Fmx.Bind.Navigator, FMX.TMSFNCDataGrid,
-  Data.Bind.Components, Data.Bind.DBScope;
+  Data.Bind.Components, Data.Bind.DBScope,
+  FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCEdit, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Z: TPanel;
-    Button2: TButton;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Z: TTMSFNCPanel;
+    Button2: TTMSFNCButton;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     BindNavigator1: TBindNavigator;
     ClientDataSet1: TClientDataSet;
     TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter;
     DataSource1: TDataSource;
-    Button1: TButton;
+    Button1: TTMSFNCButton;
     BindSourceDB1: TBindSourceDB;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    Panel1: TPanel;
-    Button3: TButton;
-    Edit1: TEdit;
-    Label1: TLabel;
-    Edit2: TEdit;
-    Label2: TLabel;
-    Button4: TButton;
-    Button5: TButton;
+    CheckBox1: TTMSFNCCheckBox;
+    CheckBox2: TTMSFNCCheckBox;
+    Panel1: TTMSFNCPanel;
+    Button3: TTMSFNCButton;
+    Edit1: TTMSFNCEdit;
+    Label1: TTMSFNCHTMLText;
+    Edit2: TTMSFNCEdit;
+    Label2: TTMSFNCHTMLText;
+    Button4: TTMSFNCButton;
+    Button5: TTMSFNCButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
@@ -91,12 +97,12 @@ end;
 
 procedure TForm130.CheckBox1Change(Sender: TObject);
 begin
-  TMSFNCDataGridDatabaseAdapter1.ShowPictureFields := CheckBox1.IsChecked;
+  TMSFNCDataGridDatabaseAdapter1.ShowPictureFields := CheckBox1.Checked;
 end;
 
 procedure TForm130.CheckBox2Change(Sender: TObject);
 begin
-  TMSFNCDataGridDatabaseAdapter1.ShowMemoFields := CheckBox2.IsChecked;
+  TMSFNCDataGridDatabaseAdapter1.ShowMemoFields := CheckBox2.Checked;
 end;
 
 procedure TForm130.Edit1ChangeTracking(Sender: TObject);
