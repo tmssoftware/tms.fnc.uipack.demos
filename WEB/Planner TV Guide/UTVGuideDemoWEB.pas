@@ -1,5 +1,8 @@
 unit UTVGuideDemoWEB;
 
+{ demo-colors: the item colours set in WebFormCreate (DefaultItem, ItemsAppearance.Stroke) and
+  UpdatePlanner (shows on air) are the subject }
+
 interface
 
 uses
@@ -9,7 +12,8 @@ uses
   VCL.TMSFNCPlannerBase, VCL.TMSFNCPlannerData, VCL.TMSFNCPlanner,
   VCL.TMSFNCCustomControl, VCL.TMSFNCCustomPicker, VCL.TMSFNCComboBox,
   Vcl.Controls, WEBLib.ExtCtrls, WEBLib.TMSFNCCloudBase, Vcl.StdCtrls,
-  WEBLib.StdCtrls;
+  WEBLib.StdCtrls,
+  WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCButton, WEBLib.TMSFNCComboBox, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector;
 
 type
   TTVShow = class
@@ -59,10 +63,17 @@ type
   end;
 
   TForm1 = class(TWebForm)
-    WebPanel1: TWebPanel;
+    ThemeManager: TTMSFNCThemeManager;
+    SettingsPanel: TTMSFNCPanel;
+    ThemeCaption: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    ChannelCaption: TTMSFNCHTMLText;
     TMSFNCComboBox1: TTMSFNCComboBox;
+    ChannelText: TTMSFNCHTMLText;
+    LegendCaption: TTMSFNCHTMLText;
+    LegendText: TTMSFNCHTMLText;
+    StatusText: TTMSFNCHTMLText;
     TMSFNCPlanner1: TTMSFNCPlanner;
-    WebLabel1: TWebLabel;
     procedure WebFormCreate(Sender: TObject);
     procedure WebFormDestroy(Sender: TObject);
     procedure TMSFNCComboBox1ItemSelected(Sender: TObject; AText: string;
@@ -135,6 +146,9 @@ var
   I: Integer;
   c: TTVChannel;
 begin
+  if ARequestResult.ResultString = '' then
+    StatusText.Text := 'The TV guide service could not be reached.';
+
   if ARequestResult.ResultString <> '' then
   begin
     o := TTMSFNCUtils.ParseJSON(ARequestResult.ResultString);
@@ -292,13 +306,14 @@ begin
       begin
         it.Color := gcYellowgreen;
         it.FontColor := gcWhite;
+        it.TitleFontColor := gcWhite;
       end;
     end;
   end;
   TMSFNCPlanner1.EndUpdate;
   TMSFNCComboBox1.ItemIndex := 0;
   TMSFNCPlanner1.Visible := True;
-  WebLabel1.Visible := False;
+  StatusText.Text := IntToStr(FChannels.Count) + ' channels loaded.';
   TMSFNCPlanner1.TimeLine.ViewStart := IncHour(Now, -2);
 end;
 
@@ -309,11 +324,11 @@ begin
   FormContainer := 'appcontent';
   lbl := TLabel.Create(Self);
   lbl.ElementID := 'title';
-  lbl.Caption := 'TMS FNC UI Pack';
+  lbl.Caption := 'Planner TV Guide';
 
   lbl := TLabel.Create(Self);
   lbl.ElementID := 'description';
-  lbl.Caption := 'TV Guide FNC Planner Demo';
+  lbl.Caption := 'Today''s programme of Dutch TV channels from a web service: pick a channel to scroll to it, shows on air now are green';
 
   TMSFNCPlanner1.Visible := False;
   TMSFNCPlanner1.BeginUpdate;
@@ -326,7 +341,9 @@ begin
   TMSFNCPlanner1.VerticalScrollBarVisible := true;
 
   TMSFNCPlanner1.DefaultItem.TitleColor := gcSlategray;
-  TMSFNCPlanner1.DefaultItem.TitleFontColor := gcWhite;
+  // dark text on the light show colours, also in a dark theme (gcBlack would be taken over by the theme)
+  TMSFNCPlanner1.DefaultItem.TitleFontColor := MakeGraphicsColor(40, 40, 40);
+  TMSFNCPlanner1.DefaultItem.FontColor := MakeGraphicsColor(40, 40, 40);
   TMSFNCPlanner1.DefaultItem.Color := gcWhitesmoke;
   TMSFNCPlanner1.DefaultItem.ActiveColor := gcSlateGray;
 

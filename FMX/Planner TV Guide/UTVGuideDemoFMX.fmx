@@ -1,9 +1,9 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'TV Guide with TMS FNC Planner'
-  ClientHeight = 825
-  ClientWidth = 1115
+  Caption = 'TMS FNC UI Pack - Planner TV Guide'
+  ClientHeight = 720
+  ClientWidth = 1200
   Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
@@ -11,45 +11,181 @@ object Form1: TForm1
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   DesignerMasterStyle = 0
-  object TMSFNCComboBox1: TTMSFNCComboBox
-    Position.X = 16.000000000000000000
-    Position.Y = 16.000000000000000000
-    Size.Width = 273.000000000000000000
-    Size.Height = 22.000000000000000000
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 1115.000000000000000000
+    Size.Height = 72.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    DropDownWidth = 150.000000000000000000
-    Font.Name = 'Segoe UI'
-    ItemHeight = 16.000000000000000000
-    OnItemSelected = TMSFNCComboBox1ItemSelected
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 891.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Planner TV Guide'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 891.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Today''s programme of Dutch TV channels from a web service: pick a channel to scroll to it, shows on air now are green'
+    end
+  end
+  object SettingsPanel: TTMSFNCPanel
+    Align = Left
+    Margins.Left = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+    Position.Y = 72.000000000000000000
+    Size.Width = 260.000000000000000000
+    Size.Height = 600.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Header.Visible = False
+    object ChannelCaption: TTMSFNCHTMLText
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 12.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 36.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 15.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Channel'
+    end
+    object TMSFNCComboBox1: TTMSFNCComboBox
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 4.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 72.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Style = csDropDownList
+      OnItemSelected = TMSFNCComboBox1ItemSelected
+    end
+    object ChannelText: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 4.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 116.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      HorizontalTextAlign = gtaLeading
+      WordWrapping = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Selecting a channel scrolls the planner to its column.'
+    end
+    object LegendCaption: TTMSFNCHTMLText
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 16.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 156.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 15.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Legend'
+    end
+    object LegendText: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 4.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 220.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 60.000000000000000000
+      Size.PlatformDefault = False
+      HorizontalTextAlign = gtaLeading
+      WordWrapping = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Shows on air now are green. Hover a show to see its start and end time. The planner is read-only.'
+    end
+    object StatusText: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Align = Top
+      Margins.Left = 16.000000000000000000
+      Margins.Top = 16.000000000000000000
+      Margins.Right = 16.000000000000000000
+      Position.Y = 276.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      HorizontalTextAlign = gtaLeading
+      WordWrapping = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Loading the channels and programmes...'
+    end
   end
   object TMSFNCPlanner1: TTMSFNCPlanner
-    Anchors = [akLeft, akTop, akRight, akBottom]
-    Position.X = 16.000000000000000000
-    Position.Y = 48.000000000000000000
     Size.Width = 1089.000000000000000000
     Size.Height = 769.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
     DefaultItem.StartTime = 44280.270833333340000000
     DefaultItem.EndTime = 44280.375000000000000000
-    GridCellAppearance.VerticalStroke.Color = claDarkgray
-    GridCellAppearance.HorizontalStroke.Color = claDarkgray
-    GridCellAppearance.HorizontalSubStroke.Color = claLightgray
-    GridCellAppearance.InActiveFill.Color = xFFE1F5FF
     GridCellAppearance.Fill.Kind = gfkNone
-    GridCellAppearance.DisabledFill.Color = xFFE6E6E6
     Groups = <>
     GroupsAppearance.TopSize = 50.000000000000000000
     GroupsAppearance.BottomSize = 50.000000000000000000
     GroupsAppearance.TopFill.Kind = gfkNone
     GroupsAppearance.BottomFill.Kind = gfkNone
-    GroupsAppearance.TopFont.Color = claGray
-    GroupsAppearance.TopFont.Name = 'Segoe UI'
-    GroupsAppearance.BottomFont.Color = claGray
-    GroupsAppearance.BottomFont.Name = 'Segoe UI'
-    GroupsAppearance.TopStroke.Color = claDarkgray
-    GroupsAppearance.BottomStroke.Color = claDarkgray
     Items = <
       item
         Text = 'Notes'
@@ -63,24 +199,8 @@ object Form1: TForm1
     PositionsAppearance.Stretch = False
     PositionsAppearance.TopSize = 50.000000000000000000
     PositionsAppearance.BottomSize = 50.000000000000000000
-    PositionsAppearance.TopFont.Color = claGray
-    PositionsAppearance.TopFont.Name = 'Segoe UI'
-    PositionsAppearance.BottomFont.Color = claGray
-    PositionsAppearance.BottomFont.Name = 'Segoe UI'
     PositionsAppearance.TopFill.Kind = gfkNone
     PositionsAppearance.BottomFill.Kind = gfkNone
-    PositionsAppearance.TopStroke.Color = claDarkgray
-    PositionsAppearance.BottomStroke.Color = claDarkgray
-    PositionsAppearance.TopNavigationButtonStroke.Color = claDarkgray
-    PositionsAppearance.BottomNavigationButtonStroke.Color = claDarkgray
-    PositionsAppearance.TopNavigationButtonHoverFill.Color = xFFE1F5FF
-    PositionsAppearance.BottomNavigationButtonHoverFill.Color = xFFE1F5FF
-    PositionsAppearance.TopNavigationButtonHoverStroke.Color = claDarkgray
-    PositionsAppearance.BottomNavigationButtonHoverStroke.Color = claDarkgray
-    PositionsAppearance.TopNavigationButtonDownFill.Color = xFF95D5F6
-    PositionsAppearance.BottomNavigationButtonDownFill.Color = xFF95D5F6
-    PositionsAppearance.TopNavigationButtonDownStroke.Color = claDarkgray
-    PositionsAppearance.BottomNavigationButtonDownStroke.Color = claDarkgray
     PositionsAppearance.TopLeftNavigationButtonSize = 18.000000000000000000
     PositionsAppearance.TopRightNavigationButtonSize = 18.000000000000000000
     PositionsAppearance.BottomLeftNavigationButtonSize = 18.000000000000000000
@@ -98,23 +218,14 @@ object Form1: TForm1
         Name = 'Resource2'
         Text = 'Audi'
       end>
-    SelectionAppearance.Fill.Color = xFF95D5F6
     TimeLine.DisplayUnitSize = 25.000000000000000000
     TimeLine.ViewStart = 44280.166666666660000000
     TimeLineAppearance.LeftSize = 50.000000000000000000
     TimeLineAppearance.RightSize = 50.000000000000000000
     TimeLineAppearance.LeftFill.Kind = gfkNone
     TimeLineAppearance.RightFill.Kind = gfkNone
-    TimeLineAppearance.LeftStroke.Color = claDarkgray
-    TimeLineAppearance.RightStroke.Color = claDarkgray
-    TimeLineAppearance.LeftSubStroke.Color = claLightgray
-    TimeLineAppearance.RightSubStroke.Color = claLightgray
     TimeLineAppearance.LeftFont.Size = 18.000000000000000000
-    TimeLineAppearance.LeftFont.Color = claGray
-    TimeLineAppearance.LeftFont.Name = 'Segoe UI'
     TimeLineAppearance.RightFont.Size = 18.000000000000000000
-    TimeLineAppearance.RightFont.Color = claGray
-    TimeLineAppearance.RightFont.Name = 'Segoe UI'
     TimeLineAppearance.LeftSubUnitFontSize = 14.000000000000000000
     TimeLineAppearance.RightSubUnitFontSize = 14.000000000000000000
     ItemsAppearance.Gap = 10.000000000000000000
@@ -269,45 +380,32 @@ object Form1: TForm1
       489224F994A6E9611004955F976559F6318EE397B6E4819543E022381C2842E5
       0559D11E5D8CA9288AA2288AA2287B4DAFF7072DD0905C8529B99D0000000049
       454E44AE426082}
-    ItemsAppearance.LinkStroke.Color = claDarkgray
     ItemsAppearance.LinkStroke.Width = 2.000000000000000000
     ItemsAppearance.LinkArrowSize = 7.000000000000000000
     ItemsAppearance.TitleStroke.Kind = gskNone
-    ItemsAppearance.TitleStroke.Color = claDarkgray
     ItemsAppearance.TitleFont.Size = 16.000000000000000000
-    ItemsAppearance.TitleFont.Name = 'Segoe UI'
     ItemsAppearance.TitleFont.StyleExt = {00070000000000000004000000}
-    ItemsAppearance.Fill.Color = claDarkgray
     ItemsAppearance.Stroke.Kind = gskNone
-    ItemsAppearance.Stroke.Color = claDarkgray
-    ItemsAppearance.Font.Name = 'Segoe UI'
     ItemsAppearance.SelectedTitleStroke.Kind = gskNone
-    ItemsAppearance.SelectedTitleStroke.Color = claDarkgray
     ItemsAppearance.SelectedTitleFont.Size = 16.000000000000000000
-    ItemsAppearance.SelectedTitleFont.Name = 'Segoe UI'
     ItemsAppearance.SelectedTitleFont.StyleExt = {00070000000000000004000000}
     ItemsAppearance.ActiveTitleStroke.Kind = gskNone
-    ItemsAppearance.ActiveTitleStroke.Color = claDarkgray
     ItemsAppearance.ActiveTitleFont.Size = 16.000000000000000000
-    ItemsAppearance.ActiveTitleFont.Name = 'Segoe UI'
     ItemsAppearance.ActiveTitleFont.StyleExt = {00070000000000000004000000}
-    ItemsAppearance.SelectedFill.Color = xFF1BADF8
     ItemsAppearance.SelectedStroke.Kind = gskNone
-    ItemsAppearance.SelectedStroke.Color = claDarkgray
-    ItemsAppearance.SelectedFont.Name = 'Segoe UI'
-    ItemsAppearance.ActiveFill.Color = xFF1BADF8
     ItemsAppearance.ActiveStroke.Kind = gskNone
-    ItemsAppearance.ActiveStroke.Color = claDarkgray
-    ItemsAppearance.ActiveFont.Name = 'Segoe UI'
-    ItemsAppearance.DisabledTitleFill.Color = claDarkgray
     ItemsAppearance.DisabledTitleStroke.Kind = gskNone
-    ItemsAppearance.DisabledTitleStroke.Color = claDarkgray
     ItemsAppearance.DisabledTitleFont.Size = 16.000000000000000000
-    ItemsAppearance.DisabledTitleFont.Name = 'Segoe UI'
     ItemsAppearance.DisabledTitleFont.StyleExt = {00070000000000000004000000}
-    ItemsAppearance.DisabledFill.Color = claDarkgray
     ItemsAppearance.DisabledStroke.Kind = gskNone
-    ItemsAppearance.DisabledStroke.Color = claDarkgray
-    ItemsAppearance.DisabledFont.Name = 'Segoe UI'
+    Align = Client
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

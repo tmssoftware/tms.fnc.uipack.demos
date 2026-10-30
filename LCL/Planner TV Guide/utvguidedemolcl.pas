@@ -49,6 +49,9 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    DemoHeader: TPanel;
+    DemoTitle: TLabel;
+    DemoDescription: TLabel;
     TMSFNCComboBox1: TTMSFNCComboBox;
     TMSFNCPlanner1: TTMSFNCPlanner;
     procedure FormCreate(Sender: TObject);

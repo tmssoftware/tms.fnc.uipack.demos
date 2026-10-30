@@ -1,5 +1,8 @@
 unit UTVGuideDemoVCL;
 
+{ demo-colors: the item colours set in FormCreate (DefaultItem, ItemsAppearance.Stroke) and
+  UpdatePlanner (shows on air) are the subject }
+
 interface
 
 uses
@@ -7,7 +10,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Generics.Collections, VCL.TMSFNCCloudBase,
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes,
   VCL.TMSFNCPlannerBase, VCL.TMSFNCPlannerData, VCL.TMSFNCPlanner,
-  VCL.TMSFNCCustomControl, VCL.TMSFNCCustomPicker, VCL.TMSFNCComboBox, JSON, System.DateUtils;
+  VCL.TMSFNCCustomControl, VCL.TMSFNCCustomPicker, VCL.TMSFNCComboBox, JSON, System.DateUtils,
+  VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TTVShow = class
@@ -45,7 +49,18 @@ type
   TTVChannels = TObjectList<TTVChannel>;
 
   TForm1 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    SettingsPanel: TTMSFNCPanel;
+    ChannelCaption: TTMSFNCHTMLText;
     TMSFNCComboBox1: TTMSFNCComboBox;
+    ChannelText: TTMSFNCHTMLText;
+    LegendCaption: TTMSFNCHTMLText;
+    LegendText: TTMSFNCHTMLText;
+    StatusText: TTMSFNCHTMLText;
     TMSFNCPlanner1: TTMSFNCPlanner;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -118,6 +133,9 @@ var
   I: Integer;
   c: TTVChannel;
 begin
+  if ARequestResult.ResultString = '' then
+    StatusText.Text := 'The TV guide service (json.tvgids.nl) could not be reached.';
+
   if ARequestResult.ResultString <> '' then
   begin
     o := TTMSFNCUtils.ParseJSON(ARequestResult.ResultString);
@@ -249,7 +267,9 @@ begin
   TMSFNCPlanner1.VerticalScrollBarVisible := true;
 
   TMSFNCPlanner1.DefaultItem.TitleColor := gcSlategray;
-  TMSFNCPlanner1.DefaultItem.TitleFontColor := gcWhite;
+  // dark text on the light show colours, also in a dark theme (gcBlack would be taken over by the theme)
+  TMSFNCPlanner1.DefaultItem.TitleFontColor := MakeGraphicsColor(40, 40, 40);
+  TMSFNCPlanner1.DefaultItem.FontColor := MakeGraphicsColor(40, 40, 40);
   TMSFNCPlanner1.DefaultItem.Color := gcWhitesmoke;
   TMSFNCPlanner1.DefaultItem.ActiveColor := gcSlateGray;
 
@@ -337,12 +357,14 @@ begin
       begin
         it.Color := gcYellowgreen;
         it.FontColor := gcWhite;
+        it.TitleFontColor := gcWhite;
       end;
     end;
   end;
   TMSFNCPlanner1.EndUpdate;
   TMSFNCComboBox1.ItemIndex := 0;
   TMSFNCPlanner1.Visible := True;
+  StatusText.Text := IntToStr(FChannels.Count) + ' channels loaded.';
 end;
 
 { TTVChannel }
