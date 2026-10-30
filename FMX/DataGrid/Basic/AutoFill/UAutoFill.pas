@@ -9,16 +9,21 @@ uses
   FMX.TMSFNCDataGridData, FMX.TMSFNCCustomGrid, FMX.TMSFNCDataGrid,
   FMX.TMSFNCDataGridCell, FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics,
   FMX.TMSFNCGraphicsTypes, FMX.TMSFNCDataGridBase, FMX.TMSFNCDataGridCore,
-  FMX.TMSFNCDataGridRenderer, FMX.Layouts, System.Rtti;
+  FMX.TMSFNCDataGridRenderer, FMX.Layouts, System.Rtti,
+  FMX.TMSFNCButton, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TFormAutoFill = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
-    PanelTop: TPanel;
-    BtnResetData: TButton;
-    LblInstructions: TLabel;
-    BtnFillNumbers: TButton;
-    BtnFillDates: TButton;
+    PanelTop: TTMSFNCPanel;
+    BtnResetData: TTMSFNCButton;
+    BtnFillNumbers: TTMSFNCButton;
+    BtnFillDates: TTMSFNCButton;
     procedure FormCreate(Sender: TObject);
     procedure BtnResetDataClick(Sender: TObject);
     procedure BtnFillNumbersClick(Sender: TObject);

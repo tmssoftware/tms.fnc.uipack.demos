@@ -1,6 +1,6 @@
 object FormAutoFill: TFormAutoFill
-  Width = 900
-  Height = 600
+  Width = 1000
+  Height = 640
   Caption = 'TMS FNC DataGrid AutoFill Demo'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,7 +16,7 @@ object FormAutoFill: TFormAutoFill
     Top = 8
     Width = 22
     Height = 15
-    Caption = 'Title'
+    Caption = 'DataGrid auto fill'
     Color = clBtnFace
     ElementID = 'title'
     HeightPercent = 100.000000000000000000
@@ -27,11 +27,42 @@ object FormAutoFill: TFormAutoFill
     Top = 38
     Width = 60
     Height = 15
-    Caption = 'Description'
+    Caption = 'Select cells with seed values (rows 1-2), then drag the fill handle at the selection corner to fill a series'
     Color = clBtnFace
     ElementID = 'description'
     HeightPercent = 100.000000000000000000
     WidthPercent = 100.000000000000000000
+  end
+  object DemoBar: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 10
+    Top = 10
+    Width = 980
+    Height = 48
+    Margins.Left = 16
+    Margins.Top = 16
+    Margins.Right = 16
+    Margins.Bottom = 12
+    Align = alTop
+    TabOrder = 0
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 600
+      Top = 6
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 6
+      Margins.Right = 16
+      Margins.Bottom = 6
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     AlignWithMargins = True
@@ -39,10 +70,10 @@ object FormAutoFill: TFormAutoFill
     Top = 10
     Width = 880
     Height = 580
-    Margins.Left = 10
-    Margins.Top = 10
-    Margins.Right = 10
-    Margins.Bottom = 10
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -50,65 +81,53 @@ object FormAutoFill: TFormAutoFill
     ShowAcceleratorChar = False
     Footer.Bar.Buttons = <>
     Header.VisualGrouping.Layout.Font.Charset = DEFAULT_CHARSET
-    Header.VisualGrouping.Layout.Font.Color = clWindowText
     Header.VisualGrouping.Layout.Font.Height = -12
     Header.VisualGrouping.Layout.Font.Name = 'Segoe UI'
     Header.VisualGrouping.Layout.Font.Style = []
     Header.Bar.Buttons = <>
     CellAppearance.FilterMatchLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FilterMatchLayout.Font.Color = clWindowText
     CellAppearance.FilterMatchLayout.Font.Height = -12
     CellAppearance.FilterMatchLayout.Font.Name = 'Segoe UI'
     CellAppearance.FilterMatchLayout.Font.Style = []
     CellAppearance.FilterInverseMatchLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FilterInverseMatchLayout.Font.Color = clWindowText
     CellAppearance.FilterInverseMatchLayout.Font.Height = -12
     CellAppearance.FilterInverseMatchLayout.Font.Name = 'Segoe UI'
     CellAppearance.FilterInverseMatchLayout.Font.Style = []
     CellAppearance.BandLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.BandLayout.Font.Color = clWindowText
     CellAppearance.BandLayout.Font.Height = -12
     CellAppearance.BandLayout.Font.Name = 'Segoe UI'
     CellAppearance.BandLayout.Font.Style = []
     CellAppearance.FixedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FixedLayout.Font.Color = clWindowText
     CellAppearance.FixedLayout.Font.Height = -12
     CellAppearance.FixedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FixedLayout.Font.Style = []
     CellAppearance.FixedSelectedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FixedSelectedLayout.Font.Color = clWindowText
     CellAppearance.FixedSelectedLayout.Font.Height = -12
     CellAppearance.FixedSelectedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FixedSelectedLayout.Font.Style = []
     CellAppearance.FocusedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.FocusedLayout.Font.Color = clWindowText
     CellAppearance.FocusedLayout.Font.Height = -12
     CellAppearance.FocusedLayout.Font.Name = 'Segoe UI'
     CellAppearance.FocusedLayout.Font.Style = []
     CellAppearance.GroupLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.GroupLayout.Font.Color = clWindowText
     CellAppearance.GroupLayout.Font.Height = -12
     CellAppearance.GroupLayout.Font.Name = 'Segoe UI'
     CellAppearance.GroupLayout.Font.Style = []
     CellAppearance.NormalLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.NormalLayout.Font.Color = clWindowText
     CellAppearance.NormalLayout.Font.Height = -12
     CellAppearance.NormalLayout.Font.Name = 'Segoe UI'
     CellAppearance.NormalLayout.Font.Style = []
     CellAppearance.SelectedLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.SelectedLayout.Font.Color = clWindowText
     CellAppearance.SelectedLayout.Font.Height = -12
     CellAppearance.SelectedLayout.Font.Name = 'Segoe UI'
     CellAppearance.SelectedLayout.Font.Style = []
     CellAppearance.SummaryLayout.Font.Charset = DEFAULT_CHARSET
-    CellAppearance.SummaryLayout.Font.Color = clWindowText
     CellAppearance.SummaryLayout.Font.Height = -12
     CellAppearance.SummaryLayout.Font.Name = 'Segoe UI'
     CellAppearance.SummaryLayout.Font.Style = []
     Columns = <>
     FilterActions = <>
     FilterAppearance.Font.Charset = DEFAULT_CHARSET
-    FilterAppearance.Font.Color = clWindowText
     FilterAppearance.Font.Height = -12
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
@@ -506,5 +525,10 @@ object FormAutoFill: TFormAutoFill
       2066696C6C2D72756C653D226576656E6F6464222069643D2243686576726F6E
       5F5269676874222F3E3C672F3E3C672F3E3C672F3E3C672F3E3C672F3E3C672F
       3E3C2F7376673E}
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 760
+    Top = 160
   end
 end
