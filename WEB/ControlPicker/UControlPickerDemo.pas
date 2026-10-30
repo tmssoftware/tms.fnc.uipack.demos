@@ -9,7 +9,8 @@ uses
   VCL.TMSFNCCustomControl, VCL.TMSFNCSplitter, Vcl.Controls, WEBLib.ExtCtrls,
   VCL.TMSFNCImage, VCL.TMSFNCControlPicker, VCL.TMSFNCCustomScrollControl,
   VCL.TMSFNCListEditor, VCL.TMSFNCTreeViewBase, VCL.TMSFNCTreeViewData,
-  VCL.TMSFNCCustomTreeView, VCL.TMSFNCTreeView, VCL.TMSFNCCustomPicker;
+  VCL.TMSFNCCustomTreeView, VCL.TMSFNCTreeView, VCL.TMSFNCCustomPicker,
+  WEBLib.TMSFNCCustomControl, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCGraphicsTypes, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCPanel, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector, WEBLib.TMSFNCTypes, WEBLib.TMSFNCUtils;
 
 type
   TButtonEx = class(TWebButton, ITMSFNCControlPickerBase)
@@ -23,13 +24,18 @@ type
   end;
 
   TForm1 = class(TWebForm)
-    WebLabel1: TWebLabel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    WebLabel1: TTMSFNCHTMLText;
     TMSFNCControlPicker1: TTMSFNCControlPicker;
-    WebLabel2: TWebLabel;
+    WebLabel2: TTMSFNCHTMLText;
     TMSFNCControlPicker2: TTMSFNCControlPicker;
-    WebLabel3: TWebLabel;
+    WebLabel3: TTMSFNCHTMLText;
     TMSFNCControlPicker3: TTMSFNCControlPicker;
-    WebLabel4: TWebLabel;
+    WebLabel4: TTMSFNCHTMLText;
     TMSFNCControlPicker4: TTMSFNCControlPicker;
     TMSFNCTreeView1: TTMSFNCTreeView;
     TMSFNCListEditor1: TTMSFNCListEditor;
