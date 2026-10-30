@@ -13,6 +13,9 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    DemoHeader: TPanel;
+    DemoTitle: TLabel;
+    DemoDescription: TLabel;
     ckDescr: TCheckBox;
     ckSearchLimit: TCheckBox;
     CheckListBox1: TCheckListBox;

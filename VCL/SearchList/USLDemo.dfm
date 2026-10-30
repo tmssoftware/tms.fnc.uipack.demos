@@ -1,9 +1,9 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'SearchList Demo'
-  ClientHeight = 369
-  ClientWidth = 852
+  Caption = 'TMS FNC UI Pack - SearchList'
+  ClientHeight = 720
+  ClientWidth = 1100
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,35 +14,113 @@ object Form1: TForm1
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object GroupBox1: TGroupBox
-    Left = 8
-    Top = 24
-    Width = 281
-    Height = 337
-    Caption = 'Dictionary lookup'
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 852
+    Height = 72
+    Align = alTop
     TabOrder = 0
-    object Edit1: TEdit
-      Left = 15
-      Top = 24
-      Width = 121
-      Height = 21
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 668
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 628
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'SearchList'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 628
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Type to filter the lists, with a result limit and filtering on the description'
+    end
+  end
+  object GroupBox1: TTMSFNCPanel
+    Left = 8
+    Top = 96
+    Width = 330
+    Height = 345
+    TabOrder = 0
+    Header.Text = 'Dictionary lookup'
+    Header.Visible = True
+    Header.Size = 24.000000000000000000
+    Align = alLeft
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 16
+    object Edit1: TTMSFNCEdit
+      Left = 16
+      Top = 32
+      Width = 298
+      Height = 32
       TabOrder = 0
       OnChange = Edit1Change
+      Anchors = [akLeft, akTop, akRight]
     end
-    object ckSearchLimit: TCheckBox
-      Left = 15
-      Top = 263
-      Width = 130
-      Height = 17
-      Caption = 'Limit search results to:'
+    object ckSearchLimit: TTMSFNCCheckBox
+      Left = 16
+      Top = 546
+      Width = 170
+      Height = 24
+      Text = 'Limit search results to:'
       TabOrder = 1
       OnClick = ckSearchLimitClick
+      Anchors = [akLeft, akBottom]
+    end
+    object SpinEdit1: TTMSFNCSpinEdit
+      Left = 214
+      Top = 542
+      Width = 100
+      Height = 32
+      Anchors = [akRight, akBottom]
+      TabOrder = 4
+      Max = 1000
+      Min = 1
+      Value = 10
     end
     object TMSFNCSearchList1: TTMSFNCSearchList
-      Left = 15
-      Top = 51
-      Width = 250
-      Height = 206
+      Left = 16
+      Top = 72
+      Width = 298
+      Height = 458
       HorzScrollBar.Tracking = True
       VertScrollBar.Range = 20
       VertScrollBar.Tracking = True
@@ -87,12 +165,13 @@ object Form1: TForm1
         end>
       Items = <>
       Version = '1.0.0.0'
+      Anchors = [akLeft, akTop, akRight, akBottom]
     end
     object TMSFNCSearchEdit1: TTMSFNCSearchEdit
-      Left = 15
-      Top = 299
-      Width = 249
-      Height = 23
+      Left = 16
+      Top = 584
+      Width = 298
+      Height = 32
       ParentDoubleBuffered = False
       DoubleBuffered = True
       TabOrder = 3
@@ -204,54 +283,56 @@ object Form1: TForm1
       SearchButton.Bitmaps = <>
       SearchButton.Visible = False
       Text = ''
+      Anchors = [akLeft, akRight, akBottom]
     end
   end
-  object SpinEdit1: TSpinEdit
-    Left = 192
-    Top = 287
-    Width = 80
-    Height = 22
-    MaxValue = 0
-    MinValue = 0
-    TabOrder = 1
-    Value = 10
-  end
-  object GroupBox2: TGroupBox
+  object GroupBox2: TTMSFNCPanel
     Left = 295
-    Top = 24
+    Top = 96
     Width = 549
-    Height = 337
-    Caption = 'Car lookup'
+    Height = 345
     TabOrder = 2
-    object Edit2: TEdit
+    Header.Text = 'Car lookup'
+    Header.Visible = True
+    Header.Size = 24.000000000000000000
+    Align = alClient
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
+    object Edit2: TTMSFNCEdit
       Left = 16
-      Top = 24
-      Width = 121
-      Height = 21
+      Top = 32
+      Width = 250
+      Height = 32
       TabOrder = 0
       OnChange = Edit2Change
+      Anchors = [akLeft, akTop, akRight]
     end
-    object ckDescr: TCheckBox
-      Left = 160
-      Top = 26
-      Width = 121
-      Height = 17
-      Caption = 'Filter also description'
+    object ckDescr: TTMSFNCCheckBox
+      Left = 282
+      Top = 36
+      Width = 190
+      Height = 24
+      Text = 'Filter also description'
       TabOrder = 1
       OnClick = ckDescrClick
     end
-    object Panel1: TPanel
-      Left = 368
-      Top = 20
-      Width = 25
-      Height = 24
+    object Panel1: TTMSFNCPanel
+      Left = 674
+      Top = 32
+      Width = 32
+      Height = 32
       TabOrder = 2
       OnClick = Panel1Click
+      Header.Visible = False
+      Anchors = [akTop, akRight]
       object Shape1: TShape
         Left = 0
         Top = 0
-        Width = 25
-        Height = 24
+        Width = 32
+        Height = 32
         Hint = 'Highlight color'
         Brush.Color = clRed
         Enabled = False
@@ -261,9 +342,9 @@ object Form1: TForm1
     end
     object TMSFNCSearchList2: TTMSFNCSearchList
       Left = 16
-      Top = 51
-      Width = 377
-      Height = 243
+      Top = 72
+      Width = 456
+      Height = 458
       HorzScrollBar.Tracking = True
       VertScrollBar.Range = 20
       VertScrollBar.Tracking = True
@@ -308,12 +389,13 @@ object Form1: TForm1
         end>
       Items = <>
       Version = '1.0.0.0'
+      Anchors = [akLeft, akTop, akRight, akBottom]
     end
     object TMSFNCSearchEdit2: TTMSFNCSearchEdit
       Left = 16
-      Top = 300
-      Width = 377
-      Height = 23
+      Top = 584
+      Width = 690
+      Height = 32
       ParentDoubleBuffered = False
       DoubleBuffered = True
       TabOrder = 4
@@ -425,19 +507,25 @@ object Form1: TForm1
       SearchButton.Bitmaps = <>
       SearchButton.Visible = False
       Text = ''
+      Anchors = [akLeft, akRight, akBottom]
     end
-    object CheckListBox1: TCheckListBox
-      Left = 408
-      Top = 51
-      Width = 129
-      Height = 166
-      OnClickCheck = CheckListBox1ClickCheck
-      ItemHeight = 13
+    object CheckListBox1: TTMSFNCCheckedListBox
+      Left = 488
+      Top = 72
+      Width = 218
+      Height = 458
+      Anchors = [akTop, akRight, akBottom]
       TabOrder = 5
+      OnItemCheckChanged = CheckListBox1ItemCheckChanged
     end
   end
   object ColorDialog1: TColorDialog
     Left = 768
     Top = 176
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end
