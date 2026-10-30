@@ -82,12 +82,6 @@ object FilterViewDemoForm: TFilterViewDemoForm
     Footer.Bar.Buttons = <>
     Header.Bar.Buttons = <>
     Adapter = TMSFNCDataGridDatabaseAdapter1
-    CellAppearance.FixedSelectedLayout.Fill.Color = xFFDFE7F2
-    CellAppearance.FocusedLayout.Fill.Color = xFF7EA8CB
-    CellAppearance.FocusedLayout.Font.Color = claWhite
-    CellAppearance.GroupLayout.Font.Color = claSteelblue
-    CellAppearance.SelectedLayout.Fill.Color = xFFDFE7F2
-    CellAppearance.SelectedLayout.Font.Color = claSteelblue
     ColumnCount = 7
     Columns = <
       item
@@ -578,7 +572,6 @@ object FilterViewDemoForm: TFilterViewDemoForm
     Options.Mouse.ClickMargin = 0
     Options.Selection.Mode = gsmSingleRow
     RowCount = 53
-    Stroke.Color = claDarkgray
   end
   object TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter
     Size.Width = 26.000000000000000000
@@ -631,8 +624,6 @@ object FilterViewDemoForm: TFilterViewDemoForm
     TabOrder = 7
     AdaptToStyle = True
     Fill.Kind = gfkGradient
-    Fill.ColorTo = claSnow
-    Stroke.Color = xFFF0F0F0
     OnFilterTextChanged = TMSFNCFilterView1FilterTextChanged
     Viewport.Width = 200.000000000000000000
     Viewport.Height = 490.000000000000000000
@@ -645,13 +636,11 @@ object FilterViewDemoForm: TFilterViewDemoForm
       TabOrder = 0
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
-      Stroke.Color = claNull
       Text = 
         '<FONT color="#3583b9"><B><U><FONT size="18">Filter Database</FON' +
         'T></U></B></FONT>'
     end
     object ExtinctCheck: TTMSFNCFilterViewCheckBox
-      Color = claNull
       Align = Top
       Margins.Left = 5.000000000000000000
       Margins.Top = 5.000000000000000000
@@ -702,7 +691,6 @@ object FilterViewDemoForm: TFilterViewDemoForm
       end
     end
     object SizeTrackBar: TTMSFNCFilterViewTrackBar
-      Color = claNull
       Align = Top
       Margins.Left = 5.000000000000000000
       Margins.Top = 5.000000000000000000
@@ -713,15 +701,10 @@ object FilterViewDemoForm: TFilterViewDemoForm
       Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 4
-      Appearance.ThumbStroke.Color = xFF3583B9
       Appearance.ThumbStroke.Width = 2.000000000000000000
       Appearance.ThumbWidth = 16
       Appearance.ThumbShape = tsEllipse
-      Appearance.LineStroke.Color = xFF3583B9
-      Appearance.LineRightStroke.Color = xFF3583B9
       Appearance.TickMarkSpacing = 10
-      Appearance.TickMarkStroke.Color = xFF3583B9
-      Fill.Color = claNull
       Stroke.Kind = gskNone
       Max = 200.000000000000000000
       OnChanged = SizeTrackBarChanged
@@ -776,18 +759,10 @@ object FilterViewDemoForm: TFilterViewDemoForm
       GroupOperator = fgoOR
       Header.Text = 'Name'
       Header.Font.Size = 14.000000000000000000
-      Header.Font.Color = xFF454545
       Header.Font.StyleExt = {00070000000000000004000000}
-      Header.Fill.Color = xFFEEF2F9
       Header.Buttons = [pbExpander]
       Footer.Text = 'Footer'
       Footer.Font.Size = 14.000000000000000000
-      Footer.Font.Color = xFF454545
-      Footer.Fill.Color = xFFEEF2F9
-      ButtonsAppearance.ButtonAppearance.NormalFill.Color = xFFE1E1E1
-      ButtonsAppearance.ButtonAppearance.NormalStroke.Color = claDarkgray
-      ButtonsAppearance.ButtonAppearance.HoverFill.Color = x00E5F1FB
-      ButtonsAppearance.ButtonAppearance.HoverStroke.Color = xFF3C7FB1
       ButtonsAppearance.ButtonAppearance.FlatStyle = True
       ButtonsAppearance.CollapseBitmap.PNG = {
         89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
@@ -869,7 +844,6 @@ object FilterViewDemoForm: TFilterViewDemoForm
         6C696E656A6F696E3D22726F756E6422207374726F6B652D77696474683D2232
         2220643D226D372031302035203520352D35222F3E0D0A3C2F7376673E0D0A}
       object TMSFNCFilterViewExpressionValueEdit1: TTMSFNCFilterViewExpressionValueEdit
-        Color = claNull
         Align = Top
         Margins.Left = 5.000000000000000000
         Margins.Top = 5.000000000000000000

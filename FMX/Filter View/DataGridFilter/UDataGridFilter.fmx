@@ -73,7 +73,6 @@ object FilterViewDataGridForm: TFilterViewDataGridForm
     Size.PlatformDefault = False
     TabOrder = 0
     AdaptToStyle = True
-    Stroke.Color = xFFF0F0F0
     FilterFormatType = fftUniversalFilterExpressions
     FilterParseFormat.AndOperator = '&'
     FilterParseFormat.OrOperator = '|'
@@ -251,10 +250,7 @@ object FilterViewDataGridForm: TFilterViewDataGridForm
         Appearance.NormalFill.Kind = gfkNone
         Appearance.NormalStroke.Kind = gskNone
         Appearance.HoverFill.Kind = gfkSolid
-        Appearance.HoverFill.Color = xFFE8F1F5
-        Appearance.HoverStroke.Color = claAzure
         Appearance.DownFill.Kind = gfkNone
-        Appearance.DownStroke.Color = claDodgerblue
         ControlIndex = 0
       end
       object AllBtn: TTMSFNCToolBarButton
@@ -272,9 +268,7 @@ object FilterViewDataGridForm: TFilterViewDataGridForm
         Size.PlatformDefault = False
         TabOrder = 0
         OnClick = AllBtnClick
-        Font.Color = claDodgerblue
         Text = 'All'
-        HoverFontColor = claSteelblue
         Bitmaps = <>
         LargeLayoutBitmaps = <>
         DisabledBitmaps = <>
@@ -286,7 +280,6 @@ object FilterViewDataGridForm: TFilterViewDataGridForm
         Appearance.HoverFill.Kind = gfkNone
         Appearance.HoverStroke.Kind = gskNone
         Appearance.DownFill.Kind = gfkNone
-        Appearance.DownStroke.Color = claDodgerblue
         ControlIndex = 0
       end
       object FlightBtn: TTMSFNCToolBarButton
@@ -422,10 +415,7 @@ object FilterViewDataGridForm: TFilterViewDataGridForm
         Appearance.NormalFill.Kind = gfkNone
         Appearance.NormalStroke.Kind = gskNone
         Appearance.HoverFill.Kind = gfkSolid
-        Appearance.HoverFill.Color = xFFE8F1F5
-        Appearance.HoverStroke.Color = claAzure
         Appearance.DownFill.Kind = gfkNone
-        Appearance.DownStroke.Color = claDodgerblue
         ControlIndex = 0
       end
       object AbroadBtn: TTMSFNCToolBarButton
@@ -568,10 +558,7 @@ object FilterViewDataGridForm: TFilterViewDataGridForm
         Appearance.NormalFill.Kind = gfkNone
         Appearance.NormalStroke.Kind = gskNone
         Appearance.HoverFill.Kind = gfkSolid
-        Appearance.HoverFill.Color = xFFE8F1F5
-        Appearance.HoverStroke.Color = claAzure
         Appearance.DownFill.Kind = gfkNone
-        Appearance.DownStroke.Color = claDodgerblue
         ControlIndex = 0
       end
       object OnLeaveBtn: TTMSFNCToolBarButton
@@ -780,10 +767,7 @@ object FilterViewDataGridForm: TFilterViewDataGridForm
         Appearance.NormalFill.Kind = gfkNone
         Appearance.NormalStroke.Kind = gskNone
         Appearance.HoverFill.Kind = gfkSolid
-        Appearance.HoverFill.Color = xFFE8F1F5
-        Appearance.HoverStroke.Color = claAzure
         Appearance.DownFill.Kind = gfkNone
-        Appearance.DownStroke.Color = claDodgerblue
         ControlIndex = 0
       end
     end
@@ -803,7 +787,6 @@ object FilterViewDataGridForm: TFilterViewDataGridForm
       HorizontalTextAlign = gtaLeading
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
-      Stroke.Color = claNull
       Text = 'Joined Before:'
       Transparent = True
     end
@@ -817,40 +800,22 @@ object FilterViewDataGridForm: TFilterViewDataGridForm
       Header.Arrow.ArrowLeftBitmap = <>
       Header.Arrow.ArrowRightBitmap = <>
       Header.Fill.Kind = gfkGradient
-      Header.Fill.Color = xFFF6F8FC
-      Header.Fill.ColorTo = xFFEEF2F9
       Header.Font.Size = 14.000000000000000000
-      Header.Font.Color = xFF454545
       Header.Font.StyleExt = {00070000000000000004000000}
       Footer.DateCaption = fdNone
       Footer.Fill.Kind = gfkGradient
-      Footer.Fill.Color = xFFF6F8FC
-      Footer.Fill.ColorTo = xFFEEF2F9
       Footer.Font.Size = 14.000000000000000000
-      Footer.Font.Color = xFF454545
       Footer.Visible = False
       Day = 8
       Month = 12
       Year = 2025
       Date = 45999.000000000000000000
       Events = <>
-      WeekNumberAppearance.Font.Color = xFF7A7A7A
-      DayNameAppearance.Font.Color = xFF7A7A7A
-      DateAppearance.Font.Color = xFF7A7A7A
-      DateAppearance.SelectedFill.Color = xFFEEF2F9
       DateAppearance.SelectedFont.Size = 14.000000000000000000
-      DateAppearance.SelectedFont.Color = xFF454545
       DateAppearance.SelectedFont.StyleExt = {00070000000000000004000000}
-      DateAppearance.SelectedStroke.Color = xFF2D9BEF
-      DateAppearance.DisabledFont.Color = claLightgray
-      DateAppearance.DateBeforeFont.Color = xFFBBBBBB
-      DateAppearance.DateAfterFont.Color = xFFBBBBBB
-      DateAppearance.TodayFont.Color = xFF2D9BEF
       DateAppearance.TodayFont.StyleExt = {00070000000000000004000000}
       DateAppearance.BadgeFont.Size = 10.000000000000000000
-      DateAppearance.BadgeFont.Color = claWhite
       DateAppearance.ShowFocus = False
-      LineAppearance.Stroke.Color = claDarkgray
       Interaction.AllowYearSelection = True
       Interaction.AllowMonthSelection = True
       OnSelectDate = TMSFNCCalendar1SelectDate
@@ -870,7 +835,6 @@ object FilterViewDataGridForm: TFilterViewDataGridForm
       HorizontalTextAlign = gtaLeading
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
-      Stroke.Color = claNull
       Text = 'Status:'
       Transparent = True
     end
