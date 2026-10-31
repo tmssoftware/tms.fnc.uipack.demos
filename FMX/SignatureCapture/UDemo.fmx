@@ -1,162 +1,113 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Signature Capture Demo'
-  ClientHeight = 316
-  ClientWidth = 665
+  Caption = 'TMS FNC UI Pack - Signature Capture'
+  ClientHeight = 560
+  ClientWidth = 900
   Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   DesignerMasterStyle = 0
-  object TMSFNCSignatureCapture1: TTMSFNCSignatureCapture
-    Position.X = 256.000000000000000000
-    Position.Y = 8.000000000000000000
-    Size.Width = 400.000000000000000000
-    Size.Height = 300.000000000000000000
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 665.000000000000000000
+    Size.Height = 72.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 6
-    Font.Name = 'Segoe UI'
-    Pen.Color = claBlack
-    TextPosition.Line.Color = claGray
-    ClearSig.Image.PNG = {
-      89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
-      F8000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-      01ED49444154484BD555CB550241109CD58BC70D81A3478C80210388408C4089
-      6097082403F6E65189408840BC794323900CB0AAA767DECEEEB0C2E344BDB7AF
-      677AE8EAAE9E0FE6E291A9354551F4B22C7BC630DFEFF74BD86A369BED64F10C
-      5CA9354A3EC26739C6B745D25216CF40505096E52B0C1334B181A2E1B16A5054
-      0E233C88A98202904C6152247D55D3D7791258B7287281DFFEE27B846B457F50
-      40E83E5049920C453CB02A9D0A103341CC3D86D679CC1C8958AC204AE081A012
-      41854E23F824AC18BF59C0D5732BE65BD7A4728F640202046C0D09526A36F8EA
-      FE39C8C1DDDEA783093CBAD400C9AAEB089B7C08082E4132D46913AB2E72E25A
-      ED4140C1080A5E30BC719E08FDC160F0B35EAFD9B2243A15E034F0C2F154F16C
-      13ECF19B1B3A709FB85F3A6D2199000139C83F307C721EC18EAD827FCCBEAB4F
-      C02218A3D308AD04AC06015B0CEB550939FA2DAD80AD1A49787F78E25A88F640
-      C9DF31AC5713917BB0EFD65ADE015FC82DF6E313FE2F9D0BC2310539AB605B22
-      A9201F833CEA7B1D7C1E60266E26C7F60EBF0FF721B4482536C9A75DE40412B0
-      55FEF96091D19D1105DA1A565F47A5C147A1AE4455484BBD82E6337D123941B5
-      30428A62F9DF22F00928D1F78DAFE149E404FB8E24BCF14C62D115795DFF7D8B
-      4E058873DD871E0A1D3BEFE5C2983FE2BEE02B964D075A0000000049454E44AE
-      426082}
-  end
-  object Panel1: TPanel
-    Position.X = 8.000000000000000000
-    Position.Y = 8.000000000000000000
-    Size.Width = 241.000000000000000000
-    Size.Height = 300.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 7
-    object Button1: TButton
-      Position.X = 144.000000000000000000
-      Position.Y = 224.000000000000000000
-      Size.Width = 88.000000000000000000
-      Size.Height = 22.000000000000000000
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
-      Text = 'Save to file'
-      OnClick = Button1Click
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
     end
-    object Button2: TButton
-      Position.X = 144.000000000000000000
-      Position.Y = 248.000000000000000000
-      Size.Width = 88.000000000000000000
-      Size.Height = 22.000000000000000000
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 441.000000000000000000
+      Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
-      Text = 'Load from file'
-      OnClick = Button2Click
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Signature Capture'
     end
-    object Button3: TButton
-      Position.X = 144.000000000000000000
-      Position.Y = 272.000000000000000000
-      Size.Width = 88.000000000000000000
-      Size.Height = 22.000000000000000000
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 441.000000000000000000
+      Size.Height = 20.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 2
-      Text = 'Save to image'
-      OnClick = Button3Click
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Sign with the mouse, a pen or your finger'
     end
-    object Edit1: TEdit
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      TabOrder = 3
-      Text = 'demo.txt'
-      Position.X = 8.000000000000000000
-      Position.Y = 224.000000000000000000
-      Size.Width = 129.000000000000000000
-      Size.Height = 22.000000000000000000
+  end
+  object Panel1: TTMSFNCPanel
+    Align = Left
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 8.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+    Size.Width = 272.000000000000000000
+    Size.PlatformDefault = False
+    Header.Visible = False
+    object SigSecPen: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 240.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
+      Font.Size = 13.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      Text = 'Pen'
+      HorizontalTextAlign = gtaLeading
+      VerticalTextAlign = gtaCenter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Edit2: TEdit
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      TabOrder = 4
-      Text = 'demo.txt'
-      Position.X = 8.000000000000000000
-      Position.Y = 248.000000000000000000
-      Size.Width = 129.000000000000000000
-      Size.Height = 22.000000000000000000
+    object Label6: TTMSFNCHTMLText
+      Position.X = 16.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 112.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
-    end
-    object Edit3: TEdit
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      TabOrder = 5
-      Text = 'demo.png'
-      Position.X = 8.000000000000000000
-      Position.Y = 272.000000000000000000
-      Size.Width = 129.000000000000000000
-      Size.Height = 22.000000000000000000
-      Size.PlatformDefault = False
-    end
-    object Label1: TLabel
-      Position.X = 8.000000000000000000
-      Position.Y = 8.000000000000000000
-      Size.Width = 225.000000000000000000
-      Size.Height = 33.000000000000000000
-      Size.PlatformDefault = False
-      Text = 
-        'To clear the signature, click the clear icon in the bottom left ' +
-        'corner.'
-      TabOrder = 6
-    end
-    object Label2: TLabel
-      Position.X = 11.000000000000000000
-      Position.Y = 194.000000000000000000
-      Size.Width = 78.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      Text = 'Pen width'
-      TabOrder = 7
-    end
-    object TrackBar1: TTrackBar
-      CanParentFocus = True
-      Max = 10.000000000000000000
-      Min = 1.000000000000000000
-      Orientation = Horizontal
-      Position.X = 110.000000000000000000
-      Position.Y = 192.000000000000000000
-      TabOrder = 8
-      Value = 1.000000000000000000
-      OnChange = TrackBar1Change
+      Text = 'Pen color'
+      VerticalTextAlign = gtaCenter
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
     object TMSFNCColorPicker1: TTMSFNCColorPicker
-      Position.X = 96.000000000000000000
-      Position.Y = 160.000000000000000000
-      Size.Width = 60.000000000000000000
-      Size.Height = 22.000000000000000000
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 128.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 128.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 9
-      Appearance.Stroke.Color = claDarkgray
-      Appearance.Fill.Color = xFFE9E9E9
-      Appearance.StrokeHover.Color = claLightslategray
-      Appearance.FillHover.Color = xFFBBC4CC
-      Appearance.StrokeDown.Color = claSlategray
-      Appearance.FillDown.Color = xFFB8C0C8
-      Appearance.StrokeSelected.Color = claDarkslategray
-      Appearance.FillSelected.Color = xFFB8C0C8
-      Appearance.StrokeDisabled.Color = claDarkgray
-      Appearance.FillDisabled.Color = claSilver
-      Appearance.SeparatorStroke.Color = claDarkgray
-      Appearance.Font.Name = 'Segoe UI'
       Items = <
         item
           Color = claBlack
@@ -207,44 +158,198 @@ object Form130: TForm130
           Color = claWhite
         end>
       OnColorSelected = TMSFNCColorPicker1ColorSelected
-      SelectedColor = claBlack
-      SelectedItemIndex = 0
+      SelectedColor = claTeal
+      SelectedItemIndex = 6
     end
-    object Label3: TLabel
-      Position.X = 96.000000000000000000
-      Position.Y = 193.000000000000000000
-      Size.Width = 9.000000000000000000
-      Size.Height = 16.000000000000000000
+    object Label2: TTMSFNCHTMLText
+      Position.X = 16.000000000000000000
+      Position.Y = 92.000000000000000000
+      Size.Width = 112.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
+      VerticalTextAlign = gtaCenter
+      Text = 'Pen width'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object TrackBar1: TTMSFNCTrackBar
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 120.000000000000000000
+      Size.Width = 240.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Max = 10.000000000000000000
+      Min = 1.000000000000000000
+      Value = 1.000000000000000000
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      OnValueChanged = TrackBar1ValueChanged
+    end
+    object Label3: TTMSFNCHTMLText
+      Position.X = 16.000000000000000000
+      Position.Y = 152.000000000000000000
+      Size.Width = 60.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      VerticalTextAlign = gtaCenter
       Text = '1'
-      TabOrder = 11
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label4: TLabel
-      Position.X = 216.000000000000000000
-      Position.Y = 193.000000000000000000
-      Size.Width = 17.000000000000000000
-      Size.Height = 16.000000000000000000
+    object Label4: TTMSFNCHTMLText
+      Anchors = [akTop, akRight]
+      Position.X = 196.000000000000000000
+      Position.Y = 152.000000000000000000
+      Size.Width = 60.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
+      VerticalTextAlign = gtaCenter
       Text = '10'
-      TabOrder = 10
+      HorizontalTextAlign = gtaTrailing
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label5: TLabel
-      Position.X = 8.000000000000000000
-      Position.Y = 48.000000000000000000
-      Size.Width = 225.000000000000000000
-      Size.Height = 33.000000000000000000
+    object SigSecFiles: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 196.000000000000000000
+      Size.Width = 240.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
+      Font.Size = 13.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      Text = 'Files'
+      HorizontalTextAlign = gtaLeading
+      VerticalTextAlign = gtaCenter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object Edit1: TTMSFNCEdit
+      Position.X = 16.000000000000000000
+      Position.Y = 232.000000000000000000
+      Size.Width = 112.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Text = 'demo.txt'
+    end
+    object Button1: TTMSFNCButton
+      Anchors = [akTop, akRight]
+      Position.X = 136.000000000000000000
+      Position.Y = 232.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Save to file'
+      OnClick = Button1Click
+    end
+    object Edit2: TTMSFNCEdit
+      Position.X = 16.000000000000000000
+      Position.Y = 272.000000000000000000
+      Size.Width = 112.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Text = 'demo.txt'
+    end
+    object Button2: TTMSFNCButton
+      Anchors = [akTop, akRight]
+      Position.X = 136.000000000000000000
+      Position.Y = 272.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Load from file'
+      OnClick = Button2Click
+    end
+    object Edit3: TTMSFNCEdit
+      Position.X = 16.000000000000000000
+      Position.Y = 312.000000000000000000
+      Size.Width = 112.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Text = 'demo.png'
+    end
+    object Button3: TTMSFNCButton
+      Anchors = [akTop, akRight]
+      Position.X = 136.000000000000000000
+      Position.Y = 312.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Save to image'
+      OnClick = Button3Click
+    end
+    object Label1: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 364.000000000000000000
+      Size.Width = 240.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      WordWrapping = True
+      TextRole = htrSecondary
+      VerticalTextAlign = gtaLeading
+      Text = 
+        'To clear the signature, click the clear icon in the bottom left ' +
+        'corner.'
+      HorizontalTextAlign = gtaLeading
+      WordWrapping = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object Label5: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 420.000000000000000000
+      Size.Width = 240.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      WordWrapping = True
+      TextRole = htrSecondary
+      VerticalTextAlign = gtaLeading
       Text = 'The images and files are saved to this demo'#39's folder.'
-      TabOrder = 12
+      HorizontalTextAlign = gtaLeading
+      WordWrapping = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label6: TLabel
-      Position.X = 11.000000000000000000
-      Position.Y = 161.000000000000000000
-      Size.Width = 70.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      Text = 'Pen color'
-      TabOrder = 13
-    end
+  end
+  object TMSFNCSignatureCapture1: TTMSFNCSignatureCapture
+    Align = Client
+    Margins.Left = 0.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+    ClearSig.Image.PNG = {
+      89504E470D0A1A0A0000000D4948445200000018000000180806000000E0773D
+      F8000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+      01ED49444154484BD555CB550241109CD58BC70D81A3478C80210388408C4089
+      6097082403F6E65189408840BC794323900CB0AAA767DECEEEB0C2E344BDB7AF
+      677AE8EAAE9E0FE6E291A9354551F4B22C7BC630DFEFF74BD86A369BED64F10C
+      5CA9354A3EC26739C6B745D25216CF40505096E52B0C1334B181A2E1B16A5054
+      0E233C88A98202904C6152247D55D3D7791258B7287281DFFEE27B846B457F50
+      40E83E5049920C453CB02A9D0A103341CC3D86D679CC1C8958AC204AE081A012
+      41854E23F824AC18BF59C0D5732BE65BD7A4728F640202046C0D09526A36F8EA
+      FE39C8C1DDDEA783093CBAD400C9AAEB089B7C08082E4132D46913AB2E72E25A
+      ED4140C1080A5E30BC719E08FDC160F0B35EAFD9B2243A15E034F0C2F154F16C
+      13ECF19B1B3A709FB85F3A6D2199000139C83F307C721EC18EAD827FCCBEAB4F
+      C02218A3D308AD04AC06015B0CEB550939FA2DAD80AD1A49787F78E25A88F640
+      C9DF31AC5713917BB0EFD65ADE015FC82DF6E313FE2F9D0BC2310539AB605B22
+      A9201F833CEA7B1D7C1E60266E26C7F60EBF0FF721B4482536C9A75DE40412B0
+      55FEF96091D19D1105DA1A565F47A5C147A1AE4455484BBD82E6337D123941B5
+      30428A62F9DF22F00928D1F78DAFE149E404FB8E24BCF14C62D115795DFF7D8B
+      4E058873DD871E0A1D3BEFE5C2983FE2BEE02B964D075A0000000049454E44AE
+      426082}
+    Pen.Color = claTeal
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

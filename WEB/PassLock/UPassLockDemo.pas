@@ -7,35 +7,56 @@ uses
   WEBLib.Forms, VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics,
   VCL.TMSFNCGraphicsTypes, VCL.TMSFNCPassLock, Vcl.StdCtrls, WEBLib.StdCtrls,
   VCL.TMSFNCCustomControl, VCL.TMSFNCSplitter, Vcl.Controls, WEBLib.ExtCtrls,
-  VCL.TMSFNCImage;
+  VCL.TMSFNCImage,
+  WEBLib.TMSFNCButton,
+  WEBLib.TMSFNCCheckBox,
+  WEBLib.TMSFNCCustomControl,
+  WEBLib.TMSFNCGraphics,
+  WEBLib.TMSFNCGraphicsTypes,
+  WEBLib.TMSFNCHTMLText,
+  WEBLib.TMSFNCPanel,
+  WEBLib.TMSFNCTheme,
+  WEBLib.TMSFNCThemeSelector,
+  WEBLib.TMSFNCTypes,
+  WEBLib.TMSFNCUtils;
 
 type
   TForm1 = class(TWebForm)
-    WebPanel1: TWebPanel;
-    WebPanel3: TWebPanel;
-    WebLabel5: TWebLabel;
-    WebLabel6: TWebLabel;
-    WebCheckBox1: TWebCheckBox;
-    WebCheckBox2: TWebCheckBox;
-    WebCheckBox3: TWebCheckBox;
-    WebCheckBox4: TWebCheckBox;
-    WebCheckBox5: TWebCheckBox;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    ContentPanel: TTMSFNCPanel;
+    PLSecKeypad: TTMSFNCHTMLText;
+    PLStatusCaption: TTMSFNCHTMLText;
+    PLSecPattern: TTMSFNCHTMLText;
+    PLPatternHint: TTMSFNCHTMLText;
+    WebPanel1: TTMSFNCPanel;
+    WebPanel3: TTMSFNCPanel;
+    WebLabel5: TTMSFNCHTMLText;
+    WebLabel6: TTMSFNCHTMLText;
+    WebCheckBox1: TTMSFNCCheckBox;
+    WebCheckBox2: TTMSFNCCheckBox;
+    WebCheckBox3: TTMSFNCCheckBox;
+    WebCheckBox4: TTMSFNCCheckBox;
+    WebCheckBox5: TTMSFNCCheckBox;
     TMSFNCSplitter1: TTMSFNCSplitter;
-    WebPanel2: TWebPanel;
-    WebPanel4: TWebPanel;
-    WebLabel1: TWebLabel;
-    WebLabel2: TWebLabel;
-    WebLabel3: TWebLabel;
-    WebLabel4: TWebLabel;
-    WebButton1: TWebButton;
+    WebPanel2: TTMSFNCPanel;
+    WebPanel4: TTMSFNCPanel;
+    WebLabel1: TTMSFNCHTMLText;
+    WebLabel2: TTMSFNCHTMLText;
+    WebLabel3: TTMSFNCHTMLText;
+    WebLabel4: TTMSFNCHTMLText;
+    WebButton1: TTMSFNCButton;
     TMSFNCPassLock1: TTMSFNCPassLock;
     TMSFNCPassLock2: TTMSFNCPassLock;
-    WebButton2: TWebButton;
-    LblpwVal: TWebLabel;
-    LblpwEntr: TWebLabel;
-    LblLearnMode: TWebLabel;
+    WebButton2: TTMSFNCButton;
+    LblpwVal: TTMSFNCHTMLText;
+    LblpwEntr: TTMSFNCHTMLText;
+    LblLearnMode: TTMSFNCHTMLText;
     TMSFNCImage1: TTMSFNCImage;
-    WebCheckBox6: TWebCheckBox;
+    WebCheckBox6: TTMSFNCCheckBox;
     procedure TMSFNCPassLock1PasswordCheck(Sender: TObject; AEntry: string; var AMatch: Boolean);
     procedure WebButton1Click(Sender: TObject);
     procedure WebFormCreate(Sender: TObject);
@@ -74,6 +95,8 @@ implementation
 
 {$R *.dfm}
 
+{ demo-colors: TMSFNCImage1.Fill.Color and the entry colours of TMSFNCPassLock2 are the pass/fail feedback of the demo }
+
 procedure TForm1.Check;
 begin
   WebCheckBox1.Checked := TMSFNCPassLock2.Options.ShowEntry;
@@ -110,12 +133,13 @@ procedure TForm1.TMSFNCPassLock2ConfirmPassword(Sender: TObject; AEntry: string;
 begin
   if AMatch then
   begin
-    LblpwVal.Caption := AEntry;
-    LblLearnMode.Caption := 'New password set';
+    LblpwVal.Text := AEntry;
+    LblLearnMode.Text := 'New password set';
+    TMSFNCImage1.Fill.Kind := gfkSolid;
     TMSFNCImage1.Fill.Color := gcLime;
   end
   else
-    LblLearnMode.Caption := 'Not the same';
+    LblLearnMode.Text := 'Not the same';
 
   UpdateEntry;
 end;
@@ -123,8 +147,9 @@ end;
 procedure TForm1.TMSFNCPassLock2LearnPassword(Sender: TObject;
   APassword: string);
 begin
+  TMSFNCImage1.Fill.Kind := gfkSolid;
   TMSFNCImage1.Fill.Color := gcYellow;
-  LblLearnMode.Caption := 'Confirm';
+  LblLearnMode.Text := 'Confirm';
 end;
 
 procedure TForm1.TMSFNCPassLock2PasswordCheck(Sender: TObject; AEntry: string;
@@ -157,7 +182,7 @@ end;
 
 procedure TForm1.UpdateEntry;
 begin
-  LblpwEntr.Caption := TMSFNCPassLock2.PasswordEntry;
+  LblpwEntr.Text := TMSFNCPassLock2.PasswordEntry;
 end;
 
 procedure TForm1.WebButton1Click(Sender: TObject);
@@ -222,7 +247,7 @@ end;
 
 procedure TForm1.WebFormShow(Sender: TObject);
 begin
-  LblpwVal.Caption := TMSFNCPassLock2.PasswordValue;
+  LblpwVal.Text := TMSFNCPassLock2.PasswordValue;
   Check;
   TMSFNCPassLock2.SetFocus;
 end;

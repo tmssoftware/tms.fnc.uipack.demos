@@ -3,16 +3,50 @@ object Form1: TForm1
   Height = 624
   Top = 195
   Width = 618
-  Caption = 'TMS FNC TaskDialog Demo'
-  ClientHeight = 624
+  Caption = 'TMS FNC UI Pack - TaskDialog'
+  ClientHeight = 696
   ClientWidth = 618
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '1.8.2.0'
+  object DemoHeader: TPanel
+    Left = 0
+    Height = 72
+    Top = 0
+    Width = 618
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 72
+    ClientWidth = 618
+    TabOrder = 0
+    object DemoTitle: TLabel
+      Left = 24
+      Height = 30
+      Top = 12
+      Width = 570
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'TaskDialog'
+      Font.Height = -20
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object DemoDescription: TLabel
+      Left = 24
+      Height = 20
+      Top = 42
+      Width = 570
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Design a dialog with the options, or show a ready-made one'
+      Font.Color = clGrayText
+      ParentFont = False
+    end
+  end
   object Panel1: TPanel
     Left = 8
     Height = 608
-    Top = 8
+    Top = 80
     Width = 297
     ClientHeight = 608
     ClientWidth = 297
@@ -306,7 +340,7 @@ object Form1: TForm1
   object Panel2: TPanel
     Left = 312
     Height = 408
-    Top = 8
+    Top = 80
     Width = 297
     ClientHeight = 408
     ClientWidth = 297
@@ -472,7 +506,7 @@ object Form1: TForm1
   object Panel3: TPanel
     Left = 312
     Height = 193
-    Top = 424
+    Top = 496
     Width = 297
     ClientHeight = 193
     ClientWidth = 297
@@ -554,7 +588,7 @@ object Form1: TForm1
   object TMSFNCColorWheel1: TTMSFNCColorWheel
     Left = 624
     Height = 175
-    Top = 8
+    Top = 80
     Width = 350
     DoubleBuffered = True
     TabOrder = 3
@@ -563,7 +597,7 @@ object Form1: TForm1
   object TMSFNCTaskDialog1: TTMSFNCTaskDialog
     Left = 256
     Height = 26
-    Top = 552
+    Top = 624
     Width = 26
     Visible = True
   end

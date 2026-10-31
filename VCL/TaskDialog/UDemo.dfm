@@ -1,9 +1,9 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC TaskDialog Demo'
-  ClientHeight = 568
-  ClientWidth = 616
+  Caption = 'TMS FNC UI Pack - TaskDialog'
+  ClientHeight = 640
+  ClientWidth = 1200
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,542 +15,234 @@ object Form130: TForm130
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object Panel1: TPanel
-    Left = 8
-    Top = 8
-    Width = 297
-    Height = 553
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 616
+    Height = 72
+    Align = alTop
     TabOrder = 0
-    object Label1: TLabel
-      Left = 8
-      Top = 8
-      Width = 27
-      Height = 18
-      Caption = 'Title'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -15
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Label2: TLabel
-      Left = 8
-      Top = 57
-      Width = 69
-      Height = 18
-      Caption = 'Instruction'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -15
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Label3: TLabel
-      Left = 8
-      Top = 131
-      Width = 51
-      Height = 18
-      Caption = 'Content'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -15
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Label4: TLabel
-      Left = 8
-      Top = 233
-      Width = 89
-      Height = 18
-      Caption = 'Radio buttons'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -15
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Label6: TLabel
-      Left = 8
-      Top = 342
-      Width = 104
-      Height = 18
-      Caption = 'Custom buttons'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -15
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Label13: TLabel
-      Left = 8
-      Top = 470
-      Width = 65
-      Height = 18
-      Caption = 'Input field'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -15
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object CheckBox1: TCheckBox
-      Left = 8
-      Top = 32
-      Width = 65
-      Height = 17
-      Caption = 'Default'
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 432
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
       TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
     end
-    object CheckBox2: TCheckBox
-      Left = 8
-      Top = 81
-      Width = 65
-      Height = 17
-      Caption = 'Show'
-      Checked = True
-      State = cbChecked
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 392
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
       TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'TaskDialog'
     end
-    object CheckBox3: TCheckBox
-      Left = 8
-      Top = 108
-      Width = 69
-      Height = 17
-      Caption = 'Show icon'
-      Checked = True
-      State = cbChecked
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 392
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
       TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Design a dialog with the options, or show a ready-made one'
     end
-    object CheckBox4: TCheckBox
-      Left = 8
-      Top = 155
-      Width = 65
-      Height = 17
-      Caption = 'Show'
-      Checked = True
-      State = cbChecked
-      TabOrder = 3
+  end
+  object Panel3: TTMSFNCPanel
+    Align = alLeft
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 8
+    Margins.Bottom = 16
+    Width = 288
+    Height = 552
+    Header.Visible = False
+    object TDSecReady: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 12
+      Width = 256
+      Height = 24
+      Font.Height = -17
+      Font.Name = 'Segoe UI Semibold'
+      Text = 'Ready-made dialogs'
+      HorizontalTextAlign = gtaLeading
+      VerticalTextAlign = gtaCenter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object CheckBox5: TCheckBox
-      Left = 8
-      Top = 257
-      Width = 65
-      Height = 17
-      Caption = 'Show'
-      TabOrder = 4
+    object TDReadyHint: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 44
+      Width = 256
+      Height = 64
+      Text = 'Show a complete dialog with one click, or design your own with the options on the right.'
+      HorizontalTextAlign = gtaLeading
+      VerticalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      WordWrapping = True
+      TextRole = htrSecondary
     end
-    object CheckBox10: TCheckBox
-      Left = 8
-      Top = 366
-      Width = 65
-      Height = 17
-      Caption = 'Show'
-      TabOrder = 5
-    end
-    object CheckBox11: TCheckBox
-      Left = 8
-      Top = 389
-      Width = 82
-      Height = 17
-      Caption = 'Command link'
-      TabOrder = 6
-    end
-    object CheckBox16: TCheckBox
-      Left = 10
-      Top = 494
-      Width = 97
-      Height = 17
-      Caption = 'Show'
-      TabOrder = 7
-    end
-    object Edit1: TEdit
-      Left = 79
-      Top = 30
-      Width = 210
-      Height = 21
-      TabOrder = 8
-      Text = 'TMS FNC TaskDialog'
-    end
-    object Edit2: TEdit
-      Left = 79
-      Top = 81
-      Width = 210
-      Height = 21
-      TabOrder = 9
-      Text = 'Do you like the task dialog?'
-    end
-    object Memo1: TMemo
-      Left = 79
-      Top = 153
-      Width = 210
-      Height = 74
-      DoubleBuffered = False
-      Lines.Strings = (
-        'This is the content or description area of the task dialog.'
-        ''
-        'It supports <b><i>HTML formatting</i></b> too!')
-      ParentDoubleBuffered = False
-      ScrollBars = ssHorizontal
-      TabOrder = 10
-    end
-    object Memo2: TMemo
-      Left = 79
-      Top = 257
-      Width = 210
-      Height = 42
-      Lines.Strings = (
-        'Radio button 1'
-        'Radio button 2')
-      TabOrder = 11
-    end
-    object Memo3: TMemo
-      Left = 96
-      Top = 366
-      Width = 193
-      Height = 60
-      Lines.Strings = (
-        'Custom 1'
-        'Custom 2'
-        'Custom 3')
-      TabOrder = 12
-    end
-    object RadioButton1: TRadioButton
-      Left = 109
-      Top = 108
-      Width = 62
-      Height = 17
-      Caption = 'Question'
-      Checked = True
-      TabOrder = 13
-      TabStop = True
-    end
-    object RadioButton2: TRadioButton
-      Left = 183
-      Top = 108
-      Width = 58
-      Height = 17
-      Caption = 'Shield'
-      TabOrder = 14
-    end
-    object RadioButton3: TRadioButton
-      Left = 247
-      Top = 108
-      Width = 42
-      Height = 17
-      Caption = 'Error'
-      TabOrder = 15
-    end
-    object Panel4: TPanel
-      Left = 8
-      Top = 517
-      Width = 281
-      Height = 25
-      BevelOuter = bvNone
-      TabOrder = 16
-      object RadioButton7: TRadioButton
-        Left = 2
-        Top = 0
-        Width = 49
-        Height = 17
-        Caption = 'Edit'
-        Checked = True
-        TabOrder = 0
-        TabStop = True
-      end
-      object RadioButton8: TRadioButton
-        Left = 57
-        Top = 0
-        Width = 47
-        Height = 17
-        Caption = 'Date'
-        TabOrder = 1
-      end
-      object RadioButton9: TRadioButton
-        Left = 119
-        Top = 0
-        Width = 162
-        Height = 17
-        Caption = 'Custom(TMSFNCColorWheel)'
-        TabOrder = 2
-      end
-    end
-    object Button2: TButton
-      Left = 8
-      Top = 305
-      Width = 281
-      Height = 31
-      Caption = 'Show dialog with radio buttons'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+    object Button2: TTMSFNCButton
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 116
+      Width = 256
+      Height = 32
+      Text = 'Dialog with radio buttons'
       Font.Height = -13
-      Font.Name = 'Tahoma'
       Font.Style = []
-      ParentFont = False
-      TabOrder = 17
       OnClick = Button2Click
     end
-    object Button3: TButton
-      Left = 8
-      Top = 432
-      Width = 281
+    object Button3: TTMSFNCButton
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 156
+      Width = 256
       Height = 32
-      Caption = 'Show dialog with command links'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Text = 'Dialog with custom buttons'
       Font.Height = -13
-      Font.Name = 'Tahoma'
       Font.Style = []
-      ParentFont = False
-      TabOrder = 18
       OnClick = Button3Click
     end
-  end
-  object Panel2: TPanel
-    Left = 311
-    Top = 8
-    Width = 297
-    Height = 389
-    TabOrder = 1
-    object Label7: TLabel
-      Left = 8
-      Top = 8
-      Width = 95
-      Height = 18
-      Caption = 'Expanded text'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -15
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Label10: TLabel
-      Left = 8
-      Top = 105
-      Width = 98
-      Height = 18
-      Caption = 'Verification box'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -15
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Label11: TLabel
-      Left = 8
-      Top = 157
-      Width = 42
-      Height = 18
-      Caption = 'Footer'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -15
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object CheckBox12: TCheckBox
-      Left = 8
-      Top = 32
-      Width = 49
-      Height = 17
-      Caption = 'Show'
-      TabOrder = 0
-    end
-    object CheckBox13: TCheckBox
-      Left = 8
-      Top = 129
-      Width = 49
-      Height = 17
-      Caption = 'Show'
-      TabOrder = 1
-    end
-    object CheckBox14: TCheckBox
-      Left = 8
-      Top = 179
-      Width = 49
-      Height = 17
-      Caption = 'Show'
-      TabOrder = 2
-    end
-    object CheckBox15: TCheckBox
-      Left = 8
-      Top = 247
-      Width = 73
-      Height = 17
-      Caption = 'Show icon'
-      TabOrder = 3
-    end
-    object Edit5: TEdit
-      Left = 72
-      Top = 129
-      Width = 217
-      Height = 21
-      TabOrder = 4
-      Text = 'Don'#39't show again'
-    end
-    object Memo4: TMemo
-      Left = 72
-      Top = 32
-      Width = 217
-      Height = 66
-      Lines.Strings = (
-        
-          'This is the expandable text area. It also supports HTML formatti' +
-          'ng! <img src="Flag-Green.png"/>')
-      ScrollBars = ssHorizontal
-      TabOrder = 5
-    end
-    object Memo5: TMemo
-      Left = 72
-      Top = 179
-      Width = 217
-      Height = 62
-      Lines.Strings = (
-        
-          'Brought to Delphi by <a href="https://www.tmssoftware.com/">TMS ' +
-          'Software</a>')
-      ScrollBars = ssHorizontal
-      TabOrder = 6
-    end
-    object RadioButton4: TRadioButton
-      Left = 103
-      Top = 247
-      Width = 50
-      Height = 17
-      Caption = 'About'
-      Checked = True
-      TabOrder = 7
-      TabStop = True
-    end
-    object RadioButton5: TRadioButton
-      Left = 167
-      Top = 247
-      Width = 49
-      Height = 17
-      Caption = 'Info'
-      TabOrder = 8
-    end
-    object RadioButton6: TRadioButton
-      Left = 222
-      Top = 247
-      Width = 59
-      Height = 17
-      Caption = 'Warning'
-      TabOrder = 9
-    end
-    object Button1: TButton
-      Left = 8
-      Top = 322
-      Width = 281
-      Height = 57
-      Caption = 'Show dialog'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -19
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 10
-      OnClick = Button1Click
-    end
-    object Button4: TButton
-      Left = 8
-      Top = 270
-      Width = 281
-      Height = 29
-      Caption = 'Show dialog with footer and verify box'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+    object Button4: TTMSFNCButton
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 196
+      Width = 256
+      Height = 32
+      Text = 'Dialog with footer and verify box'
       Font.Height = -13
-      Font.Name = 'Tahoma'
       Font.Style = []
-      ParentFont = False
-      TabOrder = 11
       OnClick = Button4Click
     end
-  end
-  object Panel3: TPanel
-    Left = 311
-    Top = 403
-    Width = 297
-    Height = 158
-    TabOrder = 2
-    object Label12: TLabel
-      Left = 8
-      Top = 8
-      Width = 46
-      Height = 18
-      Caption = 'Results'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -15
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
+    object Label12: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 252
+      Width = 256
+      Height = 24
+      Font.Height = -17
+      Font.Name = 'Segoe UI Semibold'
+      VerticalTextAlign = gtaCenter
+      Text = 'Results'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label14: TLabel
-      Left = 8
-      Top = 32
-      Width = 62
-      Height = 13
-      Caption = 'Modal result:'
+    object Label14: TTMSFNCHTMLText
+      Left = 16
+      Top = 284
+      Width = 144
+      Height = 24
+      VerticalTextAlign = gtaCenter
+      Text = 'Modal result:'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label15: TLabel
-      Left = 8
-      Top = 51
-      Width = 107
-      Height = 13
-      Caption = 'Selected radio button:'
+    object Label18: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 168
+      Top = 284
+      Width = 104
+      Height = 24
+      VerticalTextAlign = gtaCenter
+      Text = '-'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label16: TLabel
-      Left = 8
-      Top = 70
-      Width = 74
-      Height = 13
-      Caption = 'Verify checked:'
+    object Label15: TTMSFNCHTMLText
+      Left = 16
+      Top = 312
+      Width = 144
+      Height = 24
+      VerticalTextAlign = gtaCenter
+      Text = 'Selected radio button:'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label17: TLabel
-      Left = 8
-      Top = 89
-      Width = 60
-      Height = 13
-      Caption = 'Input result:'
+    object Label19: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 168
+      Top = 312
+      Width = 104
+      Height = 24
+      VerticalTextAlign = gtaCenter
+      Text = '-'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label18: TLabel
-      Left = 89
-      Top = 32
-      Width = 4
-      Height = 13
-      Caption = '-'
+    object Label16: TTMSFNCHTMLText
+      Left = 16
+      Top = 340
+      Width = 144
+      Height = 24
+      VerticalTextAlign = gtaCenter
+      Text = 'Verify checked:'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label19: TLabel
-      Left = 131
-      Top = 51
-      Width = 4
-      Height = 13
-      Caption = '-'
+    object Label20: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 168
+      Top = 340
+      Width = 104
+      Height = 24
+      VerticalTextAlign = gtaCenter
+      Text = '-'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label20: TLabel
-      Left = 96
-      Top = 70
-      Width = 4
-      Height = 13
-      Caption = '-'
+    object Label17: TTMSFNCHTMLText
+      Left = 16
+      Top = 372
+      Width = 256
+      Height = 24
+      VerticalTextAlign = gtaCenter
+      Text = 'Input result:'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
     object Memo6: TMemo
-      Left = 74
-      Top = 89
-      Width = 215
-      Height = 62
-      TabOrder = 0
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 400
+      Width = 256
+      Height = 64
     end
     object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
       Left = 264
@@ -573,32 +265,445 @@ object Form130: TForm130
         end>
     end
   end
+  object ContentPanel: TTMSFNCPanel
+    Align = alClient
+    AlignWithMargins = True
+    Margins.Left = 0
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
+    Width = 872
+    Height = 552
+    Header.Visible = False
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+  object Panel1: TTMSFNCPanel
+    Align = alLeft
+    AlignWithMargins = True
+    Margins.Left = 0
+    Margins.Top = 0
+    Margins.Right = 8
+    Margins.Bottom = 0
+    Width = 432
+    Height = 552
+    Header.Visible = False
+    object Label1: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 12
+      Width = 400
+      Height = 24
+      Font.Height = -17
+      Font.Name = 'Segoe UI Semibold'
+      VerticalTextAlign = gtaCenter
+      Text = 'Title'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object CheckBox1: TTMSFNCCheckBox
+      Left = 16
+      Top = 44
+      Width = 116
+      Height = 32
+      Text = 'Default'
+    end
+    object Edit1: TTMSFNCEdit
+      Anchors = [akLeft, akTop, akRight]
+      Left = 140
+      Top = 46
+      Width = 276
+      Height = 28
+      Text = 'TMS FNC TaskDialog'
+    end
+    object Label2: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 92
+      Width = 400
+      Height = 24
+      Font.Height = -17
+      Font.Name = 'Segoe UI Semibold'
+      VerticalTextAlign = gtaCenter
+      Text = 'Instruction'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object CheckBox2: TTMSFNCCheckBox
+      Left = 16
+      Top = 124
+      Width = 116
+      Height = 32
+      Text = 'Show'
+      Checked = True
+      Checked = True
+    end
+    object Edit2: TTMSFNCEdit
+      Anchors = [akLeft, akTop, akRight]
+      Left = 140
+      Top = 126
+      Width = 276
+      Height = 28
+      Text = 'Do you like the task dialog?'
+    end
+    object CheckBox3: TTMSFNCCheckBox
+      Left = 16
+      Top = 164
+      Width = 116
+      Height = 32
+      Text = 'Show icon'
+      Checked = True
+      Checked = True
+    end
+    object RadioButton1: TTMSFNCRadioButton
+      Left = 140
+      Top = 164
+      Width = 96
+      Height = 32
+      GroupName = 'Icon'
+      Text = 'Question'
+      Checked = True
+      TabStop = True
+    end
+    object RadioButton2: TTMSFNCRadioButton
+      Left = 244
+      Top = 164
+      Width = 88
+      Height = 32
+      GroupName = 'Icon'
+      Text = 'Shield'
+    end
+    object RadioButton3: TTMSFNCRadioButton
+      Left = 340
+      Top = 164
+      Width = 72
+      Height = 32
+      GroupName = 'Icon'
+      Text = 'Error'
+    end
+    object Label3: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 212
+      Width = 400
+      Height = 24
+      Font.Height = -17
+      Font.Name = 'Segoe UI Semibold'
+      VerticalTextAlign = gtaCenter
+      Text = 'Content'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object CheckBox4: TTMSFNCCheckBox
+      Left = 16
+      Top = 244
+      Width = 116
+      Height = 32
+      Text = 'Show'
+      Checked = True
+      Checked = True
+    end
+    object Memo1: TMemo
+      Anchors = [akLeft, akTop, akRight]
+      Left = 140
+      Top = 244
+      Width = 276
+      Height = 64
+      DoubleBuffered = False
+      Lines.Strings = (
+        'This is the content or description area of the task dialog.'
+        ''
+        'It supports <b><i>HTML formatting</i></b> too!')
+      ParentDoubleBuffered = False
+      ScrollBars = ssHorizontal
+    end
+    object Label4: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 324
+      Width = 400
+      Height = 24
+      Font.Height = -17
+      Font.Name = 'Segoe UI Semibold'
+      VerticalTextAlign = gtaCenter
+      Text = 'Radio buttons'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object CheckBox5: TTMSFNCCheckBox
+      Left = 16
+      Top = 356
+      Width = 116
+      Height = 32
+      Text = 'Show'
+    end
+    object Memo2: TMemo
+      Anchors = [akLeft, akTop, akRight]
+      Left = 140
+      Top = 356
+      Width = 276
+      Height = 56
+      Lines.Strings = (
+        'Radio button 1'
+        'Radio button 2')
+    end
+    object Label6: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 428
+      Width = 400
+      Height = 24
+      Font.Height = -17
+      Font.Name = 'Segoe UI Semibold'
+      VerticalTextAlign = gtaCenter
+      Text = 'Custom buttons'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object CheckBox10: TTMSFNCCheckBox
+      Left = 16
+      Top = 460
+      Width = 116
+      Height = 32
+      Text = 'Show'
+    end
+    object Memo3: TMemo
+      Anchors = [akLeft, akTop, akRight]
+      Left = 140
+      Top = 460
+      Width = 276
+      Height = 56
+      Lines.Strings = (
+        'Custom 1'
+        'Custom 2'
+        'Custom 3')
+    end
+    object CheckBox11: TTMSFNCCheckBox
+      Left = 16
+      Top = 492
+      Width = 116
+      Height = 32
+      Text = 'Command link'
+    end
+  end
+  object Panel2: TTMSFNCPanel
+    Align = alClient
+    Width = 432
+    Height = 552
+    Header.Visible = False
+    object Label7: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 12
+      Width = 400
+      Height = 24
+      Font.Height = -17
+      Font.Name = 'Segoe UI Semibold'
+      VerticalTextAlign = gtaCenter
+      Text = 'Expanded text'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object CheckBox12: TTMSFNCCheckBox
+      Left = 16
+      Top = 44
+      Width = 116
+      Height = 32
+      Text = 'Show'
+    end
+    object Memo4: TMemo
+      Anchors = [akLeft, akTop, akRight]
+      Left = 140
+      Top = 44
+      Width = 276
+      Height = 64
+      Lines.Strings = (
+        
+          'This is the expandable text area. It also supports HTML formatti' +
+          'ng! <img src="Flag-Green.png"/>')
+      ScrollBars = ssHorizontal
+    end
+    object Label10: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 124
+      Width = 400
+      Height = 24
+      Font.Height = -17
+      Font.Name = 'Segoe UI Semibold'
+      VerticalTextAlign = gtaCenter
+      Text = 'Verification box'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object CheckBox13: TTMSFNCCheckBox
+      Left = 16
+      Top = 156
+      Width = 116
+      Height = 32
+      Text = 'Show'
+    end
+    object Edit5: TTMSFNCEdit
+      Anchors = [akLeft, akTop, akRight]
+      Left = 140
+      Top = 158
+      Width = 276
+      Height = 28
+      Text = 'Don'#39't show again'
+    end
+    object Label11: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 204
+      Width = 400
+      Height = 24
+      Font.Height = -17
+      Font.Name = 'Segoe UI Semibold'
+      VerticalTextAlign = gtaCenter
+      Text = 'Footer'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object CheckBox14: TTMSFNCCheckBox
+      Left = 16
+      Top = 236
+      Width = 116
+      Height = 32
+      Text = 'Show'
+    end
+    object Memo5: TMemo
+      Anchors = [akLeft, akTop, akRight]
+      Left = 140
+      Top = 236
+      Width = 276
+      Height = 56
+      Lines.Strings = (
+        
+          'Brought to Delphi by <a href="https://www.tmssoftware.com/">TMS ' +
+          'Software</a>')
+      ScrollBars = ssHorizontal
+    end
+    object CheckBox15: TTMSFNCCheckBox
+      Left = 16
+      Top = 300
+      Width = 116
+      Height = 32
+      Text = 'Show icon'
+    end
+    object RadioButton4: TTMSFNCRadioButton
+      Left = 140
+      Top = 300
+      Width = 80
+      Height = 32
+      GroupName = 'FooterIcon'
+      Text = 'About'
+      Checked = True
+      TabStop = True
+    end
+    object RadioButton5: TTMSFNCRadioButton
+      Left = 228
+      Top = 300
+      Width = 72
+      Height = 32
+      GroupName = 'FooterIcon'
+      Text = 'Info'
+    end
+    object RadioButton6: TTMSFNCRadioButton
+      Left = 308
+      Top = 300
+      Width = 100
+      Height = 32
+      GroupName = 'FooterIcon'
+      Text = 'Warning'
+    end
+    object Label13: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 348
+      Width = 400
+      Height = 24
+      Font.Height = -17
+      Font.Name = 'Segoe UI Semibold'
+      VerticalTextAlign = gtaCenter
+      Text = 'Input field'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object CheckBox16: TTMSFNCCheckBox
+      Left = 16
+      Top = 380
+      Width = 116
+      Height = 32
+      Text = 'Show'
+    end
+    object RadioButton7: TTMSFNCRadioButton
+      Left = 140
+      Top = 380
+      Width = 72
+      Height = 32
+      GroupName = 'InputType'
+      Text = 'Edit'
+      Checked = True
+      TabStop = True
+    end
+    object RadioButton8: TTMSFNCRadioButton
+      Left = 220
+      Top = 380
+      Width = 72
+      Height = 32
+      GroupName = 'InputType'
+      Text = 'Date'
+    end
+    object RadioButton9: TTMSFNCRadioButton
+      Left = 140
+      Top = 420
+      Width = 276
+      Height = 32
+      GroupName = 'InputType'
+      Text = 'Custom(TMSFNCColorWheel)'
+    end
+    object Button1: TTMSFNCButton
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 476
+      Width = 400
+      Height = 40
+      Default = True
+      Text = 'Show dialog'
+      Font.Height = -19
+      Font.Style = []
+      OnClick = Button1Click
+    end
+  end
+  end
   object TMSFNCColorWheel1: TTMSFNCColorWheel
-    Left = 624
-    Top = 8
+    Left = 1000
+    Top = 100
     Width = 350
     Height = 175
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    TabOrder = 3
     Visible = False
   end
   object TMSFNCTaskDialog1: TTMSFNCTaskDialog
     Left = 255
-    Top = 493
+    Top = 565
     Width = 26
     Height = 26
     Visible = True
     BitmapContainer = TMSFNCBitmapContainer1
-    ButtonFont.Charset = DEFAULT_CHARSET
-    ButtonFont.Color = clWindowText
-    ButtonFont.Height = -11
-    ButtonFont.Name = 'Tahoma'
-    ButtonFont.Style = []
-    CommandLinkFont.Charset = DEFAULT_CHARSET
-    CommandLinkFont.Color = 12866304
-    CommandLinkFont.Height = -15
-    CommandLinkFont.Name = 'Tahoma'
-    CommandLinkFont.Style = []
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

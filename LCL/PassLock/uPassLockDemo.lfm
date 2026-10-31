@@ -3,8 +3,8 @@ object Form1: TForm1
   Height = 617
   Top = 146
   Width = 989
-  Caption = 'TMS FNC PassLock Demo'
-  ClientHeight = 617
+  Caption = 'TMS FNC UI Pack - PassLock'
+  ClientHeight = 689
   ClientWidth = 989
   Icon.Data = {
     BE1000000000010001002020000001002000A810000016000000280000002000
@@ -145,6 +145,40 @@ object Form1: TForm1
   }
   Position = poScreenCenter
   LCLVersion = '2.0.6.0'
+  object DemoHeader: TPanel
+    Left = 0
+    Height = 72
+    Top = 0
+    Width = 989
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 72
+    ClientWidth = 989
+    TabOrder = 0
+    object DemoTitle: TLabel
+      Left = 24
+      Height = 30
+      Top = 12
+      Width = 941
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'PassLock'
+      Font.Height = -20
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object DemoDescription: TLabel
+      Left = 24
+      Height = 20
+      Top = 42
+      Width = 941
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Enter the code 1456, or try the options'
+      Font.Color = clGrayText
+      ParentFont = False
+    end
+  end
   object Panel1: TPanel
     Left = 0
     Height = 385
@@ -282,32 +316,13 @@ object Form1: TForm1
       Top = 1
       Width = 723
       Align = alClient
-      Color = clBtnFace
       DoubleBuffered = True
       TabOrder = 1
-      ButtonAppearance.DownFill.Color = 16297243
-      ButtonAppearance.DownFont.Color = clWhite
-      ButtonAppearance.DownFont.Height = -11
-      ButtonAppearance.DownFont.Name = 'Tahoma'
-      ButtonAppearance.DownStroke.Color = clGray
-      ButtonAppearance.Font.Color = clWindowText
-      ButtonAppearance.Font.Height = -11
-      ButtonAppearance.Font.Name = 'Tahoma'
-      ButtonAppearance.HoverFill.Color = 13419707
-      ButtonAppearance.HoverFont.Color = clWindowText
-      ButtonAppearance.HoverFont.Height = -11
-      ButtonAppearance.HoverFont.Name = 'Tahoma'
-      ButtonAppearance.HoverStroke.Color = 10061943
       ButtonAppearance.MaxSize = 50
-      ButtonAppearance.PatternLine.Color = clGray
       ButtonAppearance.PatternLine.Width = 6
       ButtonAppearance.Spacing = 6
-      ButtonAppearance.Stroke.Color = 11119017
-      EntryAppearance.DownFill.Color = 16297243
-      EntryAppearance.DownStroke.Color = clGray
       EntryAppearance.MaxSize = 10
       EntryAppearance.Spacing = 6
-      EntryAppearance.Stroke.Color = 11119017
       Fill.Kind = gfkNone
       PasswordValue = '1456'
       Stroke.Kind = gskNone
@@ -340,16 +355,6 @@ object Form1: TForm1
     Align = alTop
     DoubleBuffered = True
     TabOrder = 1
-    Appearance.IndicatorDownFill.Color = 16297243
-    Appearance.IndicatorDownStroke.Color = clGray
-    Appearance.IndicatorHoverStroke.Color = clGray
-    Appearance.IndicatorStroke.Color = clGray
-    Appearance.SplitterDownFill.Color = 13156536
-    Appearance.SplitterDownStroke.Color = 9470064
-    Appearance.SplitterFill.Color = 15329769
-    Appearance.SplitterHoverFill.Color = 13419707
-    Appearance.SplitterHoverStroke.Color = 10061943
-    Appearance.SplitterStroke.Color = 11119017
     MinSize = 20
   end
   object Panel2: TPanel
@@ -419,33 +424,14 @@ object Form1: TForm1
       Top = 1
       Width = 723
       Align = alClient
-      Color = clBtnFace
       DoubleBuffered = True
       TabOrder = 2
-      ButtonAppearance.DownFill.Color = 16297243
-      ButtonAppearance.DownFont.Color = clWhite
-      ButtonAppearance.DownFont.Height = -11
-      ButtonAppearance.DownFont.Name = 'Tahoma'
-      ButtonAppearance.DownStroke.Color = clGray
-      ButtonAppearance.Font.Color = clWindowText
-      ButtonAppearance.Font.Height = -11
-      ButtonAppearance.Font.Name = 'Tahoma'
-      ButtonAppearance.HoverFill.Color = 13419707
-      ButtonAppearance.HoverFont.Color = clWindowText
-      ButtonAppearance.HoverFont.Height = -11
-      ButtonAppearance.HoverFont.Name = 'Tahoma'
-      ButtonAppearance.HoverStroke.Color = 10061943
       ButtonAppearance.MaxSize = 50
-      ButtonAppearance.PatternLine.Color = clGray
       ButtonAppearance.PatternLine.Width = 6
       ButtonAppearance.Shape = plbsRoundedRectangle
       ButtonAppearance.Spacing = 6
-      ButtonAppearance.Stroke.Color = 11119017
-      EntryAppearance.DownFill.Color = 16297243
-      EntryAppearance.DownStroke.Color = clGray
       EntryAppearance.MaxSize = 10
       EntryAppearance.Spacing = 6
-      EntryAppearance.Stroke.Color = 11119017
       Fill.Kind = gfkNone
       Options.LockType = pltPattern
       PasswordValue = '1458'

@@ -6,34 +6,45 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Types, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VCL.TMSFNCTypes, VCL.TMSFNCUtils,
   VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, Vcl.StdCtrls, VCL.TMSFNCPassLock,
-  VCL.TMSFNCCustomControl, VCL.TMSFNCSplitter, Vcl.ExtCtrls, VCL.TMSFNCImage;
+  VCL.TMSFNCCustomControl, VCL.TMSFNCSplitter, Vcl.ExtCtrls, VCL.TMSFNCImage,
+  VCL.TMSFNCButton, VCL.TMSFNCCheckBox, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm1 = class(TForm)
-    Panel1: TPanel;
+    ContentPanel: TTMSFNCPanel;
+    PLSecKeypad: TTMSFNCHTMLText;
+    PLStatusCaption: TTMSFNCHTMLText;
+    PLSecPattern: TTMSFNCHTMLText;
+    PLPatternHint: TTMSFNCHTMLText;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
     TMSFNCSplitter1: TTMSFNCSplitter;
-    Panel2: TPanel;
-    Panel3: TPanel;
-    Panel4: TPanel;
-    Button1: TButton;
+    Panel2: TTMSFNCPanel;
+    Panel3: TTMSFNCPanel;
+    Panel4: TTMSFNCPanel;
+    Button1: TTMSFNCButton;
     TMSFNCPassLock2: TTMSFNCPassLock;
     TMSFNCPassLock1: TTMSFNCPassLock;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
-    CheckBox5: TCheckBox;
-    CheckBox6: TCheckBox;
-    Button2: TButton;
-    LblLearnMode: TLabel;
-    LblpwEntr: TLabel;
-    LblpwVal: TLabel;
+    Label1: TTMSFNCHTMLText;
+    Label2: TTMSFNCHTMLText;
+    Label3: TTMSFNCHTMLText;
+    Label4: TTMSFNCHTMLText;
+    Label5: TTMSFNCHTMLText;
+    Label6: TTMSFNCHTMLText;
+    CheckBox1: TTMSFNCCheckBox;
+    CheckBox2: TTMSFNCCheckBox;
+    CheckBox3: TTMSFNCCheckBox;
+    CheckBox4: TTMSFNCCheckBox;
+    CheckBox5: TTMSFNCCheckBox;
+    CheckBox6: TTMSFNCCheckBox;
+    Button2: TTMSFNCButton;
+    LblLearnMode: TTMSFNCHTMLText;
+    LblpwEntr: TTMSFNCHTMLText;
+    LblpwVal: TTMSFNCHTMLText;
     TMSFNCImage1: TTMSFNCImage;
     procedure TMSFNCPassLock1PasswordCheck(Sender: TObject; AEntry: string;
       var AMatch: Boolean);
@@ -72,6 +83,8 @@ var
 implementation
 
 {$R *.dfm}
+
+{ demo-colors: TMSFNCImage1.Fill.Color and the entry colours of TMSFNCPassLock2 are the pass/fail feedback of the demo }
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
@@ -133,7 +146,7 @@ end;
 
 procedure TForm1.FormShow(Sender: TObject);
 begin
-  LblpwVal.Caption := TMSFNCPassLock2.PasswordValue;
+  LblpwVal.Text := TMSFNCPassLock2.PasswordValue;
   Check;
   TMSFNCPassLock2.SetFocus;
 end;
@@ -163,12 +176,13 @@ procedure TForm1.TMSFNCPassLock2ConfirmPassword(Sender: TObject; AEntry: string;
 begin
   if AMatch then
   begin
-    LblpwVal.Caption := AEntry;
-    LblLearnMode.Caption := 'New password set';
+    LblpwVal.Text := AEntry;
+    LblLearnMode.Text := 'New password set';
+    TMSFNCImage1.Fill.Kind := gfkSolid;
     TMSFNCImage1.Fill.Color := gcLime;
   end
   else
-    LblLearnMode.Caption := 'Not the same';
+    LblLearnMode.Text := 'Not the same';
 
   UpdateEntry;
 end;
@@ -176,8 +190,9 @@ end;
 procedure TForm1.TMSFNCPassLock2LearnPassword(Sender: TObject;
   APassword: string);
 begin
+  TMSFNCImage1.Fill.Kind := gfkSolid;
   TMSFNCImage1.Fill.Color := gcYellow;
-  LblLearnMode.Caption := 'Confirm';
+  LblLearnMode.Text := 'Confirm';
 end;
 
 procedure TForm1.TMSFNCPassLock2PasswordCheck(Sender: TObject; AEntry: string;
@@ -210,7 +225,7 @@ end;
 
 procedure TForm1.UpdateEntry;
 begin
-  LblpwEntr.Caption := TMSFNCPassLock2.PasswordEntry;
+  LblpwEntr.Text := TMSFNCPassLock2.PasswordEntry;
 end;
 
 end.

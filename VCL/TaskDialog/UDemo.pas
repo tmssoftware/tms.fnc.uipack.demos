@@ -8,67 +8,75 @@ uses
   VCL.TMSFNCListBox, VCL.TMSFNCCustomComponent, VCL.TMSFNCBitmapContainer,
   Vcl.StdCtrls, VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics,
   VCL.TMSFNCGraphicsTypes, Vcl.ExtCtrls, VCL.TMSFNCTaskDialog,
-  VCL.TMSFNCColorWheel, VCL.TMSFNCCustomGrid, VCL.TMSFNCDataGridDatabaseAdapter;
+  VCL.TMSFNCColorWheel, VCL.TMSFNCCustomGrid, VCL.TMSFNCDataGridDatabaseAdapter,
+  VCL.TMSFNCButton, VCL.TMSFNCCheckBox, VCL.TMSFNCEdit, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCRadioButton, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Panel1: TPanel;
-    Panel2: TPanel;
-    Panel3: TPanel;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label10: TLabel;
-    Label11: TLabel;
-    Label12: TLabel;
-    Label13: TLabel;
-    Label14: TLabel;
-    Label15: TLabel;
-    Label16: TLabel;
-    Label17: TLabel;
-    Label18: TLabel;
-    Label19: TLabel;
-    Label20: TLabel;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
-    CheckBox5: TCheckBox;
-    CheckBox10: TCheckBox;
-    CheckBox11: TCheckBox;
-    CheckBox12: TCheckBox;
-    CheckBox13: TCheckBox;
-    CheckBox14: TCheckBox;
-    CheckBox15: TCheckBox;
-    CheckBox16: TCheckBox;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Edit5: TEdit;
+    ContentPanel: TTMSFNCPanel;
+    TDSecReady: TTMSFNCHTMLText;
+    TDReadyHint: TTMSFNCHTMLText;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    Panel2: TTMSFNCPanel;
+    Panel3: TTMSFNCPanel;
+    Label1: TTMSFNCHTMLText;
+    Label2: TTMSFNCHTMLText;
+    Label3: TTMSFNCHTMLText;
+    Label4: TTMSFNCHTMLText;
+    Label6: TTMSFNCHTMLText;
+    Label7: TTMSFNCHTMLText;
+    Label10: TTMSFNCHTMLText;
+    Label11: TTMSFNCHTMLText;
+    Label12: TTMSFNCHTMLText;
+    Label13: TTMSFNCHTMLText;
+    Label14: TTMSFNCHTMLText;
+    Label15: TTMSFNCHTMLText;
+    Label16: TTMSFNCHTMLText;
+    Label17: TTMSFNCHTMLText;
+    Label18: TTMSFNCHTMLText;
+    Label19: TTMSFNCHTMLText;
+    Label20: TTMSFNCHTMLText;
+    CheckBox1: TTMSFNCCheckBox;
+    CheckBox2: TTMSFNCCheckBox;
+    CheckBox3: TTMSFNCCheckBox;
+    CheckBox4: TTMSFNCCheckBox;
+    CheckBox5: TTMSFNCCheckBox;
+    CheckBox10: TTMSFNCCheckBox;
+    CheckBox11: TTMSFNCCheckBox;
+    CheckBox12: TTMSFNCCheckBox;
+    CheckBox13: TTMSFNCCheckBox;
+    CheckBox14: TTMSFNCCheckBox;
+    CheckBox15: TTMSFNCCheckBox;
+    CheckBox16: TTMSFNCCheckBox;
+    Edit1: TTMSFNCEdit;
+    Edit2: TTMSFNCEdit;
+    Edit5: TTMSFNCEdit;
     Memo1: TMemo;
     Memo2: TMemo;
     Memo3: TMemo;
     Memo4: TMemo;
     Memo5: TMemo;
     Memo6: TMemo;
-    RadioButton1: TRadioButton;
-    RadioButton2: TRadioButton;
-    RadioButton3: TRadioButton;
-    RadioButton4: TRadioButton;
-    RadioButton5: TRadioButton;
-    RadioButton6: TRadioButton;
-    Panel4: TPanel;
-    RadioButton7: TRadioButton;
-    RadioButton8: TRadioButton;
-    RadioButton9: TRadioButton;
-    Button1: TButton;
+    RadioButton1: TTMSFNCRadioButton;
+    RadioButton2: TTMSFNCRadioButton;
+    RadioButton3: TTMSFNCRadioButton;
+    RadioButton4: TTMSFNCRadioButton;
+    RadioButton5: TTMSFNCRadioButton;
+    RadioButton6: TTMSFNCRadioButton;
+    RadioButton7: TTMSFNCRadioButton;
+    RadioButton8: TTMSFNCRadioButton;
+    RadioButton9: TTMSFNCRadioButton;
+    Button1: TTMSFNCButton;
     TMSFNCColorWheel1: TTMSFNCColorWheel;
     TMSFNCTaskDialog1: TTMSFNCTaskDialog;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
+    Button2: TTMSFNCButton;
+    Button3: TTMSFNCButton;
+    Button4: TTMSFNCButton;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -193,25 +201,25 @@ begin
 
   //Results
   case mr of
-    mrOk: Label18.Caption := 'OK clicked';
-    mrYes: Label18.Caption := 'Yes clicked';
-    mrNo: Label18.Caption := 'No clicked';
-    mrCancel: Label18.Caption := 'Cancelled';
-    mrClose: Label18.Caption := 'Close clicked';
-    mrAbort: Label18.Caption := 'Aborted';
+    mrOk: Label18.Text := 'OK clicked';
+    mrYes: Label18.Text := 'Yes clicked';
+    mrNo: Label18.Text := 'No clicked';
+    mrCancel: Label18.Text := 'Cancelled';
+    mrClose: Label18.Text := 'Close clicked';
+    mrAbort: Label18.Text := 'Aborted';
   else
-    Label18.Caption := IntToStr(mr);
+    Label18.Text := IntToStr(mr);
   end;
 
   if CheckBox5.Checked then
-    Label19.Caption := IntToStr(TMSFNCTaskDialog1.RadioButtonResult);
+    Label19.Text := IntToStr(TMSFNCTaskDialog1.RadioButtonResult);
 
   if CheckBox13.Checked then
   begin
     if TMSFNCTaskDialog1.VerifyResult then
-      Label20.Caption := 'True'
+      Label20.Text := 'True'
     else
-      Label20.Caption := 'False';
+      Label20.Text := 'False';
   end;
 
   if CheckBox16.Checked then
@@ -236,17 +244,17 @@ begin
   mr := TMSFNCTaskDialog1.Execute;
 
   case mr of
-    mrOk: Label18.Caption := 'OK clicked';
-    mrYes: Label18.Caption := 'Yes clicked';
-    mrNo: Label18.Caption := 'No clicked';
-    mrCancel: Label18.Caption := 'Cancelled';
-    mrClose: Label18.Caption := 'Close clicked';
-    mrAbort: Label18.Caption := 'Aborted';
+    mrOk: Label18.Text := 'OK clicked';
+    mrYes: Label18.Text := 'Yes clicked';
+    mrNo: Label18.Text := 'No clicked';
+    mrCancel: Label18.Text := 'Cancelled';
+    mrClose: Label18.Text := 'Close clicked';
+    mrAbort: Label18.Text := 'Aborted';
   else
-    Label18.Caption := IntToStr(mr);
+    Label18.Text := IntToStr(mr);
   end;
 
-  Label19.Caption := IntToStr(TMSFNCTaskDialog1.RadioButtonResult);
+  Label19.Text := IntToStr(TMSFNCTaskDialog1.RadioButtonResult);
 end;
 
 procedure TForm130.Button3Click(Sender: TObject);
@@ -265,14 +273,14 @@ begin
   mr := TMSFNCTaskDialog1.Execute;
 
   case mr of
-    mrOk: Label18.Caption := 'OK clicked';
-    mrYes: Label18.Caption := 'Yes clicked';
-    mrNo: Label18.Caption := 'No clicked';
-    mrCancel: Label18.Caption := 'Cancelled';
-    mrClose: Label18.Caption := 'Close clicked';
-    mrAbort: Label18.Caption := 'Aborted';
+    mrOk: Label18.Text := 'OK clicked';
+    mrYes: Label18.Text := 'Yes clicked';
+    mrNo: Label18.Text := 'No clicked';
+    mrCancel: Label18.Text := 'Cancelled';
+    mrClose: Label18.Text := 'Close clicked';
+    mrAbort: Label18.Text := 'Aborted';
   else
-    Label18.Caption := IntToStr(mr);
+    Label18.Text := IntToStr(mr);
   end;
 end;
 
@@ -292,20 +300,20 @@ begin
   mr := TMSFNCTaskDialog1.Execute;
 
   case mr of
-    mrOk: Label18.Caption := 'OK clicked';
-    mrYes: Label18.Caption := 'Yes clicked';
-    mrNo: Label18.Caption := 'No clicked';
-    mrCancel: Label18.Caption := 'Cancelled';
-    mrClose: Label18.Caption := 'Close clicked';
-    mrAbort: Label18.Caption := 'Aborted';
+    mrOk: Label18.Text := 'OK clicked';
+    mrYes: Label18.Text := 'Yes clicked';
+    mrNo: Label18.Text := 'No clicked';
+    mrCancel: Label18.Text := 'Cancelled';
+    mrClose: Label18.Text := 'Close clicked';
+    mrAbort: Label18.Text := 'Aborted';
   else
-    Label18.Caption := IntToStr(mr);
+    Label18.Text := IntToStr(mr);
   end;
 
   if TMSFNCTaskDialog1.VerifyResult then
-    Label20.Caption := 'True'
+    Label20.Text := 'True'
   else
-    Label20.Caption := 'False';
+    Label20.Text := 'False';
 end;
 
 procedure TForm130.ClearTaskDialog;

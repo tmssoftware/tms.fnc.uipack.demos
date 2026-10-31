@@ -13,6 +13,9 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    DemoHeader: TPanel;
+    DemoTitle: TLabel;
+    DemoDescription: TLabel;
     Panel1: TPanel;
     TMSFNCSplitter1: TTMSFNCSplitter;
     Panel2: TPanel;
