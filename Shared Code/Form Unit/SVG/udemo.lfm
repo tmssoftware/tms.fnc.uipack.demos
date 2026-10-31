@@ -1,10 +1,44 @@
 object Form1: TForm1
   Left = 425
-  Height = 728
+  Height = 832
   Top = 217
-  Width = 621
-  Caption = 'TMS FNC SVG Demo'
+  Width = 800
+  Caption = 'TMS FNC UI Pack - SVG'
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '1.8.4.0'
+  object DemoHeader: TPanel
+    Left = 0
+    Height = 72
+    Top = 0
+    Width = 800
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 72
+    ClientWidth = 800
+    TabOrder = 0
+    object DemoTitle: TLabel
+      Left = 24
+      Height = 30
+      Top = 12
+      Width = 752
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'SVG images'
+      Font.Height = -20
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object DemoDescription: TLabel
+      Left = 24
+      Height = 20
+      Top = 42
+      Width = 752
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Vector (SVG) and bitmap (PNG) images side by side: pick an icon, view it in the image and the rich editor'
+      Font.Color = clGrayText
+      ParentFont = False
+    end
+  end
 end

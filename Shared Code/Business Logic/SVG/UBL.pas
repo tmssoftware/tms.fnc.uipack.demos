@@ -112,26 +112,8 @@ var
   pth: string;
   I: Integer;
   bi: TTMSFNCBitmapSelectorItem;
-  w, h: Integer;
 begin
   FForm := AForm;
-  {$IFDEF FMX}
-  FForm.BorderStyle := TFmxFormBorderStyle.Single;
-  {$ENDIF}
-  {$IFDEF LCL}
-  FForm.BorderStyle := bsSingle;
-  {$ENDIF}
-  {$IFDEF VCL}
-  FForm.BorderStyle := bsSingle;
-  {$ENDIF}
-
-  w := 650;
-  h := 750;
-
-  FForm.Width := w;
-  FForm.Height := h;
-
-
   b := TTMSFNCBitmapContainer.Create(FForm);
   {$IFDEF WEBLIB}
   asm
@@ -152,23 +134,50 @@ begin
   pnl1 := TTMSFNCPanel.Create(FForm);
   pnl1.Parent := FForm;
   pnl1.BitmapContainer := b;
-  pnl1.Width := w div 2;
-  pnl1.Height := h - 30;
   pnl1.Header.Text := '<img src="'+ IconNames[6] +'.png"/> <font size="18">PNG</font>';
-  pnl1.Header.Font.Color := gcSteelBlue;
-  pnl1.Header.Fill.Color := gcWhitesmoke;
   pnl1.Header.Size := 40;
 
   pnl2 := TTMSFNCPanel.Create(FForm);
   pnl2.Parent := FForm;
   pnl2.BitmapContainer := b;
-  pnl2.Width := pnl1.Width;
-  pnl2.Left := pnl1.Width;
-  pnl2.Height := pnl1.Height;
   pnl2.Header.Text := '<img src="'+ IconNames[6] +'.svg"/> <font size="18">SVG</font>';
-  pnl2.Header.Font.Color := gcSteelBlue;
-  pnl2.Header.Fill.Color := gcWhitesmoke;
   pnl2.Header.Size := 40;
+
+  { two panels side by side below the demo header, 16 px from the window edges and from each other }
+  {$IFDEF FMX}
+  pnl1.Width := 360;
+  pnl1.Align := TAlignLayout.Left;
+  pnl1.Margins.Rect := RectF(16, 0, 8, 16);
+  pnl2.Align := TAlignLayout.Client;
+  pnl2.Margins.Rect := RectF(8, 0, 16, 16);
+  {$ENDIF}
+  {$IFDEF LCL}
+  pnl1.Width := 360;
+  pnl1.Align := alLeft;
+  pnl1.BorderSpacing.Around := 0;
+  pnl1.BorderSpacing.Left := 16;
+  pnl1.BorderSpacing.Right := 8;
+  pnl1.BorderSpacing.Bottom := 16;
+  pnl2.Align := alClient;
+  pnl2.BorderSpacing.Left := 8;
+  pnl2.BorderSpacing.Right := 16;
+  pnl2.BorderSpacing.Bottom := 16;
+  {$ENDIF}
+  {$IF DEFINED(VCL) OR DEFINED(WEBLIB)}
+  pnl1.Width := 360;
+  pnl1.Align := alLeft;
+  pnl1.AlignWithMargins := True;
+  pnl1.Margins.Left := 16;
+  pnl1.Margins.Top := 0;
+  pnl1.Margins.Right := 8;
+  pnl1.Margins.Bottom := 16;
+  pnl2.Align := alClient;
+  pnl2.AlignWithMargins := True;
+  pnl2.Margins.Left := 8;
+  pnl2.Margins.Top := 0;
+  pnl2.Margins.Right := 16;
+  pnl2.Margins.Bottom := 16;
+  {$IFEND}
 
   img1 := TTMSFNCImage.Create(pnl1);
   img1.ControlAlignment := caTop;
