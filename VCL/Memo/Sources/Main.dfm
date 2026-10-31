@@ -85,7 +85,6 @@ object Form1: TForm1
     TabOrder = 0
     ActiveTabIndex = 1
     TabAppearance.Font.Charset = DEFAULT_CHARSET
-    TabAppearance.Font.Color = clWindowText
     TabAppearance.Font.Height = -11
     TabAppearance.Font.Name = 'Segoe UI'
     TabAppearance.Font.Style = []
@@ -225,7 +224,6 @@ object Form1: TForm1
     ParentDoubleBuffered = False
     DoubleBuffered = True
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
     Font.Height = -12
     Font.Name = 'Consolas'
     Font.Style = []
@@ -304,7 +302,6 @@ object Form1: TForm1
       ParentDoubleBuffered = False
       DoubleBuffered = True
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Segoe UI'
       Font.Style = []
@@ -328,7 +325,6 @@ object Form1: TForm1
         ParentDoubleBuffered = False
         DoubleBuffered = True
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
         Font.Height = -11
         Font.Name = 'Segoe UI'
         Font.Style = []
@@ -360,7 +356,6 @@ object Form1: TForm1
         ParentDoubleBuffered = False
         DoubleBuffered = True
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
         Font.Height = -11
         Font.Name = 'Segoe UI'
         Font.Style = []

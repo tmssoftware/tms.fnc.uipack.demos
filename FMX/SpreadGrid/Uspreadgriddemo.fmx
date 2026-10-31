@@ -206,15 +206,12 @@ object Form2: TForm2
         Width = 68.000000000000000000
       end>
     TopRow = 1
-    Appearance.FixedLayout.Fill.Color = xFFE6E6E6
     Appearance.FixedLayout.Font.Name = 'Segoe UI'
     Appearance.FixedLayout.Font.Style = [fsBold]
     Appearance.NormalLayout.Fill.Color = claNull
     Appearance.NormalLayout.Font.Name = 'Segoe UI'
-    Appearance.GroupLayout.Fill.Color = xFF6E93C3
     Appearance.GroupLayout.Font.Color = claWhite
     Appearance.GroupLayout.Font.Name = 'Segoe UI'
-    Appearance.SummaryLayout.Fill.Color = xFFB9C5D5
     Appearance.SummaryLayout.Font.Name = 'Segoe UI'
     Appearance.SelectedLayout.Fill.Color = claLightsteelblue
     Appearance.SelectedLayout.Font.Color = claWhite

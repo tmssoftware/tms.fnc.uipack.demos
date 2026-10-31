@@ -253,7 +253,6 @@ object Form3: TForm3
     Footer.Stroke.Color = xFFB2B2B2
     Footer.Height = 30.000000000000000000
     Stroke.Color = xFFC8C7CC
-    DefaultRightItem.SelectedFill.Color = xFF1772C6
     DefaultRightItem.SelectedStroke.Kind = gskNone
     DefaultRightItem.Fill.Color = claDodgerblue
     DefaultRightItem.Stroke.Kind = gskNone
@@ -263,7 +262,6 @@ object Form3: TForm3
     DefaultRightItem.VerticalTextAlign = gtaCenter
     DefaultRightItem.TextColor = claWhite
     DefaultRightItem.SelectedTextColor = claWhite
-    DefaultLeftItem.SelectedFill.Color = xFFA0A0A0
     DefaultLeftItem.SelectedStroke.Kind = gskNone
     DefaultLeftItem.Fill.Color = claLightgray
     DefaultLeftItem.Stroke.Kind = gskNone

@@ -14,6 +14,7 @@ object Form1: TForm1
   OnClose = FormClose
   OnCreate = FormCreate
   TextHeight = 15
+  ActiveControl = Edit1
   object DemoHeader: TTMSFNCPanel
     Left = 0
     Top = 0
@@ -267,7 +268,7 @@ object Form1: TForm1
       Width = 228
       Height = 32
       MaxLength = 4
-      NumbersOnly = True
+      EditType = etNumeric
       TabOrder = 1
       Text = '8888'
     end

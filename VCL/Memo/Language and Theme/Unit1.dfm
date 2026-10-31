@@ -80,7 +80,6 @@ object Form1: TForm1
     ParentDoubleBuffered = False
     DoubleBuffered = True
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
     Font.Height = -12
     Font.Name = 'Consolas'
     Font.Style = []

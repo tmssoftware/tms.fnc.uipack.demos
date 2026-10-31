@@ -61,6 +61,8 @@ var
 
 implementation
 
+{ demo-colors: TMSFNCRichEditor1 (the document page and its text colours stay white and document-coloured by design) }
+
 uses
   System.UIConsts;
 

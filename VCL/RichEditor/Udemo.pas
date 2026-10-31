@@ -58,6 +58,8 @@ var
 
 implementation
 
+{ demo-colors: TMSFNCRichEditor1 (the document page and its text colours stay white and document-coloured by design) }
+
 {$R *.dfm}
 
 procedure TForm1.Button1Click(Sender: TObject);

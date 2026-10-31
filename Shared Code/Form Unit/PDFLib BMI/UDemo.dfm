@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'TMS FNC UI Pack - PDFLib BMI'
-  ClientHeight = 740
+  ClientHeight = 800
   ClientWidth = 1100
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET

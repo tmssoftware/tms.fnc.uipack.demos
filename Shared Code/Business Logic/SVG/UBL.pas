@@ -59,6 +59,8 @@ type
 
 implementation
 
+{ demo-colors: re1, re2 (rich editor documents keep their text colours) }
+
 const
   IconNames: array[0..9] of string = ('Battery-50-Charging_24x24.scale-100',
     'Memory-Card-Save_24x24.scale-100', 'Monitor-Delete_24x24.scale-100', 'NAS_24x24.scale-100',

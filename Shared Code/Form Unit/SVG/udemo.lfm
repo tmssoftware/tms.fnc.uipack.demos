@@ -36,7 +36,7 @@ object Form1: TForm1
       Width = 752
       Anchors = [akTop, akLeft, akRight]
       AutoSize = False
-      Caption = 'Vector (SVG) and bitmap (PNG) images side by side: pick an icon, view it in the image and the rich editor'
+      Caption = 'Compare a vector (SVG) image with its PNG: pick an icon on either side'
       Font.Color = clGrayText
       ParentFont = False
     end
