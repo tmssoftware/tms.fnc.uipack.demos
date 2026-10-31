@@ -8,27 +8,31 @@ interface
 
 uses
   {$IFDEF VCL}
-  Classes, SysUtils, Generics.Collections, Types, VCL.Forms, VCL.StdCtrls, UITypes, VCL.TMSFNCPDFLib, VCL.TMSFNCPDFGraphicsLib,
+  Classes, SysUtils, Generics.Collections, Types, VCL.Forms, VCL.Controls, VCL.StdCtrls, UITypes, VCL.TMSFNCPDFLib, VCL.TMSFNCPDFGraphicsLib,
   VCL.TMSFNCGraphicsTypes, VCL.TMSFNCGraphicsPDFEngine, DateUtils, VCL.TMSFNCURLBitmapContainer, VCL.TMSFNCEdit,
-  VCL.TMSFNCDataGrid, VCL.TMSFNCWidgetGauge, VCL.TMSFNCUtils, VCL.TMSFNCDataGridRenderer, VCL.TMSFNCDataGridCore, VCL.TMSFNCGraphics, VCL.TMSFNCDataGridCell, VCL.TMSFNCDataGridData, VCL.TMSFNCPDFIO;
+  VCL.TMSFNCDataGrid, VCL.TMSFNCWidgetGauge, VCL.TMSFNCUtils, VCL.TMSFNCDataGridRenderer, VCL.TMSFNCDataGridCore, VCL.TMSFNCGraphics, VCL.TMSFNCDataGridCell, VCL.TMSFNCDataGridData, VCL.TMSFNCPDFIO,
+  VCL.TMSFNCButton, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel;
   {$ENDIF}
 
   {$IFDEF FMX}
-  Classes, SysUtils, Generics.Collections, Types, FMX.Forms, IOUtils, UITypes, FMX.TMSFNCPDFLib, FMX.TMSFNCPDFGraphicsLib, FMX.TMSFNCDataGrid,
+  Classes, SysUtils, Generics.Collections, Types, FMX.Types, FMX.Controls, FMX.Forms, IOUtils, UITypes, FMX.TMSFNCPDFLib, FMX.TMSFNCPDFGraphicsLib, FMX.TMSFNCDataGrid,
   FMX.TMSFNCGraphicsTypes, FMX.TMSFNCGraphicsPDFEngine, DateUtils, FMX.TMSFNCURLBitmapContainer, FMX.StdCtrls, FMX.TMSFNCEdit,
-  FMX.TMSFNCWidgetGauge, FMX.TMSFNCDataGridCore, FMX.TMSFNCUtils, FMX.TMSFNCDataGridRenderer, FMX.TMSFNCGraphics, FMX.TMSFNCDataGridCell, FMX.TMSFNCDataGridData, FMX.TMSFNCPDFIO;
+  FMX.TMSFNCWidgetGauge, FMX.TMSFNCDataGridCore, FMX.TMSFNCUtils, FMX.TMSFNCDataGridRenderer, FMX.TMSFNCGraphics, FMX.TMSFNCDataGridCell, FMX.TMSFNCDataGridData, FMX.TMSFNCPDFIO,
+  FMX.TMSFNCButton, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel;
   {$ENDIF}
 
   {$IFDEF LCL}
   Classes, SysUtils, Graphics, Forms, Types, Controls, StdCtrls, LCLTMSFNCTypes, LCLTMSFNCPDFLib, LCLTMSFNCPDFGraphicsLib,
   LCLTMSFNCGraphicsTypes, LCLTMSFNCGraphicsPDFEngine, DateUtils, LCLTMSFNCURLBitmapContainer, LCLTMSFNCEdit,
-  LCLTMSFNCDataGrid, LCLTMSFNCWidgetGauge, LCLTMSFNCDataGridCore, LCLTMSFNCDataGridRenderer, LCLTMSFNCUtils, LCLTMSFNCGraphics, LCLTMSFNCDataGridCell, LCLTMSFNCDataGridData, LCLTMSFNCPDFIO;
+  LCLTMSFNCDataGrid, LCLTMSFNCWidgetGauge, LCLTMSFNCDataGridCore, LCLTMSFNCDataGridRenderer, LCLTMSFNCUtils, LCLTMSFNCGraphics, LCLTMSFNCDataGridCell, LCLTMSFNCDataGridData, LCLTMSFNCPDFIO,
+  LCLTMSFNCButton, LCLTMSFNCHTMLText, LCLTMSFNCPanel;
   {$ENDIF}
 
   {$IFDEF WEBLIB}
   Web, Classes, Contnrs, SysUtils, Types, WEBLib.Dialogs, WEBLib.TMSFNCTypes, WEBLib.Graphics, WEBLib.Forms, WEBLib.StdCtrls, WEBLib.Controls, WEBLib.TMSFNCPDFLib, WEBLib.TMSFNCPDFGraphicsLib,
   WEBLib.TMSFNCGraphicsTypes, WEBLib.TMSFNCGraphicsPDFEngine, DateUtils, WEBLib.TMSFNCURLBitmapContainer, WEBLib.TMSFNCEdit,
-  WEBLib.TMSFNCDataGrid, WEBLib.TMSFNCWidgetGauge, WEBLib.TMSFNCDataGridCore, WEBLib.TMSFNCDataGridRenderer, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCDataGridCell, WEBLib.TMSFNCDataGridData, WEBLib.TMSFNCPDFIO;
+  WEBLib.TMSFNCDataGrid, WEBLib.TMSFNCWidgetGauge, WEBLib.TMSFNCDataGridCore, WEBLib.TMSFNCDataGridRenderer, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCDataGridCell, WEBLib.TMSFNCDataGridData, WEBLib.TMSFNCPDFIO,
+  WEBLib.TMSFNCButton, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCPanel;
   {$ENDIF}
 
 type
@@ -39,7 +43,8 @@ type
     {$ENDIF}
     FName, FWeight, FHeight: string;
     FWeightNum, FHeightNum: Single;
-    FExportButton, FCalculateButton: TButton;
+    FExportButton, FCalculateButton: TTMSFNCButton;
+    FSettings, FContent: TTMSFNCPanel;
     FEditName, FEditWeight, FEditHeight: TTMSFNCEdit;
     FGauge: TTMSFNCWidgetGauge;
     FGrid: TTMSFNCDataGrid;
@@ -56,6 +61,7 @@ type
     procedure DoCellBeforeDraw(Sender: TObject; AGraphics: TTMSFNCGraphics; ACell: TTMSFNCDataGridCell; var ACanDraw: Boolean);
     procedure DoCellAfterDraw(Sender: TObject; AGraphics: TTMSFNCGraphics; ACell: TTMSFNCDataGridCell);
     procedure UpdateCells;
+    procedure AddCaption(const AText: string; ATop: Integer);
   public
     destructor Destroy; override;
     procedure InitPDFLibBMI(AForm: TCustomForm);
@@ -63,6 +69,8 @@ type
   end;
 
 implementation
+
+{ demo-colors: FGauge, FGrid cell colours and the PDF drawing use the BMI category colours on purpose }
 
 uses
   Math;
@@ -287,12 +295,25 @@ begin
   end;
 end;
 
+procedure TPDFLibBMILogic.AddCaption(const AText: string; ATop: Integer);
+var
+  lbl: TTMSFNCHTMLText;
+begin
+  lbl := TTMSFNCHTMLText.Create(FForm);
+  lbl.Parent := FSettings;
+  lbl.SetBounds(16, ATop, 228, 20);
+  lbl.Text := AText;
+  lbl.WordWrapping := False;
+  lbl.HorizontalTextAlign := gtaLeading;
+  lbl.Fill.Kind := gfkNone;
+  lbl.Stroke.Kind := gskNone;
+end;
+
 procedure TPDFLibBMILogic.InitPDFLibBMI(AForm: TCustomForm);
 var
 {$IFDEF WEBLIB}
   pth: string;
 {$ENDIF}
-  lbl: TLabel;
   c: Integer;
   r: Integer;
   sc: TTMSFNCWidgetGaugeSection;
@@ -338,109 +359,76 @@ begin
   p.Options.FontFallBackList.Insert(0, 'Roboto');
   {$ENDIF}
 
-  lbl := TLabel.Create(FForm);
-  lbl.Parent := FForm;
+  { settings panel on the left (inputs, buttons, gauge), the BMI table in the content area }
+  FSettings := TTMSFNCPanel.Create(FForm);
+  FSettings.Parent := FForm;
+  FSettings.Header.Visible := False;
+  FContent := TTMSFNCPanel.Create(FForm);
+  FContent.Parent := FForm;
+  FContent.Header.Visible := False;
   {$IFDEF FMX}
-  lbl.Position.X := 10;
-  lbl.Position.Y := 10;
-  lbl.Text := 'Name:';
-  {$ELSE}
-  lbl.Left := 10;
-  lbl.Top := 10;
-  lbl.Caption := 'Name:';
+  FSettings.Width := 260;
+  FSettings.Align := TAlignLayout.Left;
+  FSettings.Margins.Rect := RectF(16, 0, 0, 16);
+  FContent.Align := TAlignLayout.Client;
+  FContent.Margins.Rect := RectF(16, 0, 16, 16);
   {$ENDIF}
-  lbl.AutoSize := True;
+  {$IFDEF LCL}
+  FSettings.Width := 260;
+  FSettings.Align := alLeft;
+  FSettings.BorderSpacing.Left := 16;
+  FSettings.BorderSpacing.Bottom := 16;
+  FContent.Align := alClient;
+  FContent.BorderSpacing.Left := 16;
+  FContent.BorderSpacing.Right := 16;
+  FContent.BorderSpacing.Bottom := 16;
+  {$ENDIF}
+  {$IF DEFINED(VCL) OR DEFINED(WEBLIB)}
+  FSettings.Width := 260;
+  FSettings.Align := alLeft;
+  FSettings.AlignWithMargins := True;
+  FSettings.Margins.Left := 16;
+  FSettings.Margins.Top := 0;
+  FSettings.Margins.Right := 0;
+  FSettings.Margins.Bottom := 16;
+  FContent.Align := alClient;
+  FContent.AlignWithMargins := True;
+  FContent.Margins.Left := 16;
+  FContent.Margins.Top := 0;
+  FContent.Margins.Right := 16;
+  FContent.Margins.Bottom := 16;
+  {$IFEND}
 
+  AddCaption('Name', 16);
   FEditName := TTMSFNCEdit.Create(FForm);
-  FEditName.Parent := FForm;
-  {$IFDEF FMX}
-  FEditName.Position.X := 100;
-  FEditName.Position.Y := 10;
-  {$ELSE}
-  FEditName.Left := 100;
-  FEditName.Top := 10;
-  {$ENDIF}
+  FEditName.Parent := FSettings;
+  FEditName.SetBounds(16, 40, 228, 32);
   FEditName.EditType := etString;
 
-  lbl := TLabel.Create(FForm);
-  lbl.Parent := FForm;
-  {$IFDEF FMX}
-  lbl.Position.X := 10;
-  lbl.Position.Y := 40;
-  lbl.Text := 'Weight (kg):';
-  {$ELSE}
-  lbl.Left := 10;
-  lbl.Top := 40;
-  lbl.Caption := 'Weight (kg):';
-  {$ENDIF}
-  lbl.AutoSize := True;
-
+  AddCaption('Weight (kg)', 88);
   FEditWeight := TTMSFNCEdit.Create(FForm);
-  FEditWeight.Parent := FForm;
-  {$IFDEF FMX}
-  FEditWeight.Position.X := 100;
-  FEditWeight.Position.Y := 40;
-  {$ELSE}
-  FEditWeight.Left := 100;
-  FEditWeight.Top := 40;
-  {$ENDIF}
+  FEditWeight.Parent := FSettings;
+  FEditWeight.SetBounds(16, 112, 228, 32);
   FEditWeight.EditType := etNumeric;
 
-  lbl := TLabel.Create(FForm);
-  lbl.Parent := FForm;
-  {$IFDEF FMX}
-  lbl.Position.X := 10;
-  lbl.Position.Y := 70;
-  lbl.Text := 'Height (cm):';
-  {$ELSE}
-  lbl.Left := 10;
-  lbl.Top := 70;
-  lbl.Caption := 'Height (cm):';
-  {$ENDIF}
-  lbl.AutoSize := True;
-
+  AddCaption('Height (cm)', 160);
   FEditHeight := TTMSFNCEdit.Create(FForm);
-  FEditHeight.Parent := FForm;
-  {$IFDEF FMX}
-  FEditHeight.Position.X := 100;
-  FEditHeight.Position.Y := 70;
-  {$ELSE}
-  FEditHeight.Left := 100;
-  FEditHeight.Top := 70;
-  {$ENDIF}
+  FEditHeight.Parent := FSettings;
+  FEditHeight.SetBounds(16, 184, 228, 32);
   FEditHeight.EditType := etFloat;
 
-  FCalculateButton := TButton.Create(FForm);
-  FCalculateButton.Parent := FForm;
-  {$IFDEF FMX}
-  FCalculateButton.Position.X := 10;
-  FCalculateButton.Position.Y := FEditHeight.Position.Y + FEditHeight.Height + 15;
+  FCalculateButton := TTMSFNCButton.Create(FForm);
+  FCalculateButton.Parent := FSettings;
+  FCalculateButton.SetBounds(16, 240, 228, 32);
   FCalculateButton.Text := 'Calculate';
-  FCalculateButton.Width := FEditHeight.Position.X + FEditHeight.Width - 10;
-  {$ELSE}
-  FCalculateButton.Left := 10;
-  FCalculateButton.Top := FEditHeight.Top + FEditHeight.Height + 15;
-  FCalculateButton.Caption := 'Calculate';
-  FCalculateButton.Width := FEditHeight.Left + FEditHeight.Width - 10;
-  {$ENDIF}
-  FCalculateButton.Height := 35;
+  FCalculateButton.Default := True;
   FCalculateButton.OnClick := {$IFDEF LCL}@{$ENDIF}DoCalculateClicked;
   FCalculateButton.Enabled := True;
 
-  FExportButton := TButton.Create(FForm);
-  FExportButton.Parent := FForm;
-  {$IFDEF FMX}
-  FExportButton.Position.X := 10;
-  FExportButton.Position.Y := FCalculateButton.Position.Y + FCalculateButton.Height + 5;
+  FExportButton := TTMSFNCButton.Create(FForm);
+  FExportButton.Parent := FSettings;
+  FExportButton.SetBounds(16, 280, 228, 32);
   FExportButton.Text := 'Export To PDF';
-  FExportButton.Width := FEditHeight.Position.X + FEditHeight.Width - 10;
-  {$ELSE}
-  FExportButton.Left := 10;
-  FExportButton.Top := FCalculateButton.Top + FCalculateButton.Height + 5;
-  FExportButton.Caption := 'Export To PDF';
-  FExportButton.Width := FEditHeight.Left + FEditHeight.Width - 10;
-  {$ENDIF}
-  FExportButton.Height := 35;
   FExportButton.OnClick := {$IFDEF LCL}@{$ENDIF}DoExportClicked;
   FExportButton.Enabled := False;
 
@@ -453,7 +441,7 @@ begin
   FGauge := TTMSFNCWidgetGauge.Create(FForm);
   FGauge.DisableBackground;
   FGauge.Border.Kind := gskNone;
-  FGauge.Parent := FForm;
+  FGauge.Parent := FSettings;
   FGauge.OuterCircle.Color := gcWhite;
   FGauge.InnerCircle.Color := gcWhite;
   FGauge.Digit.BackGroundColor := gcNull;
@@ -466,8 +454,7 @@ begin
   FGauge.Arc.Threshold.Span := 20;
   FGauge.Arc.Threshold.ThresholdKind := tkValue;
   FGauge.Arc.Color := gcBisque;
-  FGauge.Left := 10;
-  FGauge.Top := 200;
+  FGauge.SetBounds(16, 336, FGauge.Width, FGauge.Height);
   FGauge.MinimumValue := 10;
   FGauge.MaximumValue := 47;
   FGauge.BeginUpdate;
@@ -513,23 +500,14 @@ begin
   FGauge.Animation := True;
 
   FGrid := TTMSFNCDataGrid.Create(FForm);
-  FGrid.Parent := FForm;
+  FGrid.Parent := FContent;
 
   FGrid.BeginUpdate;
   FGrid.DefaultColumnWidth := 25;
   FGrid.DefaultRowHeight := 20;
   FGrid.RowCount := 23;
   FGrid.ColumnCount := 26;
-  {$IFDEF FMX}
-  FGrid.Position.X := FGauge.Position.X + FGauge.Width + 20;
-  FGrid.Position.Y := 10;
-  {$ELSE}
-  FGrid.Left := FGauge.Left + FGauge.Width + 20;
-  FGrid.Top := 10;
-  {$ENDIF}
-
-  FGrid.Width := Round((FGrid.ColumnCount - 1) * FGrid.DefaultColumnWidth + 40);
-  FGrid.Height := Round((FGrid.RowCount - 1) * FGrid.DefaultRowHeight + 40);
+  FGrid.SetBounds(16, 16, Round((FGrid.ColumnCount - 1) * FGrid.DefaultColumnWidth + 40), Round((FGrid.RowCount - 1) * FGrid.DefaultRowHeight + 40));
 
   FGrid.CellAppearance.NormalLayout.Stroke.Kind := gskNone;
   FGrid.CellAppearance.FixedLayout.Stroke.Kind := gskNone;

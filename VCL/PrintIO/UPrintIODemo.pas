@@ -10,14 +10,21 @@ uses
   VCL.TMSFNCCustomScrollControl, VCL.TMSFNCDataGridData, VCL.TMSFNCCustomGrid,
   VCL.TMSFNCDataGrid, VCL.TMSFNCCustomComponent, VCL.TMSFNCPrintIO, Vcl.StdCtrls,
   System.Rtti, VCL.TMSFNCDataGridBase, VCL.TMSFNCDataGridCore,
-  VCL.TMSFNCDataGridRenderer;
+  VCL.TMSFNCDataGridRenderer,
+  VCL.TMSFNCButton, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm3 = class(TForm)
-    Button1: TButton;
+    SettingsPanel: TTMSFNCPanel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Button1: TTMSFNCButton;
     TMSFNCGraphicsPrintIO1: TTMSFNCGraphicsPrintIO;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
-    Button2: TButton;
+    Button2: TTMSFNCButton;
     TMSFNCDataGridPrintIO1: TTMSFNCDataGridPrintIO;
     PrintDialog1: TPrintDialog;
     procedure FormCreate(Sender: TObject);
@@ -35,6 +42,8 @@ var
   Form3: TForm3;
 
 implementation
+
+{ demo-colors: TMSFNCDataGrid1 cell colours (FormCreate, GetCellLayout) are the subject of the printout }
 
 {$R *.dfm}
 

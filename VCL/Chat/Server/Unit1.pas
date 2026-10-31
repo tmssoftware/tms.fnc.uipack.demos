@@ -5,13 +5,19 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, IdBaseComponent,
-  IdComponent, IdCustomTCPServer, IdTCPServer, IdContext;
+  IdComponent, IdCustomTCPServer, IdTCPServer, IdContext,
+  VCL.TMSFNCCustomControl, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector, VCL.TMSFNCTypes, VCL.TMSFNCUtils;
 
 type
   TForm1 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     IdTCPServer1: TIdTCPServer;
     Memo1: TMemo;
-    Label1: TLabel;
+    Label1: TTMSFNCHTMLText;
     procedure IdTCPServer1Connect(AContext: TIdContext);
     procedure IdTCPServer1Execute(AContext: TIdContext);
     procedure IdTCPServer1Disconnect(AContext: TIdContext);

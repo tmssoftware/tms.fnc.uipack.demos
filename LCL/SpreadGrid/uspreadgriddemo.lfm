@@ -4,13 +4,47 @@ object Form1: TForm1
   Top = 245
   Width = 832
   Caption = 'TMSFNCSpreadGrid demo'
-  ClientHeight = 564
+  ClientHeight = 636
   ClientWidth = 832
   LCLVersion = '1.6.0.4'
+  object DemoHeader: TPanel
+    Left = 0
+    Height = 72
+    Top = 0
+    Width = 832
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 72
+    ClientWidth = 832
+    TabOrder = 0
+    object DemoTitle: TLabel
+      Left = 24
+      Height = 30
+      Top = 12
+      Width = 784
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Spreadsheet'
+      Font.Height = -20
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object DemoDescription: TLabel
+      Left = 24
+      Height = 20
+      Top = 42
+      Width = 784
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'A spreadsheet grid with formulas, named cells and ranges, and file import'
+      Font.Color = clGrayText
+      ParentFont = False
+    end
+  end
   object TMSFNCSpreadGrid1: TTMSFNCSpreadGrid
     Left = 8
     Height = 494
-    Top = 40
+    Top = 112
     Width = 816
     Anchors = [akTop, akLeft, akRight]
     DoubleBuffered = True
@@ -70,7 +104,7 @@ object Form1: TForm1
   object Button1: TButton
     Left = 8
     Height = 25
-    Top = 8
+    Top = 80
     Width = 88
     Caption = 'Clear'
     OnClick = Button1Click
@@ -79,7 +113,7 @@ object Form1: TForm1
   object Button2: TButton
     Left = 104
     Height = 25
-    Top = 8
+    Top = 80
     Width = 88
     Caption = 'File demo'
     OnClick = Button2Click
@@ -88,7 +122,7 @@ object Form1: TForm1
   object Button3: TButton
     Left = 200
     Height = 25
-    Top = 8
+    Top = 80
     Width = 88
     Caption = 'Name demo'
     OnClick = Button3Click
@@ -97,7 +131,7 @@ object Form1: TForm1
   object Button4: TButton
     Left = 296
     Height = 25
-    Top = 8
+    Top = 80
     Width = 88
     Caption = 'Range demo'
     OnClick = Button4Click
@@ -106,7 +140,7 @@ object Form1: TForm1
   object ckShowFormula: TCheckBox
     Left = 407
     Height = 19
-    Top = 16
+    Top = 88
     Width = 99
     Caption = 'Show formulas'
     OnChange = ckShowFormulaChange
@@ -115,7 +149,7 @@ object Form1: TForm1
   object ckNameMode: TCheckBox
     Left = 539
     Height = 19
-    Top = 16
+    Top = 88
     Width = 123
     Caption = 'RC cell name mode'
     OnChange = ckNameModeChange
@@ -124,7 +158,7 @@ object Form1: TForm1
   object StatusBar1: TStatusBar
     Left = 0
     Height = 23
-    Top = 541
+    Top = 613
     Width = 832
     Panels = <>
   end

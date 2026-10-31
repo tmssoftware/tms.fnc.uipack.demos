@@ -9,10 +9,16 @@ uses
   FMX.TMSFNCCustomControl, FMX.TMSFNCWebBrowser, FMX.TMSFNCCustomWEBControl,
   FMX.TMSFNCMemo, FMX.TMSFNCToolBar, FMX.TMSFNCPageControl, FMX.TMSFNCTabSet,
   FMX.Controls.Presentation, FMX.Edit, FMX.TMSFNCComboBox,
-  FMX.TMSFNCCustomPicker, FMX.TMSFNCFontSizePicker;
+  FMX.TMSFNCCustomPicker, FMX.TMSFNCFontSizePicker,
+  FMX.TMSFNCEdit, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm2 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     DemoPages: TTMSFNCPageControl;
     TMSFNCPageControl1Page0: TTMSFNCPageControlContainer;
     TMSFNCPageControl1Page1: TTMSFNCPageControlContainer;
@@ -23,9 +29,9 @@ type
     SaveFile: TTMSFNCToolBarButton;
     Search: TTMSFNCToolBarButton;
     OpenDialog1: TOpenDialog;
-    FIndEdit: TEdit;
+    FIndEdit: TTMSFNCEdit;
     Replace: TTMSFNCToolBarButton;
-    ReplaceEdit: TEdit;
+    ReplaceEdit: TTMSFNCEdit;
     TMSFNCToolBarFontNamePicker1: TTMSFNCToolBarFontNamePicker;
     TMSFNCFontSizePicker1: TTMSFNCFontSizePicker;
     ThemeComboBox: TTMSFNCComboBox;

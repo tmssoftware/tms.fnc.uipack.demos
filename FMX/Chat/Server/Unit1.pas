@@ -6,13 +6,19 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, IdContext,
   IdBaseComponent, IdComponent, IdCustomTCPServer, IdTCPServer, FMX.Memo.Types,
-  FMX.StdCtrls, FMX.Controls.Presentation, FMX.ScrollBox, FMX.Memo;
+  FMX.StdCtrls, FMX.Controls.Presentation, FMX.ScrollBox, FMX.Memo,
+  FMX.TMSFNCCustomControl, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector, FMX.TMSFNCTypes, FMX.TMSFNCUtils;
 
 type
   TForm2 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     IdTCPServer1: TIdTCPServer;
     Memo1: TMemo;
-    Label1: TLabel;
+    Label1: TTMSFNCHTMLText;
     procedure IdTCPServer1Connect(AContext: TIdContext);
     procedure IdTCPServer1Disconnect(AContext: TIdContext);
     procedure IdTCPServer1Execute(AContext: TIdContext);

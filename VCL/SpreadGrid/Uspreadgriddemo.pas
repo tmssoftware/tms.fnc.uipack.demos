@@ -7,18 +7,25 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VCL.TMSFNCTypes, VCL.TMSFNCUtils,
   Vcl.StdCtrls, VCL.TMSFNCCustomControl, VCL.TMSFNCCustomScrollControl,
   VCL.TMSFNCGridData, VCL.TMSFNCCustomGrid, VCL.TMSFNCGrid, VCL.TMSFNCSpreadGrid,
-  Vcl.ComCtrls;
+  Vcl.ComCtrls,
+  VCL.TMSFNCButton, VCL.TMSFNCCheckBox, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm1 = class(TForm)
+    SettingsPanel: TTMSFNCPanel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCSpreadGrid1: TTMSFNCSpreadGrid;
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
-    ckShowFormula: TCheckBox;
-    ckNameMode: TCheckBox;
-    StatusBar1: TStatusBar;
+    Button1: TTMSFNCButton;
+    Button2: TTMSFNCButton;
+    Button3: TTMSFNCButton;
+    Button4: TTMSFNCButton;
+    ckShowFormula: TTMSFNCCheckBox;
+    ckNameMode: TTMSFNCCheckBox;
+    Label1: TTMSFNCHTMLText;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -127,12 +134,12 @@ begin
   if TMSFNCSpreadGrid1.CellNameMode = nmA1 then
   begin
     TMSFNCSpreadGrid1.CellNameMode := nmRC;
-    ckNameMode.Caption := 'A1 cell name mode';
+    ckNameMode.Text := 'A1 cell name mode';
   end
   else
   begin
     TMSFNCSpreadGrid1.CellNameMode := nmA1;
-    ckNameMode.Caption := 'RC cell name mode';
+    ckNameMode.Text := 'RC cell name mode';
   end;
 end;
 
@@ -168,7 +175,7 @@ end;
 procedure TForm1.TMSFNCSpreadGrid1FormulaError(Sender: TObject; ACol, ARow,
   ErrType, ErrPos, ErrParam: Integer; ErrStr: string);
 begin
-  StatusBar1.SimpleText := 'Error at: ' + IntToStr(ACol)+':'+IntToStr(ARow)+' position ' + InttoStr(ErrPos) + ' ' + ErrStr;
+  Label1.Text := 'Error at: ' + IntToStr(ACol)+':'+IntToStr(ARow)+' position ' + InttoStr(ErrPos) + ' ' + ErrStr;
 end;
 
 procedure TForm1.TMSFNCSpreadGrid1IsCustomFunction(sender: TObject;
@@ -188,7 +195,7 @@ end;
 procedure TForm1.TMSFNCSpreadGrid1SelectCell(Sender: TObject; ACol,
   ARow: Integer; var Allow: Boolean);
 begin
-  StatusBar1.SimpleText := TMSFNCSpreadGrid1.Cells[ACol,ARow];
+  Label1.Text := TMSFNCSpreadGrid1.Cells[ACol,ARow];
 end;
 
 end.

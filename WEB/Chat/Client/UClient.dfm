@@ -1,140 +1,167 @@
 object Form43: TForm43
-  Width = 736
-  Height = 622
+  Width = 800
+  Height = 600
+  Caption = 'TMS FNC UI Pack - Chat client'
+  Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'Tahoma'
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
   Font.Style = []
   FormContainer = 'appcontent'
   ParentFont = False
   OnCreate = WebFormCreate
   object WebLabel3: TWebLabel
-    Left = 32
-    Top = 552
+    Left = 8
+    Top = 8
     Width = 215
-    Height = 13
+    Height = 15
     Caption = 'WebSocket based TTMSFNCChat client demo'
+    Color = clBtnFace
     ElementID = 'title'
     HeightPercent = 100.000000000000000000
     WidthPercent = 100.000000000000000000
   end
   object WebLabel4: TWebLabel
-    Left = 32
-    Top = 571
+    Left = 8
+    Top = 38
     Width = 151
-    Height = 13
-    Caption = 'Usage of TTMSFNCChat control'
+    Height = 15
+    Caption = 'Connect to the chat server and exchange messages with other clients'
+    Color = clBtnFace
     ElementID = 'description'
     HeightPercent = 100.000000000000000000
     WidthPercent = 100.000000000000000000
   end
-  object WebPanel1: TWebPanel
-    Left = 0
-    Top = 0
-    Width = 736
-    Height = 50
+  object DemoBar: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 10
+    Top = 10
+    Width = 780
+    Height = 48
+    Margins.Left = 16
+    Margins.Top = 16
+    Margins.Right = 16
+    Margins.Bottom = 12
     Align = alTop
-    ChildOrder = 2
-    object WebLabel1: TWebLabel
+    TabOrder = 0
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
       AlignWithMargins = True
-      Left = 326
-      Top = 17
-      Width = 31
-      Height = 13
-      Margins.Left = 10
-      Margins.Top = 10
-      Margins.Right = 0
-      Margins.Bottom = 10
-      Caption = 'Name:'
-      HeightPercent = 100.000000000000000000
-      WidthPercent = 100.000000000000000000
-    end
-    object WebLabel2: TWebLabel
-      Left = 16
-      Top = 17
-      Width = 36
-      Height = 13
-      Caption = 'Server:'
-      HeightPercent = 100.000000000000000000
-      WidthPercent = 100.000000000000000000
-    end
-    object WebLabel5: TWebLabel
-      Left = 196
-      Top = 17
-      Width = 24
-      Height = 13
-      Caption = 'Port:'
-      HeightPercent = 100.000000000000000000
-      WidthPercent = 100.000000000000000000
-    end
-    object WebButton1: TWebButton
-      AlignWithMargins = True
-      Left = 630
-      Top = 10
-      Width = 96
-      Height = 30
-      Margins.Left = 10
-      Margins.Top = 10
-      Margins.Right = 10
-      Margins.Bottom = 10
+      Left = 600
+      Top = 6
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 6
+      Margins.Right = 16
+      Margins.Bottom = 6
       Align = alRight
-      Caption = 'Connect'
-      ChildOrder = 1
-      HeightPercent = 100.000000000000000000
-      WidthPercent = 100.000000000000000000
-      OnClick = WebButton1Click
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
     end
-    object WebEdit1: TWebEdit
-      AlignWithMargins = True
-      Left = 364
-      Top = 10
-      Width = 138
-      Height = 30
-      Margins.Left = 10
-      Margins.Top = 10
-      Margins.Right = 0
-      Margins.Bottom = 10
-      ChildOrder = 2
-      HeightPercent = 100.000000000000000000
-      TabOrder = 1
-      WidthPercent = 100.000000000000000000
+  end
+  object WebPanel1: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 16
+    Top = 74
+    Width = 260
+    Height = 510
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 16
+    Align = alLeft
+    TabOrder = 1
+    Header.Visible = False
+    object WebLabel2: TTMSFNCHTMLText
+      Left = 16
+      Top = 8
+      Width = 228
+      Height = 20
+      Text = 'Server'
+      WordWrapping = False
+      HorizontalTextAlign = gtaLeading
+      AutoSize = False
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object WebEdit2: TWebEdit
-      AlignWithMargins = True
-      Left = 58
-      Top = 10
-      Width = 121
-      Height = 30
-      Margins.Top = 10
-      Margins.Bottom = 10
-      ChildOrder = 5
-      HeightPercent = 100.000000000000000000
+    object WebEdit2: TTMSFNCEdit
+      Left = 16
+      Top = 32
+      Width = 228
+      Height = 32
+      TabOrder = 0
       Text = 'localhost'
-      WidthPercent = 100.000000000000000000
     end
-    object WebEdit3: TWebEdit
-      Left = 227
-      Top = 10
-      Width = 73
-      Height = 30
-      ChildOrder = 6
-      EditType = weNumeric
-      HeightPercent = 100.000000000000000000
+    object WebLabel5: TTMSFNCHTMLText
+      Left = 16
+      Top = 80
+      Width = 228
+      Height = 20
+      Text = 'Port'
+      WordWrapping = False
+      HorizontalTextAlign = gtaLeading
+      AutoSize = False
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object WebEdit3: TTMSFNCEdit
+      Left = 16
+      Top = 104
+      Width = 228
+      Height = 32
       MaxLength = 4
+      TabOrder = 1
       Text = '8888'
-      WidthPercent = 100.000000000000000000
+    end
+    object WebLabel1: TTMSFNCHTMLText
+      Left = 16
+      Top = 152
+      Width = 228
+      Height = 20
+      Text = 'Name'
+      WordWrapping = False
+      HorizontalTextAlign = gtaLeading
+      AutoSize = False
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object WebEdit1: TTMSFNCEdit
+      Left = 16
+      Top = 176
+      Width = 228
+      Height = 32
+      TabOrder = 2
+    end
+    object WebButton1: TTMSFNCButton
+      Left = 16
+      Top = 232
+      Width = 228
+      Height = 32
+      Text = 'Connect'
+      Default = True
+      TabOrder = 3
+      OnClick = WebButton1Click
     end
   end
   object TMSFNCChat1: TTMSFNCChat
-    Left = 0
-    Top = 50
-    Width = 736
-    Height = 572
+    AlignWithMargins = True
+    Left = 292
+    Top = 74
+    Width = 492
+    Height = 510
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
-    TabOrder = 1
+    TabOrder = 2
     Appearance.TitleFont.Charset = DEFAULT_CHARSET
     Appearance.TitleFont.Color = clBlack
     Appearance.TitleFont.Height = -11
@@ -259,6 +286,11 @@ object Form43: TForm43
     GlobalFont.Scale = 1.000000000000000000
     GlobalFont.Style = []
     OnAfterSendMessage = TMSFNCChat1SendMessage
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
   object WebSocketClient1: TWebSocketClient
     OnConnect = WebSocketClient1Connect

@@ -3,23 +3,29 @@ unit Uspreadgriddemo;
 interface
 
 uses
-  windows, System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCCustomControl,
   FMX.TMSFNCCustomScrollControl, FMX.TMSFNCGridData, FMX.TMSFNCCustomGrid,
-  FMX.TMSFNCGrid, FMX.TMSFNCSpreadGrid, FMX.StdCtrls, FMX.Controls.Presentation;
+  FMX.TMSFNCGrid, FMX.TMSFNCSpreadGrid, FMX.StdCtrls, FMX.Controls.Presentation,
+  FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm2 = class(TForm)
+    SettingsPanel: TTMSFNCPanel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCSpreadGrid1: TTMSFNCSpreadGrid;
-    ckShowFormula: TCheckBox;
-    Button1: TButton;
-    Button2: TButton;
-    ckNameMode: TCheckBox;
-    Button3: TButton;
-    Button4: TButton;
-    StatusBar1: TStatusBar;
-    Label1: TLabel;
+    ckShowFormula: TTMSFNCCheckBox;
+    Button1: TTMSFNCButton;
+    Button2: TTMSFNCButton;
+    ckNameMode: TTMSFNCCheckBox;
+    Button3: TTMSFNCButton;
+    Button4: TTMSFNCButton;
+    Label1: TTMSFNCHTMLText;
     procedure FormCreate(Sender: TObject);
     procedure ckNameModeChange(Sender: TObject);
     procedure ckShowFormulaChange(Sender: TObject);
@@ -140,7 +146,7 @@ end;
 
 procedure TForm2.ckShowFormulaChange(Sender: TObject);
 begin
-  TMSFNCSpreadGrid1.ShowFormula := ckShowFormula.IsChecked;
+  TMSFNCSpreadGrid1.ShowFormula := ckShowFormula.Checked;
 end;
 
 procedure TForm2.FormCreate(Sender: TObject);

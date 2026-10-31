@@ -8,22 +8,27 @@ uses
   WEBLib.Controls, WEBLib.ExtCtrls, VCL.TMSFNCListBox, VCL.TMSFNCTypes,
   VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes,
   VCL.TMSFNCCustomControl, VCL.TMSFNCCustomPicker, VCL.TMSFNCColorPicker, Types,
-  VCL.TMSFNCTableView, VCL.TMSFNCChat;
+  VCL.TMSFNCTableView, VCL.TMSFNCChat,
+  WEBLib.TMSFNCPanel, WEBLib.TMSFNCButton, WEBLib.TMSFNCEdit,
+  WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector;
 
 type
   TForm43 = class(TWebForm)
     WebSocketClient1: TWebSocketClient;
     WebLabel3: TWebLabel;
     WebLabel4: TWebLabel;
-    WebPanel1: TWebPanel;
-    WebLabel1: TWebLabel;
-    WebButton1: TWebButton;
-    WebEdit1: TWebEdit;
+    WebPanel1: TTMSFNCPanel;
+    DemoBar: TTMSFNCPanel;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    ThemeManager: TTMSFNCThemeManager;
+    WebLabel1: TTMSFNCHTMLText;
+    WebButton1: TTMSFNCButton;
+    WebEdit1: TTMSFNCEdit;
     TMSFNCChat1: TTMSFNCChat;
-    WebLabel2: TWebLabel;
-    WebLabel5: TWebLabel;
-    WebEdit2: TWebEdit;
-    WebEdit3: TWebEdit;
+    WebLabel2: TTMSFNCHTMLText;
+    WebLabel5: TTMSFNCHTMLText;
+    WebEdit2: TTMSFNCEdit;
+    WebEdit3: TTMSFNCEdit;
     procedure WebFormCreate(Sender: TObject);
     procedure WebButton1Click(Sender: TObject);
     procedure TMSFNCChat1SendMessage(Sender: TObject;

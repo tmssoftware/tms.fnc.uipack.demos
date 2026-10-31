@@ -4,7 +4,7 @@ object Form1: TForm1
   Top = 203
   Width = 733
   Caption = 'PrintIO Demo'
-  ClientHeight = 568
+  ClientHeight = 640
   ClientWidth = 733
   DesignTimePPI = 144
   Icon.Data = {
@@ -147,10 +147,44 @@ object Form1: TForm1
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '2.0.6.0'
+  object DemoHeader: TPanel
+    Left = 0
+    Height = 72
+    Top = 0
+    Width = 733
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 72
+    ClientWidth = 733
+    TabOrder = 0
+    object DemoTitle: TLabel
+      Left = 24
+      Height = 30
+      Top = 12
+      Width = 685
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Printing'
+      Font.Height = -20
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object DemoDescription: TLabel
+      Left = 24
+      Height = 20
+      Top = 42
+      Width = 685
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Print a grid as a graphic or print the data grid itself, with footer and page numbers'
+      Font.Color = clGrayText
+      ParentFont = False
+    end
+  end
   object Button1: TButton
     Left = 32
     Height = 38
-    Top = 32
+    Top = 104
     Width = 224
     Caption = 'TMSFNCGraphicsPrintIO'
     OnClick = Button1Click
@@ -159,7 +193,7 @@ object Form1: TForm1
   object Button2: TButton
     Left = 472
     Height = 38
-    Top = 32
+    Top = 104
     Width = 224
     Caption = 'TMSFNCGridPrintIO'
     OnClick = Button2Click
@@ -168,7 +202,7 @@ object Form1: TForm1
   object TMSFNCGridPrintIO1: TTMSFNCGridPrintIO
     Left = 416
     Height = 26
-    Top = 40
+    Top = 112
     Width = 26
     Visible = True
     Options.FooterMargins.Left = 20
@@ -193,7 +227,7 @@ object Form1: TForm1
   object TMSFNCGrid1: TTMSFNCGrid
     Left = 32
     Height = 432
-    Top = 104
+    Top = 176
     Width = 664
     DoubleBuffered = True
     TabOrder = 3
@@ -250,7 +284,7 @@ object Form1: TForm1
   object TMSFNCGraphicsPrintIO1: TTMSFNCGraphicsPrintIO
     Left = 296
     Height = 26
-    Top = 40
+    Top = 112
     Width = 26
     Visible = True
     Options.FooterMargins.Left = 20

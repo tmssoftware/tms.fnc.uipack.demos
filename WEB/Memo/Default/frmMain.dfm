@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Width = 874
-  Height = 1019
-  Caption = 'TTMSFNCMemo Demo'
+  Width = 900
+  Height = 700
+  Caption = 'TMS FNC UI Pack - Memo'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -10,11 +10,42 @@ object Form1: TForm1
   Font.Style = []
   ParentFont = False
   OnCreate = WebFormCreate
+  object DemoBar: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 10
+    Top = 10
+    Width = 854
+    Height = 48
+    Margins.Left = 16
+    Margins.Top = 16
+    Margins.Right = 16
+    Margins.Bottom = 12
+    Align = alTop
+    TabOrder = 0
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 662
+      Top = 6
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 6
+      Margins.Right = 16
+      Margins.Bottom = 6
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+  end
   object DemoPages: TTMSFNCPageControl
     Left = 0
-    Top = 0
-    Width = 874
-    Height = 1019
+    Top = 74
+    Width = 868
+    Height = 610
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -113,6 +144,11 @@ object Form1: TForm1
     TabSize.Margins.Top = 8.000000000000000000
     TabSize.Margins.Right = 8.000000000000000000
     TabSize.Margins.Bottom = 8.000000000000000000
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Pages = <
       item
         Text = 'Basic'
@@ -751,15 +787,13 @@ object Form1: TForm1
           BitmapVisible = True
           ControlIndex = 0
         end
-        object FIndEdit: TWebEdit
+        object FIndEdit: TTMSFNCEdit
           Tag = 1
           Left = 39
           Top = 3
           Width = 100
           Height = 23
-          HeightPercent = 100.000000000000000000
           TabOrder = 3
-          WidthPercent = 100.000000000000000000
         end
         object Replace: TTMSFNCToolBarButton
           Left = 142
@@ -811,15 +845,13 @@ object Form1: TForm1
           BitmapVisible = True
           ControlIndex = 2
         end
-        object ReplaceEdit: TWebEdit
+        object ReplaceEdit: TTMSFNCEdit
           Tag = 3
           Left = 169
           Top = 3
           Width = 100
           Height = 23
-          HeightPercent = 100.000000000000000000
           TabOrder = 5
-          WidthPercent = 100.000000000000000000
         end
         object TMSFNCToolBarFontNamePicker1: TTMSFNCToolBarFontNamePicker
           Left = 272
@@ -1558,5 +1590,10 @@ object Form1: TForm1
         OnGetCodeCompletion = CodeCompletionMemoGetCodeCompletion
       end
     end
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

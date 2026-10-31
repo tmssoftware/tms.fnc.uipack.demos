@@ -11,12 +11,18 @@ uses
   VCL.TMSFNCCustomScrollControl, VCL.TMSFNCDataGridData, VCL.TMSFNCCustomGrid,
   VCL.TMSFNCDataGrid, VCL.TMSFNCDataGridPrintIO, VCL.TMSFNCCustomComponent,
   VCL.TMSFNCPrintIO, WEBLib.TMSFNCTypes, System.Rtti, VCL.TMSFNCDataGridBase,
-  VCL.TMSFNCDataGridCore, VCL.TMSFNCDataGridRenderer;
+  VCL.TMSFNCDataGridCore, VCL.TMSFNCDataGridRenderer,
+  WEBLib.TMSFNCPanel, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector,
+  WEBLib.TMSFNCButton;
 
 type
   TForm1 = class(TWebForm)
-    WebButton1: TWebButton;
-    WebButton2: TWebButton;
+    SettingsPanel: TTMSFNCPanel;
+    DemoBar: TTMSFNCPanel;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    ThemeManager: TTMSFNCThemeManager;
+    WebButton1: TTMSFNCButton;
+    WebButton2: TTMSFNCButton;
     TMSFNCGraphicsPrintIO1: TTMSFNCGraphicsPrintIO;
     TMSFNCDataGridPrintIO1: TTMSFNCDataGridPrintIO;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
@@ -37,6 +43,8 @@ var
 implementation
 
 {$R *.dfm}
+
+{ demo-colors: TMSFNCDataGrid1 cell colours (WebFormCreate, GetCellLayout) are the subject of the printout }
 
 { TForm1 }
 procedure TForm1.TMSFNCDataGrid1GetCellLayout(Sender: TObject;

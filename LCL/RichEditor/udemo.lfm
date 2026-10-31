@@ -4,11 +4,45 @@ object Form2: TForm2
   Top = 316
   Width = 1264
   Caption = 'TMSFNCRichEditor demo'
-  ClientHeight = 1004
+  ClientHeight = 1076
   ClientWidth = 1264
   DesignTimePPI = 144
   OnCreate = FormCreate
   LCLVersion = '2.0.6.0'
+  object DemoHeader: TPanel
+    Left = 0
+    Height = 72
+    Top = 0
+    Width = 1264
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 72
+    ClientWidth = 1264
+    TabOrder = 0
+    object DemoTitle: TLabel
+      Left = 24
+      Height = 30
+      Top = 12
+      Width = 1216
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Rich text editor'
+      Font.Height = -20
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object DemoDescription: TLabel
+      Left = 24
+      Height = 20
+      Top = 42
+      Width = 1216
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      Caption = 'Edit formatted text, load a sample, export the document to PDF or print it'
+      Font.Color = clGrayText
+      ParentFont = False
+    end
+  end
   object Panel1: TPanel
     Left = 0
     Height = 40
@@ -220,7 +254,7 @@ object Form2: TForm2
   object TMSFNCRichEditorPDFIO1: TTMSFNCRichEditorPDFIO
     Left = 1202
     Height = 26
-    Top = 464
+    Top = 536
     Width = 26
     Visible = True
     RichEditor = TMSFNCRichEditor1

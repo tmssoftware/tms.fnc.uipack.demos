@@ -13,16 +13,22 @@ uses
   VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, WEBLib.StdCtrls,
   VCL.TMSFNCMemoCustomTheme, VCL.TMSFNCCustomComponent,
   VCL.TMSFNCMemoCustomLanguage, VCL.TMSFNCCustomControl, VCL.TMSFNCWebBrowser,
-  VCL.TMSFNCCustomWEBControl, VCL.TMSFNCMemo;
+  VCL.TMSFNCCustomWEBControl, VCL.TMSFNCMemo,
+  WEBLib.TMSFNCButton,
+  WEBLib.TMSFNCPanel, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector;
 
 type
   TForm1 = class(TWebForm)
+    SettingsPanel: TTMSFNCPanel;
+    DemoBar: TTMSFNCPanel;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    ThemeManager: TTMSFNCThemeManager;
     lblTitle: TWebLabel;
     lblDescription: TWebLabel;
     TMSFNCMemo1: TTMSFNCMemo;
     TMSFNCMemoCustomLanguage1: TTMSFNCMemoCustomLanguage;
-    Button1: TWebButton;
-    Button2: TWebButton;
+    Button1: TTMSFNCButton;
+    Button2: TTMSFNCButton;
     TMSFNCMemoCustomTheme1: TTMSFNCMemoCustomTheme;
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);

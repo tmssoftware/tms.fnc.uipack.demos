@@ -1,8 +1,39 @@
 object Form1: TForm1
-  Width = 518
-  Height = 400
-  Caption = 'Memo Language and Theme Demo'
+  Width = 900
+  Height = 640
+  Caption = 'TMS FNC UI Pack - Memo languages and themes'
   FormContainer = 'appcontent'
+  object DemoBar: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 10
+    Top = 10
+    Width = 498
+    Height = 48
+    Margins.Left = 16
+    Margins.Top = 16
+    Margins.Right = 16
+    Margins.Bottom = 12
+    Align = alTop
+    TabOrder = 0
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 306
+      Top = 6
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 6
+      Margins.Right = 16
+      Margins.Bottom = 6
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+  end
   object lblTitle: TWebLabel
     Left = 8
     Top = 8
@@ -26,12 +57,11 @@ object Form1: TForm1
     WidthPercent = 100.000000000000000000
   end
   object TMSFNCMemo1: TTMSFNCMemo
-    Left = 8
-    Top = 42
-    Width = 500
-    Height = 350
+    Left = 292
+    Top = 74
+    Width = 592
+    Height = 550
     ParentDoubleBuffered = False
-    Anchors = [akLeft, akTop, akRight, akBottom]
     DoubleBuffered = True
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -111,6 +141,12 @@ object Form1: TForm1
         Extension = '.xml'
       end>
     ActiveSource = -1
+    AlignWithMargins = True
+    Align = alClient
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     Sources = <>
   end
   object TMSFNCMemoCustomLanguage1: TTMSFNCMemoCustomLanguage
@@ -123,27 +159,37 @@ object Form1: TForm1
     Tokenizer = <>
     ExtraKeys = <>
   end
-  object Button1: TWebButton
-    Left = 8
-    Top = 8
-    Width = 105
-    Height = 22
-    Caption = 'Add language'
-    HeightPercent = 100.000000000000000000
-    TabOrder = 2
-    WidthPercent = 100.000000000000000000
-    OnClick = Button1Click
-  end
-  object Button2: TWebButton
-    Left = 121
-    Top = 8
-    Width = 96
-    Height = 22
-    Caption = 'Add theme'
-    HeightPercent = 100.000000000000000000
-    TabOrder = 3
-    WidthPercent = 100.000000000000000000
-    OnClick = Button2Click
+  object SettingsPanel: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 16
+    Top = 72
+    Width = 260
+    Height = 100
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 16
+    Align = alLeft
+    TabOrder = 1
+    Header.Visible = False
+    object Button1: TTMSFNCButton
+      Left = 16
+      Top = 16
+      Width = 228
+      Height = 32
+      Text = 'Add language'
+      TabOrder = 2
+      OnClick = Button1Click
+    end
+    object Button2: TTMSFNCButton
+      Left = 16
+      Top = 56
+      Width = 228
+      Height = 32
+      Text = 'Add theme'
+      TabOrder = 3
+      OnClick = Button2Click
+    end
   end
   object TMSFNCMemoCustomTheme1: TTMSFNCMemoCustomTheme
     Left = 400
@@ -152,5 +198,10 @@ object Form1: TForm1
     Height = 26
     Visible = True
     Rules = <>
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

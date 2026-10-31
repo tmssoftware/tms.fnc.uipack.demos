@@ -14,18 +14,23 @@ uses
   VCL.TMSFNCComboBox, VCL.TMSFNCCustomPicker, VCL.TMSFNCFontSizePicker,
   VCL.TMSFNCToolBar, VCL.TMSFNCWebBrowser, VCL.TMSFNCCustomWEBControl,
   VCL.TMSFNCMemo, VCL.TMSFNCPageControl, Vcl.Controls, VCL.TMSFNCCustomControl,
-  VCL.TMSFNCTabSet;
+  VCL.TMSFNCTabSet,
+  WEBLib.TMSFNCEdit,
+  WEBLib.TMSFNCPanel, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector;
 
 type
   TForm1 = class(TWebForm)
+    DemoBar: TTMSFNCPanel;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    ThemeManager: TTMSFNCThemeManager;
     procedure WebFormCreate(Sender: TObject);
     DemoPages: TTMSFNCPageControl;
     TMSFNCToolBar1: TTMSFNCToolBar;
     BasicMemo: TTMSFNCMemo;
     Search: TTMSFNCToolBarButton;
-    FIndEdit: TWebEdit;
+    FIndEdit: TTMSFNCEdit;
     Replace: TTMSFNCToolBarButton;
-    ReplaceEdit: TWebEdit;
+    ReplaceEdit: TTMSFNCEdit;
     TMSFNCToolBarFontNamePicker1: TTMSFNCToolBarFontNamePicker;
     TMSFNCFontSizePicker1: TTMSFNCFontSizePicker;
     ThemeComboBox: TTMSFNCComboBox;

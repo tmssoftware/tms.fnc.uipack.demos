@@ -1,9 +1,9 @@
 object Form3: TForm3
   Left = 0
   Top = 0
-  Caption = 'Demo chat client'
-  ClientHeight = 480
-  ClientWidth = 640
+  Caption = 'TMS FNC UI Pack - Chat client'
+  ClientHeight = 600
+  ClientWidth = 800
   Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
@@ -11,69 +11,149 @@ object Form3: TForm3
   OnCreate = FormCreate
   OnClose = FormClose
   DesignerMasterStyle = 0
-  object Panel1: TPanel
+  object DemoHeader: TTMSFNCPanel
     Align = Top
     Size.Width = 640.000000000000000000
-    Size.Height = 41.000000000000000000
+    Size.Height = 72.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    object Label1: TLabel
-      Position.X = 8.000000000000000000
-      Position.Y = 10.000000000000000000
-      Size.Width = 49.000000000000000000
-      Size.Height = 17.000000000000000000
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 416.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Chat client'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 416.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Connect to the chat server and exchange messages with other clients'
+    end
+  end
+  object Panel1: TTMSFNCPanel
+    Align = Left
+    Size.Width = 260.000000000000000000
+    Size.Height = 528.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Header.Visible = False
+    Margins.Left = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+    Margins.Right = 0.000000000000000000
+    Margins.Top = 0.000000000000000000
+    object Label1: TTMSFNCHTMLText
+      Position.X = 16.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 20.000000000000000000
       Size.PlatformDefault = False
       Text = 'Server:'
       TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label2: TLabel
-      Position.X = 176.000000000000000000
-      Position.Y = 10.000000000000000000
-      Size.Width = 33.000000000000000000
-      Size.Height = 17.000000000000000000
+    object Label2: TTMSFNCHTMLText
+      Position.X = 16.000000000000000000
+      Position.Y = 80.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 20.000000000000000000
       Size.PlatformDefault = False
       Text = 'Port:'
       TabOrder = 2
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label3: TLabel
-      Position.X = 300.000000000000000000
-      Position.Y = 10.000000000000000000
-      Size.Width = 42.000000000000000000
-      Size.Height = 17.000000000000000000
+    object Label3: TTMSFNCHTMLText
+      Position.X = 16.000000000000000000
+      Position.Y = 152.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 20.000000000000000000
       Size.PlatformDefault = False
       Text = 'Name:'
       TabOrder = 3
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Edit1: TEdit
+    object Edit1: TTMSFNCEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       TabOrder = 4
       Text = 'localhost'
-      Position.X = 56.000000000000000000
-      Position.Y = 8.000000000000000000
+      Position.X = 16.000000000000000000
+      Position.Y = 32.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
     end
-    object Edit2: TEdit
+    object Edit2: TTMSFNCEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       TabOrder = 5
       Text = '8888'
-      Position.X = 209.000000000000000000
-      Position.Y = 8.000000000000000000
-      Size.Width = 53.000000000000000000
-      Size.Height = 22.000000000000000000
+      Position.X = 16.000000000000000000
+      Position.Y = 104.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
     end
-    object Edit3: TEdit
+    object Edit3: TTMSFNCEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       TabOrder = 6
-      Position.X = 344.000000000000000000
-      Position.Y = 8.000000000000000000
+      Position.X = 16.000000000000000000
+      Position.Y = 176.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
     end
-    object Button1: TButton
-      Anchors = [akTop, akRight]
-      Position.X = 552.000000000000000000
-      Position.Y = 8.000000000000000000
+    object Button1: TTMSFNCButton
+      Anchors = [akLeft, akTop]
+      Position.X = 16.000000000000000000
+      Position.Y = 232.000000000000000000
       TabOrder = 7
       Text = 'Connect'
       OnClick = Button1Click
+      Size.Width = 228.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Default = True
     end
   end
   object TMSFNCChat1: TTMSFNCChat
@@ -173,7 +253,6 @@ object Form3: TForm3
     Footer.Stroke.Color = xFFB2B2B2
     Footer.Height = 30.000000000000000000
     Stroke.Color = xFFC8C7CC
-    DefaultRightItem.SelectedFill.Color = xFF1772C6
     DefaultRightItem.SelectedStroke.Kind = gskNone
     DefaultRightItem.Fill.Color = claDodgerblue
     DefaultRightItem.Stroke.Kind = gskNone
@@ -183,7 +262,6 @@ object Form3: TForm3
     DefaultRightItem.VerticalTextAlign = gtaCenter
     DefaultRightItem.TextColor = claWhite
     DefaultRightItem.SelectedTextColor = claWhite
-    DefaultLeftItem.SelectedFill.Color = xFFA0A0A0
     DefaultLeftItem.SelectedStroke.Kind = gskNone
     DefaultLeftItem.Fill.Color = claLightgray
     DefaultLeftItem.Stroke.Kind = gskNone
@@ -194,6 +272,10 @@ object Form3: TForm3
     GlobalFont.Scale = 1.000000000000000000
     GlobalFont.Style = []
     OnAfterSendMessage = TMSFNCChat1SendMessage
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
   end
   object Timer1: TTimer
     Enabled = False
@@ -210,5 +292,10 @@ object Form3: TForm3
     ReadTimeout = -1
     Left = 384
     Top = 384
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

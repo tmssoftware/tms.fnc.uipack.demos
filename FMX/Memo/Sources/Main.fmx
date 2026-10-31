@@ -1,13 +1,69 @@
 object Form3: TForm3
   Left = 0
   Top = 0
-  Caption = 'Form3'
-  ClientHeight = 644
-  ClientWidth = 898
+  Caption = 'TMS FNC UI Pack - Memo sources'
+  ClientHeight = 700
+  ClientWidth = 900
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   DesignerMasterStyle = 0
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 898.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 674.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Source files'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 674.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Open source files in tabs, load a file and save it back'
+    end
+  end
   object TMSFNCTabSet1: TTMSFNCTabSet
     Align = Top
     Size.Width = 898.000000000000000000
@@ -146,6 +202,8 @@ object Form3: TForm3
     OnBeforeCloseTab = TMSFNCTabSet1BeforeCloseTab
     OnChangeTab = TMSFNCTabSet1ChangeTab
     OnInsertTab = TMSFNCTabSet1InsertTab
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
   end
   object TMSFNCMemo1: TTMSFNCMemo
     Align = Client
@@ -214,6 +272,8 @@ object Form3: TForm3
         Extension = '.xml'
       end>
     ActiveSource = 0
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
     Sources = <
       item
         Name = 'item1'
@@ -230,6 +290,9 @@ object Form3: TForm3
     TabOrder = 3
     CompactBitmaps = <>
     Font.Name = 'Segoe UI'
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     object TMSFNCToolBarButton1: TTMSFNCToolBarButton
       Position.X = 9.000000000000000000
       Position.Y = 3.000000000000000000
@@ -270,5 +333,10 @@ object Form3: TForm3
   object OpenDialog1: TOpenDialog
     Left = 352
     Top = 264
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

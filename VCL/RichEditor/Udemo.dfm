@@ -1,9 +1,9 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'TMSFNCRichEditor Demo'
-  ClientHeight = 568
-  ClientWidth = 898
+  Caption = 'TMS FNC UI Pack - Rich editor'
+  ClientHeight = 720
+  ClientWidth = 1100
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,169 +14,93 @@ object Form1: TForm1
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object Panel1: TPanel
+  object DemoHeader: TTMSFNCPanel
     Left = 0
     Top = 0
     Width = 898
-    Height = 41
+    Height = 72
     Align = alTop
     TabOrder = 0
-    object TMSFNCRichEditorEditToolBar1: TTMSFNCRichEditorEditToolBar
-      Left = 0
-      Top = 5
-      Width = 208
-      Height = 30
-      ParentDoubleBuffered = False
-      DoubleBuffered = True
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 714
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
       TabOrder = 0
-      Appearance.Fill.Kind = gfkGradient
-      Appearance.Fill.ColorTo = 15132390
-      Appearance.Stroke.Color = clGray
-      Appearance.SeparatorStroke.Color = clWhite
-      CompactBitmaps = <>
-      CompactAppearance.NormalFill.Kind = gfkGradient
-      CompactAppearance.NormalFill.Color = 16579577
-      CompactAppearance.NormalFill.ColorTo = 15461350
-      CompactAppearance.NormalFill.ColorMirror = 15523036
-      CompactAppearance.NormalFill.ColorMirrorTo = 15524316
-      CompactAppearance.NormalStroke.Color = clGray
-      CompactAppearance.HoverFill.Kind = gfkGradient
-      CompactAppearance.HoverFill.Color = 15263717
-      CompactAppearance.HoverFill.ColorTo = 14145490
-      CompactAppearance.HoverFill.ColorMirror = 14207176
-      CompactAppearance.HoverFill.ColorMirrorTo = 14208456
-      CompactAppearance.HoverStroke.Color = clGray
-      CompactAppearance.DownFill.Kind = gfkGradient
-      CompactAppearance.DownFill.Color = 14605787
-      CompactAppearance.DownFill.ColorTo = 13487560
-      CompactAppearance.DownFill.ColorMirror = 13549246
-      CompactAppearance.DownFill.ColorMirrorTo = 13550526
-      CompactAppearance.DownStroke.Color = clGray
-      CompactAppearance.DisabledFill.Color = 13882323
-      CompactAppearance.DisabledStroke.Color = clGray
-      QuickMenuButtonAppearance.NormalFill.Kind = gfkGradient
-      QuickMenuButtonAppearance.NormalFill.Color = 16579577
-      QuickMenuButtonAppearance.NormalFill.ColorTo = 15461350
-      QuickMenuButtonAppearance.NormalFill.ColorMirror = 15523036
-      QuickMenuButtonAppearance.NormalFill.ColorMirrorTo = 15524316
-      QuickMenuButtonAppearance.NormalStroke.Color = clGray
-      QuickMenuButtonAppearance.HoverFill.Kind = gfkGradient
-      QuickMenuButtonAppearance.HoverFill.Color = 15263717
-      QuickMenuButtonAppearance.HoverFill.ColorTo = 14145490
-      QuickMenuButtonAppearance.HoverFill.ColorMirror = 14207176
-      QuickMenuButtonAppearance.HoverFill.ColorMirrorTo = 14208456
-      QuickMenuButtonAppearance.HoverStroke.Color = clGray
-      QuickMenuButtonAppearance.DownFill.Kind = gfkGradient
-      QuickMenuButtonAppearance.DownFill.Color = 14605787
-      QuickMenuButtonAppearance.DownFill.ColorTo = 13487560
-      QuickMenuButtonAppearance.DownFill.ColorMirror = 13549246
-      QuickMenuButtonAppearance.DownFill.ColorMirrorTo = 13550526
-      QuickMenuButtonAppearance.DownStroke.Color = clGray
-      QuickMenuButtonAppearance.DisabledFill.Color = 13882323
-      QuickMenuButtonAppearance.DisabledStroke.Color = clGray
-      Text = ''
-      OptionsMenu.ShowButton = False
-      RichEditor = TMSFNCRichEditor1
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
     end
-    object TMSFNCRichEditorFormatToolBar1: TTMSFNCRichEditorFormatToolBar
-      Left = 214
-      Top = 5
-      Width = 688
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 674
       Height = 30
-      ParentDoubleBuffered = False
-      DoubleBuffered = True
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
       TabOrder = 1
-      Appearance.Fill.Kind = gfkGradient
-      Appearance.Fill.ColorTo = 15132390
-      Appearance.Stroke.Color = clGray
-      Appearance.SeparatorStroke.Color = clWhite
-      CompactBitmaps = <>
-      CompactAppearance.NormalFill.Kind = gfkGradient
-      CompactAppearance.NormalFill.Color = 16579577
-      CompactAppearance.NormalFill.ColorTo = 15461350
-      CompactAppearance.NormalFill.ColorMirror = 15523036
-      CompactAppearance.NormalFill.ColorMirrorTo = 15524316
-      CompactAppearance.NormalStroke.Color = clGray
-      CompactAppearance.HoverFill.Kind = gfkGradient
-      CompactAppearance.HoverFill.Color = 15263717
-      CompactAppearance.HoverFill.ColorTo = 14145490
-      CompactAppearance.HoverFill.ColorMirror = 14207176
-      CompactAppearance.HoverFill.ColorMirrorTo = 14208456
-      CompactAppearance.HoverStroke.Color = clGray
-      CompactAppearance.DownFill.Kind = gfkGradient
-      CompactAppearance.DownFill.Color = 14605787
-      CompactAppearance.DownFill.ColorTo = 13487560
-      CompactAppearance.DownFill.ColorMirror = 13549246
-      CompactAppearance.DownFill.ColorMirrorTo = 13550526
-      CompactAppearance.DownStroke.Color = clGray
-      CompactAppearance.DisabledFill.Color = 13882323
-      CompactAppearance.DisabledStroke.Color = clGray
-      QuickMenuButtonAppearance.NormalFill.Kind = gfkGradient
-      QuickMenuButtonAppearance.NormalFill.Color = 16579577
-      QuickMenuButtonAppearance.NormalFill.ColorTo = 15461350
-      QuickMenuButtonAppearance.NormalFill.ColorMirror = 15523036
-      QuickMenuButtonAppearance.NormalFill.ColorMirrorTo = 15524316
-      QuickMenuButtonAppearance.NormalStroke.Color = clGray
-      QuickMenuButtonAppearance.HoverFill.Kind = gfkGradient
-      QuickMenuButtonAppearance.HoverFill.Color = 15263717
-      QuickMenuButtonAppearance.HoverFill.ColorTo = 14145490
-      QuickMenuButtonAppearance.HoverFill.ColorMirror = 14207176
-      QuickMenuButtonAppearance.HoverFill.ColorMirrorTo = 14208456
-      QuickMenuButtonAppearance.HoverStroke.Color = clGray
-      QuickMenuButtonAppearance.DownFill.Kind = gfkGradient
-      QuickMenuButtonAppearance.DownFill.Color = 14605787
-      QuickMenuButtonAppearance.DownFill.ColorTo = 13487560
-      QuickMenuButtonAppearance.DownFill.ColorMirror = 13549246
-      QuickMenuButtonAppearance.DownFill.ColorMirrorTo = 13550526
-      QuickMenuButtonAppearance.DownStroke.Color = clGray
-      QuickMenuButtonAppearance.DisabledFill.Color = 13882323
-      QuickMenuButtonAppearance.DisabledStroke.Color = clGray
-      Text = ''
-      OptionsMenu.ShowButton = False
-      RichEditor = TMSFNCRichEditor1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Rich text editor'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 674
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Edit formatted text, load a sample, export the document to PDF or print it'
     end
   end
-  object Panel2: TPanel
-    Left = 680
-    Top = 41
-    Width = 218
-    Height = 527
-    Align = alRight
+  object Panel2: TTMSFNCPanel
+    Left = 16
+    Top = 72
+    Width = 260
+    Height = 632
+    Align = alLeft
     TabOrder = 1
-    object Label1: TLabel
-      Left = 14
-      Top = 6
-      Width = 39
-      Height = 13
-      Caption = 'Samples'
-    end
-    object ListBox1: TListBox
+    Header.Visible = False
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 16
+    object Label1: TTMSFNCHTMLText
       Left = 16
-      Top = 25
-      Width = 185
-      Height = 224
-      ItemHeight = 13
-      Items.Strings = (
-        'File test'
-        'Indent'
-        'Bullet'
-        'Alignment'
-        'Format'
-        'Many lines'
-        'Images'
-        'Clear')
+      Top = 12
+      Width = 228
+      Height = 20
+      Text = 'Samples'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object ListBox1: TTMSFNCListBox
+      Left = 16
+      Top = 40
+      Width = 228
+      Height = 304
       TabOrder = 0
-      OnClick = ListBox1Click
+      OnItemSelected = ListBox1ItemSelected
     end
     object TMSFNCRichEditorPDFIO1: TTMSFNCRichEditorPDFIO
       Left = 176
@@ -209,21 +133,21 @@ object Form1: TForm1
       Options.PageNumberFont.Name = 'Arial'
       OnGetFooter = TMSFNCRichEditorPDFIO1GetFooter
     end
-    object Button1: TButton
+    object Button1: TTMSFNCButton
       Left = 16
-      Top = 255
-      Width = 97
-      Height = 25
-      Caption = 'Export To PDF'
+      Top = 360
+      Width = 228
+      Height = 32
+      Text = 'Export To PDF'
       TabOrder = 2
       OnClick = Button1Click
     end
-    object Button2: TButton
+    object Button2: TTMSFNCButton
       Left = 16
-      Top = 286
-      Width = 97
-      Height = 25
-      Caption = 'Print'
+      Top = 400
+      Width = 228
+      Height = 32
+      Text = 'Print'
       TabOrder = 3
       OnClick = Button2Click
     end
@@ -234,12 +158,10 @@ object Form1: TForm1
       Height = 26
       Visible = True
       Options.DefaultFont.Charset = DEFAULT_CHARSET
-      Options.DefaultFont.Color = clWindowText
       Options.DefaultFont.Height = -11
       Options.DefaultFont.Name = 'Tahoma'
       Options.DefaultFont.Style = []
       Options.FooterFont.Charset = DEFAULT_CHARSET
-      Options.FooterFont.Color = clWindowText
       Options.FooterFont.Height = -11
       Options.FooterFont.Name = 'Tahoma'
       Options.FooterFont.Style = []
@@ -248,7 +170,6 @@ object Form1: TForm1
       Options.FooterMargins.Right = 20.000000000000000000
       Options.FooterMargins.Bottom = 10.000000000000000000
       Options.HeaderFont.Charset = DEFAULT_CHARSET
-      Options.HeaderFont.Color = clWindowText
       Options.HeaderFont.Height = -11
       Options.HeaderFont.Name = 'Tahoma'
       Options.HeaderFont.Style = []
@@ -262,7 +183,6 @@ object Form1: TForm1
       Options.Margins.Bottom = 50.000000000000000000
       Options.PageNumber = pnNone
       Options.PageNumberFont.Charset = DEFAULT_CHARSET
-      Options.PageNumberFont.Color = clWindowText
       Options.PageNumberFont.Height = -11
       Options.PageNumberFont.Name = 'Tahoma'
       Options.PageNumberFont.Style = []
@@ -274,17 +194,98 @@ object Form1: TForm1
       RichEditor = TMSFNCRichEditor1
     end
   end
-  object Panel3: TPanel
-    Left = 0
-    Top = 41
-    Width = 680
-    Height = 527
+  object Panel3: TTMSFNCPanel
+    Left = 292
+    Top = 72
+    Width = 792
+    Height = 632
     Align = alClient
-    Caption = 'Panel3'
     TabOrder = 2
-    DesignSize = (
-      680
-      527)
+    Header.Visible = False
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
+    object Panel1: TTMSFNCPanel
+      Left = 0
+      Top = 0
+      Width = 898
+      Height = 80
+      Align = alTop
+      TabOrder = 0
+      Header.Visible = False
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      object TMSFNCRichEditorEditToolBar1: TTMSFNCRichEditorEditToolBar
+        Left = 8
+        Top = 6
+        Width = 208
+        Height = 30
+        ParentDoubleBuffered = False
+        DoubleBuffered = True
+        Font.Charset = DEFAULT_CHARSET
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        TabOrder = 0
+        Appearance.Fill.Kind = gfkGradient
+        CompactBitmaps = <>
+        CompactAppearance.NormalFill.Kind = gfkGradient
+        CompactAppearance.HoverFill.Kind = gfkGradient
+        CompactAppearance.DownFill.Kind = gfkGradient
+        QuickMenuButtonAppearance.NormalFill.Kind = gfkGradient
+        QuickMenuButtonAppearance.HoverFill.Kind = gfkGradient
+        QuickMenuButtonAppearance.DownFill.Kind = gfkGradient
+        Text = ''
+        OptionsMenu.ShowButton = False
+        RichEditor = TMSFNCRichEditor1
+      end
+      object TMSFNCRichEditorFormatToolBar1: TTMSFNCRichEditorFormatToolBar
+        Left = 8
+        Top = 42
+        Width = 688
+        Height = 30
+        ParentDoubleBuffered = False
+        DoubleBuffered = True
+        Font.Charset = DEFAULT_CHARSET
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        TabOrder = 1
+        Appearance.Fill.Kind = gfkGradient
+        CompactBitmaps = <>
+        CompactAppearance.NormalFill.Kind = gfkGradient
+        CompactAppearance.HoverFill.Kind = gfkGradient
+        CompactAppearance.DownFill.Kind = gfkGradient
+        QuickMenuButtonAppearance.NormalFill.Kind = gfkGradient
+        QuickMenuButtonAppearance.HoverFill.Kind = gfkGradient
+        QuickMenuButtonAppearance.DownFill.Kind = gfkGradient
+        Text = ''
+        OptionsMenu.ShowButton = False
+        RichEditor = TMSFNCRichEditor1
+      end
+    end
+    object TMSFNCRichEditorHorizontalRuler1: TTMSFNCRichEditorHorizontalRuler
+      Left = 1
+      Top = 1
+      Width = 678
+      Height = 31
+      Align = alTop
+      ParentDoubleBuffered = False
+      DoubleBuffered = True
+      TabOrder = 1
+      Appearance.Font.Charset = DEFAULT_CHARSET
+      Appearance.Font.Height = -11
+      Appearance.Font.Name = 'Tahoma'
+      Appearance.Font.Style = []
+      Layout.AutoPosition = True
+      Layout.AutoWidth = True
+      Layout.RightMargin = 40
+      RichEditor = TMSFNCRichEditor1
+      Stroke.Kind = gskNone
+      Tabs = <>
+    end
     object TMSFNCRichEditor1: TTMSFNCRichEditor
       Left = 4
       Top = 36
@@ -294,7 +295,6 @@ object Form1: TForm1
       HorzScrollBar.Tracking = True
       VertScrollBar.Range = 6
       VertScrollBar.Tracking = True
-      Anchors = [akLeft, akTop, akRight, akBottom]
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = -11
@@ -304,35 +304,16 @@ object Form1: TForm1
       TabStop = True
       ParentFont = False
       Version = '1.8.5.3'
-    end
-    object TMSFNCRichEditorHorizontalRuler1: TTMSFNCRichEditorHorizontalRuler
-      Left = 1
-      Top = 1
-      Width = 678
-      Height = 31
-      Align = alTop
-      ParentDoubleBuffered = False
-      Color = 15790320
-      DoubleBuffered = True
-      TabOrder = 1
-      Appearance.Font.Charset = DEFAULT_CHARSET
-      Appearance.Font.Color = clWindowText
-      Appearance.Font.Height = -11
-      Appearance.Font.Name = 'Tahoma'
-      Appearance.Font.Style = []
-      Appearance.IndentStroke.Color = 11250603
-      Appearance.MarginFill.Color = 13882323
-      Appearance.RulerStroke.Color = 10724259
-      Layout.AutoPosition = True
-      Layout.AutoWidth = True
-      Layout.RightMargin = 40
-      RichEditor = TMSFNCRichEditor1
-      Stroke.Kind = gskNone
-      Tabs = <>
+      Align = alClient
     end
   end
   object PrintDialog1: TPrintDialog
     Left = 816
     Top = 328
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

@@ -7,10 +7,16 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VCL.TMSFNCTypes, VCL.TMSFNCUtils,
   VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCToolBar,
   VCL.TMSFNCWebBrowser, VCL.TMSFNCCustomWEBControl, VCL.TMSFNCMemo,
-  VCL.TMSFNCCustomControl, VCL.TMSFNCTabSet;
+  VCL.TMSFNCCustomControl, VCL.TMSFNCTabSet,
+  VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm1 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCTabSet1: TTMSFNCTabSet;
     TMSFNCMemo1: TTMSFNCMemo;
     TMSFNCToolBar1: TTMSFNCToolBar;
