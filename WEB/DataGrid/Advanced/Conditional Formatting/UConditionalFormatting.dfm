@@ -1,7 +1,7 @@
 object frmConditionalFormatting: TfrmConditionalFormatting
   Width = 1180
   Height = 720
-  Caption = 'TMS FNC Data Grid - Conditional Formatting Demo'
+  Caption = 'TMS FNC UI Pack - Data Grid Conditional Formatting'
   OnCreate = WebFormCreate
   object Panel1: TTMSFNCPanel
     AlignWithMargins = True

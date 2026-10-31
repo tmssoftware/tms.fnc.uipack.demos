@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Theming Dashboard Demo'
+  Caption = 'TMS FNC UI Pack - Theming Dashboard'
   Height = 1277
   Width = 1440
   Position = poScreenCenter

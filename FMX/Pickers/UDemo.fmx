@@ -1,7 +1,7 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Calendar Demo'
+  Caption = 'TMS FNC UI Pack - Pickers'
   ClientHeight = 888
   ClientWidth = 1112
   Position = ScreenCenter

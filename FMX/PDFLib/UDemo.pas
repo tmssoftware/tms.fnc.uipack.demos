@@ -5,11 +5,17 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, FMX.Forms,
   FMX.Types, FMX.Controls, FMX.Controls.Presentation, FMX.StdCtrls,
-  FMX.TMSFNCCustomComponent, FMX.TMSFNCBitmapContainer;
+  FMX.TMSFNCCustomComponent, FMX.TMSFNCBitmapContainer,
+  FMX.TMSFNCButton, FMX.TMSFNCCustomControl, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector, FMX.TMSFNCTypes, FMX.TMSFNCUtils;
 
 type
   TForm130 = class(TForm)
-    Button1: TButton;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Button1: TTMSFNCButton;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     procedure Button1Click(Sender: TObject);
   private
@@ -26,7 +32,7 @@ implementation
 {$R *.fmx}
 
 uses
-  FMX.TMSFNCPDFLib, FMX.TMSFNCPDFCoreLibBase, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, IOUtils;
+  FMX.TMSFNCPDFLib, FMX.TMSFNCPDFCoreLibBase, IOUtils;
 
 procedure TForm130.Button1Click(Sender: TObject);
 var

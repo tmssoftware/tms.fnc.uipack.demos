@@ -1,15 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <link rel="icon" href="data:;base64,=">
-    <title>TMS FNC Theming Dashboard Demo</title>
-    <script type="text/javascript" src="$(ProjectName).js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="A themed dashboard: switch between Light and Dark, follow the system or pick an accent color"/>
+    <link rel="icon" href="data:;base64,="/>
+    <title>TMS FNC UI Pack - Theming Dashboard</title>
+    <script src="$(ProjectName).js" type="text/javascript"></script>
     <style>
-      /* the dashboard fills the window and lays itself out for its size; its bars reach past the
-         window's edges (as in the VCL and FMX versions), which are clipped, not scrolled to */
-      html { height: 100%; overflow: hidden; }
-      body { margin: 0; height: 100%; position: relative; overflow: clip; }
+      /* the form fills the page; the theme manager colors it ('Fluent Light' window background) */
+      html, body { margin: 0; height: 100%; }
+      body { background: #F4F5F7; color: #1F2328; font-family: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, sans-serif; }
+      /* the header of a form's HTML template (title and description elements), as the FNC demo header */
+      .demo-header { padding: 12px 24px 4px; }
+      .demo-title { font-size: 20px; font-weight: 600; line-height: 30px; }
+      .demo-description { font-size: 13px; line-height: 20px; color: #5B6470; }
+      .appcontent { position: relative; }
+      /* the dashboard lays itself out for the window size; its bars reach past the window's edges
+         (as in the VCL and FMX versions), which are clipped, not scrolled to */
+      html { overflow: hidden; }
+      body { position: relative; overflow: clip; }
     </style>
   </head>
   <body>

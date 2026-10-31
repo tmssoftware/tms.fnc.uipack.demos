@@ -1,9 +1,9 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC PDFLib Demo'
-  ClientHeight = 180
-  ClientWidth = 279
+  Caption = 'TMS FNC UI Pack - PDF Library'
+  ClientHeight = 200
+  ClientWidth = 640
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,9 +14,66 @@ object Form130: TForm130
   Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 640
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 456
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 416
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'PDF library'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 416
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Text, shapes and images in a PDF file in your Documents folder'
+    end
+  end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
-    Left = 201
-    Top = 128
+    Left = 560
+    Top = 120
     Width = 26
     Height = 26
     Visible = True
@@ -162,13 +219,19 @@ object Form130: TForm130
         Tag = 0
       end>
   end
-  object Button1: TButton
-    Left = 72
-    Top = 49
-    Width = 155
-    Height = 73
-    Caption = 'Export PDF Sample'
+  object Button1: TTMSFNCButton
+    Left = 24
+    Top = 96
+    Width = 200
+    Height = 32
+    Text = 'Create PDF'
     TabOrder = 1
     OnClick = Button1Click
+    Default = True
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

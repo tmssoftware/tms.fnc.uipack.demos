@@ -1,7 +1,7 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Data Grid Visual Grouping Demo'
+  Caption = 'TMS FNC UI Pack - Data Grid Visual Grouping'
   ClientHeight = 780
   ClientWidth = 1200
   Color = clBtnFace

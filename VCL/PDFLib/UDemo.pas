@@ -5,12 +5,18 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Forms, Vcl.StdCtrls, Vcl.Controls, VCL.TMSFNCCustomComponent,
-  VCL.TMSFNCBitmapContainer;
+  VCL.TMSFNCBitmapContainer,
+  VCL.TMSFNCButton, VCL.TMSFNCCustomControl, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector, VCL.TMSFNCTypes, VCL.TMSFNCUtils;
 
 type
   TForm130 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
-    Button1: TButton;
+    Button1: TTMSFNCButton;
     procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
@@ -26,8 +32,7 @@ implementation
 {$R *.dfm}
 
 uses
-  VCL.TMSFNCPDFLib, Types, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes,
-  VCL.TMSFNCPDFCoreLibBase;
+  VCL.TMSFNCPDFLib, Types, VCL.TMSFNCPDFCoreLibBase;
 
 procedure TForm130.Button1Click(Sender: TObject);
 var

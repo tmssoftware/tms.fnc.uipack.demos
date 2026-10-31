@@ -2,7 +2,7 @@ object Form130: TForm130
   Left = 0
   Top = 0
   ActiveControl = TMSFNCDataGrid1
-  Caption = 'TMS FNC Data Grid Grouping Demo'
+  Caption = 'TMS FNC UI Pack - Data Grid ClientDataSet'
   ClientHeight = 720
   ClientWidth = 1200
   Color = clBtnFace

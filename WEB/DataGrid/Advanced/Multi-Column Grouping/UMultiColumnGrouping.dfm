@@ -1,7 +1,7 @@
 object Form130: TForm130
   Width = 1200
   Height = 780
-  Caption = 'TMS FNC Data Grid Multi-Column Grouping Demo'
+  Caption = 'TMS FNC UI Pack - Data Grid Multi-Column Grouping'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

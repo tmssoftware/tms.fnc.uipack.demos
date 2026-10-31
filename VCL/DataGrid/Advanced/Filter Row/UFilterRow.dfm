@@ -1,7 +1,7 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Data Grid Filtering Demo'
+  Caption = 'TMS FNC UI Pack - Data Grid Filter Row'
   ClientHeight = 720
   ClientWidth = 1200
   Color = clBtnFace

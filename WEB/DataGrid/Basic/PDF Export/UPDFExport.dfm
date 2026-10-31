@@ -1,7 +1,7 @@
 object Form130: TForm130
   Width = 1000
   Height = 640
-  Caption = 'TMS FNC Data Grid PDF Demo'
+  Caption = 'TMS FNC UI Pack - Data Grid PDF Export'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

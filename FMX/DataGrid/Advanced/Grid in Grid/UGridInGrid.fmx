@@ -1,7 +1,7 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Data Grid Grid in Grid Demo'
+  Caption = 'TMS FNC UI Pack - Data Grid Grid in Grid'
   ClientHeight = 760
   ClientWidth = 1200
   Position = ScreenCenter

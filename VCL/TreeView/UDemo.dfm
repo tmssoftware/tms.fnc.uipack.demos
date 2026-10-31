@@ -2,7 +2,7 @@ object Form130: TForm130
   Left = 0
   Top = 0
   ActiveControl = TMSFNCTreeView1
-  Caption = 'TMS FNC TreeView Demo'
+  Caption = 'TMS FNC UI Pack - TreeView'
   ClientHeight = 684
   ClientWidth = 1184
   Color = clBtnFace

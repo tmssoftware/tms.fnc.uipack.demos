@@ -3,7 +3,7 @@
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, System.IOUtils, System.Math,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes,
   FMX.TMSFNCDataGridCell, FMX.TMSFNCCustomComponent,
@@ -11,10 +11,16 @@ uses
   FMX.TMSFNCCustomScrollControl, FMX.TMSFNCDataGridData,
   FMX.TMSFNCDataGrid, System.Rtti, FMX.TMSFNCDataGridBase,
   FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer, FMX.Controls.Presentation,
-  FMX.StdCtrls, TMS.TMSFNCFilterBuilder;
+  FMX.StdCtrls, TMS.TMSFNCFilterBuilder,
+  FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector, FMX.TMSFNCSampleData;
 
 type
   TForm1 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     procedure FormCreate(Sender: TObject);
@@ -24,7 +30,8 @@ type
       AGraphics: TTMSFNCGraphics; ACell: TTMSFNCDataGridCell;
       var ACanDraw: Boolean);
   private
-    { Private declarations }
+    function ThemeColors: TTMSFNCResolvedTheme;
+    procedure LoadSampleData;
   public
     { Public declarations }
   end;
@@ -36,11 +43,17 @@ implementation
 
 {$R *.fmx}
 
+const
+  { the columns drawn in code (grid.csv: Employee ID; Name; Joined; Status; Progress; Target) }
+  ColStatus = 3;
+  ColProgress = 4;
+  ColTarget = 5;
+
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   TMSFNCDataGrid1.Options.IO.StartColumn := 0;
   TMSFNCDataGrid1.Options.IO.StartRow := 0;
-  TMSFNCDataGrid1.LoadFromCSVData('..\..\grid.csv');
+  LoadSampleData;
 
   TMSFNCDataGrid1.Options.Selection.Mode := gsmDisjunctRow;
   TMSFNCDataGrid1.SelectedRows[1] := False;
@@ -50,95 +63,107 @@ begin
   TMSFNCDataGrid1.CellAppearance.FixedLayout.Font.Style := [TFontStyle.fsBold];
 end;
 
-procedure TForm1.TMSFNCDataGrid1AfterDrawCell(Sender: TObject;
-  AGraphics: TTMSFNCGraphics; ACell: TTMSFNCDataGridCell);
+{ grid.csv next to the executable (deployed), else in the project folder (run from the IDE) }
+procedure TForm1.LoadSampleData;
 var
-  txt: string;
-  r: TRectF;
-  v: Integer;
-  s: Single;
+  dir, f: string;
 begin
-  if (ACell.Column = 3) and (ACell.Row > 0) then
-  begin
-    AGraphics.Stroke.Kind := gskNone;
+  dir := ExtractFilePath(ParamStr(0));
+  f := TPath.Combine(dir, 'grid.csv');
+  if not TFile.Exists(f) then
+    f := TPath.Combine(TPath.Combine(TPath.Combine(dir, '..'), '..'), 'grid.csv');
+  if not TFile.Exists(f) then
+    f := TPath.Combine(GetCurrentDir, 'grid.csv');
+  if TFile.Exists(f) then
+    TMSFNCDataGrid1.LoadFromCSVData(f);
+end;
 
-    txt := TMSFNCDataGrid1.Strings[ACell.Column, ACell.Row];
+{ the colors of the theme in effect (Light, Dark, a brand, with the accent applied); without a
+  theme the light colors, which match the classic look }
+function TForm1.ThemeColors: TTMSFNCResolvedTheme;
+var
+  n: string;
+begin
+  n := TTMSFNCTheme.EffectiveThemeName(Self);
+  Result := nil;
+  if n <> '' then
+    Result := TTMSFNCTheme.Resolve(n);
+  if not Assigned(Result) then
+    Result := TTMSFNCTheme.Resolve('Fluent Light');
+end;
 
-    r := ACell.Rect;
-    InflateRectEx(r,-10,-10);
-
-    if txt = 'On Leave' then
-      AGraphics.Fill.Color := $FFEF5A5A
-    else if txt = 'Flight' then
-      AGraphics.Fill.Color := $FFF0C531
-    else if txt = 'Abroad' then
-        AGraphics.Fill.Color := $FF587EE6
-    else if txt = 'Office' then
-        AGraphics.Fill.Color := $FF9BEC96;
-
-    AGraphics.DrawRoundRectangle(r);
-
-    AGraphics.Font.Color := gcWhite;
-    AGraphics.DrawText(r, txt, False, gtaCenter, gtaCenter);
-  end;
-
-  if (ACell.Column = 4) and (ACell.Row > 0) then
-  begin
-    txt := TMSFNCDataGrid1.Strings[ACell.Column, ACell.Row];
-    if txt <> '' then
-      v := StrToInt(txt)
-    else
-      v := 0;
-
-      r := ACell.Rect;
-      InflateRectEx(r, -6, -10);
-
-      AGraphics.Fill.Color := $FFDDE8FE;
-
-      AGraphics.DrawRoundRectangle(r, 3);
-
-      s := r.Width * (v / 100);
-
-      if s < 5 then
-        s := 5;
-
-      r.Right := r.Left + s;
-
-      AGraphics.Stroke.Kind := gskNone;
-      AGraphics.Fill.Color := $FF8DB7FB;
-      AGraphics.DrawRoundRectangle(r, 3);
-  end;
-
-  if (ACell.Column = 5) and (ACell.Row > 0) then
-  begin
-    if TMSFNCDataGrid1.Strings[4, ACell.Row] = '100' then
-    begin
-      AGraphics.Font.Color := $FF5BC659;
-    end
-    else
-    begin
-      AGraphics.Font.Color := $FFCD3524;
-    end;
-
-    AGraphics.DrawText(ACell.TextRect, '€ ' + TMSFNCDataGrid1.Strings[ACell.Column, ACell.Row], False, gtaTrailing, gtaCenter, gttNone);
-  end;
+function StatusKind(const AStatus: string): TTMSFNCStatusKind;
+begin
+  if AStatus = 'Office' then
+    Result := tskSuccess
+  else if AStatus = 'Flight' then
+    Result := tskWarning
+  else if AStatus = 'On Leave' then
+    Result := tskError
+  else if AStatus = 'Abroad' then
+    Result := tskInfo
+  else
+    Result := tskNeutral;
 end;
 
 procedure TForm1.TMSFNCDataGrid1BeforeDrawCell(Sender: TObject;
   AGraphics: TTMSFNCGraphics; ACell: TTMSFNCDataGridCell;
   var ACanDraw: Boolean);
 begin
-  if (ACell.Column = 3) and (ACell.Row > 0) then
-  begin
+  { the data cells of these columns draw their own content (AfterDrawCell) }
+  if (ACell.Row > 0) and (ACell.Column in [ColStatus, ColProgress, ColTarget]) then
     ACell.DrawElements := ACell.DrawElements - [gcdText];
-  end;
-  if (ACell.Column = 4) and (ACell.Row > 0) then
-  begin
-    ACell.DrawElements := ACell.DrawElements - [gcdText];
-  end;
-  if (ACell.Column = 5) and (ACell.Row > 0) then
-  begin
-    ACell.DrawElements := ACell.DrawElements - [gcdText];
+end;
+
+procedure TForm1.TMSFNCDataGrid1AfterDrawCell(Sender: TObject;
+  AGraphics: TTMSFNCGraphics; ACell: TTMSFNCDataGridCell);
+var
+  t: TTMSFNCResolvedTheme;
+  txt: string;
+  r: TRectF;
+  v: Integer;
+  bg, tx, bd: TTMSFNCGraphicsColor;
+begin
+  if ACell.Row = 0 then
+    Exit;
+
+  t := ThemeColors;
+  txt := TMSFNCDataGrid1.Strings[ACell.Column, ACell.Row];
+
+  case ACell.Column of
+    ColStatus:
+    begin
+      { a status pill in the theme's status colors (success, warning, error, info) }
+      r := ACell.Rect;
+      InflateRectEx(r, -8, -6);
+      TTMSFNCThemePainter.DrawStatusPill(AGraphics, r, txt, StatusKind(txt), True, t);
+    end;
+    ColProgress:
+    begin
+      { a progress bar: the theme's track with the accent }
+      v := StrToIntDef(txt, 0);
+      r := ACell.Rect;
+      InflateRectEx(r, -12, 0);
+      r.Top := Int(r.CenterPoint.Y) - 3;
+      r.Bottom := r.Top + 6;
+      AGraphics.Stroke.Kind := gskNone;
+      AGraphics.Fill.Kind := gfkSolid;
+      AGraphics.Fill.Color := t[ttTrack];
+      AGraphics.DrawRoundRectangle(r, 3);
+      r.Right := r.Left + Max(6, r.Width * v / 100);
+      AGraphics.Fill.Color := t[ttAccent];
+      AGraphics.DrawRoundRectangle(r, 3);
+    end;
+    ColTarget:
+    begin
+      { the target in the success (completed) or error color of the theme }
+      if TMSFNCDataGrid1.Strings[ColProgress, ACell.Row] = '100' then
+        TTMSFNCTheme.StatusColors(t, tskSuccess, bg, tx, bd)
+      else
+        TTMSFNCTheme.StatusColors(t, tskError, bg, tx, bd);
+      AGraphics.Font.Color := tx;
+      AGraphics.DrawText(ACell.TextRect, '€ ' + txt, False, gtaTrailing, gtaCenter, gttNone);
+    end;
   end;
 end;
 

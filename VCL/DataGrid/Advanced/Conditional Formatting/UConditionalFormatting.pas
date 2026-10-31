@@ -102,7 +102,7 @@ const
 
 procedure TfrmConditionalFormatting.FormCreate(Sender: TObject);
 begin
-  Caption := 'TMS FNC Data Grid - Conditional Formatting Demo';
+  Caption := 'TMS FNC UI Pack - Data Grid Conditional Formatting';
   BuildGrid;
   FillData;
   AddRules;
