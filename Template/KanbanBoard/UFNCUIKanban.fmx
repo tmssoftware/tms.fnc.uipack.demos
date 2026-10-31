@@ -102,8 +102,8 @@ object Form3: TForm3
           end
           item
             Text = 
-              'Write the developers guide and <a href="">' +
-              'FAQ</a>.<br><p align="right"><img height="30" width="30" ' +
+              'Write the developers guide and <b>' +
+              'FAQ</b>.<br><p align="right"><img height="30" width="30" ' +
               'src="user1"></p>'
             Title = 'Documentation'
             VerticalTextAlign = gtaCenter

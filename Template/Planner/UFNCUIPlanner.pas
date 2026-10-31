@@ -25,7 +25,7 @@
     in Light and Dark. Item texts take the theme's text colors.
 
   Data
-    The items are stored in the form and moved to the current week at start-up (FormCreate). For a
+    The items are stored in the form and moved to the current working day at start-up (FormCreate). For a
     database, link the PlannerAdapter on this form:
       PlannerAdapter.Item.DataSource := <your TDataSource>;
       PlannerAdapter.Item.DBKey := '<key field>'; (and .StartTime, .EndTime, .Title, .Text and
@@ -79,13 +79,18 @@ implementation
 
 {$R *.fmx}
 
-{ the sample items were planned for the day TimeLine.ViewStart: move them to today }
+{ the sample items were planned for the day TimeLine.ViewStart: move them to today, or to Monday
+  on a weekend }
 procedure TForm1.FormCreate(Sender: TObject);
 var
+  day: TDateTime;
   d: Double;
   I: Integer;
 begin
-  d := Int(Date) - Int(TMSFNCPlanner1.TimeLine.ViewStart);
+  day := Date;
+  while DayOfWeek(day) in [1, 7] do
+    day := day + 1;
+  d := Int(day) - Int(TMSFNCPlanner1.TimeLine.ViewStart);
   TMSFNCPlanner1.BeginUpdate;
   try
     for I := 0 to TMSFNCPlanner1.Items.Count - 1 do

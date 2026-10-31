@@ -69,7 +69,7 @@ implementation
 {$R *.dfm}
 
 const
-  ShippedDatabase = 'Shared Code\Business Logic\Theming Dashboard\orders.db';
+  ShippedDatabase = 'Shared Code' + PathDelim + 'Business Logic' + PathDelim + 'Theming Dashboard' + PathDelim + 'orders.db';
   Statuses: array[0..3] of string = ('Open', 'Packing', 'Shipped', 'Late');
   StatusKinds: array[0..3] of string = ('tskInfo', 'tskWarning', 'tskSuccess', 'tskError');
 
@@ -79,25 +79,39 @@ begin
   Result := TPath.Combine(ExtractFilePath(ParamStr(0)), 'orders.db');
 end;
 
-{ the shipped database in the demo's folders, found from the executable upwards ('' if not there) }
+{ the shipped database in the demo's folders, found from the executable upwards, else from the
+  current folder upwards (an executable built elsewhere, started in the demo's folder); '' if not
+  there }
 function TOrdersData.ShippedFileName: string;
-var
-  dir: string;
+
+  function FindUp(ADir: string): string;
+  begin
+    repeat
+      Result := TPath.Combine(ADir, ShippedDatabase);
+      if TFile.Exists(Result) then
+        Exit;
+      ADir := ExtractFileDir(ADir);
+    until (ADir = '') or (ADir = ExtractFileDir(ADir));
+    Result := '';
+  end;
+
 begin
-  dir := ExtractFileDir(ParamStr(0));
-  repeat
-    Result := TPath.Combine(dir, ShippedDatabase);
-    if TFile.Exists(Result) then
-      Exit;
-    dir := ExtractFileDir(dir);
-  until (dir = '') or (dir = ExtractFileDir(dir));
-  Result := '';
+  Result := FindUp(ExtractFileDir(ParamStr(0)));
+  if Result = '' then
+    Result := FindUp(GetCurrentDir);
 end;
 
 procedure TOrdersData.DataModuleCreate(Sender: TObject);
 begin
-  if not TFile.Exists(FileName) and (ShippedFileName <> '') then
+  { an empty working copy (left by a start without the shipped database) is replaced }
+  if TFile.Exists(FileName) and (TFile.GetSize(FileName) = 0) and (ShippedFileName <> '') then
+    TFile.Delete(FileName);
+  if not TFile.Exists(FileName) then
+  begin
+    if ShippedFileName = '' then
+      raise Exception.Create('orders.db not found: copy it from ' + ShippedDatabase + ' next to the executable');
     TFile.Copy(ShippedFileName, FileName);
+  end;
   Database.Params.Database := FileName;
   Database.Open;
   Customers.Open;

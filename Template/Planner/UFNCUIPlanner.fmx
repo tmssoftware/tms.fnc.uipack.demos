@@ -64,7 +64,7 @@ object Form1: TForm1
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
-      Text = 'A week of meetings for four people: drag, resize and select items; categories keep their colors in every theme'
+      Text = 'A working day of meetings for four people: drag, resize and select items; categories keep their colors in every theme'
     end
   end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
@@ -19684,7 +19684,7 @@ object Form1: TForm1
       end>
     TimeLine.DisplayStart = 16
     TimeLine.DisplayEnd = 35
-    TimeLine.DisplayUnitSize = 30.000000000000000000
+    TimeLine.DisplayUnitSize = 52.000000000000000000
     TimeLine.ViewStart = 44623.000000000000000000
     TimeLine.CurrentTimePosition = pctpOverItems
     TimeLineAppearance.LeftSize = 50.000000000000000000
