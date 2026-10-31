@@ -15,6 +15,9 @@ type
   { TForm2 }
 
   TForm2 = class(TForm)
+    DemoHeader: TPanel;
+    DemoTitle: TLabel;
+    DemoDescription: TLabel;
     Button1: TButton;
     Button2: TButton;
     Label1: TLabel;

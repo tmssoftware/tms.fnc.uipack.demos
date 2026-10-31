@@ -9,25 +9,31 @@ uses
   VCL.TMSFNCScrollControl, VCL.TMSFNCRichEditorBase, VCL.TMSFNCRichEditor,
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCCustomComponent, VCL.TMSFNCPDFIO,
   VCL.TMSFNCRichEditorPDFIO, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes,
-  VCL.TMSFNCRichEditorRuler, VCL.TMSFNCPrintIO, VCL.TMSFNCRichEditorPrintIO;
+  VCL.TMSFNCRichEditorRuler, VCL.TMSFNCPrintIO, VCL.TMSFNCRichEditorPrintIO,
+  VCL.TMSFNCButton, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector, VCL.TMSFNCListBox;
 
 type
   TForm1 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCRichEditor1: TTMSFNCRichEditor;
-    Panel1: TPanel;
-    Panel2: TPanel;
-    ListBox1: TListBox;
-    Label1: TLabel;
+    Panel1: TTMSFNCPanel;
+    Panel2: TTMSFNCPanel;
+    ListBox1: TTMSFNCListBox;
+    Label1: TTMSFNCHTMLText;
     TMSFNCRichEditorEditToolBar1: TTMSFNCRichEditorEditToolBar;
     TMSFNCRichEditorFormatToolBar1: TTMSFNCRichEditorFormatToolBar;
     TMSFNCRichEditorPDFIO1: TTMSFNCRichEditorPDFIO;
-    Button1: TButton;
-    Panel3: TPanel;
+    Button1: TTMSFNCButton;
+    Panel3: TTMSFNCPanel;
     TMSFNCRichEditorHorizontalRuler1: TTMSFNCRichEditorHorizontalRuler;
-    Button2: TButton;
+    Button2: TTMSFNCButton;
     TMSFNCRichEditorPrintIO1: TTMSFNCRichEditorPrintIO;
     PrintDialog1: TPrintDialog;
-    procedure ListBox1Click(Sender: TObject);
+    procedure ListBox1ItemSelected(Sender: TObject; AItem: TTMSFNCListBoxItem);
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure TMSFNCRichEditorPDFIO1GetFooter(Sender, AExportObject: TObject;
@@ -70,14 +76,19 @@ begin
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
+var
+  s: string;
 begin
+  ListBox1.Items.Clear;
+  for s in ['File test', 'Indent', 'Bullet', 'Alignment', 'Format', 'Many lines', 'Images', 'Clear'] do
+    ListBox1.AddItem(s);
   TMSFNCRichEditorPDFIO1.Options.OpenInPDFReader := True;
   TMSFNCRichEditorPDFIO1.Options.Header := 'TMS FNC RichEditor PDF Export';
 
   TMSFNCRichEditorPrintIO1.RichEditor := TMSFNCRichEditor1;
 end;
 
-procedure TForm1.ListBox1Click(Sender: TObject);
+procedure TForm1.ListBox1ItemSelected(Sender: TObject; AItem: TTMSFNCListBoxItem);
 begin
   TMSFNCRichEditor1.Clear;
 

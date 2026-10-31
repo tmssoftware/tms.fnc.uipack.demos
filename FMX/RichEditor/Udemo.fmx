@@ -1,165 +1,98 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'TMSFNCRichEditor Demo'
-  ClientHeight = 605
-  ClientWidth = 929
+  Caption = 'TMS FNC UI Pack - Rich editor'
+  ClientHeight = 720
+  ClientWidth = 1100
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
-  object Panel1: TPanel
+  object DemoHeader: TTMSFNCPanel
     Align = Top
     Size.Width = 929.000000000000000000
-    Size.Height = 41.000000000000000000
+    Size.Height = 72.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    object TMSFNCRichEditorEditToolBar1: TTMSFNCRichEditorEditToolBar
-      DisableFocusEffect = False
-      Size.Width = 210.000000000000000000
-      Size.Height = 30.000000000000000000
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
-      Appearance.Fill.Kind = gfkGradient
-      Appearance.Fill.ColorTo = xFFE6E6E6
-      Appearance.Stroke.Color = claGray
-      Appearance.SeparatorStroke.Color = claWhite
-      CompactBitmaps = <>
-      CompactAppearance.NormalFill.Kind = gfkGradient
-      CompactAppearance.NormalFill.Color = xFFF9FBFC
-      CompactAppearance.NormalFill.ColorTo = xFFE6EBEB
-      CompactAppearance.NormalFill.ColorMirror = xFFDCDCEC
-      CompactAppearance.NormalFill.ColorMirrorTo = xFFDCE1EC
-      CompactAppearance.NormalStroke.Color = claGray
-      CompactAppearance.HoverFill.Kind = gfkGradient
-      CompactAppearance.HoverFill.Color = xFFE5E7E8
-      CompactAppearance.HoverFill.ColorTo = xFFD2D7D7
-      CompactAppearance.HoverFill.ColorMirror = xFFC8C8D8
-      CompactAppearance.HoverFill.ColorMirrorTo = xFFC8CDD8
-      CompactAppearance.HoverStroke.Color = claGray
-      CompactAppearance.DownFill.Kind = gfkGradient
-      CompactAppearance.DownFill.Color = xFFDBDDDE
-      CompactAppearance.DownFill.ColorTo = xFFC8CDCD
-      CompactAppearance.DownFill.ColorMirror = xFFBEBECE
-      CompactAppearance.DownFill.ColorMirrorTo = xFFBEC3CE
-      CompactAppearance.DownStroke.Color = claGray
-      CompactAppearance.DisabledFill.Color = claLightgray
-      CompactAppearance.DisabledStroke.Color = claGray
-      QuickMenuButtonAppearance.NormalFill.Kind = gfkGradient
-      QuickMenuButtonAppearance.NormalFill.Color = xFFF9FBFC
-      QuickMenuButtonAppearance.NormalFill.ColorTo = xFFE6EBEB
-      QuickMenuButtonAppearance.NormalFill.ColorMirror = xFFDCDCEC
-      QuickMenuButtonAppearance.NormalFill.ColorMirrorTo = xFFDCE1EC
-      QuickMenuButtonAppearance.NormalStroke.Color = claGray
-      QuickMenuButtonAppearance.HoverFill.Kind = gfkGradient
-      QuickMenuButtonAppearance.HoverFill.Color = xFFE5E7E8
-      QuickMenuButtonAppearance.HoverFill.ColorTo = xFFD2D7D7
-      QuickMenuButtonAppearance.HoverFill.ColorMirror = xFFC8C8D8
-      QuickMenuButtonAppearance.HoverFill.ColorMirrorTo = xFFC8CDD8
-      QuickMenuButtonAppearance.HoverStroke.Color = claGray
-      QuickMenuButtonAppearance.DownFill.Kind = gfkGradient
-      QuickMenuButtonAppearance.DownFill.Color = xFFDBDDDE
-      QuickMenuButtonAppearance.DownFill.ColorTo = xFFC8CDCD
-      QuickMenuButtonAppearance.DownFill.ColorMirror = xFFBEBECE
-      QuickMenuButtonAppearance.DownFill.ColorMirrorTo = xFFBEC3CE
-      QuickMenuButtonAppearance.DownStroke.Color = claGray
-      QuickMenuButtonAppearance.DisabledFill.Color = claLightgray
-      QuickMenuButtonAppearance.DisabledStroke.Color = claGray
-      Font.Name = 'Segoe UI'
-      OptionsMenu.ShowButton = False
-      RichEditor = TMSFNCRichEditor1
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
     end
-    object TMSFNCRichEditorFormatToolBar1: TTMSFNCRichEditorFormatToolBar
-      DisableFocusEffect = False
-      Position.X = 208.000000000000000000
-      Size.Width = 692.000000000000000000
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 705.000000000000000000
       Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
-      Appearance.Fill.Kind = gfkGradient
-      Appearance.Fill.ColorTo = xFFE6E6E6
-      Appearance.Stroke.Color = claGray
-      Appearance.SeparatorStroke.Color = claWhite
-      CompactBitmaps = <>
-      CompactAppearance.NormalFill.Kind = gfkGradient
-      CompactAppearance.NormalFill.Color = xFFF9FBFC
-      CompactAppearance.NormalFill.ColorTo = xFFE6EBEB
-      CompactAppearance.NormalFill.ColorMirror = xFFDCDCEC
-      CompactAppearance.NormalFill.ColorMirrorTo = xFFDCE1EC
-      CompactAppearance.NormalStroke.Color = claGray
-      CompactAppearance.HoverFill.Kind = gfkGradient
-      CompactAppearance.HoverFill.Color = xFFE5E7E8
-      CompactAppearance.HoverFill.ColorTo = xFFD2D7D7
-      CompactAppearance.HoverFill.ColorMirror = xFFC8C8D8
-      CompactAppearance.HoverFill.ColorMirrorTo = xFFC8CDD8
-      CompactAppearance.HoverStroke.Color = claGray
-      CompactAppearance.DownFill.Kind = gfkGradient
-      CompactAppearance.DownFill.Color = xFFDBDDDE
-      CompactAppearance.DownFill.ColorTo = xFFC8CDCD
-      CompactAppearance.DownFill.ColorMirror = xFFBEBECE
-      CompactAppearance.DownFill.ColorMirrorTo = xFFBEC3CE
-      CompactAppearance.DownStroke.Color = claGray
-      CompactAppearance.DisabledFill.Color = claLightgray
-      CompactAppearance.DisabledStroke.Color = claGray
-      QuickMenuButtonAppearance.NormalFill.Kind = gfkGradient
-      QuickMenuButtonAppearance.NormalFill.Color = xFFF9FBFC
-      QuickMenuButtonAppearance.NormalFill.ColorTo = xFFE6EBEB
-      QuickMenuButtonAppearance.NormalFill.ColorMirror = xFFDCDCEC
-      QuickMenuButtonAppearance.NormalFill.ColorMirrorTo = xFFDCE1EC
-      QuickMenuButtonAppearance.NormalStroke.Color = claGray
-      QuickMenuButtonAppearance.HoverFill.Kind = gfkGradient
-      QuickMenuButtonAppearance.HoverFill.Color = xFFE5E7E8
-      QuickMenuButtonAppearance.HoverFill.ColorTo = xFFD2D7D7
-      QuickMenuButtonAppearance.HoverFill.ColorMirror = xFFC8C8D8
-      QuickMenuButtonAppearance.HoverFill.ColorMirrorTo = xFFC8CDD8
-      QuickMenuButtonAppearance.HoverStroke.Color = claGray
-      QuickMenuButtonAppearance.DownFill.Kind = gfkGradient
-      QuickMenuButtonAppearance.DownFill.Color = xFFDBDDDE
-      QuickMenuButtonAppearance.DownFill.ColorTo = xFFC8CDCD
-      QuickMenuButtonAppearance.DownFill.ColorMirror = xFFBEBECE
-      QuickMenuButtonAppearance.DownFill.ColorMirrorTo = xFFBEC3CE
-      QuickMenuButtonAppearance.DownStroke.Color = claGray
-      QuickMenuButtonAppearance.DisabledFill.Color = claLightgray
-      QuickMenuButtonAppearance.DisabledStroke.Color = claGray
-      Font.Name = 'Segoe UI'
-      OptionsMenu.ShowButton = False
-      RichEditor = TMSFNCRichEditor1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Rich text editor'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 705.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Edit formatted text, load a sample, export the document to PDF or print it'
     end
   end
-  object Panel2: TPanel
-    Align = Right
-    Position.X = 696.000000000000000000
-    Position.Y = 41.000000000000000000
-    Size.Width = 233.000000000000000000
+  object Panel2: TTMSFNCPanel
+    Align = Left
+    Size.Width = 260.000000000000000000
     Size.Height = 564.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
-    object ListBox1: TListBox
+    Header.Visible = False
+    Margins.Left = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+    object ListBox1: TTMSFNCListBox
       Position.X = 16.000000000000000000
-      Position.Y = 32.000000000000000000
+      Position.Y = 40.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 240.000000000000000000
+      Size.PlatformDefault = False
       TabOrder = 0
-      OnClick = ListBox1Click
-      DisableFocusEffect = True
-      Items.Strings = (
-        'File test'
-        'Indent'
-        'Bullet'
-        'Alignment'
-        'Format'
-        'Many lines'
-        'Images'
-        'Clear')
-      DefaultItemStyles.ItemStyle = ''
-      DefaultItemStyles.GroupHeaderStyle = ''
-      DefaultItemStyles.GroupFooterStyle = ''
-      Viewport.Width = 196.000000000000000000
-      Viewport.Height = 196.000000000000000000
+      OnItemSelected = ListBox1ItemSelected
     end
-    object Label1: TLabel
+    object Label1: TTMSFNCHTMLText
       Position.X = 16.000000000000000000
-      Position.Y = 8.000000000000000000
+      Position.Y = 12.000000000000000000
       Text = 'Samples'
+      Size.Width = 228.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
     object TMSFNCRichEditorPDFIO1: TTMSFNCRichEditorPDFIO
       Size.Width = 26.000000000000000000
@@ -192,21 +125,21 @@ object Form1: TForm1
       Options.PageNumberFont.Name = 'Arial'
       OnGetFooter = TMSFNCRichEditorPDFIO1GetFooter
     end
-    object Button1: TButton
+    object Button1: TTMSFNCButton
       Position.X = 16.000000000000000000
-      Position.Y = 240.000000000000000000
-      Size.Width = 113.000000000000000000
-      Size.Height = 22.000000000000000000
+      Position.Y = 296.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 3
       Text = 'Export To PDF'
       OnClick = Button1Click
     end
-    object Button2: TButton
+    object Button2: TTMSFNCButton
       Position.X = 16.000000000000000000
-      Position.Y = 280.000000000000000000
-      Size.Width = 113.000000000000000000
-      Size.Height = 22.000000000000000000
+      Position.Y = 336.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 2
       Text = 'Print'
@@ -242,27 +175,139 @@ object Form1: TForm1
       RichEditor = TMSFNCRichEditor1
     end
   end
-  object Panel3: TPanel
+  object Panel3: TTMSFNCPanel
     Align = Client
     Size.Width = 696.000000000000000000
     Size.Height = 564.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
-    object TMSFNCRichEditor1: TTMSFNCRichEditor
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      Anchors = [akLeft, akTop, akRight, akBottom]
-      Cursor = crIBeam
-      Font.Size = 14.000000000000000000
-      Font.Name = 'Segoe UI'
-      Margins.Left = 4.000000000000000000
-      Margins.Right = 4.000000000000000000
-      Position.X = 4.000000000000000000
-      Position.Y = 31.000000000000000000
-      Size.Width = 688.000000000000000000
-      Size.Height = 533.000000000000000000
+    Header.Visible = False
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+    object Panel1: TTMSFNCPanel
+      Align = Top
+      Size.Width = 929.000000000000000000
+      Size.Height = 80.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
-      Version = '1.8.5.3'
+      Header.Visible = False
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      object TMSFNCRichEditorEditToolBar1: TTMSFNCRichEditorEditToolBar
+        DisableFocusEffect = False
+        Size.Width = 210.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Appearance.Fill.Kind = gfkGradient
+        Appearance.Fill.ColorTo = xFFE6E6E6
+        Appearance.Stroke.Color = claGray
+        Appearance.SeparatorStroke.Color = claWhite
+        CompactBitmaps = <>
+        CompactAppearance.NormalFill.Kind = gfkGradient
+        CompactAppearance.NormalFill.Color = xFFF9FBFC
+        CompactAppearance.NormalFill.ColorTo = xFFE6EBEB
+        CompactAppearance.NormalFill.ColorMirror = xFFDCDCEC
+        CompactAppearance.NormalFill.ColorMirrorTo = xFFDCE1EC
+        CompactAppearance.NormalStroke.Color = claGray
+        CompactAppearance.HoverFill.Kind = gfkGradient
+        CompactAppearance.HoverFill.Color = xFFE5E7E8
+        CompactAppearance.HoverFill.ColorTo = xFFD2D7D7
+        CompactAppearance.HoverFill.ColorMirror = xFFC8C8D8
+        CompactAppearance.HoverFill.ColorMirrorTo = xFFC8CDD8
+        CompactAppearance.HoverStroke.Color = claGray
+        CompactAppearance.DownFill.Kind = gfkGradient
+        CompactAppearance.DownFill.Color = xFFDBDDDE
+        CompactAppearance.DownFill.ColorTo = xFFC8CDCD
+        CompactAppearance.DownFill.ColorMirror = xFFBEBECE
+        CompactAppearance.DownFill.ColorMirrorTo = xFFBEC3CE
+        CompactAppearance.DownStroke.Color = claGray
+        CompactAppearance.DisabledFill.Color = claLightgray
+        CompactAppearance.DisabledStroke.Color = claGray
+        QuickMenuButtonAppearance.NormalFill.Kind = gfkGradient
+        QuickMenuButtonAppearance.NormalFill.Color = xFFF9FBFC
+        QuickMenuButtonAppearance.NormalFill.ColorTo = xFFE6EBEB
+        QuickMenuButtonAppearance.NormalFill.ColorMirror = xFFDCDCEC
+        QuickMenuButtonAppearance.NormalFill.ColorMirrorTo = xFFDCE1EC
+        QuickMenuButtonAppearance.NormalStroke.Color = claGray
+        QuickMenuButtonAppearance.HoverFill.Kind = gfkGradient
+        QuickMenuButtonAppearance.HoverFill.Color = xFFE5E7E8
+        QuickMenuButtonAppearance.HoverFill.ColorTo = xFFD2D7D7
+        QuickMenuButtonAppearance.HoverFill.ColorMirror = xFFC8C8D8
+        QuickMenuButtonAppearance.HoverFill.ColorMirrorTo = xFFC8CDD8
+        QuickMenuButtonAppearance.HoverStroke.Color = claGray
+        QuickMenuButtonAppearance.DownFill.Kind = gfkGradient
+        QuickMenuButtonAppearance.DownFill.Color = xFFDBDDDE
+        QuickMenuButtonAppearance.DownFill.ColorTo = xFFC8CDCD
+        QuickMenuButtonAppearance.DownFill.ColorMirror = xFFBEBECE
+        QuickMenuButtonAppearance.DownFill.ColorMirrorTo = xFFBEC3CE
+        QuickMenuButtonAppearance.DownStroke.Color = claGray
+        QuickMenuButtonAppearance.DisabledFill.Color = claLightgray
+        QuickMenuButtonAppearance.DisabledStroke.Color = claGray
+        Font.Name = 'Segoe UI'
+        OptionsMenu.ShowButton = False
+        RichEditor = TMSFNCRichEditor1
+        Position.X = 8.000000000000000000
+        Position.Y = 6.000000000000000000
+      end
+      object TMSFNCRichEditorFormatToolBar1: TTMSFNCRichEditorFormatToolBar
+        DisableFocusEffect = False
+        Position.X = 8.000000000000000000
+        Size.Width = 692.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Appearance.Fill.Kind = gfkGradient
+        Appearance.Fill.ColorTo = xFFE6E6E6
+        Appearance.Stroke.Color = claGray
+        Appearance.SeparatorStroke.Color = claWhite
+        CompactBitmaps = <>
+        CompactAppearance.NormalFill.Kind = gfkGradient
+        CompactAppearance.NormalFill.Color = xFFF9FBFC
+        CompactAppearance.NormalFill.ColorTo = xFFE6EBEB
+        CompactAppearance.NormalFill.ColorMirror = xFFDCDCEC
+        CompactAppearance.NormalFill.ColorMirrorTo = xFFDCE1EC
+        CompactAppearance.NormalStroke.Color = claGray
+        CompactAppearance.HoverFill.Kind = gfkGradient
+        CompactAppearance.HoverFill.Color = xFFE5E7E8
+        CompactAppearance.HoverFill.ColorTo = xFFD2D7D7
+        CompactAppearance.HoverFill.ColorMirror = xFFC8C8D8
+        CompactAppearance.HoverFill.ColorMirrorTo = xFFC8CDD8
+        CompactAppearance.HoverStroke.Color = claGray
+        CompactAppearance.DownFill.Kind = gfkGradient
+        CompactAppearance.DownFill.Color = xFFDBDDDE
+        CompactAppearance.DownFill.ColorTo = xFFC8CDCD
+        CompactAppearance.DownFill.ColorMirror = xFFBEBECE
+        CompactAppearance.DownFill.ColorMirrorTo = xFFBEC3CE
+        CompactAppearance.DownStroke.Color = claGray
+        CompactAppearance.DisabledFill.Color = claLightgray
+        CompactAppearance.DisabledStroke.Color = claGray
+        QuickMenuButtonAppearance.NormalFill.Kind = gfkGradient
+        QuickMenuButtonAppearance.NormalFill.Color = xFFF9FBFC
+        QuickMenuButtonAppearance.NormalFill.ColorTo = xFFE6EBEB
+        QuickMenuButtonAppearance.NormalFill.ColorMirror = xFFDCDCEC
+        QuickMenuButtonAppearance.NormalFill.ColorMirrorTo = xFFDCE1EC
+        QuickMenuButtonAppearance.NormalStroke.Color = claGray
+        QuickMenuButtonAppearance.HoverFill.Kind = gfkGradient
+        QuickMenuButtonAppearance.HoverFill.Color = xFFE5E7E8
+        QuickMenuButtonAppearance.HoverFill.ColorTo = xFFD2D7D7
+        QuickMenuButtonAppearance.HoverFill.ColorMirror = xFFC8C8D8
+        QuickMenuButtonAppearance.HoverFill.ColorMirrorTo = xFFC8CDD8
+        QuickMenuButtonAppearance.HoverStroke.Color = claGray
+        QuickMenuButtonAppearance.DownFill.Kind = gfkGradient
+        QuickMenuButtonAppearance.DownFill.Color = xFFDBDDDE
+        QuickMenuButtonAppearance.DownFill.ColorTo = xFFC8CDCD
+        QuickMenuButtonAppearance.DownFill.ColorMirror = xFFBEBECE
+        QuickMenuButtonAppearance.DownFill.ColorMirrorTo = xFFBEC3CE
+        QuickMenuButtonAppearance.DownStroke.Color = claGray
+        QuickMenuButtonAppearance.DisabledFill.Color = claLightgray
+        QuickMenuButtonAppearance.DisabledStroke.Color = claGray
+        Font.Name = 'Segoe UI'
+        OptionsMenu.ShowButton = False
+        RichEditor = TMSFNCRichEditor1
+        Position.Y = 42.000000000000000000
+      end
     end
     object TMSFNCRichEditorHorizontalRuler1: TTMSFNCRichEditorHorizontalRuler
       Color = xFFF0F0F0
@@ -282,9 +327,26 @@ object Form1: TForm1
       Stroke.Kind = gskNone
       Tabs = <>
     end
+    object TMSFNCRichEditor1: TTMSFNCRichEditor
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Cursor = crIBeam
+      Font.Size = 14.000000000000000000
+      Font.Name = 'Segoe UI'
+      Size.Width = 688.000000000000000000
+      Size.Height = 533.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Version = '1.8.5.3'
+      Align = Client
+    end
   end
   object PrintDialog1: TPrintDialog
     Left = 848
     Top = 320
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end
