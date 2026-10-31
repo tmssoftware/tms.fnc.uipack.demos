@@ -68,7 +68,7 @@ object Form130: TForm130
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
-      Text = 'Create a PDF document with HTML text, drawing primitives and images, saved in your Documents folder'
+      Text = 'Text, shapes and images in a PDF file in your Documents folder'
     end
   end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer

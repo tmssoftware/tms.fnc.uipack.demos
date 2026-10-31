@@ -77,24 +77,24 @@ object Form1: TForm1
     ColumnCount = 6
     Columns = <
       item
-        Width = 100.000000000000000000
+        Width = 130.000000000000000000
       end
       item
-        Width = 352.000000000000000000
+        Width = 360.000000000000000000
       end
       item
-        Width = 100.000000000000000000
-      end
-      item
-        ReadOnly = True
-        Width = 100.000000000000000000
+        Width = 130.000000000000000000
       end
       item
         ReadOnly = True
-        Width = 100.000000000000000000
+        Width = 160.000000000000000000
       end
       item
-        Width = 80.000000000000000000
+        ReadOnly = True
+        Width = 220.000000000000000000
+      end
+      item
+        Width = 160.000000000000000000
       end>
     DefaultRowHeight = 40.000000000000000000
     Icons.ExpandIcon.PNG = {
