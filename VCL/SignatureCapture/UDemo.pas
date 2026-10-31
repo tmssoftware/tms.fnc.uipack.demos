@@ -9,29 +9,39 @@ uses
   VCL.TMSFNCCustomPicker, VCL.TMSFNCDatePicker, VCL.TMSFNCCustomControl,
   VCL.TMSFNCCalendar, VCL.TMSFNCCustomComponent, VCL.TMSFNCBitmapContainer,
   VCL.TMSFNCPanel, VCL.TMSFNCColorPicker, Vcl.ComCtrls,
-  VCL.TMSFNCSignatureCapture;
+  VCL.TMSFNCSignatureCapture,
+  VCL.TMSFNCButton, VCL.TMSFNCEdit, VCL.TMSFNCHTMLText, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector,
+  VCL.TMSFNCTrackBar;
 
 type
   TForm130 = class(TForm)
+    SigSecPen: TTMSFNCHTMLText;
+    SigSecFiles: TTMSFNCHTMLText;
+    SigPenColorCaption: TTMSFNCHTMLText;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCSignatureCapture1: TTMSFNCSignatureCapture;
-    Panel1: TPanel;
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Edit3: TEdit;
-    Label1: TLabel;
-    TrackBar1: TTrackBar;
-    Label2: TLabel;
+    Panel1: TTMSFNCPanel;
+    Button1: TTMSFNCButton;
+    Button2: TTMSFNCButton;
+    Button3: TTMSFNCButton;
+    Edit1: TTMSFNCEdit;
+    Edit2: TTMSFNCEdit;
+    Edit3: TTMSFNCEdit;
+    Label1: TTMSFNCHTMLText;
+    TrackBar1: TTMSFNCTrackBar;
+    Label2: TTMSFNCHTMLText;
     TMSFNCColorPicker1: TTMSFNCColorPicker;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
+    Label3: TTMSFNCHTMLText;
+    Label4: TTMSFNCHTMLText;
+    Label5: TTMSFNCHTMLText;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
-    procedure TrackBar1Change(Sender: TObject);
+    procedure TrackBar1ValueChanged(Sender: TObject; AValue: Single);
     procedure TMSFNCColorPicker1ColorSelected(Sender: TObject; AColor: TColor);
   private
     { Private declarations }
@@ -45,6 +55,8 @@ var
 implementation
 
 {$R *.dfm}
+
+{ demo-colors: TMSFNCColorPicker1 (the pen colour palette) }
 
 
 procedure TForm130.Button1Click(Sender: TObject);
@@ -73,9 +85,9 @@ begin
   TMSFNCSignatureCapture1.Pen.Color := TMSFNCColorPicker1.SelectedColor;
 end;
 
-procedure TForm130.TrackBar1Change(Sender: TObject);
+procedure TForm130.TrackBar1ValueChanged(Sender: TObject; AValue: Single);
 begin
-  TMSFNCSignatureCapture1.Pen.Width := TrackBar1.Position;
+  TMSFNCSignatureCapture1.Pen.Width := AValue;
 end;
 
 end.
