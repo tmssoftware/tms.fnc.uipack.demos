@@ -738,7 +738,6 @@ object Form130: TForm130
       Text = 'Category filter'
       WordWrapping = False
       HorizontalTextAlign = gtaLeading
-      AutoSize = True
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
     end
@@ -750,7 +749,6 @@ object Form130: TForm130
       Text = 'Length (cm) filter (ex: >= 100)'
       WordWrapping = False
       HorizontalTextAlign = gtaLeading
-      AutoSize = True
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
     end
