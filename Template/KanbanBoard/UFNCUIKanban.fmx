@@ -1,96 +1,128 @@
 object Form3: TForm3
   Left = 0
   Top = 0
-  Caption = 'Form3'
-  ClientHeight = 774
-  ClientWidth = 1300
+  Caption = 'TMS FNC UI Pack - Kanban Board template'
+  ClientHeight = 720
+  ClientWidth = 1200
+  Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
-  OnCreate = FormCreate
   DesignerMasterStyle = 0
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 1200.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 300.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+      ShowFollowSystem = True
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 836.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Kanban board starter'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 836.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Drag cards between columns; category marks and avatars on cards that follow Light and Dark'
+    end
+  end
   object TMSFNCKanbanBoard1: TTMSFNCKanbanBoard
-    Color = xFFEEF2F9
     Align = Client
-    Scale.X = 1.500000000000000000
-    Scale.Y = 1.500000000000000000
-    Size.Width = 866.666687011718800000
-    Size.Height = 516.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+    Size.Width = 1168.000000000000000000
+    Size.Height = 632.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     BitmapContainer = TMSFNCBitmapContainer1
     Stroke.Opacity = 0.300000011920929000
-    Fill.Color = xFFEEF2F9
     Columns = <
       item
         Name = 'Header0'
         HeaderText = 'Backlog'
         FooterText = 'Footer 0'
         HeaderHorizontalTextAlign = gtaLeading
-        Width = 200.000000000000000000
-        Stroke.Kind = gskNone
-        Stroke.Color = claDarkgray
+        Width = 270.000000000000000000
         HeaderFill.Kind = gfkNone
-        HeaderStroke.Color = claDarkgray
-        HeaderFont.Name = 'Segoe UI'
         FooterFill.Kind = gfkNone
-        FooterStroke.Color = claDarkgray
-        FooterFont.Name = 'Segoe UI'
         Items = <
           item
             Text = 
-              '<font color="#7A7a7a">Test performance of the new feature.<br><i' +
-              '>And with remote connection.</i></font><br><p align="right"><img' +
+              'Test performance of the new feature.<br><i' +
+              '>And with remote connection.</i><br><p align="right"><img' +
               ' height="30" width="30" src="user3"><img height="30" width="30" ' +
               'src="user2"></p>'
             Title = 'QA'
             VerticalTextAlign = gtaCenter
-            TextColor = xFF7A7A7A
-            SelectedTextColor = claBlack
             Tag = 2
-            Color = claNull
             MarkType = [kbmtTop]
-            MarkColor = xFF5A81E6
             MarkSizeTop = 8.000000000000000000
             TitleVerticalTextAlign = gtaCenter
-            TitleColor = xFF454545
-            SelectedTitleColor = claBlack
           end
           item
             Text = 
-              '<font color="#7A7a7a">Write the developers guide and <a href="">' +
-              'FAQ</a>.</font><br><p align="right"><img height="30" width="30" ' +
+              'Write the developers guide and <a href="">' +
+              'FAQ</a>.<br><p align="right"><img height="30" width="30" ' +
               'src="user1"></p>'
             Title = 'Documentation'
             VerticalTextAlign = gtaCenter
-            TextColor = xFF7A7A7A
-            SelectedTextColor = claBlack
-            Color = claNull
             MarkType = [kbmtTop]
-            MarkColor = xFFB0EDA8
             MarkSizeTop = 8.000000000000000000
             TitleVerticalTextAlign = gtaCenter
-            TitleColor = xFF454545
-            SelectedTitleColor = claBlack
           end
           item
             Text = 
-              '<font color="#7A7a7a">What will we implement in the next release' +
-              '</font><br><p align="right"><img height="30" width="30" src="use' +
+              'What will we implement in the next release' +
+              '<br><p align="right"><img height="30" width="30" src="use' +
               'r2"></p>'
             Title = 'Meeting: Next Phase'
             Expanded = False
             Expandable = True
             VerticalTextAlign = gtaCenter
-            TextColor = xFF7A7A7A
-            SelectedTextColor = claBlack
-            Color = claNull
             MarkType = [kbmtTop]
-            MarkColor = xFFB0EDA8
             MarkSizeTop = 8.000000000000000000
             TitleVerticalTextAlign = gtaCenter
-            TitleColor = xFF454545
-            SelectedTitleColor = claBlack
           end>
         Expandable = True
         Filter = <>
@@ -100,50 +132,33 @@ object Form3: TForm3
         HeaderText = 'In Progress'
         FooterText = 'Footer 1'
         HeaderHorizontalTextAlign = gtaLeading
-        Width = 200.000000000000000000
-        Stroke.Color = claDarkgray
+        Width = 270.000000000000000000
         HeaderFill.Kind = gfkNone
-        HeaderStroke.Color = claDarkgray
-        HeaderFont.Name = 'Segoe UI'
         FooterFill.Kind = gfkNone
-        FooterStroke.Color = claDarkgray
-        FooterFont.Name = 'Segoe UI'
         Items = <
           item
             Text = 
-              '<font color="#7A7a7a">Fix <u>high priority</u> issues documented' +
-              ' by customer.</font><br><p align="right"><img height="30" width=' +
+              'Fix <u>high priority</u> issues documented' +
+              ' by customer.<br><p align="right"><img height="30" width=' +
               '"30" src="user4"></p>'
             Title = 'Bugfix 376'
             VerticalTextAlign = gtaCenter
-            TextColor = xFF7A7A7A
-            SelectedTextColor = claBlack
             Tag = 4
-            Color = claNull
             MarkType = [kbmtTop]
-            MarkColor = xFFEE4353
             MarkSizeTop = 8.000000000000000000
             TitleVerticalTextAlign = gtaCenter
-            TitleColor = xFF454545
-            SelectedTitleColor = claBlack
           end
           item
             Text = 
-              '<font>Get in contact with the customer to let him know how far w' +
-              'e are on developing the newly requested items.</font><br><p alig' +
+              'Get in contact with the customer to let him know how far w' +
+              'e are on developing the newly requested items.<br><p alig' +
               'n="right"><img height="30" width="30" src="user6"></p>'
             Title = 'Customer Update'
             VerticalTextAlign = gtaCenter
-            TextColor = xFF7A7A7A
-            SelectedTextColor = claBlack
             Tag = 1
-            Color = claNull
             MarkType = [kbmtTop]
-            MarkColor = xFF62DDF0
             MarkSizeTop = 8.000000000000000000
             TitleVerticalTextAlign = gtaCenter
-            TitleColor = xFF454545
-            SelectedTitleColor = claBlack
           end>
         Expandable = True
         Filter = <>
@@ -153,49 +168,32 @@ object Form3: TForm3
         HeaderText = 'Review'
         FooterText = 'Footer 2'
         HeaderHorizontalTextAlign = gtaLeading
-        Width = 200.000000000000000000
-        Stroke.Color = claDarkgray
+        Width = 270.000000000000000000
         HeaderFill.Kind = gfkNone
-        HeaderStroke.Color = claDarkgray
-        HeaderFont.Name = 'Segoe UI'
         FooterFill.Kind = gfkNone
-        FooterStroke.Color = claDarkgray
-        FooterFont.Name = 'Segoe UI'
         Items = <
           item
             Text = 
-              '<font color="#7A7a7a">Issue when using non-alphanumeric characte' +
-              'rs.</font><br><p align="right"><img height="30" width="30" src="' +
+              'Issue when using non-alphanumeric characte' +
+              'rs.<br><p align="right"><img height="30" width="30" src="' +
               'user6"></p>'
             Title = 'Bugfix 374'
             VerticalTextAlign = gtaCenter
-            TextColor = xFF7A7A7A
-            SelectedTextColor = claBlack
             Tag = 3
-            Color = claNull
             MarkType = [kbmtTop]
-            MarkColor = xFFF0CA35
             MarkSizeTop = 8.000000000000000000
             TitleVerticalTextAlign = gtaCenter
-            TitleColor = xFF454545
-            SelectedTitleColor = claBlack
           end
           item
             Text = 
-              '<font color="#7A7a7a">New additions.</font><br><p align="right">' +
+              'New additions.<br><p align="right">' +
               '<img height="30" width="30" src="user7"></p>'
             Title = 'Blog'
             VerticalTextAlign = gtaCenter
-            TextColor = xFF7A7A7A
-            SelectedTextColor = claBlack
             Tag = 2
-            Color = claNull
             MarkType = [kbmtTop]
-            MarkColor = xFF5A81E6
             MarkSizeTop = 8.000000000000000000
             TitleVerticalTextAlign = gtaCenter
-            TitleColor = xFF454545
-            SelectedTitleColor = claBlack
           end>
         Expandable = True
         Filter = <>
@@ -205,71 +203,40 @@ object Form3: TForm3
         HeaderText = 'Complete'
         FooterText = 'Footer 3'
         HeaderHorizontalTextAlign = gtaLeading
-        Width = 200.000000000000000000
-        UseDefaultAppearance = False
-        Fill.Color = xFFF6F8FC
-        Stroke.Color = xFFEEF2F9
+        Width = 270.000000000000000000
         HeaderFill.Kind = gfkNone
-        HeaderFill.Color = xFFEEF2F9
         HeaderStroke.Kind = gskNone
-        HeaderStroke.Color = xFFF8F8F8
-        HeaderFont.Size = 20.000000000000000000
-        HeaderFont.Color = xFF454545
-        HeaderFont.Name = 'Segoe UI'
         FooterFill.Kind = gfkNone
-        FooterStroke.Color = claDarkgray
-        FooterFont.Name = 'Segoe UI'
         Items = <
           item
             Text = 
-              '<font color="#7A7a7a">Name: <b>Serv2</b><br>IP: <b>192.168.124.1' +
-              '2</b></font><br><p align="right"><img height="30" width="30" src' +
+              'Name: <b>Serv2</b><br>IP: <b>192.168.124.1' +
+              '2</b><br><p align="right"><img height="30" width="30" src' +
               '="user4"></p>'
             Title = 'Install New server'
             VerticalTextAlign = gtaCenter
-            TextColor = xFF7A7A7A
-            SelectedTextColor = claBlack
-            UseDefaultAppearance = False
-            Color = xFFF0FAF2
-            MarkColor = xFFEE4353
             MarkSizeTop = 8.000000000000000000
             TitleVerticalTextAlign = gtaCenter
-            TitleColor = xFF454545
-            SelectedTitleColor = claBlack
           end
           item
             Text = 
-              '<font color="#7A7a7a">Release is scheduled the second of next mo' +
-              'nth.</font><br><p align="right"><img height="30" width="30" src=' +
+              'Release is scheduled the second of next mo' +
+              'nth.<br><p align="right"><img height="30" width="30" src=' +
               '"user5"><img height="30" width="30" src="user7"></p>'
             Title = 'Release Planning'
             VerticalTextAlign = gtaCenter
-            TextColor = xFF7A7A7A
-            SelectedTextColor = claBlack
-            UseDefaultAppearance = False
-            Color = xFFF0FAF2
-            MarkColor = xFFEE4353
             MarkSizeTop = 8.000000000000000000
             TitleVerticalTextAlign = gtaCenter
-            TitleColor = xFF454545
-            SelectedTitleColor = claBlack
           end
           item
             Text = 
-              '<font color="#7A7a7a">Administrators need to reconnect manually.' +
-              '</font><br><p align="right"><img height="30" width="30" src="use' +
+              'Administrators need to reconnect manually.' +
+              '<br><p align="right"><img height="30" width="30" src="use' +
               'r2"></p>'
             Title = 'Login issues'
             VerticalTextAlign = gtaCenter
-            TextColor = xFF7A7A7A
-            SelectedTextColor = claBlack
-            UseDefaultAppearance = False
-            Color = xFFF0FAF2
-            MarkColor = xFFEE4353
             MarkSizeTop = 8.000000000000000000
             TitleVerticalTextAlign = gtaCenter
-            TitleColor = xFF454545
-            SelectedTitleColor = claBlack
           end>
         Filter = <>
       end>
@@ -278,45 +245,23 @@ object Form3: TForm3
     ColumnsAppearance.Margins.Right = 10.000000000000000000
     ColumnsAppearance.Margins.Bottom = 10.000000000000000000
     ColumnsAppearance.Spacing = 10.000000000000000000
-    ColumnsAppearance.HeaderFont.Size = 20.000000000000000000
-    ColumnsAppearance.HeaderFont.Color = xFF454545
-    ColumnsAppearance.HeaderFont.Name = 'Segoe UI'
-    ColumnsAppearance.FooterFont.Name = 'Segoe UI'
-    ColumnsAppearance.HeaderFill.Color = xFFEEF2F9
-    ColumnsAppearance.HeaderFill.ColorTo = xFFF0F3FA
     ColumnsAppearance.HeaderStroke.Kind = gskNone
-    ColumnsAppearance.HeaderStroke.Color = xFFF8F8F8
-    ColumnsAppearance.FooterStroke.Color = claDarkgray
-    ColumnsAppearance.Fill.Color = xFFF6F8FC
-    ColumnsAppearance.Stroke.Color = xFFEEF2F9
     Interaction.DragDropMode = kbdmMove
-    ItemsAppearance.Font.Color = claCoral
-    ItemsAppearance.Font.Name = 'Segoe UI'
-    ItemsAppearance.TitleFont.Size = 16.000000000000000000
-    ItemsAppearance.TitleFont.Color = x00303030
-    ItemsAppearance.TitleFont.Name = 'Segoe UI'
     ItemsAppearance.Spacing = 40.000000000000000000
     ItemsAppearance.Margins.Left = 10.000000000000000000
     ItemsAppearance.Margins.Top = 10.000000000000000000
     ItemsAppearance.Margins.Right = 10.000000000000000000
     ItemsAppearance.Margins.Bottom = 10.000000000000000000
-    ItemsAppearance.Fill.Color = xFFFFFFFE
-    ItemsAppearance.Stroke.Color = claWhite
-    ItemsAppearance.SelectedFill.Color = xFFEEF2F9
-    ItemsAppearance.SelectedStroke.Color = xFF1BADF8
-    ItemsAppearance.DisabledFill.Color = claDarkgray
     ItemsAppearance.DisabledStroke.Kind = gskNone
-    ItemsAppearance.DisabledStroke.Color = claDarkgray
     ItemsAppearance.FixedHeight = 25.000000000000000000
     OnItemCustomDrawMark = TMSFNCKanbanBoard1ItemCustomDrawMark
-    OnBeforeDrawItem = TMSFNCKanbanBoard1BeforeDrawItem
   end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
     Size.Width = 39.000000000000000000
     Size.Height = 39.000000000000000000
     Size.PlatformDefault = False
     Position.X = 568.000000000000000000
-    Position.Y = 832.000000000000000000
+    Position.Y = 904.000000000000000000
     Items = <
       item
         Bitmap.PNG = {
@@ -16347,5 +16292,17 @@ object Form3: TForm3
         Name = 'Item10'
         Tag = 0
       end>
+  end
+  object KanbanBoardAdapter: TTMSFNCKanbanBoardDatabaseAdapter
+    Size.Width = 26.000000000000000000
+    Size.Height = 26.000000000000000000
+    Size.PlatformDefault = False
+    Position.X = 104.000000000000000000
+    Position.Y = 24.000000000000000000
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

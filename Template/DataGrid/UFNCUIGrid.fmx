@@ -1,19 +1,79 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  ActiveControl = TMSFNCDataGrid1
-  Caption = 'FNC UI Grid'
-  ClientHeight = 443
-  ClientWidth = 859
+  Caption = 'TMS FNC UI Pack - Data Grid template'
+  ClientHeight = 720
+  ClientWidth = 1200
+  Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 1200.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 300.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+      ShowFollowSystem = True
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 836.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Data grid starter'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 836.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Status pills, progress bars and totals in the theme''s colors: load your own CSV file or connect a dataset'
+    end
+  end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Align = Client
-    Size.Width = 859.000000000000000000
-    Size.Height = 443.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+    Size.Width = 1168.000000000000000000
+    Size.Height = 632.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     BitmapContainer = TMSFNCBitmapContainer1
@@ -263,24 +323,24 @@ object Form1: TForm1
     ColumnCount = 6
     Columns = <
       item
-        Width = 100.000000000000000000
+        Width = 120.000000000000000000
       end
       item
-        Width = 352.000000000000000000
+        Width = 360.000000000000000000
       end
       item
-        Width = 100.000000000000000000
-      end
-      item
-        ReadOnly = True
-        Width = 100.000000000000000000
+        Width = 120.000000000000000000
       end
       item
         ReadOnly = True
-        Width = 100.000000000000000000
+        Width = 150.000000000000000000
       end
       item
-        Width = 80.000000000000000000
+        ReadOnly = True
+        Width = 220.000000000000000000
+      end
+      item
+        Width = 150.000000000000000000
       end>
     DefaultRowHeight = 40.000000000000000000
     OnAfterDrawCell = TMSFNCDataGrid1AfterDrawCell
@@ -292,7 +352,7 @@ object Form1: TForm1
     Size.Height = 26.000000000000000000
     Size.PlatformDefault = False
     Position.X = 670.000000000000000000
-    Position.Y = 278.000000000000000000
+    Position.Y = 350.000000000000000000
     Items = <
       item
         Bitmap.PNG = {
@@ -18487,5 +18547,17 @@ object Form1: TForm1
         Name = 'user9.png'
         Tag = 0
       end>
+  end
+  object DataGridAdapter: TTMSFNCDataGridDatabaseAdapter
+    Size.Width = 26.000000000000000000
+    Size.Height = 26.000000000000000000
+    Size.PlatformDefault = False
+    Position.X = 104.000000000000000000
+    Position.Y = 24.000000000000000000
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

@@ -1,7 +1,7 @@
 object Form130: TForm130
   Width = 1200
   Height = 760
-  Caption = 'TMS FNC Data Grid Grid in Grid Demo'
+  Caption = 'TMS FNC UI Pack - Data Grid Grid in Grid'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

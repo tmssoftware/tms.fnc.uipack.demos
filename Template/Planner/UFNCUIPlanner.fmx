@@ -1,20 +1,78 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'FNC Planner'
-  ClientHeight = 494
-  ClientWidth = 702
+  Caption = 'TMS FNC UI Pack - Planner template'
+  ClientHeight = 720
+  ClientWidth = 1200
+  Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 1200.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 300.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+      ShowFollowSystem = True
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 836.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Planner starter'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 836.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'A week of meetings for four people: drag, resize and select items; categories keep their colors in every theme'
+    end
+  end
   object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
     Size.Width = 39.000000000000000000
     Size.Height = 39.000000000000000000
     Size.PlatformDefault = False
     Position.X = 862.000000000000000000
-    Position.Y = 110.000000000000000000
+    Position.Y = 182.000000000000000000
     Items = <
       item
         Bitmap.PNG = {
@@ -19503,36 +19561,25 @@ object Form1: TForm1
       end>
   end
   object TMSFNCPlanner1: TTMSFNCPlanner
-    Color = xFF474854
     Align = Client
-    Size.Width = 702.000000000000000000
-    Size.Height = 494.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+    Size.Width = 1168.000000000000000000
+    Size.Height = 632.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
     BitmapContainer = TMSFNCBitmapContainer1
     DefaultItem.StartTime = 44623.270833333340000000
     DefaultItem.EndTime = 44623.375000000000000000
-    Fill.Color = xFF474854
-    GridCellAppearance.VerticalStroke.Color = xFF9DC0DD
-    GridCellAppearance.HorizontalStroke.Color = xFF474854
     GridCellAppearance.HorizontalSubStroke.Kind = gskNone
-    GridCellAppearance.HorizontalSubStroke.Color = xFF474854
-    GridCellAppearance.InActiveFill.Color = xFF474854
     GridCellAppearance.Fill.Kind = gfkNone
-    GridCellAppearance.Fill.Color = xFF333441
-    GridCellAppearance.DisabledFill.Color = xFFE6E6E6
     Groups = <>
     GroupsAppearance.TopSize = 50.000000000000000000
     GroupsAppearance.BottomSize = 50.000000000000000000
     GroupsAppearance.TopFill.Kind = gfkNone
     GroupsAppearance.BottomFill.Kind = gfkNone
-    GroupsAppearance.TopFont.Color = xFFFAFAFA
-    GroupsAppearance.TopFont.Name = 'Segoe UI'
     GroupsAppearance.TopFont.StyleExt = {00070000000000000004000000}
-    GroupsAppearance.BottomFont.Color = claGray
-    GroupsAppearance.BottomFont.Name = 'Segoe UI'
-    GroupsAppearance.TopStroke.Color = xFF9DC0DD
-    GroupsAppearance.BottomStroke.Color = claDarkgray
     Items = <
       item
         Text = 
@@ -19542,10 +19589,6 @@ object Form1: TForm1
         StartTime = 44623.354166666660000000
         EndTime = 44623.520833333340000000
         Color = xFF41AFF1
-        SelectedColor = xFF9092FE
-        FontColor = xFFFAFAFA
-        TitleFontColor = xFFFFFFFE
-        TitleFontSize = 16.000000000000000000
       end
       item
         Text = 'Fix <u>high priority</u> issues documented by customer.'
@@ -19554,10 +19597,6 @@ object Form1: TForm1
         StartTime = 44623.354166666660000000
         EndTime = 44623.520833333340000000
         Color = xFFE63D3D
-        SelectedColor = xFF9092FE
-        FontColor = xFFFAFAFA
-        TitleFontColor = xFFFFFFFE
-        TitleFontSize = 16.000000000000000000
       end
       item
         Text = 'Fix <u>high priority</u> issues...'
@@ -19566,9 +19605,6 @@ object Form1: TForm1
         StartTime = 44623.550833333340000000
         EndTime = 44623.604166666660000000
         Color = xFFE63D3D
-        FontColor = xFFFAFAFA
-        TitleFontColor = xFFFFFFFE
-        TitleFontSize = 16.000000000000000000
       end
       item
         Text = 'On leave till Thursday'
@@ -19577,9 +19613,6 @@ object Form1: TForm1
         StartTime = 44623.354166666660000000
         EndTime = 44623.729166666660000000
         Color = xFFA5A5A5
-        FontColor = xFFFAFAFA
-        TitleFontColor = xFFFFFFFE
-        TitleFontSize = 16.000000000000000000
         TextHorizontalTextAlign = gtaCenter
       end
       item
@@ -19589,23 +19622,14 @@ object Form1: TForm1
         StartTime = 44623.395833333340000000
         EndTime = 44623.540833333340000000
         Color = xFFEFBE2B
-        FontColor = xFFFAFAFA
-        TitleFontColor = xFFFFFFFE
-        TitleFontSize = 16.000000000000000000
       end
       item
         Text = 
-          'Write the developers guide and <font color="#1BDAF8"><u>FAQ</u><' +
-          '/font>.'
+          'Write the developers guide and <u>FAQ</u>.'
         Title = 'Documentation'
         StartTime = 44623.562500000000000000
         EndTime = 44623.729166666660000000
         Color = xFFB0EDA8
-        FontColor = xFFFAFAFA
-        TitleFontColor = xFFFAFAFA
-        TitleFontSize = 16.000000000000000000
-        LinkColor = xFF1BDAF8
-        SelectedLinkColor = xFF1BDAF8
       end
       item
         Text = 
@@ -19616,9 +19640,6 @@ object Form1: TForm1
         StartTime = 44623.624166666660000000
         EndTime = 44623.729166666660000000
         Color = xFF5FDAEF
-        FontColor = xFFFAFAFA
-        TitleFontColor = claWhite
-        TitleFontSize = 16.000000000000000000
       end
       item
         Text = 
@@ -19629,9 +19650,6 @@ object Form1: TForm1
         StartTime = 44623.624166666660000000
         EndTime = 44623.729166666660000000
         Color = xFF5FDAEF
-        FontColor = xFFFAFAFA
-        TitleFontColor = claWhite
-        TitleFontSize = 16.000000000000000000
       end>
     Mode = pmMultiDayRes
     ModeSettings.StartTime = 44623.632409039350000000
@@ -19641,24 +19659,8 @@ object Form1: TForm1
     PositionsAppearance.Size = 85.000000000000000000
     PositionsAppearance.TopSize = 50.000000000000000000
     PositionsAppearance.BottomSize = 50.000000000000000000
-    PositionsAppearance.TopFont.Color = xFF9DC0DD
-    PositionsAppearance.TopFont.Name = 'Segoe UI'
-    PositionsAppearance.BottomFont.Color = claGray
-    PositionsAppearance.BottomFont.Name = 'Segoe UI'
     PositionsAppearance.TopFill.Kind = gfkNone
     PositionsAppearance.BottomFill.Kind = gfkNone
-    PositionsAppearance.TopStroke.Color = xFF9DC0DD
-    PositionsAppearance.BottomStroke.Color = xFF9DC0DD
-    PositionsAppearance.TopNavigationButtonStroke.Color = xFF9DC0DD
-    PositionsAppearance.BottomNavigationButtonStroke.Color = claDarkgray
-    PositionsAppearance.TopNavigationButtonHoverFill.Color = xFFE1F5FF
-    PositionsAppearance.BottomNavigationButtonHoverFill.Color = xFFE1F5FF
-    PositionsAppearance.TopNavigationButtonHoverStroke.Color = claDarkgray
-    PositionsAppearance.BottomNavigationButtonHoverStroke.Color = claDarkgray
-    PositionsAppearance.TopNavigationButtonDownFill.Color = xFF95D5F6
-    PositionsAppearance.BottomNavigationButtonDownFill.Color = xFF95D5F6
-    PositionsAppearance.TopNavigationButtonDownStroke.Color = claDarkgray
-    PositionsAppearance.BottomNavigationButtonDownStroke.Color = claDarkgray
     PositionsAppearance.TopLeftNavigationButtonSize = 18.000000000000000000
     PositionsAppearance.TopRightNavigationButtonSize = 18.000000000000000000
     PositionsAppearance.BottomLeftNavigationButtonSize = 18.000000000000000000
@@ -19680,8 +19682,6 @@ object Form1: TForm1
         Name = 'Resource3'
         Text = '<img src="user8.png" width="30" height="30"/> Kristoff'
       end>
-    SelectionAppearance.Fill.Color = xFF95D5F6
-    Stroke.Color = xFF474855
     TimeLine.DisplayStart = 16
     TimeLine.DisplayEnd = 35
     TimeLine.DisplayUnitSize = 30.000000000000000000
@@ -19691,19 +19691,6 @@ object Form1: TForm1
     TimeLineAppearance.RightSize = 50.000000000000000000
     TimeLineAppearance.LeftFill.Kind = gfkNone
     TimeLineAppearance.RightFill.Kind = gfkNone
-    TimeLineAppearance.LeftStroke.Color = xFF9DC0DD
-    TimeLineAppearance.RightStroke.Color = xFF9DC0DD
-    TimeLineAppearance.LeftSubStroke.Color = xFF9DC0DD
-    TimeLineAppearance.RightSubStroke.Color = claLightgray
-    TimeLineAppearance.LeftFont.Size = 18.000000000000000000
-    TimeLineAppearance.LeftFont.Color = xFF9DC0DD
-    TimeLineAppearance.LeftFont.Name = 'Segoe UI'
-    TimeLineAppearance.RightFont.Size = 18.000000000000000000
-    TimeLineAppearance.RightFont.Color = claGray
-    TimeLineAppearance.RightFont.Name = 'Segoe UI'
-    TimeLineAppearance.LeftSubUnitFontSize = 16.200000000000000000
-    TimeLineAppearance.RightSubUnitFontSize = 16.200000000000000000
-    TimeLineAppearance.CurrentTimeColor = xFF9092FE
     ItemsAppearance.Gap = 2.000000000000000000
     ItemsAppearance.MoveAreaSize = 4.000000000000000000
     ItemsAppearance.SizeAreaSize = 4.000000000000000000
@@ -19857,49 +19844,34 @@ object Form1: TForm1
       489224F994A6E9611004955F976559F6318EE397B6E4819543E022381C2842E5
       0559D11E5D8CA9288AA2288AA2287B4DAFF7072DD0905C8529B99D0000000049
       454E44AE426082}
-    ItemsAppearance.LinkStroke.Color = claDarkgray
     ItemsAppearance.LinkStroke.Width = 2.000000000000000000
     ItemsAppearance.LinkArrowSize = 7.000000000000000000
     ItemsAppearance.TitleStroke.Kind = gskNone
-    ItemsAppearance.TitleStroke.Color = claDarkgray
-    ItemsAppearance.TitleFont.Size = 16.000000000000000000
-    ItemsAppearance.TitleFont.Name = 'Segoe UI'
     ItemsAppearance.TitleFont.StyleExt = {00070000000000000004000000}
-    ItemsAppearance.Fill.Color = claDarkgray
     ItemsAppearance.Stroke.Kind = gskNone
-    ItemsAppearance.Stroke.Color = claDarkgray
-    ItemsAppearance.Font.Name = 'Segoe UI'
     ItemsAppearance.SelectedTitleStroke.Kind = gskNone
-    ItemsAppearance.SelectedTitleStroke.Color = claDarkgray
-    ItemsAppearance.SelectedTitleFont.Size = 16.000000000000000000
-    ItemsAppearance.SelectedTitleFont.Name = 'Segoe UI'
     ItemsAppearance.SelectedTitleFont.StyleExt = {00070000000000000004000000}
     ItemsAppearance.ActiveTitleStroke.Kind = gskNone
-    ItemsAppearance.ActiveTitleStroke.Color = claDarkgray
-    ItemsAppearance.ActiveTitleFont.Size = 16.000000000000000000
-    ItemsAppearance.ActiveTitleFont.Name = 'Segoe UI'
     ItemsAppearance.ActiveTitleFont.StyleExt = {00070000000000000004000000}
-    ItemsAppearance.SelectedFill.Color = xFF1BADF8
     ItemsAppearance.SelectedStroke.Kind = gskNone
-    ItemsAppearance.SelectedStroke.Color = claDarkgray
-    ItemsAppearance.SelectedFont.Name = 'Segoe UI'
-    ItemsAppearance.ActiveFill.Color = xFF1BADF8
     ItemsAppearance.ActiveStroke.Kind = gskNone
-    ItemsAppearance.ActiveStroke.Color = claDarkgray
-    ItemsAppearance.ActiveFont.Name = 'Segoe UI'
-    ItemsAppearance.DisabledTitleFill.Color = claDarkgray
     ItemsAppearance.DisabledTitleStroke.Kind = gskNone
-    ItemsAppearance.DisabledTitleStroke.Color = claDarkgray
-    ItemsAppearance.DisabledTitleFont.Size = 16.000000000000000000
-    ItemsAppearance.DisabledTitleFont.Name = 'Segoe UI'
     ItemsAppearance.DisabledTitleFont.StyleExt = {00070000000000000004000000}
-    ItemsAppearance.DisabledFill.Color = claDarkgray
     ItemsAppearance.DisabledStroke.Kind = gskNone
-    ItemsAppearance.DisabledStroke.Color = claDarkgray
-    ItemsAppearance.DisabledFont.Name = 'Segoe UI'
     OnBeforeDrawItem = TMSFNCPlanner1BeforeDrawItem
-    OnBeforeDrawPositionText = TMSFNCPlanner1BeforeDrawPositionText
     OnBeforeDrawItemText = TMSFNCPlanner1BeforeDrawItemText
     OnBeforeDrawItemTitleText = TMSFNCPlanner1BeforeDrawItemTitleText
+  end
+  object PlannerAdapter: TTMSFNCPlannerDatabaseAdapter
+    Size.Width = 26.000000000000000000
+    Size.Height = 26.000000000000000000
+    Size.PlatformDefault = False
+    Position.X = 104.000000000000000000
+    Position.Y = 24.000000000000000000
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

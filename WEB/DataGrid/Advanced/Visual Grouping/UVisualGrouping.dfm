@@ -1,7 +1,7 @@
 object Form130: TForm130
   Width = 1200
   Height = 780
-  Caption = 'TMS FNC Data Grid Visual Grouping Demo'
+  Caption = 'TMS FNC UI Pack - Data Grid Visual Grouping'
   FormContainer = 'appcontent'
   OnCreate = FormCreate
   object lblTitle: TWebLabel

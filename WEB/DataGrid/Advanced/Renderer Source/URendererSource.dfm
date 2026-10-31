@@ -1,7 +1,7 @@
 object FormRendererSource: TFormRendererSource
   Width = 1100
   Height = 720
-  Caption = 'TMS FNC Data Grid RendererSource Demo'
+  Caption = 'TMS FNC UI Pack - Data Grid Renderer Source'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

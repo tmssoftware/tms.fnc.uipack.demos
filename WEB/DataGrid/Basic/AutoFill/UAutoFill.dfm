@@ -1,7 +1,7 @@
 object FormAutoFill: TFormAutoFill
   Width = 1000
   Height = 640
-  Caption = 'TMS FNC DataGrid AutoFill Demo'
+  Caption = 'TMS FNC UI Pack - Data Grid AutoFill'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
