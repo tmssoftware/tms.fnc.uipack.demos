@@ -174,7 +174,7 @@ object Form1: TForm1
       Width = 610
       Anchors = [akTop, akLeft, akRight]
       AutoSize = False
-      Caption = 'Rate the product: every rating moves the progress bar, a full bar enables Submit'
+      Caption = 'Every rating moves the progress bar; a full bar enables Submit'
       Font.Color = clGrayText
       ParentFont = False
     end

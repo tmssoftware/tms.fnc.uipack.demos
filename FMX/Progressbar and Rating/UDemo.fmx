@@ -62,14 +62,14 @@ object Form2: TForm2
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
-      Text = 'Rate the product: every rating moves the progress bar, a full bar enables Submit'
+      Text = 'Every rating moves the progress bar; a full bar enables Submit'
     end
   end
   object TMSFNCPanel1: TTMSFNCPanel
     Align = Client
     Padding.Top = 28.000000000000000000
-    Size.Width = 440.000000000000000000
-    Size.Height = 480.000000000000000000
+    Size.Width = 528.000000000000000000
+    Size.Height = 432.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
     Sections = <>
