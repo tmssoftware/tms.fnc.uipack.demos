@@ -324,7 +324,6 @@ object Form130: TForm130
       OnChangeTracking = Edit1ChangeTracking
     end
     object Label1: TTMSFNCHTMLText
-      AutoSize = True
       Position.X = 16.000000000000000000
       Position.Y = 10.000000000000000000
       Size.Width = 260.000000000000000000

@@ -336,7 +336,6 @@ object Form130: TForm130
       Text = 'Last Name filter'
       WordWrapping = False
       HorizontalTextAlign = gtaLeading
-      AutoSize = True
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
     end
@@ -397,7 +396,6 @@ object Form130: TForm130
       Text = 'Client ID'
       WordWrapping = False
       HorizontalTextAlign = gtaLeading
-      AutoSize = True
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
     end
@@ -409,7 +407,6 @@ object Form130: TForm130
       Text = 'Secret'
       WordWrapping = False
       HorizontalTextAlign = gtaLeading
-      AutoSize = True
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
     end
@@ -421,7 +418,6 @@ object Form130: TForm130
       Text = 'Callback URL'
       WordWrapping = False
       HorizontalTextAlign = gtaLeading
-      AutoSize = True
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
     end
@@ -433,7 +429,6 @@ object Form130: TForm130
       Text = 'Project ID'
       WordWrapping = False
       HorizontalTextAlign = gtaLeading
-      AutoSize = True
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
     end
@@ -444,7 +439,6 @@ object Form130: TForm130
       Height = 24
       WordWrapping = True
       HorizontalTextAlign = gtaLeading
-      AutoSize = True
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
     end
@@ -456,7 +450,6 @@ object Form130: TForm130
       Text = 'Authentication'
       WordWrapping = False
       HorizontalTextAlign = gtaLeading
-      AutoSize = True
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
     end
@@ -471,7 +464,6 @@ object Form130: TForm130
         'the authenticated StellarDS.io account.'
       WordWrapping = True
       HorizontalTextAlign = gtaLeading
-      AutoSize = True
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
     end
@@ -484,7 +476,6 @@ object Form130: TForm130
       Font.Height = -12
       WordWrapping = False
       HorizontalTextAlign = gtaLeading
-      AutoSize = True
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
     end
