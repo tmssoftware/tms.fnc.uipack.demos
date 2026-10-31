@@ -133,7 +133,6 @@ object FormRendererSource: TFormRendererSource
     Align = alTop
     Text = 'Active layer:'
     HorizontalTextAlign = gtaLeading
-    AutoSize = True
     Fill.Kind = gfkNone
     Stroke.Kind = gskNone
   end
