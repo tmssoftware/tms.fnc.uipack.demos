@@ -1,7 +1,5 @@
 unit UFilterViewDataBaseDemo;
 
-{ demo-colors: the labels on the filter view keep an explicit dark text colour: the filter view itself is not coloured by the theme and stays light in Fluent Dark }
-
 interface
 
 uses

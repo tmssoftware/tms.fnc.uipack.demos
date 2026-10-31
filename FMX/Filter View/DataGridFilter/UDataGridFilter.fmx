@@ -72,7 +72,6 @@ object FilterViewDataGridForm: TFilterViewDataGridForm
     Size.Height = 480.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    AdaptToStyle = True
     FilterFormatType = fftUniversalFilterExpressions
     FilterParseFormat.AndOperator = '&'
     FilterParseFormat.OrOperator = '|'
@@ -789,7 +788,6 @@ object FilterViewDataGridForm: TFilterViewDataGridForm
       Stroke.Kind = gskNone
       Text = 'Joined Before:'
       Transparent = True
-      Font.Color = xFF282828
     end
     object TMSFNCCalendar1: TTMSFNCCalendar
       Align = Top
@@ -838,7 +836,6 @@ object FilterViewDataGridForm: TFilterViewDataGridForm
       Stroke.Kind = gskNone
       Text = 'Status:'
       Transparent = True
-      Font.Color = xFF282828
     end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
