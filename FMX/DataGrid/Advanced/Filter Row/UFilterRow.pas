@@ -9,20 +9,26 @@ uses
   FMX.TMSFNCCustomScrollControl, FMX.TMSFNCDataGridData, FMX.TMSFNCCustomGrid,
   FMX.TMSFNCDataGrid, FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics,
   FMX.TMSFNCGraphicsTypes, FMX.TMSFNCDataGridBase, FMX.TMSFNCDataGridCell,
-  FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer, System.Rtti, FMX.ListBox;
+  FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer, System.Rtti, FMX.ListBox,
+  FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCComboBox, FMX.TMSFNCEdit, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Panel1: TPanel;
-    Button1: TButton;
-    Edit1: TEdit;
-    Label1: TLabel;
-    Edit2: TEdit;
-    Label2: TLabel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    Button1: TTMSFNCButton;
+    Edit1: TTMSFNCEdit;
+    Label1: TTMSFNCHTMLText;
+    Edit2: TTMSFNCEdit;
+    Label2: TTMSFNCHTMLText;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    ComboBox1: TComboBox;
+    CheckBox1: TTMSFNCCheckBox;
+    CheckBox2: TTMSFNCCheckBox;
+    ComboBox1: TTMSFNCComboBox;
     procedure Button1Click(Sender: TObject);
     procedure Edit1ChangeTracking(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -57,12 +63,12 @@ end;
 
 procedure TForm130.CheckBox1Change(Sender: TObject);
 begin
-  TMSFNCDataGrid1.Options.Filtering.MultiColumn := CheckBox1.IsChecked;
+  TMSFNCDataGrid1.Options.Filtering.MultiColumn := CheckBox1.Checked;
 end;
 
 procedure TForm130.CheckBox2Change(Sender: TObject);
 begin
-  TMSFNCDataGrid1.Options.Filtering.HideEmptyGroups := CheckBox2.IsChecked;
+  TMSFNCDataGrid1.Options.Filtering.HideEmptyGroups := CheckBox2.Checked;
   TMSFNCDataGrid1.RemoveFilter;
   TMSFNCDataGrid1.ApplyFilter;
 end;
@@ -136,7 +142,7 @@ begin
   TMSFNCDataGrid1.Options.Filtering.Row := 1;
   TMSFNCDataGrid1.Options.Filtering.Controls := [gfcButton, gfcEditor];
   TMSFNCDataGrid1.Options.Filtering.MultiColumn := True;
-  CheckBox1.IsChecked := True;
+  CheckBox1.Checked := True;
 
   TMSFNCDataGrid1.Group([8, 1]);
 

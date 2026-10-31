@@ -7,15 +7,21 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls,
   FMX.Controls.Presentation, FMX.Edit, FMX.TMSFNCCustomControl, FMX.TMSFNCPDFIO,
   FMX.TMSFNCDataGridData, FMX.TMSFNCDataGridRenderer, FMX.TMSFNCDataGridExcelIO,
-  FMX.TMSFNCCustomComponent, FMX.TMSFNCDataGridPDFIO;
+  FMX.TMSFNCCustomComponent, FMX.TMSFNCDataGridPDFIO,
+  FMX.TMSFNCButton, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector, FMX.TMSFNCTypes, FMX.TMSFNCUtils;
 
 type
   TForm130 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCDataGridPDFIO1: TTMSFNCDataGridPDFIO;
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
+    Button1: TTMSFNCButton;
+    Button2: TTMSFNCButton;
+    Button3: TTMSFNCButton;
+    Button4: TTMSFNCButton;
     TMSFNCDataGridExcelIO1: TTMSFNCDataGridExcelIO;
     procedure Button1Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
@@ -37,8 +43,6 @@ implementation
 
 {$R *.fmx}
 
-uses
-  FMX.TMSFNCTypes;
 
 procedure TForm130.Button1Click(Sender: TObject);
 begin

@@ -8,20 +8,26 @@ uses
   VCL.TMSFNCCustomScrollControl, VCL.TMSFNCDataGridData, VCL.TMSFNCCustomGrid,
   VCL.TMSFNCDataGrid, VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics,
   VCL.TMSFNCGraphicsTypes, VCL.TMSFNCDataGridBase, VCL.TMSFNCDataGridCell,
-  VCL.TMSFNCDataGridCore, VCL.TMSFNCDataGridRenderer, System.Rtti, Vcl.ExtCtrls;
+  VCL.TMSFNCDataGridCore, VCL.TMSFNCDataGridRenderer, System.Rtti, Vcl.ExtCtrls,
+  VCL.TMSFNCButton, VCL.TMSFNCCheckBox, VCL.TMSFNCComboBox, VCL.TMSFNCEdit, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Panel1: TPanel;
-    Button1: TButton;
-    Edit1: TEdit;
-    Label1: TLabel;
-    Edit2: TEdit;
-    Label2: TLabel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    Button1: TTMSFNCButton;
+    Edit1: TTMSFNCEdit;
+    Label1: TTMSFNCHTMLText;
+    Edit2: TTMSFNCEdit;
+    Label2: TTMSFNCHTMLText;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    ComboBox1: TComboBox;
+    CheckBox1: TTMSFNCCheckBox;
+    CheckBox2: TTMSFNCCheckBox;
+    ComboBox1: TTMSFNCComboBox;
     procedure Button1Click(Sender: TObject);
     procedure Edit1ChangeTracking(Sender: TObject);
     procedure FormCreate(Sender: TObject);

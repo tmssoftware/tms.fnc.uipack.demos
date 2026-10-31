@@ -1,6 +1,6 @@
 object Form130: TForm130
-  Width = 437
-  Height = 160
+  Width = 760
+  Height = 220
   Caption = 'TMS FNC Data Grid Non Visual Data Export Demo'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -17,7 +17,7 @@ object Form130: TForm130
     Top = 8
     Width = 22
     Height = 15
-    Caption = 'Title'
+    Caption = 'DataGrid data export'
     Color = clBtnFace
     ElementID = 'title'
     HeightPercent = 100.000000000000000000
@@ -28,59 +28,56 @@ object Form130: TForm130
     Top = 38
     Width = 60
     Height = 15
-    Caption = 'Description'
+    Caption = 'Export the data to CSV, HTML, XLS and PDF without the grid being shown'
     Color = clBtnFace
     ElementID = 'description'
     HeightPercent = 100.000000000000000000
     WidthPercent = 100.000000000000000000
   end
-  object Button4: TWebButton
+  object Button4: TTMSFNCButton
     AlignWithMargins = True
     Left = 5
-    Top = 57
+    Top = 128
     Width = 427
-    Height = 44
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
+    Height = 32
+    Margins.Left = 16
+    Margins.Top = 8
+    Margins.Right = 16
     Align = alTop
-    Caption = 'Export to CSV'
-    HeightPercent = 100.000000000000000000
+    Text = 'Export to CSV'
     TabOrder = 1
-    WidthPercent = 100.000000000000000000
     OnClick = Button4Click
+    Margins.Bottom = 0
   end
-  object Button3: TWebButton
+  object Button3: TTMSFNCButton
     AlignWithMargins = True
     Left = 5
-    Top = 109
+    Top = 168
     Width = 427
-    Height = 44
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
+    Height = 32
+    Margins.Left = 16
+    Margins.Top = 8
+    Margins.Right = 16
     Align = alTop
-    Caption = 'Export to HTML'
-    HeightPercent = 100.000000000000000000
+    Text = 'Export to HTML'
     TabOrder = 2
-    WidthPercent = 100.000000000000000000
     OnClick = Button3Click
+    Margins.Bottom = 16
   end
-  object Button1: TWebButton
+  object Button1: TTMSFNCButton
     AlignWithMargins = True
     Left = 5
-    Top = 5
+    Top = 88
     Width = 427
-    Height = 44
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
+    Height = 32
+    Margins.Left = 16
+    Margins.Top = 8
+    Margins.Right = 16
     Align = alTop
-    Caption = 'Export to PDF'
-    HeightPercent = 100.000000000000000000
+    Text = 'Export to PDF'
     TabOrder = 3
-    WidthPercent = 100.000000000000000000
     OnClick = Button1Click
+    Margins.Bottom = 0
   end
   object TMSFNCDataGridPDFIO1: TTMSFNCDataGridPDFIO
     Left = 120
@@ -111,5 +108,41 @@ object Form130: TForm130
     Options.PageNumberMargins.Bottom = 5.000000000000000000
     Options.PageNumberFormat = '%d'
     Options.PageNumberFont.Name = 'Arial'
+  end
+  object Panel1: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 16
+    Top = 0
+    Width = 1100
+    Height = 56
+    Margins.Left = 16
+    Margins.Top = 16
+    Margins.Right = 16
+    Margins.Bottom = 12
+    Align = alTop
+    TabOrder = 5
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 1000
+      Top = 10
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 10
+      Margins.Right = 16
+      Margins.Bottom = 10
+      Align = alRight
+      TabOrder = 20
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 760
+    Top = 160
   end
 end

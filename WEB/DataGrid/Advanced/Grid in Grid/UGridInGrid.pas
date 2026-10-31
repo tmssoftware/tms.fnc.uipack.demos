@@ -15,16 +15,19 @@ uses
   VCL.TMSFNCDataGridData, VCL.TMSFNCDataGridBase, VCL.TMSFNCDataGridCore,
   VCL.TMSFNCDataGridRenderer, WEBLib.StdCtrls,
   VCL.TMSFNCCustomComponent, VCL.TMSFNCBitmapContainer,
-  WEBLib.Controls, WEBLib.ExtCtrls, VCL.TMSFNCCustomControl, VCL.TMSFNCDataGrid;
+  WEBLib.Controls, WEBLib.ExtCtrls, VCL.TMSFNCCustomControl, VCL.TMSFNCDataGrid,
+  WEBLib.TMSFNCButton, WEBLib.TMSFNCPanel, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TWebForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     lblTitle: TWebLabel;
     lblDescription: TWebLabel;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
-    Panel1: TWebPanel;
-    Button1: TWebButton;
-    Button2: TWebButton;
+    Panel1: TTMSFNCPanel;
+    Button1: TTMSFNCButton;
+    Button2: TTMSFNCButton;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -66,7 +69,7 @@ procedure TForm130.DoCollapse(Sender: TObject);
 var
   t: Integer;
 begin
-  t := (Sender as TWebButton).Tag;
+  t := (Sender as TTMSFNCButton).Tag;
   TMSFNCDataGrid1.ToggleNode(t);
 end;
 
@@ -74,7 +77,7 @@ procedure TForm130.FormCreate(Sender: TObject);
 var
   I, K: Integer;
   g: TTMSFNCDataGridRenderer;
-  b: TWebButton;
+  b: TTMSFNCButton;
   idx, m, nr: Integer;
 begin
   TMSFNCDataGrid1.BeginUpdate;
@@ -100,7 +103,7 @@ begin
     nr := idx;
     TMSFNCDataGrid1.Cells[0, idx] := (I + 1).ToString;
     TMSFNCDataGrid1.Cells[1, idx] := 'Click on the node icon or button to expand/collapse this row';
-    b := TWebButton.Create(Self);
+    b := TTMSFNCButton.Create(Self);
     b.OnClick := DoCollapse;
     b.Tag := idx;
     TMSFNCDataGrid1.Controls[1, idx] := b;
@@ -201,11 +204,11 @@ begin
   if Assigned(c) then
   begin
     t := c.Tag;
-    if c is TWebButton then
+    if c is TTMSFNCButton then
     begin
       case TMSFNCDataGrid1.RowNodeState[t] of
-        grnsCollapsed: (c as TWebButton).Caption := 'Expand';
-        grnsExpanded: (c as TWebButton).Caption := 'Collapse';
+        grnsCollapsed: (c as TTMSFNCButton).Text := 'Expand';
+        grnsExpanded: (c as TTMSFNCButton).Text := 'Collapse';
       end;
     end;
   end;

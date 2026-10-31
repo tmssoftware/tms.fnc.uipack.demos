@@ -7,15 +7,21 @@ uses
   VCL.Controls, VCL.Forms, VCL.Graphics, VCL.Dialogs, VCL.StdCtrls,
   VCL.TMSFNCCustomControl, VCL.TMSFNCPDFIO,
   VCL.TMSFNCDataGridData, VCL.TMSFNCDataGridRenderer, VCL.TMSFNCDataGridExcelIO,
-  VCL.TMSFNCCustomComponent, VCL.TMSFNCDataGridPDFIO;
+  VCL.TMSFNCCustomComponent, VCL.TMSFNCDataGridPDFIO,
+  VCL.TMSFNCButton, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector, VCL.TMSFNCTypes, VCL.TMSFNCUtils;
 
 type
   TForm130 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCDataGridPDFIO1: TTMSFNCDataGridPDFIO;
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
+    Button1: TTMSFNCButton;
+    Button2: TTMSFNCButton;
+    Button3: TTMSFNCButton;
+    Button4: TTMSFNCButton;
     TMSFNCDataGridExcelIO1: TTMSFNCDataGridExcelIO;
     procedure Button1Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
@@ -37,8 +43,6 @@ implementation
 
 {$R *.dfm}
 
-uses
-  VCL.TMSFNCTypes;
 
 procedure TForm130.Button1Click(Sender: TObject);
 begin

@@ -1,6 +1,6 @@
 object FormRendererSource: TFormRendererSource
-  Width = 920
-  Height = 560
+  Width = 1100
+  Height = 720
   Caption = 'TMS FNC Data Grid RendererSource Demo'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,7 +16,7 @@ object FormRendererSource: TFormRendererSource
     Top = 8
     Width = 22
     Height = 15
-    Caption = 'Title'
+    Caption = 'DataGrid renderer source'
     Color = clBtnFace
     ElementID = 'title'
     HeightPercent = 100.000000000000000000
@@ -27,84 +27,94 @@ object FormRendererSource: TFormRendererSource
     Top = 38
     Width = 60
     Height = 15
-    Caption = 'Description'
+    Caption = 'Switch the grid between several data layers that share one renderer'
     Color = clBtnFace
     ElementID = 'description'
     HeightPercent = 100.000000000000000000
     WidthPercent = 100.000000000000000000
   end
-  object Panel1: TWebPanel
+  object Panel1: TTMSFNCPanel
     AlignWithMargins = True
     Left = 10
     Top = 10
     Width = 900
-    Height = 47
-    Margins.Left = 10
-    Margins.Top = 10
-    Margins.Right = 10
-    Margins.Bottom = 5
+    Height = 56
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 12
     Align = alTop
-    BorderColor = clSilver
-    BorderStyle = bsSingle
-    ChildOrder = 1
     TabOrder = 0
-    object btnSales: TWebButton
-      Left = 13
+    Header.Visible = False
+    object btnSales: TTMSFNCButton
+      Left = 12
       Top = 12
-      Width = 130
-      Height = 24
-      Caption = 'Sales by Region'
-      ChildOrder = 1
+      Width = 140
+      Height = 32
+      Text = 'Sales by Region'
       TabOrder = 0
       OnClick = btnSalesClick
     end
-    object btnInventory: TWebButton
-      Left = 151
+    object btnInventory: TTMSFNCButton
+      Left = 160
       Top = 12
-      Width = 130
-      Height = 24
-      Caption = 'Product Inventory'
-      ChildOrder = 2
+      Width = 140
+      Height = 32
+      Text = 'Product Inventory'
       TabOrder = 1
       OnClick = btnInventoryClick
     end
-    object btnDefault: TWebButton
-      Left = 289
+    object btnDefault: TTMSFNCButton
+      Left = 308
       Top = 12
-      Width = 130
-      Height = 24
-      Caption = 'Grid''s own layer'
-      ChildOrder = 3
+      Width = 140
+      Height = 32
+      Text = 'Grid''s own layer'
       TabOrder = 2
       OnClick = btnDefaultClick
     end
-    object btnAddRow: TWebButton
-      Left = 451
+    object btnAddRow: TTMSFNCButton
+      Left = 456
       Top = 12
-      Width = 170
-      Height = 24
-      Caption = 'Add row to active layer'
-      ChildOrder = 4
+      Width = 190
+      Height = 32
+      Text = 'Add row to active layer'
       TabOrder = 3
       OnClick = btnAddRowClick
     end
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 1000
+      Top = 10
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 10
+      Margins.Right = 16
+      Margins.Bottom = 10
+      Align = alRight
+      TabOrder = 20
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
   end
-  object lblStatus: TWebLabel
+  object lblStatus: TTMSFNCHTMLText
     AlignWithMargins = True
     Left = 10
     Top = 62
     Width = 900
     Height = 22
-    Margins.Left = 10
+    Margins.Left = 16
     Margins.Top = 0
-    Margins.Right = 10
-    Margins.Bottom = 5
+    Margins.Right = 16
+    Margins.Bottom = 8
     Align = alTop
-    Caption = 'Active layer:'
-    ChildOrder = 2
-    Color = clBtnFace
-    HeightPercent = 100.000000000000000000
-    WidthPercent = 100.000000000000000000
+    Text = 'Active layer:'
+    HorizontalTextAlign = gtaLeading
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     AlignWithMargins = True
@@ -112,15 +122,19 @@ object FormRendererSource: TFormRendererSource
     Top = 89
     Width = 900
     Height = 461
-    Margins.Left = 10
+    Margins.Left = 16
     Margins.Top = 0
-    Margins.Right = 10
-    Margins.Bottom = 10
+    Margins.Right = 16
+    Margins.Bottom = 16
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
     TabOrder = 1
     Options.Mouse.ClickMargin = 0
-    Stroke.Color = clDarkgray
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 760
+    Top = 160
   end
 end

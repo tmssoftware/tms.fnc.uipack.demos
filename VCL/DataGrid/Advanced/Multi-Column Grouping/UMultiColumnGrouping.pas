@@ -10,14 +10,20 @@ uses
   VCL.TMSFNCDataGridCell, VCL.TMSFNCDataGridData, VCL.TMSFNCDataGridBase,
   VCL.TMSFNCDataGridCore, VCL.TMSFNCDataGridRenderer, VCL.TMSFNCPDFIO,
   VCL.TMSFNCDataGridPDFIO, VCL.TMSFNCCustomComponent, VCL.TMSFNCBitmapContainer,
-  VCL.TMSFNCDataGrid, Vcl.ExtCtrls;
+  VCL.TMSFNCDataGrid, Vcl.ExtCtrls,
+  VCL.TMSFNCButton, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
-    Panel1: TPanel;
-    Button1: TButton;
+    Panel1: TTMSFNCPanel;
+    Button1: TTMSFNCButton;
     TMSFNCDataGridPDFIO1: TTMSFNCDataGridPDFIO;
     procedure FormCreate(Sender: TObject);
     procedure TMSFNCDataGrid1GetCustomGroup(Sender: TObject;

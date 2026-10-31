@@ -2,8 +2,8 @@ object Form130: TForm130
   Left = 0
   Top = 0
   Caption = 'TMS FNC Data Grid Non Visual Data Export Demo'
-  ClientHeight = 202
-  ClientWidth = 437
+  ClientHeight = 248
+  ClientWidth = 760
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,73 +14,126 @@ object Form130: TForm130
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   TextHeight = 15
-  object Button4: TButton
-    Left = 0
-    Top = 44
-    Width = 437
-    Height = 44
-    AlignWithMargins = True
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Align = alTop
-    Caption = 'Export to CSV'
-    TabOrder = 1
-    WordWrap = True
-    OnClick = Button4Click
-    ExplicitWidth = 427
-  end
-  object Button3: TButton
-    Left = 0
-    Top = 88
-    Width = 437
-    Height = 44
-    AlignWithMargins = True
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Align = alTop
-    Caption = 'Export to HTML'
-    TabOrder = 2
-    WordWrap = True
-    OnClick = Button3Click
-    ExplicitWidth = 427
-  end
-  object Button2: TButton
-    Left = 0
-    Top = 132
-    Width = 437
-    Height = 44
-    AlignWithMargins = True
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Align = alTop
-    Caption = 'Export to XLS'
-    TabOrder = 0
-    WordWrap = True
-    OnClick = Button2Click
-    ExplicitWidth = 427
-  end
-  object Button1: TButton
+  object DemoHeader: TTMSFNCPanel
     Left = 0
     Top = 0
     Width = 437
-    Height = 44
-    AlignWithMargins = True
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
+    Height = 72
     Align = alTop
-    Caption = 'Export to PDF'
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 253
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 213
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'DataGrid data export'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 213
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Export the data to CSV, HTML, XLS and PDF without the grid being shown'
+    end
+  end
+  object Button4: TTMSFNCButton
+    Left = 0
+    Top = 48
+    Width = 437
+    Height = 32
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 8
+    Margins.Right = 16
+    Align = alTop
+    Text = 'Export to CSV'
+    TabOrder = 1
+    OnClick = Button4Click
+    Margins.Bottom = 0
+  end
+  object Button3: TTMSFNCButton
+    Left = 0
+    Top = 88
+    Width = 437
+    Height = 32
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 8
+    Margins.Right = 16
+    Align = alTop
+    Text = 'Export to HTML'
+    TabOrder = 2
+    OnClick = Button3Click
+    Margins.Bottom = 0
+  end
+  object Button2: TTMSFNCButton
+    Left = 0
+    Top = 128
+    Width = 437
+    Height = 32
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 8
+    Margins.Right = 16
+    Align = alTop
+    Text = 'Export to XLS'
+    TabOrder = 0
+    OnClick = Button2Click
+    Margins.Bottom = 16
+  end
+  object Button1: TTMSFNCButton
+    Left = 0
+    Top = 8
+    Width = 437
+    Height = 32
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 8
+    Margins.Right = 16
+    Align = alTop
+    Text = 'Export to PDF'
     TabOrder = 3
-    WordWrap = True
     OnClick = Button1Click
-    ExplicitWidth = 427
+    Margins.Bottom = 0
   end
   object TMSFNCDataGridPDFIO1: TTMSFNCDataGridPDFIO
     Left = 56
-    Top = 102
+    Top = 174
     Width = 39
     Height = 39
     Visible = True
@@ -110,12 +163,17 @@ object Form130: TForm130
   end
   object TMSFNCDataGridExcelIO1: TTMSFNCDataGridExcelIO
     Left = 56
-    Top = 136
+    Top = 208
     Width = 39
     Height = 39
     Visible = True
     Options.ExportOverwriteMessage = 'File %s already exists'#13'Ok to overwrite ?'
     UseUnicode = False
     Version = '3.24'
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

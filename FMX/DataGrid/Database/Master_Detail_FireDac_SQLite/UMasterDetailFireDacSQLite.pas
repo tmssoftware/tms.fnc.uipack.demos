@@ -17,17 +17,23 @@ uses
   FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs,
   FireDAC.Phys.SQLiteWrapper.Stat, FireDAC.FMXUI.Wait, FireDAC.Stan.Param,
   FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, FMX.TMSFNCPDFIO, FMX.TMSFNCDataGridPDFIO;
+  FireDAC.Comp.Client, FMX.TMSFNCPDFIO, FMX.TMSFNCDataGridPDFIO,
+  FMX.TMSFNCButton, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Panel1: TPanel;
-    Button2: TButton;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    Button2: TTMSFNCButton;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     BindNavigator1: TBindNavigator;
     TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter;
     DataSource1: TDataSource;
-    Button1: TButton;
+    Button1: TTMSFNCButton;
     BindSourceDB1: TBindSourceDB;
     FDConnection1: TFDConnection;
     FDTable1: TFDTable;
@@ -36,7 +42,7 @@ type
     FDTable2: TFDTable;
     TMSFNCDataGrid2: TTMSFNCDataGrid;
     TMSFNCDataGridPDFIO1: TTMSFNCDataGridPDFIO;
-    Button3: TButton;
+    Button3: TTMSFNCButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button3Click(Sender: TObject);

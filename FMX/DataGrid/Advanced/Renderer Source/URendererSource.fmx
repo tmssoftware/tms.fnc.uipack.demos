@@ -2,94 +2,146 @@ object FormRendererSource: TFormRendererSource
   Left = 0
   Top = 0
   Caption = 'TMS FNC Data Grid RendererSource Demo'
-  ClientHeight = 560
-  ClientWidth = 920
+  ClientHeight = 720
+  ClientWidth = 1100
   Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
-  object Panel1: TPanel
+  object DemoHeader: TTMSFNCPanel
     Align = Top
-    Padding.Left = 5.000000000000000000
-    Padding.Top = 5.000000000000000000
-    Padding.Right = 5.000000000000000000
-    Margins.Left = 10.000000000000000000
-    Margins.Top = 10.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 5.000000000000000000
+    Size.Width = 920.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 696.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'DataGrid renderer source'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 696.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Switch the grid between several data layers that share one renderer'
+    end
+  end
+  object Panel1: TTMSFNCPanel
+    Align = Top
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 12.000000000000000000
     Position.X = 10.000000000000000000
     Position.Y = 10.000000000000000000
     Size.Width = 900.000000000000000000
-    Size.Height = 47.000000000000000000
+    Size.Height = 56.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    object btnSales: TButton
-      Position.X = 13.000000000000000000
+    Header.Visible = False
+    object btnSales: TTMSFNCButton
+      Position.X = 12.000000000000000000
       Position.Y = 12.000000000000000000
-      Size.Width = 130.000000000000000000
-      Size.Height = 24.000000000000000000
+      Size.Width = 140.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       Text = 'Sales by Region'
-      TextSettings.Trimming = None
       OnClick = btnSalesClick
     end
-    object btnInventory: TButton
-      Position.X = 151.000000000000000000
+    object btnInventory: TTMSFNCButton
+      Position.X = 160.000000000000000000
       Position.Y = 12.000000000000000000
-      Size.Width = 130.000000000000000000
-      Size.Height = 24.000000000000000000
+      Size.Width = 140.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
       Text = 'Product Inventory'
-      TextSettings.Trimming = None
       OnClick = btnInventoryClick
     end
-    object btnDefault: TButton
-      Position.X = 289.000000000000000000
+    object btnDefault: TTMSFNCButton
+      Position.X = 308.000000000000000000
       Position.Y = 12.000000000000000000
-      Size.Width = 130.000000000000000000
-      Size.Height = 24.000000000000000000
+      Size.Width = 140.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 2
       Text = 'Grid'#39's own layer'
-      TextSettings.Trimming = None
       OnClick = btnDefaultClick
     end
-    object btnAddRow: TButton
-      Position.X = 451.000000000000000000
+    object btnAddRow: TTMSFNCButton
+      Position.X = 456.000000000000000000
       Position.Y = 12.000000000000000000
-      Size.Width = 170.000000000000000000
-      Size.Height = 24.000000000000000000
+      Size.Width = 190.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 3
       Text = 'Add row to active layer'
-      TextSettings.Trimming = None
       OnClick = btnAddRowClick
     end
   end
-  object lblStatus: TLabel
+  object lblStatus: TTMSFNCHTMLText
     Align = Top
-    StyledSettings = [Family, Size, Style, FontColor]
-    Margins.Left = 10.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 5.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 8.000000000000000000
     Position.X = 10.000000000000000000
     Position.Y = 62.000000000000000000
     Size.Width = 900.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TextSettings.Trimming = None
     Text = 'Active layer:'
     TabOrder = 1
+    HorizontalTextAlign = gtaLeading
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Margins.Top = 0.000000000000000000
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
     Align = Client
-    Margins.Left = 10.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 10.000000000000000000
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     Position.X = 10.000000000000000000
     Position.Y = 89.000000000000000000
     Size.Width = 900.000000000000000000
@@ -97,6 +149,11 @@ object FormRendererSource: TFormRendererSource
     Size.PlatformDefault = False
     TabOrder = 2
     Options.Mouse.ClickMargin = 0
-    Stroke.Color = claDarkgray
+    Margins.Top = 0.000000000000000000
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

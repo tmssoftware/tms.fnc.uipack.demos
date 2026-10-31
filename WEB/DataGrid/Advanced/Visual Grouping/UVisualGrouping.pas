@@ -15,16 +15,19 @@ uses
   VCL.TMSFNCDataGridBase, VCL.TMSFNCDataGridCore, VCL.TMSFNCDataGridRenderer,
   WEBLib.StdCtrls, VCL.TMSFNCPDFIO, VCL.TMSFNCDataGridPDFIO, WEBLib.Controls,
   WEBLib.ExtCtrls, VCL.TMSFNCCustomComponent, VCL.TMSFNCBitmapContainer,
-  VCL.TMSFNCCustomControl, VCL.TMSFNCDataGrid;
+  VCL.TMSFNCCustomControl, VCL.TMSFNCDataGrid,
+  WEBLib.TMSFNCButton, WEBLib.TMSFNCPanel, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TWebForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     lblTitle: TWebLabel;
     lblDescription: TWebLabel;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
-    Panel1: TWebPanel;
-    Button1: TWebButton;
+    Panel1: TTMSFNCPanel;
+    Button1: TTMSFNCButton;
     TMSFNCDataGridPDFIO1: TTMSFNCDataGridPDFIO;
     procedure FormCreate(Sender: TObject);
     procedure TMSFNCDataGrid1GetCustomGroup(Sender: TObject;

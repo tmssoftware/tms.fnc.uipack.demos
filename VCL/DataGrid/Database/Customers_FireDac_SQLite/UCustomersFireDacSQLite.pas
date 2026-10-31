@@ -17,17 +17,23 @@ uses
   FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs,
   FireDAC.Phys.SQLiteWrapper.Stat, FireDAC.VCLUI.Wait, FireDAC.Stan.Param,
   FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Vcl.Buttons, Vcl.Bind.Navigator, Vcl.ExtCtrls;
+  FireDAC.Comp.Client, Vcl.Buttons, Vcl.Bind.Navigator, Vcl.ExtCtrls,
+  VCL.TMSFNCButton, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Panel1: TPanel;
-    Button2: TButton;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    Button2: TTMSFNCButton;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     BindNavigator1: TBindNavigator;
     TMSFNCDataGridDatabaseAdapter1: TTMSFNCDataGridDatabaseAdapter;
     DataSource1: TDataSource;
-    Button1: TButton;
+    Button1: TTMSFNCButton;
     BindSourceDB1: TBindSourceDB;
     FDConnection1: TFDConnection;
     FDTable1: TFDTable;
@@ -63,9 +69,9 @@ end;
 procedure TForm130.SetText;
 begin
   if FDTable1.Active then
-    Button1.Caption := 'Deactivate'
+    Button1.Text := 'Deactivate'
   else
-    Button1.Caption := 'Activate';
+    Button1.Text := 'Activate';
 end;
 
 end.

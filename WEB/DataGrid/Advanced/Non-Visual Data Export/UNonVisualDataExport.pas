@@ -8,16 +8,20 @@ uses
   WEBLib.TMSFNCCustomControl, WEBLib.TMSFNCPDFIO,
   WEBLib.TMSFNCDataGridData, WEBLib.TMSFNCDataGridRenderer,
   WEBLib.TMSFNCCustomComponent, WEBLib.TMSFNCDataGridPDFIO, WEBLib.StdCtrls,
-  VCL.TMSFNCCustomComponent, VCL.TMSFNCPDFIO, VCL.TMSFNCDataGridPDFIO;
+  VCL.TMSFNCCustomComponent, VCL.TMSFNCPDFIO, VCL.TMSFNCDataGridPDFIO,
+  WEBLib.TMSFNCButton, WEBLib.TMSFNCPanel, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TWebForm)
+    Panel1: TTMSFNCPanel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     lblTitle: TWebLabel;
     lblDescription: TWebLabel;
     TMSFNCDataGridPDFIO1: TTMSFNCDataGridPDFIO;
-    Button1: TWebButton;
-    Button3: TWebButton;
-    Button4: TWebButton;
+    Button1: TTMSFNCButton;
+    Button3: TTMSFNCButton;
+    Button4: TTMSFNCButton;
     procedure Button1Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);

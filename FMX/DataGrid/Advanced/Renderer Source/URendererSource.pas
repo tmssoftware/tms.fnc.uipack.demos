@@ -28,16 +28,22 @@ uses
   FMX.TMSFNCCustomScrollControl, FMX.TMSFNCDataGridData, FMX.TMSFNCCustomGrid,
   FMX.TMSFNCDataGrid, FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics,
   FMX.TMSFNCGraphicsTypes, FMX.TMSFNCDataGridBase, FMX.TMSFNCDataGridCell,
-  FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer, System.Rtti;
+  FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer, System.Rtti,
+  FMX.TMSFNCButton, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TFormRendererSource = class(TForm)
-    Panel1: TPanel;
-    btnSales: TButton;
-    btnInventory: TButton;
-    btnDefault: TButton;
-    btnAddRow: TButton;
-    lblStatus: TLabel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    btnSales: TTMSFNCButton;
+    btnInventory: TTMSFNCButton;
+    btnDefault: TTMSFNCButton;
+    btnAddRow: TTMSFNCButton;
+    lblStatus: TTMSFNCHTMLText;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     procedure FormCreate(Sender: TObject);
     procedure btnSalesClick(Sender: TObject);
