@@ -1,9 +1,9 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'TMS FNC PassLock Demo'
-  ClientHeight = 751
-  ClientWidth = 1013
+  Caption = 'TMS FNC UI Pack - PassLock'
+  ClientHeight = 720
+  ClientWidth = 1100
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -150,328 +150,394 @@ object Form1: TForm1
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Panel1: TPanel
+  object DemoHeader: TTMSFNCPanel
     Left = 0
     Top = 0
     Width = 1013
-    Height = 385
+    Height = 72
     Align = alTop
     TabOrder = 0
-    DesignSize = (
-      1013
-      385)
-    object Panel3: TPanel
-      Left = 1
-      Top = 1
-      Width = 264
-      Height = 383
-      Align = alLeft
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 829
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
       TabOrder = 0
-      object Label5: TLabel
-        Left = 24
-        Top = 13
-        Width = 50
-        Height = 13
-        Caption = 'Password:'
-      end
-      object Label6: TLabel
-        Left = 24
-        Top = 40
-        Width = 79
-        Height = 13
-        Caption = 'Password Entry:'
-      end
-      object LblLearnMode: TLabel
-        Left = 64
-        Top = 264
-        Width = 183
-        Height = 13
-        Alignment = taRightJustify
-        AutoSize = False
-      end
-      object LblpwEntr: TLabel
-        Left = 128
-        Top = 40
-        Width = 119
-        Height = 13
-        Alignment = taRightJustify
-        AutoSize = False
-      end
-      object LblpwVal: TLabel
-        Left = 128
-        Top = 13
-        Width = 119
-        Height = 13
-        Alignment = taRightJustify
-        AutoSize = False
-      end
-      object CheckBox1: TCheckBox
-        Left = 24
-        Top = 72
-        Width = 194
-        Height = 17
-        Caption = 'Show Entry'
-        Checked = True
-        State = cbChecked
-        TabOrder = 0
-        OnClick = CheckBox1Click
-      end
-      object CheckBox2: TCheckBox
-        Left = 24
-        Top = 104
-        Width = 194
-        Height = 17
-        Caption = 'Show Password Length'
-        Checked = True
-        State = cbChecked
-        TabOrder = 1
-        OnClick = CheckBox2Click
-      end
-      object CheckBox3: TCheckBox
-        Left = 24
-        Top = 136
-        Width = 194
-        Height = 17
-        Caption = 'Show Ok button'
-        TabOrder = 2
-        OnClick = CheckBox3Click
-      end
-      object CheckBox4: TCheckBox
-        Left = 24
-        Top = 168
-        Width = 194
-        Height = 17
-        Caption = 'Show Clear Entry button'
-        TabOrder = 3
-        OnClick = CheckBox4Click
-      end
-      object CheckBox5: TCheckBox
-        Left = 24
-        Top = 200
-        Width = 194
-        Height = 17
-        Caption = 'Enable Key Input'
-        Checked = True
-        State = cbChecked
-        TabOrder = 4
-        OnClick = CheckBox5Click
-      end
-      object CheckBox6: TCheckBox
-        Left = 24
-        Top = 240
-        Width = 79
-        Height = 17
-        Caption = 'Learn Mode'
-        TabOrder = 5
-        OnClick = CheckBox6Click
-      end
-      object Button2: TButton
-        Left = 24
-        Top = 296
-        Width = 105
-        Height = 25
-        Caption = 'Clear Entry'
-        TabOrder = 6
-        OnClick = Button2Click
-      end
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
     end
-    object TMSFNCPassLock2: TTMSFNCPassLock
-      Left = 265
-      Top = 1
-      Width = 747
-      Height = 383
-      Align = alClient
-      ParentDoubleBuffered = False
-      Color = clBtnFace
-      DoubleBuffered = True
-      TabOrder = 1
-      Fill.Kind = gfkNone
-      PasswordValue = '1456'
-      ButtonAppearance.DownFill.Color = 16297243
-      ButtonAppearance.DownFont.Charset = DEFAULT_CHARSET
-      ButtonAppearance.DownFont.Color = clWhite
-      ButtonAppearance.DownFont.Height = -11
-      ButtonAppearance.DownFont.Name = 'Tahoma'
-      ButtonAppearance.DownFont.Style = []
-      ButtonAppearance.DownStroke.Color = clGray
-      ButtonAppearance.HoverFill.Color = 13419707
-      ButtonAppearance.HoverFont.Charset = DEFAULT_CHARSET
-      ButtonAppearance.HoverFont.Color = clWindowText
-      ButtonAppearance.HoverFont.Height = -11
-      ButtonAppearance.HoverFont.Name = 'Tahoma'
-      ButtonAppearance.HoverFont.Style = []
-      ButtonAppearance.HoverStroke.Color = 10061943
-      ButtonAppearance.Font.Charset = DEFAULT_CHARSET
-      ButtonAppearance.Font.Color = clWindowText
-      ButtonAppearance.Font.Height = -11
-      ButtonAppearance.Font.Name = 'Tahoma'
-      ButtonAppearance.Font.Style = []
-      ButtonAppearance.MaxSize = 50.000000000000000000
-      ButtonAppearance.PatternLine.Color = clGray
-      ButtonAppearance.PatternLine.Width = 6.000000000000000000
-      ButtonAppearance.Stroke.Color = 11119017
-      ButtonAppearance.Spacing = 6.000000000000000000
-      EntryAppearance.DownFill.Color = 16297243
-      EntryAppearance.DownStroke.Color = clGray
-      EntryAppearance.MaxSize = 10.000000000000000000
-      EntryAppearance.Spacing = 6.000000000000000000
-      EntryAppearance.Stroke.Color = 11119017
-      Stroke.Kind = gskNone
-      OnBeforeDrawEntry = TMSFNCPassLock2BeforeDrawEntry
-      OnPasswordCheck = TMSFNCPassLock2PasswordCheck
-      OnLearnPassword = TMSFNCPassLock2LearnPassword
-      OnConfirmPassword = TMSFNCPassLock2ConfirmPassword
-      OnPasswordEntryChanged = TMSFNCPassLock2PasswordEntryChanged
-      ExplicitLeft = 224
-      ExplicitWidth = 788
-    end
-    object TMSFNCImage1: TTMSFNCImage
-      Left = 424
-      Top = 14
-      Width = 425
-      Height = 10
-      ParentDoubleBuffered = False
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 789
+      Height = 30
       Anchors = [akLeft, akTop, akRight]
-      Color = 13882323
-      DoubleBuffered = True
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'PassLock'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 789
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
       TabOrder = 2
-      Bitmaps = <>
-      Fill.Color = 13882323
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Enter the code 1456, or try the options'
+    end
+  end
+  object Panel3: TTMSFNCPanel
+    Align = alLeft
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 8
+    Margins.Bottom = 16
+    Width = 272
+    Header.Visible = False
+    object PLSecKeypad: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 12
+      Width = 240
+      Height = 24
+      Font.Height = -17
+      Font.Name = 'Segoe UI Semibold'
+      Text = 'Keypad lock'
+      HorizontalTextAlign = gtaLeading
+      VerticalTextAlign = gtaCenter
+      Fill.Kind = gfkNone
       Stroke.Kind = gskNone
     end
-  end
-  object TMSFNCSplitter1: TTMSFNCSplitter
-    Left = 0
-    Top = 385
-    Width = 1013
-    Height = 10
-    Cursor = crVSplit
-    Align = alTop
-    ParentDoubleBuffered = False
-    DoubleBuffered = True
-    TabOrder = 1
-    Appearance.IndicatorDownFill.Color = 16297243
-    Appearance.IndicatorDownStroke.Color = clGray
-    Appearance.IndicatorHoverStroke.Color = clGray
-    Appearance.IndicatorStroke.Color = clGray
-    Appearance.SplitterDownFill.Color = 13156536
-    Appearance.SplitterDownStroke.Color = 9470064
-    Appearance.SplitterFill.Color = 15329769
-    Appearance.SplitterHoverFill.Color = 13419707
-    Appearance.SplitterHoverStroke.Color = 10061943
-    Appearance.SplitterStroke.Color = 11119017
-    MinSize = 20.000000000000000000
-    ExplicitTop = 41
-    ExplicitWidth = 10
-  end
-  object Panel2: TPanel
-    Left = 0
-    Top = 395
-    Width = 1013
-    Height = 356
-    Align = alClient
-    TabOrder = 2
-    ExplicitTop = 280
-    ExplicitWidth = 1139
-    ExplicitHeight = 353
-    DesignSize = (
-      1013
-      356)
-    object Panel4: TPanel
-      Left = 1
-      Top = 1
-      Width = 264
-      Height = 354
-      Align = alLeft
-      TabOrder = 0
-      object Label1: TLabel
-        Left = 24
-        Top = 24
-        Width = 40
-        Height = 13
-        Caption = 'Top Left'
-      end
-      object Label2: TLabel
-        Left = 24
-        Top = 64
-        Width = 50
-        Height = 13
-        Caption = 'One Down'
-      end
-      object Label3: TLabel
-        Left = 24
-        Top = 104
-        Width = 48
-        Height = 13
-        Caption = 'One Right'
-      end
-      object Label4: TLabel
-        Left = 24
-        Top = 144
-        Width = 70
-        Height = 13
-        Caption = 'And one Down'
-      end
+    object Label5: TTMSFNCHTMLText
+      Left = 16
+      Top = 44
+      Width = 112
+      Height = 24
+      VerticalTextAlign = gtaCenter
+      Text = 'Password:'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Button1: TButton
-      Left = 565
-      Top = 152
-      Width = 145
-      Height = 57
-      Anchors = [akLeft, akTop, akRight, akBottom]
-      Caption = 'Show Lock Pattern'
-      TabOrder = 1
+    object LblpwVal: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 128
+      Top = 44
+      Width = 128
+      Height = 24
+      VerticalTextAlign = gtaCenter
+      AutoSize = False
+      HorizontalTextAlign = gtaTrailing
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object Label6: TTMSFNCHTMLText
+      Left = 16
+      Top = 72
+      Width = 112
+      Height = 24
+      VerticalTextAlign = gtaCenter
+      Text = 'Password Entry:'
+      HorizontalTextAlign = gtaLeading
+      AutoSize = True
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object LblpwEntr: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 128
+      Top = 72
+      Width = 128
+      Height = 24
+      VerticalTextAlign = gtaCenter
+      AutoSize = False
+      HorizontalTextAlign = gtaTrailing
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object PLStatusCaption: TTMSFNCHTMLText
+      Left = 16
+      Top = 100
+      Width = 112
+      Height = 24
+      Text = 'Status:'
+      HorizontalTextAlign = gtaLeading
+      VerticalTextAlign = gtaCenter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object LblLearnMode: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 128
+      Top = 100
+      Width = 128
+      Height = 24
+      VerticalTextAlign = gtaCenter
+      AutoSize = False
+      HorizontalTextAlign = gtaTrailing
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object CheckBox1: TTMSFNCCheckBox
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 140
+      Width = 240
+      Height = 24
+      Text = 'Show Entry'
+      Checked = True
+      OnClick = CheckBox1Click
+      Checked = True
+    end
+    object CheckBox2: TTMSFNCCheckBox
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 172
+      Width = 240
+      Height = 24
+      Text = 'Show Password Length'
+      Checked = True
+      OnClick = CheckBox2Click
+      Checked = True
+    end
+    object CheckBox3: TTMSFNCCheckBox
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 204
+      Width = 240
+      Height = 24
+      Text = 'Show Ok button'
+      OnClick = CheckBox3Click
+    end
+    object CheckBox4: TTMSFNCCheckBox
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 236
+      Width = 240
+      Height = 24
+      Text = 'Show Clear Entry button'
+      OnClick = CheckBox4Click
+    end
+    object CheckBox5: TTMSFNCCheckBox
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 268
+      Width = 240
+      Height = 24
+      Text = 'Enable Key Input'
+      Checked = True
+      OnClick = CheckBox5Click
+      Checked = True
+    end
+    object CheckBox6: TTMSFNCCheckBox
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 300
+      Width = 240
+      Height = 24
+      Text = 'Learn Mode'
+      OnClick = CheckBox6Click
+    end
+    object Button2: TTMSFNCButton
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 344
+      Width = 240
+      Height = 32
+      Text = 'Clear Entry'
+      OnClick = Button2Click
+    end
+    object PLSecPattern: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 396
+      Width = 240
+      Height = 24
+      Font.Height = -17
+      Font.Name = 'Segoe UI Semibold'
+      Text = 'Pattern lock'
+      HorizontalTextAlign = gtaLeading
+      VerticalTextAlign = gtaCenter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object PLPatternHint: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 428
+      Width = 240
+      Height = 80
+      Text = 'The pattern lock below covers a page of the application. Unlock it with the pattern of 1458, then press Show Lock Pattern to lock it again.'
+      HorizontalTextAlign = gtaLeading
+      VerticalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      WordWrapping = True
+      TextRole = htrSecondary
+    end
+    object Button1: TTMSFNCButton
+      Anchors = [akLeft, akTop, akRight]
+      Left = 16
+      Top = 516
+      Width = 240
+      Height = 32
+      Text = 'Show Lock Pattern'
       OnClick = Button1Click
     end
-    object TMSFNCPassLock1: TTMSFNCPassLock
-      Left = 265
-      Top = 1
-      Width = 747
-      Height = 354
-      Align = alClient
-      ParentDoubleBuffered = False
-      Color = clBtnFace
-      DoubleBuffered = True
-      TabOrder = 2
+  end
+  object ContentPanel: TTMSFNCPanel
+    Align = alClient
+    AlignWithMargins = True
+    Margins.Left = 0
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
+    Width = 788
+    Height = 632
+    Header.Visible = False
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    object Panel1: TTMSFNCPanel
+      Align = alTop
+      Width = 788
+      Height = 330
+      Header.Visible = False
       Fill.Kind = gfkNone
-      PasswordValue = '1458'
-      ButtonAppearance.DownFill.Color = 16297243
-      ButtonAppearance.DownFont.Charset = DEFAULT_CHARSET
-      ButtonAppearance.DownFont.Color = clWhite
-      ButtonAppearance.DownFont.Height = -11
-      ButtonAppearance.DownFont.Name = 'Tahoma'
-      ButtonAppearance.DownFont.Style = []
-      ButtonAppearance.DownStroke.Color = clGray
-      ButtonAppearance.HoverFill.Color = 13419707
-      ButtonAppearance.HoverFont.Charset = DEFAULT_CHARSET
-      ButtonAppearance.HoverFont.Color = clWindowText
-      ButtonAppearance.HoverFont.Height = -11
-      ButtonAppearance.HoverFont.Name = 'Tahoma'
-      ButtonAppearance.HoverFont.Style = []
-      ButtonAppearance.HoverStroke.Color = 10061943
-      ButtonAppearance.Font.Charset = DEFAULT_CHARSET
-      ButtonAppearance.Font.Color = clWindowText
-      ButtonAppearance.Font.Height = -11
-      ButtonAppearance.Font.Name = 'Tahoma'
-      ButtonAppearance.Font.Style = []
-      ButtonAppearance.MaxSize = 50.000000000000000000
-      ButtonAppearance.PatternLine.Color = clGray
-      ButtonAppearance.PatternLine.Width = 6.000000000000000000
-      ButtonAppearance.Shape = plbsRoundedRectangle
-      ButtonAppearance.Stroke.Color = 11119017
-      ButtonAppearance.Spacing = 6.000000000000000000
-      EntryAppearance.DownFill.Color = 16297243
-      EntryAppearance.DownStroke.Color = clGray
-      EntryAppearance.MaxSize = 10.000000000000000000
-      EntryAppearance.Spacing = 6.000000000000000000
-      EntryAppearance.Stroke.Color = 11119017
-      Options.LockType = pltPattern
       Stroke.Kind = gskNone
-      OnPasswordCheck = TMSFNCPassLock1PasswordCheck
-      ExplicitLeft = 408
-      ExplicitTop = 40
-      ExplicitWidth = 200
-      ExplicitHeight = 270
+      object TMSFNCPassLock2: TTMSFNCPassLock
+        Align = alClient
+        Width = 788
+        Height = 330
+        Fill.Kind = gfkNone
+        PasswordValue = '1456'
+        ButtonAppearance.MaxSize = 50.000000000000000000
+        ButtonAppearance.PatternLine.Width = 6.000000000000000000
+        ButtonAppearance.Spacing = 6.000000000000000000
+        EntryAppearance.MaxSize = 10.000000000000000000
+        EntryAppearance.Spacing = 6.000000000000000000
+        Stroke.Kind = gskNone
+        OnBeforeDrawEntry = TMSFNCPassLock2BeforeDrawEntry
+        OnPasswordCheck = TMSFNCPassLock2PasswordCheck
+        OnLearnPassword = TMSFNCPassLock2LearnPassword
+        OnConfirmPassword = TMSFNCPassLock2ConfirmPassword
+        OnPasswordEntryChanged = TMSFNCPassLock2PasswordEntryChanged
+      end
+      object TMSFNCImage1: TTMSFNCImage
+        Anchors = [akLeft, akTop, akRight]
+        Left = 180
+        Top = 14
+        Width = 428
+        Height = 10
+        Fill.Kind = gfkNone
+        Bitmaps = <>
+        Stroke.Kind = gskNone
+      end
     end
+    object TMSFNCSplitter1: TTMSFNCSplitter
+      Align = alTop
+      Height = 10
+      MinSize = 20.000000000000000000
+    end
+    object Panel2: TTMSFNCPanel
+      Align = alClient
+      Header.Visible = False
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      object Panel4: TTMSFNCPanel
+        Align = alLeft
+        Width = 200
+        Header.Visible = False
+        object Label1: TTMSFNCHTMLText
+          Left = 16
+          Top = 16
+          Width = 168
+          Height = 24
+          VerticalTextAlign = gtaCenter
+          Text = 'Top Left'
+          HorizontalTextAlign = gtaLeading
+          AutoSize = True
+          Fill.Kind = gfkNone
+          Stroke.Kind = gskNone
+        end
+        object Label2: TTMSFNCHTMLText
+          Left = 16
+          Top = 48
+          Width = 168
+          Height = 24
+          VerticalTextAlign = gtaCenter
+          Text = 'One Down'
+          HorizontalTextAlign = gtaLeading
+          AutoSize = True
+          Fill.Kind = gfkNone
+          Stroke.Kind = gskNone
+        end
+        object Label3: TTMSFNCHTMLText
+          Left = 16
+          Top = 80
+          Width = 168
+          Height = 24
+          VerticalTextAlign = gtaCenter
+          Text = 'One Right'
+          HorizontalTextAlign = gtaLeading
+          AutoSize = True
+          Fill.Kind = gfkNone
+          Stroke.Kind = gskNone
+        end
+        object Label4: TTMSFNCHTMLText
+          Left = 16
+          Top = 112
+          Width = 168
+          Height = 24
+          VerticalTextAlign = gtaCenter
+          Text = 'And one Down'
+          HorizontalTextAlign = gtaLeading
+          AutoSize = True
+          Fill.Kind = gfkNone
+          Stroke.Kind = gskNone
+        end
+      end
+      object TMSFNCPassLock1: TTMSFNCPassLock
+        Align = alClient
+        Fill.Kind = gfkNone
+        PasswordValue = '1458'
+        ButtonAppearance.MaxSize = 50.000000000000000000
+        ButtonAppearance.PatternLine.Width = 6.000000000000000000
+        ButtonAppearance.Shape = plbsRoundedRectangle
+        ButtonAppearance.Spacing = 6.000000000000000000
+        EntryAppearance.MaxSize = 10.000000000000000000
+        EntryAppearance.Spacing = 6.000000000000000000
+        Options.LockType = pltPattern
+        Stroke.Kind = gskNone
+        OnPasswordCheck = TMSFNCPassLock1PasswordCheck
+      end
+    end
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end
