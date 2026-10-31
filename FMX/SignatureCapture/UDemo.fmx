@@ -194,7 +194,6 @@ object Form130: TForm130
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       VerticalTextAlign = gtaCenter
-      TextRole = htrSecondary
       Text = '1'
       HorizontalTextAlign = gtaLeading
       Fill.Kind = gfkNone
@@ -208,7 +207,6 @@ object Form130: TForm130
       Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
       VerticalTextAlign = gtaCenter
-      TextRole = htrSecondary
       Text = '10'
       HorizontalTextAlign = gtaTrailing
       Fill.Kind = gfkNone

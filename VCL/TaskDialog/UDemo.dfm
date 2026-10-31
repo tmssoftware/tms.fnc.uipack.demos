@@ -311,9 +311,9 @@ object Form130: TForm130
     object Edit1: TTMSFNCEdit
       Anchors = [akLeft, akTop, akRight]
       Left = 140
-      Top = 44
+      Top = 46
       Width = 276
-      Height = 32
+      Height = 28
       Text = 'TMS FNC TaskDialog'
     end
     object Label2: TTMSFNCHTMLText
@@ -342,9 +342,9 @@ object Form130: TForm130
     object Edit2: TTMSFNCEdit
       Anchors = [akLeft, akTop, akRight]
       Left = 140
-      Top = 124
+      Top = 126
       Width = 276
-      Height = 32
+      Height = 28
       Text = 'Do you like the task dialog?'
     end
     object CheckBox3: TTMSFNCCheckBox
@@ -552,9 +552,9 @@ object Form130: TForm130
     object Edit5: TTMSFNCEdit
       Anchors = [akLeft, akTop, akRight]
       Left = 140
-      Top = 156
+      Top = 158
       Width = 276
-      Height = 32
+      Height = 28
       Text = 'Don'#39't show again'
     end
     object Label11: TTMSFNCHTMLText

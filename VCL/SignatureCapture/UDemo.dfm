@@ -195,10 +195,9 @@ object Form130: TForm130
       Width = 60
       Height = 24
       VerticalTextAlign = gtaCenter
-      TextRole = htrSecondary
       Text = '1'
       HorizontalTextAlign = gtaLeading
-      AutoSize = True
+      AutoSize = False
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
     end
@@ -209,10 +208,9 @@ object Form130: TForm130
       Width = 60
       Height = 24
       VerticalTextAlign = gtaCenter
-      TextRole = htrSecondary
       Text = '10'
       HorizontalTextAlign = gtaTrailing
-      AutoSize = True
+      AutoSize = False
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
     end
@@ -232,9 +230,9 @@ object Form130: TForm130
     end
     object Edit1: TTMSFNCEdit
       Left = 16
-      Top = 232
+      Top = 234
       Width = 112
-      Height = 32
+      Height = 28
       Text = 'demo.txt'
     end
     object Button1: TTMSFNCButton
@@ -248,9 +246,9 @@ object Form130: TForm130
     end
     object Edit2: TTMSFNCEdit
       Left = 16
-      Top = 272
+      Top = 274
       Width = 112
-      Height = 32
+      Height = 28
       Text = 'demo.txt'
     end
     object Button2: TTMSFNCButton
@@ -264,9 +262,9 @@ object Form130: TForm130
     end
     object Edit3: TTMSFNCEdit
       Left = 16
-      Top = 312
+      Top = 314
       Width = 112
-      Height = 32
+      Height = 28
       Text = 'demo.png'
     end
     object Button3: TTMSFNCButton
