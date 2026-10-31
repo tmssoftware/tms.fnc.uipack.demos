@@ -14,6 +14,9 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    DemoHeader: TPanel;
+    DemoTitle: TLabel;
+    DemoDescription: TLabel;
     Button1: TButton;
     CheckBox1: TCheckBox;
     CheckBox10: TCheckBox;

@@ -1,552 +1,258 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC TaskDialog Demo'
-  ClientHeight = 600
-  ClientWidth = 615
+  Caption = 'TMS FNC UI Pack - TaskDialog'
+  ClientHeight = 640
+  ClientWidth = 1200
   Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
-  object Panel1: TPanel
-    Position.X = 8.000000000000000000
-    Position.Y = 8.000000000000000000
-    Size.Width = 297.000000000000000000
-    Size.Height = 585.000000000000000000
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 615.000000000000000000
+    Size.Height = 72.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 1
-    object Label1: TLabel
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 8.000000000000000000
-      Position.Y = 8.000000000000000000
-      TextSettings.Font.Size = 15.000000000000000000
-      Text = 'Title'
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
       TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
     end
-    object CheckBox1: TCheckBox
-      Position.X = 8.000000000000000000
-      Position.Y = 32.000000000000000000
-      Size.Width = 73.000000000000000000
-      Size.Height = 19.000000000000000000
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 391.000000000000000000
+      Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
-      Text = 'Default'
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'TaskDialog'
     end
-    object Edit1: TEdit
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 391.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
       TabOrder = 2
-      Text = 'TMS FNC TaskDialog'
-      Position.X = 80.000000000000000000
-      Position.Y = 32.000000000000000000
-      Size.Width = 209.000000000000000000
-      Size.Height = 22.000000000000000000
-      Size.PlatformDefault = False
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Design a dialog with the options, or show a ready-made one'
     end
-    object Label2: TLabel
+  end
+  object Panel3: TTMSFNCPanel
+    Align = Left
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 8.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+    Size.Width = 288.000000000000000000
+    Size.Height = 552.000000000000000000
+    Size.PlatformDefault = False
+    Header.Visible = False
+    object TDSecReady: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 256.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 13.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      Text = 'Ready-made dialogs'
+      HorizontalTextAlign = gtaLeading
+      VerticalTextAlign = gtaCenter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object TDReadyHint: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 44.000000000000000000
+      Size.Width = 256.000000000000000000
+      Size.Height = 64.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Show a complete dialog with one click, or design your own with the options on the right.'
+      HorizontalTextAlign = gtaLeading
+      VerticalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      WordWrapping = True
+      TextRole = htrSecondary
+    end
+    object Button2: TTMSFNCButton
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 116.000000000000000000
+      Size.Width = 256.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Dialog with radio buttons'
       StyledSettings = [Family, Style, FontColor]
-      Position.X = 8.000000000000000000
-      Position.Y = 64.000000000000000000
-      TextSettings.Font.Size = 15.000000000000000000
-      Text = 'Instruction'
-      TabOrder = 3
-    end
-    object CheckBox2: TCheckBox
-      IsChecked = True
-      Position.X = 8.000000000000000000
-      Position.Y = 88.000000000000000000
-      Size.Width = 65.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 4
-      Text = 'Show'
-    end
-    object Edit2: TEdit
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      TabOrder = 5
-      Text = 'Do you like the task dialog?'
-      Position.X = 80.000000000000000000
-      Position.Y = 88.000000000000000000
-      Size.Width = 209.000000000000000000
-      Size.Height = 22.000000000000000000
-      Size.PlatformDefault = False
-    end
-    object Label3: TLabel
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 8.000000000000000000
-      Position.Y = 152.000000000000000000
-      TextSettings.Font.Size = 15.000000000000000000
-      Text = 'Content'
-      TabOrder = 6
-    end
-    object Label4: TLabel
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 8.000000000000000000
-      Position.Y = 256.000000000000000000
-      TextSettings.Font.Size = 15.000000000000000000
-      Text = 'Radio buttons'
-      TabOrder = 7
-    end
-    object CheckBox3: TCheckBox
-      IsChecked = True
-      Position.X = 8.000000000000000000
-      Position.Y = 120.000000000000000000
-      Size.Width = 81.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 8
-      Text = 'Show icon'
-    end
-    object CheckBox4: TCheckBox
-      IsChecked = True
-      Position.X = 8.000000000000000000
-      Position.Y = 176.000000000000000000
-      Size.Width = 65.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 9
-      Text = 'Show'
-    end
-    object CheckBox5: TCheckBox
-      Position.X = 8.000000000000000000
-      Position.Y = 280.000000000000000000
-      Size.Width = 57.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 10
-      Text = 'Show'
-    end
-    object Memo1: TMemo
-      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-      DataDetectorTypes = []
-      Lines.Strings = (
-        'This is the content or description area of the task dialog.'
-        ''
-        'It supports <b><i>HTML formatting</i></b> too!')
-      TextSettings.WordWrap = True
-      Position.X = 80.000000000000000000
-      Position.Y = 176.000000000000000000
-      Size.Width = 209.000000000000000000
-      Size.Height = 73.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 11
-      Viewport.Width = 189.000000000000000000
-      Viewport.Height = 69.000000000000000000
-    end
-    object RadioButton1: TRadioButton
-      GroupName = 'Panel1'
-      IsChecked = True
-      Position.X = 91.000000000000000000
-      Position.Y = 120.000000000000000000
-      Size.Width = 73.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 14
-      Text = 'Question'
-    end
-    object RadioButton2: TRadioButton
-      GroupName = 'Panel1'
-      Position.X = 168.000000000000000000
-      Position.Y = 120.000000000000000000
-      Size.Width = 57.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 15
-      Text = 'Shield'
-    end
-    object RadioButton3: TRadioButton
-      GroupName = 'Panel1'
-      Position.X = 232.000000000000000000
-      Position.Y = 120.000000000000000000
-      Size.Width = 57.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 16
-      Text = 'Error'
-    end
-    object Label6: TLabel
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 8.000000000000000000
-      Position.Y = 376.000000000000000000
-      TextSettings.Font.Size = 15.000000000000000000
-      Text = 'Custom buttons'
-      TabOrder = 17
-    end
-    object CheckBox10: TCheckBox
-      Position.X = 8.000000000000000000
-      Position.Y = 398.000000000000000000
-      Size.Width = 105.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 18
-      Text = 'Show'
-    end
-    object CheckBox11: TCheckBox
-      Position.X = 8.000000000000000000
-      Position.Y = 422.000000000000000000
-      Size.Width = 105.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 19
-      Text = 'Command link'
-    end
-    object Memo2: TMemo
-      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-      DataDetectorTypes = []
-      Lines.Strings = (
-        'Radio button 1'
-        'Radio button 2')
-      Position.X = 80.000000000000000000
-      Position.Y = 280.000000000000000000
-      Size.Width = 209.000000000000000000
-      Size.Height = 49.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 20
-      Viewport.Width = 205.000000000000000000
-      Viewport.Height = 45.000000000000000000
-    end
-    object Label13: TLabel
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 8.000000000000000000
-      Position.Y = 504.000000000000000000
-      TextSettings.Font.Size = 15.000000000000000000
-      Text = 'Input field'
-      TabOrder = 21
-    end
-    object CheckBox16: TCheckBox
-      Position.X = 8.000000000000000000
-      Position.Y = 528.000000000000000000
-      Size.Width = 65.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 22
-      Text = 'Show'
-    end
-    object Button2: TButton
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 8.000000000000000000
-      Position.Y = 336.000000000000000000
-      Size.Width = 281.000000000000000000
-      Size.Height = 33.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 23
-      Text = 'Show dialog with radio buttons'
-      TextSettings.Font.Size = 14.000000000000000000
       OnClick = Button2Click
     end
-    object Button3: TButton
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 8.000000000000000000
-      Position.Y = 464.000000000000000000
-      Size.Width = 281.000000000000000000
-      Size.Height = 33.000000000000000000
+    object Button3: TTMSFNCButton
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 156.000000000000000000
+      Size.Width = 256.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 24
-      Text = 'Show dialog with custom buttons'
-      TextSettings.Font.Size = 14.000000000000000000
+      Text = 'Dialog with custom buttons'
+      StyledSettings = [Family, Style, FontColor]
       OnClick = Button3Click
     end
-  end
-  object Panel2: TPanel
-    Position.X = 312.000000000000000000
-    Position.Y = 8.000000000000000000
-    Size.Width = 297.000000000000000000
-    Size.Height = 409.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 2
-    object Label7: TLabel
+    object Button4: TTMSFNCButton
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 196.000000000000000000
+      Size.Width = 256.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Dialog with footer and verify box'
       StyledSettings = [Family, Style, FontColor]
-      Position.X = 8.000000000000000000
-      Position.Y = 8.000000000000000000
-      Size.Width = 120.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 15.000000000000000000
-      Text = 'Expanded text'
-      TabOrder = 0
-    end
-    object Label10: TLabel
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 8.000000000000000000
-      Position.Y = 104.000000000000000000
-      TextSettings.Font.Size = 15.000000000000000000
-      Text = 'Verification box'
-      TabOrder = 1
-    end
-    object Memo3: TMemo
-      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-      DataDetectorTypes = []
-      Lines.Strings = (
-        'Custom 1'
-        'Custom 2'
-        'Custom 3')
-      Position.X = -184.000000000000000000
-      Position.Y = 400.000000000000000000
-      Size.Width = 169.000000000000000000
-      Size.Height = 57.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 2
-      Viewport.Width = 165.000000000000000000
-      Viewport.Height = 53.000000000000000000
-    end
-    object CheckBox12: TCheckBox
-      Position.X = 8.000000000000000000
-      Position.Y = 32.000000000000000000
-      Size.Width = 65.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 3
-      Text = 'Show'
-    end
-    object CheckBox13: TCheckBox
-      Position.X = 8.000000000000000000
-      Position.Y = 128.000000000000000000
-      Size.Width = 65.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 4
-      Text = 'Show'
-    end
-    object Edit5: TEdit
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      TabOrder = 5
-      Text = 'Don'#39't show again'
-      Position.X = 80.000000000000000000
-      Position.Y = 128.000000000000000000
-      Size.Width = 209.000000000000000000
-      Size.Height = 22.000000000000000000
-      Size.PlatformDefault = False
-    end
-    object Label11: TLabel
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 8.000000000000000000
-      Position.Y = 160.000000000000000000
-      TextSettings.Font.Size = 15.000000000000000000
-      Text = 'Footer'
-      TabOrder = 6
-    end
-    object CheckBox14: TCheckBox
-      Position.X = 8.000000000000000000
-      Position.Y = 184.000000000000000000
-      Size.Width = 65.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 7
-      Text = 'Show'
-    end
-    object Memo4: TMemo
-      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-      DataDetectorTypes = []
-      Lines.Strings = (
-        
-          'This is the expandable text area. It also supports HTML formatti' +
-          'ng! <img src="Flag-Green.png"/>')
-      TextSettings.WordWrap = True
-      Position.X = 80.000000000000000000
-      Position.Y = 32.000000000000000000
-      Size.Width = 209.000000000000000000
-      Size.Height = 65.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 8
-      Viewport.Width = 205.000000000000000000
-      Viewport.Height = 61.000000000000000000
-    end
-    object CheckBox15: TCheckBox
-      Position.X = 8.000000000000000000
-      Position.Y = 256.000000000000000000
-      Size.Width = 81.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 9
-      Text = 'Show icon'
-    end
-    object RadioButton4: TRadioButton
-      GroupName = 'Panel2'
-      IsChecked = True
-      Position.X = 96.000000000000000000
-      Position.Y = 256.000000000000000000
-      Size.Width = 57.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 10
-      Text = 'About'
-    end
-    object RadioButton5: TRadioButton
-      GroupName = 'Panel2'
-      Position.X = 160.000000000000000000
-      Position.Y = 256.000000000000000000
-      Size.Width = 57.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 11
-      Text = 'Info'
-    end
-    object RadioButton6: TRadioButton
-      GroupName = 'Panel2'
-      Position.X = 216.000000000000000000
-      Position.Y = 256.000000000000000000
-      Size.Width = 73.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 12
-      Text = 'Warning'
-    end
-    object Button1: TButton
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 8.000000000000000000
-      Position.Y = 336.000000000000000000
-      Size.Width = 281.000000000000000000
-      Size.Height = 65.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 13
-      Text = 'Show dialog'
-      TextSettings.Font.Size = 20.000000000000000000
-      OnClick = Button1Click
-    end
-    object Memo5: TMemo
-      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-      DataDetectorTypes = []
-      Lines.Strings = (
-        
-          'Brought to Delphi by <a href="https://www.tmssoftware.com/">TMS ' +
-          'Software</a>')
-      TextSettings.WordWrap = True
-      Position.X = 80.000000000000000000
-      Position.Y = 184.000000000000000000
-      Size.Width = 209.000000000000000000
-      Size.Height = 65.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 14
-      Viewport.Width = 205.000000000000000000
-      Viewport.Height = 61.000000000000000000
-    end
-    object Button4: TButton
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 8.000000000000000000
-      Position.Y = 280.000000000000000000
-      Size.Width = 281.000000000000000000
-      Size.Height = 33.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 15
-      Text = 'Show dialog with footer and verify box'
-      TextSettings.Font.Size = 14.000000000000000000
       OnClick = Button4Click
     end
-  end
-  object Panel3: TPanel
-    Position.X = 312.000000000000000000
-    Position.Y = 424.000000000000000000
-    Size.Width = 297.000000000000000000
-    Size.Height = 169.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 4
-    object Label12: TLabel
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 8.000000000000000000
-      Position.Y = 8.000000000000000000
-      TextSettings.Font.Size = 15.000000000000000000
+    object Label12: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 252.000000000000000000
+      Size.Width = 256.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 13.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      VerticalTextAlign = gtaCenter
       Text = 'Results'
-      TabOrder = 0
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Layout1: TLayout
-      Position.X = -296.000000000000000000
-      Position.Y = 136.000000000000000000
-      Size.Width = 281.000000000000000000
-      Size.Height = 25.000000000000000000
+    object Label14: TTMSFNCHTMLText
+      Position.X = 16.000000000000000000
+      Position.Y = 284.000000000000000000
+      Size.Width = 144.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 1
-      object RadioButton7: TRadioButton
-        GroupName = 'Layout1'
-        IsChecked = True
-        Size.Width = 49.000000000000000000
-        Size.Height = 19.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 0
-        Text = 'Edit'
-      end
-      object RadioButton8: TRadioButton
-        GroupName = 'Layout1'
-        Position.X = 46.000000000000000000
-        Size.Width = 57.000000000000000000
-        Size.Height = 19.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 1
-        Text = 'Date'
-      end
-      object RadioButton9: TRadioButton
-        GroupName = 'Layout1'
-        Position.X = 96.000000000000000000
-        Size.Width = 185.000000000000000000
-        Size.Height = 19.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 2
-        Text = 'Custom (TMSFNCColorWheel)'
-      end
-    end
-    object Label14: TLabel
-      Position.X = 8.000000000000000000
-      Position.Y = 32.000000000000000000
-      Size.Width = 73.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
+      VerticalTextAlign = gtaCenter
       Text = 'Modal result:'
-      TabOrder = 2
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label15: TLabel
-      Position.X = 8.000000000000000000
-      Position.Y = 56.000000000000000000
-      Size.Width = 129.000000000000000000
-      Size.Height = 17.000000000000000000
+    object Label18: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 168.000000000000000000
+      Position.Y = 284.000000000000000000
+      Size.Width = 104.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
+      VerticalTextAlign = gtaCenter
+      Text = '-'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object Label15: TTMSFNCHTMLText
+      Position.X = 16.000000000000000000
+      Position.Y = 312.000000000000000000
+      Size.Width = 144.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      VerticalTextAlign = gtaCenter
       Text = 'Selected radio button:'
-      TabOrder = 3
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label16: TLabel
-      Position.X = 8.000000000000000000
-      Position.Y = 80.000000000000000000
-      Size.Width = 89.000000000000000000
-      Size.Height = 17.000000000000000000
+    object Label19: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 168.000000000000000000
+      Position.Y = 312.000000000000000000
+      Size.Width = 104.000000000000000000
+      Size.Height = 24.000000000000000000
       Size.PlatformDefault = False
-      Text = 'Verify checked:'
-      TabOrder = 4
+      VerticalTextAlign = gtaCenter
+      Text = '-'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
-    object Label17: TLabel
-      Position.X = 8.000000000000000000
-      Position.Y = 104.000000000000000000
+    object Label16: TTMSFNCHTMLText
+      Position.X = 16.000000000000000000
+      Position.Y = 340.000000000000000000
+      Size.Width = 144.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      VerticalTextAlign = gtaCenter
+      Text = 'Verify checked:'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object Label20: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 168.000000000000000000
+      Position.Y = 340.000000000000000000
+      Size.Width = 104.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      VerticalTextAlign = gtaCenter
+      Text = '-'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object Label17: TTMSFNCHTMLText
+      Position.X = 16.000000000000000000
+      Position.Y = 372.000000000000000000
+      Size.Width = 256.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      VerticalTextAlign = gtaCenter
       Text = 'Input result:'
-      TabOrder = 5
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
     end
     object Memo6: TMemo
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 400.000000000000000000
+      Size.Width = 256.000000000000000000
+      Size.Height = 64.000000000000000000
+      Size.PlatformDefault = False
       Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
       DataDetectorTypes = []
       TextSettings.WordWrap = True
-      Position.X = 80.000000000000000000
-      Position.Y = 104.000000000000000000
-      Size.Width = 209.000000000000000000
-      Size.Height = 57.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 6
       Viewport.Width = 205.000000000000000000
       Viewport.Height = 53.000000000000000000
-    end
-    object Label18: TLabel
-      Position.X = 96.000000000000000000
-      Position.Y = 32.000000000000000000
-      Text = '-'
-      TabOrder = 7
-    end
-    object Label19: TLabel
-      Position.X = 144.000000000000000000
-      Position.Y = 56.000000000000000000
-      Text = '-'
-      TabOrder = 8
-    end
-    object Label20: TLabel
-      Position.X = 96.000000000000000000
-      Position.Y = 80.000000000000000000
-      Text = '-'
-      TabOrder = 9
     end
     object TMSFNCBitmapContainer1: TTMSFNCBitmapContainer
       Size.Width = 26.000000000000000000
@@ -571,13 +277,485 @@ object Form130: TForm130
         end>
     end
   end
+  object ContentPanel: TTMSFNCPanel
+    Align = Client
+    Margins.Left = 0.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+    Size.Width = 872.000000000000000000
+    Size.Height = 552.000000000000000000
+    Size.PlatformDefault = False
+    Header.Visible = False
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+  object Panel1: TTMSFNCPanel
+    Align = Left
+    Margins.Left = 0.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 8.000000000000000000
+    Margins.Bottom = 0.000000000000000000
+    Size.Width = 432.000000000000000000
+    Size.Height = 552.000000000000000000
+    Size.PlatformDefault = False
+    Header.Visible = False
+    object Label1: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 400.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 13.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      VerticalTextAlign = gtaCenter
+      Text = 'Title'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object CheckBox1: TTMSFNCCheckBox
+      Position.X = 16.000000000000000000
+      Position.Y = 44.000000000000000000
+      Size.Width = 116.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Default'
+    end
+    object Edit1: TTMSFNCEdit
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 140.000000000000000000
+      Position.Y = 44.000000000000000000
+      Size.Width = 276.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Text = 'TMS FNC TaskDialog'
+    end
+    object Label2: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 92.000000000000000000
+      Size.Width = 400.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 13.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      VerticalTextAlign = gtaCenter
+      Text = 'Instruction'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object CheckBox2: TTMSFNCCheckBox
+      Position.X = 16.000000000000000000
+      Position.Y = 124.000000000000000000
+      Size.Width = 116.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Checked = True
+      Text = 'Show'
+    end
+    object Edit2: TTMSFNCEdit
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 140.000000000000000000
+      Position.Y = 124.000000000000000000
+      Size.Width = 276.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Text = 'Do you like the task dialog?'
+    end
+    object CheckBox3: TTMSFNCCheckBox
+      Position.X = 16.000000000000000000
+      Position.Y = 164.000000000000000000
+      Size.Width = 116.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Checked = True
+      Text = 'Show icon'
+    end
+    object RadioButton1: TTMSFNCRadioButton
+      Position.X = 140.000000000000000000
+      Position.Y = 164.000000000000000000
+      Size.Width = 96.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      GroupName = 'Icon'
+      Checked = True
+      Text = 'Question'
+    end
+    object RadioButton2: TTMSFNCRadioButton
+      Position.X = 244.000000000000000000
+      Position.Y = 164.000000000000000000
+      Size.Width = 88.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      GroupName = 'Icon'
+      Text = 'Shield'
+    end
+    object RadioButton3: TTMSFNCRadioButton
+      Position.X = 340.000000000000000000
+      Position.Y = 164.000000000000000000
+      Size.Width = 72.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      GroupName = 'Icon'
+      Text = 'Error'
+    end
+    object Label3: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 212.000000000000000000
+      Size.Width = 400.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 13.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      VerticalTextAlign = gtaCenter
+      Text = 'Content'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object CheckBox4: TTMSFNCCheckBox
+      Position.X = 16.000000000000000000
+      Position.Y = 244.000000000000000000
+      Size.Width = 116.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Checked = True
+      Text = 'Show'
+    end
+    object Memo1: TMemo
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 140.000000000000000000
+      Position.Y = 244.000000000000000000
+      Size.Width = 276.000000000000000000
+      Size.Height = 64.000000000000000000
+      Size.PlatformDefault = False
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Lines.Strings = (
+        'This is the content or description area of the task dialog.'
+        ''
+        'It supports <b><i>HTML formatting</i></b> too!')
+      TextSettings.WordWrap = True
+      Viewport.Width = 189.000000000000000000
+      Viewport.Height = 69.000000000000000000
+    end
+    object Label4: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 324.000000000000000000
+      Size.Width = 400.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 13.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      VerticalTextAlign = gtaCenter
+      Text = 'Radio buttons'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object CheckBox5: TTMSFNCCheckBox
+      Position.X = 16.000000000000000000
+      Position.Y = 356.000000000000000000
+      Size.Width = 116.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Show'
+    end
+    object Memo2: TMemo
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 140.000000000000000000
+      Position.Y = 356.000000000000000000
+      Size.Width = 276.000000000000000000
+      Size.Height = 56.000000000000000000
+      Size.PlatformDefault = False
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Lines.Strings = (
+        'Radio button 1'
+        'Radio button 2')
+      Viewport.Width = 205.000000000000000000
+      Viewport.Height = 45.000000000000000000
+    end
+    object Label6: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 428.000000000000000000
+      Size.Width = 400.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 13.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      VerticalTextAlign = gtaCenter
+      Text = 'Custom buttons'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object CheckBox10: TTMSFNCCheckBox
+      Position.X = 16.000000000000000000
+      Position.Y = 460.000000000000000000
+      Size.Width = 116.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Show'
+    end
+    object Memo3: TMemo
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 140.000000000000000000
+      Position.Y = 460.000000000000000000
+      Size.Width = 276.000000000000000000
+      Size.Height = 56.000000000000000000
+      Size.PlatformDefault = False
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Lines.Strings = (
+        'Custom 1'
+        'Custom 2'
+        'Custom 3')
+      Viewport.Width = 165.000000000000000000
+      Viewport.Height = 53.000000000000000000
+    end
+    object CheckBox11: TTMSFNCCheckBox
+      Position.X = 16.000000000000000000
+      Position.Y = 492.000000000000000000
+      Size.Width = 116.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Command link'
+    end
+  end
+  object Panel2: TTMSFNCPanel
+    Align = Client
+    Size.Width = 432.000000000000000000
+    Size.Height = 552.000000000000000000
+    Size.PlatformDefault = False
+    Header.Visible = False
+    object Label7: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 400.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 13.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      VerticalTextAlign = gtaCenter
+      Text = 'Expanded text'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object CheckBox12: TTMSFNCCheckBox
+      Position.X = 16.000000000000000000
+      Position.Y = 44.000000000000000000
+      Size.Width = 116.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Show'
+    end
+    object Memo4: TMemo
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 140.000000000000000000
+      Position.Y = 44.000000000000000000
+      Size.Width = 276.000000000000000000
+      Size.Height = 64.000000000000000000
+      Size.PlatformDefault = False
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Lines.Strings = (
+        
+          'This is the expandable text area. It also supports HTML formatti' +
+          'ng! <img src="Flag-Green.png"/>')
+      TextSettings.WordWrap = True
+      Viewport.Width = 205.000000000000000000
+      Viewport.Height = 61.000000000000000000
+    end
+    object Label10: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 124.000000000000000000
+      Size.Width = 400.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 13.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      VerticalTextAlign = gtaCenter
+      Text = 'Verification box'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object CheckBox13: TTMSFNCCheckBox
+      Position.X = 16.000000000000000000
+      Position.Y = 156.000000000000000000
+      Size.Width = 116.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Show'
+    end
+    object Edit5: TTMSFNCEdit
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 140.000000000000000000
+      Position.Y = 156.000000000000000000
+      Size.Width = 276.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Text = 'Don'#39't show again'
+    end
+    object Label11: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 204.000000000000000000
+      Size.Width = 400.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 13.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      VerticalTextAlign = gtaCenter
+      Text = 'Footer'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object CheckBox14: TTMSFNCCheckBox
+      Position.X = 16.000000000000000000
+      Position.Y = 236.000000000000000000
+      Size.Width = 116.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Show'
+    end
+    object Memo5: TMemo
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 140.000000000000000000
+      Position.Y = 236.000000000000000000
+      Size.Width = 276.000000000000000000
+      Size.Height = 56.000000000000000000
+      Size.PlatformDefault = False
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Lines.Strings = (
+        
+          'Brought to Delphi by <a href="https://www.tmssoftware.com/">TMS ' +
+          'Software</a>')
+      TextSettings.WordWrap = True
+      Viewport.Width = 205.000000000000000000
+      Viewport.Height = 61.000000000000000000
+    end
+    object CheckBox15: TTMSFNCCheckBox
+      Position.X = 16.000000000000000000
+      Position.Y = 300.000000000000000000
+      Size.Width = 116.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Show icon'
+    end
+    object RadioButton4: TTMSFNCRadioButton
+      Position.X = 140.000000000000000000
+      Position.Y = 300.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      GroupName = 'FooterIcon'
+      Checked = True
+      Text = 'About'
+    end
+    object RadioButton5: TTMSFNCRadioButton
+      Position.X = 228.000000000000000000
+      Position.Y = 300.000000000000000000
+      Size.Width = 72.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      GroupName = 'FooterIcon'
+      Text = 'Info'
+    end
+    object RadioButton6: TTMSFNCRadioButton
+      Position.X = 308.000000000000000000
+      Position.Y = 300.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      GroupName = 'FooterIcon'
+      Text = 'Warning'
+    end
+    object Label13: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 348.000000000000000000
+      Size.Width = 400.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Font.Size = 13.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      VerticalTextAlign = gtaCenter
+      Text = 'Input field'
+      HorizontalTextAlign = gtaLeading
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+    end
+    object CheckBox16: TTMSFNCCheckBox
+      Position.X = 16.000000000000000000
+      Position.Y = 380.000000000000000000
+      Size.Width = 116.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Show'
+    end
+    object RadioButton7: TTMSFNCRadioButton
+      Position.X = 140.000000000000000000
+      Position.Y = 380.000000000000000000
+      Size.Width = 72.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      GroupName = 'InputType'
+      Checked = True
+      Text = 'Edit'
+    end
+    object RadioButton8: TTMSFNCRadioButton
+      Position.X = 220.000000000000000000
+      Position.Y = 380.000000000000000000
+      Size.Width = 72.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      GroupName = 'InputType'
+      Text = 'Date'
+    end
+    object RadioButton9: TTMSFNCRadioButton
+      Position.X = 140.000000000000000000
+      Position.Y = 420.000000000000000000
+      Size.Width = 276.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      GroupName = 'InputType'
+      Text = 'Custom (TMSFNCColorWheel)'
+    end
+    object Button1: TTMSFNCButton
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 476.000000000000000000
+      Size.Width = 400.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      Default = True
+      StyledSettings = [Family, Style, FontColor]
+      Text = 'Show dialog'
+      OnClick = Button1Click
+    end
+  end
+  end
   object TMSFNCColorWheel1: TTMSFNCColorWheel
-    Position.X = 616.000000000000000000
-    Position.Y = 400.000000000000000000
+    Position.X = 1000.000000000000000000
+    Position.Y = 100.000000000000000000
     Size.Width = 350.000000000000000000
     Size.Height = 175.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 5
     Visible = False
   end
   object TMSFNCTaskDialog1: TTMSFNCTaskDialog
@@ -585,12 +763,13 @@ object Form130: TForm130
     Size.Height = 26.000000000000000000
     Size.PlatformDefault = False
     Position.X = 264.000000000000000000
-    Position.Y = 528.000000000000000000
+    Position.Y = 600.000000000000000000
     BitmapContainer = TMSFNCBitmapContainer1
-    ButtonFont.Name = 'Segoe UI'
-    CommandLinkFont.Size = 15.000000000000000000
-    CommandLinkFont.Color = xFF0053C4
-    CommandLinkFont.Name = 'Segoe UI'
     OnDialogResult = TMSFNCTaskDialog1DialogResult
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

@@ -9,67 +9,75 @@ uses
   FMX.TMSFNCCustomComponent, FMX.TMSFNCTaskDialog, FMX.Layouts, FMX.TMSFNCTypes,
   FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes,
   FMX.TMSFNCCustomControl, FMX.TMSFNCColorWheel, FMX.TMSFNCBitmapContainer,
-  FMX.Memo.Types;
+  FMX.Memo.Types,
+  FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCEdit, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCRadioButton, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm130 = class(TForm)
-    Panel1: TPanel;
-    Label1: TLabel;
-    CheckBox1: TCheckBox;
-    Edit1: TEdit;
-    Label2: TLabel;
-    CheckBox2: TCheckBox;
-    Edit2: TEdit;
-    Label3: TLabel;
-    Label4: TLabel;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
-    CheckBox5: TCheckBox;
+    ContentPanel: TTMSFNCPanel;
+    TDSecReady: TTMSFNCHTMLText;
+    TDReadyHint: TTMSFNCHTMLText;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
+    Label1: TTMSFNCHTMLText;
+    CheckBox1: TTMSFNCCheckBox;
+    Edit1: TTMSFNCEdit;
+    Label2: TTMSFNCHTMLText;
+    CheckBox2: TTMSFNCCheckBox;
+    Edit2: TTMSFNCEdit;
+    Label3: TTMSFNCHTMLText;
+    Label4: TTMSFNCHTMLText;
+    CheckBox3: TTMSFNCCheckBox;
+    CheckBox4: TTMSFNCCheckBox;
+    CheckBox5: TTMSFNCCheckBox;
     Memo1: TMemo;
-    RadioButton1: TRadioButton;
-    RadioButton2: TRadioButton;
-    RadioButton3: TRadioButton;
-    Label6: TLabel;
-    CheckBox10: TCheckBox;
-    CheckBox11: TCheckBox;
+    RadioButton1: TTMSFNCRadioButton;
+    RadioButton2: TTMSFNCRadioButton;
+    RadioButton3: TTMSFNCRadioButton;
+    Label6: TTMSFNCHTMLText;
+    CheckBox10: TTMSFNCCheckBox;
+    CheckBox11: TTMSFNCCheckBox;
     Memo2: TMemo;
-    Panel2: TPanel;
-    Label7: TLabel;
-    Label10: TLabel;
+    Panel2: TTMSFNCPanel;
+    Label7: TTMSFNCHTMLText;
+    Label10: TTMSFNCHTMLText;
     Memo3: TMemo;
-    CheckBox12: TCheckBox;
-    CheckBox13: TCheckBox;
-    Edit5: TEdit;
-    Label11: TLabel;
-    CheckBox14: TCheckBox;
+    CheckBox12: TTMSFNCCheckBox;
+    CheckBox13: TTMSFNCCheckBox;
+    Edit5: TTMSFNCEdit;
+    Label11: TTMSFNCHTMLText;
+    CheckBox14: TTMSFNCCheckBox;
     Memo4: TMemo;
-    CheckBox15: TCheckBox;
-    RadioButton4: TRadioButton;
-    RadioButton5: TRadioButton;
-    RadioButton6: TRadioButton;
-    Button1: TButton;
-    Panel3: TPanel;
-    Label12: TLabel;
-    Label13: TLabel;
+    CheckBox15: TTMSFNCCheckBox;
+    RadioButton4: TTMSFNCRadioButton;
+    RadioButton5: TTMSFNCRadioButton;
+    RadioButton6: TTMSFNCRadioButton;
+    Button1: TTMSFNCButton;
+    Panel3: TTMSFNCPanel;
+    Label12: TTMSFNCHTMLText;
+    Label13: TTMSFNCHTMLText;
     Memo5: TMemo;
-    CheckBox16: TCheckBox;
-    Layout1: TLayout;
-    RadioButton7: TRadioButton;
-    RadioButton8: TRadioButton;
-    RadioButton9: TRadioButton;
+    CheckBox16: TTMSFNCCheckBox;
+    RadioButton7: TTMSFNCRadioButton;
+    RadioButton8: TTMSFNCRadioButton;
+    RadioButton9: TTMSFNCRadioButton;
     TMSFNCColorWheel1: TTMSFNCColorWheel;
-    Label14: TLabel;
-    Label15: TLabel;
-    Label16: TLabel;
-    Label17: TLabel;
+    Label14: TTMSFNCHTMLText;
+    Label15: TTMSFNCHTMLText;
+    Label16: TTMSFNCHTMLText;
+    Label17: TTMSFNCHTMLText;
     Memo6: TMemo;
-    Label18: TLabel;
-    Label19: TLabel;
-    Label20: TLabel;
+    Label18: TTMSFNCHTMLText;
+    Label19: TTMSFNCHTMLText;
+    Label20: TTMSFNCHTMLText;
     TMSFNCTaskDialog1: TTMSFNCTaskDialog;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
+    Button2: TTMSFNCButton;
+    Button3: TTMSFNCButton;
+    Button4: TTMSFNCButton;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -99,54 +107,54 @@ var
   mr: TModalResult;
 begin
   //Title
-  if not CheckBox1.IsChecked then
+  if not CheckBox1.Checked then
     TMSFNCTaskDialog1.Title := Edit1.Text
   else
     TMSFNCTaskDialog1.Title := '';
 
   //Instruction
-  if CheckBox2.IsChecked then
+  if CheckBox2.Checked then
     TMSFNCTaskDialog1.Instruction := Edit2.Text
   else
     TMSFNCTaskDialog1.Instruction := '';
 
-  if CheckBox3.IsChecked then
+  if CheckBox3.Checked then
   begin
-    if RadioButton1.IsChecked then
+    if RadioButton1.Checked then
       TMSFNCTaskDialog1.Icon := tdiQuestion
-    else if RadioButton2.IsChecked then
+    else if RadioButton2.Checked then
       TMSFNCTaskDialog1.Icon := tdiShield
-    else if RadioButton3.IsChecked then
+    else if RadioButton3.Checked then
       TMSFNCTaskDialog1.Icon := tdiError;
   end
   else
     TMSFNCTaskDialog1.Icon := tdiBlank;
 
   //Content
-  if CheckBox4.IsChecked then
+  if CheckBox4.Checked then
     TMSFNCTaskDialog1.Content := Memo1.Text
   else
     TMSFNCTaskDialog1.Content := '';
 
   //Radio buttons
-  if CheckBox5.IsChecked then
+  if CheckBox5.Checked then
    TMSFNCTaskDialog1.RadioButtons.Assign(Memo2.Lines)
   else
     TMSFNCTaskDialog1.RadioButtons.Clear;
 
   //Custom buttons
-  if CheckBox10.IsChecked then
+  if CheckBox10.Checked then
    TMSFNCTaskDialog1.CustomButtons.Assign(Memo3.Lines)
   else
     TMSFNCTaskDialog1.CustomButtons.Clear;
 
-  if CheckBox11.IsChecked then
+  if CheckBox11.Checked then
     TMSFNCTaskDialog1.Options := TMSFNCTaskDialog1.Options + [tdoCommandLinks]
   else
     TMSFNCTaskDialog1.Options := TMSFNCTaskDialog1.Options - [tdoCommandLinks];
 
   //Expanded text
-  if CheckBox12.IsChecked then
+  if CheckBox12.Checked then
    TMSFNCTaskDialog1.ExpandedText := Memo4.Text
   else
     TMSFNCTaskDialog1.ExpandedText := '';
@@ -155,37 +163,37 @@ begin
   TMSFNCTaskDialog1.CollapseControlText := 'Collapse';
 
   //Verification box
-  if CheckBox13.IsChecked then
+  if CheckBox13.Checked then
     TMSFNCTaskDialog1.VerifyText := Edit5.Text
   else
     TMSFNCTaskDialog1.VerifyText := '';
 
   //Footer
-  if CheckBox14.IsChecked then
+  if CheckBox14.Checked then
     TMSFNCTaskDialog1.Footer := Memo5.Text
   else
     TMSFNCTaskDialog1.Footer := '';
 
-  if CheckBox15.IsChecked then
+  if CheckBox15.Checked then
   begin
-    if RadioButton4.IsChecked then
+    if RadioButton4.Checked then
       TMSFNCTaskDialog1.FooterIcon := tdiAbout
-    else if RadioButton5.IsChecked then
+    else if RadioButton5.Checked then
       TMSFNCTaskDialog1.FooterIcon := tdiInformation
-    else if RadioButton6.IsChecked then
+    else if RadioButton6.Checked then
       TMSFNCTaskDialog1.FooterIcon := tdiWarning;
   end
   else
     TMSFNCTaskDialog1.FooterIcon := tdiBlank;
 
   //Input field
-  if CheckBox16.IsChecked then
+  if CheckBox16.Checked then
   begin
-    if RadioButton7.IsChecked then
+    if RadioButton7.Checked then
       TMSFNCTaskDialog1.InputType := titEdit
-    else if RadioButton8.IsChecked then
+    else if RadioButton8.Checked then
       TMSFNCTaskDialog1.InputType := titDate
-    else if RadioButton9.IsChecked then
+    else if RadioButton9.Checked then
       TMSFNCTaskDialog1.InputType := titCustom;
   end
   else
@@ -267,7 +275,7 @@ end;
 
 procedure TForm130.TaskDialogClosed(Sender: TObject);
 begin
-  if CheckBox16.IsChecked and RadioButton9.IsChecked then
+  if CheckBox16.Checked and RadioButton9.Checked then
   begin
     Memo6.Text := TTMSFNCColorWheel(TMSFNCTaskDialog1.InputControl).HEXValue;
   end;
@@ -298,10 +306,10 @@ begin
     end;
     4:
     begin
-      if CheckBox5.IsChecked then
+      if CheckBox5.Checked then
         Label19.Text := IntToStr(TMSFNCTaskDialog1.RadioButtonResult);
 
-      if CheckBox13.IsChecked then
+      if CheckBox13.Checked then
       begin
         if TMSFNCTaskDialog1.VerifyResult then
           Label20.Text := 'True'
@@ -309,9 +317,9 @@ begin
           Label20.Text := 'False';
       end;
 
-      if CheckBox16.IsChecked then
+      if CheckBox16.Checked then
       begin
-        if RadioButton7.IsChecked or RadioButton8.IsChecked then
+        if RadioButton7.Checked or RadioButton8.Checked then
           Memo6.Text := TMSFNCTaskDialog1.InputText;
       end;
     end;
