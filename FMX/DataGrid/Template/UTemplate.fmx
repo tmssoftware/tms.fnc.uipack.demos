@@ -64,7 +64,7 @@ object Form1: TForm1
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
-      Text = 'Status pills, progress bars and colored totals drawn in code on a CSV file'
+      Text = 'Status pills, progress bars and totals in the theme''s colors on a CSV file, with row selection'
     end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
