@@ -9,10 +9,16 @@ uses
   VCL.TMSFNCCustomWEBControl, VCL.TMSFNCMemo, VCL.TMSFNCToolBar,
   VCL.TMSFNCPageControl, VCL.TMSFNCCustomControl, VCL.TMSFNCTabSet,
   VCL.TMSFNCComboBox, VCL.TMSFNCCustomPicker, VCL.TMSFNCFontSizePicker,
-  Vcl.StdCtrls;
+  Vcl.StdCtrls,
+  VCL.TMSFNCEdit, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm2 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     DemoPages: TTMSFNCPageControl;
     TMSFNCToolBar1: TTMSFNCToolBar;
     BasicMemo: TTMSFNCMemo;
@@ -20,9 +26,9 @@ type
     SaveFile: TTMSFNCToolBarButton;
     Search: TTMSFNCToolBarButton;
     OpenDialog1: TOpenDialog;
-    FIndEdit: TEdit;
+    FIndEdit: TTMSFNCEdit;
     Replace: TTMSFNCToolBarButton;
-    ReplaceEdit: TEdit;
+    ReplaceEdit: TTMSFNCEdit;
     TMSFNCToolBarFontNamePicker1: TTMSFNCToolBarFontNamePicker;
     TMSFNCFontSizePicker1: TTMSFNCFontSizePicker;
     ThemeComboBox: TTMSFNCComboBox;

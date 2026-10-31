@@ -7,10 +7,16 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes,
   FMX.TMSFNCWebBrowser, FMX.TMSFNCCustomWEBControl, FMX.TMSFNCMemo,
-  FMX.TMSFNCCustomControl, FMX.TMSFNCTabSet, FMX.TMSFNCToolBar;
+  FMX.TMSFNCCustomControl, FMX.TMSFNCTabSet, FMX.TMSFNCToolBar,
+  FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm3 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCTabSet1: TTMSFNCTabSet;
     TMSFNCMemo1: TTMSFNCMemo;
     TMSFNCToolBar1: TTMSFNCToolBar;

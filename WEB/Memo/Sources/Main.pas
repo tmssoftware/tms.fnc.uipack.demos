@@ -7,10 +7,14 @@ uses
   WEBLib.Forms, WEBLib.Dialogs, VCL.TMSFNCTypes, VCL.TMSFNCUtils,
   VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCTabSet, Vcl.Controls,
   VCL.TMSFNCCustomControl, VCL.TMSFNCWebBrowser, VCL.TMSFNCCustomWEBControl,
-  VCL.TMSFNCMemo;
+  VCL.TMSFNCMemo,
+  WEBLib.TMSFNCPanel, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector;
 
 type
   TForm4 = class(TWebForm)
+    DemoBar: TTMSFNCPanel;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    ThemeManager: TTMSFNCThemeManager;
     TMSFNCMemo1: TTMSFNCMemo;
     TMSFNCTabSet1: TTMSFNCTabSet;
     procedure TMSFNCTabSet1ChangeTab(Sender: TObject; APreviousTabIndex,

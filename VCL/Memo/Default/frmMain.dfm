@@ -2,9 +2,9 @@ object Form2: TForm2
   Left = 0
   Top = 0
   ActiveControl = DemoPages
-  Caption = 'TTMSFNCMemo Demo'
-  ClientHeight = 1257
-  ClientWidth = 1071
+  Caption = 'TMS FNC UI Pack - Memo'
+  ClientHeight = 700
+  ClientWidth = 900
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,11 +13,68 @@ object Form2: TForm2
   Font.Style = []
   OnCreate = FormCreate
   TextHeight = 15
-  object DemoPages: TTMSFNCPageControl
+  object DemoHeader: TTMSFNCPanel
     Left = 0
     Top = 0
     Width = 1071
-    Height = 1257
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 887
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 847
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Code editor'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 847
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Syntax highlighting, code completion and breakpoints in TTMSFNCMemo'
+    end
+  end
+  object DemoPages: TTMSFNCPageControl
+    Left = 16
+    Top = 72
+    Width = 868
+    Height = 612
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -131,8 +188,11 @@ object Form2: TForm2
         Bitmaps = <>
         DisabledBitmaps = <>
       end>
-    ExplicitWidth = 792
-    ExplicitHeight = 1062
+    AlignWithMargins = True
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     object DemoPagesPage5: TTMSFNCPageControlContainer
       AlignWithMargins = True
       Left = 0
@@ -1002,7 +1062,7 @@ object Form2: TForm2
           LargeLayoutHoverBitmaps = <>
           ControlIndex = 2
         end
-        object FIndEdit: TEdit
+        object FIndEdit: TTMSFNCEdit
           Tag = 3
           Left = 93
           Top = 3
@@ -1034,7 +1094,7 @@ object Form2: TForm2
           LargeLayoutHoverBitmaps = <>
           ControlIndex = 4
         end
-        object ReplaceEdit: TEdit
+        object ReplaceEdit: TTMSFNCEdit
           Tag = 5
           Left = 223
           Top = 3
@@ -1472,5 +1532,10 @@ object Form2: TForm2
   object OpenDialog1: TOpenDialog
     Left = 663
     Top = 65535
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

@@ -1,20 +1,73 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Memo Language and Theme Demo'
-  ClientHeight = 400
-  ClientWidth = 518
+  Caption = 'TMS FNC UI Pack - Memo languages and themes'
+  ClientHeight = 640
+  ClientWidth = 900
   Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   DesignerMasterStyle = 0
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 518.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 294.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Languages and themes'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 294.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Add a custom language or a custom colour theme to the code editor'
+    end
+  end
   object TMSFNCMemo1: TTMSFNCMemo
-    Anchors = [akLeft, akTop, akRight, akBottom]
-    Position.X = 8.000000000000000000
-    Position.Y = 42.000000000000000000
-    Size.Width = 500.000000000000000000
-    Size.Height = 350.000000000000000000
+    Size.Width = 692.000000000000000000
+    Size.Height = 512.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     Font.Family = 'Consolas'
@@ -91,6 +144,11 @@ object Form1: TForm1
         Extension = '.xml'
       end>
     ActiveSource = -1
+    Margins.Left = 16.000000000000000000
+    Align = Client
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     Sources = <>
   end
   object TMSFNCMemoCustomLanguage1: TTMSFNCMemoCustomLanguage
@@ -98,39 +156,52 @@ object Form1: TForm1
     Size.Height = 26.000000000000000000
     Size.PlatformDefault = False
     Position.X = 280.000000000000000000
-    Position.Y = 8.000000000000000000
+    Position.Y = 80.000000000000000000
     Brackets = <>
     Tokenizer = <>
     ExtraKeys = <>
   end
-  object Button1: TButton
-    Position.X = 8.000000000000000000
-    Position.Y = 8.000000000000000000
-    Size.Width = 105.000000000000000000
-    Size.Height = 22.000000000000000000
+  object SettingsPanel: TTMSFNCPanel
+    Align = Left
+    Size.Width = 260.000000000000000000
+    Size.Height = 100.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 2
-    Text = 'Add language'
-    TextSettings.Trimming = None
-    OnClick = Button1Click
-  end
-  object Button2: TButton
-    Position.X = 121.000000000000000000
-    Position.Y = 8.000000000000000000
-    Size.Width = 96.000000000000000000
-    Size.Height = 22.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 3
-    Text = 'Add theme'
-    TextSettings.Trimming = None
-    OnClick = Button2Click
+    Margins.Left = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+    TabOrder = 1
+    Header.Visible = False
+    object Button1: TTMSFNCButton
+      Position.X = 16.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Add language'
+      OnClick = Button1Click
+    end
+    object Button2: TTMSFNCButton
+      Position.X = 16.000000000000000000
+      Position.Y = 56.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Text = 'Add theme'
+      OnClick = Button2Click
+    end
   end
   object TMSFNCMemoCustomTheme1: TTMSFNCMemoCustomTheme
     Size.Width = 26.000000000000000000
     Size.Height = 26.000000000000000000
     Size.PlatformDefault = False
     Position.X = 400.000000000000000000
-    Position.Y = 8.000000000000000000
+    Position.Y = 80.000000000000000000
     Rules = <>
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

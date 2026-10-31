@@ -2,26 +2,83 @@ object Form1: TForm1
   Left = 0
   Top = 0
   ActiveControl = TMSFNCTabSet1
-  Caption = 'Form1'
-  ClientHeight = 664
-  ClientWidth = 938
+  Caption = 'TMS FNC UI Pack - Memo sources'
+  ClientHeight = 700
+  ClientWidth = 900
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -18
+  Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  PixelsPerInch = 144
-  TextHeight = 25
-  object TMSFNCTabSet1: TTMSFNCTabSet
+  PixelsPerInch = 96
+  TextHeight = 15
+  object DemoHeader: TTMSFNCPanel
     Left = 0
     Top = 0
     Width = 938
-    Height = 45
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 5
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 754
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 714
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Source files'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 714
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Open source files in tabs, load a file and save it back'
+    end
+  end
+  object TMSFNCTabSet1: TTMSFNCTabSet
+    Left = 0
+    Top = 0
+    Width = 625
+    Height = 30
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 0
     Align = alTop
     ParentDoubleBuffered = False
     DoubleBuffered = True
@@ -29,7 +86,7 @@ object Form1: TForm1
     ActiveTabIndex = 1
     TabAppearance.Font.Charset = DEFAULT_CHARSET
     TabAppearance.Font.Color = clWindowText
-    TabAppearance.Font.Height = -17
+    TabAppearance.Font.Height = -11
     TabAppearance.Font.Name = 'Segoe UI'
     TabAppearance.Font.Style = []
     TabAppearance.Fill.Color = 16578806
@@ -54,7 +111,7 @@ object Form1: TForm1
     TabAppearance.CloseHoverStroke.Width = 2.000000000000000000
     TabAppearance.BadgeFont.Charset = DEFAULT_CHARSET
     TabAppearance.BadgeFont.Color = 139
-    TabAppearance.BadgeFont.Height = -17
+    TabAppearance.BadgeFont.Height = -11
     TabAppearance.BadgeFont.Name = 'Segoe UI'
     TabAppearance.BadgeFont.Style = [fsBold]
     ButtonAppearance.Rounding = 7.500000000000000000
@@ -153,23 +210,23 @@ object Form1: TForm1
     OnCloseTab = TMSFNCTabSet1CloseTab
     OnChangeTab = TMSFNCTabSet1ChangeTab
     OnInsertTab = TMSFNCTabSet1InsertTab
-    ExplicitTop = -10
+    AlignWithMargins = True
   end
   object TMSFNCMemo1: TTMSFNCMemo
     Left = 0
-    Top = 45
-    Width = 938
-    Height = 619
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 5
+    Top = 30
+    Width = 625
+    Height = 413
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 0
     Align = alClient
     ParentDoubleBuffered = False
     DoubleBuffered = True
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -18
+    Font.Height = -12
     Font.Name = 'Consolas'
     Font.Style = []
     TabOrder = 1
@@ -233,46 +290,46 @@ object Form1: TForm1
       end>
     ActiveSource = -1
     Sources = <>
-    ExplicitTop = 55
+    AlignWithMargins = True
     object TMSFNCToolBar1: TTMSFNCToolBar
       Left = 0
-      Top = 575
-      Width = 938
-      Height = 44
-      Margins.Left = 5
-      Margins.Top = 5
-      Margins.Right = 5
-      Margins.Bottom = 5
+      Top = 383
+      Width = 625
+      Height = 29
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 16
       Align = alBottom
       ParentDoubleBuffered = False
       DoubleBuffered = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -17
+      Font.Height = -11
       Font.Name = 'Segoe UI'
       Font.Style = []
       TabOrder = 0
-      Appearance.HorizontalSpacing = 4.500000000000000000
-      Appearance.VerticalSpacing = 4.500000000000000000
+      Appearance.HorizontalSpacing = 3.000000000000000000
+      Appearance.VerticalSpacing = 3.000000000000000000
       CompactBitmaps = <>
-      CompactWidth = 75.000000000000000000
-      CompactBitmapSize = 36.000000000000000000
+      CompactWidth = 50.000000000000000000
+      CompactBitmapSize = 24.000000000000000000
       Text = ''
-      ExplicitTop = 587
+      AlignWithMargins = True
       object TMSFNCToolBarButton1: TTMSFNCToolBarButton
-        Left = 13
-        Top = 4
-        Width = 45
-        Height = 36
-        Margins.Left = 5
-        Margins.Top = 5
-        Margins.Right = 5
-        Margins.Bottom = 5
+        Left = 9
+        Top = 3
+        Width = 30
+        Height = 24
+        Margins.Left = 3
+        Margins.Top = 3
+        Margins.Right = 3
+        Margins.Bottom = 3
         ParentDoubleBuffered = False
         DoubleBuffered = True
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -17
+        Font.Height = -11
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentColor = True
@@ -292,19 +349,19 @@ object Form1: TForm1
         ControlIndex = 0
       end
       object TMSFNCToolBarButton2: TTMSFNCToolBarButton
-        Left = 62
-        Top = 4
-        Width = 45
-        Height = 36
-        Margins.Left = 5
-        Margins.Top = 5
-        Margins.Right = 5
-        Margins.Bottom = 5
+        Left = 41
+        Top = 3
+        Width = 30
+        Height = 24
+        Margins.Left = 3
+        Margins.Top = 3
+        Margins.Right = 3
+        Margins.Bottom = 3
         ParentDoubleBuffered = False
         DoubleBuffered = True
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -17
+        Font.Height = -11
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentColor = True
@@ -326,7 +383,12 @@ object Form1: TForm1
     end
   end
   object OpenDialog1: TOpenDialog
-    Left = 296
-    Top = 216
+    Left = 197
+    Top = 144
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 16
+    Top = 16
   end
 end

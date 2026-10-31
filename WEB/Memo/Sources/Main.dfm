@@ -1,21 +1,53 @@
 object Form4: TForm4
-  Width = 960
-  Height = 720
-  PixelsPerInch = 144
+  Width = 900
+  Height = 700
+  PixelsPerInch = 96
+  Caption = 'TMS FNC UI Pack - Memo sources'
+  object DemoBar: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 10
+    Top = 10
+    Width = 940
+    Height = 48
+    Margins.Left = 16
+    Margins.Top = 16
+    Margins.Right = 16
+    Margins.Bottom = 12
+    Align = alTop
+    TabOrder = 0
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 748
+      Top = 6
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 6
+      Margins.Right = 16
+      Margins.Bottom = 6
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+  end
   object TMSFNCMemo1: TTMSFNCMemo
     Left = 0
-    Top = 49
-    Width = 960
-    Height = 611
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 5
+    Top = 104
+    Width = 868
+    Height = 580
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
     ParentDoubleBuffered = False
     DoubleBuffered = True
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -18
+    Font.Height = -12
     Font.Name = 'Consolas'
     Font.Style = []
     TabOrder = 0
@@ -66,6 +98,8 @@ object Form4: TForm4
         Extension = '.xml'
       end>
     ActiveSource = -1
+    AlignWithMargins = True
+    Align = alClient
     Sources = <
       item
         Name = 'item1'
@@ -75,19 +109,19 @@ object Form4: TForm4
   end
   object TMSFNCTabSet1: TTMSFNCTabSet
     Left = 0
-    Top = 0
-    Width = 960
-    Height = 49
-    Margins.Left = 5
-    Margins.Top = 5
-    Margins.Right = 5
-    Margins.Bottom = 5
+    Top = 74
+    Width = 868
+    Height = 30
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 0
     ParentDoubleBuffered = False
     DoubleBuffered = True
     TabOrder = 1
     TabAppearance.Font.Charset = DEFAULT_CHARSET
     TabAppearance.Font.Color = clWindowText
-    TabAppearance.Font.Height = -17
+    TabAppearance.Font.Height = -11
     TabAppearance.Font.Name = 'Segoe UI'
     TabAppearance.Font.Style = []
     TabAppearance.Fill.Color = 16578806
@@ -112,7 +146,7 @@ object Form4: TForm4
     TabAppearance.CloseHoverStroke.Width = 2.000000000000000000
     TabAppearance.BadgeFont.Charset = DEFAULT_CHARSET
     TabAppearance.BadgeFont.Color = 139
-    TabAppearance.BadgeFont.Height = -17
+    TabAppearance.BadgeFont.Height = -11
     TabAppearance.BadgeFont.Name = 'Segoe UI'
     TabAppearance.BadgeFont.Style = [fsBold]
     ButtonAppearance.Rounding = 7.500000000000000000
@@ -199,5 +233,12 @@ object Form4: TForm4
     OnBeforeCloseTab = TMSFNCTabSet1BeforeCloseTab
     OnChangeTab = TMSFNCTabSet1ChangeTab
     OnInsertTab = TMSFNCTabSet1InsertTab
+    AlignWithMargins = True
+    Align = alTop
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

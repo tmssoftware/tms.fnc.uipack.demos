@@ -9,14 +9,21 @@ uses
   VCL.TMSFNCCustomComponent, VCL.TMSFNCMemoCustomLanguage,
   VCL.TMSFNCCustomControl, VCL.TMSFNCWebBrowser, VCL.TMSFNCCustomWEBControl,
   VCL.TMSFNCMemo, VCL.StdCtrls,
-  VCL.TMSFNCMemoCustomTheme;
+  VCL.TMSFNCMemoCustomTheme,
+  VCL.TMSFNCButton, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm1 = class(TForm)
+    SettingsPanel: TTMSFNCPanel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCMemo1: TTMSFNCMemo;
     TMSFNCMemoCustomLanguage1: TTMSFNCMemoCustomLanguage;
-    Button1: TButton;
-    Button2: TButton;
+    Button1: TTMSFNCButton;
+    Button2: TTMSFNCButton;
     TMSFNCMemoCustomTheme1: TTMSFNCMemoCustomTheme;
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);

@@ -9,14 +9,21 @@ uses
   FMX.TMSFNCCustomComponent, FMX.TMSFNCMemoCustomLanguage,
   FMX.TMSFNCCustomControl, FMX.TMSFNCWebBrowser, FMX.TMSFNCCustomWEBControl,
   FMX.TMSFNCMemo, FMX.Controls.Presentation, FMX.StdCtrls,
-  FMX.TMSFNCMemoCustomTheme;
+  FMX.TMSFNCMemoCustomTheme,
+  FMX.TMSFNCButton, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm1 = class(TForm)
+    SettingsPanel: TTMSFNCPanel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCMemo1: TTMSFNCMemo;
     TMSFNCMemoCustomLanguage1: TTMSFNCMemoCustomLanguage;
-    Button1: TButton;
-    Button2: TButton;
+    Button1: TTMSFNCButton;
+    Button2: TTMSFNCButton;
     TMSFNCMemoCustomTheme1: TTMSFNCMemoCustomTheme;
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
