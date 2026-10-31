@@ -1,8 +1,8 @@
 object Form2: TForm2
   Left = 0
   Top = 0
-  Caption = 'Demo chat server'
-  ClientHeight = 480
+  Caption = 'TMS FNC UI Pack - Chat server'
+  ClientHeight = 552
   ClientWidth = 640
   Position = ScreenCenter
   FormFactor.Width = 320
@@ -10,24 +10,86 @@ object Form2: TForm2
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 640.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 416.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Chat server'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 416.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Relays the messages of the connected chat clients and logs the traffic'
+    end
+  end
   object Memo1: TMemo
     Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
     DataDetectorTypes = []
     Anchors = [akLeft, akTop, akRight, akBottom]
-    Position.X = 8.000000000000000000
-    Position.Y = 33.000000000000000000
-    Size.Width = 624.000000000000000000
-    Size.Height = 439.000000000000000000
+    Position.X = 16.000000000000000000
+    Position.Y = 104.000000000000000000
+    Size.Width = 608.000000000000000000
+    Size.Height = 432.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
     Viewport.Width = 620.000000000000000000
     Viewport.Height = 435.000000000000000000
   end
-  object Label1: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 8.000000000000000000
+  object Label1: TTMSFNCHTMLText
+    Position.X = 16.000000000000000000
+    Position.Y = 80.000000000000000000
     Text = 'Server logs:'
     TabOrder = 2
+    Size.Width = 120.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    HorizontalTextAlign = gtaLeading
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
   end
   object IdTCPServer1: TIdTCPServer
     Bindings = <>
@@ -37,5 +99,10 @@ object Form2: TForm2
     OnExecute = IdTCPServer1Execute
     Left = 288
     Top = 88
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

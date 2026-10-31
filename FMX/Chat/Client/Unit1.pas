@@ -8,21 +8,27 @@ uses
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes,
   FMX.TMSFNCCustomControl, FMX.TMSFNCTableView, FMX.TMSFNCChat,
   FMX.Controls.Presentation, FMX.StdCtrls, IdBaseComponent, IdComponent,
-  IdTCPConnection, IdTCPClient, FMX.Edit;
+  IdTCPConnection, IdTCPClient, FMX.Edit,
+  FMX.TMSFNCButton, FMX.TMSFNCEdit, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm3 = class(TForm)
-    Panel1: TPanel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Panel1: TTMSFNCPanel;
     TMSFNCChat1: TTMSFNCChat;
     IdTCPClient1: TIdTCPClient;
     Timer1: TTimer;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Edit3: TEdit;
-    Button1: TButton;
+    Label1: TTMSFNCHTMLText;
+    Label2: TTMSFNCHTMLText;
+    Label3: TTMSFNCHTMLText;
+    Edit1: TTMSFNCEdit;
+    Edit2: TTMSFNCEdit;
+    Edit3: TTMSFNCEdit;
+    Button1: TTMSFNCButton;
     procedure TMSFNCChat1SendMessage(Sender: TObject;
       var AItem: TTMSFNCChatItem);
     procedure Timer1Timer(Sender: TObject);

@@ -7,21 +7,27 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VCL.TMSFNCTypes, VCL.TMSFNCUtils,
   VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, IdBaseComponent, IdComponent,
   IdTCPConnection, IdTCPClient, VCL.TMSFNCCustomControl, VCL.TMSFNCTableView,
-  VCL.TMSFNCChat, Vcl.ExtCtrls, Vcl.StdCtrls;
+  VCL.TMSFNCChat, Vcl.ExtCtrls, Vcl.StdCtrls,
+  VCL.TMSFNCButton, VCL.TMSFNCEdit, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
 
 type
   TForm1 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCChat1: TTMSFNCChat;
     IdTCPClient1: TIdTCPClient;
     Timer1: TTimer;
-    Panel1: TPanel;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Button1: TButton;
-    Label1: TLabel;
-    Label2: TLabel;
-    Edit3: TEdit;
-    Label3: TLabel;
+    Panel1: TTMSFNCPanel;
+    Edit1: TTMSFNCEdit;
+    Edit2: TTMSFNCEdit;
+    Button1: TTMSFNCButton;
+    Label1: TTMSFNCHTMLText;
+    Label2: TTMSFNCHTMLText;
+    Edit3: TTMSFNCEdit;
+    Label3: TTMSFNCHTMLText;
     procedure FormCreate(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Button1Click(Sender: TObject);
