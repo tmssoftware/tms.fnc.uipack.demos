@@ -1,7 +1,7 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Data Grid Editing Demo'
+  Caption = 'TMS FNC UI Pack - Data Grid Editing'
   ClientHeight = 660
   ClientWidth = 1000
   Color = clBtnFace

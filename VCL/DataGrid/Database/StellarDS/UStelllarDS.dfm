@@ -2,7 +2,7 @@ object Form130: TForm130
   Left = 0
   Top = 0
   ActiveControl = TMSFNCDataGrid1
-  Caption = 'TMS FNC Data Grid Stellar Data Store'
+  Caption = 'TMS FNC UI Pack - Data Grid StellarDS'
   ClientHeight = 800
   ClientWidth = 1200
   Color = clBtnFace

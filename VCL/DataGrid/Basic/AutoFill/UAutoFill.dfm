@@ -1,7 +1,7 @@
 object FormAutoFill: TFormAutoFill
   Left = 0
   Top = 0
-  Caption = 'TMS FNC DataGrid AutoFill Demo'
+  Caption = 'TMS FNC UI Pack - Data Grid AutoFill'
   ClientHeight = 660
   ClientWidth = 1000
   Color = clBtnFace

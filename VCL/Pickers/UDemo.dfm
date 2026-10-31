@@ -1,7 +1,7 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Pickers Demo'
+  Caption = 'TMS FNC UI Pack - Pickers'
   ClientHeight = 841
   ClientWidth = 1115
   Color = clBtnFace

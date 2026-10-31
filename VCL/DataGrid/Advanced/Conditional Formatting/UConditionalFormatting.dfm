@@ -1,7 +1,7 @@
 object frmConditionalFormatting: TfrmConditionalFormatting
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Data Grid - Conditional Formatting Demo'
+  Caption = 'TMS FNC UI Pack - Data Grid Conditional Formatting'
   ClientHeight = 792
   ClientWidth = 1180
   Color = clBtnFace

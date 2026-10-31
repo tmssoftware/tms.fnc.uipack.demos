@@ -2,7 +2,7 @@ object Form130: TForm130
   Left = 0
   Top = 0
   ActiveControl = TMSFNCDataGrid1
-  Caption = 'TMS FNC Data Grid DataSet Filtering & Sorting Demo'
+  Caption = 'TMS FNC UI Pack - Data Grid ClientDataSet Filtering and Sorting'
   ClientHeight = 720
   ClientWidth = 1200
   Position = ScreenCenter

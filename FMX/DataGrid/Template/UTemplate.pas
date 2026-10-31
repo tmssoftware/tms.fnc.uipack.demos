@@ -11,10 +11,16 @@ uses
   FMX.TMSFNCCustomScrollControl, FMX.TMSFNCDataGridData,
   FMX.TMSFNCDataGrid, System.Rtti, FMX.TMSFNCDataGridBase,
   FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer, FMX.Controls.Presentation,
-  FMX.StdCtrls, TMS.TMSFNCFilterBuilder;
+  FMX.StdCtrls, TMS.TMSFNCFilterBuilder,
+  FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm1 = class(TForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     TMSFNCBitmapContainer1: TTMSFNCBitmapContainer;
     procedure FormCreate(Sender: TObject);

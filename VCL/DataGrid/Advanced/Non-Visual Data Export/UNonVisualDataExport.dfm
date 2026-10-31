@@ -1,7 +1,7 @@
 object Form130: TForm130
   Left = 0
   Top = 0
-  Caption = 'TMS FNC Data Grid Non Visual Data Export Demo'
+  Caption = 'TMS FNC UI Pack - Data Grid Non-Visual Data Export'
   ClientHeight = 248
   ClientWidth = 760
   Color = clBtnFace
