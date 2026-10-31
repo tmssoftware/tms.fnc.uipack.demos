@@ -9,26 +9,34 @@ interface
 uses
   {$IFDEF VCL}
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, UBL;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, UBL,
+  VCL.TMSFNCPanel, VCL.TMSFNCHTMLText, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector;
   {$ENDIF}
 
   {$IFDEF WEBLIB}
   SysUtils, Classes, WEBLib.Graphics,
-  WEBLib.Forms, WEBLib.Dialogs, WEBLib.StdCtrls, UBL, WEBLib.Controls, Vcl.Controls;
+  WEBLib.Forms, WEBLib.Dialogs, WEBLib.StdCtrls, UBL, WEBLib.Controls, Vcl.Controls,
+  WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector;
   {$ENDIF}
 
   {$IFDEF FMX}
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Forms, FMX.Controls, FMX.Graphics, FMX.Dialogs, UBL;
+  FMX.Types, FMX.Forms, FMX.Controls, FMX.Graphics, FMX.Dialogs, UBL,
+  FMX.TMSFNCPanel, FMX.TMSFNCHTMLText, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
   {$ENDIF}
 
   {$IFDEF LCL}
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, UBL;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, UBL;
   {$ENDIF}
 
 type
   {$IFDEF WEBLIB}
   TForm1 = class(TWebForm)
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
@@ -38,6 +46,18 @@ type
   {$ENDIF}
   {$IFNDEF WEBLIB}
   TForm1 = class(TForm)
+    {$IFDEF LCL}
+    { LCL has no theme manager: a native header }
+    DemoHeader: TPanel;
+    DemoTitle: TLabel;
+    DemoDescription: TLabel;
+    {$ELSE}
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    {$ENDIF}
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
