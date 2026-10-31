@@ -359,7 +359,7 @@ object Form130: TForm130
   object Panel2: TTMSFNCPanel
     Left = 274
     Top = 80
-    Width = 260
+    Width = 308
     Height = 369
     TabOrder = 2
     Header.Visible = False

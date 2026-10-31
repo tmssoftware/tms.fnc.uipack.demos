@@ -337,7 +337,7 @@ object Form130: TForm130
   object Panel2: TTMSFNCPanel
     Position.X = 288.000000000000000000
     Position.Y = 80.000000000000000000
-    Size.Width = 273.000000000000000000
+    Size.Width = 308.000000000000000000
     Size.Height = 377.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2

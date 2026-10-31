@@ -162,7 +162,7 @@ object Form1: TForm1
       Width = 610
       Anchors = [akTop, akLeft, akRight]
       AutoSize = False
-      Caption = 'Progress bar, rating and waiting indicator'
+      Caption = 'Progress bar and rating'
       Font.Height = -20
       Font.Style = [fsBold]
       ParentFont = False

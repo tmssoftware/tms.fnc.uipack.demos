@@ -42,7 +42,7 @@ object Form2: TForm2
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
-      Text = 'Progress bar, rating and waiting indicator'
+      Text = 'Progress bar and rating'
     end
     object DemoDescription: TTMSFNCHTMLText
       Left = 24
