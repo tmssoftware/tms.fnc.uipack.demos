@@ -11,15 +11,22 @@ uses
   FMX.TMSFNCDataGrid, FMX.Controls.Presentation, FMX.StdCtrls,
   FMX.TMSFNCCustomComponent, FMX.TMSFNCPrintIO, FMX.Printer,
   FMX.TMSFNCDataGridPrintIO, FMX.TMSFNCRichEditorPrintIO, System.Rtti,
-  FMX.TMSFNCDataGridBase, FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer;
+  FMX.TMSFNCDataGridBase, FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer,
+  FMX.TMSFNCButton, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm3 = class(TForm)
-    Button1: TButton;
+    SettingsPanel: TTMSFNCPanel;
+    ThemeManager: TTMSFNCThemeManager;
+    DemoHeader: TTMSFNCPanel;
+    DemoTitle: TTMSFNCHTMLText;
+    DemoDescription: TTMSFNCHTMLText;
+    DemoThemeSelector: TTMSFNCThemeSelector;
+    Button1: TTMSFNCButton;
     TMSFNCDataGrid1: TTMSFNCDataGrid;
     TMSFNCGraphicsPrintIO1: TTMSFNCGraphicsPrintIO;
     PrintDialog1: TPrintDialog;
-    Button2: TButton;
+    Button2: TTMSFNCButton;
     TMSFNCDataGridPrintIO1: TTMSFNCDataGridPrintIO;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -36,6 +43,8 @@ var
   Form3: TForm3;
 
 implementation
+
+{ demo-colors: TMSFNCDataGrid1 cell colours (FormCreate, GetCellLayout) are the subject of the printout }
 
 {$R *.fmx}
 

@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Width = 539
-  Height = 413
-  Caption = 'TMSFNCCloudBase Demo'
+  Width = 960
+  Height = 620
+  Caption = 'TMS FNC UI Pack - Printing'
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -10,27 +10,66 @@ object Form1: TForm1
   FormContainer = 'appcontent'
   ParentFont = False
   OnCreate = WebFormCreate
-  object WebButton1: TWebButton
-    Left = 8
-    Top = 24
-    Width = 178
-    Height = 25
-    Caption = 'TMSFNCGraphicsPrintIO'
-    ChildOrder = 1
-    HeightPercent = 100.000000000000000000
-    WidthPercent = 100.000000000000000000
-    OnClick = WebButton1Click
+  object DemoBar: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 10
+    Top = 10
+    Width = 519
+    Height = 48
+    Margins.Left = 16
+    Margins.Top = 16
+    Margins.Right = 16
+    Margins.Bottom = 12
+    Align = alTop
+    TabOrder = 0
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 327
+      Top = 6
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 6
+      Margins.Right = 16
+      Margins.Bottom = 6
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
   end
-  object WebButton2: TWebButton
-    Left = 336
-    Top = 24
-    Width = 178
-    Height = 25
-    Caption = 'TMSFNCDataGridPrintIO'
-    ChildOrder = 1
-    HeightPercent = 100.000000000000000000
-    WidthPercent = 100.000000000000000000
-    OnClick = WebButton2Click
+  object SettingsPanel: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 16
+    Top = 74
+    Width = 260
+    Height = 100
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 16
+    Align = alLeft
+    TabOrder = 1
+    Header.Visible = False
+    object WebButton1: TTMSFNCButton
+      Left = 16
+      Top = 16
+      Width = 228
+      Height = 32
+      Text = 'Print with GraphicsPrintIO'
+      OnClick = WebButton1Click
+    end
+    object WebButton2: TTMSFNCButton
+      Left = 16
+      Top = 56
+      Width = 228
+      Height = 32
+      Text = 'Print with DataGridPrintIO'
+      OnClick = WebButton2Click
+    end
   end
   object TMSFNCGraphicsPrintIO1: TTMSFNCGraphicsPrintIO
     Left = 208
@@ -121,10 +160,10 @@ object Form1: TForm1
     Options.PageNumberMargins.Bottom = 10.000000000000000000
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
-    Left = 8
-    Top = 56
-    Width = 506
-    Height = 313
+    Left = 292
+    Top = 74
+    Width = 652
+    Height = 530
     ParentDoubleBuffered = False
     DoubleBuffered = True
     TabOrder = 4
@@ -641,5 +680,16 @@ object Form1: TForm1
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
     OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
+    AlignWithMargins = True
+    Align = alClient
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

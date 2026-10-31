@@ -1,9 +1,9 @@
 object Form3: TForm3
   Left = 0
   Top = 0
-  Caption = 'PrintIO Demo'
-  ClientHeight = 390
-  ClientWidth = 508
+  Caption = 'TMS FNC UI Pack - Printing'
+  ClientHeight = 620
+  ClientWidth = 960
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -148,18 +148,98 @@ object Form3: TForm3
   Position = poScreenCenter
   OnCreate = FormCreate
   TextHeight = 13
-  object Button1: TButton
-    Left = 8
-    Top = 16
-    Width = 153
-    Height = 26
-    Caption = 'TMSFNCGraphicsPrintIO'
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 508
+    Height = 72
+    Align = alTop
     TabOrder = 0
-    OnClick = Button1Click
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 324
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 284
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Printing'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 284
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Print a grid as a graphic or print the data grid itself, with footer and page numbers'
+    end
+  end
+  object SettingsPanel: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 16
+    Top = 72
+    Width = 260
+    Height = 100
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 16
+    Align = alLeft
+    TabOrder = 1
+    Header.Visible = False
+    object Button1: TTMSFNCButton
+      Left = 16
+      Top = 16
+      Width = 228
+      Height = 32
+      Text = 'Print with GraphicsPrintIO'
+      TabOrder = 0
+      OnClick = Button1Click
+    end
+    object Button2: TTMSFNCButton
+      Left = 16
+      Top = 56
+      Width = 228
+      Height = 32
+      Text = 'Print with DataGridPrintIO'
+      TabOrder = 3
+      OnClick = Button2Click
+    end
   end
   object TMSFNCGraphicsPrintIO1: TTMSFNCGraphicsPrintIO
     Left = 176
-    Top = 8
+    Top = 80
     Width = 26
     Height = 26
     Visible = True
@@ -202,10 +282,10 @@ object Form3: TForm3
     Options.PageNumberMargins.Bottom = 10.000000000000000000
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
-    Left = 8
-    Top = 58
-    Width = 489
-    Height = 313
+    Left = 292
+    Top = 72
+    Width = 652
+    Height = 532
     ParentDoubleBuffered = False
     DoubleBuffered = True
     TabOrder = 2
@@ -683,19 +763,16 @@ object Form3: TForm3
     FilterAppearance.Font.Name = 'Segoe UI'
     FilterAppearance.Font.Style = []
     OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
-  end
-  object Button2: TButton
-    Left = 347
-    Top = 16
-    Width = 153
-    Height = 26
-    Caption = 'TMSFNCDataGridPrintIO'
-    TabOrder = 3
-    OnClick = Button2Click
+    AlignWithMargins = True
+    Align = alClient
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 16
   end
   object TMSFNCDataGridPrintIO1: TTMSFNCDataGridPrintIO
     Left = 296
-    Top = 8
+    Top = 80
     Width = 26
     Height = 26
     Visible = True
@@ -740,5 +817,10 @@ object Form3: TForm3
   object PrintDialog1: TPrintDialog
     Left = 240
     Top = 8
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end

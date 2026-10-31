@@ -1,28 +1,101 @@
 object Form3: TForm3
   Left = 0
   Top = 0
-  Caption = 'Form3'
-  ClientHeight = 431
-  ClientWidth = 537
+  Caption = 'TMS FNC UI Pack - Printing'
+  ClientHeight = 620
+  ClientWidth = 960
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
-  object Button1: TButton
-    Position.X = 32.000000000000000000
-    Position.Y = 16.000000000000000000
-    Size.Width = 153.000000000000000000
-    Size.Height = 25.000000000000000000
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 537.000000000000000000
+    Size.Height = 72.000000000000000000
     Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 313.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Printing'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 313.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Print a grid as a graphic or print the data grid itself, with footer and page numbers'
+    end
+  end
+  object SettingsPanel: TTMSFNCPanel
+    Align = Left
+    Size.Width = 260.000000000000000000
+    Size.Height = 100.000000000000000000
+    Size.PlatformDefault = False
+    Margins.Left = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
     TabOrder = 1
-    Text = 'TMSFNCGraphicsPrintIO'
-    TextSettings.Trimming = None
-    OnClick = Button1Click
+    Header.Visible = False
+    object Button1: TTMSFNCButton
+      Position.X = 16.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Print with GraphicsPrintIO'
+      OnClick = Button1Click
+    end
+    object Button2: TTMSFNCButton
+      Position.X = 16.000000000000000000
+      Position.Y = 56.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Print with DataGridPrintIO'
+      OnClick = Button2Click
+    end
   end
   object TMSFNCDataGrid1: TTMSFNCDataGrid
-    Position.X = 32.000000000000000000
-    Position.Y = 72.000000000000000000
     Size.Width = 473.000000000000000000
     Size.Height = 329.000000000000000000
     Size.PlatformDefault = False
@@ -288,13 +361,17 @@ object Form3: TForm3
         Width = 68.000000000000000000
       end>
     OnGetCellLayout = TMSFNCDataGrid1GetCellLayout
+    Align = Client
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
   end
   object TMSFNCGraphicsPrintIO1: TTMSFNCGraphicsPrintIO
     Size.Width = 26.000000000000000000
     Size.Height = 26.000000000000000000
     Size.PlatformDefault = False
     Position.X = 248.000000000000000000
-    Position.Y = 16.000000000000000000
+    Position.Y = 88.000000000000000000
     Options.FooterMargins.Left = 20.000000000000000000
     Options.FooterMargins.Top = 10.000000000000000000
     Options.FooterMargins.Right = 20.000000000000000000
@@ -313,23 +390,12 @@ object Form3: TForm3
     Options.PageNumberMargins.Right = 20.000000000000000000
     Options.PageNumberMargins.Bottom = 10.000000000000000000
   end
-  object Button2: TButton
-    Position.X = 352.000000000000000000
-    Position.Y = 16.000000000000000000
-    Size.Width = 153.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 0
-    Text = 'TMSFNCDataGridPrintIO'
-    TextSettings.Trimming = None
-    OnClick = Button2Click
-  end
   object TMSFNCDataGridPrintIO1: TTMSFNCDataGridPrintIO
     Size.Width = 26.000000000000000000
     Size.Height = 26.000000000000000000
     Size.PlatformDefault = False
     Position.X = 312.000000000000000000
-    Position.Y = 16.000000000000000000
+    Position.Y = 88.000000000000000000
     Options.FooterMargins.Left = 20.000000000000000000
     Options.FooterMargins.Top = 10.000000000000000000
     Options.FooterMargins.Right = 20.000000000000000000
@@ -351,5 +417,10 @@ object Form3: TForm3
   object PrintDialog1: TPrintDialog
     Left = 208
     Top = 16
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
   end
 end
