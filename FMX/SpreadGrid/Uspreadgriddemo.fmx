@@ -1,18 +1,160 @@
 object Form2: TForm2
   Left = 0
   Top = 0
-  Caption = 'TMSFNCSpreadGridDemo'
-  ClientHeight = 523
-  ClientWidth = 843
+  Caption = 'TMS FNC UI Pack - Spreadsheet'
+  ClientHeight = 680
+  ClientWidth = 1100
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   DesignerMasterStyle = 0
+  object DemoHeader: TTMSFNCPanel
+    Align = Top
+    Size.Width = 843.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      Align = Right
+      Margins.Top = 18.000000000000000000
+      Margins.Right = 24.000000000000000000
+      Margins.Bottom = 18.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 619.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Font.Size = 20.000000000000000000
+      Font.StyleExt = {00060000000000000004000000}
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Spreadsheet'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      TextRole = htrSecondary
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 24.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 619.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Font.Size = 13.000000000000000000
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'A spreadsheet grid with formulas, named cells and ranges, and file import'
+    end
+  end
+  object SettingsPanel: TTMSFNCPanel
+    Align = Left
+    Size.Width = 260.000000000000000000
+    Size.Height = 300.000000000000000000
+    Size.PlatformDefault = False
+    Margins.Left = 16.000000000000000000
+    Margins.Bottom = 16.000000000000000000
+    TabOrder = 1
+    Header.Visible = False
+    object ckShowFormula: TTMSFNCCheckBox
+      Position.X = 16.000000000000000000
+      Position.Y = 192.000000000000000000
+      TabOrder = 2
+      Text = 'Show formulas'
+      OnChange = ckShowFormulaChange
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Button1: TTMSFNCButton
+      Position.X = 16.000000000000000000
+      Position.Y = 96.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      Text = 'Name demo'
+      OnClick = Button1Click
+    end
+    object Button2: TTMSFNCButton
+      Position.X = 16.000000000000000000
+      Position.Y = 136.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Text = 'Range demo'
+      OnClick = Button2Click
+    end
+    object ckNameMode: TTMSFNCCheckBox
+      Position.X = 16.000000000000000000
+      Position.Y = 224.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'RC cell name mode'
+      OnChange = ckNameModeChange
+    end
+    object Button3: TTMSFNCButton
+      Position.X = 16.000000000000000000
+      Position.Y = 56.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 5
+      Text = 'File demo'
+      OnClick = Button3Click
+    end
+    object Button4: TTMSFNCButton
+      Position.X = 16.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 6
+      Text = 'Clear'
+      OnClick = Button4Click
+    end
+  end
+  object Label1: TTMSFNCHTMLText
+    Align = Bottom
+    Position.Y = 0.000000000000000000
+    Size.Width = 843.000000000000000000
+    Size.Height = 24.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 7
+    HorizontalTextAlign = gtaLeading
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Margins.Left = 16.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 8.000000000000000000
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
+  end
   object TMSFNCSpreadGrid1: TTMSFNCSpreadGrid
-    Anchors = [akLeft, akTop, akRight, akBottom]
-    Position.X = 16.000000000000000000
-    Position.Y = 40.000000000000000000
     Size.Width = 810.000000000000000000
     Size.Height = 449.000000000000000000
     Size.PlatformDefault = False
@@ -93,76 +235,10 @@ object Form2: TForm2
     OnFormulaError = TMSFNCSpreadGrid1FormulaError
     OnIsCustomFunction = TMSFNCSpreadGrid1IsCustomFunction
     OnCalcCustomFunction = TMSFNCSpreadGrid1CalcCustomFunction
-  end
-  object ckShowFormula: TCheckBox
-    Position.X = 445.000000000000000000
-    Position.Y = 9.000000000000000000
-    TabOrder = 2
-    Text = 'Show formulas'
-    OnChange = ckShowFormulaChange
-  end
-  object Button1: TButton
-    Position.X = 224.000000000000000000
-    Position.Y = 8.000000000000000000
-    Size.Width = 89.000000000000000000
-    Size.Height = 22.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 4
-    Text = 'Name demo'
-    OnClick = Button1Click
-  end
-  object Button2: TButton
-    Position.X = 328.000000000000000000
-    Position.Y = 8.000000000000000000
-    Size.Width = 89.000000000000000000
-    Size.Height = 22.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 3
-    Text = 'Range demo'
-    OnClick = Button2Click
-  end
-  object ckNameMode: TCheckBox
-    Position.X = 565.000000000000000000
-    Position.Y = 9.000000000000000000
-    Size.Width = 137.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 1
-    Text = 'RC cell name mode'
-    OnChange = ckNameModeChange
-  end
-  object Button3: TButton
-    Position.X = 120.000000000000000000
-    Position.Y = 8.000000000000000000
-    Size.Width = 89.000000000000000000
-    Size.Height = 22.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 5
-    Text = 'File demo'
-    OnClick = Button3Click
-  end
-  object Button4: TButton
-    Position.X = 16.000000000000000000
-    Position.Y = 8.000000000000000000
-    Size.Width = 89.000000000000000000
-    Size.Height = 22.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 6
-    Text = 'Clear'
-    OnClick = Button4Click
-  end
-  object StatusBar1: TStatusBar
-    Position.Y = 501.000000000000000000
-    ShowSizeGrip = True
-    Size.Width = 843.000000000000000000
-    Size.Height = 22.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 7
-    object Label1: TLabel
-      Align = Client
-      Size.Width = 843.000000000000000000
-      Size.Height = 22.000000000000000000
-      Size.PlatformDefault = False
-    end
+    Align = Client
+    Margins.Left = 16.000000000000000000
+    Margins.Top = 0.000000000000000000
+    Margins.Right = 16.000000000000000000
+    Margins.Bottom = 8.000000000000000000
   end
 end

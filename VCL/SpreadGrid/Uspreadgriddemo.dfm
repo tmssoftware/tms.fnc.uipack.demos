@@ -1,9 +1,9 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'TMSFNCSpreadGrid demo'
-  ClientHeight = 517
-  ClientWidth = 889
+  Caption = 'TMS FNC UI Pack - Spreadsheet'
+  ClientHeight = 680
+  ClientWidth = 1100
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,12 +18,157 @@ object Form1: TForm1
     517)
   PixelsPerInch = 96
   TextHeight = 13
+  object DemoHeader: TTMSFNCPanel
+    Left = 0
+    Top = 0
+    Width = 889
+    Height = 72
+    Align = alTop
+    TabOrder = 0
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object DemoThemeSelector: TTMSFNCThemeSelector
+      AlignWithMargins = True
+      Left = 705
+      Top = 18
+      Width = 160
+      Height = 36
+      Margins.Left = 0
+      Margins.Top = 18
+      Margins.Right = 24
+      Margins.Bottom = 18
+      Align = alRight
+      TabOrder = 0
+      ThemeManager = ThemeManager
+      Themes.Strings = (
+        'Fluent Light=Light'
+        'Fluent Dark=Dark')
+    end
+    object DemoTitle: TTMSFNCHTMLText
+      Left = 24
+      Top = 12
+      Width = 665
+      Height = 30
+      Anchors = [akLeft, akTop, akRight]
+      Font.Height = -20
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 1
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'Spreadsheet'
+    end
+    object DemoDescription: TTMSFNCHTMLText
+      Left = 24
+      Top = 42
+      Width = 665
+      Height = 20
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      TextRole = htrSecondary
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Text = 'A spreadsheet grid with formulas, named cells and ranges, and file import'
+    end
+  end
+  object SettingsPanel: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 16
+    Top = 72
+    Width = 260
+    Height = 300
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 16
+    Align = alLeft
+    TabOrder = 1
+    Header.Visible = False
+    object Button1: TTMSFNCButton
+      Left = 16
+      Top = 96
+      Width = 228
+      Height = 32
+      Text = 'Clear'
+      TabOrder = 1
+      OnClick = Button1Click
+    end
+    object Button2: TTMSFNCButton
+      Left = 16
+      Top = 136
+      Width = 228
+      Height = 32
+      Text = 'File demo'
+      TabOrder = 2
+      OnClick = Button2Click
+    end
+    object Button3: TTMSFNCButton
+      Left = 16
+      Top = 56
+      Width = 228
+      Height = 32
+      Text = 'Name demo'
+      TabOrder = 3
+      OnClick = Button3Click
+    end
+    object Button4: TTMSFNCButton
+      Left = 16
+      Top = 16
+      Width = 228
+      Height = 32
+      Text = 'Range demo'
+      TabOrder = 4
+      OnClick = Button4Click
+    end
+    object ckShowFormula: TTMSFNCCheckBox
+      Left = 16
+      Top = 192
+      Width = 228
+      Height = 24
+      Text = 'Show formulas'
+      TabOrder = 5
+      OnClick = ckShowFormulaClick
+    end
+    object ckNameMode: TTMSFNCCheckBox
+      Left = 16
+      Top = 224
+      Width = 228
+      Height = 24
+      Text = 'RC cell name mode'
+      TabOrder = 6
+      OnClick = ckNameModeClick
+    end
+  end
+  object Label1: TTMSFNCHTMLText
+    AlignWithMargins = True
+    Left = 16
+    Top = 648
+    Width = 1068
+    Height = 24
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 8
+    Align = alBottom
+    HorizontalTextAlign = gtaLeading
+    Fill.Kind = gfkNone
+    Stroke.Kind = gskNone
+    WordWrapping = False
+  end
+  object ThemeManager: TTMSFNCThemeManager
+    Theme = 'Fluent Light'
+    Left = 24
+    Top = 24
+  end
   object TMSFNCSpreadGrid1: TTMSFNCSpreadGrid
-    Left = 8
-    Top = 48
-    Width = 873
-    Height = 444
-    Anchors = [akLeft, akTop, akRight, akBottom]
+    Left = 292
+    Top = 72
+    Width = 792
+    Height = 552
     ParentDoubleBuffered = False
     DoubleBuffered = True
     TabOrder = 0
@@ -164,70 +309,11 @@ object Form1: TForm1
     OnFormulaError = TMSFNCSpreadGrid1FormulaError
     OnIsCustomFunction = TMSFNCSpreadGrid1IsCustomFunction
     OnCalcCustomFunction = TMSFNCSpreadGrid1CalcCustomFunction
-  end
-  object Button1: TButton
-    Left = 8
-    Top = 8
-    Width = 81
-    Height = 25
-    Caption = 'Clear'
-    TabOrder = 1
-    OnClick = Button1Click
-  end
-  object Button2: TButton
-    Left = 95
-    Top = 8
-    Width = 81
-    Height = 25
-    Caption = 'File demo'
-    TabOrder = 2
-    OnClick = Button2Click
-  end
-  object Button3: TButton
-    Left = 184
-    Top = 8
-    Width = 81
-    Height = 25
-    Caption = 'Name demo'
-    TabOrder = 3
-    OnClick = Button3Click
-  end
-  object Button4: TButton
-    Left = 271
-    Top = 8
-    Width = 81
-    Height = 25
-    Caption = 'Range demo'
-    TabOrder = 4
-    OnClick = Button4Click
-  end
-  object ckShowFormula: TCheckBox
-    Left = 408
-    Top = 8
-    Width = 97
-    Height = 17
-    Caption = 'Show formulas'
-    TabOrder = 5
-    OnClick = ckShowFormulaClick
-  end
-  object ckNameMode: TCheckBox
-    Left = 536
-    Top = 8
-    Width = 145
-    Height = 17
-    Caption = 'RC cell name mode'
-    TabOrder = 6
-    OnClick = ckNameModeClick
-  end
-  object StatusBar1: TStatusBar
-    Left = 0
-    Top = 498
-    Width = 889
-    Height = 19
-    Panels = <>
-    SimplePanel = True
-    ExplicitLeft = 456
-    ExplicitTop = 272
-    ExplicitWidth = 0
+    AlignWithMargins = True
+    Align = alClient
+    Margins.Left = 16
+    Margins.Top = 0
+    Margins.Right = 16
+    Margins.Bottom = 8
   end
 end
