@@ -91,7 +91,6 @@ object Form130: TForm130
       Text = 'Brand contains'
       WordWrapping = True
       HorizontalTextAlign = gtaLeading
-      AutoSize = True
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
     end
@@ -103,7 +102,6 @@ object Form130: TForm130
       Text = 'Price'
       WordWrapping = True
       HorizontalTextAlign = gtaLeading
-      AutoSize = True
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
     end
