@@ -482,7 +482,10 @@ class Conversion:
                     need.update(BASE_UNITS)
         m = re.search(r"\buses\b(.*?);", text, re.S)
         if m:
-            have = {u.strip().lower() for u in re.split(r",", re.sub(r"\{[^}]*\}", "", m.group(1)))}
+            # every uses clause counts (interface and implementation): a unit in both is E2004
+            have = set()
+            for um in re.finditer(r"\buses\b(.*?);", text, re.S):
+                have.update(u.strip().lower() for u in re.split(r",", re.sub(r"\{[^}]*\}", "", um.group(1))))
             missing = [prefix + u for u in sorted(need) if (prefix + u).lower() not in have]
             if missing:
                 text = text[:m.end() - 1] + ",\n  " + ", ".join(missing) + text[m.end() - 1:]
