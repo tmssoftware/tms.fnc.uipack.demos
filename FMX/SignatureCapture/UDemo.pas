@@ -54,7 +54,7 @@ implementation
 
 {$R *.fmx}
 
-{ demo-colors: TMSFNCColorPicker1 (the pen colour palette) }
+{ demo-colors: TMSFNCColorPicker1 (the pen colour palette), TMSFNCSignatureCapture1.Pen.Color (the teal pen is the demo's starting colour, in sync with the picker) }
 
 procedure TForm130.Button1Click(Sender: TObject);
 begin

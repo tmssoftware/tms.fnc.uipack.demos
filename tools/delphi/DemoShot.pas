@@ -384,6 +384,18 @@ begin
   end;
 end;
 
+{ Ends the demo. A leak report is a modal dialog nobody closes on the hidden desktop, so it is switched
+  off. A normal end goes through Application.Terminate: Halt while the form is alive made the leak
+  report list the whole form (and every demo with ReportMemoryLeaksOnShutdown hung at exit). }
+procedure Finish(ACode: Integer);
+begin
+  ReportMemoryLeaksOnShutdown := False;
+  if ACode = 0 then
+    Application.Terminate
+  else
+    Halt(ACode);
+end;
+
 procedure Run;
 var
   f: TCommonCustomForm;
@@ -395,7 +407,7 @@ begin
     if not Assigned(f) then
     begin
       SaveText('error.txt', 'no main form');
-      Halt(2);
+      Finish(2);
     end;
     modes := GetEnvironmentVariable('DEMOSHOT_MODES').Split(['|']);
     if Length(modes) = 0 then
@@ -417,7 +429,7 @@ begin
     on E: Exception do
       SaveText('error.txt', E.ClassName + ': ' + E.Message);
   end;
-  Halt(0);
+  Finish(0);
 end;
 
 type
@@ -433,7 +445,7 @@ var
 procedure TErrorSink.HandleException(Sender: TObject; E: Exception);
 begin
   SaveText('error.txt', E.ClassName + ': ' + E.Message);
-  Halt(3);
+  Finish(3);
 end;
 
 procedure UnhandledException(ExceptObject: TObject; ExceptAddr: Pointer);
@@ -442,7 +454,7 @@ begin
     SaveText('error.txt', ExceptObject.ClassName + ': ' + Exception(ExceptObject).Message)
   else
     SaveText('error.txt', 'unhandled exception');
-  Halt(3);
+  Finish(3);
 end;
 
 procedure TimerProc(AWnd: HWND; AMsg: UINT; AId: UINT_PTR; ATime: DWORD); stdcall;
@@ -462,5 +474,8 @@ initialization
     ExceptProc := @UnhandledException;
     TimerId := SetTimer(0, 0, StrToIntDef(GetEnvironmentVariable('DEMOSHOT_DELAY'), 2500), @TimerProc);
   end;
+
+finalization
+  ErrorSink.Free;
 
 end.

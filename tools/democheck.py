@@ -314,10 +314,18 @@ def contrast(a, b):
     return (hi + 0.05) / (lo + 0.05)
 
 
-def region_contrast(img, rect):
+CAPTION_CLASSES = re.compile(r"(CheckBox|RadioButton)$", re.I)
+
+
+def region_contrast(img, rect, caption=False):
     """(background, ink, ratio, ink share) of a control's rectangle: the most common colour is the
-    background, the pixels farthest from it are the ink (text, glyphs)."""
+    background, the pixels farthest from it are the ink (text, glyphs). `caption`: a check box or radio
+    button; the box/circle glyph (light on dark, always readable) would hide a black caption on a dark
+    form, so the glyph column (22 px or the control height, whichever is larger) is left out and the
+    ink threshold is lower."""
     x0, y0, x1, y1 = rect
+    if caption:
+        x0 += max(22, y1 - y0)
     x0, y0 = max(0, x0), max(0, y0)
     x1, y1 = min(img.width, x1), min(img.height, y1)
     if x1 - x0 < 10 or y1 - y0 < 10:
@@ -333,7 +341,7 @@ def region_contrast(img, rect):
     bgq = max(counts, key=counts.get)
     bg = (bgq[0] * 8 + 4, bgq[1] * 8 + 4, bgq[2] * 8 + 4)
     dist = sorted(px, key=lambda p: -abs(luminance(p) - luminance(bg)))
-    far = [p for p in dist if abs(p[0] - bg[0]) + abs(p[1] - bg[1]) + abs(p[2] - bg[2]) > 60]
+    far = [p for p in dist if abs(p[0] - bg[0]) + abs(p[1] - bg[1]) + abs(p[2] - bg[2]) > (24 if caption else 60)]
     share = len(far) / max(1, len(px))
     if share < 0.004:
         return {"bg": bg, "ink": None, "ratio": None, "share": round(share, 4)}
@@ -360,7 +368,7 @@ def analyse(folder, mode_slug):
             developer[c["name"]] = c["developer"]
         if not TEXT_CLASSES.search(c["class"]):
             continue
-        r = region_contrast(img, c["rect"])
+        r = region_contrast(img, c["rect"], bool(CAPTION_CLASSES.search(c["class"])))
         if r and r["ratio"] is not None and r["ratio"] < 3.0:
             flags.append({"control": c["name"], "class": c["class"], "ratio": r["ratio"], "bg": r["bg"], "ink": r["ink"],
                           "rect": c["rect"]})
