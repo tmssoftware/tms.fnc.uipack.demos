@@ -89,6 +89,125 @@ object Form1: TForm1
       OnClick = ResetButtonClick
     end
   end
+  object BootstrapBar: TTMSFNCPanel
+    AlignWithMargins = True
+    Left = 260
+    Top = 140
+    Width = 1152
+    Height = 32
+    Margins.Left = 260
+    Margins.Top = 14
+    Margins.Right = 28
+    Margins.Bottom = 0
+    Align = alTop
+    TabOrder = 6
+    Visible = False
+    Fill.Kind = gfkNone
+    Sections = <>
+    Stroke.Kind = gskNone
+    Header.Visible = False
+    object BootstrapLabel: TTMSFNCHTMLText
+      AlignWithMargins = True
+      Left = 0
+      Top = 0
+      Width = 84
+      Height = 32
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
+      Align = alLeft
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      TabOrder = 0
+      HorizontalTextAlign = gtaLeading
+      Trimming = gttCharacter
+      Fill.Kind = gfkNone
+      Stroke.Kind = gskNone
+      Stroke.Color = -1
+      Text = 'Bootstrap'
+    end
+    object BootstrapModes: TTMSFNCSegmentedControl
+      AlignWithMargins = True
+      Left = 84
+      Top = 0
+      Width = 176
+      Height = 32
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 8
+      Margins.Bottom = 0
+      Align = alLeft
+      Hint = 'Bootstrap color mode (data-bs-theme)'
+      TabOrder = 1
+      SegmentAppearance.Font.Color = 7365723
+      SegmentAppearance.Font.Height = -13
+      SegmentAppearance.SelectedFont.Color = 2630431
+      SegmentAppearance.SelectedFont.Height = -13
+      SegmentAppearance.SelectedFont.Name = 'Segoe UI Semibold'
+      Items = <
+        item
+          Text = 'Light'
+          Bitmaps = <>
+          Selected = True
+        end
+        item
+          Text = 'Dark'
+          Bitmaps = <>
+        end
+        item
+          Text = 'Auto'
+          Hint = 'Follows prefers-color-scheme'
+          Bitmaps = <>
+        end>
+      OnAfterSelectItem = BootstrapModesAfterSelectItem
+    end
+    object BootswatchCombo: TTMSFNCComboBox
+      AlignWithMargins = True
+      Left = 268
+      Top = 0
+      Width = 136
+      Height = 32
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
+      Align = alLeft
+      Hint = 'Bootstrap or a Bootswatch theme'
+      TabOrder = 2
+      DropDownWidth = 136.000000000000000000
+      Items.Strings = (
+        'Default'
+        'Flatly'
+        'Lux'
+        'Minty'
+        'Sandstone'
+        'Darkly'
+        'Vapor')
+      ItemIndex = 0
+      ItemHeight = 16.000000000000000000
+      Style = csDropDownList
+      Text = 'Default'
+      ItemAppearance.ShowFocus = False
+      ItemAppearance.ExpandColumn = -1
+      ItemAppearance.FixedHeight = 16.000000000000000000
+      ItemAppearance.VariableMinimumHeight = 25.000000000000000000
+      ItemAppearance.ShowLines = False
+      ItemAppearance.SelectionArea = tsaFull
+      Appearance.Stroke.Color = clDarkgray
+      Appearance.Fill.Color = 15329769
+      Appearance.StrokeHover.Color = clLightslategray
+      Appearance.FillHover.Color = 13419707
+      Appearance.StrokeDown.Color = clSlategray
+      Appearance.FillDown.Color = 13156536
+      Appearance.StrokeSelected.Color = clDarkslategray
+      Appearance.FillSelected.Color = 13156536
+      Appearance.StrokeDisabled.Color = clDarkgray
+      Appearance.FillDisabled.Color = clSilver
+      Appearance.SeparatorStroke.Color = clDarkgray
+      OnItemSelected = BootswatchComboItemSelected
+    end
+  end
   object KpiRow: TTMSFNCPanel
     ChildLayout = pclEqualColumns
     AlignWithMargins = True

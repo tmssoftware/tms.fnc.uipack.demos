@@ -11,7 +11,14 @@ unit UDemo;
   form do it all; the texts take their roles in the designer (grid and tree columns, the settings
   item: TextRole), the status bar shows the theme's name (spsThemeName), the KPI row arranges its
   cards (ChildLayout) and the accent selector hides in high contrast (HideInHighContrast). The demo
-  only loads its icons in the colors of the current theme (WEB draws images as loaded): ThemeChanged. }
+  only loads its icons in the colors of the current theme (WEB draws images as loaded): ThemeChanged.
+
+  Bootstrap: the page loads Bootstrap 5.3 (index.html, link 'bootstrap-css'). 'Bootstrap' is a theme read
+  from its CSS variables (TTMSFNCTheme.RegisterCSSTheme with TTMSFNCBootstrapCSSMapping), offered next to
+  the Fluent themes. While it is the theme, the Bootstrap bar shows its options: the color mode (Light,
+  Dark, or Auto following prefers-color-scheme) sets data-bs-theme on the page, the theme combo box loads
+  a Bootswatch style sheet in place of Bootstrap's own; the FNC controls follow both live, as the native
+  Bootstrap elements of the template (UDemo.html) next to them do. }
 
 interface
 
@@ -115,6 +122,10 @@ type
     Avatar: TTMSFNCBadge;
     AppMark: TTMSFNCBadge;
     ThemeSelector: TTMSFNCThemeSelector;
+    BootstrapBar: TTMSFNCPanel;
+    BootstrapLabel: TTMSFNCHTMLText;
+    BootstrapModes: TTMSFNCSegmentedControl;
+    BootswatchCombo: TTMSFNCComboBox;
     procedure WebFormCreate(Sender: TObject);
     procedure DataRequestResponse(Sender: TObject; AResponse: string);
     procedure OrdersAfterOpen(DataSet: TDataSet);
@@ -136,10 +147,16 @@ type
     procedure DeleteButtonClick(Sender: TObject);
     procedure FulfilmentBarValueChanged(Sender: TObject; AValue: Single);
     procedure ProjectTreeNodeChecked(Sender: TObject; ANode: TTMSFNCTreeViewVirtualNode; AColumn: Integer);
+    procedure BootstrapModesAfterSelectItem(Sender: TObject; AItemIndex: Integer);
+    procedure BootswatchComboItemSelected(Sender: TObject; AText: string; AItemIndex: Integer);
   private
     FData: TOrdersData;
     FLoading: Boolean;
+    FDarkQuery: TJSMediaQueryList;
+    FBootstrapSample: TJSHTMLElement;
     procedure ThemeChanged(Sender: TObject);
+    procedure SystemSchemeChanged(Event: TJSEvent);
+    procedure ApplyBootstrapMode;
     procedure ShowKpis;
     procedure FillProjects;
   end;
@@ -165,6 +182,10 @@ const
     'y="2.5" width="4.5" height="4.5" rx="1"/><rect x="2.5" y="9" width="4.5" height="4.5" rx="1"/><rect x="9" ' +
     'y="9" width="4.5" height="4.5" rx="1"/></g>';
   SearchIcon = '<circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/>';
+  { the theme read from the page's Bootstrap CSS, and the style sheets the theme combo box loads }
+  BootstrapTheme = 'Bootstrap';
+  BootstrapCSS = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css';
+  BootswatchCSS = 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/%s/bootstrap.min.css';
 
 function Theme: TTMSFNCResolvedTheme;
 begin
@@ -205,6 +226,15 @@ begin
   FormatSettings := TFormatSettings.Create('en-US');
   FormatSettings.ShortDateFormat := 'mmm d, yyyy';
   NavList.ItemIndex := 0;
+  { Bootstrap next to the Fluent themes; its native sample (UDemo.html) in the Bootstrap bar }
+  TTMSFNCTheme.RegisterCSSTheme(BootstrapTheme, TTMSFNCBootstrapCSSMapping);
+  ThemeSelector.Width := ThemeSelector.Width + 96;
+  ThemeSelector.Themes.Add(BootstrapTheme);
+  FBootstrapSample := TJSHTMLElement(document.getElementById('bootstrap-sample'));
+  if Assigned(FBootstrapSample) then
+    BootstrapBar.ElementHandle.appendChild(FBootstrapSample);
+  FDarkQuery := window.matchMedia('(prefers-color-scheme: dark)');
+  TJSEventTarget(FDarkQuery).addEventListener('change', @SystemSchemeChanged);
   TTMSFNCTheme.AddChangeListener(@ThemeChanged);
   ThemeChanged(nil);
   { this tab's data, or orders.json }
@@ -218,12 +248,18 @@ begin
   FData.Load(AResponse);
 end;
 
-{ the icons in the theme's colors }
+{ the icons in the theme's colors; the Bootstrap options while Bootstrap is the theme }
 procedure TForm1.ThemeChanged(Sender: TObject);
 var
   t: TTMSFNCResolvedTheme;
   I: Integer;
+  b: Boolean;
 begin
+  b := SameText(TTMSFNCTheme.Current, BootstrapTheme);
+  if BootstrapBar.Visible <> b then
+    BootstrapBar.Visible := b;
+  if Assigned(FBootstrapSample) then
+    FBootstrapSample.hidden := not b;
   t := Theme;
   if not Assigned(t) then
     Exit;
@@ -235,6 +271,46 @@ begin
   SettingsList.Items[0].Bitmap.LoadFromURL(Icon(NavIcons[5], t[ttTextSecondary], 25, 18, 5));
   AppMark.Bitmap.LoadFromURL(Icon(MarkIcon, t[ttAccentText], 24, 24, 0));
   SearchEdit.Bitmap.LoadFromURL(Icon(SearchIcon, t[ttTextTertiary], 16, 16, 0));
+end;
+
+{ Bootstrap's color mode: data-bs-theme on the page (Auto: as prefers-color-scheme); the Bootstrap theme
+  and the FNC controls follow it }
+procedure TForm1.ApplyBootstrapMode;
+var
+  m: string;
+begin
+  case BootstrapModes.ItemIndex of
+    1: m := 'dark';
+    2: if FDarkQuery.matches then m := 'dark' else m := 'light';
+  else
+    m := 'light';
+  end;
+  document.documentElement.setAttribute('data-bs-theme', m);
+end;
+
+procedure TForm1.BootstrapModesAfterSelectItem(Sender: TObject; AItemIndex: Integer);
+begin
+  ApplyBootstrapMode;
+end;
+
+procedure TForm1.SystemSchemeChanged(Event: TJSEvent);
+begin
+  if BootstrapModes.ItemIndex = 2 then
+    ApplyBootstrapMode;
+end;
+
+{ Bootstrap's own style sheet or a Bootswatch theme; the Bootstrap theme is read again once it is loaded }
+procedure TForm1.BootswatchComboItemSelected(Sender: TObject; AText: string; AItemIndex: Integer);
+var
+  l: TJSHTMLLinkElement;
+begin
+  l := TJSHTMLLinkElement(document.getElementById('bootstrap-css'));
+  if not Assigned(l) then
+    Exit;
+  if AItemIndex <= 0 then
+    l.href := BootstrapCSS
+  else
+    l.href := Format(BootswatchCSS, [LowerCase(AText)]);
 end;
 
 procedure TForm1.OrdersAfterOpen(DataSet: TDataSet);
