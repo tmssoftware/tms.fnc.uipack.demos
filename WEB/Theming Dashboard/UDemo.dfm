@@ -94,7 +94,7 @@ object Form1: TForm1
     Left = 260
     Top = 140
     Width = 1152
-    Height = 32
+    Height = 40
     Margins.Left = 260
     Margins.Top = 14
     Margins.Right = 28
@@ -111,7 +111,7 @@ object Form1: TForm1
       Left = 0
       Top = 0
       Width = 84
-      Height = 32
+      Height = 40
       Margins.Left = 0
       Margins.Top = 0
       Margins.Right = 0
@@ -130,13 +130,13 @@ object Form1: TForm1
     object BootstrapModes: TTMSFNCSegmentedControl
       AlignWithMargins = True
       Left = 84
-      Top = 0
+      Top = 4
       Width = 176
       Height = 32
       Margins.Left = 0
-      Margins.Top = 0
+      Margins.Top = 4
       Margins.Right = 8
-      Margins.Bottom = 0
+      Margins.Bottom = 4
       Align = alLeft
       Hint = 'Bootstrap color mode (data-bs-theme)'
       TabOrder = 1
@@ -165,13 +165,13 @@ object Form1: TForm1
     object BootswatchCombo: TTMSFNCComboBox
       AlignWithMargins = True
       Left = 268
-      Top = 0
+      Top = 4
       Width = 136
       Height = 32
       Margins.Left = 0
-      Margins.Top = 0
+      Margins.Top = 4
       Margins.Right = 0
-      Margins.Bottom = 0
+      Margins.Bottom = 4
       Align = alLeft
       Hint = 'Bootstrap or a Bootswatch theme'
       TabOrder = 2
@@ -179,18 +179,17 @@ object Form1: TForm1
       Items.Strings = (
         'Default'
         'Flatly'
-        'Lux'
+        'Cosmo'
         'Minty'
         'Sandstone'
-        'Darkly'
-        'Vapor')
+        'Zephyr')
       ItemIndex = 0
-      ItemHeight = 16.000000000000000000
+      ItemHeight = 28.000000000000000000
       Style = csDropDownList
       Text = 'Default'
       ItemAppearance.ShowFocus = False
       ItemAppearance.ExpandColumn = -1
-      ItemAppearance.FixedHeight = 16.000000000000000000
+      ItemAppearance.FixedHeight = 28.000000000000000000
       ItemAppearance.VariableMinimumHeight = 25.000000000000000000
       ItemAppearance.ShowLines = False
       ItemAppearance.SelectionArea = tsaFull

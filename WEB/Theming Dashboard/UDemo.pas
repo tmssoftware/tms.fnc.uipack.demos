@@ -17,8 +17,9 @@ unit UDemo;
   from its CSS variables (TTMSFNCTheme.RegisterCSSTheme with TTMSFNCBootstrapCSSMapping), offered next to
   the Fluent themes. While it is the theme, the Bootstrap bar shows its options: the color mode (Light,
   Dark, or Auto following prefers-color-scheme) sets data-bs-theme on the page, the theme combo box loads
-  a Bootswatch style sheet in place of Bootstrap's own; the FNC controls follow both live, as the native
-  Bootstrap elements of the template (UDemo.html) next to them do. }
+  a Bootswatch style sheet (themes that have the color modes) in place of Bootstrap's own; the FNC controls
+  follow both live, as the native Bootstrap card of the template (UDemo.html) next to them does. The KPI
+  notes move right of their badges, which grow with Bootstrap's larger font (PlaceNotes). }
 
 interface
 
@@ -157,6 +158,7 @@ type
     procedure ThemeChanged(Sender: TObject);
     procedure SystemSchemeChanged(Event: TJSEvent);
     procedure ApplyBootstrapMode;
+    procedure PlaceNotes;
     procedure ShowKpis;
     procedure FillProjects;
   end;
@@ -186,6 +188,8 @@ const
   BootstrapTheme = 'Bootstrap';
   BootstrapCSS = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css';
   BootswatchCSS = 'https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/%s/bootstrap.min.css';
+  { the designed left of the KPI notes, right of their badges }
+  NoteLeft = 89;
 
 function Theme: TTMSFNCResolvedTheme;
 begin
@@ -271,6 +275,26 @@ begin
   SettingsList.Items[0].Bitmap.LoadFromURL(Icon(NavIcons[5], t[ttTextSecondary], 25, 18, 5));
   AppMark.Bitmap.LoadFromURL(Icon(MarkIcon, t[ttAccentText], 24, 24, 0));
   SearchEdit.Bitmap.LoadFromURL(Icon(SearchIcon, t[ttTextTertiary], 16, 16, 0));
+  PlaceNotes;
+end;
+
+{ the KPI notes right of their badges, which size themselves to the theme's font (Bootstrap's is larger) }
+procedure TForm1.PlaceNotes;
+
+  procedure Follow(ANote: TTMSFNCHTMLText; ABadge: TTMSFNCBadge);
+  var
+    r: Integer;
+  begin
+    r := ANote.Left + ANote.Width;
+    ANote.Left := Max(NoteLeft, ABadge.Left + ABadge.Width + 8);
+    ANote.Width := r - ANote.Left;
+  end;
+
+begin
+  Follow(RevenueNote, RevenueDelta);
+  Follow(OpenNote, OpenDelta);
+  Follow(CustomersNote, CustomersDelta);
+  Follow(AverageNote, AverageDelta);
 end;
 
 { Bootstrap's color mode: data-bs-theme on the page (Auto: as prefers-color-scheme); the Bootstrap theme
@@ -354,6 +378,7 @@ begin
   OnTimeGoalValue.Text := Format('%.0f%%', [k.GoalOnTime]);
   RetentionGoalBar.Value := k.GoalRetention;
   RetentionGoalValue.Text := Format('%.0f%%', [k.GoalRetention]);
+  PlaceNotes;
   NavList.Items[1].Badge := IntToStr(k.OpenOrders);
   PageSubtitle.Text := FormatDateTime('mmmm yyyy', k.RefDate) + ' '#$00B7' all regions';
   StatusBar.Panels.Items[2].Text := IntToStr(k.OrderCount) + ' orders';
