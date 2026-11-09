@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<employees>
+  <employee><id>101</id><name>Ann Becker</name><department>Development</department><hired>2019-03-04</hired><salary>4200</salary></employee>
+  <employee><id>102</id><name>Bruno Costa</name><department>Sales</department><hired>2020-07-15</hired><salary>3900</salary></employee>
+  <employee><id>103</id><name>Chen Wei</name><department>Support</department><hired>2018-11-20</hired><salary>3600</salary></employee>
+  <employee><id>104</id><name>Dana Ilic</name><department>Marketing</department><hired>2021-01-11</hired><salary>3800</salary></employee>
+  <employee><id>105</id><name>Emil Novak</name><department>Development</department><hired>2017-05-02</hired><salary>4600</salary></employee>
+</employees>

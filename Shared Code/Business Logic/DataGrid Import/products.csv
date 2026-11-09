@@ -1,0 +1,9 @@
+Code,Product,Category,Price,Stock,Discontinued
+P-1001,Keyboard,Peripherals,79.00,120,false
+P-1002,Monitor 27",Displays,329.00,35,false
+P-1003,Docking station,Peripherals,189.00,48,false
+P-1004,Headset,Audio,99.00,210,false
+P-1005,Webcam,Video,69.00,0,true
+P-1006,USB-C cable 2 m,Cables,14.50,640,false
+P-1007,Laptop stand,Furniture,49.00,75,false
+P-1008,Wireless mouse,Peripherals,39.00,310,false

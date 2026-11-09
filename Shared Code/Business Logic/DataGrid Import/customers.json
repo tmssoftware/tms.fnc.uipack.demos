@@ -1,0 +1,10 @@
+{
+  "customers": [
+    {"id": 1, "company": "Northwind Traders", "city": "Seattle", "country": "USA", "credit": 5000, "active": true},
+    {"id": 2, "company": "Contoso Ltd", "city": "Brussels", "country": "Belgium", "credit": 7750, "active": true},
+    {"id": 3, "company": "Fabrikam Inc", "city": "Ghent", "country": "Belgium", "credit": 10500, "active": false},
+    {"id": 4, "company": "Adventure Works", "city": "Lyon", "country": "France", "credit": 13250, "active": true},
+    {"id": 5, "company": "Tailspin Toys", "city": "Austin", "country": "USA", "credit": 16000, "active": true},
+    {"id": 6, "company": "Wide World Importers", "city": "Rotterdam", "country": "Netherlands", "credit": 18750, "active": false}
+  ]
+}
