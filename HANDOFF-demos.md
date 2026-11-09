@@ -22,17 +22,38 @@ Plan: `~/tms.environment/workspaces/delphi/tasks/plans/plan-demos.md` (57 demos)
   SplitView, StackPanel and FlowPanel, Stepper, TagEdit, Theme Pickers, Toast (plan B1-B22 without B23-B28);
   Orders Data Form (A4, without DataBinder KPIs and SelectedRecords), DataGrid Database Editing (A5),
   DataGrid Import (C12, FMX and VCL only: no import dialog on WEB), HTML in the UI (A12 without Kanban cards and
-  the HTML editor).
+  the HTML editor), Master-Detail Explorer (A6: datasets page desktop only, the dataset master-detail is
+  `{$IFNDEF WEBLIB}` in the product; WEB has the OnGetDetailData page and the tree grid; Cards template, template
+  per level, detail toolbar and peek wait for phase 5A), Project Board (A8: Kanban, Planner and Timeline on one
+  tasks dataset with ColumnSource, LaneSource, ResourceSource and Detail to a checklist grid; without Kind
+  categories, see the harmony findings).
 
 ## Next (plan order)
 
-1. A6 Master-Detail Explorer (`TTMSFNCDataGridMasterDetail`, tree-grid `TreeOptions`), A8 Project Board
-   (Kanban/Planner/Timeline DataSource), A7 TreeView Database update, A1 Theme Studio, A2 Brand Studio, A3 Dashboard
-   update, A10 App Shell, A11 Input Forms, A13 and A14 (Core demos repository), B23-B28, the C updates, E1.
+1. A7 TreeView Database update (`DataOptions.Levels`, `ColumnFields`, `LevelHeaders`, `Levels[n].Detail`; the
+   Extras test scene `src/FncData5MdaShowScene.inc` shows the API), A1 Theme Studio, A2 Brand Studio, A3 Dashboard
+   update, A10 App Shell, A11 Input Forms, A13 and A14 (Core demos repository, nothing committed there yet),
+   B23-B28, the C updates, E1, the A4 gaps (DataBinder KPIs, SelectedRecords) and the A12 gaps (Kanban cards,
+   HTMLEditor).
 2. Run the gate `demos` step once heavy runs are allowed (about 220 projects x 2 compilers): expect the PDFLib BMI
    WEB project to need `--extra` (the gate passes the Dashboard Pack source when the folder exists).
 3. `democheck.py shoot` on the new demos (Light/Dark contrast check) once heavy runs are allowed.
 4. LCL demos are not compiled anywhere (plan decision 7): extend `lcl_check.py` if they should be.
+
+## Harmony findings
+
+Things that did not work together nicely or were unintuitive while building the demos; product code untouched.
+
+- Kanban board, Planner, Timeline: `DataOptions` have no `KindField`. A bound card, item or section cannot get a
+  status `Kind` (tskSuccess, tskWarning, ...) from a field; `ColorField` only takes a fixed colour, which breaks
+  theming. Suggestion: a `KindField` (kind names or indexes) in the three data options, next to `ColorField`.
+- Timeline `DataOptions.AutoDetectFields` detects `Start/StartDate/Date` and `End/EndDate/Finish`, the Planner
+  detects `StartTime/Start/Begin` and `EndTime/End/Finish`: a tasks table with `StartTime`/`EndTime` binds to the
+  Planner by itself but needs `StartField`/`EndField` set for the Timeline. Suggestion: one detection list for
+  both.
+- DataGrid master-detail from datasets (`MasterSource`) is desktop only; WEB only has `OnGetDetailData` and
+  `SourceGrid`. The property editor and the docs should say so (TMS WEB Core datasets have no `MasterSource`).
+- `demonew.py` does not write the per-folder `README.md` its docstring promises; written by hand for every demo.
 
 ## Pitfalls
 
@@ -48,3 +69,10 @@ Plan: `~/tms.environment/workspaces/delphi/tasks/plans/plan-demos.md` (57 demos)
   `capNone/capLeft/capTop`, `gdcsNone/gdcsProportional/gdcsLastColumn`, `elmStartsWith/elmContains/elmWordStart`,
   `mbakDefault/mbakAlt`, `dnimInsert/dnimAppend`, `htrPrimary/htrSecondary/htrTertiary`.
 - `TTMSFNCSampleData` (Core) supplies people, customers, orders, tasks and project tasks for the sample data.
+- The Write tool writes LF; convert a new unit to CRLF before committing (the demos are CRLF).
+- Index a class function result through a local variable (`people := TTMSFNCSampleData.People; people[I]`), and
+  avoid `TDataSet.Locate` in shared units (not checked on WEB): look up in the array instead.
+- FireDAC master-detail in memory: detail `IndexFieldNames` = the link field, then `MasterSource` and
+  `MasterFields`; the DataGrid finds the detail datasets by itself.
+- Smoke starts: `python -I <scratch>/smoke.py <exe>...` (hidden desktop, five seconds; the script lives in the
+  session scratchpad, 15 lines, recreate it from `hidden_desktop.start` if gone).
