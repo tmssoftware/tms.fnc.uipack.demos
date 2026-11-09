@@ -16,7 +16,7 @@ uses
   {$IFDEF WEBLIB}
   SysUtils, Classes, WEBLib.Graphics,
   WEBLib.Forms, WEBLib.Dialogs, WEBLib.StdCtrls, UBL, WEBLib.Controls, Vcl.Controls,
-  WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector;
+  WEBLib.TMSFNCGraphicsTypes, WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector;
   {$ENDIF}
 
   {$IFDEF FMX}

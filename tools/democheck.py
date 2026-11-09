@@ -11,7 +11,9 @@ Subcommands
   sheet                  contact sheet of a results folder: one row per demo, columns per tag/mode.
 
 A project is a .dproj or .dpr (FMX/VCL is detected from the .dpr) or a WEB .dproj (compile only,
-TMS WEB Core). Theming sources: --core / --uipack (default: the theming worktrees). Heavy runs go
+TMS WEB Core). Theming sources: --core / --uipack (default: the theming worktrees); --extra adds the sources of
+other products a demo needs. Shared form units with {$IFDEF} form classes are resolved for WEBLIB before the WEB
+compile; a VCL/FMX project's <RcItem> resources become its .dres. Heavy runs go
 through the harness tools/heavy.py; this script only throttles test processes through
 hidden_desktop.
 
@@ -157,8 +159,9 @@ def find_root(d):
 def sources(args):
     """Overlay folders first (patched copies of product units, e.g. to get past a product bug on
     one platform), then the Core and UI Pack sources."""
+    extra = [Path(p) for p in (getattr(args, "extra", None) or [])]
     return [Path(p) for p in (getattr(args, "overlay", None) or [])] + [Path(args.core) / "Source", Path(args.uipack) / "Source",
-                                                                          Path(args.uipack) / "Source" / "xlsAdapter"]
+                                                                          Path(args.uipack) / "Source" / "xlsAdapter"] + extra
 
 
 def scratch_dpr(proj, out, extra_units=()):
@@ -180,6 +183,8 @@ def scratch_dpr(proj, out, extra_units=()):
         shutil.copy2(res, out / res.name)
     elif "{$R *.res}" in text:
         make_empty_res(out / (proj.dpr.stem + ".res"), out)
+    if "{$R *.dres}" in text:
+        make_dres(proj, out)
     return dst
 
 
@@ -187,6 +192,97 @@ def make_empty_res(path, out, delphi="13"):
     rc = out / "empty.rc"
     rc.write_text("", encoding="ascii")
     run([STUDIO / DELPHI[delphi] / "bin" / "brcc32.exe", "-fo" + str(path), rc], out / "brcc32.log")
+
+
+def make_dres(proj, out, delphi="13"):
+    """The IDE compiles the project's resource items (<RcItem> in the .dproj: SVGs, images) into <project>.dres;
+    the command line does not, so the file is built here from the same items (or copied when the IDE left one)."""
+    dres = proj.dpr.with_suffix(".dres")
+    if dres.exists():
+        shutil.copy2(dres, out / dres.name)
+        return
+    dproj = proj.dproj.read_text(encoding="utf-8-sig", errors="replace") if proj.dproj.exists() else ""
+    lines = []
+    for inc, body in re.findall(r'<RcItem Include="([^"]+)">(.*?)</RcItem>', dproj, re.S):
+        rtype = re.search(r"<ResourceType>([^<]*)</ResourceType>", body)
+        rid = re.search(r"<ResourceId>([^<]*)</ResourceId>", body)
+        path = (proj.dir / inc).resolve()
+        if rtype and rid and path.exists():
+            lines.append(f'{rid.group(1)} {rtype.group(1)} "{str(path).replace(chr(92), "/")}"')
+    rc = out / "resources.rc"
+    rc.write_text("\n".join(lines) + "\n", encoding="ascii", errors="replace")
+    run([STUDIO / DELPHI[delphi] / "bin" / "brcc32.exe", "-fo" + str(out / dres.name), rc], out / "brcc32-dres.log")
+
+
+# conditional symbols the WEB compiler defines, and the ones of the other frameworks it never defines; a shared form
+# unit resolved for these before TMS WEB Core's preprocessor sees it, so it finds the one form class declaration
+WEB_DEFINED = {"WEBLIB", "PAS2JS"}
+WEB_UNDEFINED = {"FMX", "VCL", "LCL", "LCLLIB", "MSWINDOWS", "WIN32", "WIN64", "MACOS", "IOS", "ANDROID", "LINUX",
+                 "POSIX", "CPUX64", "CPUX86", "CPUARM64"}
+
+
+def resolve_conditionals(text, defined=WEB_DEFINED, undefined=WEB_UNDEFINED):
+    """Removes the inactive branches of {$IFDEF}/{$IFNDEF}/{$ELSE}/{$ENDIF} blocks whose symbol is known; other
+    directives (and blocks nested in them) stay for the compiler."""
+    pattern = re.compile(r"\{\$(IFDEF|IFNDEF|IFOPT|IF|ELSEIF|ELSE|ENDIF|IFEND)\b([^}]*)\}", re.I)
+    out, pos = [], 0
+    stack = []  # (resolved, active before this block, active in the current branch)
+    emit = True
+    for m in pattern.finditer(text):
+        kind, arg = m.group(1).upper(), m.group(2).strip().upper()
+        if emit:
+            out.append(text[pos:m.start()])
+        pos = m.end()
+        if kind in ("IFDEF", "IFNDEF") and arg in defined | undefined:
+            on = (arg in defined) == (kind == "IFDEF")
+            stack.append((True, emit, on))
+            emit = emit and on
+            continue
+        if kind in ("IFDEF", "IFNDEF", "IFOPT", "IF"):
+            stack.append((False, emit, True))
+        elif kind in ("ELSE", "ELSEIF") and stack and stack[-1][0]:
+            resolved, before, on = stack[-1]
+            stack[-1] = (resolved, before, not on)
+            emit = before and not on
+            continue
+        elif kind in ("ENDIF", "IFEND") and stack:
+            resolved, before, _ = stack.pop()
+            if resolved:
+                emit = before
+                continue
+        if emit:
+            out.append(m.group(0))
+    out.append(text[pos:])
+    return "".join(out)
+
+
+def scratch_web_project(proj, out):
+    """A copy of a WEB project in <out>/src whose shared form units are resolved for WEBLIB (TMS WEB Core's
+    preprocessor matches the form class by name, and a unit that declares it once per framework under {$IFDEF}
+    makes it inject LoadDFMValues into the wrong declaration); the form files and the page template come along."""
+    src = out / "src"
+    src.mkdir(parents=True, exist_ok=True)
+    text = proj.text
+    for name, path in proj.units:
+        unit = path.read_text(encoding="utf-8-sig", errors="replace")
+        if not re.search(r"\{\$IF(N?DEF)?\b", unit, re.I):
+            continue
+        (src / path.name).write_text(resolve_conditionals(unit), encoding="utf-8")
+        for sib in path.parent.glob(path.stem + ".*"):
+            if sib.suffix.lower() in (".dfm", ".html"):
+                shutil.copy2(sib, src / sib.name)
+        text = re.sub(r"(\b" + re.escape(name) + r"\s+in\s+')[^']+'", lambda m: m.group(1) + str(src / path.name) + "'", text)
+
+    def fix(m):
+        q = Path(m.group(2))
+        return m.group(0) if q.is_absolute() else f"{m.group(1)} in '{(proj.dir / q).resolve()}'"
+    text = re.sub(r"([\w.]+)\s+in\s+'([^']+)'", fix, text)
+    dst = src / proj.dpr.name
+    dst.write_text(text, encoding="utf-8")
+    for f in proj.dir.iterdir():
+        if f.is_file() and f.suffix.lower() in (".html", ".dproj", ".res", ".css", ".js", ".json"):
+            shutil.copy2(f, src / f.name)
+    return dst, src
 
 
 def dcu_cache(args, delphi, fw, platform):
@@ -252,9 +348,10 @@ def build_web(args, proj, tag="build"):
         shutil.rmtree(out, ignore_errors=True)
     (out / "js").mkdir(parents=True, exist_ok=True)
     src = sources(args)
-    search = ";".join(str(x) for x in [*proj.unit_dirs(), *src, wc / "Core Source", wc / "Core Source" / "RTL",
+    dpr, scratch = scratch_web_project(proj, out)
+    search = ";".join(str(x) for x in [scratch, *proj.unit_dirs(), *src, wc / "Core Source", wc / "Core Source" / "RTL",
                                          wc / "Component Library Source"])
-    cmd = [comp, f"-ProjectFile:{proj.dpr}", f"-InstallDir:{wc}", f"-HTMLOutputDir:{out / 'js'}",
+    cmd = [comp, f"-ProjectFile:{dpr}", f"-InstallDir:{wc}", f"-HTMLOutputDir:{out / 'js'}",
            f"-IntermediateOutputDir:{out / 'js'}", f"-UnitSearchPaths:{search}",
            f"-IncSearchPaths:{';'.join(str(x) for x in src)}", "-ShowWarnings", "-ShowErrors", "-ShowLineNumbers"]
     if proj.defines:
@@ -499,6 +596,8 @@ def main():
     ap.add_argument("--core", default=str(WORKSPACE / "tms.fnc.core-theming"))
     ap.add_argument("--uipack", default=str(WORKSPACE / "tms.fnc.uipack-theming"))
     ap.add_argument("--overlay", action="append", help="folders searched before the sources (patched product units)")
+    ap.add_argument("--extra", action="append", help="more source folders (other FNC products a demo uses, e.g. the "
+                    "Dashboard Pack gauge of PDFLib BMI)")
     ap.add_argument("--work", help="scratch build folder (default %%TEMP%%/claude/democheck)")
     ap.add_argument("--out", default=str(HARNESS / "results" / "demos-pilot"))
     sub = ap.add_subparsers(dest="cmd", required=True)
