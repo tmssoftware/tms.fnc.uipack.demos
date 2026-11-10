@@ -1,4 +1,4 @@
-unit UDemoLayout;
+﻿unit UDemoLayout;
 
 { Layout helpers shared by the demos that build their settings panel and content in code, the same code for FMX,
   VCL and WEB: controls aligned top or left with margins on the 8 px grid of the demo guidelines, section captions,
