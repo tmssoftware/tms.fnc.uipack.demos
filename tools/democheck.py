@@ -9,6 +9,11 @@ Subcommands
                          save <mode>.png + <mode>.json and analyse the contrast of every visible
                          text-bearing control (PIL). Writes <out>/<tag>/<demo>/summary.json.
   sheet                  contact sheet of a results folder: one row per demo, columns per tag/mode.
+  smoke    <project>...  build Win32 with DemoShot.pas linked in and start the demo on the hidden desktop;
+                         passes when the main form came up and the demo ended without an exception
+                         (DemoShot hooks Application.OnException and writes error.txt). A demo kept
+                         alive by an exception or message dialog (window class #32770) fails with the
+                         dialog text. Exit 1 when one fails.
 
 A project is a .dproj or .dpr (FMX/VCL is detected from the .dpr) or a WEB .dproj (compile only,
 TMS WEB Core). Theming sources: --core / --uipack (default: the theming worktrees); --extra adds the sources of
@@ -526,6 +531,118 @@ def cmd_shoot(args):
     return rc
 
 
+# ---------------------------------------------------------------- dialogs + smoke start
+
+def find_dialog(pid, desktop_name):
+    """The caption and texts of a dialog (window class #32770) of the process on the hidden desktop, or None."""
+    import ctypes
+    from ctypes import wintypes
+    user32 = ctypes.WinDLL("user32", use_last_error=True)
+    proc = ctypes.WINFUNCTYPE(wintypes.BOOL, wintypes.HWND, wintypes.LPARAM)
+    found = []
+
+    def text(hwnd):
+        buf = ctypes.create_unicode_buffer(1024)
+        user32.GetWindowTextW(hwnd, buf, 1024)
+        return buf.value
+
+    def cls(hwnd):
+        buf = ctypes.create_unicode_buffer(256)
+        user32.GetClassNameW(hwnd, buf, 256)
+        return buf.value
+
+    def child(hwnd, _):
+        if cls(hwnd) in ("Static", "Edit", "RichEdit20W", "SysLink"):
+            s = text(hwnd).strip()
+            if s:
+                found[-1]["texts"].append(s)
+        return True
+
+    def top(hwnd, _):
+        owner = wintypes.DWORD()
+        user32.GetWindowThreadProcessId(hwnd, ctypes.byref(owner))
+        if owner.value == pid and cls(hwnd) == "#32770":
+            found.append({"caption": text(hwnd), "texts": []})
+            user32.EnumChildWindows(hwnd, proc(child), 0)
+        return True
+
+    desk = user32.OpenDesktopW(desktop_name, 0, False, 0x0100)  # DESKTOP_ENUMERATE
+    if not desk:
+        return None
+    try:
+        user32.EnumDesktopWindows(desk, proc(top), 0)
+    finally:
+        user32.CloseDesktop(desk)
+    if not found:
+        return None
+    d = found[0]
+    return " | ".join([d["caption"], *d["texts"]]).strip(" |")
+
+
+def watch_process(p, hidden_desktop, timeout, settle=0.5):
+    """Waits for a hidden desktop process; ends it when a dialog appears or the time is up.
+    Returns (exit code or None while alive, dialog text or None)."""
+    import time
+    deadline = time.monotonic() + timeout
+    while True:
+        try:
+            return p.wait(timeout=settle), None
+        except subprocess.TimeoutExpired:
+            pass
+        dialog = find_dialog(p.pid, hidden_desktop.DESKTOP_NAME)
+        if dialog is not None:
+            p.kill()
+            return None, dialog
+        if time.monotonic() >= deadline:
+            return None, None
+
+
+def cmd_smoke(args):
+    sys.path.insert(0, str(HARNESS / "tools"))
+    import hidden_desktop  # noqa: E402
+    probe = HERE / "delphi" / "DemoShot.pas"
+    rc = 0
+    for p in args.projects:
+        proj = Project(p)
+        if proj.fw == "web":
+            print(f"{proj.slug}: WEB projects are compiled only (compile)")
+            continue
+        key = f"{proj.fw}-{proj.slug}"
+        dest = Path(args.out) / "smoke" / key
+        if dest.exists():
+            shutil.rmtree(dest, ignore_errors=True)
+        dest.mkdir(parents=True, exist_ok=True)
+        b = build_native(args, proj, "win32", args.delphi[0], defines=[f"DEMOSHOT_{proj.fw.upper()}"],
+                         extra_units=[("DemoShot", probe)], tag="smoke")
+        if not b["ok"]:
+            print(f"{key:44} build FAILED {' | '.join(b.get('errors', [])[:3])}")
+            rc = 1
+            continue
+        env = dict(os.environ)
+        env["DEMOSHOT_OUT"] = str(dest)
+        env["DEMOSHOT_MODES"] = "smoke"
+        env["DEMOSHOT_DELAY"] = str(args.delay)
+        proc = hidden_desktop.start([b["exe"]], env=env, cwd=str(proj.dir), stdout_path=str(dest / "stdout.txt"))
+        code, dialog = watch_process(proc, hidden_desktop, args.timeout)
+        error = (dest / "error.txt").read_text(encoding="utf-8", errors="replace").strip() if (dest / "error.txt").exists() else ""
+        if dialog:
+            state = f"FAILED dialog: {dialog}"
+        elif code is None:
+            proc.kill()
+            state = "FAILED still running (no main form or a blocked message loop)"
+        elif error:
+            state = f"FAILED exception: {error}"
+        elif code != 0 or not (dest / "done.txt").exists():
+            state = f"FAILED exit {code}"
+        else:
+            state = "ok"
+        if state != "ok":
+            rc = 1
+        (dest / "result.txt").write_text(state, encoding="utf-8")
+        print(f"{key:44} {state}", flush=True)
+    return rc
+
+
 # ---------------------------------------------------------------- contact sheet
 
 def cmd_sheet(args):
@@ -612,6 +729,11 @@ def main():
     s.add_argument("--tag", default="after")
     s.add_argument("--modes", nargs="+", default=MODES)
     s.add_argument("--timeout", type=int, default=120)
+    k = sub.add_parser("smoke")
+    k.add_argument("projects", nargs="+")
+    k.add_argument("--delphi", nargs="+", default=["13"])
+    k.add_argument("--timeout", type=int, default=30)
+    k.add_argument("--delay", type=int, default=2500, help="ms after the main form is up before the demo ends")
     h = sub.add_parser("sheet")
     h.add_argument("--tags", nargs="+", default=["before", "after"])
     h.add_argument("--modes", nargs="+", default=["asis", "Fluent Dark"])
@@ -619,7 +741,7 @@ def main():
     h.add_argument("--width", type=int, default=520)
     h.add_argument("--name")
     args = ap.parse_args()
-    return {"compile": cmd_compile, "shoot": cmd_shoot, "sheet": cmd_sheet}[args.cmd](args)
+    return {"compile": cmd_compile, "shoot": cmd_shoot, "smoke": cmd_smoke, "sheet": cmd_sheet}[args.cmd](args)
 
 
 if __name__ == "__main__":

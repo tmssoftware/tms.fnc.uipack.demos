@@ -7,6 +7,7 @@ unit DemoShot;
     asis     the demo as it ships (its own ThemeManager, if any)
     none     no theme at all (TTMSFNCTheme.Apply(''))
     <theme>  a TTMSFNCThemeManager injected on the main form with Theme = <theme>
+    smoke    no capture: the form came up and the demo ends (the start check of democheck smoke)
   and writes per mode <slug>.png (the main form's client area) and <slug>.json (every control:
   class, name, bounds in form pixels, visible, FNC or native, and under a theme the values the
   developer owns: TTMSFNCTheme.DeveloperValues). defaults.json holds the run-time defaults of every
@@ -417,7 +418,9 @@ begin
     try
       DumpColorIdents;
       for m in modes do
-        if Trim(m) <> '' then
+        if SameText(Trim(m), 'smoke') then
+          Pump(1000)
+        else if Trim(m) <> '' then
           RunMode(f, Trim(m));
       SaveText('defaults.json', DefaultsJson.Format(1));
     finally
