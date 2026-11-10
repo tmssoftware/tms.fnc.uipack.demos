@@ -213,6 +213,10 @@ begin
 
   rb := TMSFNCRibbon1;
   rb.Parent := Self;
+  { 8.0: rbtFluent takes the light or dark layout and the accent of the application theme; the brand mark of the
+    theme in the caption }
+  rb.Theme := rbtFluent;
+  rb.BrandMark := True;
   rb.SystemMenu.Visible := False;
   rb.Rebuild;
   rb.PageControl.Collapsable := True;

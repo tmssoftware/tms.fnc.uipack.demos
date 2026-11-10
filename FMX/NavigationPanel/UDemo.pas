@@ -63,6 +63,9 @@ const
   pnls: array[0..2] of string = ('Grid', 'Treeview', 'Image');
 begin
   TMSFNCDataGrid1.LoadFromCSVData('CARS.csv');
+  { 8.0: pill shaped items of the Fluent look and the brand logo of the theme in the header }
+  TMSFNCNavigationPanel1.Look := nplFluent;
+  TMSFNCNavigationPanel1.ShowBrandLogo := True;
   for I := 0 to Length(pnls) -  1 do
   begin
     with TMSFNCNavigationPanel1.Panels.Add do
@@ -80,6 +83,9 @@ begin
       Bitmaps.AddBitmapName(pnls[I]);
       if I = 1 then
         Badge := '5';
+      { 8.0: the badge takes a status kind, coloured by the theme }
+      if I = 1 then
+        BadgeKind := tskWarning;
       with Container.Sections.Add do
       begin
         Text := 'Appearance';

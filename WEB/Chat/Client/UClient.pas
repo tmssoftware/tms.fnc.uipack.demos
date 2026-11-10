@@ -93,6 +93,8 @@ procedure TForm43.WebFormCreate(Sender: TObject);
 begin
   TMSFNCChat1.Clear;
   TMSFNCChat1.DisableInputControls;
+  { 8.0: an avatar with the initials of the sender before every message }
+  TMSFNCChat1.ShowAvatars := True;
 end;
 
 procedure TForm43.WebSocketClient1Connect(Sender: TObject);
