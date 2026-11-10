@@ -30,11 +30,11 @@ Plan: `~/tms.environment/workspaces/delphi/tasks/plans/plan-demos.md` (57 demos)
 
 ## Next (plan order)
 
-1. A7 TreeView Database update (`DataOptions.Levels`, `ColumnFields`, `LevelHeaders`, `Levels[n].Detail`; the
-   Extras test scene `src/FncData5MdaShowScene.inc` shows the API), A1 Theme Studio, A2 Brand Studio, A3 Dashboard
-   update, A10 App Shell, A11 Input Forms, A13 and A14 (Core demos repository, nothing committed there yet),
-   B23-B28, the C updates, E1, the A4 gaps (DataBinder KPIs, SelectedRecords) and the A12 gaps (Kanban cards,
-   HTMLEditor).
+1. A1 Theme Studio, A2 Brand Studio, A3 Dashboard update, A10 App Shell, A11 Input Forms, A13 and A14 (Core demos
+   repository `tms.fnc.core.demos-theming-demos`, nothing committed there yet), B23-B28, the C updates (C1-C11,
+   C13-C15), E1, the A4 gaps (DataBinder KPIs, SelectedRecords) and the A12 gaps (Kanban cards, HTMLEditor). TreeView
+   Database still lacks the lookup editor (`UseLookupEditor`, desktop only) and StatusValues/Avatar columns of the
+   plan.
 2. Run the gate `demos` step once heavy runs are allowed (about 220 projects x 2 compilers): expect the PDFLib BMI
    WEB project to need `--extra` (the gate passes the Dashboard Pack source when the folder exists).
 3. `democheck.py shoot` on the new demos (Light/Dark contrast check) once heavy runs are allowed.
@@ -54,6 +54,9 @@ Things that did not work together nicely or were unintuitive while building the 
 - DataGrid master-detail from datasets (`MasterSource`) is desktop only; WEB only has `OnGetDetailData` and
   `SourceGrid`. The property editor and the docs should say so (TMS WEB Core datasets have no `MasterSource`).
 - `demonew.py` does not write the per-folder `README.md` its docstring promises; written by hand for every demo.
+- TreeView `DataOptions` has `ColumnFields` but no way to name a column caption or format per field (the DataGrid
+  has `DataOptions` columns with TField display settings): a `Price` column shows the raw float. Suggestion: honour
+  `TField.DisplayLabel` and `DisplayFormat` in the adapter's columns, as the DataGrid does.
 
 ## Pitfalls
 
@@ -74,11 +77,12 @@ Things that did not work together nicely or were unintuitive while building the 
   avoid `TDataSet.Locate` in shared units (not checked on WEB): look up in the array instead.
 - FireDAC master-detail in memory: detail `IndexFieldNames` = the link field, then `MasterSource` and
   `MasterFields`; the DataGrid finds the detail datasets by itself.
-- Smoke starts: `python -I <scratch>/smoke.py <exe>...` (hidden desktop, five seconds; the script lives in the
-  session scratchpad, 15 lines, recreate it from `hidden_desktop.start` if gone). A smoke start passes a demo whose
-  FormCreate raises (the exception dialog keeps the process alive): `democheck.py shoot` catches it (`error.txt`,
-  exit 3). A crash address resolves with a `-GD` rebuild of the scratch `Demo.dpr` and the harness `mapaddr.py`;
-  the harness `tools/UDbgStack.pas` added to the dpr writes the stack of the first chance.
+- Smoke starts: `python -I tools/democheck.py ... smoke <projects> --delphi 13` (see Done). A crash address
+  resolves with a `-GD` rebuild of the scratch `Demo.dpr` and the harness `mapaddr.py`; the harness
+  `tools/UDbgStack.pas` added to the dpr writes the stack of the first chance.
+- `tdmMove` and the other tree view interaction enums live in `*.TMSFNCCustomTreeView`, not in `*.TMSFNCTreeView`.
+- A `DataSource` bound tree view creates its adapter when the source is assigned: `DataAdapter` (for
+  `DeleteChildrenMode`, `AddRecord`, `DeleteRecord`, `ReloadNode`) is nil before that.
 - Layout unit: `AddText` sizes itself to its text (`AutoSize`, the height argument only counts while the text is
   empty); check box and radio captions wrap to two lines when they do not fit; inside a stack or flow panel
   `Place` leaves `Align` None (an aligned child is skipped by the stack). Keep the settings panel within the
