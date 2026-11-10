@@ -10,7 +10,8 @@
   another writes ParentID, dragging between siblings writes the Order field. A data navigator on the same data
   source shows the selection in sync.
 
-  Page "Customers and orders": two linked tables as node levels (DataOptions.Levels), each with its own columns
+  Page "Customers and orders": two linked tables as node levels (DataOptions.Levels), each with its own columns,
+  the status drawn as pills (Columns[].StatusValues) and the company as an avatar (Columns[].Avatar)
   and a caption row (LevelHeaders); the lines of the selected order appear in a data grid through the level's
   Detail options. }
 
@@ -356,6 +357,13 @@ begin
   lv.Detail.DetailField := 'OrderNo';
   lv.Detail.Target := FLinesGrid;
   FOrdersTree.DataSource := FCustomersSource;
+
+  { the bound columns: the status as pills coloured by the theme, the company as an avatar }
+  if FOrdersTree.Columns.Count > 3 then
+  begin
+    FOrdersTree.Columns[0].Avatar := True;
+    FOrdersTree.Columns[3].StatusValues.Text := 'Shipped=Success'#13#10'Open=Info'#13#10'Packing=Warning'#13#10'Late=Error';
+  end;
 end;
 
 procedure TForm1.ApplySettings;

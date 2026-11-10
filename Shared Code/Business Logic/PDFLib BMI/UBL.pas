@@ -1,4 +1,4 @@
-unit UBL;
+﻿unit UBL;
 
 interface
 
@@ -11,28 +11,28 @@ uses
   Classes, SysUtils, Generics.Collections, Types, VCL.Forms, VCL.Controls, VCL.StdCtrls, UITypes, VCL.TMSFNCPDFLib, VCL.TMSFNCPDFGraphicsLib,
   VCL.TMSFNCGraphicsTypes, VCL.TMSFNCGraphicsPDFEngine, DateUtils, VCL.TMSFNCURLBitmapContainer, VCL.TMSFNCEdit,
   VCL.TMSFNCDataGrid, VCL.TMSFNCWidgetGauge, VCL.TMSFNCUtils, VCL.TMSFNCDataGridRenderer, VCL.TMSFNCDataGridCore, VCL.TMSFNCGraphics, VCL.TMSFNCDataGridCell, VCL.TMSFNCDataGridData, VCL.TMSFNCPDFIO,
-  VCL.TMSFNCButton, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel;
+  VCL.TMSFNCButton, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCCheckBox;
   {$ENDIF}
 
   {$IFDEF FMX}
   Classes, SysUtils, Generics.Collections, Types, FMX.Types, FMX.Controls, FMX.Forms, IOUtils, UITypes, FMX.TMSFNCPDFLib, FMX.TMSFNCPDFGraphicsLib, FMX.TMSFNCDataGrid,
   FMX.TMSFNCGraphicsTypes, FMX.TMSFNCGraphicsPDFEngine, DateUtils, FMX.TMSFNCURLBitmapContainer, FMX.StdCtrls, FMX.TMSFNCEdit,
   FMX.TMSFNCWidgetGauge, FMX.TMSFNCDataGridCore, FMX.TMSFNCUtils, FMX.TMSFNCDataGridRenderer, FMX.TMSFNCGraphics, FMX.TMSFNCDataGridCell, FMX.TMSFNCDataGridData, FMX.TMSFNCPDFIO,
-  FMX.TMSFNCButton, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel;
+  FMX.TMSFNCButton, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCCheckBox;
   {$ENDIF}
 
   {$IFDEF LCL}
   Classes, SysUtils, Graphics, Forms, Types, Controls, StdCtrls, LCLTMSFNCTypes, LCLTMSFNCPDFLib, LCLTMSFNCPDFGraphicsLib,
   LCLTMSFNCGraphicsTypes, LCLTMSFNCGraphicsPDFEngine, DateUtils, LCLTMSFNCURLBitmapContainer, LCLTMSFNCEdit,
   LCLTMSFNCDataGrid, LCLTMSFNCWidgetGauge, LCLTMSFNCDataGridCore, LCLTMSFNCDataGridRenderer, LCLTMSFNCUtils, LCLTMSFNCGraphics, LCLTMSFNCDataGridCell, LCLTMSFNCDataGridData, LCLTMSFNCPDFIO,
-  LCLTMSFNCButton, LCLTMSFNCHTMLText, LCLTMSFNCPanel;
+  LCLTMSFNCButton, LCLTMSFNCHTMLText, LCLTMSFNCPanel, LCLTMSFNCCheckBox;
   {$ENDIF}
 
   {$IFDEF WEBLIB}
   Web, Classes, Contnrs, SysUtils, Types, WEBLib.Dialogs, WEBLib.TMSFNCTypes, WEBLib.Graphics, WEBLib.Forms, WEBLib.StdCtrls, WEBLib.Controls, WEBLib.TMSFNCPDFLib, WEBLib.TMSFNCPDFGraphicsLib,
   WEBLib.TMSFNCGraphicsTypes, WEBLib.TMSFNCGraphicsPDFEngine, DateUtils, WEBLib.TMSFNCURLBitmapContainer, WEBLib.TMSFNCEdit,
   WEBLib.TMSFNCDataGrid, WEBLib.TMSFNCWidgetGauge, WEBLib.TMSFNCDataGridCore, WEBLib.TMSFNCDataGridRenderer, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCDataGridCell, WEBLib.TMSFNCDataGridData, WEBLib.TMSFNCPDFIO,
-  WEBLib.TMSFNCButton, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCPanel;
+  WEBLib.TMSFNCButton, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCPanel, WEBLib.TMSFNCCheckBox;
   {$ENDIF}
 
 type
@@ -44,6 +44,7 @@ type
     FName, FWeight, FHeight: string;
     FWeightNum, FHeightNum: Single;
     FExportButton, FCalculateButton: TTMSFNCButton;
+    FOnScreenCheck: TTMSFNCCheckBox;
     FSettings, FContent: TTMSFNCPanel;
     FEditName, FEditWeight, FEditHeight: TTMSFNCEdit;
     FGauge: TTMSFNCWidgetGauge;
@@ -277,6 +278,7 @@ begin
   {$ENDIF}
   {$ENDIF}
   p.Options.Header := 'BMI Report for ' + FName;
+  p.Options.ExportAsOnScreen := FOnScreenCheck.Checked;
   SetLength(o, 2);
   o[0] := FGauge;
   o[1] := FGrid;
@@ -432,6 +434,12 @@ begin
   FExportButton.OnClick := {$IFDEF LCL}@{$ENDIF}DoExportClicked;
   FExportButton.Enabled := False;
 
+  { under a dark theme the PDF comes out light unless the export keeps the colours on screen }
+  FOnScreenCheck := TTMSFNCCheckBox.Create(FForm);
+  FOnScreenCheck.Parent := FSettings;
+  FOnScreenCheck.SetBounds(16, 320, 228, 24);
+  FOnScreenCheck.Text := 'Export as on screen';
+
   {$IFDEF WEBLIB}
   FAni := TWaitMessage.Create(FForm);
   FAni.Opacity := 0.75;
@@ -454,7 +462,7 @@ begin
   FGauge.Arc.Threshold.Span := 20;
   FGauge.Arc.Threshold.ThresholdKind := tkValue;
   FGauge.Arc.Color := gcBisque;
-  FGauge.SetBounds(16, 336, FGauge.Width, FGauge.Height);
+  FGauge.SetBounds(16, 360, FGauge.Width, FGauge.Height);
   FGauge.MinimumValue := 10;
   FGauge.MaximumValue := 47;
   FGauge.BeginUpdate;

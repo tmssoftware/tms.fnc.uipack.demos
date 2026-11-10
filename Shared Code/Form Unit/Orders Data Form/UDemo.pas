@@ -6,7 +6,8 @@
   formats, a lookup to the customer, a check box for a boolean), the form on the right edits the current order
   with data-aware FNC editors (edit, lookup edit that searches the customers while typing, combo box, date
   picker, track bar, switch, check box and a read-only HTML text) and the navigator moves and posts. The grid
-  can show the record indicator, aggregates in the footer and find a record by typing in it. }
+  can show the record indicator, aggregates in the footer and find a record by typing in it. Select several rows
+  (Ctrl+click) and SelectedRecords sums them; the KPI tiles are bound to a one-record dataset by a DataBinder. }
 
 interface
 
@@ -19,7 +20,8 @@ uses
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCCustomControl,
   VCL.TMSFNCPanel, VCL.TMSFNCHTMLText, VCL.TMSFNCButton, VCL.TMSFNCCheckBox, VCL.TMSFNCRadioButton,
   VCL.TMSFNCEdit, VCL.TMSFNCComboBox, VCL.TMSFNCDatePicker, VCL.TMSFNCTrackBar, VCL.TMSFNCSwitch,
-  VCL.TMSFNCStackPanel, VCL.TMSFNCDataGrid, VCL.TMSFNCDataNavigator, VCL.TMSFNCSampleData, VCL.TMSFNCTheme,
+  VCL.TMSFNCStackPanel, VCL.TMSFNCDataGrid, VCL.TMSFNCDataGridCore, VCL.TMSFNCDataGridRenderer, VCL.TMSFNCDataNavigator,
+  VCL.TMSFNCDataBinding, VCL.TMSFNCSampleData, VCL.TMSFNCTheme,
   VCL.TMSFNCThemeSelector,
   {$ENDIF}
 
@@ -31,7 +33,8 @@ uses
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCCustomControl,
   FMX.TMSFNCPanel, FMX.TMSFNCHTMLText, FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCRadioButton,
   FMX.TMSFNCEdit, FMX.TMSFNCComboBox, FMX.TMSFNCDatePicker, FMX.TMSFNCTrackBar, FMX.TMSFNCSwitch,
-  FMX.TMSFNCStackPanel, FMX.TMSFNCDataGrid, FMX.TMSFNCDataNavigator, FMX.TMSFNCSampleData, FMX.TMSFNCTheme,
+  FMX.TMSFNCStackPanel, FMX.TMSFNCDataGrid, FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer, FMX.TMSFNCDataNavigator,
+  FMX.TMSFNCDataBinding, FMX.TMSFNCSampleData, FMX.TMSFNCTheme,
   FMX.TMSFNCThemeSelector,
   {$ENDIF}
 
@@ -41,7 +44,8 @@ uses
   WEBLib.TMSFNCCustomControl, WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCButton,
   WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton, WEBLib.TMSFNCEdit, WEBLib.TMSFNCComboBox,
   WEBLib.TMSFNCDatePicker, WEBLib.TMSFNCTrackBar, WEBLib.TMSFNCSwitch, WEBLib.TMSFNCStackPanel,
-  WEBLib.TMSFNCDataGrid, WEBLib.TMSFNCDataNavigator, WEBLib.TMSFNCSampleData, WEBLib.TMSFNCTheme,
+  WEBLib.TMSFNCDataGrid, WEBLib.TMSFNCDataGridCore, WEBLib.TMSFNCDataGridRenderer, WEBLib.TMSFNCDataNavigator, WEBLib.TMSFNCDataBinding,
+  WEBLib.TMSFNCSampleData, WEBLib.TMSFNCTheme,
   WEBLib.TMSFNCThemeSelector,
   {$ENDIF}
   UDemoLayout;
@@ -63,7 +67,12 @@ type
     FSearchCheck: TTMSFNCCheckBox;
     FStretchCheck: TTMSFNCCheckBox;
     FBooleanCheck: TTMSFNCCheckBox;
+    FMultiCheck: TTMSFNCCheckBox;
     FStatus: TTMSFNCHTMLText;
+    FSelection: TTMSFNCHTMLText;
+    FKpis: TDemoDataSet;
+    FKpisSource: TDataSource;
+    FBinder: TTMSFNCDataBinder;
     FCustomers: TDemoDataSet;
     FOrders: TDemoDataSet;
     FCustomersSource: TDataSource;
@@ -75,6 +84,9 @@ type
     procedure CreateSettings;
     procedure CreateContent;
     procedure CreateForm(AParent: TDemoParent);
+    procedure CreateKpis(AParent: TDemoParent);
+    procedure UpdateKpis;
+    procedure SelectionChanged(Sender: TObject; AStartCell, AEndCell, AFocusedCell: TTMSFNCDataGridCellCoord);
     procedure ApplySettings;
     procedure SettingChanged(Sender: TObject);
     procedure DataChange(Sender: TObject; Field: TField);
@@ -189,6 +201,50 @@ begin
   FOrders.OnNewRecord := {$IFDEF WEBLIB}@{$ENDIF}NewRecord;
   FOrdersSource := FLayout.NewSource(FOrders);
   FOrdersSource.OnDataChange := {$IFDEF WEBLIB}@{$ENDIF}DataChange;
+
+  { the KPIs: one record the binder shows in the tiles, recalculated after every change }
+  FKpis := FLayout.NewDataSet;
+  FKpis.FieldDefs.Add('Orders', ftInteger);
+  FKpis.FieldDefs.Add('Revenue', ftString, 20);
+  FKpis.FieldDefs.Add('Paid', ftString, 10);
+  FLayout.OpenDataSet(FKpis);
+  FKpis.Append;
+  FKpis.Post;
+  FKpisSource := FLayout.NewSource(FKpis);
+  UpdateKpis;
+end;
+
+procedure TForm1.UpdateKpis;
+var
+  n, paid: Integer;
+  total: Double;
+begin
+  n := 0;
+  paid := 0;
+  total := 0;
+  FOrders.DisableControls;
+  try
+    FOrders.First;
+    while not FOrders.Eof do
+    begin
+      Inc(n);
+      total := total + FOrders.FieldByName('Total').AsFloat;
+      if FOrders.FieldByName('Paid').AsBoolean then
+        Inc(paid);
+      FOrders.Next;
+    end;
+    FOrders.First;
+  finally
+    FOrders.EnableControls;
+  end;
+  FKpis.Edit;
+  FKpis.FieldByName('Orders').AsInteger := n;
+  FKpis.FieldByName('Revenue').AsString := FormatFloat('#,##0', total);
+  if n > 0 then
+    FKpis.FieldByName('Paid').AsString := IntToStr(Round(100 * paid / n)) + '%'
+  else
+    FKpis.FieldByName('Paid').AsString := '-';
+  FKpis.Post;
 end;
 
 procedure TForm1.CreateSettings;
@@ -201,11 +257,56 @@ begin
   FSearchCheck := FLayout.AddCheck(FSettings, 'Find by typing in the grid', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
   FStretchCheck := FLayout.AddCheck(FSettings, 'Stretch the last column', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
   FBooleanCheck := FLayout.AddCheck(FSettings, 'Boolean field as a check box', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
+  FMultiCheck := FLayout.AddCheck(FSettings, 'Select several rows (Ctrl+click)', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
   FLayout.AddText(FSettings, 'The grid, the editors and the navigator share one TDataSource; there is no adapter ' +
     'component. Type in the customer field to search the customers.', 84);
 
   FLayout.AddCaption(FSettings, 'Current order');
   FStatus := FLayout.AddText(FSettings, '', 80);
+
+  FLayout.AddCaption(FSettings, 'Selected records');
+  FSelection := FLayout.AddText(FSettings, 'Nothing selected.', 60);
+end;
+
+procedure TForm1.CreateKpis(AParent: TDemoParent);
+var
+  row: TTMSFNCStackPanel;
+  procedure AddTile(const ACaption, ATemplate: string);
+  var
+    card: TTMSFNCPanel;
+    t: TTMSFNCHTMLText;
+  begin
+    card := FLayout.AddPanel(row, daLeft, 160, 0, 0, 0, 0);
+    card.Width := FLayout.Size(160);
+    card.Height := FLayout.Size(64);
+    FLayout.AddCaption(card, ACaption, 6).TextRole := htrSecondary;
+    t := TTMSFNCHTMLText.Create(Self);
+    t.Parent := card;
+    FLayout.Place(t, daClient, 0, 16, 0, 16, 6);
+    t.Fill.Kind := gfkNone;
+    t.Stroke.Kind := gskNone;
+    t.HorizontalTextAlign := gtaLeading;
+    {$IFDEF FMX}
+    t.Font.Size := 18;
+    {$ELSE}
+    t.Font.Height := -FLayout.Size(18);
+    {$ENDIF}
+    { the binder fills the text from the field in the template }
+    FBinder.ConnectSingleHTMLTemplate(t, FKpisSource, 'Text', ATemplate);
+  end;
+begin
+  FBinder := TTMSFNCDataBinder.Create(Self);
+  row := TTMSFNCStackPanel.Create(Self);
+  row.Parent := AParent;
+  FLayout.Place(row, daTop, 64, 0, 0, 0, 8);
+  row.Orientation := spoHorizontal;
+  row.Gap := 8;
+  row.Appearance.Stroke.Kind := gskNone;
+  row.Appearance.Fill.Kind := gfkNone;
+  AddTile('Orders', '<#Orders>');
+  AddTile('Revenue', '<#Revenue>');
+  AddTile('Paid', '<#Paid>');
+  FBinder.Active := True;
 end;
 
 function TForm1.FieldLabel(AParent: TDemoParent; const AText: string): TTMSFNCHTMLText;
@@ -334,6 +435,8 @@ begin
   FLayout.AddCaption(form, 'Order', 12);
   CreateForm(form);
 
+  CreateKpis(FContent);
+
   FNavigator := TTMSFNCDataNavigator.Create(Self);
   FNavigator.Parent := FContent;
   FLayout.Place(FNavigator, daTop, 36, 0, 0, 0, 8);
@@ -343,6 +446,36 @@ begin
   FGrid.Parent := FContent;
   FLayout.Place(FGrid, daClient, 0, 0, 0, 0, 0);
   FGrid.DataSource := FOrdersSource;
+  FGrid.OnSelectCell := {$IFDEF WEBLIB}@{$ENDIF}SelectionChanged;
+end;
+
+procedure TForm1.SelectionChanged(Sender: TObject; AStartCell, AEndCell, AFocusedCell: TTMSFNCDataGridCellCoord);
+var
+  I, n: Integer;
+  total: Double;
+  bm: TBookmark;
+begin
+  { SelectedRecords holds a bookmark per selected row; the dataset visits them and comes back }
+  n := FGrid.SelectedRecords.Count;
+  if n = 0 then
+  begin
+    FSelection.Text := 'Nothing selected.';
+    Exit;
+  end;
+  total := 0;
+  FOrders.DisableControls;
+  try
+    bm := FOrders.Bookmark;
+    for I := 0 to n - 1 do
+    begin
+      FOrders.Bookmark := FGrid.SelectedRecords[I];
+      total := total + FOrders.FieldByName('Total').AsFloat;
+    end;
+    FOrders.Bookmark := bm;
+  finally
+    FOrders.EnableControls;
+  end;
+  FSelection.Text := '<b>' + IntToStr(n) + '</b> selected, total ' + FormatFloat('#,##0.00', total);
 end;
 
 procedure TForm1.ApplySettings;
@@ -356,6 +489,10 @@ begin
   else
     FGrid.DataOptions.ColumnStretch := gdcsNone;
   FGrid.DataOptions.ShowBooleanFields := FBooleanCheck.Checked;
+  if FMultiCheck.Checked then
+    FGrid.Options.Selection.Mode := gsmDisjunctRow
+  else
+    FGrid.Options.Selection.Mode := gsmSingleRow;
   FGrid.EndUpdate;
 end;
 
@@ -368,6 +505,8 @@ procedure TForm1.DataChange(Sender: TObject; Field: TField);
 begin
   if not Assigned(FStatus) or not FOrders.Active then
     Exit;
+  if Assigned(FKpis) and (FOrders.State = dsBrowse) and Assigned(Field) then
+    UpdateKpis;
   if FOrders.IsEmpty then
     FStatus.Text := 'No orders'
   else

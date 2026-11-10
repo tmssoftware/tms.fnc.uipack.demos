@@ -3,7 +3,8 @@
 { TMS FNC UI Pack - HTML in the UI
 
   The HTML engine of FNC Core 5.0 renders inside the UI controls: an HTML text with a style sheet, a table and
-  a list, list box items with inline markup, badges and text roles, and grid cells with bold, colour and links.
+  a list, list box items with inline markup, badges and text roles, grid cells with bold, colour and links and
+  Kanban cards with marked-up text. The HTML editor edits the article with its extended markup.
   Colours written as theme:accent or var(--text-secondary) follow the theme: switch to Dark in the header and
   every piece of markup keeps its contrast. }
 
@@ -15,7 +16,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCCustomControl,
   VCL.TMSFNCPanel, VCL.TMSFNCHTMLText, VCL.TMSFNCButton, VCL.TMSFNCCheckBox, VCL.TMSFNCRadioButton,
-  VCL.TMSFNCListBox, VCL.TMSFNCDataGrid, VCL.TMSFNCSampleData, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector,
+  VCL.TMSFNCListBox, VCL.TMSFNCDataGrid, VCL.TMSFNCKanbanBoard, VCL.TMSFNCHTMLEditor, VCL.TMSFNCSampleData,
+  VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector,
   {$ENDIF}
 
   {$IFDEF FMX}
@@ -23,7 +25,8 @@ uses
   FMX.Types, FMX.Forms, FMX.Controls, FMX.Graphics, FMX.Dialogs,
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCCustomControl,
   FMX.TMSFNCPanel, FMX.TMSFNCHTMLText, FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCRadioButton,
-  FMX.TMSFNCListBox, FMX.TMSFNCDataGrid, FMX.TMSFNCSampleData, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector,
+  FMX.TMSFNCListBox, FMX.TMSFNCDataGrid, FMX.TMSFNCKanbanBoard, FMX.TMSFNCHTMLEditor, FMX.TMSFNCSampleData,
+  FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector,
   {$ENDIF}
 
   {$IFDEF WEBLIB}
@@ -31,7 +34,8 @@ uses
   WEBLib.TMSFNCTypes, WEBLib.TMSFNCUtils, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCGraphicsTypes,
   WEBLib.TMSFNCCustomControl, WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCButton,
   WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton, WEBLib.TMSFNCListBox, WEBLib.TMSFNCDataGrid,
-  WEBLib.TMSFNCSampleData, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector,
+  WEBLib.TMSFNCKanbanBoard, WEBLib.TMSFNCHTMLEditor, WEBLib.TMSFNCSampleData, WEBLib.TMSFNCTheme,
+  WEBLib.TMSFNCThemeSelector,
   {$ENDIF}
   UDemoLayout;
 
@@ -55,7 +59,12 @@ type
     FText: TTMSFNCHTMLText;
     FList: TTMSFNCListBox;
     FGrid: TTMSFNCDataGrid;
+    FBoard: TTMSFNCKanbanBoard;
+    FEditor: TTMSFNCHTMLEditor;
     procedure CreateSettings;
+    procedure FillBoard;
+    procedure EditClick(Sender: TObject);
+    procedure EditorDone(AResult: TModalResult);
     procedure CreateContent;
     procedure FillList;
     procedure FillGrid;
@@ -143,6 +152,11 @@ begin
   FLayout.AddText(FSettings, 'Every list box item is HTML; the badge and its kind (success, warning, ...) are ' +
     'item properties coloured by the theme.', 64);
 
+  FLayout.AddCaption(FSettings, 'HTML editor');
+  FLayout.AddButton(FSettings, 'Edit the HTML text...', {$IFDEF WEBLIB}@{$ENDIF}EditClick);
+  FLayout.AddText(FSettings, 'The editor shows the markup of the text on the right with its tool bar; ' +
+    'ExtendedMarkup allows the CSS of the engine.', 64);
+
   FLayout.AddCaption(FSettings, 'Last link');
   FStatus := FLayout.AddText(FSettings, 'Click a link in the text or in the grid.', 60);
 end;
@@ -174,9 +188,62 @@ begin
   FLayout.AddCaption(FContent, 'Grid cells', 8);
   FGrid := TTMSFNCDataGrid.Create(Self);
   FGrid.Parent := FContent;
-  FLayout.Place(FGrid, daClient, 0, 0, 0, 0, 0);
+  FLayout.Place(FGrid, daTop, 230, 0, 0, 0, 0);
   FGrid.OnCellAnchorClick := {$IFDEF WEBLIB}@{$ENDIF}CellAnchorClick;
   FillGrid;
+
+  FLayout.AddCaption(FContent, 'Kanban cards', 8);
+  FBoard := TTMSFNCKanbanBoard.Create(Self);
+  FBoard.Parent := FContent;
+  FLayout.Place(FBoard, daClient, 0, 0, 0, 0, 0);
+  FillBoard;
+
+  { the editor is a component: Execute opens it on the text }
+  FEditor := TTMSFNCHTMLEditor.Create(Self);
+  FEditor.ExtendedMarkup := True;
+end;
+
+procedure TForm1.FillBoard;
+var
+  c: TTMSFNCKanbanBoardColumn;
+  it: TTMSFNCKanbanBoardItem;
+begin
+  { the card text is HTML: a bold title, a secondary line and a theme colour that follows the theme }
+  FBoard.BeginUpdate;
+  FBoard.Columns.Clear;
+  c := FBoard.Columns.Add;
+  c.HeaderText := 'To do';
+  it := c.AddItem('<b>Theme the demos</b><br><font color="var(--text-secondary)">22 of 57 done</font>');
+  it.Kind := tskInfo;
+  c.AddItem('<b>Write the release notes</b><br><span style="color:var(--text-secondary)">docs, 2 days</span>');
+  c := FBoard.Columns.Add;
+  c.HeaderText := 'Doing';
+  it := c.AddItem('<b>HTML engine in the grid</b><br><span style="color:theme:accent">in review</span>');
+  it.Kind := tskWarning;
+  c := FBoard.Columns.Add;
+  c.HeaderText := 'Done';
+  it := c.AddItem('<b>Kanban DataSource</b><br><span style="color:var(--success)">merged</span>');
+  it.Kind := tskSuccess;
+  FBoard.EndUpdate;
+end;
+
+procedure TForm1.EditClick(Sender: TObject);
+begin
+  FEditor.Text := FText.Text;
+  {$IFDEF WEBLIB}
+  FEditor.Execute(@EditorDone);
+  {$ELSE}
+  EditorDone(FEditor.Execute);
+  {$ENDIF}
+end;
+
+procedure TForm1.EditorDone(AResult: TModalResult);
+begin
+  if AResult = mrOk then
+  begin
+    FText.Text := FEditor.Text;
+    FStatus.Text := 'The text was edited in the HTML editor.';
+  end;
 end;
 
 procedure TForm1.FillList;
