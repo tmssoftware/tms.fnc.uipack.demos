@@ -154,6 +154,7 @@ var
   card: TTMSFNCCardPanel;
   stack: TTMSFNCStackPanel;
   e: TTMSFNCEdit;
+  b: TTMSFNCButton;
   p: TTMSFNCProgressBar;
 begin
   FContent := FLayout.AddContentPanel(Self);
@@ -181,9 +182,11 @@ begin
   e.Width := FLayout.Size(320);
   e.Height := FLayout.Size(32);
   e.Text := 'An edit with the accent as its focus colour';
-  FLayout.AddButton(stack, 'A primary button in the accent colour', nil).Default := True;
-  FLayout.AddButton(stack, 'A standard button', nil);
-  FLayout.AddCheck(stack, 'A checked check box', True, nil);
+  b := FLayout.AddButton(stack, 'A primary button in the accent colour', nil);
+  b.Default := True;
+  b.Width := FLayout.Size(320);
+  FLayout.AddButton(stack, 'A standard button', nil).Width := FLayout.Size(320);
+  FLayout.AddCheck(stack, 'A checked check box', True, nil).Width := FLayout.Size(320);
   FSwitch := TTMSFNCSwitch.Create(Self);
   FSwitch.Parent := stack;
   FSwitch.Width := FLayout.Size(48);

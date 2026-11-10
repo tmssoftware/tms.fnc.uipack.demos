@@ -169,7 +169,7 @@ begin
   k := AddKnob(row, 'Target', 10, 30, 21.5, 170);
   k.Step := 0.5;
   k.Decimals := 1;
-  k.ValueFormat := '%.1f °C';
+  k.ValueFormat := '%.1f '#$B0'C';
   k.TickCount := 5;
 
   FLayout.AddCaption(FContent, 'Compact', 8);
@@ -246,9 +246,16 @@ var
   I: Integer;
   s: string;
 begin
+  { two knobs per line }
   s := '';
   for I := 0 to High(FKnobs) do
-    s := s + FKnobs[I].Caption + ': <b>' + FormatFloat('0.0#', FKnobs[I].Value) + '</b><br>';
+  begin
+    s := s + FKnobs[I].Caption + ': <b>' + FormatFloat('0.0#', FKnobs[I].Value) + '</b>';
+    if Odd(I) then
+      s := s + '<br>'
+    else
+      s := s + ', ';
+  end;
   FValuesText.Text := s;
 end;
 

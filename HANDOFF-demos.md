@@ -75,4 +75,17 @@ Things that did not work together nicely or were unintuitive while building the 
 - FireDAC master-detail in memory: detail `IndexFieldNames` = the link field, then `MasterSource` and
   `MasterFields`; the DataGrid finds the detail datasets by itself.
 - Smoke starts: `python -I <scratch>/smoke.py <exe>...` (hidden desktop, five seconds; the script lives in the
-  session scratchpad, 15 lines, recreate it from `hidden_desktop.start` if gone).
+  session scratchpad, 15 lines, recreate it from `hidden_desktop.start` if gone). A smoke start passes a demo whose
+  FormCreate raises (the exception dialog keeps the process alive): `democheck.py shoot` catches it (`error.txt`,
+  exit 3). A crash address resolves with a `-GD` rebuild of the scratch `Demo.dpr` and the harness `mapaddr.py`;
+  the harness `tools/UDbgStack.pas` added to the dpr writes the stack of the first chance.
+- Layout unit: `AddText` sizes itself to its text (`AutoSize`, the height argument only counts while the text is
+  empty); check box and radio captions wrap to two lines when they do not fit; inside a stack or flow panel
+  `Place` leaves `Align` None (an aligned child is skipped by the stack). Keep the settings panel within the
+  700 px form: long value lists go two per line (Knob).
+- The shared units have no BOM and the compiler reads them as ANSI: write non-ASCII characters as escapes
+  (`#$B0'C'`), never literally.
+- `TTMSFNCNumberBox.OnChange` also fires for a value set in code: a handler that reads other boxes must wait until
+  they all exist (NumberBox demo `UpdateTotal`).
+- The header description (dfm/fmx `DemoDescription`, WEB `index.html` meta) is one line of about 125 characters
+  at most; longer texts are trimmed with an ellipsis.

@@ -66,7 +66,7 @@ object Form1: TForm1
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
-      Text = 'One tasks dataset on a Kanban board, a planner and a timeline with write-back: drag, move and size write to the records; the columns and resources come from datasets, a grid with a navigator shows the same tasks'
+      Text = 'One tasks dataset on a Kanban board, a planner and a timeline: a drag, move or resize writes back to the record'
     end
   end
   object ThemeManager: TTMSFNCThemeManager

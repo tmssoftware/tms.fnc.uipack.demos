@@ -66,7 +66,7 @@ object Form1: TForm1
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
-      Text = 'Files and folders in icon, list and report views: sortable columns, groups, check boxes, rename in place and a virtual list of a million rows'
+      Text = 'Files and folders in icon, list and report views: sortable columns, groups, check boxes, rename in place and a million rows'
     end
   end
   object ThemeManager: TTMSFNCThemeManager

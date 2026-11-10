@@ -66,7 +66,7 @@ object Form1: TForm1
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
-      Text = 'Expand a customer to see its orders and their lines; switch the detail template and placement, the summary, sticky master and editing; a page without a database and a tree grid'
+      Text = 'Expand a customer to its orders and their lines: detail template, placement, summary, sticky master and editing; a tree grid'
     end
   end
   object ThemeManager: TTMSFNCThemeManager

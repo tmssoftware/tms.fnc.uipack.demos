@@ -271,14 +271,14 @@ begin
 
   FLayout.AddCaption(FSettings, 'View');
   FViewRadios[dvBoard] := FLayout.AddRadio(FSettings, 'Kanban board', 'view', True, {$IFDEF WEBLIB}@{$ENDIF}ViewChanged);
-  FViewRadios[dvPlanner] := FLayout.AddRadio(FSettings, 'Planner (one day, a column per owner)', 'view', False, {$IFDEF WEBLIB}@{$ENDIF}ViewChanged);
+  FViewRadios[dvPlanner] := FLayout.AddRadio(FSettings, 'Planner (one day per owner)', 'view', False, {$IFDEF WEBLIB}@{$ENDIF}ViewChanged);
   FViewRadios[dvTimeline] := FLayout.AddRadio(FSettings, 'Timeline', 'view', False, {$IFDEF WEBLIB}@{$ENDIF}ViewChanged);
 
   FLayout.AddCaption(FSettings, 'Board');
   FColumnsCheck := FLayout.AddCheck(FSettings, 'Columns from the status table', True, {$IFDEF WEBLIB}@{$ENDIF}BoardSettingChanged);
-  FLanesCheck := FLayout.AddCheck(FSettings, 'Swimlanes per owner', True, {$IFDEF WEBLIB}@{$ENDIF}BoardSettingChanged);
+  FLanesCheck := FLayout.AddCheck(FSettings, 'Swimlanes per owner', False, {$IFDEF WEBLIB}@{$ENDIF}BoardSettingChanged);
   FLayout.AddText(FSettings, 'Drag a card to another column or lane: the status and the owner are written to the ' +
-    'record and the planner, the timeline and the grid follow.', 84);
+    'record and the planner, the timeline and the grid follow.', 24);
 
   FLayout.AddCaption(FSettings, 'Planner day');
   FDayText := FLayout.AddText(FSettings, '', 24);
@@ -362,13 +362,16 @@ end;
 
 procedure TForm1.CreateContent;
 var
-  side: TTMSFNCPanel;
+  bottom, side: TTMSFNCPanel;
   nav: TTMSFNCDataNavigator;
 begin
   FContent := FLayout.AddContentPanel(Self);
 
-  { the checklist of the selected task }
-  side := FLayout.AddPanel(FContent, daRight, 300, 16, 0, 0, 0);
+  { below the views, so the board keeps the full width: the checklist of the selected task on the right }
+  bottom := FLayout.AddPanel(FContent, daBottom, 220, 0, 16, 0, 0);
+  bottom.Fill.Kind := gfkNone;
+  bottom.Stroke.Kind := gskNone;
+  side := FLayout.AddPanel(bottom, daRight, 300, 16, 0, 0, 0);
   side.Fill.Kind := gfkNone;
   side.Stroke.Kind := gskNone;
   FLayout.AddCaption(side, 'Checklist of the selected task', 0);
@@ -380,7 +383,7 @@ begin
   FChecklistGrid.DataOptions.ShowIndicator := False;
 
   { the same tasks as records: a navigator and a grid }
-  FGridPanel := FLayout.AddPanel(FContent, daBottom, 220, 0, 16, 0, 0);
+  FGridPanel := FLayout.AddPanel(bottom, daClient, 0, 0, 0, 0, 0);
   FGridPanel.Fill.Kind := gfkNone;
   FGridPanel.Stroke.Kind := gskNone;
   nav := TTMSFNCDataNavigator.Create(Self);

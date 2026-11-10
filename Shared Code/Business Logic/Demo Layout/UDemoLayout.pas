@@ -11,22 +11,23 @@ uses
   Winapi.Windows, System.SysUtils, System.Classes, System.Types, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Data.DB,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  VCL.TMSFNCTypes, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCPanel, VCL.TMSFNCHTMLText, VCL.TMSFNCButton,
-  VCL.TMSFNCCheckBox, VCL.TMSFNCRadioButton;
+  VCL.TMSFNCTypes, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCPanel, VCL.TMSFNCHTMLText, VCL.TMSFNCButton,
+  VCL.TMSFNCCheckBox, VCL.TMSFNCRadioButton, VCL.TMSFNCStackPanel;
   {$ENDIF}
 
   {$IFDEF FMX}
   System.SysUtils, System.Classes, System.Types, System.UITypes, FMX.Types, FMX.Controls, FMX.Forms, Data.DB,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  FMX.TMSFNCTypes, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCPanel, FMX.TMSFNCHTMLText, FMX.TMSFNCButton,
-  FMX.TMSFNCCheckBox, FMX.TMSFNCRadioButton;
+  FMX.TMSFNCTypes, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCPanel, FMX.TMSFNCHTMLText, FMX.TMSFNCButton,
+  FMX.TMSFNCCheckBox, FMX.TMSFNCRadioButton, FMX.TMSFNCStackPanel;
   {$ENDIF}
 
   {$IFDEF WEBLIB}
   SysUtils, Classes, Types, WEBLib.Graphics, WEBLib.Controls, WEBLib.Forms, DB, WEBLib.DB, WEBLib.CDS,
-  WEBLib.TMSFNCTypes, WEBLib.TMSFNCGraphicsTypes, WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCButton,
-  WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton;
+  WEBLib.TMSFNCTypes, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCGraphicsTypes, WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText,
+  WEBLib.TMSFNCButton,
+  WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton, WEBLib.TMSFNCStackPanel;
   {$ENDIF}
 
 type
@@ -51,6 +52,8 @@ type
   private
     FOwner: TDemoForm;
     FPlaceOrder: Integer;
+    function InnerWidth(AParent: TDemoParent): Integer;
+    procedure FitCaption(AControl: TControl; AParent: TDemoParent; AFont: TPersistent; const AText: string);
   public
     constructor Create(AOwner: TDemoForm);
     { a size in pixels at 96 DPI for the form's DPI (VCL: the form is scaled when it loads, controls made in code
@@ -60,8 +63,9 @@ type
     procedure Place(AControl: TControl; AAlign: TDemoAlign; ASize, ALeft, ATop, ARight, ABottom: Integer);
     { a section caption: 13 px semibold }
     function AddCaption(AParent: TDemoParent; const AText: string; ATop: Integer = 16): TTMSFNCHTMLText;
-    { a block of secondary text that wraps }
+    { a block of secondary text that wraps; its height follows the text, AHeight is the height while it is empty }
     function AddText(AParent: TDemoParent; const AText: string; AHeight: Integer): TTMSFNCHTMLText;
+    { a check box or radio button; a caption too long for one line wraps to two }
     function AddCheck(AParent: TDemoParent; const AText: string; AChecked: Boolean; AOnChange: TNotifyEvent): TTMSFNCCheckBox;
     function AddRadio(AParent: TDemoParent; const AText, AGroup: string; AChecked: Boolean; AOnChange: TNotifyEvent): TTMSFNCRadioButton;
     function AddButton(AParent: TDemoParent; const AText: string; AOnClick: TNotifyEvent): TTMSFNCButton;
@@ -94,31 +98,84 @@ begin
   {$ENDIF}
 end;
 
-procedure TDemoLayout.Place(AControl: TControl; AAlign: TDemoAlign; ASize, ALeft, ATop, ARight, ABottom: Integer);
+function TDemoLayout.InnerWidth(AParent: TDemoParent): Integer;
 begin
+  { the width a top aligned control gets between the 16 px margins; the parent's width is known before it is shown }
+  Result := Round(TControl(AParent).Width) - Size(32);
+end;
+
+procedure TDemoLayout.FitCaption(AControl: TControl; AParent: TDemoParent; AFont: TPersistent; const AText: string);
+var
+  g: TTMSFNCGraphics;
+  w: Single;
+begin
+  { inside a stack or flow panel the demo gives the control its own width }
+  if AParent is TTMSFNCCustomLayoutPanel then
+    Exit;
+
+  w := 0;
+  g := TTMSFNCGraphics.CreateBitmapCanvas;
+  try
+    if g.BeginScene then
+    begin
+      g.Font.AssignSource(AFont);
+      w := g.CalculateTextWidth(AText);
+      g.EndScene;
+    end;
+  finally
+    g.Free;
+  end;
+
+  { the glyph and its gap take 28 px of the line }
+  if w > InnerWidth(AParent) - Size(28) then
+    AControl.Height := Size(48);
+end;
+
+procedure TDemoLayout.Place(AControl: TControl; AAlign: TDemoAlign; ASize, ALeft, ATop, ARight, ABottom: Integer);
+var
+  stacked: Boolean;
+begin
+  { a stack or flow panel arranges its children itself, in order of creation and with their margins, and skips
+    an aligned child: inside one only the size is set }
+  stacked := AControl.Parent is TTMSFNCCustomLayoutPanel;
+
   { a position beyond every control aligned earlier (VCL and WEB order controls of the same alignment by their
     position less their margin, so the steps are larger than any margin) }
   Inc(FPlaceOrder);
   {$IFDEF FMX}
-  AControl.Position.Y := 100000 + FPlaceOrder * 1000;
-  AControl.Position.X := 100000 + FPlaceOrder * 1000;
+  if not stacked then
+  begin
+    AControl.Position.Y := 100000 + FPlaceOrder * 1000;
+    AControl.Position.X := 100000 + FPlaceOrder * 1000;
+    case AAlign of
+      daTop: AControl.Align := TAlignLayout.Top;
+      daLeft: AControl.Align := TAlignLayout.Left;
+      daRight: AControl.Align := TAlignLayout.Right;
+      daBottom: AControl.Align := TAlignLayout.Bottom;
+      daClient: AControl.Align := TAlignLayout.Client;
+    end;
+  end;
   case AAlign of
-    daTop: begin AControl.Align := TAlignLayout.Top; AControl.Height := ASize; end;
-    daLeft: begin AControl.Align := TAlignLayout.Left; AControl.Width := ASize; end;
-    daRight: begin AControl.Align := TAlignLayout.Right; AControl.Width := ASize; end;
-    daBottom: begin AControl.Align := TAlignLayout.Bottom; AControl.Height := ASize; end;
-    daClient: AControl.Align := TAlignLayout.Client;
+    daTop, daBottom: AControl.Height := ASize;
+    daLeft, daRight: AControl.Width := ASize;
   end;
   AControl.Margins.Rect := RectF(ALeft, ATop, ARight, ABottom);
   {$ELSE}
-  AControl.Top := 100000 + FPlaceOrder * 1000;
-  AControl.Left := 100000 + FPlaceOrder * 1000;
+  if not stacked then
+  begin
+    AControl.Top := 100000 + FPlaceOrder * 1000;
+    AControl.Left := 100000 + FPlaceOrder * 1000;
+    case AAlign of
+      daTop: AControl.Align := alTop;
+      daLeft: AControl.Align := alLeft;
+      daRight: AControl.Align := alRight;
+      daBottom: AControl.Align := alBottom;
+      daClient: AControl.Align := alClient;
+    end;
+  end;
   case AAlign of
-    daTop: begin AControl.Align := alTop; AControl.Height := Size(ASize); end;
-    daLeft: begin AControl.Align := alLeft; AControl.Width := Size(ASize); end;
-    daRight: begin AControl.Align := alRight; AControl.Width := Size(ASize); end;
-    daBottom: begin AControl.Align := alBottom; AControl.Height := Size(ASize); end;
-    daClient: AControl.Align := alClient;
+    daTop, daBottom: AControl.Height := Size(ASize);
+    daLeft, daRight: AControl.Width := Size(ASize);
   end;
   AControl.AlignWithMargins := True;
   AControl.Margins.Left := Size(ALeft);
@@ -151,13 +208,19 @@ begin
   Result := TTMSFNCHTMLText.Create(FOwner);
   Result.Parent := AParent;
   Place(Result, daTop, AHeight, 16, 4, 16, 4);
-  Result.Text := AText;
+  Result.Width := InnerWidth(AParent);
   Result.TextRole := htrSecondary;
   Result.HorizontalTextAlign := gtaLeading;
   Result.VerticalTextAlign := gtaLeading;
   Result.WordWrapping := True;
   Result.Fill.Kind := gfkNone;
   Result.Stroke.Kind := gskNone;
+
+  { the height follows the wrapped text, also after a text or font change; the width is the aligned one }
+  Result.AutoWidth := False;
+  Result.AutoSizeSpacing := 2;
+  Result.AutoSize := True;
+  Result.Text := AText;
 end;
 
 function TDemoLayout.AddCheck(AParent: TDemoParent; const AText: string; AChecked: Boolean; AOnChange: TNotifyEvent): TTMSFNCCheckBox;
@@ -166,6 +229,8 @@ begin
   Result.Parent := AParent;
   Place(Result, daTop, 32, 16, 0, 16, 0);
   Result.Text := AText;
+  Result.WordWrapping := True;
+  FitCaption(Result, AParent, Result.Font, AText);
   Result.Checked := AChecked;
   Result.OnChange := AOnChange;
 end;
@@ -176,6 +241,8 @@ begin
   Result.Parent := AParent;
   Place(Result, daTop, 32, 16, 0, 16, 0);
   Result.Text := AText;
+  Result.WordWrapping := True;
+  FitCaption(Result, AParent, Result.Font, AText);
   Result.GroupName := AGroup;
   Result.Checked := AChecked;
   Result.OnChange := AOnChange;
