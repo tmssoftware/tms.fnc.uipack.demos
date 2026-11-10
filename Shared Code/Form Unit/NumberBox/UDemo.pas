@@ -170,7 +170,7 @@ begin
   nb.Value := 72.5;
   nb := AddBox(right, 'Temperature (OnValidate warns above 38)');
   nb.Prefix := 'Body';
-  nb.Suffix := '°C';
+  nb.Suffix := #$B0'C';
   nb.Decimals := 1;
   nb.SmallStep := 0.1;
   nb.MinValue := 30;
@@ -226,6 +226,10 @@ procedure TForm1.UpdateTotal;
 var
   t: Double;
 begin
+  { OnChange also fires for a value set in code, so the first boxes report before the last one exists }
+  if not Assigned(FTotal) then
+    Exit;
+
   t := FQuantity.Value * FPrice.Value * (1 - FDiscount.Value / 100);
   FTotal.Value := t;
   FValues.Text := FormatFloat('0', FQuantity.Value) + ' x ' + FormatFloat('0.00', FPrice.Value) + ' EUR, ' +
