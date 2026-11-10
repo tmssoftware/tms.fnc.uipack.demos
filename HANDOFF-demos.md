@@ -20,7 +20,7 @@ Plan: `~/tms.environment/workspaces/delphi/tasks/plans/plan-demos.md` (57 demos)
   and CRLF (2026-11-10; 15 were LF, none had a BOM).
 - Demos, each FMX + VCL + WEB from one shared unit, compiled with Delphi 13 and 12 Win32 and TMS WEB Core, FMX and
   VCL started on the hidden desktop (smoke) unless noted:
-  - B1-B22 (without B23-B28 until 2026-11-10): Avatar, Breadcrumb, Buttons and Toggles, CardPanel, ControlList,
+  - B1-B22 (without B23-B28 until 2026-11-10): Avatar, Breadcrumb, Buttons and Toggles, CardPanel, Repeater,
     DataNavigator, Divider, GroupBox and Expander, HeaderControl, Knob, ListView, MaskEdit, MenuBar, NumberBox,
     ScrollBox, Skeleton, SplitView, StackPanel and FlowPanel, Stepper, TagEdit, Theme Pickers, Toast.
   - A4 Orders Data Form (now with SelectedRecords: Ctrl+click rows, the total of the selection; KPI tiles bound to
@@ -31,7 +31,7 @@ Plan: `~/tms.environment/workspaces/delphi/tasks/plans/plan-demos.md` (57 demos)
     phase 5A), A8 Project Board, A7 TreeView Database (now with the status column as pills, `Columns[].StatusValues`,
     and the company column as avatars; the lookup editor is still open, see Next).
   - 2026-11-10 (smoke and screenshots queued, see Next): A10 App Shell (menu bar, brand logo, split view rail,
-    breadcrumb, dashboard of cards and a control list behind a skeleton, project list under a header control,
+    breadcrumb, dashboard of cards and a repeater behind a skeleton, project list under a header control,
     accordion, onboarding stepper, toasts, accent selector), A11 Input Forms (every FNC input in one validated form;
     DirectoryEdit desktop only), B23 Touch Keyboard, B24 PageSlider, B26 Grid (classic grid: glFluent, filter
     drop-down, editing with the tool bar pop-up (desktop), database adapter, PDF and print export with Export as on
@@ -148,7 +148,7 @@ Things that did not work together nicely or were unintuitive while building the 
 - The header description (dfm/fmx `DemoDescription`, WEB `index.html` meta) is one line of about 125 characters
   at most; longer texts are trimmed with an ellipsis.
 - A `TTimer` works on all three frameworks (`Vcl.ExtCtrls`, `FMX.Types`, `WEBLib.ExtCtrls`): the App Shell uses one
-  for the skeleton. `TTMSFNCControlList` draws one template of controls per item (`OnBeforeDrawItem` fills them).
+  for the skeleton. `TTMSFNCRepeater` draws one template of controls per item (`OnBeforeDrawItem` fills them).
 - DataGrid: `TTMSFNCDataGridCellCoord` is in `*.TMSFNCDataGridCore`; `SelectedRecords` is a bookmark list, visit it
   with `DataSet.Bookmark := SelectedRecords[I]` between `DisableControls`/`EnableControls`. DataBinder templates
   name a field as `<#Field>`.

@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'TMS FNC UI Pack - ControlList'
+  Caption = 'TMS FNC UI Pack - Repeater'
   ClientHeight = 700
   ClientWidth = 1100
   Font.Charset = DEFAULT_CHARSET
@@ -52,7 +52,7 @@ object Form1: TForm1
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
-      Text = 'ControlList'
+      Text = 'Repeater'
     end
     object DemoDescription: TTMSFNCHTMLText
       Left = 24

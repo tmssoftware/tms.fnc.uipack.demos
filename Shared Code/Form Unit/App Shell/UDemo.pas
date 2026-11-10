@@ -17,7 +17,7 @@ uses
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCCustomControl,
   VCL.TMSFNCPanel, VCL.TMSFNCHTMLText, VCL.TMSFNCButton, VCL.TMSFNCCheckBox, VCL.TMSFNCMenuBar,
   VCL.TMSFNCSplitView, VCL.TMSFNCBreadcrumb, VCL.TMSFNCScrollBox, VCL.TMSFNCStackPanel, VCL.TMSFNCCardPanel,
-  VCL.TMSFNCControlList, VCL.TMSFNCListView, VCL.TMSFNCHeaderControl, VCL.TMSFNCGroupBox, VCL.TMSFNCStepper,
+  VCL.TMSFNCRepeater, VCL.TMSFNCListView, VCL.TMSFNCHeaderControl, VCL.TMSFNCGroupBox, VCL.TMSFNCStepper,
   VCL.TMSFNCSkeleton, VCL.TMSFNCToast, VCL.TMSFNCAvatar, VCL.TMSFNCBadge, VCL.TMSFNCDivider, VCL.TMSFNCBrandLogo,
   VCL.TMSFNCThemeSelector, VCL.TMSFNCAccentSelector, VCL.TMSFNCSampleData, VCL.TMSFNCTheme,
   {$ENDIF}
@@ -28,7 +28,7 @@ uses
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCCustomControl,
   FMX.TMSFNCPanel, FMX.TMSFNCHTMLText, FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCMenuBar,
   FMX.TMSFNCSplitView, FMX.TMSFNCBreadcrumb, FMX.TMSFNCScrollBox, FMX.TMSFNCStackPanel, FMX.TMSFNCCardPanel,
-  FMX.TMSFNCControlList, FMX.TMSFNCListView, FMX.TMSFNCHeaderControl, FMX.TMSFNCGroupBox, FMX.TMSFNCStepper,
+  FMX.TMSFNCRepeater, FMX.TMSFNCListView, FMX.TMSFNCHeaderControl, FMX.TMSFNCGroupBox, FMX.TMSFNCStepper,
   FMX.TMSFNCSkeleton, FMX.TMSFNCToast, FMX.TMSFNCAvatar, FMX.TMSFNCBadge, FMX.TMSFNCDivider, FMX.TMSFNCBrandLogo,
   FMX.TMSFNCThemeSelector, FMX.TMSFNCAccentSelector, FMX.TMSFNCSampleData, FMX.TMSFNCTheme,
   {$ENDIF}
@@ -38,7 +38,7 @@ uses
   WEBLib.TMSFNCTypes, WEBLib.TMSFNCUtils, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCGraphicsTypes,
   WEBLib.TMSFNCCustomControl, WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCButton,
   WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCMenuBar, WEBLib.TMSFNCSplitView, WEBLib.TMSFNCBreadcrumb,
-  WEBLib.TMSFNCScrollBox, WEBLib.TMSFNCStackPanel, WEBLib.TMSFNCCardPanel, WEBLib.TMSFNCControlList,
+  WEBLib.TMSFNCScrollBox, WEBLib.TMSFNCStackPanel, WEBLib.TMSFNCCardPanel, WEBLib.TMSFNCRepeater,
   WEBLib.TMSFNCListView, WEBLib.TMSFNCHeaderControl, WEBLib.TMSFNCGroupBox, WEBLib.TMSFNCStepper,
   WEBLib.TMSFNCSkeleton, WEBLib.TMSFNCToast, WEBLib.TMSFNCAvatar, WEBLib.TMSFNCBadge, WEBLib.TMSFNCDivider,
   WEBLib.TMSFNCBrandLogo, WEBLib.TMSFNCThemeSelector, WEBLib.TMSFNCAccentSelector, WEBLib.TMSFNCSampleData,
@@ -70,7 +70,7 @@ type
     FDashboardStack: TTMSFNCStackPanel;
     FSkeleton: TTMSFNCSkeleton;
     FLoadTimer: TTimer;
-    FTeam: TTMSFNCControlList;
+    FTeam: TTMSFNCRepeater;
     FTeamAvatar: TTMSFNCAvatar;
     FTeamName: TTMSFNCHTMLText;
     FTeamTask: TTMSFNCHTMLText;
@@ -347,7 +347,7 @@ begin
   d.TextPosition := dtpStart;
 
   { the team list: one template of controls drawn for every member }
-  FTeam := TTMSFNCControlList.Create(Self);
+  FTeam := TTMSFNCRepeater.Create(Self);
   FTeam.Parent := FDashboardStack;
   FTeam.Width := FLayout.Size(760);
   FTeam.Height := FLayout.Size(248);

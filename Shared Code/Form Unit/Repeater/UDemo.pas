@@ -1,8 +1,8 @@
 ﻿unit UDemo;
 
-{ TMS FNC UI Pack - ControlList
+{ TMS FNC UI Pack - Repeater
 
-  A control list repeats one template of controls for every item: the controls placed on the list are drawn once
+  A repeater repeats one template of controls for every item: the controls placed on the list are drawn once
   per item, and OnBeforeDrawItem fills them with the data of that item. The contacts list shows an avatar, a name,
   an e-mail address and a switch per row; the grid layout shows the same template as tiles. The item count is a
   number, not a collection, so a list of thousands of items costs nothing. }
@@ -15,7 +15,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCCustomControl,
   VCL.TMSFNCPanel, VCL.TMSFNCHTMLText, VCL.TMSFNCButton, VCL.TMSFNCCheckBox, VCL.TMSFNCRadioButton,
-  VCL.TMSFNCControlList, VCL.TMSFNCAvatar, VCL.TMSFNCSwitch, VCL.TMSFNCSampleData, VCL.TMSFNCTheme,
+  VCL.TMSFNCRepeater, VCL.TMSFNCAvatar, VCL.TMSFNCSwitch, VCL.TMSFNCSampleData, VCL.TMSFNCTheme,
   VCL.TMSFNCThemeSelector,
   {$ENDIF}
 
@@ -24,7 +24,7 @@ uses
   FMX.Types, FMX.Forms, FMX.Controls, FMX.Graphics, FMX.Dialogs,
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCCustomControl,
   FMX.TMSFNCPanel, FMX.TMSFNCHTMLText, FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCRadioButton,
-  FMX.TMSFNCControlList, FMX.TMSFNCAvatar, FMX.TMSFNCSwitch, FMX.TMSFNCSampleData, FMX.TMSFNCTheme,
+  FMX.TMSFNCRepeater, FMX.TMSFNCAvatar, FMX.TMSFNCSwitch, FMX.TMSFNCSampleData, FMX.TMSFNCTheme,
   FMX.TMSFNCThemeSelector,
   {$ENDIF}
 
@@ -32,7 +32,7 @@ uses
   SysUtils, Classes, WEBLib.Graphics, WEBLib.Controls, WEBLib.Forms, WEBLib.Dialogs,
   WEBLib.TMSFNCTypes, WEBLib.TMSFNCUtils, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCGraphicsTypes,
   WEBLib.TMSFNCCustomControl, WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCButton,
-  WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton, WEBLib.TMSFNCControlList, WEBLib.TMSFNCAvatar,
+  WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton, WEBLib.TMSFNCRepeater, WEBLib.TMSFNCAvatar,
   WEBLib.TMSFNCSwitch, WEBLib.TMSFNCSampleData, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector,
   {$ENDIF}
   UDemoLayout;
@@ -55,7 +55,7 @@ type
     FSmoothCheck: TTMSFNCCheckBox;
     FBorderCheck: TTMSFNCCheckBox;
     FStatus: TTMSFNCHTMLText;
-    FList: TTMSFNCControlList;
+    FList: TTMSFNCRepeater;
     FAvatar: TTMSFNCAvatar;
     FName: TTMSFNCHTMLText;
     FMail: TTMSFNCHTMLText;
@@ -132,7 +132,7 @@ procedure TForm1.CreateContent;
 begin
   FContent := FLayout.AddContentPanel(Self);
 
-  FList := TTMSFNCControlList.Create(Self);
+  FList := TTMSFNCRepeater.Create(Self);
   FList.Parent := FContent;
   FLayout.Place(FList, daClient, 0, 0, 0, 0, 0);
   FList.ItemHeight := 60;
@@ -177,11 +177,11 @@ begin
   FList.BeginUpdate;
   if FGridRadio.Checked then
   begin
-    FList.Layout := cllGrid;
+    FList.Layout := rlGrid;
     FList.ItemWidth := 360;
   end
   else
-    FList.Layout := cllSingleColumn;
+    FList.Layout := rlSingleColumn;
   FList.HoverEnabled := FHoverCheck.Checked;
   FList.SmoothScrolling := FSmoothCheck.Checked;
   if FBorderCheck.Checked then

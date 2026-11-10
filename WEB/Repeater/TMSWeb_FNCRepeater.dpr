@@ -1,9 +1,9 @@
-program TMSWeb_FNCControlList;
+program TMSWeb_FNCRepeater;
 
 uses
   WEBLib.Forms,
   UDemoLayout in '..\..\Shared Code\Business Logic\Demo Layout\UDemoLayout.pas',
-  UDemo in '..\..\Shared Code\Form Unit\ControlList\UDemo.pas' {Form1: TWebForm} {*.html};
+  UDemo in '..\..\Shared Code\Form Unit\Repeater\UDemo.pas' {Form1: TWebForm} {*.html};
 
 {$R *.res}
 

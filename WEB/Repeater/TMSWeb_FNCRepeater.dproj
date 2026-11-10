@@ -3,7 +3,7 @@
         <ProjectGuid>{84A61BA0-49D6-4264-89F5-722F145793AE}</ProjectGuid>
         <ProjectVersion>18.2</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
-        <MainSource>TMSWeb_FNCControlList.dpr</MainSource>
+        <MainSource>TMSWeb_FNCRepeater.dpr</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -58,7 +58,7 @@
         <TMSWebProject>2</TMSWebProject>
         <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
         <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
-        <SanitizedProjectName>TMSWeb_FNCControlList</SanitizedProjectName>
+        <SanitizedProjectName>TMSWeb_FNCRepeater</SanitizedProjectName>
         <TMSWebHTMLFile>index.html</TMSWebHTMLFile>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
@@ -105,7 +105,7 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="..\..\Shared Code\Business Logic\Demo Layout\UDemoLayout.pas"/>
-        <DCCReference Include="..\..\Shared Code\Form Unit\ControlList\UDemo.pas">
+        <DCCReference Include="..\..\Shared Code\Form Unit\Repeater\UDemo.pas">
             <Form>Form1</Form>
             <FormType>dfm</FormType>
             <DesignClass>TWebForm</DesignClass>
@@ -129,13 +129,13 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">TMSWeb_FNCControlList.dpr</Source>
+                    <Source Name="MainSource">TMSWeb_FNCRepeater.dpr</Source>
                 </Source>
             </Delphi.Personality>
             <Deployment Version="3">
-                <DeployFile LocalName="Win32\Debug\TMSWeb_FNCControlList.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Win32\Debug\TMSWeb_FNCRepeater.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteName>TMSWeb_FNCControlList.exe</RemoteName>
+                        <RemoteName>TMSWeb_FNCRepeater.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

@@ -3,7 +3,7 @@ program Demo;
 uses
   Vcl.Forms,
   UDemoLayout in '..\..\Shared Code\Business Logic\Demo Layout\UDemoLayout.pas',
-  UDemo in '..\..\Shared Code\Form Unit\ControlList\UDemo.pas';
+  UDemo in '..\..\Shared Code\Form Unit\Repeater\UDemo.pas';
 
 {$R *.res}
 

@@ -99,7 +99,7 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="..\..\Shared Code\Business Logic\Demo Layout\UDemoLayout.pas"/>
-        <DCCReference Include="..\..\Shared Code\Form Unit\ControlList\UDemo.pas"/>
+        <DCCReference Include="..\..\Shared Code\Form Unit\Repeater\UDemo.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

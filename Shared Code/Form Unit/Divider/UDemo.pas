@@ -142,7 +142,7 @@ begin
   AddParagraph(FContent, '<b>Release notes</b><br>Version 8.0 brings themes to every control, a set of new ' +
     'controls and data binding without adapter components.', 56);
   AddDivider(FContent, 'New controls');
-  AddParagraph(FContent, 'Avatar, Breadcrumb, CardPanel, ControlList, Divider, GroupBox, HeaderControl, Knob, ' +
+  AddParagraph(FContent, 'Avatar, Breadcrumb, CardPanel, Repeater, Divider, GroupBox, HeaderControl, Knob, ' +
     'ListView, MaskEdit, MenuBar, NumberBox, ScrollBox, Skeleton, SplitView, StackPanel, Stepper, TagEdit and Toast.', 56);
   AddDivider(FContent, 'Data');
   AddParagraph(FContent, 'A DataSource on the grid, the tree view, the planner and the editors binds them to any ' +

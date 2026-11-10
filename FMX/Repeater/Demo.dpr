@@ -4,7 +4,7 @@ uses
   System.StartUpCopy,
   FMX.Forms,
   UDemoLayout in '..\..\Shared Code\Business Logic\Demo Layout\UDemoLayout.pas',
-  UDemo in '..\..\Shared Code\Form Unit\ControlList\UDemo.pas' {Form1};
+  UDemo in '..\..\Shared Code\Form Unit\Repeater\UDemo.pas' {Form1};
 
 {$R *.res}
 
