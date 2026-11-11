@@ -14,6 +14,14 @@ Subcommands
                          (DemoShot hooks Application.OnException and writes error.txt). A demo kept
                          alive by an exception or message dialog (window class #32770) fails with the
                          dialog text. Exit 1 when one fails.
+  click    <project>...  the click-through: build Win32 with DemoShot.pas, then per DPI (--ppi, default 96 120
+                         144 192) start the demo on the hidden desktop with DPI emulation; DemoShot clicks every
+                         reachable control under Fluent Light (pop-ups and dialogs captured and closed), walks
+                         the tab order, resizes, switches to Fluent Dark and opens the pop-ups again. Writes
+                         <out>/click/<fw>-<demo>/<ppi>/click.json + PNGs and issues.json (exceptions, dialogs,
+                         windows that did not close, controls outside their parent or overlapping, a stuck tab
+                         order, a hang). Exit 1 when a run has an exception, a hang or a crash.
+  clicksheet             one sheet per demo: light, dark and resized shots per DPI, the issues underneath.
 
 A project is a .dproj or .dpr (FMX/VCL is detected from the .dpr) or a WEB .dproj (compile only,
 TMS WEB Core). Theming sources: --core / --uipack (default: the theming worktrees); --extra adds the sources of
@@ -190,7 +198,35 @@ def scratch_dpr(proj, out, extra_units=()):
         make_empty_res(out / (proj.dpr.stem + ".res"), out)
     if "{$R *.dres}" in text:
         make_dres(proj, out)
+    if make_manifest(out):
+        text = dst.read_text(encoding="utf-8")
+        text = re.sub(r"(\{\$R \*\.res\})", r"\1\n{$R manifest.res}", text, count=1, flags=re.I)
+        dst.write_text(text, encoding="utf-8")
     return dst
+
+
+MANIFEST = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+  <dependency><dependentAssembly><assemblyIdentity type="win32" name="Microsoft.Windows.Common-Controls"
+    version="6.0.0.0" processorArchitecture="*" publicKeyToken="6595b64144ccf1df" language="*"/></dependentAssembly></dependency>
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1"><application>
+    <supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}"/></application></compatibility>
+  <application xmlns="urn:schemas-microsoft-com:asm.v3"><windowsSettings>
+    <dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true/pm</dpiAware>
+    <dpiAwareness xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">PerMonitorV2</dpiAwareness>
+  </windowsSettings></application>
+</assembly>
+"""
+
+
+def make_manifest(out, delphi="13"):
+    """The IDE links a manifest (common controls 6, Windows 10, per monitor V2 as the demos' AppDPIAwarenessMode);
+    the command line does not: without it VCL sees Windows 8 (no per monitor DPI) and native controls look classic."""
+    (out / "demo.manifest").write_text(MANIFEST, encoding="utf-8")
+    rc = out / "manifest.rc"
+    rc.write_text('1 24 "demo.manifest"\n', encoding="ascii")
+    run([STUDIO / DELPHI[delphi] / "bin" / "brcc32.exe", "-fo" + str(out / "manifest.res"), rc], out / "brcc32-manifest.log")
+    return (out / "manifest.res").exists()
 
 
 def make_empty_res(path, out, delphi="13"):
@@ -643,6 +679,229 @@ def cmd_smoke(args):
     return rc
 
 
+# ---------------------------------------------------------------- click-through
+
+def click_issues(data):
+    """The findings of one click.json: (severity, text)."""
+    out = []
+    for s in data.get("steps", []):
+        what = f"{s.get('class')} {s.get('name') or ''} \"{s.get('text') or ''}\"".strip()
+        for e in s.get("exceptions", []):
+            out.append(("error", f"exception while using {what}: {e}"))
+        if s.get("driverError"):
+            out.append(("warn", f"driver error at {what}: {s['driverError']}"))
+        for ph in [s] + s.get("phases", []):
+            act = ph.get("act", "modal")
+            for w in ph.get("windows", []):
+                if w.get("class") == "#32770":
+                    out.append(("info", f"dialog after {act} on {what}: {w.get('text')}"))
+            for w in ph.get("notClosed", []):
+                out.append(("warn", f"window did not close after {act} on {what}: {w.get('class')} {w.get('text')}"))
+    for g in ("geometryLight", "geometrySmall", "geometryDark"):
+        seen = set()
+        for e in data.get(g, []):
+            k = (e.get("issue"), e.get("control"), e.get("other"))
+            if k in seen:
+                continue
+            seen.add(k)
+            sev = "info" if e.get("issue") == "overlap" or g == "geometrySmall" else "warn"
+            out.append((sev, f"{g[8:].lower()}: {e.get('issue')}: {e.get('control')}"
+                             + (f" / {e.get('other')}" if e.get("other") else "") + f" in {e.get('parent', 'form')}"))
+    focus = [f for f in data.get("focus", []) if f]
+    if len(set(focus)) <= 1 and len(data.get("focus", [])) > 3:
+        out.append(("warn", f"tab key does not move the focus ({focus[0] if focus else 'nothing focused'})"))
+    for s in data.get("shell", []):
+        out.append(("info", f"shell execute: {s}"))
+    return out
+
+
+def click_one(hidden_desktop, exe, proj, dest, ppi, timeout, maxsteps):
+    import time
+    if dest.exists():
+        shutil.rmtree(dest, ignore_errors=True)
+    dest.mkdir(parents=True, exist_ok=True)
+    env = dict(os.environ)
+    env["DEMOSHOT_OUT"] = str(dest)
+    env["DEMOSHOT_MODES"] = "click"
+    env["DEMOSHOT_PPI"] = str(ppi)
+    env["DEMOSHOT_MAXSTEPS"] = str(maxsteps)
+    proc = hidden_desktop.start([exe], env=env, cwd=str(proj.dir), stdout_path=str(dest / "stdout.txt"))
+    deadline = time.monotonic() + timeout
+    code = None
+    while time.monotonic() < deadline:
+        try:
+            code = proc.wait(timeout=1)
+            break
+        except subprocess.TimeoutExpired:
+            pass
+    issues = []
+    if code is None:
+        dialog = find_dialog(proc.pid, hidden_desktop.DESKTOP_NAME)
+        proc.kill()
+        issues.append(("error", "hang" + (f" with dialog: {dialog}" if dialog else " (no dialog)")))
+    error = (dest / "error.txt").read_text(encoding="utf-8-sig", errors="replace").strip() if (dest / "error.txt").exists() else ""
+    if error:
+        issues.append(("error", f"ended with: {error}"))
+    if (dest / "exceptions.txt").exists():
+        for line in (dest / "exceptions.txt").read_text(encoding="utf-8-sig", errors="replace").splitlines():
+            issues.append(("error", f"exception outside a step: {line}"))
+    data = {}
+    if (dest / "click.json").exists():
+        data = json.loads((dest / "click.json").read_text(encoding="utf-8-sig"))
+        issues += click_issues(data)
+    elif code is not None:
+        issues.append(("error", f"no click.json (exit {code})"))
+    summary = {"ppi": ppi, "exit": code, "steps": len(data.get("steps", [])),
+               "size": [data.get("width"), data.get("height")], "issues": issues}
+    (dest / "issues.json").write_text(json.dumps(summary, indent=1), encoding="utf-8")
+    return summary
+
+
+def cmd_click(args):
+    sys.path.insert(0, str(HARNESS / "tools"))
+    import hidden_desktop  # noqa: E402
+    from concurrent.futures import ThreadPoolExecutor
+    probe = HERE / "delphi" / "DemoShot.pas"
+    jobs = []
+    rc = 0
+    for p in args.projects:
+        proj = Project(p)
+        if proj.fw == "web":
+            continue
+        key = f"{proj.fw}-{proj.slug}"
+        b = build_native(args, proj, "win32", args.delphi[0], defines=[f"DEMOSHOT_{proj.fw.upper()}"],
+                         extra_units=[("DemoShot", probe)], tag="click")
+        if not b["ok"]:
+            print(f"{key:44} build FAILED {' | '.join(b.get('errors', [])[:3])}", flush=True)
+            rc = 1
+            continue
+        for ppi in args.ppi:
+            jobs.append((key, proj, b["exe"], ppi))
+
+    def go(job):
+        key, proj, exe, ppi = job
+        return key, ppi, click_one(hidden_desktop, exe, proj, Path(args.out) / "click" / key / str(ppi), ppi,
+                                   args.timeout, args.maxsteps)
+
+    with ThreadPoolExecutor(max_workers=args.jobs) as ex:
+        for key, ppi, s in ex.map(go, jobs):
+            errs = [t for sev, t in s["issues"] if sev == "error"]
+            warns = [t for sev, t in s["issues"] if sev == "warn"]
+            if errs:
+                rc = 1
+            print(f"{key:40} {ppi:>3} steps={s['steps']:<3} errors={len(errs)} warnings={len(warns)}"
+                  + (f"  {errs[0][:150]}" if errs else ""), flush=True)
+    return rc
+
+
+def cmd_stepsheet(args):
+    """Every step shot of one DPI as labelled thumbnails, pages of --per shots: what a person saw after each action."""
+    Image, ImageDraw, ImageFont = pil()
+    root = Path(args.out) / "click"
+    try:
+        font = ImageFont.truetype("segoeui.ttf", 13)
+    except OSError:
+        font = ImageFont.load_default()
+    demos = sorted(d for d in root.iterdir() if d.is_dir()) if root.exists() else []
+    if args.only:
+        demos = [d for d in demos if any(o.lower() in d.name for o in args.only)]
+    for d in demos:
+        run_dir = d / str(args.ppi)
+        f = run_dir / "click.json"
+        if not f.exists():
+            continue
+        data = json.loads(f.read_text(encoding="utf-8-sig"))
+        shots = []
+        for n, s in enumerate(data.get("steps", []), 1):
+            what = f"{n} {s.get('class', '')[7:] if s.get('class', '').startswith('TTMSFNC') else s.get('class')} {s.get('text', '')}"
+            for ph in s.get("phases", []):
+                if ph.get("shot"):
+                    flag = " [win]" if ph.get("windows") else ""
+                    shots.append((ph["shot"], f"{what[:34]} | {ph.get('act')}{flag}"))
+            if s.get("exceptions"):
+                shots.append((None, f"{what[:34]} | EXCEPTION {s['exceptions'][0][:60]}"))
+        W, cols = args.width, 4
+        for page in range(0, len(shots), args.per):
+            part = shots[page:page + args.per]
+            cells = []
+            for shot, label in part:
+                im = None
+                if shot and (run_dir / f"{shot}.png").exists():
+                    im = Image.open(run_dir / f"{shot}.png").convert("RGB")
+                    im = im.resize((W, max(1, int(im.height * W / im.width))))
+                cells.append((im, label))
+            ch = max([c.height for c, _ in cells if c] or [80]) + 20
+            rows = (len(cells) + cols - 1) // cols
+            sheet = Image.new("RGB", (cols * (W + 6) + 6, rows * (ch + 6) + 6), (255, 255, 255))
+            dr = ImageDraw.Draw(sheet)
+            for i, (im, label) in enumerate(cells):
+                x, y = 6 + (i % cols) * (W + 6), 6 + (i // cols) * (ch + 6)
+                dr.text((x, y), label, fill=(170, 0, 0) if "EXCEPTION" in label else (0, 0, 0), font=font)
+                if im:
+                    sheet.paste(im, (x, y + 18))
+            out = root / f"{d.name}-{args.ppi}-steps-{page // args.per + 1}.png"
+            sheet.save(out)
+            print(out)
+    return 0
+
+
+def cmd_clicksheet(args):
+    Image, ImageDraw, ImageFont = pil()
+    root = Path(args.out) / "click"
+    demos = sorted(d for d in root.iterdir() if d.is_dir()) if root.exists() else []
+    if args.only:
+        demos = [d for d in demos if any(o.lower() in d.name for o in args.only)]
+    try:
+        font = ImageFont.truetype("segoeui.ttf", 14)
+        bold = ImageFont.truetype("segoeuib.ttf", 16)
+    except OSError:
+        font = bold = ImageFont.load_default()
+    W = args.width
+    for d in demos:
+        ppis = sorted((x for x in d.iterdir() if x.is_dir() and x.name.isdigit()), key=lambda x: int(x.name))
+        rows, notes = [], []
+        for pdir in ppis:
+            cells = []
+            for name in ("light", "dark", "small"):
+                f = pdir / f"{name}.png"
+                if f.exists():
+                    im = Image.open(f).convert("RGB")
+                    cells.append(im.resize((W, max(1, int(im.height * W / im.width)))))
+                else:
+                    cells.append(None)
+            rows.append((pdir.name, cells))
+            s = pdir / "issues.json"
+            if s.exists():
+                for sev, text in json.loads(s.read_text(encoding="utf-8")).get("issues", []):
+                    if sev != "info":
+                        notes.append(f"{pdir.name}: {sev}: {text}")
+        if not rows:
+            continue
+        H = [max([c.height for c in cells if c] or [60]) for _, cells in rows]
+        notes = notes[:40]
+        pad, head = 8, 24
+        sw = pad + 3 * (W + pad)
+        sh = head + sum(h + head + pad for h in H) + 18 * len(notes) + pad * 2
+        sheet = Image.new("RGB", (sw, sh), (250, 250, 250))
+        dr = ImageDraw.Draw(sheet)
+        dr.text((pad, 4), d.name + "   (light / dark / resized to 80 %)", fill=(0, 0, 0), font=bold)
+        y = head
+        for (ppi, cells), h in zip(rows, H):
+            dr.text((pad, y + 2), f"{ppi} dpi", fill=(60, 60, 60), font=bold)
+            y += head
+            for i, c in enumerate(cells):
+                if c:
+                    sheet.paste(c, (pad + i * (W + pad), y))
+            y += h + pad
+        for n in notes:
+            dr.text((pad, y), n[:220], fill=(170, 0, 0) if ": error:" in n else (120, 80, 0), font=font)
+            y += 18
+        out = root / f"{d.name}.png"
+        sheet.save(out)
+        print(out)
+    return 0
+
+
 # ---------------------------------------------------------------- contact sheet
 
 def cmd_sheet(args):
@@ -734,6 +993,21 @@ def main():
     k.add_argument("--delphi", nargs="+", default=["13"])
     k.add_argument("--timeout", type=int, default=30)
     k.add_argument("--delay", type=int, default=2500, help="ms after the main form is up before the demo ends")
+    q = sub.add_parser("click")
+    q.add_argument("projects", nargs="+")
+    q.add_argument("--delphi", nargs="+", default=["13"])
+    q.add_argument("--ppi", nargs="+", type=int, default=[96, 120, 144, 192])
+    q.add_argument("--timeout", type=int, default=240)
+    q.add_argument("--maxsteps", type=int, default=70)
+    q.add_argument("--jobs", type=int, default=2)
+    r = sub.add_parser("clicksheet")
+    r.add_argument("--only", nargs="*")
+    r.add_argument("--width", type=int, default=560)
+    st = sub.add_parser("stepsheet")
+    st.add_argument("--only", nargs="*")
+    st.add_argument("--ppi", type=int, default=144)
+    st.add_argument("--per", type=int, default=24)
+    st.add_argument("--width", type=int, default=480)
     h = sub.add_parser("sheet")
     h.add_argument("--tags", nargs="+", default=["before", "after"])
     h.add_argument("--modes", nargs="+", default=["asis", "Fluent Dark"])
@@ -741,7 +1015,9 @@ def main():
     h.add_argument("--width", type=int, default=520)
     h.add_argument("--name")
     args = ap.parse_args()
-    return {"compile": cmd_compile, "shoot": cmd_shoot, "smoke": cmd_smoke, "sheet": cmd_sheet}[args.cmd](args)
+    return {"compile": cmd_compile, "shoot": cmd_shoot, "smoke": cmd_smoke, "sheet": cmd_sheet,
+            "click": cmd_click, "clicksheet": cmd_clicksheet,
+            "stepsheet": cmd_stepsheet}[args.cmd](args)
 
 
 if __name__ == "__main__":
