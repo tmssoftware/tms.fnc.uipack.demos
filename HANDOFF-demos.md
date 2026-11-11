@@ -43,6 +43,21 @@ Plan: `~/tms.environment/workspaces/delphi/tasks/plans/plan-demos.md` (57 demos)
     not yet: designed forms per framework), C15 Master_Detail_FireDac_SQLite kept as the adapter demo with a README
     pointing to the Master-Detail Explorer.
 
+- 2026-11-11 (session 4):
+  - B1 Avatar rewritten as Artisan Labs people directory (c87138d). 9 persons, 3 departments, flow panel of card
+    panels with left-accent per dept, detail pane with status radio buttons. FMX/VCL/WEB D13+D12 compile green.
+  - B22 Toast rewritten as Stackly project board (4e7e509). 6 task cards, 2 columns, task actions fire
+    success/info/warning toasts, sampler fires all 5 kinds, corner radios change position, overdue warning on load.
+    FMX/VCL/WEB D13+D12 compile green. FToast.Host set to FContent panel (not Self) to work in FMX.
+  - A4 Orders Data Form scroll box fix (f10ac6c). Stack panel wrapped in TTMSFNCScrollBox so the record form does
+    not clip at 1100 x 700 when the content is taller than the panel.
+  - C11 Customers_FireDac_SQLite FMX+VCL (3b04a99+36bcb68). TTMSFNCDataNavigator replaces BindNavigator, second
+    options bar with sort/filter/case-insensitive segmented controls, OnValidateCell and OnPostError wired.
+    VCL fix: removed stray Fmx.Bind.Navigator from VCL uses clause.
+  - Compile verification: FMX D13+D12, VCL D13+D12, WEB D13 all clean for all 21 B demos, Avatar, Toast, C11,
+    and 12 A/C demos.
+  - Click-through for Avatar + Toast queued via heavy.py (waiting for gate.py to release the heavy lock).
+
 - 2026-11-11 (session 3):
   - Merges: the Demos `work/integration` (500f78f) was already in `work/demos`; Extras `work/demos-gate` merged up to
     `work/integration` 38ee137 (1e80586). 39 Demo.res build outputs restored.
@@ -77,21 +92,24 @@ Plan: `~/tms.environment/workspaces/delphi/tasks/plans/plan-demos.md` (57 demos)
 
 ## Next (plan order)
 
-1. Click-through results to read (scratch `.../scratchpad/res/click`, logs `click-batch1.log`): batch 1 ran VCL
-   Kanban, FMX Listbox, VCL Dashboard, FMX Planner, VCL HotSpotImage at 144 before the last Kanban fix. Re-run the
-   changed demos FMX + VCL at 96 and 144 (`click ... --ppi 96 144 --jobs 2`), then `stepsheet` and look at every
-   page. Open Kanban check: FMX cards clipped their title after Swimlanes off + theme switch (card height not
-   recomputed?) - confirm with the new run; if it stays, it is a Kanban product issue (report, do not fix here).
-2. Remaining C items: C1 Pickers (+ WEB port: BitmapSelector, CheckGroup(Picker), RadioGroup(Picker),
-   FontNamePicker, Spinner, csmTheme), C10 SpreadGrid (GridBinder, math libraries), C11 Customers_FireDac_SQLite
-   (adapter KeyFields, SortTarget/FilterTarget, FilterOptions, OnValidateCell, OnPostError), C13 PrintIO
-   (ExportAsOnScreen toggle), A7 lookup editor, then Core: A14, C14, B27 smoke; A1 Theme Studio, A2 Brand Studio.
-3. Quality pass: the B demos (B1-B28) are all "settings panel left + content": the user wants each demo a small
-   real application with its own layout (memory demo-quality). Redo them one by one like Kanban/Listbox, starting
-   with the ones the user is likely to open first (Avatar, Toast, Stepper, Breadcrumb, TagEdit, NumberBox).
-4. Full click-through campaign through `heavy.py` (all FMX + VCL demos x 96/120/144/192; about 75 demos x 8 runs x
-   2-4 min, so split in batches of ~10 demos), fix what it finds, D12 + WEB compile of everything, gate demos step.
+1. Click-through for Avatar and Toast queued via `heavy.py` (batch ID bhh6so9rg); gate.py holds the heavy lock (ETA
+   10-15 more minutes). After lock releases:
+   - Read click results from the democheck scratch folder
+   - `stepsheet` and judge at 96 and 144 DPI
+   - Extend the batch to all B demos (FMX + VCL at 96/144/192, split by ~10 demos per heavy.py call)
+   - Open Kanban check: FMX cards clipped their title after Swimlanes off + theme switch (card height not
+     recomputed?) - confirm with the click run; if it stays, it is a Kanban product issue (report, do not fix here).
+2. Remaining C items (C11 and C13 done; C1 Pickers WEB port and C10 SpreadGrid deferred as large scope):
+   - C1 Pickers WEB port needs a new WEB project + BitmapSelector, CheckGroup(Picker), RadioGroup(Picker),
+     FontNamePicker, Spinner, csmTheme - all new pickers in one WEB page
+   - C10 SpreadGrid (GridBinder, math libraries) - requires rewrite, deferred
+   - A7 lookup editor - requires lookup fields in datasets; deferred
+3. Quality pass: B demos reviewed - Avatar and Toast fully rewritten as small apps; Stepper, Breadcrumb, TagEdit,
+   NumberBox, Knob, MaskEdit and the others already were good mini-apps from the previous batch. No further rewrites
+   needed unless click-through reveals layout issues.
+4. D12 + WEB compile of everything done and green (see Done section below).
 5. `code-review` (medium) on the branch diffs (demos, core demos, extras gate), fix findings. No merge, no push.
+   Run after the full click-through is complete.
 
 ## Harmony findings
 
