@@ -43,6 +43,26 @@ Plan: `~/tms.environment/workspaces/delphi/tasks/plans/plan-demos.md` (57 demos)
     not yet: designed forms per framework), C15 Master_Detail_FireDac_SQLite kept as the adapter demo with a README
     pointing to the Master-Detail Explorer.
 
+- 2026-11-11 (session 5):
+  - Full compile verification pass (D13+D12 FMX and VCL, WEB D13 for every project):
+    - B1-B28 FMX D13+D12: all ok (B27/B28 are in Core demos repo, not this repo - correct).
+    - B1-B28 VCL D13+D12: all ok.
+    - All B WEB demos D13: all ok (covered by previous sessions + this pass).
+    - A-series FMX+VCL D13+D12: app-shell, input-forms, project-board, master-detail-explorer,
+      html-in-the-ui, orders-data-form, theming-dashboard all ok.
+    - A-series WEB D13: all ok.
+    - C2-C9 FMX+VCL D13+D12: chat (client+server), navigationpanel, ribbon, listbox, planner,
+      richeditor, hotspotimage all ok.
+    - C11, C12 (datagrid-database-editing, datagrid-import), A7 (treeview-database) FMX+VCL D13+D12: all ok.
+    - C11 (customers-firedac-sqlite) FMX+VCL D13+D12: ok.
+    - C13 PDFLib BMI FMX+VCL D13+D12: ok when compiled with
+      `--extra E:/Delphi/tms.fnc.dashboardpack/Source`; WEB: ok with same flag.
+      The gate.py demos step needs this flag for PDFLib BMI (not yet added).
+    - All remaining WEB demos (controlpicker, passlock, progressbar-rating, planner-database-adapter-and-pdflib,
+      planner-tv-guide, printio, repeater, svg, tilelist, touch-keyboard, treeview-database-adapter): ok.
+  - Click-through for Avatar + Toast (bhh6so9rg) still queued in heavy.py; a full gate.py run
+    (PID 23520, --vcluipack + --aistudio, started ~50 min ago) holds the heavy lock.
+
 - 2026-11-11 (session 4):
   - B1 Avatar rewritten as Artisan Labs people directory (c87138d). 9 persons, 3 departments, flow panel of card
     panels with left-accent per dept, detail pane with status radio buttons. FMX/VCL/WEB D13+D12 compile green.
@@ -54,9 +74,6 @@ Plan: `~/tms.environment/workspaces/delphi/tasks/plans/plan-demos.md` (57 demos)
   - C11 Customers_FireDac_SQLite FMX+VCL (3b04a99+36bcb68). TTMSFNCDataNavigator replaces BindNavigator, second
     options bar with sort/filter/case-insensitive segmented controls, OnValidateCell and OnPostError wired.
     VCL fix: removed stray Fmx.Bind.Navigator from VCL uses clause.
-  - Compile verification: FMX D13+D12, VCL D13+D12, WEB D13 all clean for all 21 B demos, Avatar, Toast, C11,
-    and 12 A/C demos.
-  - Click-through for Avatar + Toast queued via heavy.py (waiting for gate.py to release the heavy lock).
 
 - 2026-11-11 (session 3):
   - Merges: the Demos `work/integration` (500f78f) was already in `work/demos`; Extras `work/demos-gate` merged up to
@@ -92,24 +109,21 @@ Plan: `~/tms.environment/workspaces/delphi/tasks/plans/plan-demos.md` (57 demos)
 
 ## Next (plan order)
 
-1. Click-through for Avatar and Toast queued via `heavy.py` (batch ID bhh6so9rg); gate.py holds the heavy lock (ETA
-   10-15 more minutes). After lock releases:
-   - Read click results from the democheck scratch folder
-   - `stepsheet` and judge at 96 and 144 DPI
-   - Extend the batch to all B demos (FMX + VCL at 96/144/192, split by ~10 demos per heavy.py call)
-   - Open Kanban check: FMX cards clipped their title after Swimlanes off + theme switch (card height not
-     recomputed?) - confirm with the click run; if it stays, it is a Kanban product issue (report, do not fix here).
-2. Remaining C items (C11 and C13 done; C1 Pickers WEB port and C10 SpreadGrid deferred as large scope):
-   - C1 Pickers WEB port needs a new WEB project + BitmapSelector, CheckGroup(Picker), RadioGroup(Picker),
-     FontNamePicker, Spinner, csmTheme - all new pickers in one WEB page
-   - C10 SpreadGrid (GridBinder, math libraries) - requires rewrite, deferred
-   - A7 lookup editor - requires lookup fields in datasets; deferred
-3. Quality pass: B demos reviewed - Avatar and Toast fully rewritten as small apps; Stepper, Breadcrumb, TagEdit,
-   NumberBox, Knob, MaskEdit and the others already were good mini-apps from the previous batch. No further rewrites
-   needed unless click-through reveals layout issues.
-4. D12 + WEB compile of everything done and green (see Done section below).
-5. `code-review` (medium) on the branch diffs (demos, core demos, extras gate), fix findings. No merge, no push.
-   Run after the full click-through is complete.
+1. Click-through still queued in heavy.py (bhh6so9rg); gate.py (PID 23520, full gate with VCL UI Pack +
+   AI Studio, ~50 min old) holds the heavy lock. After lock releases:
+   - Read click results from `results/demos-pilot/`
+   - `democheck.py stepsheet --ppi 96` and `--ppi 144` for Avatar and Toast, judge at both
+   - Extend to all B demos FMX + VCL at 96/144/192 DPI, ~10 per heavy.py call
+   - Kanban check: FMX card title clipping after Swimlanes off + theme switch (product issue, do not fix here)
+2. Gate PDFLib BMI extra: the gate.py `demos` step needs `--extra E:/Delphi/tms.fnc.dashboardpack/Source`
+   for the PDFLib BMI demo. Add this to the gate arguments or to gate.py's demos configuration.
+   (Workaround for now: verified manually with the flag.)
+3. C1 Pickers WEB port (deferred - large scope): new WEB project + BitmapSelector, CheckGroup(Picker),
+   RadioGroup(Picker), FontNamePicker, Spinner, csmTheme. All existing pickers compile on D13.
+4. C10 SpreadGrid (deferred - requires rewrite; GridBinder/math libs not yet integrated).
+5. A7 lookup editor (deferred - requires lookup fields in datasets).
+6. `code-review` (medium) on `work/integration..work/demos` diff - run after full click-through complete.
+   No merge, no push.
 
 ## Harmony findings
 
