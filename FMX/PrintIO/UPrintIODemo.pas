@@ -12,7 +12,7 @@ uses
   FMX.TMSFNCCustomComponent, FMX.TMSFNCPrintIO, FMX.Printer,
   FMX.TMSFNCDataGridPrintIO, FMX.TMSFNCRichEditorPrintIO, System.Rtti,
   FMX.TMSFNCDataGridBase, FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer,
-  FMX.TMSFNCButton, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
+  FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
   TForm3 = class(TForm)
@@ -34,6 +34,7 @@ type
     procedure TMSFNCDataGrid1GetCellLayout(Sender: TObject;
       ACell: TTMSFNCDataGridCell);
   private
+    FAsOnScreen: TTMSFNCCheckBox;
     { Private declarations }
   public
     { Public declarations }
@@ -55,6 +56,7 @@ begin
   if PrintDialog1.Execute then
   begin
     TMSFNCGraphicsPrintIO1.Options.Footer := 'My Footer Text';
+    TMSFNCGraphicsPrintIO1.Options.ExportAsOnScreen := FAsOnScreen.Checked;
 
     TMSFNCGraphicsPrintIO1.Options.PageNumber := pnHeader;
     TMSFNCGraphicsPrintIO1.Options.PageNumberFormat := 'Page %d';
@@ -69,6 +71,7 @@ begin
   if PrintDialog1.Execute then
   begin 
     TMSFNCDataGridPrintIO1.Options.Footer := 'My Footer Text';
+    TMSFNCDataGridPrintIO1.Options.ExportAsOnScreen := FAsOnScreen.Checked;
 
     TMSFNCDataGridPrintIO1.Options.PageNumber := pnHeader;
     TMSFNCDataGridPrintIO1.Options.PageNumberFormat := 'Page %d';
@@ -99,6 +102,13 @@ begin
   TMSFNCDataGrid1.AddBitmap(1,9,'3');
 
   TMSFNCDataGridPrintIO1.DataGrid := TMSFNCDataGrid1;
+  { a dark theme prints in its light counterpart; checked, the grid prints as it is on screen }
+  FAsOnScreen := TTMSFNCCheckBox.Create(Self);
+  FAsOnScreen.Parent := SettingsPanel;
+  FAsOnScreen.SetBounds(Button2.Position.X, Button2.Position.Y + 2 * Button2.Height - 16, Button2.Width,
+    2 * Button2.Height);
+  FAsOnScreen.WordWrapping := True;
+  FAsOnScreen.Text := 'Print as on screen (also in the dark theme)';
 end;
 
 procedure TForm3.TMSFNCDataGrid1GetCellLayout(Sender: TObject;
