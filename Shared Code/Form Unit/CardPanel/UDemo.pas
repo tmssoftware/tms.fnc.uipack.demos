@@ -117,7 +117,7 @@ begin
   Result := TTMSFNCCardPanel.Create(Self);
   Result.Parent := AParent;
   Result.Width := FLayout.Size(250);
-  Result.Height := FLayout.Size(210);
+  Result.Height := FLayout.Size(230);
   Result.Header.Text := ATitle;
   Result.Header.Description := ADescription;
   Result.Footer.Text := AFooter;
@@ -138,7 +138,7 @@ begin
 
   row := TTMSFNCStackPanel.Create(Self);
   row.Parent := FContent;
-  FLayout.Place(row, daTop, 230, 0, 8, 0, 0);
+  FLayout.Place(row, daTop, 250, 0, 8, 0, 0);
   row.Orientation := spoHorizontal;
   row.Alignment := lpaStart;
   row.Gap := 16;

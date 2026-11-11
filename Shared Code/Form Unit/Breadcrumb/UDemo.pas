@@ -117,6 +117,7 @@ end;
 procedure TForm1.CreateContent;
 var
   it: TTMSFNCBreadcrumbItem;
+  narrowRow: TTMSFNCPanel;
 begin
   FContent := FLayout.AddContentPanel(Self);
 
@@ -137,18 +138,24 @@ begin
   FExplorer.OnDropDownItemClick := {$IFDEF WEBLIB}@{$ENDIF}DropDownItemClick;
   FExplorer.OnPathEdit := {$IFDEF WEBLIB}@{$ENDIF}PathEdit;
 
-  { the same path in a control too narrow for every segment }
+  { the same path in a control too narrow for every segment; a row panel holds the
+    breadcrumb at a fixed width so the layout manager does not stretch it }
   FLayout.AddCaption(FContent, 'Narrow: the middle collapses', 8);
+  narrowRow := FLayout.AddPanel(FContent, daTop, 36, 0, 0, 0, 16);
+  narrowRow.Fill.Kind := gfkNone;
+  narrowRow.Stroke.Kind := gskNone;
   FNarrow := TTMSFNCBreadcrumb.Create(Self);
-  FNarrow.Parent := FContent;
-  FLayout.Place(FNarrow, daTop, 36, 16, 0, 16, 16);
+  FNarrow.Parent := narrowRow;
   FNarrow.Width := FLayout.Size(320);
+  FNarrow.Height := FLayout.Size(36);
   {$IFDEF FMX}
   FNarrow.Align := TAlignLayout.None;
-  FNarrow.Position.X := 16;
+  FNarrow.Position.X := FLayout.Size(16);
+  FNarrow.Position.Y := 0;
   {$ELSE}
   FNarrow.Align := alNone;
   FNarrow.Left := FLayout.Size(16);
+  FNarrow.Top := 0;
   {$ENDIF}
   FNarrow.PathDelimiter := '\';
   FNarrow.Path := 'C:\Users\Public\Documents\Reports\2026\November';

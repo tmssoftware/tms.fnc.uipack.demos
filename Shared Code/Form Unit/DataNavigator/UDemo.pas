@@ -56,7 +56,6 @@ type
     FVerticalRadio: TTMSFNCRadioButton;
     FConfirmCheck: TTMSFNCCheckBox;
     FAppendCheck: TTMSFNCCheckBox;
-    FShortcutsCheck: TTMSFNCCheckBox;
     FStatus: TTMSFNCHTMLText;
     FOrders: TDemoDataSet;
     FSource: TDataSource;
@@ -150,10 +149,9 @@ begin
   FVerticalRadio := FLayout.AddRadio(FSettings, 'Vertical next to the grid', 'Orientation', False, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
   FConfirmCheck := FLayout.AddCheck(FSettings, 'Confirm before deleting', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
   FAppendCheck := FLayout.AddCheck(FSettings, 'Insert appends at the end', False, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-  FShortcutsCheck := FLayout.AddCheck(FSettings, 'Keyboard shortcuts (Ctrl+Home, Ins, ...)', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
 
   FLayout.AddCaption(FSettings, 'Dataset');
-  FStatus := FLayout.AddText(FSettings, '', 80);
+  FStatus := FLayout.AddText(FSettings, '', 56);
 end;
 
 procedure TForm1.CreateContent;
@@ -197,7 +195,7 @@ begin
     FNavigator.InsertMode := dnimAppend
   else
     FNavigator.InsertMode := dnimInsert;
-  FNavigator.KeyboardShortcuts := FShortcutsCheck.Checked;
+  FNavigator.KeyboardShortcuts := True;
   FNavigator.EndUpdate;
 end;
 

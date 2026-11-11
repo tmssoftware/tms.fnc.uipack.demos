@@ -146,7 +146,7 @@ begin
   FLayout.Place(row, daTop, 200, 16, 0, 16, 8);
   row.Orientation := spoHorizontal;
   row.Alignment := lpaCenter;
-  row.Gap := 32;
+  row.Gap := 16;
   row.ContentPadding.Rect := RectF(8, 8, 8, 8);
 
   { volume in percent }

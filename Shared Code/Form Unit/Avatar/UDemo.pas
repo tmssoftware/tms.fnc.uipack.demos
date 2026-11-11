@@ -137,7 +137,7 @@ procedure TForm1.CreateToolbar;
 var
   I: Integer;
 begin
-  FToolbar := FLayout.AddPanel(FContent, daTop, 56, 0, 0, 0, 1);
+  FToolbar := FLayout.AddPanel(FContent, daTop, 64, 0, 0, 0, 1);
   FToolbar.Fill.Kind := gfkSolid;
   FToolbar.Stroke.Kind := gskNone;
 
@@ -187,7 +187,7 @@ begin
     card := TTMSFNCCardPanel.Create(Self);
     card.Parent := flow;
     card.Width := FLayout.Size(160);
-    card.Height := FLayout.Size(200);
+    card.Height := FLayout.Size(180);
     card.Clickable := True;
     card.Header.Text := People[I].Name;
     card.Header.Description := People[I].Title;
