@@ -2,9 +2,9 @@
 
 { TMS FNC UI Pack - Avatar
 
-  One TTMSFNCAvatar shows a person: a picture, or initials on a colour derived from the name, with a presence dot,
-  a badge count or an active ring. With items it shows a group: the first MaxVisible members and a "+n" overflow
-  avatar. The settings change every avatar on the page at once. }
+  Artisan Labs people directory. Nine team members across Design, Engineering and Product;
+  click any card to see the full profile in the detail pane. The group avatar in the toolbar
+  always shows the whole team. Status dots update live when the user picks a new presence. }
 
 interface
 
@@ -14,7 +14,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCCustomControl,
   VCL.TMSFNCPanel, VCL.TMSFNCHTMLText, VCL.TMSFNCButton, VCL.TMSFNCCheckBox, VCL.TMSFNCRadioButton,
-  VCL.TMSFNCStackPanel, VCL.TMSFNCAvatar, VCL.TMSFNCSampleData, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector,
+  VCL.TMSFNCCardPanel, VCL.TMSFNCStackPanel, VCL.TMSFNCAvatar, VCL.TMSFNCSampleData,
+  VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector,
   {$ENDIF}
 
   {$IFDEF FMX}
@@ -22,19 +23,29 @@ uses
   FMX.Types, FMX.Forms, FMX.Controls, FMX.Graphics, FMX.Dialogs,
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCCustomControl,
   FMX.TMSFNCPanel, FMX.TMSFNCHTMLText, FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCRadioButton,
-  FMX.TMSFNCStackPanel, FMX.TMSFNCAvatar, FMX.TMSFNCSampleData, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector,
+  FMX.TMSFNCCardPanel, FMX.TMSFNCStackPanel, FMX.TMSFNCAvatar, FMX.TMSFNCSampleData,
+  FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector,
   {$ENDIF}
 
   {$IFDEF WEBLIB}
   SysUtils, Classes, WEBLib.Graphics, WEBLib.Controls, WEBLib.Forms, WEBLib.Dialogs,
   WEBLib.TMSFNCTypes, WEBLib.TMSFNCUtils, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCGraphicsTypes,
   WEBLib.TMSFNCCustomControl, WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCButton,
-  WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton, WEBLib.TMSFNCStackPanel, WEBLib.TMSFNCAvatar,
-  WEBLib.TMSFNCSampleData, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector,
+  WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton,
+  WEBLib.TMSFNCCardPanel, WEBLib.TMSFNCStackPanel, WEBLib.TMSFNCAvatar, WEBLib.TMSFNCSampleData,
+  WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector,
   {$ENDIF}
   UDemoLayout;
 
 type
+  TPerson = record
+    Name: string;
+    Title: string;
+    Dept: string;
+    Email: string;
+    Status: TTMSFNCAvatarStatus;
+  end;
+
   TForm1 = class(TDemoForm)
     ThemeManager: TTMSFNCThemeManager;
     DemoHeader: TTMSFNCPanel;
@@ -44,34 +55,60 @@ type
     procedure FormCreate(Sender: TObject);
   private
     FLayout: TDemoLayout;
-    FSettings: TTMSFNCPanel;
     FContent: TTMSFNCPanel;
-    FStatusCheck: TTMSFNCCheckBox;
-    FSolidCheck: TTMSFNCCheckBox;
-    FRingCheck: TTMSFNCCheckBox;
-    FLiftCheck: TTMSFNCCheckBox;
-    FShapeRadios: array[TTMSFNCAvatarShape] of TTMSFNCRadioButton;
-    FAvatars: array of TTMSFNCAvatar;
-    FGroup: TTMSFNCAvatar;
-    FGroupText: TTMSFNCHTMLText;
-    FNames: TArray<string>;
-    FNextMember: Integer;
-    function AddRow(const ACaption: string; AHeight: Integer): TTMSFNCStackPanel;
-    function AddAvatar(AParent: TTMSFNCStackPanel; const AName: string; ASize: TTMSFNCAvatarSize): TTMSFNCAvatar;
-    procedure CreateSettings;
-    procedure CreateContent;
-    procedure ApplySettings;
-    procedure SettingChanged(Sender: TObject);
-    procedure AddMemberClick(Sender: TObject);
-    procedure RemoveMemberClick(Sender: TObject);
-    procedure MoreVisibleClick(Sender: TObject);
-    procedure FewerVisibleClick(Sender: TObject);
-    procedure UpdateGroupText;
+    FToolbar: TTMSFNCPanel;
+    FCompanyLabel: TTMSFNCHTMLText;
+    FTeamAvatar: TTMSFNCAvatar;
+    FCards: array[0..8] of TTMSFNCCardPanel;
+    FAvatars: array[0..8] of TTMSFNCAvatar;
+    FSelected: Integer;
+    FDetailPanel: TTMSFNCPanel;
+    FDetailAvatar: TTMSFNCAvatar;
+    FDetailName: TTMSFNCHTMLText;
+    FDetailTitle: TTMSFNCHTMLText;
+    FDetailDept: TTMSFNCHTMLText;
+    FDetailEmail: TTMSFNCHTMLText;
+    FStatusRadios: array[0..4] of TTMSFNCRadioButton;
+    procedure CreateToolbar;
+    procedure CreateCards;
+    procedure CreateDetail;
+    procedure SelectPerson(AIndex: Integer);
+    procedure CardClick(Sender: TObject);
+    procedure StatusChanged(Sender: TObject);
   public
   end;
 
 var
   Form1: TForm1;
+
+const
+  { accent per department: Design = purple, Engineering = steelblue, Product = darkgreen }
+  DeptAccent: array[0..2] of TTMSFNCGraphicsColor = (gcMediumorchid, gcSteelblue, gcMediumseagreen);
+
+  People: array[0..8] of TPerson = (
+    (Name: 'Olivia Bennett'; Title: 'Creative Director'; Dept: 'Design';
+     Email: 'olivia@artisanlabs.io'; Status: avstOnline),
+    (Name: 'Liam Carter'; Title: 'UX Designer'; Dept: 'Design';
+     Email: 'liam@artisanlabs.io'; Status: avstAway),
+    (Name: 'Sofia Martins'; Title: 'Visual Designer'; Dept: 'Design';
+     Email: 'sofia@artisanlabs.io'; Status: avstBusy),
+    (Name: 'Noah Fischer'; Title: 'Engineering Lead'; Dept: 'Engineering';
+     Email: 'noah@artisanlabs.io'; Status: avstOnline),
+    (Name: 'Emma Laurent'; Title: 'Senior Engineer'; Dept: 'Engineering';
+     Email: 'emma@artisanlabs.io'; Status: avstOnline),
+    (Name: 'Lucas Novak'; Title: 'Backend Engineer'; Dept: 'Engineering';
+     Email: 'lucas@artisanlabs.io'; Status: avstDoNotDisturb),
+    (Name: 'Ava Thompson'; Title: 'Product Manager'; Dept: 'Product';
+     Email: 'ava@artisanlabs.io'; Status: avstOnline),
+    (Name: 'Mateo Rossi'; Title: 'Product Analyst'; Dept: 'Product';
+     Email: 'mateo@artisanlabs.io'; Status: avstAway),
+    (Name: 'James Holm'; Title: 'Growth Lead'; Dept: 'Product';
+     Email: 'james@artisanlabs.io'; Status: avstOffline)
+  );
+
+  StatusNames: array[0..4] of string = ('Online', 'Away', 'Busy', 'Do not disturb', 'Offline');
+  StatusValues: array[0..4] of TTMSFNCAvatarStatus = (
+    avstOnline, avstAway, avstBusy, avstDoNotDisturb, avstOffline);
 
 implementation
 
@@ -88,187 +125,207 @@ implementation
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   FLayout := TDemoLayout.Create(Self);
-  FNames := TTMSFNCSampleData.People;
-  CreateSettings;
-  CreateContent;
-  ApplySettings;
+  FSelected := -1;
+  FContent := FLayout.AddContentPanel(Self);
+  CreateToolbar;
+  CreateDetail;
+  CreateCards;
+  SelectPerson(0);
 end;
 
-procedure TForm1.CreateSettings;
+procedure TForm1.CreateToolbar;
 var
-  sh: TTMSFNCAvatarShape;
-const
-  ShapeNames: array[TTMSFNCAvatarShape] of string = ('Circle', 'Rounded square', 'Square');
-begin
-  FSettings := FLayout.AddSettingsPanel(Self);
-
-  FLayout.AddCaption(FSettings, 'Appearance');
-  FStatusCheck := FLayout.AddCheck(FSettings, 'Presence status', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-  FSolidCheck := FLayout.AddCheck(FSettings, 'Solid colours', False, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-  FRingCheck := FLayout.AddCheck(FSettings, 'Active ring', False, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-  FLiftCheck := FLayout.AddCheck(FSettings, 'Lift on hover', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-
-  FLayout.AddCaption(FSettings, 'Shape');
-  for sh := Low(TTMSFNCAvatarShape) to High(TTMSFNCAvatarShape) do
-    FShapeRadios[sh] := FLayout.AddRadio(FSettings, ShapeNames[sh], 'Shape', sh = avsCircle, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-
-  FLayout.AddCaption(FSettings, 'Group');
-  FLayout.AddButton(FSettings, 'Add a member', {$IFDEF WEBLIB}@{$ENDIF}AddMemberClick);
-  FLayout.AddButton(FSettings, 'Remove the last member', {$IFDEF WEBLIB}@{$ENDIF}RemoveMemberClick);
-  FLayout.AddButton(FSettings, 'Show one more', {$IFDEF WEBLIB}@{$ENDIF}MoreVisibleClick);
-  FLayout.AddButton(FSettings, 'Show one less', {$IFDEF WEBLIB}@{$ENDIF}FewerVisibleClick);
-  FGroupText := FLayout.AddText(FSettings, '', 44);
-end;
-
-function TForm1.AddRow(const ACaption: string; AHeight: Integer): TTMSFNCStackPanel;
-begin
-  FLayout.AddCaption(FContent, ACaption, 8);
-  Result := TTMSFNCStackPanel.Create(Self);
-  Result.Parent := FContent;
-  FLayout.Place(Result, daTop, AHeight, 16, 0, 16, 8);
-  Result.Orientation := spoHorizontal;
-  Result.Alignment := lpaCenter;
-  Result.Gap := 24;
-  Result.ContentPadding.Rect := RectF(8, 8, 8, 8);
-end;
-
-function TForm1.AddAvatar(AParent: TTMSFNCStackPanel; const AName: string; ASize: TTMSFNCAvatarSize): TTMSFNCAvatar;
-begin
-  Result := TTMSFNCAvatar.Create(Self);
-  Result.Parent := AParent;
-  Result.Size := ASize;
-  Result.Text := AName;
-  Result.Hint := AName;
-  Result.ShowHint := True;
-  SetLength(FAvatars, Length(FAvatars) + 1);
-  FAvatars[High(FAvatars)] := Result;
-end;
-
-procedure TForm1.CreateContent;
-const
-  Sizes: array[0..5] of TTMSFNCAvatarSize = (avzExtraSmall, avzSmall, avzMedium, avzLarge, avzExtraLarge, avzHuge);
-  States: array[0..5] of TTMSFNCAvatarStatus = (avstNone, avstOnline, avstAway, avstBusy, avstDoNotDisturb, avstOffline);
-var
-  row: TTMSFNCStackPanel;
-  a: TTMSFNCAvatar;
   I: Integer;
 begin
-  FContent := FLayout.AddContentPanel(Self);
+  FToolbar := FLayout.AddPanel(FContent, daTop, 56, 0, 0, 0, 1);
+  FToolbar.Fill.Kind := gfkSolid;
+  FToolbar.Stroke.Kind := gskNone;
 
-  { the six size presets, each with another presence state }
-  row := AddRow('Sizes and presence', 104);
-  for I := 0 to 5 do
-  begin
-    a := AddAvatar(row, FNames[I], Sizes[I]);
-    a.Status := States[I];
-    a.Tag := Ord(States[I]);
-  end;
+  FCompanyLabel := TTMSFNCHTMLText.Create(Self);
+  FCompanyLabel.Parent := FToolbar;
+  FLayout.Place(FCompanyLabel, daLeft, 180, 16, 0, 0, 0);
+  FCompanyLabel.Text := '<b>Artisan Labs</b>';
+  FCompanyLabel.VerticalTextAlign := gtaCenter;
+  FCompanyLabel.HorizontalTextAlign := gtaLeading;
+  {$IFDEF FMX}
+  FCompanyLabel.Font.Size := 15;
+  {$ELSE}
+  FCompanyLabel.Font.Height := -FLayout.Size(15);
+  {$ENDIF}
 
-  { what a single avatar can carry }
-  row := AddRow('Badges, pictures and placeholders', 96);
-  a := AddAvatar(row, FNames[6], avzLarge);
-  a.BadgeCount := 3;
-  a := AddAvatar(row, FNames[7], avzLarge);
-  a.BadgeCount := 120;
-  a.Status := avstOnline;
-  a.Tag := Ord(avstOnline);
-  a := AddAvatar(row, 'Design team', avzLarge);
-  a.MaxInitials := 1;
-  a := AddAvatar(row, 'ops@example.com', avzLarge);
-  a.Initials := 'OPS';
-  a := AddAvatar(row, '', avzLarge);
-  a.Hint := 'No name: the placeholder';
-  { demo-colors: a fixed avatar colour instead of the one derived from the name }
-  a := AddAvatar(row, FNames[8], avzLarge);
-  a.ColorStyle := avcFixed;
-  a.Color := gcSteelblue;
-  a.Hint := FNames[8] + ' with a fixed colour';
-
-  { a group: the first members and the overflow count }
-  row := AddRow('Group', 80);
-  FGroup := TTMSFNCAvatar.Create(Self);
-  FGroup.Parent := row;
-  FGroup.Size := avzMedium;
-  for I := 0 to 5 do
-    FGroup.Items.AddAvatar(FNames[I], States[(I + 1) mod 6]).Tag := Ord(States[(I + 1) mod 6]);
-  FNextMember := 6;
-  SetLength(FAvatars, Length(FAvatars) + 1);
-  FAvatars[High(FAvatars)] := FGroup;
-  UpdateGroupText;
+  FTeamAvatar := TTMSFNCAvatar.Create(Self);
+  FTeamAvatar.Parent := FToolbar;
+  FLayout.Place(FTeamAvatar, daLeft, 160, 0, 8, 0, 8);
+  FTeamAvatar.Size := avzSmall;
+  FTeamAvatar.MaxVisible := 5;
+  for I := 0 to 8 do
+    FTeamAvatar.Items.AddAvatar(People[I].Name, People[I].Status);
 end;
 
-procedure TForm1.ApplySettings;
+procedure TForm1.CreateCards;
 var
-  I, J: Integer;
-  a: TTMSFNCAvatar;
-  sh: TTMSFNCAvatarShape;
+  flow: TTMSFNCFlowPanel;
+  card: TTMSFNCCardPanel;
+  av: TTMSFNCAvatar;
+  cards: TTMSFNCPanel;
+  I: Integer;
 begin
-  for I := 0 to High(FAvatars) do
+  cards := FLayout.AddPanel(FContent, daClient, 0, 0, 0, 0, 0);
+  cards.Fill.Kind := gfkNone;
+  cards.Stroke.Kind := gskNone;
+
+  flow := TTMSFNCFlowPanel.Create(Self);
+  flow.Parent := cards;
+  FLayout.Place(flow, daClient, 0, 0, 0, 0, 0);
+  flow.HorizontalGap := FLayout.Size(16);
+  flow.VerticalGap := FLayout.Size(16);
+  flow.ContentPadding.Rect := RectF(FLayout.Size(16), FLayout.Size(16),
+    FLayout.Size(16), FLayout.Size(16));
+
+  for I := 0 to 8 do
   begin
-    a := FAvatars[I];
-    a.BeginUpdate;
-    { the presence state of every avatar and member is kept in its Tag while the setting hides it }
-    if FStatusCheck.Checked then
-      a.Status := TTMSFNCAvatarStatus(a.Tag)
-    else
-      a.Status := avstNone;
-    for J := 0 to a.Items.Count - 1 do
-      if FStatusCheck.Checked then
-        a.Items[J].Status := TTMSFNCAvatarStatus(a.Items[J].Tag)
-      else
-        a.Items[J].Status := avstNone;
-    if a.ColorStyle <> avcFixed then
-    begin
-      if FSolidCheck.Checked then
-        a.ColorStyle := avcSolid
-      else
-        a.ColorStyle := avcTinted;
-    end;
-    a.ShowActiveRing := FRingCheck.Checked;
-    a.HoverLift := FLiftCheck.Checked;
-    for sh := Low(TTMSFNCAvatarShape) to High(TTMSFNCAvatarShape) do
-      if FShapeRadios[sh].Checked then
-        a.Shape := sh;
-    a.EndUpdate;
+    card := TTMSFNCCardPanel.Create(Self);
+    card.Parent := flow;
+    card.Width := FLayout.Size(160);
+    card.Height := FLayout.Size(200);
+    card.Clickable := True;
+    card.Header.Text := People[I].Name;
+    card.Header.Description := People[I].Title;
+    card.Header.Height := FLayout.Size(60);
+    card.Header.ShowDivider := True;
+    card.Appearance.AccentPosition := capLeft;
+    card.Appearance.AccentColor := DeptAccent[I div 3];
+    card.Tag := I;
+    card.OnClick := {$IFDEF WEBLIB}@{$ENDIF}CardClick;
+
+    av := TTMSFNCAvatar.Create(Self);
+    av.Parent := card;
+    av.Size := avzLarge;
+    av.Text := People[I].Name;
+    av.Status := People[I].Status;
+    {$IFDEF FMX}
+    av.Position.X := (FLayout.Size(160) - 56) / 2;
+    av.Position.Y := FLayout.Size(16);
+    {$ELSE}
+    av.Left := (FLayout.Size(160) - FLayout.Size(56)) div 2;
+    av.Top := FLayout.Size(16);
+    {$ENDIF}
+    av.Width := FLayout.Size(56);
+    av.Height := FLayout.Size(56);
+
+    FCards[I] := card;
+    FAvatars[I] := av;
   end;
 end;
 
-procedure TForm1.SettingChanged(Sender: TObject);
+procedure TForm1.CreateDetail;
+var
+  I: Integer;
 begin
-  ApplySettings;
+  FDetailPanel := FLayout.AddPanel(FContent, daRight, 280, 0, 0, 0, 0);
+  FDetailPanel.Stroke.Kind := gskSolid;
+
+  FDetailAvatar := TTMSFNCAvatar.Create(Self);
+  FDetailAvatar.Parent := FDetailPanel;
+  FDetailAvatar.Size := avzExtraLarge;
+  {$IFDEF FMX}
+  FDetailAvatar.Align := TAlignLayout.None;
+  FDetailAvatar.Position.X := (FLayout.Size(280) - 72) / 2;
+  FDetailAvatar.Position.Y := FLayout.Size(24);
+  {$ELSE}
+  FDetailAvatar.Left := (FLayout.Size(280) - FLayout.Size(72)) div 2;
+  FDetailAvatar.Top := FLayout.Size(24);
+  {$ENDIF}
+  FDetailAvatar.Width := FLayout.Size(72);
+  FDetailAvatar.Height := FLayout.Size(72);
+
+  FDetailName := TTMSFNCHTMLText.Create(Self);
+  FDetailName.Parent := FDetailPanel;
+  FLayout.Place(FDetailName, daTop, 32, 16, 112, 16, 2);
+  FDetailName.HorizontalTextAlign := gtaCenter;
+  FDetailName.VerticalTextAlign := gtaCenter;
+  {$IFDEF FMX}
+  FDetailName.Font.Style := [TFontStyle.fsBold];
+  FDetailName.Font.Size := 14;
+  {$ELSE}
+  FDetailName.Font.Style := [fsBold];
+  FDetailName.Font.Height := -FLayout.Size(14);
+  {$ENDIF}
+
+  FDetailTitle := TTMSFNCHTMLText.Create(Self);
+  FDetailTitle.Parent := FDetailPanel;
+  FLayout.Place(FDetailTitle, daTop, 24, 16, 2, 16, 2);
+  FDetailTitle.HorizontalTextAlign := gtaCenter;
+  FDetailTitle.TextRole := htrSecondary;
+
+  FDetailDept := TTMSFNCHTMLText.Create(Self);
+  FDetailDept.Parent := FDetailPanel;
+  FLayout.Place(FDetailDept, daTop, 24, 16, 2, 16, 8);
+  FDetailDept.HorizontalTextAlign := gtaCenter;
+  FDetailDept.TextRole := htrTertiary;
+
+  FDetailEmail := TTMSFNCHTMLText.Create(Self);
+  FDetailEmail.Parent := FDetailPanel;
+  FLayout.Place(FDetailEmail, daTop, 24, 16, 0, 16, 16);
+  FDetailEmail.HorizontalTextAlign := gtaCenter;
+  FDetailEmail.TextRole := htrSecondary;
+
+  FLayout.AddCaption(FDetailPanel, 'Presence', 4);
+  for I := 0 to 4 do
+  begin
+    FStatusRadios[I] := FLayout.AddRadio(FDetailPanel, StatusNames[I], 'Status', I = 0,
+      {$IFDEF WEBLIB}@{$ENDIF}StatusChanged);
+    FStatusRadios[I].Tag := I;
+  end;
 end;
 
-procedure TForm1.UpdateGroupText;
+procedure TForm1.SelectPerson(AIndex: Integer);
+var
+  I: Integer;
 begin
-  FGroupText.Text := IntToStr(FGroup.Items.Count) + ' members, ' + IntToStr(FGroup.MaxVisible) +
-    ' shown; the rest is the overflow count. Hover an avatar for its name.';
+  if (AIndex < 0) or (AIndex > 8) then
+    Exit;
+
+  { highlight selected card; remove highlight from others }
+  if FSelected >= 0 then
+    FCards[FSelected].Appearance.AccentPosition := capLeft;
+  FSelected := AIndex;
+  FCards[FSelected].Appearance.AccentPosition := capTop;
+
+  FDetailAvatar.Text := People[AIndex].Name;
+  FDetailAvatar.Status := People[AIndex].Status;
+  FDetailName.Text := People[AIndex].Name;
+  FDetailTitle.Text := People[AIndex].Title;
+  FDetailDept.Text := People[AIndex].Dept;
+  FDetailEmail.Text := People[AIndex].Email;
+
+  for I := 0 to 4 do
+    FStatusRadios[I].Checked := StatusValues[I] = People[AIndex].Status;
 end;
 
-procedure TForm1.AddMemberClick(Sender: TObject);
+procedure TForm1.CardClick(Sender: TObject);
 begin
-  FGroup.Items.AddAvatar(FNames[FNextMember mod Length(FNames)]);
-  Inc(FNextMember);
-  UpdateGroupText;
+  SelectPerson((Sender as TTMSFNCCardPanel).Tag);
 end;
 
-procedure TForm1.RemoveMemberClick(Sender: TObject);
+procedure TForm1.StatusChanged(Sender: TObject);
+var
+  newStatus: TTMSFNCAvatarStatus;
+  I: Integer;
 begin
-  if FGroup.Items.Count > 0 then
-    FGroup.Items.Delete(FGroup.Items.Count - 1);
-  UpdateGroupText;
-end;
+  if FSelected < 0 then
+    Exit;
+  if not (Sender as TTMSFNCRadioButton).Checked then
+    Exit;
 
-procedure TForm1.MoreVisibleClick(Sender: TObject);
-begin
-  FGroup.MaxVisible := FGroup.MaxVisible + 1;
-  UpdateGroupText;
-end;
+  newStatus := StatusValues[(Sender as TTMSFNCRadioButton).Tag];
+  FAvatars[FSelected].Status := newStatus;
+  FDetailAvatar.Status := newStatus;
 
-procedure TForm1.FewerVisibleClick(Sender: TObject);
-begin
-  if FGroup.MaxVisible > 1 then
-    FGroup.MaxVisible := FGroup.MaxVisible - 1;
-  UpdateGroupText;
+  { update the team group avatar member status }
+  for I := 0 to FTeamAvatar.Items.Count - 1 do
+    if FTeamAvatar.Items[I].Text = People[FSelected].Name then
+      FTeamAvatar.Items[I].Status := newStatus;
 end;
 
 end.
