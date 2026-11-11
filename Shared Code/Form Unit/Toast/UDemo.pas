@@ -2,10 +2,10 @@
 
 { TMS FNC UI Pack - Toast
 
-  Toasts are short notifications that slide into a corner of their host and leave by themselves: information,
-  success, warning, error and neutral kinds, an optional action button, a countdown bar that pauses while the
-  mouse is over the toast and a close button. The host here is the content area; an application uses its main
-  form. }
+  Stackly project board. Six tasks in two status columns. Completing a task fires a success
+  toast; assigning one fires an info toast; a task with a past due date fires a warning on
+  load. All five toast kinds appear when the demo header sends a sampler. The toast host is
+  the form; the position can be changed with the corner radio buttons in the content. }
 
 interface
 
@@ -15,7 +15,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCCustomControl,
   VCL.TMSFNCPanel, VCL.TMSFNCHTMLText, VCL.TMSFNCButton, VCL.TMSFNCCheckBox, VCL.TMSFNCRadioButton,
-  VCL.TMSFNCToast, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector,
+  VCL.TMSFNCCardPanel, VCL.TMSFNCStackPanel, VCL.TMSFNCToast,
+  VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector,
   {$ENDIF}
 
   {$IFDEF FMX}
@@ -23,19 +24,29 @@ uses
   FMX.Types, FMX.Forms, FMX.Controls, FMX.Graphics, FMX.Dialogs,
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCCustomControl,
   FMX.TMSFNCPanel, FMX.TMSFNCHTMLText, FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCRadioButton,
-  FMX.TMSFNCToast, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector,
+  FMX.TMSFNCCardPanel, FMX.TMSFNCStackPanel, FMX.TMSFNCToast,
+  FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector,
   {$ENDIF}
 
   {$IFDEF WEBLIB}
   SysUtils, Classes, WEBLib.Graphics, WEBLib.Controls, WEBLib.Forms, WEBLib.Dialogs,
   WEBLib.TMSFNCTypes, WEBLib.TMSFNCUtils, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCGraphicsTypes,
   WEBLib.TMSFNCCustomControl, WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCButton,
-  WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton, WEBLib.TMSFNCToast, WEBLib.TMSFNCTheme,
-  WEBLib.TMSFNCThemeSelector,
+  WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton,
+  WEBLib.TMSFNCCardPanel, WEBLib.TMSFNCStackPanel, WEBLib.TMSFNCToast,
+  WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector,
   {$ENDIF}
   UDemoLayout;
 
 type
+  TTask = record
+    Name: string;
+    Owner: string;
+    Due: string;
+    Done: Boolean;
+    Overdue: Boolean;
+  end;
+
   TForm1 = class(TDemoForm)
     ThemeManager: TTMSFNCThemeManager;
     DemoHeader: TTMSFNCPanel;
@@ -45,38 +56,36 @@ type
     procedure FormCreate(Sender: TObject);
   private
     FLayout: TDemoLayout;
-    FSettings: TTMSFNCPanel;
     FContent: TTMSFNCPanel;
     FToast: TTMSFNCToast;
-    FPositionRadios: array[TTMSFNCToastPosition] of TTMSFNCRadioButton;
-    FShortRadio: TTMSFNCRadioButton;
-    FNormalRadio: TTMSFNCRadioButton;
-    FLongRadio: TTMSFNCRadioButton;
-    FProgressCheck: TTMSFNCCheckBox;
-    FCloseCheck: TTMSFNCCheckBox;
-    FPauseCheck: TTMSFNCCheckBox;
-    FAnimateCheck: TTMSFNCCheckBox;
-    FStatus: TTMSFNCHTMLText;
-    FCounter: Integer;
-    procedure CreateSettings;
+    FPositionRadios: array[0..3] of TTMSFNCRadioButton;
+    FTaskDone: array[0..5] of Boolean;
+    FTaskButtons: array[0..5] of TTMSFNCButton;
     procedure CreateContent;
-    procedure ApplySettings;
-    procedure SettingChanged(Sender: TObject);
-    procedure InfoClick(Sender: TObject);
-    procedure SuccessClick(Sender: TObject);
-    procedure WarningClick(Sender: TObject);
-    procedure ErrorClick(Sender: TObject);
-    procedure NeutralClick(Sender: TObject);
-    procedure ActionClick(Sender: TObject);
-    procedure StickyClick(Sender: TObject);
-    procedure CloseAllClick(Sender: TObject);
+    procedure AddTaskCard(AParent: TDemoParent; AIndex: Integer);
+    procedure DoneClick(Sender: TObject);
+    procedure AssignClick(Sender: TObject);
+    procedure SamplerClick(Sender: TObject);
+    procedure PositionChanged(Sender: TObject);
     procedure ToastActionClick(Sender: TObject; AItem: TTMSFNCToastItem);
-    procedure ToastClick(Sender: TObject; AItem: TTMSFNCToastItem);
   public
   end;
 
 var
   Form1: TForm1;
+
+const
+  Tasks: array[0..5] of TTask = (
+    (Name: 'Redesign landing page'; Owner: 'Olivia'; Due: 'Nov 15'; Done: False; Overdue: False),
+    (Name: 'Write API documentation'; Owner: 'Noah'; Due: 'Nov 10'; Done: False; Overdue: True),
+    (Name: 'Set up CI pipeline'; Owner: 'Lucas'; Due: 'Nov 20'; Done: False; Overdue: False),
+    (Name: 'User research interviews'; Owner: 'Emma'; Due: 'Nov 12'; Done: True; Overdue: False),
+    (Name: 'Fix login timeout bug'; Owner: 'Liam'; Due: 'Nov 8'; Done: True; Overdue: False),
+    (Name: 'Q4 roadmap review'; Owner: 'Ava'; Due: 'Nov 25'; Done: False; Overdue: False)
+  );
+
+  PositionNames: array[0..3] of string = ('Top left', 'Top right', 'Bottom left', 'Bottom right');
+  PositionValues: array[0..3] of TTMSFNCToastPosition = (tpsTopLeft, tpsTopRight, tpsBottomLeft, tpsBottomRight);
 
 implementation
 
@@ -91,159 +100,179 @@ implementation
 {$ENDIF}
 
 procedure TForm1.FormCreate(Sender: TObject);
+var
+  I: Integer;
 begin
   FLayout := TDemoLayout.Create(Self);
-  CreateSettings;
+  for I := 0 to 5 do
+    FTaskDone[I] := Tasks[I].Done;
+  FToast := TTMSFNCToast.Create(Self);
+  FToast.Position := tpsBottomRight;
+  FToast.OnActionClick := {$IFDEF WEBLIB}@{$ENDIF}ToastActionClick;
+  FContent := FLayout.AddContentPanel(Self);
+  FToast.Host := FContent;
   CreateContent;
-  ApplySettings;
-end;
-
-procedure TForm1.CreateSettings;
-const
-  PositionNames: array[TTMSFNCToastPosition] of string = ('Top left', 'Top centre', 'Top right', 'Bottom left',
-    'Bottom centre', 'Bottom right');
-var
-  ps: TTMSFNCToastPosition;
-begin
-  FSettings := FLayout.AddSettingsPanel(Self);
-
-  FLayout.AddCaption(FSettings, 'Position');
-  for ps := Low(TTMSFNCToastPosition) to High(TTMSFNCToastPosition) do
-    FPositionRadios[ps] := FLayout.AddRadio(FSettings, PositionNames[ps], 'Position', ps = tpsBottomRight, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-
-  FLayout.AddCaption(FSettings, 'Duration');
-  FShortRadio := FLayout.AddRadio(FSettings, '2 seconds', 'Duration', False, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-  FNormalRadio := FLayout.AddRadio(FSettings, '4 seconds', 'Duration', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-  FLongRadio := FLayout.AddRadio(FSettings, '8 seconds', 'Duration', False, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-
-  FLayout.AddCaption(FSettings, 'Options');
-  FProgressCheck := FLayout.AddCheck(FSettings, 'Countdown bar', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-  FCloseCheck := FLayout.AddCheck(FSettings, 'Close button', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-  FPauseCheck := FLayout.AddCheck(FSettings, 'Pause while the mouse is over it', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-  FAnimateCheck := FLayout.AddCheck(FSettings, 'Slide in and out', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
+  { warn about overdue tasks on load }
+  for I := 0 to 5 do
+    if Tasks[I].Overdue and not Tasks[I].Done then
+      FToast.Show(Tasks[I].Name, 'Due ' + Tasks[I].Due + ' - past due', toastWarning, 6000);
 end;
 
 procedure TForm1.CreateContent;
+const
+  ColTitles: array[0..1] of string = ('To Do', 'Done');
 var
-  bar: TTMSFNCPanel;
-  b: TTMSFNCButton;
-  procedure AddBarButton(const AText: string; AOnClick: TNotifyEvent);
+  toolbar: TTMSFNCPanel;
+  samplerBtn: TTMSFNCButton;
+  posLabel: TTMSFNCHTMLText;
+  cols: TTMSFNCPanel;
+  colTodo: TTMSFNCPanel;
+  colDone: TTMSFNCPanel;
+  I: Integer;
+begin
+  { top toolbar: sampler button + corner radios }
+  toolbar := FLayout.AddPanel(FContent, daTop, 48, 0, 0, 0, 1);
+  toolbar.Fill.Kind := gfkNone;
+  toolbar.Stroke.Kind := gskNone;
+
+  samplerBtn := TTMSFNCButton.Create(Self);
+  samplerBtn.Parent := toolbar;
+  FLayout.Place(samplerBtn, daLeft, 160, 16, 8, 0, 8);
+  samplerBtn.Text := 'Send all kinds';
+  samplerBtn.OnClick := {$IFDEF WEBLIB}@{$ENDIF}SamplerClick;
+
+  posLabel := TTMSFNCHTMLText.Create(Self);
+  posLabel.Parent := toolbar;
+  FLayout.Place(posLabel, daLeft, 56, 16, 0, 0, 0);
+  posLabel.Text := 'Corner:';
+  posLabel.VerticalTextAlign := gtaCenter;
+
+  for I := 0 to 3 do
   begin
-    b := TTMSFNCButton.Create(Self);
-    b.Parent := bar;
-    FLayout.Place(b, daLeft, 110, 0, 8, 8, 8);
-    b.Text := AText;
-    b.OnClick := AOnClick;
+    FPositionRadios[I] := TTMSFNCRadioButton.Create(Self);
+    FPositionRadios[I].Parent := toolbar;
+    FLayout.Place(FPositionRadios[I], daLeft, 108, 0, 8, 0, 8);
+    FPositionRadios[I].Text := PositionNames[I];
+    FPositionRadios[I].GroupName := 'Pos';
+    FPositionRadios[I].Checked := I = 3;
+    FPositionRadios[I].Tag := I;
+    FPositionRadios[I].OnChange := {$IFDEF WEBLIB}@{$ENDIF}PositionChanged;
   end;
-begin
-  FContent := FLayout.AddContentPanel(Self);
-  FContent.Fill.Kind := gfkSolid;
-  FContent.Stroke.Kind := gskSolid;
 
-  bar := FLayout.AddPanel(FContent, daTop, 48, 8, 8, 8, 0);
-  bar.Fill.Kind := gfkNone;
-  bar.Stroke.Kind := gskNone;
-  AddBarButton('Information', {$IFDEF WEBLIB}@{$ENDIF}InfoClick);
-  AddBarButton('Success', {$IFDEF WEBLIB}@{$ENDIF}SuccessClick);
-  AddBarButton('Warning', {$IFDEF WEBLIB}@{$ENDIF}WarningClick);
-  AddBarButton('Error', {$IFDEF WEBLIB}@{$ENDIF}ErrorClick);
-  AddBarButton('Neutral', {$IFDEF WEBLIB}@{$ENDIF}NeutralClick);
-  AddBarButton('With action', {$IFDEF WEBLIB}@{$ENDIF}ActionClick);
-  AddBarButton('Stays', {$IFDEF WEBLIB}@{$ENDIF}StickyClick);
-  AddBarButton('Close all', {$IFDEF WEBLIB}@{$ENDIF}CloseAllClick);
+  { two-column task board }
+  cols := FLayout.AddPanel(FContent, daClient, 0, 0, 0, 0, 0);
+  cols.Fill.Kind := gfkNone;
+  cols.Stroke.Kind := gskNone;
 
-  FStatus := TTMSFNCHTMLText.Create(Self);
-  FStatus.Parent := FContent;
-  FLayout.Place(FStatus, daTop, 60, 16, 8, 16, 0);
-  FStatus.Fill.Kind := gfkNone;
-  FStatus.Stroke.Kind := gskNone;
-  FStatus.HorizontalTextAlign := gtaLeading;
-  FStatus.VerticalTextAlign := gtaLeading;
-  FStatus.WordWrapping := True;
-  FStatus.TextRole := htrSecondary;
-  FStatus.Text := 'The toasts appear in this area, in the corner chosen on the left. Click a toast or its action ' +
-    'button to see the event here.';
+  colTodo := FLayout.AddPanel(cols, daLeft, 320, 16, 16, 16, 16);
+  FLayout.AddCaption(colTodo, ColTitles[0], 0);
 
-  FToast := TTMSFNCToast.Create(Self);
-  FToast.Host := FContent;
-  FToast.OnActionClick := {$IFDEF WEBLIB}@{$ENDIF}ToastActionClick;
-  FToast.OnToastClick := {$IFDEF WEBLIB}@{$ENDIF}ToastClick;
+  colDone := FLayout.AddPanel(cols, daLeft, 320, 0, 16, 16, 16);
+  FLayout.AddCaption(colDone, ColTitles[1], 0);
+
+  { add task cards to the right column based on done state }
+  for I := 0 to 5 do
+    if not Tasks[I].Done then
+      AddTaskCard(colTodo, I)
+    else
+      AddTaskCard(colDone, I);
 end;
 
-procedure TForm1.ApplySettings;
+procedure TForm1.AddTaskCard(AParent: TDemoParent; AIndex: Integer);
 var
-  ps: TTMSFNCToastPosition;
+  card: TTMSFNCCardPanel;
+  doneBtn: TTMSFNCButton;
+  assignBtn: TTMSFNCButton;
+  row: TTMSFNCStackPanel;
 begin
-  for ps := Low(TTMSFNCToastPosition) to High(TTMSFNCToastPosition) do
-    if FPositionRadios[ps].Checked then
-      FToast.Position := ps;
-  if FShortRadio.Checked then
-    FToast.Duration := 2000
-  else if FLongRadio.Checked then
-    FToast.Duration := 8000
+  card := TTMSFNCCardPanel.Create(Self);
+  card.Parent := AParent;
+  FLayout.Place(card, daTop, 100, 0, 8, 0, 0);
+  card.Header.Text := Tasks[AIndex].Name;
+  card.Header.Description := Tasks[AIndex].Owner + '  ·  Due ' + Tasks[AIndex].Due;
+  card.Header.Height := FLayout.Size(56);
+  if Tasks[AIndex].Overdue then
+  begin
+    card.Appearance.AccentPosition := capLeft;
+    card.Appearance.AccentColor := gcOrange;
+  end
   else
-    FToast.Duration := 4000;
-  FToast.ShowProgress := FProgressCheck.Checked;
-  FToast.ShowCloseButton := FCloseCheck.Checked;
-  FToast.PauseOnHover := FPauseCheck.Checked;
-  FToast.Animate := FAnimateCheck.Checked;
+    card.Appearance.AccentPosition := capNone;
+  card.Tag := AIndex;
+
+  if not Tasks[AIndex].Done then
+  begin
+    row := TTMSFNCStackPanel.Create(Self);
+    row.Parent := card;
+    FLayout.Place(row, daBottom, 36, 8, 0, 8, 8);
+    row.Orientation := spoHorizontal;
+    row.Gap := 8;
+    row.Appearance.Fill.Kind := gfkNone;
+    row.Appearance.Stroke.Kind := gskNone;
+
+    doneBtn := TTMSFNCButton.Create(Self);
+    doneBtn.Parent := row;
+    doneBtn.Width := FLayout.Size(100);
+    doneBtn.Height := FLayout.Size(28);
+    doneBtn.Text := 'Mark done';
+    doneBtn.Tag := AIndex;
+    doneBtn.OnClick := {$IFDEF WEBLIB}@{$ENDIF}DoneClick;
+    FTaskButtons[AIndex] := doneBtn;
+
+    assignBtn := TTMSFNCButton.Create(Self);
+    assignBtn.Parent := row;
+    assignBtn.Width := FLayout.Size(80);
+    assignBtn.Height := FLayout.Size(28);
+    assignBtn.Text := 'Assign';
+    assignBtn.Tag := AIndex;
+    assignBtn.OnClick := {$IFDEF WEBLIB}@{$ENDIF}AssignClick;
+  end;
 end;
 
-procedure TForm1.SettingChanged(Sender: TObject);
+procedure TForm1.DoneClick(Sender: TObject);
+var
+  idx: Integer;
 begin
-  ApplySettings;
+  idx := (Sender as TTMSFNCButton).Tag;
+  FTaskDone[idx] := True;
+  (Sender as TTMSFNCButton).Enabled := False;
+  FToast.Show(Tasks[idx].Name, 'Task completed by ' + Tasks[idx].Owner, toastSuccess);
 end;
 
-procedure TForm1.InfoClick(Sender: TObject);
+procedure TForm1.AssignClick(Sender: TObject);
+var
+  idx: Integer;
+  owners: array[0..3] of string;
+  I: Integer;
 begin
-  Inc(FCounter);
-  FToast.ShowInfo('Update available', 'Version 8.0.' + IntToStr(FCounter) + ' is ready to install.');
+  idx := (Sender as TTMSFNCButton).Tag;
+  owners[0] := 'Olivia'; owners[1] := 'Noah'; owners[2] := 'Ava'; owners[3] := 'Mateo';
+  I := (idx + 1) mod 4;
+  FToast.Show(Tasks[idx].Name, 'Reassigned to ' + owners[I], toastInfo);
 end;
 
-procedure TForm1.SuccessClick(Sender: TObject);
+procedure TForm1.SamplerClick(Sender: TObject);
 begin
-  FToast.ShowSuccess('Saved', 'The order was saved to the database.');
+  FToast.Show('Information', 'The build started on the CI server.', toastInfo, 4000);
+  FToast.Show('Success', 'All 42 tests passed.', toastSuccess, 4000);
+  FToast.Show('Warning', 'Disk space below 10 %.', toastWarning, 4000);
+  FToast.Show('Error', 'Deploy failed: permission denied.', toastError, 4000);
+  FToast.ShowAction('Update ready', 'Version 2.4.1 is available.', 'Install now',
+    toastNeutral, 8000);
 end;
 
-procedure TForm1.WarningClick(Sender: TObject);
+procedure TForm1.PositionChanged(Sender: TObject);
+var
+  I: Integer;
 begin
-  FToast.ShowWarning('Low disk space', 'Less than 2 GB left on drive C.');
-end;
-
-procedure TForm1.ErrorClick(Sender: TObject);
-begin
-  FToast.ShowError('Connection lost', 'The server did not answer. Retrying in 30 seconds.');
-end;
-
-procedure TForm1.NeutralClick(Sender: TObject);
-begin
-  FToast.Show('Reminder', 'Team meeting at 14:00 in room B.', toastNeutral);
-end;
-
-procedure TForm1.ActionClick(Sender: TObject);
-begin
-  FToast.ShowAction('Message deleted', 'The message was moved to the bin.', 'Undo', toastInfo);
-end;
-
-procedure TForm1.StickyClick(Sender: TObject);
-begin
-  { a duration of 0 keeps the toast until the user closes it }
-  FToast.Show('Needs attention', 'This toast stays until you close it.', toastWarning, 0);
-end;
-
-procedure TForm1.CloseAllClick(Sender: TObject);
-begin
-  FToast.CloseAll;
+  for I := 0 to 3 do
+    if FPositionRadios[I].Checked then
+      FToast.Position := PositionValues[I];
 end;
 
 procedure TForm1.ToastActionClick(Sender: TObject; AItem: TTMSFNCToastItem);
 begin
-  FStatus.Text := 'Action <b>' + AItem.ActionText + '</b> of "' + AItem.Title + '" clicked.';
-end;
-
-procedure TForm1.ToastClick(Sender: TObject; AItem: TTMSFNCToastItem);
-begin
-  FStatus.Text := 'Toast "<b>' + AItem.Title + '</b>" clicked.';
+  FToast.Show('Installing', 'Update 2.4.1 is being installed...', toastInfo, 3000);
 end;
 
 end.
