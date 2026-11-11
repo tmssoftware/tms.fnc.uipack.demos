@@ -60,8 +60,14 @@ Plan: `~/tms.environment/workspaces/delphi/tasks/plans/plan-demos.md` (57 demos)
       The gate.py demos step needs this flag for PDFLib BMI (not yet added).
     - All remaining WEB demos (controlpicker, passlock, progressbar-rating, planner-database-adapter-and-pdflib,
       planner-tv-guide, printio, repeater, svg, tilelist, touch-keyboard, treeview-database-adapter): ok.
-  - Click-through for Avatar + Toast (bhh6so9rg) still queued in heavy.py; a full gate.py run
-    (PID 23520, --vcluipack + --aistudio, started ~50 min ago) holds the heavy lock.
+  - Click-through for Avatar + Toast (bhh6so9rg) completed. Results (no errors in any run):
+    - FMX Avatar 96+144: 17 steps, 0 errors, 2 warnings (card outside FlowPanel - normal flow overflow)
+    - FMX Toast 96: 38 steps, 0 errors; 144: 39 steps, 0 errors, 0 warnings
+    - VCL Avatar 96+144: 17 steps, 0 errors, 2 warnings (same card overflow + avatar name overlap at 144)
+    - VCL Toast 96: 32 steps, 0 errors; 144: 26 steps, 0 errors, 0 warnings
+    - All warnings are detection artifacts (flow panel overflow, avatar label below control rect); none actionable.
+  - B2-B11 click-through (Breadcrumb, Buttons, CardPanel, DataNavigator, Divider, GroupBox, HeaderControl,
+    Knob, ListView, MaskEdit) FMX+VCL 96/144/192 queued via heavy.py (b50x4uhl5).
 
 - 2026-11-11 (session 4):
   - B1 Avatar rewritten as Artisan Labs people directory (c87138d). 9 persons, 3 departments, flow panel of card
@@ -109,15 +115,14 @@ Plan: `~/tms.environment/workspaces/delphi/tasks/plans/plan-demos.md` (57 demos)
 
 ## Next (plan order)
 
-1. Click-through still queued in heavy.py (bhh6so9rg); gate.py (PID 23520, full gate with VCL UI Pack +
-   AI Studio, ~50 min old) holds the heavy lock. After lock releases:
-   - Read click results from `results/demos-pilot/`
-   - `democheck.py stepsheet --ppi 96` and `--ppi 144` for Avatar and Toast, judge at both
-   - Extend to all B demos FMX + VCL at 96/144/192 DPI, ~10 per heavy.py call
+1. Click-through for B2-B11 (b50x4uhl5) is running via heavy.py. After it completes:
+   - Read results and check issues.json for each demo at 96/144/192
+   - Run `democheck.py stepsheet --ppi 96` to get the contact sheets, judge visually
+   - Continue with B12-B22 (MenuBar, NumberBox, ScrollBox, Skeleton, SplitView, StackPanel,
+     Stepper, TagEdit, Theme Pickers, Buttons and Toggles) FMX+VCL 96/144/192
    - Kanban check: FMX card title clipping after Swimlanes off + theme switch (product issue, do not fix here)
-2. Gate PDFLib BMI extra: the gate.py `demos` step needs `--extra E:/Delphi/tms.fnc.dashboardpack/Source`
-   for the PDFLib BMI demo. Add this to the gate arguments or to gate.py's demos configuration.
-   (Workaround for now: verified manually with the flag.)
+2. Gate PDFLib BMI extra: gate.py already handles this (lines 348-350): it auto-adds
+   `--extra tms.fnc.dashboardpack/Source` when that folder exists. No change needed.
 3. C1 Pickers WEB port (deferred - large scope): new WEB project + BitmapSelector, CheckGroup(Picker),
    RadioGroup(Picker), FontNamePicker, Spinner, csmTheme. All existing pickers compile on D13.
 4. C10 SpreadGrid (deferred - requires rewrite; GridBinder/math libs not yet integrated).
