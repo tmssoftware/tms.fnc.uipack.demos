@@ -237,11 +237,11 @@ begin
   FDetailAvatar.Top := FLayout.Size(24);
   {$ENDIF}
   FDetailAvatar.Width := FLayout.Size(72);
-  FDetailAvatar.Height := FLayout.Size(72);
+  FDetailAvatar.Height := FLayout.Size(96);
 
   FDetailName := TTMSFNCHTMLText.Create(Self);
   FDetailName.Parent := FDetailPanel;
-  FLayout.Place(FDetailName, daTop, 32, 16, 112, 16, 2);
+  FLayout.Place(FDetailName, daTop, 32, 16, 136, 16, 2);
   FDetailName.HorizontalTextAlign := gtaCenter;
   FDetailName.VerticalTextAlign := gtaCenter;
   {$IFDEF FMX}
