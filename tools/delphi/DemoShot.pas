@@ -1009,13 +1009,6 @@ begin
   {$ENDIF}
 end;
 
-function TargetKey(AControl: TControl): string;
-var
-  r: TRect;
-begin
-  r := FormRect(AControl);
-  Result := Format('%s|%s|%s|%d|%d', [AControl.ClassName, AControl.Name, CaptionOf(AControl), r.Left div 8, r.Top div 8]);
-end;
 
 type
   TMouseAct = (maMove, maClick, maFastClicks, maDouble, maRight, maWheel, maDrag);
@@ -1045,6 +1038,20 @@ begin
     Result := tgSlider
   else
     Result := tgButton;
+end;
+
+{ a control is used once: buttons, check boxes and items are told apart by their caption, an editor or a list
+  whose text changes by its place }
+function TargetKey(AControl: TControl): string;
+var
+  r: TRect;
+  s: string;
+begin
+  r := FormRect(AControl);
+  s := '';
+  if KindOf(AControl) = tgButton then
+    s := CaptionOf(AControl);
+  Result := Format('%s|%s|%s|%d|%d', [AControl.ClassName, AControl.Name, s, r.Left div 8, r.Top div 8]);
 end;
 
 { the window under a point of the control (its centre plus an offset in form units) and that point in the

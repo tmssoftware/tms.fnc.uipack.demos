@@ -14,6 +14,7 @@ Nothing is overwritten: an existing folder stops the script.
 import argparse
 import re
 import shutil
+import subprocess
 import sys
 import uuid
 from pathlib import Path
@@ -138,6 +139,17 @@ def copy_text(src, dst, replacements):
     dst.write_bytes((b"\xef\xbb\xbf" if bom else b"") + text.encode("utf-8"))
 
 
+def tracked(folder):
+    """The files of a template folder that git tracks (no build output such as Win32 or Demo.exe)."""
+    out = subprocess.run(["git", "-C", str(REPO), "ls-files", "-z", "--", str(folder.relative_to(REPO))],
+                         capture_output=True, check=True).stdout.decode("utf-8")
+    return [REPO / f for f in out.split("\0") if f and "/" not in f[len(str(folder.relative_to(REPO)).replace(chr(92), "/")) + 1:]]
+
+
+def readme(folder, title, description):
+    (folder / "README.md").write_bytes(f"# TMS FNC UI Pack - {title}\r\n\r\n{description}\r\n".encode("utf-8"))
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("name", help="demo folder name under FMX, VCL, WEB and Shared Code/Form Unit")
@@ -164,16 +176,22 @@ def main():
     for fw in ("FMX", "VCL"):
         src, dst = REPO / fw / TEMPLATE, REPO / fw / name
         dst.mkdir(parents=True)
-        for f in src.iterdir():
+        for f in tracked(src):
+            if f.name == "README.md":
+                continue
             if f.suffix.lower() in (".dpr", ".dproj"):
                 copy_text(f, dst / f.name, common)
             else:
                 shutil.copy2(f, dst / f.name)
+        readme(dst, title, args.description)
     if not args.no_web:
         src, dst = REPO / "WEB" / TEMPLATE, REPO / "WEB" / name
         dst.mkdir(parents=True)
-        for f in src.iterdir():
+        for f in tracked(src):
+            if f.name == "README.md":
+                continue
             copy_text(f, dst / f.name.replace(TEMPLATE_WEB, "TMSWeb_" + web), common)
+        readme(dst, title, args.description)
     src, dst = REPO / "Shared Code" / "Form Unit" / TEMPLATE, REPO / "Shared Code" / "Form Unit" / name
     dst.mkdir(parents=True)
     for ext in (".fmx", ".dfm", ".html"):
@@ -183,7 +201,8 @@ def main():
                    "webdata": WEB_DATA if args.data else ""}
     if args.data:
         unit = unit.replace(" Data.DB,\n  Data.DB,", "\n  Data.DB,")
-    (dst / "UDemo.pas").write_bytes(unit.replace("\n", "\r\n").encode("utf-8"))
+    (dst / "UDemo.pas").write_bytes(b"\xef\xbb\xbf" + unit.replace("\n", "\r\n").encode("utf-8"))
+    readme(dst, title, args.description)
     print("\n".join(str(t.relative_to(REPO)) for t in targets))
 
 
