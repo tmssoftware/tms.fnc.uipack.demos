@@ -20,7 +20,7 @@ uses
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCCustomControl,
   VCL.TMSFNCPanel, VCL.TMSFNCHTMLText, VCL.TMSFNCButton, VCL.TMSFNCCheckBox, VCL.TMSFNCRadioButton,
   VCL.TMSFNCEdit, VCL.TMSFNCComboBox, VCL.TMSFNCDatePicker, VCL.TMSFNCTrackBar, VCL.TMSFNCSwitch,
-  VCL.TMSFNCStackPanel, VCL.TMSFNCDataGrid, VCL.TMSFNCDataGridCore, VCL.TMSFNCDataGridRenderer, VCL.TMSFNCDataNavigator,
+  VCL.TMSFNCStackPanel, VCL.TMSFNCScrollBox, VCL.TMSFNCDataGrid, VCL.TMSFNCDataGridCore, VCL.TMSFNCDataGridRenderer, VCL.TMSFNCDataNavigator,
   VCL.TMSFNCDataBinding, VCL.TMSFNCSampleData, VCL.TMSFNCTheme,
   VCL.TMSFNCThemeSelector,
   {$ENDIF}
@@ -33,7 +33,7 @@ uses
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCCustomControl,
   FMX.TMSFNCPanel, FMX.TMSFNCHTMLText, FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCRadioButton,
   FMX.TMSFNCEdit, FMX.TMSFNCComboBox, FMX.TMSFNCDatePicker, FMX.TMSFNCTrackBar, FMX.TMSFNCSwitch,
-  FMX.TMSFNCStackPanel, FMX.TMSFNCDataGrid, FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer, FMX.TMSFNCDataNavigator,
+  FMX.TMSFNCStackPanel, FMX.TMSFNCScrollBox, FMX.TMSFNCDataGrid, FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer, FMX.TMSFNCDataNavigator,
   FMX.TMSFNCDataBinding, FMX.TMSFNCSampleData, FMX.TMSFNCTheme,
   FMX.TMSFNCThemeSelector,
   {$ENDIF}
@@ -44,7 +44,7 @@ uses
   WEBLib.TMSFNCCustomControl, WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCButton,
   WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton, WEBLib.TMSFNCEdit, WEBLib.TMSFNCComboBox,
   WEBLib.TMSFNCDatePicker, WEBLib.TMSFNCTrackBar, WEBLib.TMSFNCSwitch, WEBLib.TMSFNCStackPanel,
-  WEBLib.TMSFNCDataGrid, WEBLib.TMSFNCDataGridCore, WEBLib.TMSFNCDataGridRenderer, WEBLib.TMSFNCDataNavigator, WEBLib.TMSFNCDataBinding,
+  WEBLib.TMSFNCScrollBox, WEBLib.TMSFNCDataGrid, WEBLib.TMSFNCDataGridCore, WEBLib.TMSFNCDataGridRenderer, WEBLib.TMSFNCDataNavigator, WEBLib.TMSFNCDataBinding,
   WEBLib.TMSFNCSampleData, WEBLib.TMSFNCTheme,
   WEBLib.TMSFNCThemeSelector,
   {$ENDIF}
@@ -62,6 +62,7 @@ type
     FLayout: TDemoLayout;
     FSettings: TTMSFNCPanel;
     FContent: TTMSFNCPanel;
+    FFormScroll: TTMSFNCScrollBox;
     FIndicatorCheck: TTMSFNCCheckBox;
     FAggregatesCheck: TTMSFNCCheckBox;
     FSearchCheck: TTMSFNCCheckBox;
@@ -330,7 +331,9 @@ var
 begin
   stack := TTMSFNCStackPanel.Create(Self);
   stack.Parent := AParent;
-  FLayout.Place(stack, daClient, 0, 0, 0, 0, 0);
+  stack.SetBounds(0, 0, FLayout.Size(300), FLayout.Size(100));
+  stack.SizeToContent := True;
+  stack.ContentPadding.Rect := RectF(0, 4, 0, 8);
   stack.Appearance.Stroke.Kind := gskNone;
   stack.Gap := 2;
 
@@ -433,7 +436,13 @@ begin
 
   form := FLayout.AddPanel(FContent, daRight, 300, 16, 0, 0, 0);
   FLayout.AddCaption(form, 'Order', 12);
-  CreateForm(form);
+  FFormScroll := TTMSFNCScrollBox.Create(Self);
+  FFormScroll.Parent := form;
+  FLayout.Place(FFormScroll, daClient, 0, 0, 0, 0, 0);
+  FFormScroll.Appearance.Fill.Kind := gfkNone;
+  FFormScroll.Appearance.Stroke.Kind := gskNone;
+  CreateForm(FFormScroll);
+  FFormScroll.UpdateContent;
 
   CreateKpis(FContent);
 
