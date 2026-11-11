@@ -43,24 +43,55 @@ Plan: `~/tms.environment/workspaces/delphi/tasks/plans/plan-demos.md` (57 demos)
     not yet: designed forms per framework), C15 Master_Detail_FireDac_SQLite kept as the adapter demo with a README
     pointing to the Master-Detail Explorer.
 
+- 2026-11-11 (session 3):
+  - Merges: the Demos `work/integration` (500f78f) was already in `work/demos`; Extras `work/demos-gate` merged up to
+    `work/integration` 38ee137 (1e80586). 39 Demo.res build outputs restored.
+  - Click-through driver (dc86ee0, 26f2f26): `democheck.py click <projects> --ppi 96 120 144 192 --jobs 2` builds
+    with `tools/delphi/DemoShot.pas` and drives the demo like a person per DPI: every reachable control by kind
+    (button: click + 3 fast clicks; editor: click, type, theme switch to Dark while editing, Ctrl+Z, Esc; list:
+    hover, click, arrows, double click, type, Dark while editing, Esc, F2, Enter, Ctrl+C/Z, wheel, right click,
+    drag; drop-down: open at its button, Dark while open, Down+Enter; slider: drag, wheel, arrows), a capture after
+    every action incl. the windows it opened, modal dialogs captured and closed by a watchdog, Tab order walk,
+    resize to 80 %, then Dark with the pop-ups again. `issues.json` per run (exceptions, windows left open,
+    controls outside their parent / overlapping, stuck Tab, hang); `clicksheet` (light/dark/resized per DPI) and
+    `stepsheet --ppi N` (every step shot, labelled) to judge by eye. Scratch builds link a manifest (common
+    controls 6, Windows 10, PMv2). DPI: FMX forced window scale (exact); VCL: monitor + screen DPI emulated but the
+    form keeps 96 at load (cause not found: Monitor.PixelsPerInch and Screen.PixelsPerInch report the DPI, Win
+    10.0, PMv2) so it is scaled with ScaleForPPI after start (= moved to a monitor with that DPI).
+    `demonew.py` copies only tracked template files and writes the README files.
+  - A3 Theming Dashboard: brand picker (TTMSFNCBrand.PresetNames / LoadPreset into ThemeManager.Brand) and a
+    TTMSFNCBrandLogo mark in the top bar (desktop; WEB unchanged). Full theme list not added: the selector already
+    has 5 themes + Follow system in 743 px (decision, see below).
+  - Kanban Board redone (FMX, VCL, WEB; old code moved to `LCL/Kanban Board`, LCL unchanged): sprint board, WIP
+    limits enforced, swimlanes, header counts, footer points, HTML cards with theme colours + priority Kind,
+    overdue in red, filter, drag/drop, rename in place, details pane (title, owner, priority, points, due), Delete
+    with undo toast. Form 1360 x 780, columns 230.
+  - C5 Listbox rewritten as a shared unit with a WEB project (mail client: folders with tinted theme icons, Fluent
+    pills, badges by kind; HTML message rows, lookup, search, sort, drag a message onto a folder; labels as a
+    TTMSFNCCheckedListBox).
+  - C6 Planner: items by status Kind instead of fixed colours; pumInplace + TTMSFNCPlannerToolBarPopup.
+  - C8 RichEditor: Save as HTML / RTF (HTMLIO, RTFIO + OpenFile), Find / Replace dialogs (non-modal), tool bar
+    pop-up.
+  - C9 HotSpotImage: "Edit hot spots..." opens TTMSFNCHotSpotImageEditor (ExecuteModal).
+  - All compiled D13 Win32 (FMX, VCL) and WEB where they have one; D12 not yet for these.
+
 ## Next (plan order)
 
-1. Heavy runs queued on 2026-11-10 behind another agent's heavy run (they wait for the machine-wide lock and start
-   by themselves; the logs say "waiting" until then): the Light/Dark screenshots of the 29 demos built before today
-   (log `%TEMP%/claude/democheck-shoot/shoot-existing.log`, results
-   `tms.fnc.uipack.extras-theming-demos/UnitTesting/TMS FNC Theming/results/demos-shots/existing/<demo>/`), then
-   the smoke start check of the six new demos (`%TEMP%/claude/democheck-new/smoke-new.log`) and their screenshots
-   (`.../shoot-new.log`, results `demos-shots/new/`). Read the logs, fix what fails, check the `summary.json`
-   contrast results.
-2. A3 Theming Dashboard update (brand picker, full theme list, NavigationPanel brand logo; merge the WEB Bootstrap
-   version), A13 and A14 (Core demos repository), B27, B28, E1 (waits for FNC Data 5A).
-3. C updates left: C1 Pickers (+ WEB port), C5 Listbox, C6 Planner, C8 RichEditor, C9 HotSpotImage, C10 SpreadGrid,
-   C11 Customers_FireDac_SQLite adapter options, C13 PrintIO (ExportAsOnScreen toggle; the forms are designed per
-   framework, use `tools/formedit.py`), C14 Core DataBinding. A7 lookup editor: `UseLookupEditor` exists only on the
-   adapter component (`FCatalogTree.DataAdapter.UseLookupEditor` after the source is assigned) and needs a lookup
-   `TField` (persistent fields) in the catalog dataset; desktop only.
-4. Run the gate `demos` step once heavy runs are allowed (about 230 projects x 2 compilers).
-5. LCL demos are not compiled anywhere (plan decision 7): extend `lcl_check.py` if they should be.
+1. Click-through results to read (scratch `.../scratchpad/res/click`, logs `click-batch1.log`): batch 1 ran VCL
+   Kanban, FMX Listbox, VCL Dashboard, FMX Planner, VCL HotSpotImage at 144 before the last Kanban fix. Re-run the
+   changed demos FMX + VCL at 96 and 144 (`click ... --ppi 96 144 --jobs 2`), then `stepsheet` and look at every
+   page. Open Kanban check: FMX cards clipped their title after Swimlanes off + theme switch (card height not
+   recomputed?) - confirm with the new run; if it stays, it is a Kanban product issue (report, do not fix here).
+2. Remaining C items: C1 Pickers (+ WEB port: BitmapSelector, CheckGroup(Picker), RadioGroup(Picker),
+   FontNamePicker, Spinner, csmTheme), C10 SpreadGrid (GridBinder, math libraries), C11 Customers_FireDac_SQLite
+   (adapter KeyFields, SortTarget/FilterTarget, FilterOptions, OnValidateCell, OnPostError), C13 PrintIO
+   (ExportAsOnScreen toggle), A7 lookup editor, then Core: A14, C14, B27 smoke; A1 Theme Studio, A2 Brand Studio.
+3. Quality pass: the B demos (B1-B28) are all "settings panel left + content": the user wants each demo a small
+   real application with its own layout (memory demo-quality). Redo them one by one like Kanban/Listbox, starting
+   with the ones the user is likely to open first (Avatar, Toast, Stepper, Breadcrumb, TagEdit, NumberBox).
+4. Full click-through campaign through `heavy.py` (all FMX + VCL demos x 96/120/144/192; about 75 demos x 8 runs x
+   2-4 min, so split in batches of ~10 demos), fix what it finds, D12 + WEB compile of everything, gate demos step.
+5. `code-review` (medium) on the branch diffs (demos, core demos, extras gate), fix findings. No merge, no push.
 
 ## Harmony findings
 
@@ -101,6 +132,14 @@ Things that did not work together nicely or were unintuitive while building the 
   there.
 - `TTMSFNCSampleData.ProjectTasks` has no dates (the Project Board builds its own): a `DueDate` would let the
   App Shell and the lists show a date column without a second data set.
+
+- Click-through (2026-11-11), product issues seen, not fixed here: FMX `TTMSFNCComboBox` drop-down opened in Dark
+  keeps a dark list background after switching back to Light while open (the text follows); FNC radio buttons draw
+  a hard rectangle as focus cue around the caption (VCL Knob demo, 144 DPI); Knob compact knobs lose their track
+  without ticks (looks like only a dot).
+- Orders Data Form (FMX): the record form's stack panel is taller than its panel at 1100 x 700 (Paid switch,
+  Priority order and the notes are clipped below) - demo fix needed (scroll box or shorter form).
+- An editable FMX TTMSFNCComboBox (csDropDown) does not open when its text is clicked, the VCL one does.
 
 ## Pitfalls
 
@@ -157,3 +196,10 @@ Things that did not work together nicely or were unintuitive while building the 
 - Classic grid: `Options.Filtering.DropDown`, `Options.Sorting.Mode`, `Cells[c, r]`, `Floats`, `Ints`,
   `ColumnWidths[c]`; the adapter is `TTMSFNCGridDatabaseAdapter` with `Grid`, `DataSource`, `Active`; PDF and print
   through `TTMSFNCGridPDFIO.Save(file)` and `TTMSFNCGridPrintIO.Print`, both with `Options.ExportAsOnScreen`.
+- The Bash tool collapses `\\` in heredocs: write Python patch scripts with the Write tool into the scratchpad
+  and run them (`python -I <script>`); never inline Windows paths with backslashes in a heredoc.
+- FMX: toggling Visible of several top-aligned controls one by one reorders them; show/hide a container instead.
+- Kanban: a column with WIPLimit > 0 draws count/limit in its header by itself; item Tag (not DataInteger) survives
+  a drop (Assign copies Tag). TTMSFNCProgressBar value text: `Layout.ShowValue`.
+- Old per-framework demos (Planner, HotSpotImage, RichEditor, PrintIO, Pickers, SpreadGrid) are ANSI (cp1252)
+  units: patch them with cp1252 and keep CRLF.
