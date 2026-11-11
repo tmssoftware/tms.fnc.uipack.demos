@@ -104,7 +104,7 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="..\..\Shared Code\Business Logic\Kanban Board\UBL.pas"/>
+        <DCCReference Include="..\..\Shared Code\Business Logic\Demo Layout\UDemoLayout.pas"/>
         <DCCReference Include="..\..\Shared Code\Form Unit\Kanban Board\UDemo.pas">
             <Form>Form1</Form>
             <FormType>dfm</FormType>

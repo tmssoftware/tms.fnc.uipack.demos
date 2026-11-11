@@ -2,7 +2,7 @@ program TMSWeb_FNCKanbanBoard;
 
 uses
   WEBLib.Forms,
-  UBL in '..\..\Shared Code\Business Logic\Kanban Board\UBL.pas',
+  UDemoLayout in '..\..\Shared Code\Business Logic\Demo Layout\UDemoLayout.pas',
   UDemo in '..\..\Shared Code\Form Unit\Kanban Board\UDemo.pas' {Form1: TWebForm} {*.html};
 
 {$R *.res}

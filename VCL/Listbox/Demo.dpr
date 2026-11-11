@@ -1,14 +1,15 @@
 program Demo;
 
 uses
-  System.StartUpCopy,
-  VCL.Forms,
-  UDemo in 'UDemo.pas' {Form130};
+  Vcl.Forms,
+  UDemoLayout in '..\..\Shared Code\Business Logic\Demo Layout\UDemoLayout.pas',
+  UDemo in '..\..\Shared Code\Form Unit\Listbox\UDemo.pas';
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Application.CreateForm(TForm130, Form130);
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
   Application.Run;
 end.

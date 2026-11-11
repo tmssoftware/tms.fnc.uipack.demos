@@ -2,7 +2,7 @@ program Demo;
 
 uses
   Vcl.Forms,
-  UBL in '..\..\Shared Code\Business Logic\Kanban Board\UBL.pas',
+  UDemoLayout in '..\..\Shared Code\Business Logic\Demo Layout\UDemoLayout.pas',
   UDemo in '..\..\Shared Code\Form Unit\Kanban Board\UDemo.pas';
 
 {$R *.res}

@@ -1,14 +1,15 @@
 unit UDemo;
 
-{ demo-colors: the item colours set in AddItems and the today / weekend colours of
-  DrawCustomPositionText and TMSFNCPlanner1BeforeDrawTimeText (the item colours are the subject) }
+{ demo-colors: the today / weekend colours of DrawCustomPositionText and TMSFNCPlanner1BeforeDrawTimeText.
+  The items take their colours from the theme through their status Kind (warning, info, success); double-click
+  an item to edit its text in place with the formatting tool bar of TTMSFNCPlannerToolBarPopup. }
 
 interface
 
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.TMSFNCGraphics,
-  FMX.TMSFNCPlanner, FMX.TMSFNCPlannerData, Math, FMX.StdCtrls, FMX.ListBox,
+  FMX.TMSFNCPlanner, FMX.TMSFNCPlannerData, FMX.TMSFNCPlannerToolBarPopup, Math, FMX.StdCtrls, FMX.ListBox,
   FMX.TMSFNCCustomControl, FMX.TMSFNCPlannerBase, DateUtils,
   FMX.TMSFNCCustomComponent, FMX.TMSFNCBitmapContainer, FMX.Objects,
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphicsTypes,
@@ -62,6 +63,7 @@ type
     procedure RadioButton2Change(Sender: TObject);
     procedure RadioButton3Change(Sender: TObject);
   private
+    FToolBarPopup: TTMSFNCPlannerToolBarPopup;
     { Private declarations }
   public
     { Public declarations }
@@ -90,7 +92,9 @@ begin
 
   TMSFNCPlanner1.Interaction.KeyboardInsertMode := pkimSelection;
   TMSFNCPlanner1.Interaction.MouseInsertMode := pmimDialogAfterSelection;
-  TMSFNCPlanner1.Interaction.UpdateMode := pumDialog;
+  TMSFNCPlanner1.Interaction.UpdateMode := pumInplace;
+  FToolBarPopup := TTMSFNCPlannerToolBarPopup.Create(Self);
+  FToolBarPopup.Planner := TMSFNCPlanner1;
   TMSFNCPlanner1.ModeSettings.StartTime := dt;
 
   TMSFNCPlanner1.TimeLineAppearance.LeftFont.Style := [TFontStyle.fsBold];
@@ -137,39 +141,27 @@ begin
 
   it := TMSFNCPlanner1.AddOrUpdateItem(Int(dt) + EncodeTime(6, 30, 0, 0), Int(dt) + EncodeTime(13, 0, 0, 0), 'Meeting with John',
     '<u>Necessities</u><br><ul><li>Notebook<li>Digital lineout<li>Model artwork</ul>');
-  it.Color := MakeGraphicsColor(255, 246, 210);
-  it.TitleColor := MakeGraphicsColor(255, 211, 39);
-  it.FontColor := MakeGraphicsColor(190, 165, 59);
+  it.Kind := tskWarning;
 
   it := TMSFNCPlanner1.AddOrUpdateItem(Int(dt) + c + EncodeTime(13, 30, 0, 0), Int(dt) + c + EncodeTime(16, 30, 0, 0), 'Presentation', 'The new A3');
   it.Resource := 2;
-  it.Color := MakeGraphicsColor(210, 239, 255);
-  it.TitleColor := MakeGraphicsColor(61, 185, 249);
-  it.FontColor := MakeGraphicsColor(17, 111, 159);
+  it.Kind := tskInfo;
 
   it := TMSFNCPlanner1.AddOrUpdateItem(Int(dt) + c + 1 + EncodeTime(20, 30, 0, 0), Int(dt) + c + 1 + EncodeTime(21, 30, 0, 0), 'Audi Conditions', '<ul><li>Update iOS application<li>Change Audi packs<li>Change online terms</ul>');
   it.Resource := 2;
-  it.Color := MakeGraphicsColor(210, 239, 255);
-  it.TitleColor := MakeGraphicsColor(61, 185, 249);
-  it.FontColor := MakeGraphicsColor(17, 111, 159);
+  it.Kind := tskInfo;
 
   it := TMSFNCPlanner1.AddOrUpdateItem(Int(dt) + c + 1 + EncodeTime(9, 30, 0, 0), Int(dt) + c + 1 + EncodeTime(12, 45, 0, 0), 'Audi - Mercedes fusion', 'Meeting with Bruno Fierens for approval<br><a href="http://www.tmssoftware.com">http://www.tmssoftware.com</a>');
   it.Resource := 2;
-  it.Color := MakeGraphicsColor(210, 239, 255);
-  it.TitleColor := MakeGraphicsColor(61, 185, 249);
-  it.FontColor := MakeGraphicsColor(17, 111, 159);
+  it.Kind := tskInfo;
 
   it := TMSFNCPlanner1.AddOrUpdateItem(Int(dt) + 1 + C + EncodeTime(5, 45, 0, 0), Int(dt) + 1 + c + EncodeTime(7, 35, 0, 0), 'Test drive',
     'Test drive of the new BMW i8');
-  it.Color := MakeGraphicsColor(255, 246, 210);
-  it.TitleColor := MakeGraphicsColor(255, 211, 39);
-  it.FontColor := MakeGraphicsColor(190, 165, 59);
+  it.Kind := tskWarning;
 
   it := TMSFNCPlanner1.AddOrUpdateItem(Int(dt) + 1 + C + EncodeTime(9, 30, 0, 0), Int(dt) + 1 + c + EncodeTime(11, 35, 0, 0), 'Reminder',
     'Trip to Brussels to present the future of BMW');
-  it.Color := MakeGraphicsColor(255, 246, 210);
-  it.TitleColor := MakeGraphicsColor(255, 211, 39);
-  it.FontColor := MakeGraphicsColor(190, 165, 59);
+  it.Kind := tskWarning;
 
   c := 0;
   if TMSFNCPlanner1.Mode = pmMultiResDay then
@@ -177,15 +169,11 @@ begin
 
   it := TMSFNCPlanner1.AddOrUpdateItem(Int(dt) + c + 6 + EncodeTime(12, 35, 0, 0), Int(dt) + c + 6 + EncodeTime(16, 50, 0, 0), 'Exposition', 'Mercedes exposition on the AMG GT Coupé');
   it.Resource := 1;
-  it.Color := MakeGraphicsColor(222, 255, 210);
-  it.TitleColor := MakeGraphicsColor(122, 223, 86);
-  it.FontColor := MakeGraphicsColor(114, 172, 93);
+  it.Kind := tskSuccess;
 
   it := TMSFNCPlanner1.AddOrUpdateItem(Int(dt) + c + 5 + EncodeTime(8, 35, 0, 0), Int(dt) + c + 5 + EncodeTime(10, 50, 0, 0), 'Meeting', 'Meeting with sponsors for 2015');
   it.Resource := 1;
-  it.Color := MakeGraphicsColor(222, 255, 210);
-  it.TitleColor := MakeGraphicsColor(122, 223, 86);
-  it.FontColor := MakeGraphicsColor(114, 172, 93);
+  it.Kind := tskSuccess;
 
   for I := 0 to TMSFNCPlanner1.Items.Count - 1 do
   begin

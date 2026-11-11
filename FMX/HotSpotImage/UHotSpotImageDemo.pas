@@ -9,7 +9,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes,
   FMX.TMSFNCCustomControl,
-  FMX.TMSFNCImage, FMX.TMSFNCHotSpotImage,
+  FMX.TMSFNCImage, FMX.TMSFNCHotSpotImage, FMX.TMSFNCHotSpotImageEditor,
   FMX.TMSFNCButton, FMX.TMSFNCHTMLText, FMX.TMSFNCPanel, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector;
 
 type
@@ -40,9 +40,12 @@ type
     procedure TMSFNCHotSpotImage1SelectedHotSpotChange(Sender: TObject;
       AIndex: Integer; var Allow: Boolean);
   private
+    FEditButton: TTMSFNCButton;
+    FEditor: TTMSFNCHotSpotImageEditor;
     Idx: integer;
     Score, Point: Single;
     Hints,Start: Boolean;
+    procedure EditButtonClick(Sender: TObject);
     { Private declarations }
   public
     { Public declarations }
@@ -124,6 +127,16 @@ procedure TForm2.FormCreate(Sender: TObject);
 var
   I: Integer;
 begin
+  { the run-time hot spot editor: draw, move and name the hot spots of the map, then play again }
+  FEditButton := TTMSFNCButton.Create(Self);
+  FEditButton.Parent := SettingsPanel;
+  FEditButton.Align := TAlignLayout.Top;
+  FEditButton.Margins.Assign(Button2.Margins);
+  FEditButton.Position.Y := Button2.Position.Y + Button2.Height + 1;
+  FEditButton.Height := Button2.Height;
+  FEditButton.Text := 'Edit hot spots...';
+  FEditButton.OnClick := EditButtonClick;
+
   Label1.Text := 'Welcome click the start button to test your knowledge on Europe capitals';
   Hints := True;
   for I := 0 to TMSFNCHotSpotImage1.HotSpots.Count - 1 do
@@ -225,6 +238,15 @@ begin
       end;
     end;
   end;
+end;
+
+procedure TForm2.EditButtonClick(Sender: TObject);
+begin
+  if Start then
+    Button1Click(Self);
+  if not Assigned(FEditor) then
+    FEditor := TTMSFNCHotSpotImageEditor.Create(Self);
+  FEditor.ExecuteModal(TMSFNCHotSpotImage1);
 end;
 
 end.

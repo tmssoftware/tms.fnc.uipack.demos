@@ -16,7 +16,9 @@
 
   Theming: the TTMSFNCThemeManager on the form (Scope tsApplication) themes every FNC control; the
   TTMSFNCThemeSelector and the TTMSFNCAccentSelector in the header switch the theme and its accent
-  by themselves (the accent selector hides in high contrast: HideInHighContrast).
+  by themselves (the accent selector hides in high contrast: HideInHighContrast). The brand picker next to
+  them loads one of the sample brands into the theme manager (TTMSFNCBrand.LoadPreset): the brand's Light
+  and Dark themes replace the theme, and a TTMSFNCBrandLogo in the top bar shows the brand's mark.
 
   This unit only reacts to the buttons, the filters and the lists. }
 
@@ -33,7 +35,7 @@ uses
   VCL.TMSFNCDataGridCell, VCL.TMSFNCDataGridData, VCL.TMSFNCDataGridBase, VCL.TMSFNCDataGridCore,
   VCL.TMSFNCDataGridRenderer, VCL.TMSFNCDataGrid, VCL.TMSFNCDataGridDatabaseAdapter, VCL.TMSFNCTreeViewBase,
   VCL.TMSFNCTreeViewData, VCL.TMSFNCCustomTreeView, VCL.TMSFNCTreeView, VCL.TMSFNCCheckedTreeView,
-  VCL.TMSFNCDataBinding;
+  VCL.TMSFNCDataBinding, VCL.TMSFNCBrand, VCL.TMSFNCBrandLogo;
   {$ENDIF}
   {$IFDEF FMX}
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics,
@@ -44,7 +46,7 @@ uses
   FMX.TMSFNCDataGridCell, FMX.TMSFNCDataGridData, FMX.TMSFNCDataGridBase, FMX.TMSFNCDataGridCore,
   FMX.TMSFNCDataGridRenderer, FMX.TMSFNCDataGrid, FMX.TMSFNCDataGridDatabaseAdapter, FMX.TMSFNCTreeViewBase,
   FMX.TMSFNCTreeViewData, FMX.TMSFNCCustomTreeView, FMX.TMSFNCTreeView, FMX.TMSFNCCheckedTreeView,
-  FMX.TMSFNCDataBinding;
+  FMX.TMSFNCDataBinding, FMX.TMSFNCBrand, FMX.TMSFNCBrandLogo;
   {$ENDIF}
 
 type
@@ -144,7 +146,11 @@ type
     procedure ProjectTreeNodeChecked(Sender: TObject; ANode: TTMSFNCTreeViewVirtualNode; AColumn: Integer);
   private
     FLoading: Boolean;
+    FBrandCombo: TTMSFNCComboBox;
+    FBrandLogo: TTMSFNCBrandLogo;
     procedure FillProjects;
+    procedure CreateBrandPicker;
+    procedure BrandSelected(Sender: TObject; AText: string; AItemIndex: Integer);
   end;
 
 var
@@ -167,9 +173,70 @@ uses
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   FillProjects;
+  CreateBrandPicker;
   { designed for 1440 x 1277: on a smaller screen the window fits the work area }
   if Height > Screen.WorkAreaHeight then
     SetBounds(Left, Round(Screen.WorkAreaTop), Width, Round(Screen.WorkAreaHeight));
+end;
+
+{ the brand picker left of the theme selector and the brand's mark in place of the app mark }
+procedure TForm1.CreateBrandPicker;
+var
+  names: TStringList;
+begin
+  FBrandCombo := TTMSFNCComboBox.Create(Self);
+  FBrandCombo.Parent := TopBar;
+  FBrandCombo.Style := csDropDownList;
+  {$IFDEF FMX}
+  FBrandCombo.SetBounds(ThemeSelector.Position.X - 176, ThemeSelector.Position.Y, 164, ThemeSelector.Height);
+  {$ELSE}
+  FBrandCombo.SetBounds(ThemeSelector.Left - Round(176 * CurrentPPI / 96), ThemeSelector.Top,
+    Round(164 * CurrentPPI / 96), ThemeSelector.Height);
+  {$ENDIF}
+  FBrandCombo.Anchors := [TAnchorKind.akTop, TAnchorKind.akRight];
+  FBrandCombo.Items.Add('No brand');
+  names := TTMSFNCBrand.PresetNames;
+  try
+    FBrandCombo.Items.AddStrings(names);
+  finally
+    names.Free;
+  end;
+  FBrandCombo.ItemIndex := 0;
+  FBrandCombo.OnItemSelected := BrandSelected;
+
+  FBrandLogo := TTMSFNCBrandLogo.Create(Self);
+  FBrandLogo.Parent := TopBar;
+  FBrandLogo.Kind := blkMark;
+  FBrandLogo.Align := AppMark.Align;
+  FBrandLogo.Margins.Assign(AppMark.Margins);
+  {$IFDEF FMX}
+  FBrandLogo.Position.X := AppMark.Position.X - 1;
+  {$ELSE}
+  FBrandLogo.AlignWithMargins := AppMark.AlignWithMargins;
+  FBrandLogo.Left := AppMark.Left - 1;
+  {$ENDIF}
+  FBrandLogo.Width := AppMark.Width;
+  FBrandLogo.Visible := False;
+end;
+
+procedure TForm1.BrandSelected(Sender: TObject; AText: string; AItemIndex: Integer);
+var
+  b: TTMSFNCBrand;
+begin
+  if AItemIndex <= 0 then
+    ThemeManager.Brand := nil
+  else
+  begin
+    b := TTMSFNCBrand.Create;
+    try
+      if b.LoadPreset(AText) then
+        ThemeManager.Brand := b;
+    finally
+      b.Free;
+    end;
+  end;
+  FBrandLogo.Visible := AItemIndex > 0;
+  AppMark.Visible := AItemIndex <= 0;
 end;
 
 { the detail card into the record (the binder shows the record again afterwards) }
