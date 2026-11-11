@@ -84,7 +84,7 @@ type
     FNotes: TTMSFNCHTMLText;
     FMoveButton: TTMSFNCButton;
     FDeleteButton: TTMSFNCButton;
-    FDetailControls: array of TControl;
+    FDetailBody: TTMSFNCPanel;
     FToast: TTMSFNCToast;
     FDeleted: TCard;
     FDeletedIndex: Integer;
@@ -227,6 +227,7 @@ begin
   FProgress := TTMSFNCProgressBar.Create(Self);
   FProgress.Parent := FToolBar;
   FLayout.Place(FProgress, daLeft, 160, 0, 22, 16, 22);
+  FProgress.Layout.ShowValue := False;
 
   { right to left: the last control placed on the right is the rightmost }
   FFilter := TTMSFNCEdit.Create(Self);
@@ -257,17 +258,17 @@ var
   I: Integer;
   row: TTMSFNCPanel;
 
-  procedure Remember(AControl: TControl);
-  begin
-    SetLength(FDetailControls, Length(FDetailControls) + 1);
-    FDetailControls[High(FDetailControls)] := AControl;
-  end;
-
   procedure Field(AControl: TControl; AHeight: Integer);
   begin
-    AControl.Parent := FDetails;
+    AControl.Parent := FDetailBody;
     FLayout.Place(AControl, daTop, AHeight, 16, 0, 16, 0);
-    Remember(AControl);
+  end;
+
+  function AddRow: TTMSFNCPanel;
+  begin
+    Result := FLayout.AddPanel(FDetailBody, daTop, 32, 16, 0, 16, 0);
+    Result.Fill.Kind := gfkNone;
+    Result.Stroke.Kind := gskNone;
   end;
 
 begin
@@ -275,12 +276,17 @@ begin
   FLayout.AddCaption(FDetails, 'Card');
   FEmpty := FLayout.AddText(FDetails, 'Select a card to see and change its details here.', 40);
 
-  Remember(FLayout.AddCaption(FDetails, 'Title', 8));
+  { the fields live in one panel that is shown or hidden as a whole: the order of the aligned fields stays }
+  FDetailBody := FLayout.AddPanel(FDetails, daClient, 0, 0, 0, 0, 0);
+  FDetailBody.Fill.Kind := gfkNone;
+  FDetailBody.Stroke.Kind := gskNone;
+
+  FLayout.AddCaption(FDetailBody, 'Title', 0);
   FTitleEdit := TTMSFNCEdit.Create(Self);
   Field(FTitleEdit, 32);
   FTitleEdit.OnChange := {$IFDEF WEBLIB}@{$ENDIF}TitleChanged;
 
-  Remember(FLayout.AddCaption(FDetails, 'Owner', 12));
+  FLayout.AddCaption(FDetailBody, 'Owner', 12);
   FOwnerCombo := TTMSFNCComboBox.Create(Self);
   Field(FOwnerCombo, 32);
   FOwnerCombo.Style := csDropDownList;
@@ -288,18 +294,15 @@ begin
     FOwnerCombo.Items.Add(Owners[I]);
   FOwnerCombo.OnItemSelected := {$IFDEF WEBLIB}@{$ENDIF}OwnerSelected;
 
-  Remember(FLayout.AddCaption(FDetails, 'Priority', 12));
+  FLayout.AddCaption(FDetailBody, 'Priority', 12);
   FPriority := TTMSFNCSegmentedControl.Create(Self);
   Field(FPriority, 32);
   for I := Low(Priorities) to High(Priorities) do
     FPriority.Items.AddItem(Priorities[I]);
   FPriority.OnChange := {$IFDEF WEBLIB}@{$ENDIF}PriorityChanged;
 
-  Remember(FLayout.AddCaption(FDetails, 'Story points and due date', 12));
-  row := FLayout.AddPanel(FDetails, daTop, 32, 16, 0, 16, 0);
-  row.Fill.Kind := gfkNone;
-  row.Stroke.Kind := gskNone;
-  Remember(row);
+  FLayout.AddCaption(FDetailBody, 'Story points and due date', 12);
+  row := AddRow;
   FPoints := TTMSFNCNumberBox.Create(Self);
   FPoints.Parent := row;
   FLayout.Place(FPoints, daLeft, 80, 0, 0, 8, 0);
@@ -312,14 +315,11 @@ begin
   FLayout.Place(FDue, daClient, 0, 0, 0, 0, 0);
   FDue.OnDateSelected := {$IFDEF WEBLIB}@{$ENDIF}DueSelected;
 
-  Remember(FLayout.AddCaption(FDetails, 'Notes', 12));
-  FNotes := FLayout.AddText(FDetails, '', 40);
-  Remember(FNotes);
+  FLayout.AddCaption(FDetailBody, 'Notes', 12);
+  FNotes := FLayout.AddText(FDetailBody, '', 40);
 
-  row := FLayout.AddPanel(FDetails, daTop, 32, 16, 16, 16, 0);
-  row.Fill.Kind := gfkNone;
-  row.Stroke.Kind := gskNone;
-  Remember(row);
+  row := AddRow;
+  row.Margins.Top := FLayout.Size(16);
   FMoveButton := FLayout.AddButton(row, 'Move to next column', {$IFDEF WEBLIB}@{$ENDIF}MoveClick);
   FLayout.Place(FMoveButton, daClient, 0, 0, 0, 8, 0);
   FDeleteButton := FLayout.AddButton(row, 'Delete', {$IFDEF WEBLIB}@{$ENDIF}DeleteClick);
@@ -506,12 +506,11 @@ end;
 
 procedure TForm1.ShowCard(AItem: TTMSFNCKanbanBoardItem);
 var
-  I, k: Integer;
+  k: Integer;
 begin
   k := CardOf(AItem);
   FEmpty.Visible := k < 0;
-  for I := 0 to High(FDetailControls) do
-    FDetailControls[I].Visible := k >= 0;
+  FDetailBody.Visible := k >= 0;
   if k < 0 then
     Exit;
 

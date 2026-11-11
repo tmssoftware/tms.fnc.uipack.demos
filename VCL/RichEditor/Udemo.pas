@@ -9,7 +9,8 @@ uses
   VCL.TMSFNCScrollControl, VCL.TMSFNCRichEditorBase, VCL.TMSFNCRichEditor,
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCCustomComponent, VCL.TMSFNCPDFIO,
   VCL.TMSFNCRichEditorPDFIO, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes,
-  VCL.TMSFNCRichEditorRuler, VCL.TMSFNCPrintIO, VCL.TMSFNCRichEditorPrintIO,
+  VCL.TMSFNCRichEditorRuler, VCL.TMSFNCPrintIO, VCL.TMSFNCRichEditorPrintIO, VCL.TMSFNCRichEditorIO, VCL.TMSFNCRichEditorToolBarPopup,
+  VCL.TMSFNCFindDialog, VCL.TMSFNCReplaceDialog,
   VCL.TMSFNCButton, VCL.TMSFNCHTMLText, VCL.TMSFNCPanel, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector, VCL.TMSFNCListBox;
 
 type
@@ -40,6 +41,21 @@ type
       APageIndex: Integer; var AFooter: string);
     procedure Button2Click(Sender: TObject);
   private
+    FHTMLIO: TTMSFNCRichEditorHTMLIO;
+    FRTFIO: TTMSFNCRichEditorRTFIO;
+    FToolBarPopup: TTMSFNCRichEditorToolBarPopup;
+    FFindDialog: TTMSFNCFindDialog;
+    FReplaceDialog: TTMSFNCReplaceDialog;
+    procedure AddSideButton(const AText: string; ARow, ACol: Integer; AOnClick: TNotifyEvent);
+    procedure SaveHTMLClick(Sender: TObject);
+    procedure SaveRTFClick(Sender: TObject);
+    procedure FindClick(Sender: TObject);
+    procedure ReplaceClick(Sender: TObject);
+    procedure DoFind(Sender: TObject; AFindText: string; var AFound: Boolean);
+    procedure DoFindNext(Sender: TObject; AFindText: string; var AFound: Boolean);
+    procedure DoReplaceFind(Sender: TObject; AFindText: string);
+    procedure DoReplace(Sender: TObject; AFindText, AReplaceText: string);
+    procedure DoReplaceAll(Sender: TObject; AFindText, AReplaceText: string);
     { Private declarations }
   public
     { Public declarations }
@@ -86,6 +102,26 @@ begin
     ListBox1.AddItem(s);
   TMSFNCRichEditorPDFIO1.Options.OpenInPDFReader := True;
   TMSFNCRichEditorPDFIO1.Options.Header := 'TMS FNC RichEditor PDF Export';
+
+  { HTML and RTF files, find and replace, and a formatting tool bar that pops up at a selection }
+  FHTMLIO := TTMSFNCRichEditorHTMLIO.Create(Self);
+  FHTMLIO.RichEditor := TMSFNCRichEditor1;
+  FRTFIO := TTMSFNCRichEditorRTFIO.Create(Self);
+  FRTFIO.RichEditor := TMSFNCRichEditor1;
+  FToolBarPopup := TTMSFNCRichEditorToolBarPopup.Create(Self);
+  FToolBarPopup.RichEditor := TMSFNCRichEditor1;
+  FFindDialog := TTMSFNCFindDialog.Create(Self);
+  FFindDialog.OnFind := DoFind;
+  FFindDialog.OnFindNext := DoFindNext;
+  FReplaceDialog := TTMSFNCReplaceDialog.Create(Self);
+  FReplaceDialog.OnFind := DoReplaceFind;
+  FReplaceDialog.OnFindNext := DoReplaceFind;
+  FReplaceDialog.OnReplace := DoReplace;
+  FReplaceDialog.OnReplaceAll := DoReplaceAll;
+  AddSideButton('Save as HTML', 0, 0, SaveHTMLClick);
+  AddSideButton('Save as RTF', 0, 1, SaveRTFClick);
+  AddSideButton('Find...', 1, 0, FindClick);
+  AddSideButton('Replace...', 1, 1, ReplaceClick);
 
   TMSFNCRichEditorPrintIO1.RichEditor := TMSFNCRichEditor1;
 end;
@@ -289,6 +325,70 @@ procedure TForm1.TMSFNCRichEditorPDFIO1GetFooter(Sender, AExportObject: TObject;
   APageIndex: Integer; var AFooter: string);
 begin
   AFooter := 'Page ' + IntToStr(APageIndex);
+end;
+
+
+{ two buttons per row under Print, in the size the designer gave Print (scaled with the form) }
+procedure TForm1.AddSideButton(const AText: string; ARow, ACol: Integer; AOnClick: TNotifyEvent);
+var
+  b: TTMSFNCButton;
+  s, w: Single;
+begin
+  b := TTMSFNCButton.Create(Self);
+  b.Parent := Panel2;
+  s := Button2.Height / 32;
+  w := (Button2.Width - 8 * s) / 2;
+  b.SetBounds(Button2.Left + Round(ACol * (w + 8 * s)), Button2.Top + Round((ARow + 1) * 40 * s), Round(w),
+    Button2.Height);
+  b.Text := AText;
+  b.OnClick := AOnClick;
+end;
+
+procedure TForm1.SaveHTMLClick(Sender: TObject);
+begin
+  FHTMLIO.Save('richeditorexport.html');
+  TTMSFNCUtils.OpenFile('richeditorexport.html');
+end;
+
+procedure TForm1.SaveRTFClick(Sender: TObject);
+begin
+  FRTFIO.Save('richeditorexport.rtf');
+  TTMSFNCUtils.OpenFile('richeditorexport.rtf');
+end;
+
+procedure TForm1.FindClick(Sender: TObject);
+begin
+  FFindDialog.Execute(False);
+end;
+
+procedure TForm1.ReplaceClick(Sender: TObject);
+begin
+  FReplaceDialog.Execute(False);
+end;
+
+procedure TForm1.DoFind(Sender: TObject; AFindText: string; var AFound: Boolean);
+begin
+  AFound := TMSFNCRichEditor1.FindFirst(AFindText);
+end;
+
+procedure TForm1.DoFindNext(Sender: TObject; AFindText: string; var AFound: Boolean);
+begin
+  AFound := TMSFNCRichEditor1.FindNext;
+end;
+
+procedure TForm1.DoReplaceFind(Sender: TObject; AFindText: string);
+begin
+  TMSFNCRichEditor1.Find(AFindText);
+end;
+
+procedure TForm1.DoReplace(Sender: TObject; AFindText, AReplaceText: string);
+begin
+  TMSFNCRichEditor1.Replace(AFindText, AReplaceText);
+end;
+
+procedure TForm1.DoReplaceAll(Sender: TObject; AFindText, AReplaceText: string);
+begin
+  TMSFNCRichEditor1.ReplaceAll(AFindText, AReplaceText);
 end;
 
 end.

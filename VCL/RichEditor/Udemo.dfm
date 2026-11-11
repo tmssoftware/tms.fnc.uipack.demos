@@ -68,7 +68,7 @@ object Form1: TForm1
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
-      Text = 'Edit formatted text, load a sample, export the document to PDF or print it'
+      Text = 'Edit formatted text, load a sample, find and replace, save as HTML or RTF, export to PDF or print'
     end
   end
   object Panel2: TTMSFNCPanel
