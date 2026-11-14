@@ -1,4 +1,5 @@
 # Brand Studio: the sample brands one after the other, light / dark of the brand, the brand title bar off and on,
+skip|Edit the brand...
 # CSS tokens, the brand editor, no brand again.
 click|TTMSFNCListBox#1|tl:80,42
 click|TTMSFNCListBox#1|tl:80,70
@@ -13,7 +14,7 @@ click|Edit the brand...
 wait|1500
 shot|brand editor
 key|escape
-theme|Fluent Dark
+segment|TTMSFNCThemeSelector#1|1|2
 segment|TTMSFNCSegmentedControl#1|0|3
-theme|Fluent Light
+segment|TTMSFNCThemeSelector#1|0|2
 click|TTMSFNCListBox#1|tl:80,14

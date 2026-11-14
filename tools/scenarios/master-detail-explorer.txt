@@ -17,7 +17,7 @@ theme|Fluent Dark
 theme|Fluent Light
 segment|TTMSFNCSegmentedControl#1|0|4
 segment|TTMSFNCSegmentedControl#2|2|3
-dbl|TTMSFNCDataGrid#1|tl:120,53
+click|TTMSFNCDataGrid#1|tl:10,53
 wait|600
 shot|drilled into a customer
 theme|Fluent Dark

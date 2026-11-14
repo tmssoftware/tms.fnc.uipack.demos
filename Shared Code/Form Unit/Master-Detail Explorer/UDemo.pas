@@ -158,9 +158,10 @@ begin
   { customers, the master table }
   names := TTMSFNCSampleData.Customers;
   FCustomers := FLayout.NewDataSet;
-  FCustomers.FieldDefs.Add('CustomerID', ftInteger);
+  { the visible fields first: the expander of a master row is drawn in the first column }
   FCustomers.FieldDefs.Add('Company', ftString, 40);
   FCustomers.FieldDefs.Add('City', ftString, 30);
+  FCustomers.FieldDefs.Add('CustomerID', ftInteger);
   FLayout.OpenDataSet(FCustomers);
   for I := 0 to High(names) do
   begin
@@ -176,12 +177,12 @@ begin
 
   { orders, linked to the customers: the grid finds this detail table through MasterSource }
   FOrders := FLayout.NewDataSet;
-  FOrders.FieldDefs.Add('OrderID', ftInteger);
-  FOrders.FieldDefs.Add('CustomerID', ftInteger);
   FOrders.FieldDefs.Add('Number', ftString, 10);
   FOrders.FieldDefs.Add('OrderDate', ftDate);
   FOrders.FieldDefs.Add('Status', ftString, 20);
   FOrders.FieldDefs.Add('Total', ftFloat);
+  FOrders.FieldDefs.Add('OrderID', ftInteger);
+  FOrders.FieldDefs.Add('CustomerID', ftInteger);
   FLayout.OpenDataSet(FOrders);
   orders := TTMSFNCSampleData.Orders;
   for I := 0 to High(orders) do
@@ -211,11 +212,11 @@ begin
 
   { order lines, the nested level under an order }
   FLines := FLayout.NewDataSet;
-  FLines.FieldDefs.Add('LineID', ftInteger);
-  FLines.FieldDefs.Add('OrderID', ftInteger);
   FLines.FieldDefs.Add('Product', ftString, 30);
   FLines.FieldDefs.Add('Quantity', ftInteger);
   FLines.FieldDefs.Add('Price', ftFloat);
+  FLines.FieldDefs.Add('LineID', ftInteger);
+  FLines.FieldDefs.Add('OrderID', ftInteger);
   FLayout.OpenDataSet(FLines);
   lineID := 0;
   for I := 0 to High(orders) do
@@ -298,8 +299,8 @@ begin
   FTemplate.OnChange := {$IFDEF WEBLIB}@{$ENDIF}SettingChanged;
   FPlacement := TTMSFNCSegmentedControl.Create(Self);
   FPlacement.Parent := FBar;
-  FLayout.Place(FPlacement, daLeft, 280, 0, 4, 12, 4);
-  FPlacement.Items.AddItem('Under the row');
+  FLayout.Place(FPlacement, daLeft, 300, 0, 4, 12, 4);
+  FPlacement.Items.AddItem('Inline');
   FPlacement.Items.AddItem('Detail view');
   FPlacement.Items.AddItem('Drill-down');
   FPlacement.ItemIndex := 0;
@@ -584,11 +585,12 @@ begin
   try
     g.MasterDetail.Template := t;
     g.MasterDetail.Placement := p;
-    FView.Visible := p = mdpTarget;
-    if FView.Visible then
+    { the link first: unlinking a target gives it back the state it had }
+    if p = mdpTarget then
       g.MasterDetail.Target := FView
     else
       g.MasterDetail.Target := nil;
+    FView.Visible := p = mdpTarget;
 
     { a template of its own for the order lines (the second level) }
     g.MasterDetail.Levels.Clear;
@@ -631,7 +633,7 @@ begin
 
   case p of
     mdpTarget: s := 'The detail view on the right follows the current customer. ';
-    mdpDrillDown: s := 'Double-click a customer: its orders take the place of the list, the breadcrumb leads back. ';
+    mdpDrillDown: s := 'Click the arrow of a customer: its orders take the place of the list, the breadcrumb leads back. ';
   else
     s := 'Click the arrow of a customer to open its orders under the row. ';
   end;

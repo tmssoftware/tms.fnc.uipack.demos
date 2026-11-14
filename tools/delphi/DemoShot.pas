@@ -414,6 +414,7 @@ var
   Clicking: Boolean;
   StepLog: TJSONArray;
   CurStep: TJSONObject;
+  ScenarioSkips: TStringList;
   ShellLog: TJSONArray;
   StepPre: TList<HWND>;
   CurAct: string;
@@ -870,6 +871,11 @@ begin
   for s in SkipCaptions do
     if SameText(Trim(ACaption), s) or SameText(Trim(StringReplace(ACaption, '&', '', [rfReplaceAll])), s) then
       Exit(True);
+  { a scenario leaves a control to itself (skip|<caption>): a window the scenario opens once is enough }
+  if Assigned(ScenarioSkips) then
+    for s in ScenarioSkips do
+      if SameText(Trim(ACaption), s) then
+        Exit(True);
   Result := False;
 end;
 
@@ -1511,6 +1517,7 @@ end;
     hold|<target>|<ms>        press, a shot while pressed, release
     type|<text>   key|<enter|escape|tab|down|up|left|right|home|end|f2|delete|space|ctrl+z>[|<count>]
     theme|<theme name>   wait|<ms>   shot|<label>
+    skip|<caption>            the click pass after the scenario leaves this control alone
   Every action is followed by a shot; a target that is not there is logged as missing. }
 
 procedure CollectVisible(AObj: TObject; AList: TList<TControl>);
@@ -1732,6 +1739,13 @@ begin
       end
       else if (verb = 'theme') and (Length(f) > 1) then
         SetTheme(AForm, f[1])
+      else if (verb = 'skip') and (Length(f) > 1) then
+      begin
+        if not Assigned(ScenarioSkips) then
+          ScenarioSkips := TStringList.Create;
+        ScenarioSkips.Add(Trim(f[1]));
+        Continue;
+      end
       else if (verb = 'wait') and (Length(f) > 1) then
       begin
         Pump(StrToIntDef(f[1], 500));

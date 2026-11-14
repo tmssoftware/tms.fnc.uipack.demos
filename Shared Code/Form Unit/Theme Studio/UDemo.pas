@@ -139,8 +139,8 @@ begin
   FDensity.Parent := FSettings;
   FLayout.Place(FDensity, daTop, 32, 16, 0, 16, 6);
   FDensity.Items.AddItem('Compact');
-  FDensity.Items.AddItem('Standard');
-  FDensity.Items.AddItem('Comfortable');
+  FDensity.Items.AddItem('Normal');
+  FDensity.Items.AddItem('Roomy');
   FDensity.ItemIndex := 1;
   FDensity.OnChange := SettingChanged;
   FTitleBar := TTMSFNCSegmentedControl.Create(Self);
@@ -340,10 +340,13 @@ begin
     FThemes.Items.Clear;
     for I := 0 to names.Count - 1 do
     begin
+      { names with a tilde are internal (the preview of an open theme editor) }
+      if Copy(names[I], 1, 1) = '~' then
+        Continue;
       it := FThemes.Items.Add;
       it.Text := names[I];
       if SameText(names[I], ThemeManager.Theme) then
-        FThemes.ItemIndex := I;
+        FThemes.ItemIndex := FThemes.Items.Count - 1;
     end;
   finally
     FThemes.EndUpdate;
