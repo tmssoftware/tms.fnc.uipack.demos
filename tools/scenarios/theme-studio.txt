@@ -1,0 +1,21 @@
+# Theme Studio: several themes from the list, the densities, the theme title bar, the accent of Windows,
+# standard controls under every theme, the theme editor.
+click|TTMSFNCListBox#1|tl:80,13
+click|TTMSFNCListBox#1|tl:80,39
+click|TTMSFNCListBox#1|tl:80,65
+click|TTMSFNCListBox#1|tl:80,91
+click|TTMSFNCListBox#1|tl:80,117
+wheel|TTMSFNCListBox#1
+click|TTMSFNCListBox#1|tl:80,117
+segment|TTMSFNCSegmentedControl#1|0|3
+segment|TTMSFNCSegmentedControl#1|2|3
+segment|TTMSFNCSegmentedControl#1|1|3
+segment|TTMSFNCSegmentedControl#2|1|2
+click|The accent of Windows
+click|... under every theme
+click|Edit the theme...
+wait|1500
+shot|theme editor
+key|escape
+theme|Fluent Dark
+theme|Fluent Light
