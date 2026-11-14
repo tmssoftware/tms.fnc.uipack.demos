@@ -14,9 +14,6 @@ segment|TTMSFNCSegmentedControl#1|1|3
 segment|TTMSFNCSegmentedControl#2|1|2
 click|The accent of Windows
 click|... under every theme
-click|Edit the theme...
-wait|1500
-shot|theme editor
-key|escape
+# the theme editor is opened by hand only: it does not close on Esc or WM_CLOSE (finding for the product)
 segment|TTMSFNCThemeSelector#1|1|2
 segment|TTMSFNCThemeSelector#1|0|2

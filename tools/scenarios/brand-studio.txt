@@ -10,10 +10,7 @@ segment|TTMSFNCSegmentedControl#1|1|3
 click|Title bar in the brand colour
 click|Title bar in the brand colour
 click|Import CSS design tokens
-click|Edit the brand...
-wait|1500
-shot|brand editor
-key|escape
+# the brand editor is opened by hand only (designer form, closed through its buttons)
 segment|TTMSFNCThemeSelector#1|1|2
 segment|TTMSFNCSegmentedControl#1|0|3
 segment|TTMSFNCThemeSelector#1|0|2
