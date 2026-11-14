@@ -1,0 +1,16 @@
+# SpreadGrid Workbook: a total and its formula, the rates sheet, a new rate typed in, back to the budget, formulas
+# shown in the cells.
+click|TTMSFNCSpreadGrid#1|tl:200,150
+click|TTMSFNCSpreadGrid#1|tl:200,240
+segment|TTMSFNCSegmentedControl#1|1|2
+dbl|TTMSFNCSpreadGrid#1|tl:230,60
+key|ctrl+a
+type|1.25
+key|enter
+segment|TTMSFNCSegmentedControl#1|0|2
+click|TTMSFNCSpreadGrid#1|tl:200,150
+click|Show formulas in the cells
+theme|Fluent Dark
+click|Show formulas in the cells
+theme|Fluent Light
+click|Start again
