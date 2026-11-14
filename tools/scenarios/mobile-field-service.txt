@@ -1,0 +1,27 @@
+# Mobile Field Service: on a phone a job opens in place of the list; the breadcrumb leads back; the tablet
+# expands under the row; full width shows every column; customers tree with its breadcrumb; parts search.
+dbl|TTMSFNCDataGrid#1|tl:40,66
+wait|700
+shot|job opened on the phone
+click|TTMSFNCDataGrid#1|tl:30,15
+click|Tablet (768 px)
+click|TTMSFNCDataGrid#1|tl:10,66
+wait|500
+shot|job under the row on a tablet
+click|Full width
+click|Mobile preset: 44 px rows
+click|Mobile preset: 44 px rows
+click|Hide columns that do not fit
+click|Hide columns that do not fit
+click|Phone (390 px)
+segment|TTMSFNCSegmentedControl#1|1|3
+click|TTMSFNCTreeView#1|tl:60,22
+click|TTMSFNCTreeView#1|tl:90,66
+click|TTMSFNCBreadcrumb#1|tl:30,18
+segment|TTMSFNCSegmentedControl#1|2|3
+click|TTMSFNCEdit#1
+type|filter
+theme|Fluent Dark
+key|escape
+theme|Fluent Light
+segment|TTMSFNCSegmentedControl#1|0|3

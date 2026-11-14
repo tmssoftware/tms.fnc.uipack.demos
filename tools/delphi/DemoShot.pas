@@ -1501,6 +1501,255 @@ begin
         Exit(True);
 end;
 
+{ ---- scenario: a person-like sequence of a demo (DEMOSHOT_SCENARIO, tools/scenarios/<demo>.txt) ----
+
+  One action per line, fields separated by '|'; '#' starts a comment. A target is a component name, 'Class#n' (the
+  n-th visible control of that class, 1-based, in the order of the form) or the start of a caption.
+    click|<target>[|dx,dy]   dbl|<target>[|dx,dy]   right|<target>   wheel|<target>
+                              dx,dy: 96 DPI units from the centre; tl:x,y from the top left corner
+    segment|<target>|<i>|<n>  the i-th (0-based) of n equal parts of the control, from the left
+    hold|<target>|<ms>        press, a shot while pressed, release
+    type|<text>   key|<enter|escape|tab|down|up|left|right|home|end|f2|delete|space|ctrl+z>[|<count>]
+    theme|<theme name>   wait|<ms>   shot|<label>
+  Every action is followed by a shot; a target that is not there is logged as missing. }
+
+procedure CollectVisible(AObj: TObject; AList: TList<TControl>);
+var
+  I: Integer;
+begin
+  {$IFDEF DEMOSHOT_FMX}
+  for I := 0 to TFmxObject(AObj).ChildrenCount - 1 do
+    if TFmxObject(AObj).Children[I] is TControl then
+    begin
+      if not TControl(TFmxObject(AObj).Children[I]).Visible then
+        Continue;
+      AList.Add(TControl(TFmxObject(AObj).Children[I]));
+      CollectVisible(TFmxObject(AObj).Children[I], AList);
+    end;
+  {$ELSE}
+  for I := 0 to TWinControl(AObj).ControlCount - 1 do
+    if TWinControl(AObj).Controls[I].Visible then
+    begin
+      AList.Add(TWinControl(AObj).Controls[I]);
+      if TWinControl(AObj).Controls[I] is TWinControl then
+        CollectVisible(TWinControl(AObj).Controls[I], AList);
+    end;
+  {$ENDIF}
+end;
+
+function FindTarget(AForm: TCommonCustomForm; const ASpec: string): TControl;
+var
+  all: TList<TControl>;
+  c: TControl;
+  cls: string;
+  n, p: Integer;
+begin
+  Result := nil;
+  all := TList<TControl>.Create;
+  try
+    CollectVisible(AForm, all);
+    p := Pos('#', ASpec);
+    if p > 0 then
+    begin
+      cls := Copy(ASpec, 1, p - 1);
+      n := StrToIntDef(Copy(ASpec, p + 1, 5), 1);
+      for c in all do
+        if SameText(c.ClassName, cls) then
+        begin
+          Dec(n);
+          if n = 0 then
+            Exit(c);
+        end;
+      Exit;
+    end;
+    for c in all do
+      if SameText(c.Name, ASpec) then
+        Exit(c);
+    for c in all do
+      if (ASpec <> '') and SameText(Copy(CaptionOf(c), 1, Length(ASpec)), ASpec) then
+        Exit(c);
+  finally
+    all.Free;
+  end;
+end;
+
+function KeyOf(const AName: string; out ACtrl: Boolean): Word;
+var
+  n: string;
+begin
+  n := LowerCase(AName);
+  ACtrl := n.StartsWith('ctrl+');
+  if ACtrl then
+    n := Copy(n, 6, MaxInt);
+  if n = 'enter' then Result := VK_RETURN
+  else if n = 'escape' then Result := VK_ESCAPE
+  else if n = 'tab' then Result := VK_TAB
+  else if n = 'down' then Result := VK_DOWN
+  else if n = 'up' then Result := VK_UP
+  else if n = 'left' then Result := VK_LEFT
+  else if n = 'right' then Result := VK_RIGHT
+  else if n = 'home' then Result := VK_HOME
+  else if n = 'end' then Result := VK_END
+  else if n = 'f2' then Result := VK_F2
+  else if n = 'delete' then Result := VK_DELETE
+  else if n = 'space' then Result := VK_SPACE
+  else if Length(n) = 1 then Result := Ord(UpCase(n[1]))
+  else Result := 0;
+end;
+
+procedure RunScenario(AForm: TCommonCustomForm; const AFile: string; ALog: TJSONArray);
+var
+  lines: TStringList;
+  line, verb: string;
+  f: TArray<string>;
+  c: TControl;
+  step: TJSONObject;
+  dx, dy, I: Integer;
+  r: TRect;
+  w: HWND;
+  pt: TPoint;
+  ctrl: Boolean;
+  k: Word;
+
+  { an offset at 96 DPI from the centre of the target, or from its top left corner with 'tl:' }
+  procedure Offset(AIndex: Integer);
+  var
+    xy: TArray<string>;
+    s: string;
+    fromTopLeft: Boolean;
+    tr: TRect;
+  begin
+    dx := 0;
+    dy := 0;
+    if Length(f) > AIndex then
+    begin
+      s := Trim(f[AIndex]);
+      fromTopLeft := s.StartsWith('tl:');
+      if fromTopLeft then
+        s := Copy(s, 4, MaxInt);
+      xy := s.Split([',']);
+      if Length(xy) = 2 then
+      begin
+        dx := StrToIntDef(Trim(xy[0]), 0);
+        dy := StrToIntDef(Trim(xy[1]), 0);
+        {$IFNDEF DEMOSHOT_FMX}
+        { the VCL form is in pixels of the emulated DPI; FMX works in logical units }
+        if ClickPPI > 96 then
+        begin
+          dx := MulDiv(dx, ClickPPI, 96);
+          dy := MulDiv(dy, ClickPPI, 96);
+        end;
+        {$ENDIF}
+        if fromTopLeft then
+        begin
+          tr := FormRect(c);
+          dx := dx - tr.Width div 2;
+          dy := dy - tr.Height div 2;
+        end;
+      end;
+    end;
+  end;
+
+begin
+  lines := TStringList.Create;
+  try
+    lines.LoadFromFile(AFile, TEncoding.UTF8);
+    for line in lines do
+    begin
+      if (Trim(line) = '') or Trim(line).StartsWith('#') then
+        Continue;
+      if not IsWindow(MainWnd) then
+        Break;
+      f := Trim(line).Split(['|']);
+      verb := LowerCase(f[0]);
+      step := TJSONObject.Create;
+      CurStep := step;
+      step.AddPair('key', 'scenario|' + Trim(line));
+      step.AddPair('scenario', Trim(line));
+      Phases := TJSONArray.Create;
+      step.AddPair('phases', Phases);
+      ALog.AddElement(step);
+      StepPre.Free;
+      StepPre := ExtraWindows;
+      c := nil;
+      if (verb = 'click') or (verb = 'dbl') or (verb = 'right') or (verb = 'wheel') or (verb = 'segment') or
+        (verb = 'hold') then
+      begin
+        if Length(f) > 1 then
+          c := FindTarget(AForm, f[1]);
+        if not Assigned(c) then
+        begin
+          step.AddPair('missing', Copy(line, 1, 120));
+          Continue;
+        end;
+        step.AddPair('class', c.ClassName);
+        step.AddPair('text', CaptionOf(c));
+      end;
+      if verb = 'click' then
+      begin
+        Offset(2);
+        Mouse(c, maClick, dx, dy);
+      end
+      else if verb = 'dbl' then
+      begin
+        Offset(2);
+        Mouse(c, maDouble, dx, dy);
+      end
+      else if verb = 'right' then
+        Mouse(c, maRight)
+      else if verb = 'wheel' then
+        Mouse(c, maWheel)
+      else if (verb = 'segment') and (Length(f) > 3) then
+      begin
+        r := FormRect(c);
+        I := StrToIntDef(f[2], 0);
+        dx := Round((I + 0.5) * r.Width / Max(1, StrToIntDef(f[3], 1)) - r.Width / 2);
+        Mouse(c, maClick, dx, 0);
+      end
+      else if verb = 'hold' then
+      begin
+        TargetPoint(c, 0, 0, w, pt);
+        PostMessage(w, WM_MOUSEMOVE, 0, MakeLParam(Word(pt.X), Word(pt.Y)));
+        PostMessage(w, WM_LBUTTONDOWN, MK_LBUTTON, MakeLParam(Word(pt.X), Word(pt.Y)));
+        if Length(f) > 2 then
+          Pump(StrToIntDef(f[2], 600))
+        else
+          Pump(600);
+        Settle('held', True);
+        PostMessage(w, WM_LBUTTONUP, 0, MakeLParam(Word(pt.X), Word(pt.Y)));
+      end
+      else if (verb = 'type') and (Length(f) > 1) then
+        TypeText(f[1])
+      else if (verb = 'key') and (Length(f) > 1) then
+      begin
+        k := KeyOf(f[1], ctrl);
+        if Length(f) > 2 then
+          I := StrToIntDef(f[2], 1)
+        else
+          I := 1;
+        if k <> 0 then
+          Keys(k, ctrl, False, I);
+      end
+      else if (verb = 'theme') and (Length(f) > 1) then
+        SetTheme(AForm, f[1])
+      else if (verb = 'wait') and (Length(f) > 1) then
+      begin
+        Pump(StrToIntDef(f[1], 500));
+        Continue;
+      end
+      else if verb <> 'shot' then
+      begin
+        step.AddPair('unknown', verb);
+        Continue;
+      end;
+      Settle(Trim(line));
+    end;
+  finally
+    lines.Free;
+    CurStep := nil;
+  end;
+end;
+
 procedure RunClick(AForm: TCommonCustomForm);
 var
   res: TJSONObject;
@@ -1547,6 +1796,13 @@ begin
     res.AddPair('height', TJSONNumber.Create(Round(AForm.ClientHeight)));
     CaptureAll(nil, 'light');
     res.AddPair('geometryLight', GeometryOf(AForm));
+
+    { the demo's own sequence first, from its start state }
+    if GetEnvironmentVariable('DEMOSHOT_SCENARIO') <> '' then
+    begin
+      RunScenario(AForm, GetEnvironmentVariable('DEMOSHOT_SCENARIO'), StepLog);
+      SetTheme(AForm, 'Fluent Light');
+    end;
 
     { every reachable control once; controls a click revealed first }
     steps := 0;

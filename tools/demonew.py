@@ -159,6 +159,10 @@ def main():
     ap.add_argument("--no-web", action="store_true", help="FMX and VCL only")
     ap.add_argument("--data", action="store_true", help="add the dataset units to the uses clauses")
     args = ap.parse_args()
+    for text in (args.name, args.title or "", args.description):
+        if "'" in text or '"' in text:
+            # copied as is into the .dfm/.fmx strings and the index.html meta: a quote breaks the form resource
+            sys.exit(f"no quotes in the name, title or description: {text}")
     name = args.name
     title = args.title or name
     web = args.web_name or "FNC" + re.sub(r"[^A-Za-z0-9]", "", name)

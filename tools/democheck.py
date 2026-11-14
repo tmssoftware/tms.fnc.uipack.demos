@@ -15,7 +15,9 @@ Subcommands
                          alive by an exception or message dialog (window class #32770) fails with the
                          dialog text. Exit 1 when one fails.
   click    <project>...  the click-through: build Win32 with DemoShot.pas, then per DPI (--ppi, default 96 120
-                         144 192) start the demo on the hidden desktop with DPI emulation; DemoShot clicks every
+                         144 192) start the demo on the hidden desktop with DPI emulation; first the demo's own
+                         scenario (tools/scenarios/<demo slug>.txt, the syntax is in DemoShot.pas) when there is
+                         one, the person-like sequence that reaches its states; then DemoShot clicks every
                          reachable control under Fluent Light (pop-ups and dialogs captured and closed), walks
                          the tab order, resizes, switches to Fluent Dark and opens the pop-ups again. Writes
                          <out>/click/<fw>-<demo>/<ppi>/click.json + PNGs and issues.json (exceptions, dialogs,
@@ -688,6 +690,8 @@ def click_issues(data):
         what = f"{s.get('class')} {s.get('name') or ''} \"{s.get('text') or ''}\"".strip()
         for e in s.get("exceptions", []):
             out.append(("error", f"exception while using {what}: {e}"))
+        if s.get("missing"):
+            out.append(("warn", f"scenario target not found: {s['missing']}"))
         if s.get("driverError"):
             out.append(("warn", f"driver error at {what}: {s['driverError']}"))
         for ph in [s] + s.get("phases", []):
@@ -725,6 +729,9 @@ def click_one(hidden_desktop, exe, proj, dest, ppi, timeout, maxsteps):
     env["DEMOSHOT_MODES"] = "click"
     env["DEMOSHOT_PPI"] = str(ppi)
     env["DEMOSHOT_MAXSTEPS"] = str(maxsteps)
+    scenario = HERE / "scenarios" / f"{proj.slug}.txt"
+    if scenario.exists():
+        env["DEMOSHOT_SCENARIO"] = str(scenario)
     proc = hidden_desktop.start([exe], env=env, cwd=str(proj.dir), stdout_path=str(dest / "stdout.txt"))
     deadline = time.monotonic() + timeout
     code = None

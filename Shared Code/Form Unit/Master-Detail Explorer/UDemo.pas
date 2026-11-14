@@ -3,10 +3,12 @@
 { TMS FNC UI Pack - Master-Detail Explorer
 
   Three pages of one data grid. Database: customers with their orders and, nested under an order, its lines, from
-  three datasets linked through MasterSource; expand a customer, switch the detail template (grid, form, tabs) and
-  its placement (inline, side panel, linked grid), show a summary on the master rows, keep the master row sticky,
-  edit in the detail. Without a database: the detail of a row comes from OnGetDetailData, with tabs. Tree grid:
-  self-referencing rows (key and parent column) as a tree with aggregates per node and children loaded on expand. }
+  three datasets linked through MasterSource; expand a customer, switch the detail template (grid, form, tabs,
+  cards) and its placement (inline under the row, in a detail view next to the grid, drill-down with a breadcrumb),
+  give the order lines a template of their own, show a tool bar with search and Add above a detail, a peek preview
+  when the mouse rests on a customer, a summary on the master rows, keep the master row sticky, edit in the detail.
+  Without a database: the detail of a row comes from OnGetDetailData, with tabs. Tree grid: self-referencing rows
+  (key and parent column) as a tree with aggregates per node and children loaded on expand. }
 
 interface
 
@@ -18,7 +20,8 @@ uses
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCCustomControl,
   VCL.TMSFNCPanel, VCL.TMSFNCHTMLText, VCL.TMSFNCButton, VCL.TMSFNCCheckBox, VCL.TMSFNCRadioButton,
-  VCL.TMSFNCDataGrid, VCL.TMSFNCDataGridRenderer, VCL.TMSFNCSampleData, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector,
+  VCL.TMSFNCDataGrid, VCL.TMSFNCDataGridRenderer, VCL.TMSFNCMasterDetail, VCL.TMSFNCDetailView, VCL.TMSFNCSegmentedControl,
+  VCL.TMSFNCSampleData, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector,
   {$ENDIF}
 
   {$IFDEF FMX}
@@ -28,7 +31,8 @@ uses
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCCustomControl,
   FMX.TMSFNCPanel, FMX.TMSFNCHTMLText, FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCRadioButton,
-  FMX.TMSFNCDataGrid, FMX.TMSFNCDataGridRenderer, FMX.TMSFNCSampleData, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector,
+  FMX.TMSFNCDataGrid, FMX.TMSFNCDataGridRenderer, FMX.TMSFNCMasterDetail, FMX.TMSFNCDetailView, FMX.TMSFNCSegmentedControl,
+  FMX.TMSFNCSampleData, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector,
   {$ENDIF}
 
   {$IFDEF WEBLIB}
@@ -36,6 +40,7 @@ uses
   WEBLib.TMSFNCTypes, WEBLib.TMSFNCUtils, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCGraphicsTypes,
   WEBLib.TMSFNCCustomControl, WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCButton,
   WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton, WEBLib.TMSFNCDataGrid, WEBLib.TMSFNCDataGridRenderer,
+  WEBLib.TMSFNCMasterDetail, WEBLib.TMSFNCDetailView, WEBLib.TMSFNCSegmentedControl,
   WEBLib.TMSFNCSampleData, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector,
   {$ENDIF}
   UDemoLayout;
@@ -56,8 +61,15 @@ type
     FContent: TTMSFNCPanel;
     FPage: TDemoPage;
     FPageRadios: array[TDemoPage] of TTMSFNCRadioButton;
-    FTemplateRadios: array[TTMSFNCDataGridMasterDetailTemplate] of TTMSFNCRadioButton;
-    FPlacementRadios: array[TTMSFNCDataGridMasterDetailPlacement] of TTMSFNCRadioButton;
+    FBar: TTMSFNCPanel;
+    FTreeBar: TTMSFNCPanel;
+    FTemplate: TTMSFNCSegmentedControl;
+    FPlacement: TTMSFNCSegmentedControl;
+    FExpandButton: TTMSFNCButton;
+    FCollapseButton: TTMSFNCButton;
+    FToolBarCheck: TTMSFNCCheckBox;
+    FPeekCheck: TTMSFNCCheckBox;
+    FLineCardsCheck: TTMSFNCCheckBox;
     FSummaryCheck: TTMSFNCCheckBox;
     FStickyCheck: TTMSFNCCheckBox;
     FMultipleCheck: TTMSFNCCheckBox;
@@ -70,8 +82,7 @@ type
     FDataGrid: TTMSFNCDataGrid;
     FPlainGrid: TTMSFNCDataGrid;
     FTreeGrid: TTMSFNCDataGrid;
-    FTarget: TTMSFNCDataGrid;
-    FTargetPanel: TTMSFNCPanel;
+    FView: TTMSFNCDetailView;
     {$IFNDEF WEBLIB}
     FCustomers: TDemoDataSet;
     FOrders: TDemoDataSet;
@@ -235,34 +246,25 @@ begin
 
   FLayout.AddCaption(FSettings, 'Page');
   {$IFNDEF WEBLIB}
-  FPageRadios[dpDatabase] := FLayout.AddRadio(FSettings, 'Customers, orders, lines (datasets)', 'page', True, {$IFDEF WEBLIB}@{$ENDIF}PageChanged);
+  FPageRadios[dpDatabase] := FLayout.AddRadio(FSettings, 'Customers, orders, lines (datasets)', 'page', True,
+    {$IFDEF WEBLIB}@{$ENDIF}PageChanged);
   {$ENDIF}
-  FPageRadios[dpPlain] := FLayout.AddRadio(FSettings, 'Without a database', 'page', {$IFDEF WEBLIB}True{$ELSE}False{$ENDIF}, {$IFDEF WEBLIB}@{$ENDIF}PageChanged);
+  FPageRadios[dpPlain] := FLayout.AddRadio(FSettings, 'Without a database', 'page', {$IFDEF WEBLIB}True{$ELSE}False{$ENDIF},
+    {$IFDEF WEBLIB}@{$ENDIF}PageChanged);
   FPageRadios[dpTree] := FLayout.AddRadio(FSettings, 'Tree grid', 'page', False, {$IFDEF WEBLIB}@{$ENDIF}PageChanged);
 
-  FLayout.AddCaption(FSettings, 'Detail template');
-  FTemplateRadios[gmdtGrid] := FLayout.AddRadio(FSettings, 'Grid', 'template', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-  FTemplateRadios[gmdtForm] := FLayout.AddRadio(FSettings, 'Form', 'template', False, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-  FTemplateRadios[gmdtTabs] := FLayout.AddRadio(FSettings, 'Tabs', 'template', False, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
+  FLayout.AddCaption(FSettings, 'Detail');
+  FToolBarCheck := FLayout.AddCheck(FSettings, 'Tool bar: search, Add, count', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
+  FPeekCheck := FLayout.AddCheck(FSettings, 'Peek: rest the mouse on a row', False, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
+  FNestedCheck := FLayout.AddCheck(FSettings, 'Order lines under an order', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
+  FLineCardsCheck := FLayout.AddCheck(FSettings, 'Order lines as cards', False, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
+  FEditingCheck := FLayout.AddCheck(FSettings, 'Edit in the detail', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
 
-  FLayout.AddCaption(FSettings, 'Detail placement');
-  FPlacementRadios[gmdpInline] := FLayout.AddRadio(FSettings, 'Inline, under the master row', 'placement', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-  FPlacementRadios[gmdpSidePanel] := FLayout.AddRadio(FSettings, 'Side panel', 'placement', False, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-  FPlacementRadios[gmdpLinkedGrid] := FLayout.AddRadio(FSettings, 'Linked grid', 'placement', False, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-
-  FLayout.AddCaption(FSettings, 'Options');
-  FSummaryCheck := FLayout.AddCheck(FSettings, 'Summary on the master rows', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-  FStickyCheck := FLayout.AddCheck(FSettings, 'Sticky master row', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
+  FLayout.AddCaption(FSettings, 'Master rows');
+  FSummaryCheck := FLayout.AddCheck(FSettings, 'Summary of the detail', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
+  FStickyCheck := FLayout.AddCheck(FSettings, 'Sticky while scrolling', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
   FMultipleCheck := FLayout.AddCheck(FSettings, 'Several details open', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
   FAnimateCheck := FLayout.AddCheck(FSettings, 'Animate', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-  FNestedCheck := FLayout.AddCheck(FSettings, 'Nested levels (lines under an order)', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-  FEditingCheck := FLayout.AddCheck(FSettings, 'Edit in the detail', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-  FLayout.AddButton(FSettings, 'Expand all', {$IFDEF WEBLIB}@{$ENDIF}ExpandAllClick);
-  FLayout.AddButton(FSettings, 'Collapse all', {$IFDEF WEBLIB}@{$ENDIF}CollapseAllClick);
-
-  FLayout.AddCaption(FSettings, 'Tree grid');
-  FLazyCheck := FLayout.AddCheck(FSettings, 'Load children on expand', False, {$IFDEF WEBLIB}@{$ENDIF}TreeSettingChanged);
-  FAggregateCheck := FLayout.AddCheck(FSettings, 'Sum the hours per node', True, {$IFDEF WEBLIB}@{$ENDIF}TreeSettingChanged);
 
   FStatus := FLayout.AddText(FSettings, '', 72);
 end;
@@ -276,19 +278,61 @@ begin
 end;
 
 procedure TForm1.CreateContent;
+var
+  b: TTMSFNCButton;
 begin
   FContent := FLayout.AddContentPanel(Self);
 
-  { the side panel or linked grid that shows the detail with those placements }
-  FTargetPanel := FLayout.AddPanel(FContent, daRight, 360, 16, 0, 0, 0);
-  FTargetPanel.Fill.Kind := gfkNone;
-  FTargetPanel.Stroke.Kind := gskNone;
-  FLayout.AddCaption(FTargetPanel, 'Detail', 0);
-  FTarget := NewGrid(FTargetPanel);
+  { what a detail shows and where: the two choices a developer makes first }
+  FBar := FLayout.AddPanel(FContent, daTop, 40, 0, 0, 0, 12);
+  FBar.Fill.Kind := gfkNone;
+  FBar.Stroke.Kind := gskNone;
+  FTemplate := TTMSFNCSegmentedControl.Create(Self);
+  FTemplate.Parent := FBar;
+  FLayout.Place(FTemplate, daLeft, 240, 0, 4, 12, 4);
+  FTemplate.Items.AddItem('Grid');
+  FTemplate.Items.AddItem('Form');
+  FTemplate.Items.AddItem('Tabs');
+  FTemplate.Items.AddItem('Cards');
+  FTemplate.ItemIndex := 0;
+  FTemplate.OnChange := {$IFDEF WEBLIB}@{$ENDIF}SettingChanged;
+  FPlacement := TTMSFNCSegmentedControl.Create(Self);
+  FPlacement.Parent := FBar;
+  FLayout.Place(FPlacement, daLeft, 280, 0, 4, 12, 4);
+  FPlacement.Items.AddItem('Under the row');
+  FPlacement.Items.AddItem('Detail view');
+  FPlacement.Items.AddItem('Drill-down');
+  FPlacement.ItemIndex := 0;
+  FPlacement.OnChange := {$IFDEF WEBLIB}@{$ENDIF}SettingChanged;
+  FCollapseButton := FLayout.AddButton(FBar, 'Collapse all', {$IFDEF WEBLIB}@{$ENDIF}CollapseAllClick);
+  FLayout.Place(FCollapseButton, daRight, 100, 6, 4, 0, 4);
+  FExpandButton := FLayout.AddButton(FBar, 'Expand all', {$IFDEF WEBLIB}@{$ENDIF}ExpandAllClick);
+  FLayout.Place(FExpandButton, daRight, 100, 6, 4, 0, 4);
+
+  { the options of the tree grid page }
+  FTreeBar := FLayout.AddPanel(FContent, daTop, 40, 0, 0, 0, 12);
+  FTreeBar.Fill.Kind := gfkNone;
+  FTreeBar.Stroke.Kind := gskNone;
+  FLazyCheck := FLayout.AddCheck(FTreeBar, 'Load children on expand', False, {$IFDEF WEBLIB}@{$ENDIF}TreeSettingChanged);
+  FLayout.Place(FLazyCheck, daLeft, 220, 0, 8, 12, 4);
+  FAggregateCheck := FLayout.AddCheck(FTreeBar, 'Sum the hours per node', True, {$IFDEF WEBLIB}@{$ENDIF}TreeSettingChanged);
+  FLayout.Place(FAggregateCheck, daLeft, 220, 0, 8, 12, 4);
+  b := FLayout.AddButton(FTreeBar, 'Collapse all', {$IFDEF WEBLIB}@{$ENDIF}CollapseAllClick);
+  FLayout.Place(b, daRight, 100, 6, 4, 0, 4);
+  b := FLayout.AddButton(FTreeBar, 'Expand all', {$IFDEF WEBLIB}@{$ENDIF}ExpandAllClick);
+  FLayout.Place(b, daRight, 100, 6, 4, 0, 4);
+
+  { the detail view next to the grid: it shows the detail of the current master record }
+  FView := TTMSFNCDetailView.Create(Self);
+  FView.Parent := FContent;
+  FLayout.Place(FView, daRight, 380, 16, 0, 0, 0);
+  FView.EmptyText := 'Select a customer to see its orders here';
 
   {$IFNDEF WEBLIB}
   FDataGrid := NewGrid(FContent);
   FDataGrid.MasterDetail.Summary := '%count% orders ' + MiddleDot + ' %sum:Total%';
+  FDataGrid.MasterDetail.DrillDown.RootCaption := 'Customers';
+  FDataGrid.MasterDetail.ToolBar.CountFormat := '%count:order|orders%';
   FDataGrid.DataSource := FCustomersSource;
   FDataGrid.MasterDetail.Enabled := True;
   {$ENDIF}
@@ -296,6 +340,7 @@ begin
   FPlainGrid := NewGrid(FContent);
   FillPlainGrid;
   FPlainGrid.MasterDetail.Tabs.Text := 'Orders'#13#10'Contacts';
+  FPlainGrid.MasterDetail.DrillDown.RootCaption := 'Customers';
   FPlainGrid.OnGetDetailData := {$IFDEF WEBLIB}@{$ENDIF}GetDetailData;
   FPlainGrid.MasterDetail.Enabled := True;
   FPlainGrid.MasterDetail.Load;
@@ -483,7 +528,7 @@ end;
 procedure TForm1.ShowPage(APage: TDemoPage);
 begin
   FPage := APage;
-  { the detail target grid serves the visible grid only }
+  { the detail view serves the visible grid only }
   FPlainGrid.MasterDetail.Target := nil;
   {$IFNDEF WEBLIB}
   FDataGrid.MasterDetail.Target := nil;
@@ -491,56 +536,102 @@ begin
   {$ENDIF}
   FPlainGrid.Visible := APage = dpPlain;
   FTreeGrid.Visible := APage = dpTree;
+  FBar.Visible := APage <> dpTree;
+  FTreeBar.Visible := APage = dpTree;
   ApplySettings;
 end;
 
 procedure TForm1.ApplySettings;
+const
+  Templates: array[0..3] of TTMSFNCMasterDetailTemplate = (mdtGrid, mdtForm, mdtTabs, mdtCards);
+  Placements: array[0..2] of TTMSFNCMasterDetailPlacement = (mdpInline, mdpTarget, mdpDrillDown);
 var
   g: TTMSFNCDataGrid;
-  t: TTMSFNCDataGridMasterDetailTemplate;
-  p: TTMSFNCDataGridMasterDetailPlacement;
+  lvl: TTMSFNCMasterDetailLevel;
+  t: TTMSFNCMasterDetailTemplate;
+  p: TTMSFNCMasterDetailPlacement;
+  s: string;
 begin
+  { the detail options do not apply to the tree grid }
+  FToolBarCheck.Enabled := FPage <> dpTree;
+  FPeekCheck.Enabled := FPage <> dpTree;
+  FSummaryCheck.Enabled := FPage <> dpTree;
+  FStickyCheck.Enabled := FPage <> dpTree;
+  FMultipleCheck.Enabled := FPage <> dpTree;
+  FAnimateCheck.Enabled := FPage <> dpTree;
   if FPage = dpTree then
   begin
-    FTargetPanel.Visible := False;
+    FNestedCheck.Enabled := False;
+    FLineCardsCheck.Enabled := False;
+    FEditingCheck.Enabled := False;
+    FView.Visible := False;
     FStatus.Text := 'Expand a project for its tasks; the hours of a project are the sum of its tasks. ' +
       'Load children on expand fills a project the first time it opens.';
     Exit;
   end;
 
+  t := Templates[FTemplate.ItemIndex];
+  p := Placements[FPlacement.ItemIndex];
   g := ActiveGrid;
-  for t := Low(t) to High(t) do
-    if FTemplateRadios[t].Checked then
-      g.MasterDetail.Template := t;
-  for p := Low(p) to High(p) do
-    if FPlacementRadios[p].Checked then
-      g.MasterDetail.Placement := p;
-  FTargetPanel.Visible := g.MasterDetail.Placement <> gmdpInline;
-  if FTargetPanel.Visible then
-    g.MasterDetail.Target := FTarget
-  else
-    g.MasterDetail.Target := nil;
-  if FSummaryCheck.Checked then
-  begin
-    if FPage = dpPlain then
-      g.MasterDetail.Summary := '%count% orders'
+  g.BeginUpdate;
+  try
+    g.MasterDetail.Template := t;
+    g.MasterDetail.Placement := p;
+    FView.Visible := p = mdpTarget;
+    if FView.Visible then
+      g.MasterDetail.Target := FView
     else
-      g.MasterDetail.Summary := '%count% orders ' + MiddleDot + ' %sum:Total%';
-  end
-  else
-    g.MasterDetail.Summary := '';
-  g.MasterDetail.StickyMaster := FStickyCheck.Checked;
-  g.MasterDetail.MultipleExpand := FMultipleCheck.Checked;
-  g.MasterDetail.Animate := FAnimateCheck.Checked;
-  g.MasterDetail.Nested := FNestedCheck.Checked;
-  g.MasterDetail.Editing := FEditingCheck.Checked;
+      g.MasterDetail.Target := nil;
 
-  if FPage = dpPlain then
-    FStatus.Text := 'The rows and their details come from code (OnGetDetailData); the tabs template shows the ' +
-      'orders and the contacts of a customer.'
+    { a template of its own for the order lines (the second level) }
+    g.MasterDetail.Levels.Clear;
+    if FLineCardsCheck.Checked and (FPage = dpDatabase) then
+    begin
+      lvl := g.MasterDetail.Levels.Add;
+      lvl.Template := t;
+      lvl := g.MasterDetail.Levels.Add;
+      lvl.Template := mdtCards;
+      lvl.Caption := 'Lines';
+    end;
+    g.MasterDetail.Cards.Columns := 2;
+
+    g.MasterDetail.ToolBar.Visible := FToolBarCheck.Checked;
+    g.MasterDetail.Peek.Enabled := FPeekCheck.Checked;
+    if FSummaryCheck.Checked then
+    begin
+      if FPage = dpPlain then
+        g.MasterDetail.Summary := '%count% orders'
+      else
+        g.MasterDetail.Summary := '%count% orders ' + MiddleDot + ' %sum:Total%';
+    end
+    else
+      g.MasterDetail.Summary := '';
+    g.MasterDetail.StickyMaster := FStickyCheck.Checked;
+    g.MasterDetail.MultipleExpand := FMultipleCheck.Checked;
+    g.MasterDetail.Animate := FAnimateCheck.Checked;
+    g.MasterDetail.Nested := FNestedCheck.Checked;
+    g.MasterDetail.Editing := FEditingCheck.Checked;
+  finally
+    g.EndUpdate;
+  end;
+
+  { expanding every row only makes sense for details under the rows }
+  FExpandButton.Enabled := p = mdpInline;
+  FCollapseButton.Enabled := p = mdpInline;
+  FNestedCheck.Enabled := FPage = dpDatabase;
+  FLineCardsCheck.Enabled := (FPage = dpDatabase) and FNestedCheck.Checked;
+  FEditingCheck.Enabled := FPage = dpDatabase;
+
+  case p of
+    mdpTarget: s := 'The detail view on the right follows the current customer. ';
+    mdpDrillDown: s := 'Double-click a customer: its orders take the place of the list, the breadcrumb leads back. ';
   else
-    FStatus.Text := 'Three datasets linked through MasterSource: the grid finds the orders of a customer and the ' +
-      'lines of an order by itself. Edit a detail cell, insert a record with Insert, delete one with Ctrl+Del.';
+    s := 'Click the arrow of a customer to open its orders under the row. ';
+  end;
+  if FPage = dpPlain then
+    FStatus.Text := s + 'The rows and their details come from code (OnGetDetailData).'
+  else
+    FStatus.Text := s + 'Three datasets linked through MasterSource: the grid finds the orders and lines by itself.';
 end;
 
 procedure TForm1.PageChanged(Sender: TObject);

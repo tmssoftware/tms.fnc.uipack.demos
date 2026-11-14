@@ -1,0 +1,32 @@
+# AI Menu Studio: ask for a brunch menu, hold the lens, apply, undo; a vague request gets the cards; a phrase in a
+# style field; the sample CSV in the drop zone; dark.
+click|TEdit#1
+type|a brunch menu
+key|enter
+wait|5000
+shot|brunch plan
+hold|TTMSFNCAIPreviewLens#1|900
+click|Apply all
+click|Undo
+click|TEdit#1
+key|ctrl+a
+type|make it premium
+key|enter
+click|TTMSFNCAIChoiceCards#1|0,-10
+key|enter
+wait|5000
+shot|premium plan
+click|Apply all
+theme|Fluent Dark
+theme|Fluent Light
+click|Undo
+click|TTMSFNCAIPromptEdit#1
+key|ctrl+a
+type|a softer terracotta
+key|enter
+wait|2000
+shot|interpretation of the phrase
+key|enter
+click|Try the sample CSV
+theme|Fluent Dark
+theme|Fluent Light
