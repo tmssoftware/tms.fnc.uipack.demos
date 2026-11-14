@@ -83,7 +83,10 @@ implementation
 
 function ColName(ACol: Integer): string;
 begin
-  Result := Chr(Ord('A') + ACol - 1);
+  if ACol < 1 then
+    Result := ''
+  else
+    Result := Chr(Ord('A') + ACol - 1);
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
@@ -228,10 +231,14 @@ begin
     FBudget.Cells[2, 8] := '=KGTOLB(Rates!B7)';
     FBudget.Cells[1, 9] := 'Weather (deg F)';
     FBudget.Cells[2, 9] := '=CELSTOFAHR(Rates!B8)';
-    FBudget.Cells[1, 10] := 'Average a day';
-    FBudget.Cells[2, 10] := '=GEOMEAN(B2:B4)/Rates!B4';
-    FBudget.Cells[1, 12] := 'Destination';
-    FBudget.Cells[2, 12] := '=CAPITALIZE("lisbon")';
+    FBudget.Cells[1, 10] := 'A day';
+    FBudget.Cells[2, 10] := '=B5/Rates!B4';
+    FBudget.Cells[3, 10] := 'total / nights';
+    FBudget.Cells[1, 11] := 'Typical item';
+    FBudget.Cells[2, 11] := '=GEOMEAN(B2:B4)';
+    FBudget.Cells[3, 11] := 'geometric mean';
+    FBudget.Cells[1, 13] := 'Destination';
+    FBudget.Cells[2, 13] := '=CAPITALIZE("lisbon")';
     FBudget.ColumnWidths[1] := 150;
     FBudget.ColumnWidths[3] := 170;
   finally

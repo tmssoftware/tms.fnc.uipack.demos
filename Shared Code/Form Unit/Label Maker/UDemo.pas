@@ -64,6 +64,7 @@ type
     FAccentPicker: TTMSFNCColorPicker;
     FIcons: TTMSFNCBitmapSelector;
     FSpinner: TTMSFNCSpinner;
+    FLabelHost: TTMSFNCPanel;
     FLabel: TTMSFNCHTMLText;
     FIcon: TTMSFNCImage;
     FSummary: TTMSFNCHTMLText;
@@ -259,9 +260,12 @@ begin
 
   FLayout.AddCaption(FContent, 'Label', 8);
   { the label is paper: white with dark ink under every theme (demo-colors: content, as printed) }
+  FLabelHost := FLayout.AddPanel(FContent, daTop, 230, 0, 4, 0, 8);
+  FLabelHost.Fill.Kind := gfkNone;
+  FLabelHost.Stroke.Kind := gskNone;
+  { the label has the width of its size, from the left of the row }
   FLabel := TTMSFNCHTMLText.Create(Self);
-  FLabel.Parent := FContent;
-  FLayout.Place(FLabel, daTop, 230, 0, 4, 0, 8);
+  FLabel.Parent := FLabelHost;
   FLabel.ThemingEnabled := False;
   FLabel.Fill.Kind := gfkSolid;
   FLabel.Fill.Color := gcWhite;
@@ -315,14 +319,7 @@ begin
   FLabel.Text := s;
 
   w := SizeWidths[NotBelowZero(FSize.ItemIndex)];
-  FLabel.Width := FLayout.Size(w);
-  {$IFDEF FMX}
-  FLabel.Align := TAlignLayout.None;
-  FLabel.Position.X := 0;
-  {$ELSE}
-  FLabel.Align := alNone;
-  FLabel.Left := 0;
-  {$ENDIF}
+  FLabel.SetBounds(0, 0, FLayout.Size(w), FLabelHost.Height);
   if FPrint.Checked[0] then
   begin
     FLabel.Stroke.Kind := gskSolid;

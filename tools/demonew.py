@@ -160,9 +160,10 @@ def main():
     ap.add_argument("--data", action="store_true", help="add the dataset units to the uses clauses")
     args = ap.parse_args()
     for text in (args.name, args.title or "", args.description):
-        if "'" in text or '"' in text:
-            # copied as is into the .dfm/.fmx strings and the index.html meta: a quote breaks the form resource
-            sys.exit(f"no quotes in the name, title or description: {text}")
+        if any(c in text for c in "'\"{}"):
+            # copied as is into the .dfm/.fmx strings, the index.html meta and the { } comment of the unit:
+            # a quote breaks the form resource, a brace the comment
+            sys.exit(f"no quotes or braces in the name, title or description: {text}")
     name = args.name
     title = args.title or name
     web = args.web_name or "FNC" + re.sub(r"[^A-Za-z0-9]", "", name)
@@ -198,7 +199,7 @@ def main():
         readme(dst, title, args.description)
     src, dst = REPO / "Shared Code" / "Form Unit" / TEMPLATE, REPO / "Shared Code" / "Form Unit" / name
     dst.mkdir(parents=True)
-    for ext in (".fmx", ".dfm", ".html"):
+    for ext in (".fmx", ".dfm") + (() if args.no_web else (".html",)):
         copy_text(src / ("UDemo" + ext), dst / ("UDemo" + ext), common)
     unit = UNIT % {"title": title, "description": args.description,
                    "vcldata": " Data.DB," + FMX_DATA if args.data else "", "fmxdata": FMX_DATA if args.data else "",

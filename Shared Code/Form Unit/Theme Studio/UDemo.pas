@@ -101,7 +101,8 @@ begin
   CreateContent;
   FillThemes;
   TTMSFNCTheme.AddChangeListener(ThemeChanged);
-  UpdateStatus;
+  { the manager starts as the check boxes say }
+  ApplySettings;
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);

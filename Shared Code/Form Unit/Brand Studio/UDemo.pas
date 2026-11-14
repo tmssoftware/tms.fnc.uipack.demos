@@ -118,7 +118,8 @@ begin
   FEditor.ThemeManager := ThemeManager;
   CreateSettings;
   CreateContent;
-  ShowBrand;
+  { the manager starts as the settings say (SettingChanged shows the brand) }
+  SettingChanged(nil);
 end;
 
 procedure TForm1.CreateSettings;

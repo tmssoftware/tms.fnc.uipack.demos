@@ -14,7 +14,7 @@ interface
 uses
   {$IFDEF VCL}
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Types, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls,
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCCustomControl,
   VCL.TMSFNCPanel, VCL.TMSFNCHTMLText, VCL.TMSFNCButton, VCL.TMSFNCCheckBox, VCL.TMSFNCRadioButton,
   VCL.TMSFNCEdit, VCL.TMSFNCSegmentedControl, VCL.TMSFNCBreadcrumb, VCL.TMSFNCDataGrid,
@@ -33,7 +33,7 @@ uses
   {$ENDIF}
 
   {$IFDEF WEBLIB}
-  SysUtils, Classes, WEBLib.Graphics, WEBLib.Controls, WEBLib.Forms, WEBLib.Dialogs,
+  SysUtils, Classes, WEBLib.Graphics, WEBLib.Controls, WEBLib.Forms, WEBLib.Dialogs, WEBLib.ExtCtrls,
   WEBLib.TMSFNCTypes, WEBLib.TMSFNCUtils, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCGraphicsTypes,
   WEBLib.TMSFNCCustomControl, WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCButton,
   WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton, WEBLib.TMSFNCEdit, WEBLib.TMSFNCSegmentedControl,
@@ -76,6 +76,8 @@ type
     FJobs: TTMSFNCDataGrid;
     FPath: TTMSFNCBreadcrumb;
     FTree: TTMSFNCTreeView;
+    FPathTimer: TTimer;
+    FPathIndex: Integer;
     FSearch: TTMSFNCEdit;
     FParts: TTMSFNCListBox;
     FDevice: TDemoDevice;
@@ -95,6 +97,7 @@ type
     procedure SearchChanged(Sender: TObject);
     procedure TreeSelected(Sender: TObject; ANode: TTMSFNCTreeViewVirtualNode);
     procedure PathClicked(Sender: TObject; AIndex: Integer);
+    procedure PathTimer(Sender: TObject);
     procedure GetJobTasks(Sender: TObject; AMaster: TTMSFNCDataGridRenderer; AMasterRow, ATab: Integer;
       ADetail: TTMSFNCDataGridRenderer; var ANested: Boolean);
   public
@@ -298,10 +301,14 @@ procedure TForm1.GetJobTasks(Sender: TObject; AMaster: TTMSFNCDataGridRenderer; 
   ADetail: TTMSFNCDataGridRenderer; var ANested: Boolean);
 var
   I, n, job: Integer;
+  number: string;
 begin
-  job := (AMasterRow - 1) mod Length(Jobs);
-  if job < 0 then
-    job := 0;
+  { the job of the row by its number: the rows can be sorted }
+  number := AMaster.Strings[1, AMasterRow];
+  job := 0;
+  for I := 0 to High(Jobs) do
+    if Jobs[I].Number = number then
+      job := I;
   n := 3 + job mod 3;
   ADetail.ColumnCount := 2;
   ADetail.RowCount := 1 + n;
@@ -330,6 +337,11 @@ begin
   FPath.Parent := FPageHosts[apCustomers];
   FLayout.Place(FPath, daTop, 36, 8, 4, 8, 4);
   FPath.OnItemClick := {$IFDEF WEBLIB}@{$ENDIF}PathClicked;
+  { the breadcrumb is rebuilt after its click event, not inside it }
+  FPathTimer := TTimer.Create(Self);
+  FPathTimer.Enabled := False;
+  FPathTimer.Interval := 1;
+  FPathTimer.OnTimer := {$IFDEF WEBLIB}@{$ENDIF}PathTimer;
 
   FTree := TTMSFNCTreeView.Create(Self);
   FTree.Parent := FPageHosts[apCustomers];
@@ -447,7 +459,7 @@ begin
       else
         FJobs.Columns[c].HidePriority := 0;
     if FDrillCheck.Checked then
-      FJobs.MasterDetail.DrillDown.Width := PhoneWidth
+      FJobs.MasterDetail.DrillDown.Width := FLayout.Size(PhoneWidth)
     else
       FJobs.MasterDetail.DrillDown.Width := 0;
   finally
@@ -549,10 +561,18 @@ begin
 end;
 
 procedure TForm1.PathClicked(Sender: TObject; AIndex: Integer);
+begin
+  FPathIndex := AIndex;
+  FPathTimer.Enabled := True;
+end;
+
+procedure TForm1.PathTimer(Sender: TObject);
 var
   n: TTMSFNCTreeViewNode;
-  I, depth: Integer;
+  I, depth, AIndex: Integer;
 begin
+  FPathTimer.Enabled := False;
+  AIndex := FPathIndex;
   { the segment clicked: 0 is the root, then the region, then the customer }
   n := FTree.SelectedNode;
   depth := FPath.Items.Count - 1;

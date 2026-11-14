@@ -570,8 +570,15 @@ begin
     Exit;
   end;
 
-  t := Templates[FTemplate.ItemIndex];
-  p := Placements[FPlacement.ItemIndex];
+  { a segmented control without a selection counts as its first segment }
+  if FTemplate.ItemIndex > 0 then
+    t := Templates[FTemplate.ItemIndex]
+  else
+    t := mdtGrid;
+  if FPlacement.ItemIndex > 0 then
+    p := Placements[FPlacement.ItemIndex]
+  else
+    p := mdpInline;
   g := ActiveGrid;
   g.BeginUpdate;
   try
