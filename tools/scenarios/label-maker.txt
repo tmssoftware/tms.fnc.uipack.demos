@@ -1,0 +1,27 @@
+# Label Maker: every picker once, the drop-downs opened, the theme colours in dark.
+segment|TTMSFNCRadioGroup#1|2|3
+segment|TTMSFNCRadioGroup#1|0|3
+click|TTMSFNCCheckGroup#1|-60,12
+click|TTMSFNCRadioGroupPicker#1
+wait|500
+shot|carrier drop-down
+key|down
+key|enter
+click|TTMSFNCCheckGroupPicker#1
+wait|500
+shot|handling drop-down
+key|escape
+click|TTMSFNCFontNamePicker#1
+wait|500
+shot|font drop-down
+key|escape
+click|TTMSFNCColorSelector#1|-40,0
+click|TTMSFNCColorPicker#1
+wait|500
+shot|theme colour picker
+key|escape
+segment|TTMSFNCBitmapSelector#1|2|6
+wheel|TTMSFNCSpinner#1
+theme|Fluent Dark
+click|TTMSFNCColorSelector#1|40,0
+theme|Fluent Light
