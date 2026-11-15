@@ -8,7 +8,8 @@ interface
 
 uses
   {$IFDEF VCL}
-  Winapi.Windows, System.SysUtils, System.Classes, System.Types, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Data.DB,
+  Winapi.Windows, System.SysUtils, System.Classes, System.Types, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.StdCtrls,
+  Data.DB,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   VCL.TMSFNCTypes, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCPanel, VCL.TMSFNCHTMLText, VCL.TMSFNCButton,
@@ -82,6 +83,11 @@ type
   end;
 
 implementation
+
+{$IFDEF VCL}
+type
+  TDemoEditAccess = class(TCustomEdit);
+{$ENDIF}
 
 constructor TDemoLayout.Create(AOwner: TDemoForm);
 begin
@@ -178,6 +184,12 @@ begin
       daClient: AControl.Align := alClient;
     end;
   end;
+  {$IFDEF VCL}
+  { an edit made in code keeps the height it is given at every DPI (AutoSize shrank it to the font at 96 DPI only:
+    the first scale change switches AutoSize off, as for an edit dropped on a form) }
+  if AControl is TCustomEdit then
+    TDemoEditAccess(AControl).AutoSize := False;
+  {$ENDIF}
   case AAlign of
     daTop, daBottom: AControl.Height := Size(ASize);
     daLeft, daRight: AControl.Width := Size(ASize);
