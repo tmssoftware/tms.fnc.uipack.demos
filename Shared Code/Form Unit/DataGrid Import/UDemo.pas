@@ -107,15 +107,25 @@ begin
   FLayout.AddButton(FSettings, 'Sample customers.json', ImportSampleClick).Tag := 1;
   FLayout.AddButton(FSettings, 'Sample employees.xml', ImportSampleClick).Tag := 2;
   FLayout.AddButton(FSettings, 'Sample sales.txt', ImportSampleClick).Tag := 3;
-  FLayout.AddButton(FSettings, 'Back to the sample grid', ResetClick);
-
-  FLayout.AddCaption(FSettings, 'Result');
-  FStatus := FLayout.AddText(FSettings, '', 80);
 end;
 
 procedure TForm1.CreateContent;
+var
+  bar: TTMSFNCPanel;
+  b: TTMSFNCButton;
 begin
   FContent := FLayout.AddContentPanel(Self);
+
+  { the result of an import and the way back under the grid (in the settings column they fell below the form) }
+  bar := FLayout.AddPanel(FContent, daBottom, 44, 0, 8, 0, 0);
+  bar.Fill.Kind := gfkNone;
+  bar.Stroke.Kind := gskNone;
+  b := FLayout.AddButton(bar, 'Back to the sample grid', ResetClick);
+  FLayout.Place(b, daLeft, 190, 0, 6, 12, 6);
+  FStatus := FLayout.AddText(bar, '', 0);
+  FLayout.Place(FStatus, daClient, 0, 0, 0, 0, 0);
+  FStatus.VerticalTextAlign := gtaCenter;
+
   FGrid := TTMSFNCDataGrid.Create(Self);
   FGrid.Parent := FContent;
   FLayout.Place(FGrid, daClient, 0, 0, 0, 0, 0);
