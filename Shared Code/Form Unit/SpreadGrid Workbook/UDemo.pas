@@ -225,7 +225,8 @@ begin
     FBudget.Cells[1, 5] := 'Total';
     FBudget.Cells[2, 5] := '=SUM(B2:B4)';
     FBudget.Cells[1, 7] := 'Loan, 12 months';
-    FBudget.Cells[2, 7] := '=PMT(5/1200,12,-B5)';
+    { TTMSFNCFinanceMathLib: PMT(principal, rate per period, periods), not the order of Excel (that gave 0,00) }
+    FBudget.Cells[2, 7] := '=PMT(B5,5/1200,12)';
     FBudget.Cells[3, 7] := 'PMT at 5 % a year';
     FBudget.Cells[1, 8] := 'Luggage (lb)';
     FBudget.Cells[2, 8] := '=KGTOLB(Rates!B7)';
