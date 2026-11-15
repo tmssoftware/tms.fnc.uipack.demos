@@ -1,7 +1,9 @@
 # TreeView Database: a person edits the vendor of a product (the lookup column drops down the vendor names),
 # then looks at the customers and their orders, in light and dark.
-click|TTMSFNCTreeView#1|tl:120,80
-dbl|TTMSFNCTreeView#1|tl:250,80
+# a click selects the product, a click on the vendor text of the selected node opens its editor
+click|TTMSFNCTreeView#1|tl:215,120
+wait|600
+click|TTMSFNCTreeView#1|tl:215,120
 wait|500
 shot|vendor lookup editor
 key|down

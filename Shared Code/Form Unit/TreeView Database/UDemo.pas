@@ -304,10 +304,6 @@ begin
   FHeadersCheck := FLayout.AddCheck(FSettings, 'Caption row per level (LevelHeaders)', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
 
   FLayout.AddCaption(FSettings, 'Catalog records');
-  FLayout.AddButton(FSettings, 'Add a child of the selected node', {$IFDEF WEBLIB}@{$ENDIF}AddChildClick);
-  FLayout.AddButton(FSettings, 'Add a root category', {$IFDEF WEBLIB}@{$ENDIF}AddRootClick);
-  FLayout.AddButton(FSettings, 'Delete the selected node', {$IFDEF WEBLIB}@{$ENDIF}DeleteClick);
-
   FStatus := FLayout.AddText(FSettings, 'Deleting a category moves its products to its parent ' +
     '(DeleteChildrenMode of the internal adapter).', 48);
 end;
@@ -315,6 +311,8 @@ end;
 procedure TForm1.CreatePages;
 var
   I: Integer;
+  bar: TTMSFNCPanel;
+  b: TTMSFNCButton;
 begin
   FContent := FLayout.AddContentPanel(Self);
 
@@ -341,6 +339,17 @@ begin
   FLayout.Place(FNavigator, daBottom, 36, 0, 8, 0, 0);
   FNavigator.DataSource := FCatalogSource;
   FNavigator.VisibleButtons := [dnbFirst, dnbPrior, dnbNext, dnbLast, dnbDelete];
+
+  { the record buttons above the tree they act on (in the settings column they fell below the form) }
+  bar := FLayout.AddPanel(FPages[0], daTop, 40, 0, 0, 0, 4);
+  bar.Fill.Kind := gfkNone;
+  bar.Stroke.Kind := gskNone;
+  b := FLayout.AddButton(bar, 'Add a child', {$IFDEF WEBLIB}@{$ENDIF}AddChildClick);
+  FLayout.Place(b, daLeft, 120, 0, 4, 8, 4);
+  b := FLayout.AddButton(bar, 'Add a root category', {$IFDEF WEBLIB}@{$ENDIF}AddRootClick);
+  FLayout.Place(b, daLeft, 170, 0, 4, 8, 4);
+  b := FLayout.AddButton(bar, 'Delete the selected node', {$IFDEF WEBLIB}@{$ENDIF}DeleteClick);
+  FLayout.Place(b, daLeft, 190, 0, 4, 8, 4);
 
   FCatalogTree := TTMSFNCTreeView.Create(Self);
   FCatalogTree.Parent := FPages[0];
