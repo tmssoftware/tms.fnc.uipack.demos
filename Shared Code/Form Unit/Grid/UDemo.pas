@@ -70,6 +70,7 @@ type
     FAdapter: TTMSFNCGridDatabaseAdapter;
     FPDF: TTMSFNCGridPDFIO;
     FPrint: TTMSFNCGridPrintIO;
+    FBusy: Boolean;
     {$IFNDEF WEBLIB}
     FPopup: TTMSFNCGridToolBarPopup;
     {$ENDIF}
@@ -154,21 +155,20 @@ begin
 
   FLayout.AddCaption(FSettings, 'Data');
   FBoundCheck := FLayout.AddCheck(FSettings, 'Bind to the orders dataset (adapter)', False, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
-  FLayout.AddText(FSettings, 'Unbound, the cells are filled in code; bound, the database adapter creates a ' +
-    'column per field and writes edits back.', 64);
+  FLayout.AddText(FSettings, 'Bound, the adapter makes a column per field and writes edits back.', 44);
 
   FLayout.AddCaption(FSettings, 'Export');
   FOnScreenCheck := FLayout.AddCheck(FSettings, 'Export as on screen (dark stays dark)', False, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
   FLayout.AddButton(FSettings, 'Save as PDF', {$IFDEF WEBLIB}@{$ENDIF}PDFClick);
   FLayout.AddButton(FSettings, 'Print', {$IFDEF WEBLIB}@{$ENDIF}PrintClick);
-
-  FLayout.AddCaption(FSettings, 'Status');
-  FStatus := FLayout.AddText(FSettings, '', 60);
 end;
 
 procedure TForm1.CreateContent;
 begin
   FContent := FLayout.AddContentPanel(Self);
+  { what the last action did, under the grid }
+  FStatus := FLayout.AddText(FContent, '', 36);
+  FLayout.Place(FStatus, daBottom, 36, 0, 8, 0, 0);
 
   FGrid := TTMSFNCGrid.Create(Self);
   FGrid.Parent := FContent;
@@ -177,6 +177,9 @@ begin
   FGrid.Options.Filtering.DropDownFixedRow := 0;
   FGrid.Options.Sorting.Row := 0;
   FGrid.OnCellEditDone := {$IFDEF WEBLIB}@{$ENDIF}CellChanged;
+  { the customer column takes the width the other columns leave }
+  FGrid.Options.ColumnSize.Stretch := True;
+  FGrid.Options.ColumnSize.StretchColumn := 2;
 
   { the database adapter: created once, switched on and off by the check box }
   FAdapter := TTMSFNCGridDatabaseAdapter.Create(Self);
@@ -277,14 +280,34 @@ begin
   {$ELSE}
   f := TTMSFNCUtils.GetDocumentsPath + PathDelim + 'TMS FNC Grid.pdf';
   {$ENDIF}
-  FPDF.Save(f);
-  FStatus.Text := 'Saved <b>' + f + '</b>.';
+  { a second click while the file is written, or a PDF still open in a viewer, is not an error for the user }
+  if FBusy then
+    Exit;
+  FBusy := True;
+  try
+    try
+      FPDF.Save(f);
+      FStatus.Text := 'Saved <b>' + f + '</b>.';
+    except
+      on Exception do
+        FStatus.Text := 'Could not save <b>' + f + '</b>: is it open in another program?';
+    end;
+  finally
+    FBusy := False;
+  end;
 end;
 
 procedure TForm1.PrintClick(Sender: TObject);
 begin
-  FPrint.Print;
-  FStatus.Text := 'Sent to the printer.';
+  if FBusy then
+    Exit;
+  FBusy := True;
+  try
+    FPrint.Print;
+    FStatus.Text := 'Sent to the printer.';
+  finally
+    FBusy := False;
+  end;
 end;
 
 procedure TForm1.CellChanged(Sender: TObject; ACol, ARow: Integer; CellEditor: TTMSFNCGridEditor);
