@@ -28,9 +28,11 @@ Subcommands
 A project is a .dproj or .dpr (FMX/VCL is detected from the .dpr) or a WEB .dproj (compile only,
 TMS WEB Core). Theming sources: --core / --uipack (default: the theming worktrees); --extra adds the sources of
 other products a demo needs. Shared form units with {$IFDEF} form classes are resolved for WEBLIB before the WEB
-compile; a VCL/FMX project's <RcItem> resources become its .dres. Heavy runs go
-through the harness tools/heavy.py; this script only throttles test processes through
-hidden_desktop.
+compile; a VCL/FMX project's <RcItem> resources become its .dres.
+
+Machine locks (harness tools/heavy.py): every compiler call takes a compile slot and the runs of one demo
+(shoot, smoke, the DPIs of a click-through) take the run lock, which is free again between two demos: a
+batch of hours lets the runs of other agents in between. heavy.py starts this script without a lock of its own.
 
 Examples (from the demos repository root):
   python -I tools/democheck.py compile FMX/Calendar/Demo.dproj --platforms win32 win64 osx64 android64
@@ -57,6 +59,7 @@ DELPHI = {"13": "37.0", "12": "23.0"}
 WEBCORE = WORKSPACE / "TMS Smart Setup Install" / "Products" / "tms.webcore"
 BELOW_NORMAL = 0x00004000
 NO_WINDOW = 0x08000000
+HEAVY_LOCKS_PER_STEP = True  # read by heavy.py: this script takes its slots per build and per demo
 
 NS_COMMON = "System;Xml;Data;Datasnap;Web;Soap"
 COMPILERS = {
@@ -91,8 +94,18 @@ def work_root(args):
     return w
 
 
+def heavy_slot(kind):
+    """A compile slot ('compile') or the run lock ('run') of the harness tools/heavy.py for a with block. A slot
+    a parent process holds (gate.py, heavy.py --run) is shared."""
+    tools = str(HARNESS / "tools")
+    if tools not in sys.path:
+        sys.path.insert(0, tools)
+    import heavy  # noqa: E402
+    return heavy.slot(kind)
+
+
 def run(cmd, log, cwd=None, timeout=1800):
-    with open(log, "w", encoding="utf-8", errors="replace") as f:
+    with heavy_slot("compile"), open(log, "w", encoding="utf-8", errors="replace") as f:
         return subprocess.run([str(c) for c in cmd], cwd=cwd, stdout=f, stderr=subprocess.STDOUT,
                               stdin=subprocess.DEVNULL, timeout=timeout,
                               creationflags=BELOW_NORMAL | NO_WINDOW).returncode
@@ -179,8 +192,9 @@ def sources(args):
                                                                           Path(args.uipack) / "Source" / "xlsAdapter"] + extra
 
 
-def scratch_dpr(proj, out, extra_units=()):
-    """A copy of the .dpr in <out> with absolute unit paths (and extra units appended)."""
+def scratch_dpr(proj, out, extra_units=(), delphi="13"):
+    """A copy of the .dpr in <out> with absolute unit paths (and extra units appended); the resources the IDE
+    would link (manifest, resource items, VCL styles of the project) built with the tools of that Delphi."""
     text = proj.text
 
     def fix(m):
@@ -197,12 +211,15 @@ def scratch_dpr(proj, out, extra_units=()):
     if res.exists():
         shutil.copy2(res, out / res.name)
     elif "{$R *.res}" in text:
-        make_empty_res(out / (proj.dpr.stem + ".res"), out)
+        make_empty_res(out / (proj.dpr.stem + ".res"), out, delphi)
     if "{$R *.dres}" in text:
-        make_dres(proj, out)
-    if make_manifest(out):
+        make_dres(proj, out, delphi)
+    more = [name for name, made in (("manifest.res", make_manifest(out, delphi)),
+                                    ("styles.res", make_styles(proj, out, delphi))) if made]
+    if more:
         text = dst.read_text(encoding="utf-8")
-        text = re.sub(r"(\{\$R \*\.res\})", r"\1\n{$R manifest.res}", text, count=1, flags=re.I)
+        add = "".join("\n{$R %s}" % name for name in more)
+        text = re.sub(r"(\{\$R \*\.res\})", lambda m: m.group(1) + add, text, count=1, flags=re.I)
         dst.write_text(text, encoding="utf-8")
     return dst
 
@@ -237,6 +254,39 @@ def make_empty_res(path, out, delphi="13"):
     run([STUDIO / DELPHI[delphi] / "bin" / "brcc32.exe", "-fo" + str(path), rc], out / "brcc32.log")
 
 
+def expand_macros(text, delphi="13"):
+    """A path of a project file with the IDE's $(BDS) and $(BDSCOMMONDIR) filled in for that Delphi."""
+    public = Path(os.environ.get("PUBLIC", "C:/Users/Public")) / "Documents" / "Embarcadero" / "Studio" / DELPHI[delphi]
+    for name, value in (("BDSCOMMONDIR", public), ("BDS", STUDIO / DELPHI[delphi])):
+        text = re.sub(r"\$\(" + name + r"\)", lambda m: str(value), text, flags=re.I)
+    return text
+
+
+def make_styles(proj, out, delphi="13"):
+    """The VCL styles of the project (Project > Options > Application > Appearance, <Custom_Styles> in the .dproj:
+    "Name|VCLSTYLE|file" entries) as styles.res: the IDE links them, the command line does not. False without any."""
+    dproj = proj.dproj.read_text(encoding="utf-8-sig", errors="replace") if proj.dproj.exists() else ""
+    lines, seen = [], set()
+    for value in re.findall(r"<Custom_Styles>([^<]*)</Custom_Styles>", dproj):
+        for entry in value.replace("&quot;", "").replace('"', "").split(";"):
+            parts = entry.split("|")
+            if len(parts) != 3 or parts[0] in seen:
+                continue
+            path = Path(expand_macros(parts[2], delphi))
+            if not path.is_absolute():
+                path = (proj.dir / path).resolve()
+            if path.exists():
+                seen.add(parts[0])
+                ident = re.sub(r"[^A-Za-z0-9]", "", parts[0]).upper()
+                lines.append(f'{ident} {parts[1]} "{str(path).replace(chr(92), "/")}"')
+    if not lines:
+        return False
+    rc = out / "styles.rc"
+    rc.write_text("\n".join(lines) + "\n", encoding="ascii", errors="replace")
+    run([STUDIO / DELPHI[delphi] / "bin" / "brcc32.exe", "-fo" + str(out / "styles.res"), rc], out / "brcc32-styles.log")
+    return (out / "styles.res").exists()
+
+
 def make_dres(proj, out, delphi="13"):
     """The IDE compiles the project's resource items (<RcItem> in the .dproj: SVGs, images) into <project>.dres;
     the command line does not, so the file is built here from the same items (or copied when the IDE left one)."""
@@ -249,7 +299,9 @@ def make_dres(proj, out, delphi="13"):
     for inc, body in re.findall(r'<RcItem Include="([^"]+)">(.*?)</RcItem>', dproj, re.S):
         rtype = re.search(r"<ResourceType>([^<]*)</ResourceType>", body)
         rid = re.search(r"<ResourceId>([^<]*)</ResourceId>", body)
-        path = (proj.dir / inc).resolve()
+        path = Path(expand_macros(inc, delphi))  # a file of the IDE: $(BDS)\Redist\styles\...
+        if not path.is_absolute():
+            path = (proj.dir / path).resolve()
         if rtype and rid and path.exists():
             lines.append(f'{rid.group(1)} {rtype.group(1)} "{str(path).replace(chr(92), "/")}"')
     rc = out / "resources.rc"
@@ -363,7 +415,7 @@ def build_native(args, proj, platform, delphi="13", defines=(), extra_units=(), 
     namespaces = f"{NS_COMMON};{FW_NS[proj.fw]};{ns}"
     d = ";".join(list(proj.defines) + list(defines))
     if link:
-        target = scratch_dpr(proj, out, extra_units)
+        target = scratch_dpr(proj, out, extra_units, delphi)
         cmd = [exe, "-Q", f"-NS{namespaces}", f"-U{search}", f"-I{inc}", f"-R{search};{out}", f"-NU{out / 'dcu'}",
                f"-E{out}", f"-D{d}" if d else "-D_", target]
     else:
@@ -548,8 +600,9 @@ def cmd_shoot(args):
         env["DEMOSHOT_OUT"] = str(dest)
         env["DEMOSHOT_MODES"] = "|".join(args.modes)
         try:
-            code = hidden_desktop.run([b["exe"]], timeout=args.timeout, env=env, cwd=str(proj.dir),
-                                      stdout_path=str(dest / "stdout.txt"))
+            with heavy_slot("run"):
+                code = hidden_desktop.run([b["exe"]], timeout=args.timeout, env=env, cwd=str(proj.dir),
+                                          stdout_path=str(dest / "stdout.txt"))
         except subprocess.TimeoutExpired:
             code = "timeout"
         summary = {"project": str(proj.dpr), "exit": code, "modes": {}}
@@ -660,13 +713,15 @@ def cmd_smoke(args):
         env["DEMOSHOT_OUT"] = str(dest)
         env["DEMOSHOT_MODES"] = "smoke"
         env["DEMOSHOT_DELAY"] = str(args.delay)
-        proc = hidden_desktop.start([b["exe"]], env=env, cwd=str(proj.dir), stdout_path=str(dest / "stdout.txt"))
-        code, dialog = watch_process(proc, hidden_desktop, args.timeout)
+        with heavy_slot("run"):
+            proc = hidden_desktop.start([b["exe"]], env=env, cwd=str(proj.dir), stdout_path=str(dest / "stdout.txt"))
+            code, dialog = watch_process(proc, hidden_desktop, args.timeout)
+            if code is None and not dialog:
+                proc.kill()  # still running: ended before the run lock is given back
         error = (dest / "error.txt").read_text(encoding="utf-8", errors="replace").strip() if (dest / "error.txt").exists() else ""
         if dialog:
             state = f"FAILED dialog: {dialog}"
         elif code is None:
-            proc.kill()
             state = "FAILED still running (no main form or a blocked message loop)"
         elif error:
             state = f"FAILED exception: {error}"
@@ -769,7 +824,6 @@ def cmd_click(args):
     import hidden_desktop  # noqa: E402
     from concurrent.futures import ThreadPoolExecutor
     probe = HERE / "delphi" / "DemoShot.pas"
-    jobs = []
     rc = 0
     for p in args.projects:
         proj = Project(p)
@@ -782,22 +836,20 @@ def cmd_click(args):
             print(f"{key:44} build FAILED {' | '.join(b.get('errors', [])[:3])}", flush=True)
             rc = 1
             continue
-        for ppi in args.ppi:
-            jobs.append((key, proj, b["exe"], ppi))
 
-    def go(job):
-        key, proj, exe, ppi = job
-        return key, ppi, click_one(hidden_desktop, exe, proj, Path(args.out) / "click" / key / str(ppi), ppi,
-                                   args.timeout, args.maxsteps)
+        def go(ppi, key=key, proj=proj, exe=b["exe"]):
+            return ppi, click_one(hidden_desktop, exe, proj, Path(args.out) / "click" / key / str(ppi), ppi,
+                                  args.timeout, args.maxsteps)
 
-    with ThreadPoolExecutor(max_workers=args.jobs) as ex:
-        for key, ppi, s in ex.map(go, jobs):
-            errs = [t for sev, t in s["issues"] if sev == "error"]
-            warns = [t for sev, t in s["issues"] if sev == "warn"]
-            if errs:
-                rc = 1
-            print(f"{key:40} {ppi:>3} steps={s['steps']:<3} errors={len(errs)} warnings={len(warns)}"
-                  + (f"  {errs[0][:150]}" if errs else ""), flush=True)
+        # the run lock per demo: free again between two demos of a long list
+        with heavy_slot("run"), ThreadPoolExecutor(max_workers=args.jobs) as ex:
+            for ppi, s in ex.map(go, args.ppi):
+                errs = [t for sev, t in s["issues"] if sev == "error"]
+                warns = [t for sev, t in s["issues"] if sev == "warn"]
+                if errs:
+                    rc = 1
+                print(f"{key:40} {ppi:>3} steps={s['steps']:<3} errors={len(errs)} warnings={len(warns)}"
+                      + (f"  {errs[0][:150]}" if errs else ""), flush=True)
     return rc
 
 
