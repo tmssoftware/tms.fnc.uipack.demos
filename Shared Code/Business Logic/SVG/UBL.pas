@@ -166,7 +166,9 @@ begin
   pnl2.BorderSpacing.Bottom := 16;
   {$ENDIF}
   {$IF DEFINED(VCL) OR DEFINED(WEBLIB)}
-  pnl1.Width := 360;
+  { the PNG and the SVG side get the same width (VCL: in pixels of the form, which is scaled by now; a fixed 360
+    made the PNG side half as wide as the SVG side at 144 and 192) }
+  pnl1.Width := (FForm.ClientWidth - 48) div 2;
   pnl1.Align := alLeft;
   pnl1.AlignWithMargins := True;
   pnl1.Margins.Left := 16;
