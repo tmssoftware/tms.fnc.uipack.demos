@@ -1764,31 +1764,6 @@ begin
   end;
 end;
 
-{$IFNDEF DEMOSHOT_FMX}
-type
-  TPPIControl = class(TControl);
-
-{ sets the DPI every control below AParent counts itself at to APPI; returns how many differed }
-function AlignChildPPI(AParent: TWinControl; APPI: Integer): Integer;
-var
-  I: Integer;
-  c: TControl;
-begin
-  Result := 0;
-  for I := 0 to AParent.ControlCount - 1 do
-  begin
-    c := AParent.Controls[I];
-    if TPPIControl(c).FCurrentPPI <> APPI then
-    begin
-      TPPIControl(c).FCurrentPPI := APPI;
-      Inc(Result);
-    end;
-    if c is TWinControl then
-      Inc(Result, AlignChildPPI(TWinControl(c), APPI));
-  end;
-end;
-{$ENDIF}
-
 procedure RunClick(AForm: TCommonCustomForm);
 var
   res: TJSONObject;
@@ -1826,9 +1801,6 @@ begin
       scaled as when it moves to a monitor with that DPI }
     if (ClickPPI > 96) and (TCustomForm(AForm).CurrentPPI <> ClickPPI) then
     begin
-      { controls the demo created in code took the emulated DPI as their own while they were sized for the form's
-        96: they would skip the scaling. They are at the form's DPI, as they are when the form really loads at 96 }
-      res.AddPair('ppiAligned', TJSONNumber.Create(AlignChildPPI(TCustomForm(AForm), TCustomForm(AForm).CurrentPPI)));
       TCustomForm(AForm).ScaleForPPI(ClickPPI);
       res.AddPair('scaledAfterStart', TJSONBool.Create(True));
     end;
