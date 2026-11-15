@@ -1,0 +1,84 @@
+# Service Desk Details: a person opens a customer and a ticket in the tree, tries every template with and without the
+# tool bar, the places (beside, below, in place with Back), then the ticket board and the agents without a database,
+# in light and dark.
+click|TTMSFNCTreeView#1|tl:80,50
+wait|500
+shot|customer: its tickets in the view
+key|down
+wait|500
+shot|ticket: its comments
+click|Form of one record
+wait|300
+shot|ticket as a form
+click|Cards
+wait|300
+shot|comments as cards
+click|Tabs
+wait|300
+shot|comments on a tab
+click|TTMSFNCTreeView#1|tl:80,50
+wait|400
+shot|customer: tickets on a tab
+click|Cards
+wait|300
+shot|tickets as cards
+click|Tool bar
+wait|300
+shot|cards under the tool bar
+click|Grid of the detail records
+wait|300
+shot|grid under the tool bar
+click|Tool bar
+segment|TTMSFNCSegmentedControl#1|1|3
+wait|300
+shot|below the tree
+theme|Fluent Dark
+theme|Fluent Light
+segment|TTMSFNCSegmentedControl#1|2|3
+click|TTMSFNCTreeView#1|tl:80,74
+key|enter
+wait|600
+shot|in place of the tree
+key|escape
+wait|400
+shot|back to the tree
+segment|TTMSFNCSegmentedControl#1|0|3
+click|Ticket board
+wait|600
+click|TTMSFNCKanbanBoard#1|tl:90,70
+wait|500
+shot|card: its comments
+click|Cards
+wait|300
+shot|board: comments as cards
+click|Tabs
+click|Tool bar
+wait|300
+shot|board: a tab under the tool bar
+click|Tool bar
+click|Form of one record
+wait|300
+shot|board: the ticket as a form
+click|Agents
+wait|500
+click|TTMSFNCListBox#1|tl:80,50
+wait|500
+shot|agent as a form
+click|Grid of the detail records
+wait|300
+shot|agent: open tickets from OnGetDetailData
+click|Cards
+wait|300
+shot|agent: tickets as cards
+click|Tabs
+wait|300
+shot|agent: open and done
+click|Tool bar
+wait|300
+shot|agent: tabs under the tool bar
+theme|Fluent Dark
+shot|dark
+theme|Fluent Light
+click|Tool bar
+click|Grid of the detail records
+click|Customers

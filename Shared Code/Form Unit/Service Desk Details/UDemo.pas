@@ -5,10 +5,11 @@
   One detail view (TTMSFNCDetailView) beside the list controls of a service desk, each a master through its
   MasterDetail: a tree of customers with their tickets (a customer shows its tickets, a ticket its comments through
   the MasterDetail of the tree's ticket level), a ticket board (the comments of the selected card) and a list of
-  agents without a database (the open tickets of an agent, filled in OnGetDetailData). Pick how the detail shows
-  (grid, form, cards, tabs), where (beside, below or in place of the list, with Back to return), the tool bar and
-  editing. At design time the same setup takes a few clicks: Data > Details in the context menu of a list control,
-  or the Details section of its quick setup. }
+  agents without a database (the tickets of an agent, filled in OnGetDetailData: open and done ones on two tabs).
+  Pick how the detail shows (grid, form, cards, tabs), where (beside, below or in place of the list, with Back to
+  return), the tool bar (search, the record count and Add through OnAddRecord) and editing. At design time the same
+  setup takes a few clicks: Data > Details in the context menu of a list control, or the Details section of its quick
+  setup. }
 
 interface
 
@@ -53,6 +54,7 @@ type
     FContent: TTMSFNCPanel;
     FMaster: TDemoMaster;
     FWhere: TDemoWhere;
+    FTemplate: Integer;
     FMasterRadios: array[TDemoMaster] of TTMSFNCRadioButton;
     FTemplateRadios: array[0..3] of TTMSFNCRadioButton;
     FPlacement: TTMSFNCSegmentedControl;
@@ -85,6 +87,9 @@ type
     procedure SettingChanged(Sender: TObject);
     procedure ViewGetDetailData(Sender: TObject; AMaster: TTMSFNCDataGridRenderer; AMasterRow, ATab: Integer;
       ADetail: TTMSFNCDataGridRenderer; var ANested: Boolean);
+    procedure ViewAddRecord(Sender: TObject; ADetail: TTMSFNCDataGridRenderer; var AHandled: Boolean);
+    procedure SetFields(ADataSet: TDataSet);
+    function AgentTickets(const AAgent: string; ADone: Boolean): Integer;
   public
   end;
 
@@ -157,6 +162,8 @@ begin
   // the tickets of a customer: a second cursor on the same records, filtered by the tree's MasterDetail
   FCustomerTickets := FLayout.NewDataSet;
   FCustomerTickets.CloneCursor(FTickets, False, False);
+  // the tab of a detail table is named after the table
+  FCustomerTickets.Name := 'Tickets';
 
   FComments := FLayout.NewDataSet;
   FComments.FieldDefs.Add('CommentID', ftInteger);
@@ -165,6 +172,7 @@ begin
   FComments.FieldDefs.Add('Comment', ftString, 120);
   FComments.FieldDefs.Add('Posted', ftDateTime);
   FLayout.OpenDataSet(FComments);
+  FComments.Name := 'Comments';
   // the number of a comment is no news to a reader of the detail
   FComments.FieldByName('CommentID').Visible := False;
   c := 1;
@@ -177,10 +185,43 @@ begin
     end;
   FComments.First;
 
+  SetFields(FCustomers);
+  SetFields(FTickets);
+  SetFields(FCustomerTickets);
+  SetFields(FComments);
+  // the tickets of a customer fit the view beside the tree without the date
+  FCustomerTickets.FieldByName('Opened').Visible := False;
+
   FCustomersSource := FLayout.NewSource(FCustomers);
   FTicketsSource := FLayout.NewSource(FTickets);
   FCustomerTicketsSource := FLayout.NewSource(FCustomerTickets);
   FCommentsSource := FLayout.NewSource(FComments);
+end;
+
+{ the captions a reader sees in a form, a card and a column header, and the widths of the columns: a column is as
+  wide as the DisplayWidth of its field, and the size of a text field is more than its texts need }
+procedure TForm1.SetFields(ADataSet: TDataSet);
+const
+  Names: array[0..11] of string = ('CustomerID', 'TicketID', 'CommentID', 'Company', 'City', 'Title', 'Status',
+    'Priority', 'Agent', 'Author', 'Comment', 'Posted');
+  Labels: array[0..11] of string = ('Customer no.', 'Ticket', 'Comment no.', '', '', '', '', '', '', '', '', '');
+  Widths: array[0..11] of Integer = (6, 5, 6, 20, 12, 18, 9, 6, 10, 10, 34, 10);
+var
+  I: Integer;
+  f: TField;
+begin
+  for I := 0 to High(Names) do
+  begin
+    f := ADataSet.FindField(Names[I]);
+    if not Assigned(f) then
+      Continue;
+
+    if Labels[I] <> '' then
+      f.DisplayLabel := Labels[I];
+    f.DisplayWidth := Widths[I];
+    if f is TDateTimeField then
+      TDateTimeField(f).DisplayFormat := FormatSettings.ShortDateFormat;
+  end;
 end;
 
 procedure TForm1.CreateSettings;
@@ -257,6 +298,7 @@ begin
   FView := TTMSFNCDetailView.Create(Self);
   FView.Parent := FContent;
   FView.OnGetDetailData := ViewGetDetailData;
+  FView.OnAddRecord := ViewAddRecord;
   FSplitter := TTMSFNCSplitter.Create(Self);
   FSplitter.Parent := FContent;
 end;
@@ -337,6 +379,19 @@ begin
   FAgents.MasterDetail.Enabled := AMaster = dmAgents;
   if (AMaster = dmAgents) and (FAgents.ItemIndex < 0) then
     FAgents.ItemIndex := 0;
+
+  // without a database the tabs are named here and filled in OnGetDetailData; a detail table names its own tab
+  FView.Tabs.BeginUpdate;
+  try
+    FView.Tabs.Clear;
+    if AMaster = dmAgents then
+    begin
+      FView.Tabs.Add('Open');
+      FView.Tabs.Add('Done');
+    end;
+  finally
+    FView.Tabs.EndUpdate;
+  end;
   ApplySettings;
 end;
 
@@ -347,13 +402,9 @@ var
   m: TDemoMaster;
   md: TTMSFNCMasterDetail;
   s: string;
-  t, I: Integer;
+  t: Integer;
 begin
-  t := 0;
-  for I := 0 to High(FTemplateRadios) do
-    if FTemplateRadios[I].Checked then
-      t := I;
-
+  t := FTemplate;
   for m := Low(TDemoMaster) to High(TDemoMaster) do
   begin
     md := MasterSettings(m);
@@ -361,6 +412,9 @@ begin
     try
       md.Template := Templates[t];
       md.ToolBar.Visible := FToolBarCheck.Checked;
+      // Add adds a ticket or a comment (OnAddRecord); the tickets of an agent are a list to read
+      md.ToolBar.AddButton := m <> dmAgents;
+      md.Cards.TitleField := 'Title';
       md.Editing := FEditingCheck.Checked;
       if FWhere = dwInPlace then
         md.Placement := mdpDrillDown
@@ -375,15 +429,18 @@ begin
   try
     md.Template := FTree.MasterDetail.Template;
     md.ToolBar.Visible := FToolBarCheck.Checked;
+    md.Cards.TitleField := 'Author';
     md.Editing := FEditingCheck.Checked;
     md.Placement := FTree.MasterDetail.Placement;
   finally
     md.EndUpdate;
   end;
 
+  FBoard.MasterDetail.Cards.TitleField := 'Author';
+
   case FMaster of
     dmBoard: s := 'Select a card: the view shows its comments.';
-    dmAgents: s := 'Select an agent: the open tickets come from OnGetDetailData (no database).';
+    dmAgents: s := 'Select an agent: the tickets come from OnGetDetailData (no database).';
   else
     s := 'Select a customer for its tickets, a ticket for its comments.';
   end;
@@ -391,6 +448,15 @@ begin
     s := s + ' Enter or a double click opens the detail in place of the list; Back returns.'
   else
     s := s + ' Enter moves the keyboard into the detail.';
+  if FToolBarCheck.Checked and (Templates[t] <> mdtForm) then
+  begin
+    if FMaster = dmAgents then
+      s := s + ' The tool bar searches and counts.'
+    else
+      s := s + ' The tool bar searches and counts; Add adds a record in OnAddRecord.';
+  end
+  else if (Templates[t] = mdtCards) and (FMaster <> dmAgents) then
+    s := s + ' Enter or a double click on a card shows its record.';
   FStatus.Text := s;
 end;
 
@@ -406,10 +472,15 @@ end;
 procedure TForm1.SettingChanged(Sender: TObject);
 var
   w: TDemoWhere;
+  I: Integer;
 begin
   // the radio button that lost its check tells it too: the one that got it applies the choice
   if (Sender is TTMSFNCRadioButton) and not TTMSFNCRadioButton(Sender).Checked then
     Exit;
+
+  for I := 0 to High(FTemplateRadios) do
+    if Sender = FTemplateRadios[I] then
+      FTemplate := I;
 
   w := TDemoWhere(FPlacement.ItemIndex);
   if w <> FWhere then
@@ -420,24 +491,66 @@ begin
   ApplySettings;
 end;
 
-{ the open tickets of the selected agent: a header row, then a row per ticket }
+{ the number of tickets of an agent that are done, or that are not }
+function TForm1.AgentTickets(const AAgent: string; ADone: Boolean): Integer;
+var
+  bm: TBookmark;
+begin
+  Result := 0;
+  bm := FTickets.GetBookmark;
+  FTickets.DisableControls;
+  try
+    FTickets.First;
+    while not FTickets.Eof do
+    begin
+      if (FTickets.FieldByName('Agent').AsString = AAgent) and ((FTickets.FieldByName('Status').AsString = 'Done') = ADone) then
+        Inc(Result);
+      FTickets.Next;
+    end;
+  finally
+    FTickets.GotoBookmark(bm);
+    FTickets.FreeBookmark(bm);
+    FTickets.EnableControls;
+  end;
+end;
+
+{ the tickets of the selected agent: a header row, then a row per ticket; the open ones, or with the tabs the done
+  ones on the second tab. The form of an agent gets two lines more }
 procedure TForm1.ViewGetDetailData(Sender: TObject; AMaster: TTMSFNCDataGridRenderer; AMasterRow, ATab: Integer;
   ADetail: TTMSFNCDataGridRenderer; var ANested: Boolean);
 var
   agent: string;
   r: Integer;
   bm: TBookmark;
+  done: Boolean;
 begin
   if (FMaster <> dmAgents) or (FAgents.ItemIndex < 0) then
     Exit;
 
   agent := FAgents.Items[FAgents.ItemIndex].Text;
+  if FAgents.MasterDetail.Template = mdtForm then
+  begin
+    r := ADetail.RowCount;
+    ADetail.RowCount := r + 2;
+    ADetail.Cells[0, r] := 'Open tickets';
+    ADetail.Cells[1, r] := AgentTickets(agent, False);
+    ADetail.Cells[0, r + 1] := 'Done';
+    ADetail.Cells[1, r + 1] := AgentTickets(agent, True);
+    Exit;
+  end;
+
+  done := (FAgents.MasterDetail.Template = mdtTabs) and (ATab = 1);
   ADetail.ColumnCount := 4;
   ADetail.RowCount := 1;
   ADetail.Cells[0, 0] := 'Ticket';
   ADetail.Cells[1, 0] := 'Title';
   ADetail.Cells[2, 0] := 'Status';
   ADetail.Cells[3, 0] := 'Priority';
+  // the widths of the columns to each other: the view gives them its room
+  ADetail.ColumnWidths[0] := 60;
+  ADetail.ColumnWidths[1] := 190;
+  ADetail.ColumnWidths[2] := 100;
+  ADetail.ColumnWidths[3] := 80;
 
   bm := FTickets.GetBookmark;
   FTickets.DisableControls;
@@ -446,7 +559,7 @@ begin
     FTickets.First;
     while not FTickets.Eof do
     begin
-      if (FTickets.FieldByName('Agent').AsString = agent) and (FTickets.FieldByName('Status').AsString <> 'Done') then
+      if (FTickets.FieldByName('Agent').AsString = agent) and ((FTickets.FieldByName('Status').AsString = 'Done') = done) then
       begin
         ADetail.RowCount := r + 1;
         ADetail.Cells[0, r] := FTickets.FieldByName('TicketID').AsInteger;
@@ -462,6 +575,41 @@ begin
     FTickets.FreeBookmark(bm);
     FTickets.EnableControls;
   end;
+end;
+
+{ the Add button of the tool bar: a ticket for the customer, or a comment for the ticket. The link of the view knows
+  the detail table, its link field and the record of the master }
+procedure TForm1.ViewAddRecord(Sender: TObject; ADetail: TTMSFNCDataGridRenderer; var AHandled: Boolean);
+var
+  ds: TDataSet;
+  key: Variant;
+begin
+  if (FMaster = dmAgents) or not Assigned(FView.Link) or (FView.Link.DataSource = nil) or
+    (Length(FView.Link.MasterRecord.Keys) = 0) then
+    Exit;
+
+  ds := FView.Link.DataSource.DataSet;
+  key := FView.Link.MasterRecord.Keys[0];
+  ds.Append;
+  ds.FieldByName(FView.Link.ActiveDetailFields).Value := key;
+  if ds = FComments then
+  begin
+    ds.FieldByName('CommentID').AsInteger := FComments.RecordCount + 1000;
+    ds.FieldByName('Author').AsString := 'You';
+    ds.FieldByName('Comment').AsString := 'Added with the Add button.';
+    ds.FieldByName('Posted').AsDateTime := Now;
+  end
+  else
+  begin
+    ds.FieldByName('TicketID').AsInteger := 101 + FTickets.RecordCount;
+    ds.FieldByName('Title').AsString := 'New ticket';
+    ds.FieldByName('Status').AsString := Statuses[0];
+    ds.FieldByName('Priority').AsString := Priorities[1];
+    ds.FieldByName('Agent').AsString := Agents[0];
+    ds.FieldByName('Opened').AsDateTime := Date;
+  end;
+  ds.Post;
+  AHandled := True;
 end;
 
 end.
