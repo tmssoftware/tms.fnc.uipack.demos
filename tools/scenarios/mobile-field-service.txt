@@ -1,6 +1,6 @@
 # Mobile Field Service: on a phone a job opens in place of the list; the breadcrumb leads back; the tablet
 # expands under the row; full width shows every column; customers tree with its breadcrumb; parts search.
-dbl|TTMSFNCDataGrid#1|tl:40,66
+dbl|TTMSFNCDataGrid#1|tl:150,66
 wait|700
 shot|job opened on the phone
 click|TTMSFNCDataGrid#1|tl:30,15

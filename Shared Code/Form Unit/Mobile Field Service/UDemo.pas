@@ -17,7 +17,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls,
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCCustomControl,
   VCL.TMSFNCPanel, VCL.TMSFNCHTMLText, VCL.TMSFNCButton, VCL.TMSFNCCheckBox, VCL.TMSFNCRadioButton,
-  VCL.TMSFNCEdit, VCL.TMSFNCSegmentedControl, VCL.TMSFNCBreadcrumb, VCL.TMSFNCDataGrid,
+  VCL.TMSFNCEdit, VCL.TMSFNCSegmentedControl, VCL.TMSFNCBreadcrumb, VCL.TMSFNCDataGrid, VCL.TMSFNCDataGridCore,
   VCL.TMSFNCDataGridRenderer, VCL.TMSFNCTreeView, VCL.TMSFNCTreeViewData, VCL.TMSFNCCustomTreeView,
   VCL.TMSFNCListBox, VCL.TMSFNCMasterDetail, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector,
   {$ENDIF}
@@ -27,7 +27,7 @@ uses
   FMX.Types, FMX.Forms, FMX.Controls, FMX.Graphics, FMX.Dialogs,
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCCustomControl,
   FMX.TMSFNCPanel, FMX.TMSFNCHTMLText, FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCRadioButton,
-  FMX.TMSFNCEdit, FMX.TMSFNCSegmentedControl, FMX.TMSFNCBreadcrumb, FMX.TMSFNCDataGrid,
+  FMX.TMSFNCEdit, FMX.TMSFNCSegmentedControl, FMX.TMSFNCBreadcrumb, FMX.TMSFNCDataGrid, FMX.TMSFNCDataGridCore,
   FMX.TMSFNCDataGridRenderer, FMX.TMSFNCTreeView, FMX.TMSFNCTreeViewData, FMX.TMSFNCCustomTreeView,
   FMX.TMSFNCListBox, FMX.TMSFNCMasterDetail, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector,
   {$ENDIF}
@@ -37,7 +37,8 @@ uses
   WEBLib.TMSFNCTypes, WEBLib.TMSFNCUtils, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCGraphicsTypes,
   WEBLib.TMSFNCCustomControl, WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCButton,
   WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton, WEBLib.TMSFNCEdit, WEBLib.TMSFNCSegmentedControl,
-  WEBLib.TMSFNCBreadcrumb, WEBLib.TMSFNCDataGrid, WEBLib.TMSFNCDataGridRenderer, WEBLib.TMSFNCTreeView,
+  WEBLib.TMSFNCBreadcrumb, WEBLib.TMSFNCDataGrid, WEBLib.TMSFNCDataGridCore, WEBLib.TMSFNCDataGridRenderer,
+  WEBLib.TMSFNCTreeView,
   WEBLib.TMSFNCTreeViewData, WEBLib.TMSFNCCustomTreeView, WEBLib.TMSFNCListBox, WEBLib.TMSFNCMasterDetail,
   WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector,
   {$ENDIF}
@@ -256,7 +257,8 @@ end;
 procedure TForm1.CreateJobs;
 const
   Captions: array[0..6] of string = ('Time', 'Job', 'Customer', 'Address', 'Work', 'Technician', 'Status');
-  Widths: array[0..6] of Integer = (64, 76, 150, 150, 140, 120, 110);
+  { the first column also holds the arrow of the job: 64 cut the time to '08:' }
+  Widths: array[0..6] of Integer = (88, 76, 150, 150, 140, 120, 110);
 var
   I, c: Integer;
 begin
@@ -283,6 +285,12 @@ begin
       FJobs.Cells[5, I + 1] := Jobs[I].Technician;
       FJobs.Cells[6, I + 1] := StatusHTML(Jobs[I].Status);
     end;
+    { a list to read and tap: a double click opens the job, it does not start an editor; the customer column
+      takes the width the other columns leave }
+    FJobs.Options.Editing.Enabled := False;
+    FJobs.Options.Column.Stretching.Enabled := True;
+    FJobs.Options.Column.Stretching.Mode := gstmIndex;
+    FJobs.Options.Column.Stretching.Index := 2;
   finally
     FJobs.EndUpdate;
   end;
@@ -383,6 +391,10 @@ begin
   FSearch.TextHint := 'Search parts';
   {$ENDIF}
   FSearch.OnChange := {$IFDEF WEBLIB}@{$ENDIF}SearchChanged;
+  {$IFDEF FMX}
+  { FMX: OnChange waits for Enter or the focus leaving, the list follows every key }
+  FSearch.OnChangeTracking := SearchChanged;
+  {$ENDIF}
 
   FParts := TTMSFNCListBox.Create(Self);
   FParts.Parent := FPageHosts[apParts];
