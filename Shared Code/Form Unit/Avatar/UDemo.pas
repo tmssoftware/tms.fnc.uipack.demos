@@ -187,11 +187,11 @@ begin
     card := TTMSFNCCardPanel.Create(Self);
     card.Parent := flow;
     card.Width := FLayout.Size(160);
-    card.Height := FLayout.Size(180);
+    card.Height := FLayout.Size(140);
     card.Clickable := True;
     card.Header.Text := People[I].Name;
     card.Header.Description := People[I].Title;
-    card.Header.Height := FLayout.Size(60);
+    card.Header.Height := FLayout.Size(52);
     card.Header.ShowDivider := True;
     card.Appearance.AccentPosition := capLeft;
     card.Appearance.AccentColor := DeptAccent[I div 3];
@@ -205,10 +205,12 @@ begin
     av.Status := People[I].Status;
     {$IFDEF FMX}
     av.Position.X := (FLayout.Size(160) - 56) / 2;
-    av.Position.Y := FLayout.Size(16);
+    { in the body of the card, under the header with the name }
+    av.Position.Y := FLayout.Size(52) + (FLayout.Size(88) - 56) / 2;
     {$ELSE}
     av.Left := (FLayout.Size(160) - FLayout.Size(56)) div 2;
-    av.Top := FLayout.Size(16);
+    { in the body of the card, under the header with the name }
+    av.Top := FLayout.Size(52) + (FLayout.Size(88) - FLayout.Size(56)) div 2;
     {$ENDIF}
     av.Width := FLayout.Size(56);
     av.Height := FLayout.Size(56);
