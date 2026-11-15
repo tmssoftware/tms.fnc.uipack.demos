@@ -26,7 +26,7 @@ object Form1: TForm1
       AlignWithMargins = True
       Left = 916
       Top = 18
-      Width = 160
+      Width = 240
       Height = 36
       Margins.Left = 0
       Margins.Top = 18

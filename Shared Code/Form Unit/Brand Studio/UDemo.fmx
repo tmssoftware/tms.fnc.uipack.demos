@@ -26,7 +26,7 @@ object Form1: TForm1
       Margins.Bottom = 18.000000000000000000
       Position.X = 916.000000000000000000
       Position.Y = 18.000000000000000000
-      Size.Width = 160.000000000000000000
+      Size.Width = 240.000000000000000000
       Size.Height = 36.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0

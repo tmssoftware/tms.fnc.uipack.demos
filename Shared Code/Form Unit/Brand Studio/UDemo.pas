@@ -6,8 +6,9 @@
   one of the sample brands (TTMSFNCBrand.PresetNames, LoadPreset) or open a .fncbrand file (LoadFromFile), let the
   brand follow light and dark of Windows or keep one mode (ThemeManager.BrandMode), colour the title bar with the
   brand (TitleBar tbBrand), import design tokens from CSS custom properties (ImportTokens) or edit the brand in the
-  brand editor at run time (TTMSFNCBrandEditor). The brand board shows the logo and mark (TTMSFNCBrandLogo), the
-  brand colours and a small app in the brand; Save writes the brand as a .fncbrand file. }
+  brand editor at run time (TTMSFNCBrandEditor; FMX and VCL, as the .fncbrand files). The brand board shows the logo and mark (TTMSFNCBrandLogo), the
+  brand colours and a small app in the brand; Save writes the brand as a .fncbrand file. The sample brands get a
+  logo, a dark logo and a mark here: SVG drawn from the brand colours and the application name, as data URIs. }
 
 interface
 
@@ -29,6 +30,15 @@ uses
   FMX.TMSFNCListBox, FMX.TMSFNCCustomTreeView, FMX.TMSFNCSegmentedControl, FMX.TMSFNCBrand, FMX.TMSFNCBrandLogo,
   FMX.TMSFNCBrandEditor, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector,
   {$ENDIF}
+
+  {$IFDEF WEBLIB}
+  SysUtils, Classes, WEBLib.Graphics, WEBLib.Controls, WEBLib.Forms, WEBLib.Dialogs,
+  WEBLib.TMSFNCTypes, WEBLib.TMSFNCUtils, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCGraphicsTypes,
+  WEBLib.TMSFNCCustomControl, WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCButton,
+  WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCEdit, WEBLib.TMSFNCProgressBar, WEBLib.TMSFNCListBox,
+  WEBLib.TMSFNCCustomTreeView, WEBLib.TMSFNCSegmentedControl, WEBLib.TMSFNCBrand, WEBLib.TMSFNCBrandLogo,
+  WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector,
+  {$ENDIF}
   UDemoLayout;
 
 type
@@ -46,12 +56,18 @@ type
     FBrands: TTMSFNCListBox;
     FMode: TTMSFNCSegmentedControl;
     FTitleCheck: TTMSFNCCheckBox;
+    {$IFNDEF WEBLIB}
     FEditor: TTMSFNCBrandEditor;
+    {$ENDIF}
     FLogo: TTMSFNCBrandLogo;
     FMark: TTMSFNCBrandLogo;
     FAppMark: TTMSFNCBrandLogo;
     FSwatches: array[0..4] of TTMSFNCHTMLText;
+    FBrandView: TTMSFNCPanel;
+    FNoBrandView: TTMSFNCPanel;
+    FAppTitle: TTMSFNCHTMLText;
     FInfo: TTMSFNCHTMLText;
+    FNoBrandInfo: TTMSFNCHTMLText;
     FStatus: TTMSFNCHTMLText;
     FUpdating: Boolean;
     procedure CreateSettings;
@@ -80,6 +96,9 @@ implementation
 {$IFDEF VCL}
 {$R *.dfm}
 {$ENDIF}
+{$IFDEF WEBLIB}
+{$R *.dfm}
+{$ENDIF}
 
 const
   { design tokens as a web designer hands them over: CSS custom properties }
@@ -96,26 +115,71 @@ const
   SwatchNames: array[0..4] of string = ('Primary', 'Secondary', 'Success', 'Warning', 'Error');
 
 function HexOf(AColor: TTMSFNCGraphicsColor): string;
-var
-  r, g, b: Integer;
 begin
-  {$IFDEF FMX}
-  r := (AColor shr 16) and $FF;
-  g := (AColor shr 8) and $FF;
-  b := AColor and $FF;
+  Result := UpperCase(TTMSFNCGraphics.ColorToHTML(AColor));
+end;
+
+{ a logo as an SVG data URI: the mark (a rounded square in the primary colour with the initial) and, for the logo, the
+  application name next to it }
+function SvgURI(const ASvg: string): string;
+{$IFNDEF WEBLIB}
+var
+  s: TStringStream;
+{$ENDIF}
+begin
+  {$IFDEF WEBLIB}
+  asm
+    Result = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(ASvg)));
+  end;
   {$ELSE}
-  r := AColor and $FF;
-  g := (AColor shr 8) and $FF;
-  b := (AColor shr 16) and $FF;
+  s := TStringStream.Create(ASvg, TEncoding.UTF8);
+  try
+    Result := 'data:image/svg+xml;base64,' + TTMSFNCUtils.SaveStreamToBase64(s);
+  finally
+    s.Free;
+  end;
   {$ENDIF}
-  Result := Format('#%.2X%.2X%.2X', [r, g, b]);
+end;
+
+function MarkSvg(const AInitial, APrimary, ASecondary: string; AX: Integer): string;
+begin
+  Result := Format('<rect x="%d" y="0" width="64" height="64" rx="14" fill="%s"/>' +
+    '<circle cx="%d" cy="14" r="7" fill="%s"/>' +
+    '<text x="%d" y="44" font-family="Segoe UI" font-size="34" font-weight="bold" fill="#FFFFFF" ' +
+    'text-anchor="middle">%s</text>', [AX, APrimary, AX + 50, ASecondary, AX + 30, AInitial]);
+end;
+
+procedure GiveLogos(ABrand: TTMSFNCBrand);
+var
+  app, ini, pri, sec: string;
+begin
+  app := ABrand.AppName;
+  if app = '' then
+    app := ABrand.Name;
+  ini := UpperCase(Copy(app, 1, 1));
+  pri := HexOf(ABrand.PrimaryColor);
+  sec := HexOf(ABrand.SecondaryColor);
+  ABrand.Mark := SvgURI('<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">' +
+    MarkSvg(ini, pri, sec, 0) + '</svg>');
+  ABrand.Logo := SvgURI('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="64" viewBox="0 0 300 64">' +
+    MarkSvg(ini, pri, sec, 0) + '<text x="80" y="44" font-family="Segoe UI" font-size="34" font-weight="bold" ' +
+    'fill="' + pri + '">' + app + '</text></svg>');
+  ABrand.LogoDark := SvgURI('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="64" viewBox="0 0 300 64">' +
+    MarkSvg(ini, pri, sec, 0) + '<text x="80" y="44" font-family="Segoe UI" font-size="34" font-weight="bold" ' +
+    'fill="#FFFFFF">' + app + '</text></svg>');
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   FLayout := TDemoLayout.Create(Self);
+  {$IFDEF WEBLIB}
+  DemoDescription.Text := 'Pick a sample brand, follow light and dark, import design tokens: the logo, the colours ' +
+    'and a small app follow the brand';
+  {$ENDIF}
+  {$IFNDEF WEBLIB}
   FEditor := TTMSFNCBrandEditor.Create(Self);
   FEditor.ThemeManager := ThemeManager;
+  {$ENDIF}
   CreateSettings;
   CreateContent;
   { the manager starts as the settings say (SettingChanged shows the brand) }
@@ -146,7 +210,7 @@ begin
     names.Free;
   end;
   FBrands.ItemIndex := 0;
-  FBrands.OnItemSelected := BrandSelected;
+  FBrands.OnItemSelected := {$IFDEF WEBLIB}@{$ENDIF}BrandSelected;
 
   FLayout.AddCaption(FSettings, 'Light and dark', 8);
   FMode := TTMSFNCSegmentedControl.Create(Self);
@@ -156,14 +220,21 @@ begin
   FMode.Items.AddItem('Light');
   FMode.Items.AddItem('Dark');
   FMode.ItemIndex := 0;
-  FMode.OnChange := SettingChanged;
+  FMode.OnChange := {$IFDEF WEBLIB}@{$ENDIF}SettingChanged;
+  { a browser draws its own title bar }
+  {$IFNDEF WEBLIB}
   FTitleCheck := FLayout.AddCheck(FSettings, 'Title bar in the brand colour', True, SettingChanged);
+  {$ENDIF}
 
   FLayout.AddCaption(FSettings, 'Make it yours', 8);
+  {$IFDEF WEBLIB}
+  FLayout.AddButton(FSettings, 'Import CSS design tokens', @TokensClick).Default := True;
+  {$ELSE}
   FLayout.AddButton(FSettings, 'Edit the brand...', EditClick).Default := True;
   FLayout.AddButton(FSettings, 'Import CSS design tokens', TokensClick);
   FLayout.AddButton(FSettings, 'Open a .fncbrand file...', OpenClick);
   FLayout.AddButton(FSettings, 'Save the brand as...', SaveClick);
+  {$ENDIF}
 end;
 
 procedure TForm1.CreateContent;
@@ -173,12 +244,23 @@ var
 begin
   FContent := FLayout.AddContentPanel(Self);
 
-  { the brand board: logo and mark, colours, facts }
+  { the brand board: logo and mark, colours, facts; without a brand a short explanation in its place (one of two
+    client panels is shown, so nothing changes order) }
   board := FLayout.AddPanel(FContent, daLeft, 330, 0, 0, 16, 0);
+  FNoBrandView := FLayout.AddPanel(board, daClient, 0, 0, 0, 0, 0);
+  FNoBrandView.Fill.Kind := gfkNone;
+  FNoBrandView.Stroke.Kind := gskNone;
+  FLayout.AddCaption(FNoBrandView, 'No brand', 12);
+  FNoBrandInfo := FLayout.AddText(FNoBrandView, 'The application theme is in charge. Pick a brand on the left, open ' +
+    'a .fncbrand file or import design tokens: the logo, the mark and the brand colours show here.', 100);
+  FBrandView := FLayout.AddPanel(board, daClient, 0, 0, 0, 0, 0);
+  FBrandView.Fill.Kind := gfkNone;
+  FBrandView.Stroke.Kind := gskNone;
+  board := FBrandView;
   FLayout.AddCaption(board, 'Logo', 12);
   FLogo := TTMSFNCBrandLogo.Create(Self);
   FLogo.Parent := board;
-  FLayout.Place(FLogo, daTop, 72, 16, 4, 16, 4);
+  FLayout.Place(FLogo, daTop, 56, 16, 4, 16, 4);
   FLogo.Kind := blkLogo;
   row := FLayout.AddPanel(board, daTop, 56, 16, 4, 16, 4);
   row.Fill.Kind := gfkNone;
@@ -223,6 +305,9 @@ begin
   FAppMark.Parent := bar;
   FLayout.Place(FAppMark, daLeft, 220, 12, 8, 0, 8);
   FAppMark.Kind := blkMarkAndAppName;
+  FAppTitle := FLayout.AddText(bar, '<b>Table booking</b>', 0);
+  FLayout.Place(FAppTitle, daClient, 0, 16, 8, 0, 8);
+  FAppTitle.VerticalTextAlign := gtaCenter;
   FLayout.AddCaption(AParent, 'Book a table', 8);
   e := TTMSFNCEdit.Create(Self);
   e.Parent := AParent;
@@ -280,15 +365,12 @@ begin
   b := CurrentBrand;
   try
     has := Assigned(b);
-    FLogo.Visible := has;
-    FMark.Visible := has;
+    FBrandView.Visible := has;
+    FNoBrandView.Visible := not has;
     FAppMark.Visible := has;
-    for I := 0 to High(FSwatches) do
-      FSwatches[I].Visible := has;
+    FAppTitle.Visible := not has;
     if not has then
     begin
-      FInfo.Text := 'No brand: the application theme is in charge. Pick a brand on the left, open a .fncbrand ' +
-        'file or import design tokens.';
       FStatus.Text := 'Theme <b>' + ThemeManager.Theme + '</b>, no brand.';
       Exit;
     end;
@@ -330,7 +412,10 @@ begin
   b := TTMSFNCBrand.Create;
   try
     if b.LoadPreset(AItem.Text) then
+    begin
+      GiveLogos(b);
       SetBrand(b);
+    end;
   finally
     b.Free;
   end;
@@ -344,14 +429,17 @@ begin
   else
     ThemeManager.BrandMode := bmFollowSystem;
   end;
+  {$IFNDEF WEBLIB}
   if FTitleCheck.Checked then
     ThemeManager.TitleBar := tbBrand
   else
     ThemeManager.TitleBar := tbSystem;
+  {$ENDIF}
   ShowBrand;
 end;
 
 procedure TForm1.OpenClick(Sender: TObject);
+{$IFNDEF WEBLIB}
 var
   f: string;
   b: TTMSFNCBrand;
@@ -394,6 +482,15 @@ begin
   end;
 end;
 
+{$ELSE}
+begin
+end;
+
+procedure TForm1.SaveClick(Sender: TObject);
+begin
+end;
+{$ENDIF}
+
 procedure TForm1.TokensClick(Sender: TObject);
 var
   b: TTMSFNCBrand;
@@ -405,10 +502,14 @@ begin
   begin
     b := TTMSFNCBrand.Create;
     b.Name := 'Tokens';
+    b.AppName := 'Tokens';
   end;
   report := TStringList.Create;
   try
     n := b.ImportTokens(SampleTokens, report);
+    { the logos of a sample brand follow the imported colours; the logos of an opened brand file stay }
+    if (b.Logo = '') or (FBrands.ItemIndex >= 0) then
+      GiveLogos(b);
     SetBrand(b);
     FStatus.Text := IntToStr(n) + ' tokens taken from the CSS sample (--color-primary, --color-secondary, ...): ' +
       'the brand colours and font follow them.';
@@ -420,7 +521,9 @@ end;
 
 procedure TForm1.EditClick(Sender: TObject);
 begin
+  {$IFNDEF WEBLIB}
   FEditor.Execute;
+  {$ENDIF}
   ShowBrand;
 end;
 

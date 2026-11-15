@@ -146,7 +146,12 @@ begin
   if not stacked then
   begin
     AControl.Position.Y := 100000 + FPlaceOrder * 1000;
-    AControl.Position.X := 100000 + FPlaceOrder * 1000;
+    { FMX gives the right edge to the right aligned control with the smallest X, VCL and WEB to the one with the
+      largest Left: right aligned controls count down, so a later one sits further right in every framework }
+    if AAlign = daRight then
+      AControl.Position.X := 100000 - FPlaceOrder * 1000
+    else
+      AControl.Position.X := 100000 + FPlaceOrder * 1000;
     case AAlign of
       daTop: AControl.Align := TAlignLayout.Top;
       daLeft: AControl.Align := TAlignLayout.Left;
