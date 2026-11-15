@@ -12,8 +12,9 @@ unit DemoShot;
              once (newly shown controls first), pop-ups and dialogs are captured and closed, the keyboard
              walks the tab order, the form is resized; then 'Fluent Dark' with the pop-ups opened again.
              Writes click.json (steps, exceptions, windows, geometry issues, focus walk) and NN-*.png.
-             DEMOSHOT_PPI emulates a DPI from the start (VCL: GetDpiForMonitor detour, a form that does
-             not follow is scaled with ScaleForPPI; FMX: forced window scale). ShellExecute is logged,
+             DEMOSHOT_PPI emulates a DPI from the start (VCL: GetDpiForMonitor and GetDpiForWindow detours,
+             so the form scales when it loads and CurrentPPI reports the emulated DPI, as on a monitor of that
+             DPI; FMX: forced window scale). ShellExecute is logged,
              never run.
   and writes per mode <slug>.png (the main form's client area) and <slug>.json (every control:
   class, name, bounds in form pixels, visible, FNC or native, and under a theme the values the
@@ -453,6 +454,14 @@ begin
   Result := S_OK;
 end;
 
+{ user32 GetDpiForWindow: TControl.CurrentPPI of a control with a window is the DPI of that window, not the DPI the
+  form scaled to; on the hidden desktop (96) a form scaled to the emulated DPI reported 96, and code that sizes
+  controls by CurrentPPI (TDemoLayout.Size) made them at 96 }
+function FakeGetDpiForWindow(AWnd: HWND): UINT; stdcall;
+begin
+  Result := ClickPPI;
+end;
+
 procedure Detour(const ALib, AName: string; ATarget: Pointer);
 var
   h: HMODULE;
@@ -490,6 +499,7 @@ begin
   TWinWindowHandle.SetForcedScale(ClickPPI / 96);
   {$ELSE}
   Detour('shcore.dll', 'GetDpiForMonitor', @FakeGetDpiForMonitor);
+  Detour('user32.dll', 'GetDpiForWindow', @FakeGetDpiForWindow);
   { the system DPI a per monitor aware process gets on a primary monitor with this DPI: forms scale to it when
     they load }
   f := ctx.GetType(TScreen).GetField('FPixelsPerInch');
@@ -1797,8 +1807,8 @@ begin
     res.AddPair('monitorPPI', TJSONNumber.Create(TCustomForm(AForm).Monitor.PixelsPerInch));
     res.AddPair('win', Format('%d.%d', [Win32MajorVersion, Win32MinorVersion]));
     res.AddPair('screenPPI', TJSONNumber.Create(Screen.PixelsPerInch));
-    { the form keeps the 96 DPI it loaded with although the screen and the monitor report the emulated DPI: it is
-      scaled as when it moves to a monitor with that DPI }
+    { the form scaled to the emulated DPI when it loaded; one that did not is scaled as when it moves to a monitor
+      with that DPI (scaledAfterStart in click.json) }
     if (ClickPPI > 96) and (TCustomForm(AForm).CurrentPPI <> ClickPPI) then
     begin
       TCustomForm(AForm).ScaleForPPI(ClickPPI);
