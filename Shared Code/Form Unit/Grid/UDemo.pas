@@ -229,12 +229,13 @@ begin
     FGrid.Cells[4, I + 1] := orders[I].Status;
     FGrid.Ints[5, I + 1] := orders[I].Progress;
   end;
-  FGrid.ColumnWidths[0] := 90;
-  FGrid.ColumnWidths[1] := 110;
-  FGrid.ColumnWidths[2] := 220;
-  FGrid.ColumnWidths[3] := 100;
-  FGrid.ColumnWidths[4] := 110;
-  FGrid.ColumnWidths[5] := 90;
+  { VCL: widths in pixels of the form (the grid scales them only when the DPI changes later) }
+  FGrid.ColumnWidths[0] := FLayout.Size(90);
+  FGrid.ColumnWidths[1] := FLayout.Size(110);
+  FGrid.ColumnWidths[2] := FLayout.Size(220);
+  FGrid.ColumnWidths[3] := FLayout.Size(100);
+  FGrid.ColumnWidths[4] := FLayout.Size(110);
+  FGrid.ColumnWidths[5] := FLayout.Size(90);
   FGrid.EndUpdate;
 end;
 
@@ -289,8 +290,8 @@ begin
       FPDF.Save(f);
       FStatus.Text := 'Saved <b>' + f + '</b>.';
     except
-      on Exception do
-        FStatus.Text := 'Could not save <b>' + f + '</b>: is it open in another program?';
+      on E: Exception do
+        FStatus.Text := 'Could not save <b>' + f + '</b>: ' + E.Message;
     end;
   finally
     FBusy := False;

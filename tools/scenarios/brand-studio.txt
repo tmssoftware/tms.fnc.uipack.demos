@@ -1,6 +1,6 @@
 # Brand Studio: the sample brands one after the other, light / dark of the brand, the brand title bar off and on,
+# CSS tokens, no brand again. The brand editor is opened by hand only (it does not close on Esc or WM_CLOSE).
 skip|Edit the brand...
-# CSS tokens, the brand editor, no brand again.
 click|TTMSFNCListBox#1|tl:80,42
 click|TTMSFNCListBox#1|tl:80,70
 click|TTMSFNCListBox#1|tl:80,98

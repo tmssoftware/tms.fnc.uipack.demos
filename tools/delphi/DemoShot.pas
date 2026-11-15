@@ -884,7 +884,7 @@ begin
   { a scenario leaves a control to itself (skip|<caption>): a window the scenario opens once is enough }
   if Assigned(ScenarioSkips) then
     for s in ScenarioSkips do
-      if SameText(Trim(ACaption), s) then
+      if SameText(Trim(ACaption), s) or SameText(Trim(StringReplace(ACaption, '&', '', [rfReplaceAll])), s) then
         Exit(True);
   Result := False;
 end;
@@ -1803,13 +1803,15 @@ begin
   try
     res.AddPair('ppi', TJSONNumber.Create(ClickPPI));
     {$IFNDEF DEMOSHOT_FMX}
-    res.AddPair('formPPI', TJSONNumber.Create(TCustomForm(AForm).CurrentPPI));
+    { PixelsPerInch: the DPI the form scaled to (CurrentPPI asks the window, which the GetDpiForWindow detour
+      answers with the emulated DPI) }
+    res.AddPair('formPPI', TJSONNumber.Create(TCustomForm(AForm).PixelsPerInch));
     res.AddPair('monitorPPI', TJSONNumber.Create(TCustomForm(AForm).Monitor.PixelsPerInch));
     res.AddPair('win', Format('%d.%d', [Win32MajorVersion, Win32MinorVersion]));
     res.AddPair('screenPPI', TJSONNumber.Create(Screen.PixelsPerInch));
     { the form scaled to the emulated DPI when it loaded; one that did not is scaled as when it moves to a monitor
       with that DPI (scaledAfterStart in click.json) }
-    if (ClickPPI > 96) and (TCustomForm(AForm).CurrentPPI <> ClickPPI) then
+    if (ClickPPI > 96) and (TCustomForm(AForm).PixelsPerInch <> ClickPPI) then
     begin
       TCustomForm(AForm).ScaleForPPI(ClickPPI);
       res.AddPair('scaledAfterStart', TJSONBool.Create(True));

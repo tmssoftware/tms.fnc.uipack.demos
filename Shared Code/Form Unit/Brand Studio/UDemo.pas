@@ -70,6 +70,7 @@ type
     FNoBrandInfo: TTMSFNCHTMLText;
     FStatus: TTMSFNCHTMLText;
     FUpdating: Boolean;
+    FGeneratedLogo: string;
     procedure CreateSettings;
     procedure CreateContent;
     procedure CreateApp(AParent: TTMSFNCPanel);
@@ -149,6 +150,13 @@ begin
     'text-anchor="middle">%s</text>', [AX, APrimary, AX + 50, ASecondary, AX + 30, AInitial]);
 end;
 
+function XmlText(const AText: string): string;
+begin
+  Result := StringReplace(AText, '&', '&amp;', [rfReplaceAll]);
+  Result := StringReplace(Result, '<', '&lt;', [rfReplaceAll]);
+  Result := StringReplace(Result, '>', '&gt;', [rfReplaceAll]);
+end;
+
 procedure GiveLogos(ABrand: TTMSFNCBrand);
 var
   app, ini, pri, sec: string;
@@ -156,7 +164,8 @@ begin
   app := ABrand.AppName;
   if app = '' then
     app := ABrand.Name;
-  ini := UpperCase(Copy(app, 1, 1));
+  app := XmlText(app);
+  ini := XmlText(UpperCase(Copy(Trim(ABrand.AppName + ABrand.Name), 1, 1)));
   pri := HexOf(ABrand.PrimaryColor);
   sec := HexOf(ABrand.SecondaryColor);
   ABrand.Mark := SvgURI('<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">' +
@@ -414,6 +423,7 @@ begin
     if b.LoadPreset(AItem.Text) then
     begin
       GiveLogos(b);
+      FGeneratedLogo := b.Logo;
       SetBrand(b);
     end;
   finally
@@ -507,9 +517,12 @@ begin
   report := TStringList.Create;
   try
     n := b.ImportTokens(SampleTokens, report);
-    { the logos of a sample brand follow the imported colours; the logos of an opened brand file stay }
-    if (b.Logo = '') or (FBrands.ItemIndex >= 0) then
+    { generated logos follow the imported colours; a logo from a brand file or the brand editor stays }
+    if (b.Logo = '') or (b.Logo = FGeneratedLogo) then
+    begin
       GiveLogos(b);
+      FGeneratedLogo := b.Logo;
+    end;
     SetBrand(b);
     FStatus.Text := IntToStr(n) + ' tokens taken from the CSS sample (--color-primary, --color-secondary, ...): ' +
       'the brand colours and font follow them.';

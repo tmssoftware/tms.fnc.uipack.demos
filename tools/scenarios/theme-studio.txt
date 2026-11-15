@@ -1,6 +1,6 @@
 # Theme Studio: several themes from the list, the densities, the theme title bar, the accent of Windows,
+# standard controls under every theme. The theme editor is opened by hand only (see below).
 skip|Edit the theme...
-# standard controls under every theme, the theme editor.
 click|TTMSFNCListBox#1|tl:80,13
 click|TTMSFNCListBox#1|tl:80,39
 click|TTMSFNCListBox#1|tl:80,65
