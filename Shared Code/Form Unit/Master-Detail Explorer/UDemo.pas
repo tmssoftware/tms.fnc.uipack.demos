@@ -386,9 +386,9 @@ begin
     FPlainGrid.Cells[1, I + 1] := Cities[I mod Length(Cities)];
     FPlainGrid.Cells[2, I + 1] := IntToStr(2012 + (I * 7) mod 13);
   end;
-  FPlainGrid.ColumnWidths[0] := 240;
-  FPlainGrid.ColumnWidths[1] := 140;
-  FPlainGrid.ColumnWidths[2] := 90;
+  FPlainGrid.ColumnWidths[0] := FLayout.Size(240);
+  FPlainGrid.ColumnWidths[1] := FLayout.Size(140);
+  FPlainGrid.ColumnWidths[2] := FLayout.Size(90);
   { the customer column takes the rest of the width (the columns ended a third into the grid) }
   FPlainGrid.Options.Column.Stretching.Enabled := True;
   FPlainGrid.Options.Column.Stretching.Mode := gstmIndex;
@@ -418,10 +418,10 @@ begin
       ADetail.Cells[2, I] := Products[(AMasterRow + I) mod Length(Products)];
       ADetail.Cells[3, I] := TTMSFNCSampleData.FormatMoney(Prices[(AMasterRow + I) mod Length(Prices)] * (1 + I mod 4));
     end;
-    ADetail.ColumnWidths[0] := 90;
-    ADetail.ColumnWidths[1] := 110;
-    ADetail.ColumnWidths[2] := 160;
-    ADetail.ColumnWidths[3] := 100;
+    ADetail.ColumnWidths[0] := FLayout.Size(90);
+    ADetail.ColumnWidths[1] := FLayout.Size(110);
+    ADetail.ColumnWidths[2] := FLayout.Size(160);
+    ADetail.ColumnWidths[3] := FLayout.Size(100);
   end
   else
   begin
@@ -435,8 +435,8 @@ begin
       ADetail.Cells[0, I] := people[(AMasterRow * 2 + I) mod Length(people)];
       ADetail.Cells[1, I] := Contacts[(AMasterRow + I) mod Length(Contacts)];
     end;
-    ADetail.ColumnWidths[0] := 200;
-    ADetail.ColumnWidths[1] := 160;
+    ADetail.ColumnWidths[0] := FLayout.Size(200);
+    ADetail.ColumnWidths[1] := FLayout.Size(160);
   end;
 end;
 
@@ -489,10 +489,10 @@ begin
   end;
   FTreeGrid.HideColumn(0);
   FTreeGrid.HideColumn(1);
-  FTreeGrid.ColumnWidths[2] := 300;
-  FTreeGrid.ColumnWidths[3] := 160;
-  FTreeGrid.ColumnWidths[4] := 80;
-  FTreeGrid.ColumnWidths[5] := 120;
+  FTreeGrid.ColumnWidths[2] := FLayout.Size(300);
+  FTreeGrid.ColumnWidths[3] := FLayout.Size(160);
+  FTreeGrid.ColumnWidths[4] := FLayout.Size(80);
+  FTreeGrid.ColumnWidths[5] := FLayout.Size(120);
   FTreeGrid.Options.Column.Stretching.Enabled := True;
   FTreeGrid.Options.Column.Stretching.Mode := gstmIndex;
   FTreeGrid.Options.Column.Stretching.Index := 2;

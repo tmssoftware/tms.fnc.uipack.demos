@@ -17,7 +17,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls,
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCCustomControl,
   VCL.TMSFNCPanel, VCL.TMSFNCHTMLText, VCL.TMSFNCButton, VCL.TMSFNCCheckBox, VCL.TMSFNCRadioButton,
-  VCL.TMSFNCEdit, VCL.TMSFNCSegmentedControl, VCL.TMSFNCBreadcrumb, VCL.TMSFNCDataGrid, VCL.TMSFNCDataGridCore,
+  VCL.TMSFNCEdit, VCL.TMSFNCSegmentedControl, VCL.TMSFNCBreadcrumb, VCL.TMSFNCDataGrid,
   VCL.TMSFNCDataGridRenderer, VCL.TMSFNCTreeView, VCL.TMSFNCTreeViewData, VCL.TMSFNCCustomTreeView,
   VCL.TMSFNCListBox, VCL.TMSFNCMasterDetail, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector,
   {$ENDIF}
@@ -27,7 +27,7 @@ uses
   FMX.Types, FMX.Forms, FMX.Controls, FMX.Graphics, FMX.Dialogs,
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCCustomControl,
   FMX.TMSFNCPanel, FMX.TMSFNCHTMLText, FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCRadioButton,
-  FMX.TMSFNCEdit, FMX.TMSFNCSegmentedControl, FMX.TMSFNCBreadcrumb, FMX.TMSFNCDataGrid, FMX.TMSFNCDataGridCore,
+  FMX.TMSFNCEdit, FMX.TMSFNCSegmentedControl, FMX.TMSFNCBreadcrumb, FMX.TMSFNCDataGrid,
   FMX.TMSFNCDataGridRenderer, FMX.TMSFNCTreeView, FMX.TMSFNCTreeViewData, FMX.TMSFNCCustomTreeView,
   FMX.TMSFNCListBox, FMX.TMSFNCMasterDetail, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector,
   {$ENDIF}
@@ -37,8 +37,7 @@ uses
   WEBLib.TMSFNCTypes, WEBLib.TMSFNCUtils, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCGraphicsTypes,
   WEBLib.TMSFNCCustomControl, WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCButton,
   WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton, WEBLib.TMSFNCEdit, WEBLib.TMSFNCSegmentedControl,
-  WEBLib.TMSFNCBreadcrumb, WEBLib.TMSFNCDataGrid, WEBLib.TMSFNCDataGridCore, WEBLib.TMSFNCDataGridRenderer,
-  WEBLib.TMSFNCTreeView,
+  WEBLib.TMSFNCBreadcrumb, WEBLib.TMSFNCDataGrid, WEBLib.TMSFNCDataGridRenderer, WEBLib.TMSFNCTreeView,
   WEBLib.TMSFNCTreeViewData, WEBLib.TMSFNCCustomTreeView, WEBLib.TMSFNCListBox, WEBLib.TMSFNCMasterDetail,
   WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector,
   {$ENDIF}
@@ -257,8 +256,10 @@ end;
 procedure TForm1.CreateJobs;
 const
   Captions: array[0..6] of string = ('Time', 'Job', 'Customer', 'Address', 'Work', 'Technician', 'Status');
-  { the first column also holds the arrow of the job: 64 cut the time to '08:' }
-  Widths: array[0..6] of Integer = (88, 76, 150, 150, 140, 120, 110);
+  { the first column also holds the arrow of the job: 64 cut the time to '08:'; time, customer and status fill the
+    phone. No stretched column: with Options.Column.Stretching the grid measures every column as DefaultColumnWidth
+    for HidePriority, and the columns would not leave when they no longer fit }
+  Widths: array[0..6] of Integer = (88, 76, 188, 150, 140, 120, 110);
 var
   I, c: Integer;
 begin
@@ -273,7 +274,7 @@ begin
     for c := 0 to High(Captions) do
     begin
       FJobs.Cells[c, 0] := Captions[c];
-      FJobs.ColumnWidths[c] := Widths[c];
+      FJobs.ColumnWidths[c] := FLayout.Size(Widths[c]);
     end;
     for I := 0 to High(Jobs) do
     begin
@@ -285,12 +286,8 @@ begin
       FJobs.Cells[5, I + 1] := Jobs[I].Technician;
       FJobs.Cells[6, I + 1] := StatusHTML(Jobs[I].Status);
     end;
-    { a list to read and tap: a double click opens the job, it does not start an editor; the customer column
-      takes the width the other columns leave }
+    { a list to read and tap: a double click opens the job, it does not start an editor }
     FJobs.Options.Editing.Enabled := False;
-    FJobs.Options.Column.Stretching.Enabled := True;
-    FJobs.Options.Column.Stretching.Mode := gstmIndex;
-    FJobs.Options.Column.Stretching.Index := 2;
   finally
     FJobs.EndUpdate;
   end;
@@ -332,8 +329,8 @@ begin
     else
       ADetail.Cells[1, I] := StatusHTML('Planned');
   end;
-  ADetail.ColumnWidths[0] := 200;
-  ADetail.ColumnWidths[1] := 110;
+  ADetail.ColumnWidths[0] := FLayout.Size(200);
+  ADetail.ColumnWidths[1] := FLayout.Size(110);
 end;
 
 procedure TForm1.CreateCustomers;
