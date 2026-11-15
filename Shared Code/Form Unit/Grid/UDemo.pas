@@ -78,6 +78,7 @@ type
     procedure CreateSettings;
     procedure CreateContent;
     procedure FillCells;
+    procedure SizeColumns;
     procedure ApplySettings;
     procedure SettingChanged(Sender: TObject);
     procedure PDFClick(Sender: TObject);
@@ -229,14 +230,22 @@ begin
     FGrid.Cells[4, I + 1] := orders[I].Status;
     FGrid.Ints[5, I + 1] := orders[I].Progress;
   end;
-  { VCL: widths in pixels of the form (the grid scales them only when the DPI changes later) }
+  SizeColumns;
+  FGrid.EndUpdate;
+end;
+
+procedure TForm1.SizeColumns;
+begin
+  { order, date, customer (stretched), total, status, progress: the same for the cells filled in code and for the
+    fields of the adapter. VCL: widths in pixels of the form (the grid scales them only when the DPI changes later) }
+  if FGrid.ColumnCount < 6 then
+    Exit;
   FGrid.ColumnWidths[0] := FLayout.Size(90);
   FGrid.ColumnWidths[1] := FLayout.Size(110);
   FGrid.ColumnWidths[2] := FLayout.Size(220);
   FGrid.ColumnWidths[3] := FLayout.Size(100);
   FGrid.ColumnWidths[4] := FLayout.Size(110);
   FGrid.ColumnWidths[5] := FLayout.Size(90);
-  FGrid.EndUpdate;
 end;
 
 procedure TForm1.ApplySettings;
@@ -254,8 +263,17 @@ begin
   FGrid.Options.Editing.Enabled := FEditCheck.Checked;
   if FBoundCheck.Checked <> FAdapter.Active then
   begin
+    { the fields take every column: the fixed column of the cells filled in code kept its order numbers next to
+      the Number field (two order columns) }
+    if FBoundCheck.Checked then
+    begin
+      FGrid.Clear;
+      FGrid.FixedColumns := 0;
+    end;
     FAdapter.Active := FBoundCheck.Checked;
-    if not FAdapter.Active then
+    if FAdapter.Active then
+      SizeColumns
+    else
       FillCells;
   end;
   FGrid.EndUpdate;
