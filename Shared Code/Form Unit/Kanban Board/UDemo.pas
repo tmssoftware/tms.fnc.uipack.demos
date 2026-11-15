@@ -352,7 +352,8 @@ begin
       c.HeaderText := ColumnNames[I];
       c.WIPLimit := ColumnLimits[I];
       c.FooterVisible := True;
-      c.Width := 230;
+      { VCL: the column width is in pixels of the form }
+      c.Width := FLayout.Size(230);
       c.Expandable := I = ColumnDone;
     end;
     AddLanes;
