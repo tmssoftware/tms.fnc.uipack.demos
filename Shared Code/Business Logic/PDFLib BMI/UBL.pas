@@ -63,6 +63,7 @@ type
     procedure DoCellAfterDraw(Sender: TObject; AGraphics: TTMSFNCGraphics; ACell: TTMSFNCDataGridCell);
     procedure UpdateCells;
     procedure AddCaption(const AText: string; ATop: Integer);
+    function S(AValue: Integer): Integer;
   public
     destructor Destroy; override;
     procedure InitPDFLibBMI(AForm: TCustomForm);
@@ -297,13 +298,23 @@ begin
   end;
 end;
 
+{ a size at 96 DPI in pixels of the form (VCL: the form is scaled when it loads, controls made in code are not) }
+function TPDFLibBMILogic.S(AValue: Integer): Integer;
+begin
+  {$IFDEF VCL}
+  Result := TTMSFNCUtils.MulDivInt(AValue, FForm.CurrentPPI, 96);
+  {$ELSE}
+  Result := AValue;
+  {$ENDIF}
+end;
+
 procedure TPDFLibBMILogic.AddCaption(const AText: string; ATop: Integer);
 var
   lbl: TTMSFNCHTMLText;
 begin
   lbl := TTMSFNCHTMLText.Create(FForm);
   lbl.Parent := FSettings;
-  lbl.SetBounds(16, ATop, 228, 20);
+  lbl.SetBounds(S(16), S(ATop), S(228), S(20));
   lbl.Text := AText;
   lbl.WordWrapping := False;
   lbl.HorizontalTextAlign := gtaLeading;
@@ -386,42 +397,42 @@ begin
   FContent.BorderSpacing.Bottom := 16;
   {$ENDIF}
   {$IF DEFINED(VCL) OR DEFINED(WEBLIB)}
-  FSettings.Width := 260;
+  FSettings.Width := S(260);
   FSettings.Align := alLeft;
   FSettings.AlignWithMargins := True;
-  FSettings.Margins.Left := 16;
+  FSettings.Margins.Left := S(16);
   FSettings.Margins.Top := 0;
   FSettings.Margins.Right := 0;
-  FSettings.Margins.Bottom := 16;
+  FSettings.Margins.Bottom := S(16);
   FContent.Align := alClient;
   FContent.AlignWithMargins := True;
-  FContent.Margins.Left := 16;
+  FContent.Margins.Left := S(16);
   FContent.Margins.Top := 0;
-  FContent.Margins.Right := 16;
-  FContent.Margins.Bottom := 16;
+  FContent.Margins.Right := S(16);
+  FContent.Margins.Bottom := S(16);
   {$IFEND}
 
   AddCaption('Name', 16);
   FEditName := TTMSFNCEdit.Create(FForm);
   FEditName.Parent := FSettings;
-  FEditName.SetBounds(16, 40, 228, 32);
+  FEditName.SetBounds(S(16), S(40), S(228), S(32));
   FEditName.EditType := etString;
 
   AddCaption('Weight (kg)', 88);
   FEditWeight := TTMSFNCEdit.Create(FForm);
   FEditWeight.Parent := FSettings;
-  FEditWeight.SetBounds(16, 112, 228, 32);
+  FEditWeight.SetBounds(S(16), S(112), S(228), S(32));
   FEditWeight.EditType := etNumeric;
 
   AddCaption('Height (cm)', 160);
   FEditHeight := TTMSFNCEdit.Create(FForm);
   FEditHeight.Parent := FSettings;
-  FEditHeight.SetBounds(16, 184, 228, 32);
+  FEditHeight.SetBounds(S(16), S(184), S(228), S(32));
   FEditHeight.EditType := etFloat;
 
   FCalculateButton := TTMSFNCButton.Create(FForm);
   FCalculateButton.Parent := FSettings;
-  FCalculateButton.SetBounds(16, 240, 228, 32);
+  FCalculateButton.SetBounds(S(16), S(240), S(228), S(32));
   FCalculateButton.Text := 'Calculate';
   FCalculateButton.Default := True;
   FCalculateButton.OnClick := {$IFDEF LCL}@{$ENDIF}DoCalculateClicked;
@@ -429,7 +440,7 @@ begin
 
   FExportButton := TTMSFNCButton.Create(FForm);
   FExportButton.Parent := FSettings;
-  FExportButton.SetBounds(16, 280, 228, 32);
+  FExportButton.SetBounds(S(16), S(280), S(228), S(32));
   FExportButton.Text := 'Export To PDF';
   FExportButton.OnClick := {$IFDEF LCL}@{$ENDIF}DoExportClicked;
   FExportButton.Enabled := False;
@@ -437,7 +448,7 @@ begin
   { under a dark theme the PDF comes out light unless the export keeps the colours on screen }
   FOnScreenCheck := TTMSFNCCheckBox.Create(FForm);
   FOnScreenCheck.Parent := FSettings;
-  FOnScreenCheck.SetBounds(16, 320, 228, 24);
+  FOnScreenCheck.SetBounds(S(16), S(320), S(228), S(24));
   FOnScreenCheck.Text := 'Export as on screen';
 
   {$IFDEF WEBLIB}
@@ -462,7 +473,8 @@ begin
   FGauge.Arc.Threshold.Span := 20;
   FGauge.Arc.Threshold.ThresholdKind := tkValue;
   FGauge.Arc.Color := gcBisque;
-  FGauge.SetBounds(16, 360, FGauge.Width, FGauge.Height);
+  { as wide as the settings panel: the gauge was larger than the panel and cut off at the right }
+  FGauge.SetBounds(S(16), S(360), S(228), S(228));
   FGauge.MinimumValue := 10;
   FGauge.MaximumValue := 47;
   FGauge.BeginUpdate;
@@ -511,11 +523,13 @@ begin
   FGrid.Parent := FContent;
 
   FGrid.BeginUpdate;
-  FGrid.DefaultColumnWidth := 25;
-  FGrid.DefaultRowHeight := 20;
+  { every 3 cm and 3 kg, in cells wide enough for a three digit height in the theme's font }
+  FGrid.DefaultColumnWidth := S(38);
+  FGrid.DefaultRowHeight := S(22);
   FGrid.RowCount := 23;
-  FGrid.ColumnCount := 26;
-  FGrid.SetBounds(16, 16, Round((FGrid.ColumnCount - 1) * FGrid.DefaultColumnWidth + 40), Round((FGrid.RowCount - 1) * FGrid.DefaultRowHeight + 40));
+  FGrid.ColumnCount := 18;
+  FGrid.SetBounds(S(16), S(16), Round((FGrid.ColumnCount - 1) * FGrid.DefaultColumnWidth + S(40)),
+    Round((FGrid.RowCount - 1) * FGrid.DefaultRowHeight + S(40)));
 
   FGrid.CellAppearance.NormalLayout.Stroke.Kind := gskNone;
   FGrid.CellAppearance.FixedLayout.Stroke.Kind := gskNone;
@@ -541,12 +555,12 @@ begin
   FGrid.TextAligns[0, 1] := gtaCenter;
   FGrid.FontSizes[0, 1] := 16;
 
-  FGrid.RowHeights[0] := 40;
-  FGrid.ColumnWidths[0] := 40;
+  FGrid.RowHeights[0] := S(40);
+  FGrid.ColumnWidths[0] := S(40);
 
   for c := 2 to FGrid.ColumnCount - 1 do
   begin
-    FGrid.Cells[c, 1] := IntToStr(145 + ((c - 2) * 2));
+    FGrid.Cells[c, 1] := IntToStr(145 + ((c - 2) * 3));
     FGrid.TextAligns[c, 1] := gtaCenter;
     FGrid.FontStyles[c, 1] := [TFontStyle.fsBold];
     FGrid.Colors[c, 1] := gcWhite;
