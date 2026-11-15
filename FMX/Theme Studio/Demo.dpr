@@ -7,6 +7,7 @@ uses
   UDemo in '..\..\Shared Code\Form Unit\Theme Studio\UDemo.pas' {Form1};
 
 {$R *.res}
+{$R *.dres}
 
 begin
   Application.Initialize;

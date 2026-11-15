@@ -23,6 +23,8 @@ uses
   VCL.TMSFNCComboBox, VCL.TMSFNCSwitch, VCL.TMSFNCProgressBar, VCL.TMSFNCTrackBar, VCL.TMSFNCListBox, VCL.TMSFNCCustomTreeView,
   VCL.TMSFNCSegmentedControl, VCL.TMSFNCAccentSelector, VCL.TMSFNCThemeEditor, VCL.TMSFNCTheme,
   VCL.TMSFNCThemeSelector,
+  { links the recoloring of the VCL Style for 'Standard controls follow ... under every theme' (psmAllThemes) }
+  VCL.TMSFNCThemeStyleRecolor,
   {$ENDIF}
 
   {$IFDEF FMX}
