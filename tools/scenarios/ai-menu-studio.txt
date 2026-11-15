@@ -20,7 +20,8 @@ click|Apply all
 theme|Fluent Dark
 theme|Fluent Light
 click|Undo
-click|TTMSFNCAIPromptEdit#1
+# the edit line is the upper half of the field: a click in the middle of the control misses it
+click|TTMSFNCAIPromptEdit#1|tl:40,15
 key|ctrl+a
 type|a softer terracotta
 key|enter
