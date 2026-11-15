@@ -8,7 +8,9 @@
   (TTMSFNCTheme.KeepValues), use another theme than the application (ThemeName) or stay out of theming
   (ThemingEnabled False). The right column holds standard FireMonkey / VCL controls that follow the theme when the
   platform style is synchronised (SyncPlatformStyle, PlatformStyleMatch). Edit the theme opens the theme editor at
-  run time; the result is the CustomTheme of the manager and can be saved as JSON. }
+  run time; the result is the CustomTheme of the manager and can be saved as JSON. WEB: the themes, light or dark
+  as the browser asks, accent, density, focus ring and the per control column; the title bar, the standard controls
+  and the theme editor are desktop features. }
 
 interface
 
@@ -32,6 +34,15 @@ uses
   FMX.TMSFNCComboBox, FMX.TMSFNCSwitch, FMX.TMSFNCProgressBar, FMX.TMSFNCTrackBar, FMX.TMSFNCListBox, FMX.TMSFNCCustomTreeView,
   FMX.TMSFNCSegmentedControl, FMX.TMSFNCAccentSelector, FMX.TMSFNCThemeEditor, FMX.TMSFNCTheme,
   FMX.TMSFNCThemeSelector,
+  {$ENDIF}
+
+  {$IFDEF WEBLIB}
+  SysUtils, Classes, WEBLib.Graphics, WEBLib.Controls, WEBLib.Forms, WEBLib.Dialogs,
+  WEBLib.TMSFNCTypes, WEBLib.TMSFNCUtils, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCGraphicsTypes,
+  WEBLib.TMSFNCCustomControl, WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCButton,
+  WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton, WEBLib.TMSFNCEdit, WEBLib.TMSFNCComboBox, WEBLib.TMSFNCSwitch,
+  WEBLib.TMSFNCProgressBar, WEBLib.TMSFNCTrackBar, WEBLib.TMSFNCListBox, WEBLib.TMSFNCCustomTreeView,
+  WEBLib.TMSFNCSegmentedControl, WEBLib.TMSFNCAccentSelector, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector,
   {$ENDIF}
   UDemoLayout;
 
@@ -58,7 +69,9 @@ type
     FPlatformCheck: TTMSFNCCheckBox;
     FAllThemesCheck: TTMSFNCCheckBox;
     FStatus: TTMSFNCHTMLText;
+    {$IFNDEF WEBLIB}
     FEditor: TTMSFNCThemeEditor;
+    {$ENDIF}
     FClassicButton: TTMSFNCButton;
     FOwnThemePanel: TTMSFNCPanel;
     FUpdating: Boolean;
@@ -91,23 +104,31 @@ implementation
 {$IFDEF VCL}
 {$R *.dfm}
 {$ENDIF}
+{$IFDEF WEBLIB}
+{$R *.dfm}
+{$ENDIF}
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   FLayout := TDemoLayout.Create(Self);
+  {$IFDEF WEBLIB}
+  DemoDescription.Text := 'Pick a theme, accent and density, light or dark as the browser asks, keep a control ' +
+    'Classic or on its own theme';
+  {$ELSE}
   FEditor := TTMSFNCThemeEditor.Create(Self);
   FEditor.ThemeManager := ThemeManager;
+  {$ENDIF}
   CreateSettings;
   CreateContent;
   FillThemes;
-  TTMSFNCTheme.AddChangeListener(ThemeChanged);
+  TTMSFNCTheme.AddChangeListener({$IFDEF WEBLIB}@{$ENDIF}ThemeChanged);
   { the manager starts as the check boxes say }
   ApplySettings;
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
 begin
-  TTMSFNCTheme.RemoveChangeListener(ThemeChanged);
+  TTMSFNCTheme.RemoveChangeListener({$IFDEF WEBLIB}@{$ENDIF}ThemeChanged);
 end;
 
 procedure TForm1.CreateSettings;
@@ -124,17 +145,24 @@ begin
   FThemes.ItemsAppearance.Look := tnlFluent;
   FThemes.ItemsAppearance.HeightMode := lihmFixed;
   FThemes.ItemsAppearance.FixedHeight := 26;
-  FThemes.OnItemSelected := ThemeSelected;
+  FThemes.OnItemSelected := {$IFDEF WEBLIB}@{$ENDIF}ThemeSelected;
+  {$IFDEF WEBLIB}
+  FFollowCheck := FLayout.AddCheck(FSettings, 'Light or dark as the browser asks', False, @SettingChanged);
+  {$ELSE}
   FFollowCheck := FLayout.AddCheck(FSettings, 'Light or dark as Windows is', False, SettingChanged);
+  {$ENDIF}
 
   FLayout.AddCaption(FSettings, 'Accent', 8);
   FAccent := TTMSFNCAccentSelector.Create(Self);
   FAccent.Parent := FSettings;
   FLayout.Place(FAccent, daTop, 36, 16, 0, 16, 0);
   FAccent.ThemeManager := ThemeManager;
+  {$IFNDEF WEBLIB}
   FSystemAccentCheck := FLayout.AddCheck(FSettings, 'The accent of Windows', False, SettingChanged);
-
   FLayout.AddCaption(FSettings, 'Density and title bar', 8);
+  {$ELSE}
+  FLayout.AddCaption(FSettings, 'Density', 8);
+  {$ENDIF}
   FDensity := TTMSFNCSegmentedControl.Create(Self);
   FDensity.Parent := FSettings;
   FLayout.Place(FDensity, daTop, 32, 16, 0, 16, 6);
@@ -142,7 +170,10 @@ begin
   FDensity.Items.AddItem('Normal');
   FDensity.Items.AddItem('Roomy');
   FDensity.ItemIndex := 1;
-  FDensity.OnChange := SettingChanged;
+  FDensity.OnChange := {$IFDEF WEBLIB}@{$ENDIF}SettingChanged;
+  {$IFDEF WEBLIB}
+  FFocusCheck := FLayout.AddCheck(FSettings, 'Focus ring of the theme', True, @SettingChanged);
+  {$ELSE}
   FTitleBar := TTMSFNCSegmentedControl.Create(Self);
   FTitleBar.Parent := FSettings;
   FLayout.Place(FTitleBar, daTop, 32, 16, 0, 16, 0);
@@ -157,6 +188,7 @@ begin
   b := FLayout.AddButton(FSettings, 'Edit the theme...', EditClick);
   b.Default := True;
   FLayout.AddButton(FSettings, 'Save the custom theme...', SaveClick);
+  {$ENDIF}
 end;
 
 function TForm1.AddColumn(const ATitle: string; AWidth: Integer): TTMSFNCPanel;
@@ -182,8 +214,12 @@ procedure TForm1.CreateContent;
 begin
   FContent := FLayout.AddContentPanel(Self);
   CreateSampleForm(AddColumn('Your application', 300));
+  {$IFDEF WEBLIB}
+  CreatePerControl(AddColumn('One control, its own way', 0));
+  {$ELSE}
   CreatePerControl(AddColumn('One control, its own way', 250));
   CreatePlatform(AddColumn('Standard controls', 0));
+  {$ENDIF}
   FStatus := FLayout.AddText(FContent, '', 40);
   FLayout.Place(FStatus, daBottom, 40, 0, 8, 0, 0);
 end;
@@ -258,11 +294,14 @@ begin
   card := AddCard(AParent, 'Follows the theme', '', 92);
   FLayout.AddButton(card, 'A themed button', nil);
 
+  { WEB: the button is the browser's own, its look comes from a companion component }
+  {$IFNDEF WEBLIB}
   card := AddCard(AParent, 'Keeps the classic look', '', 92);
   FClassicButton := FLayout.AddButton(card, 'A classic button', nil);
   { the developer owns this value: a theme leaves it alone }
   TTMSFNCTheme.KeepValues(FClassicButton, ['Look']);
   FClassicButton.Look := btlClassic;
+  {$ENDIF}
 
   FOwnThemePanel := AddCard(AParent, 'Always Fluent Dark', '', 132);
   FOwnThemePanel.ThemeName := 'Fluent Dark';
@@ -285,6 +324,7 @@ begin
   own.Text := 'My own colours';
 end;
 
+{$IFNDEF WEBLIB}
 procedure TForm1.CreatePlatform(AParent: TTMSFNCPanel);
 var
   card: TTMSFNCPanel;
@@ -327,6 +367,12 @@ begin
   l.ItemIndex := 1;
 end;
 
+{$ELSE}
+procedure TForm1.CreatePlatform(AParent: TTMSFNCPanel);
+begin
+end;
+{$ENDIF}
+
 procedure TForm1.FillThemes;
 var
   names: TStringList;
@@ -360,25 +406,29 @@ begin
   if FUpdating then
     Exit;
   ThemeManager.FollowSystem := FFollowCheck.Checked;
+  {$IFNDEF WEBLIB}
   ThemeManager.FollowSystemAccent := FSystemAccentCheck.Checked;
   FAccent.Enabled := not FSystemAccentCheck.Checked;
+  {$ENDIF}
   case FDensity.ItemIndex of
     0: ThemeManager.Density := tdCompact;
     2: ThemeManager.Density := tdComfortable;
   else
     ThemeManager.Density := tdStandard;
   end;
+  ThemeManager.FocusRing := FFocusCheck.Checked;
+  {$IFNDEF WEBLIB}
   if FTitleBar.ItemIndex = 1 then
     ThemeManager.TitleBar := tbTheme
   else
     ThemeManager.TitleBar := tbSystem;
-  ThemeManager.FocusRing := FFocusCheck.Checked;
   ThemeManager.SyncPlatformStyle := FPlatformCheck.Checked;
   if FAllThemesCheck.Checked then
     ThemeManager.PlatformStyleMatch := psmAllThemes
   else
     ThemeManager.PlatformStyleMatch := psmFluentOnly;
   FAllThemesCheck.Enabled := FPlatformCheck.Checked;
+  {$ENDIF}
   UpdateStatus;
 end;
 
@@ -390,7 +440,7 @@ begin
   if ThemeManager.CustomTheme.Count > 0 then
     s := s + ', with a custom theme of ' + IntToStr(ThemeManager.CustomTheme.Count) + ' lines';
   if ThemeManager.FollowSystem then
-    s := s + ', light or dark as Windows is';
+    s := s + {$IFDEF WEBLIB}', light or dark as the browser asks'{$ELSE}', light or dark as Windows is'{$ENDIF};
   FStatus.Text := s + '. The card in the middle stays dark under every theme; the yellow label keeps its own colours.';
 end;
 
@@ -411,14 +461,19 @@ end;
 
 procedure TForm1.EditClick(Sender: TObject);
 begin
+  {$IFNDEF WEBLIB}
   FEditor.Execute;
+  {$ENDIF}
   UpdateStatus;
 end;
 
 procedure TForm1.SaveClick(Sender: TObject);
+{$IFNDEF WEBLIB}
 var
   f: string;
+{$ENDIF}
 begin
+  {$IFNDEF WEBLIB}
   if ThemeManager.CustomTheme.Count = 0 then
   begin
     FStatus.Text := 'There is no custom theme yet: choose <b>Edit the theme...</b>, change a colour and apply it.';
@@ -428,6 +483,7 @@ begin
   ThemeManager.CustomTheme.SaveToFile(f, TEncoding.UTF8);
   FStatus.Text := 'Saved as <b>' + f + '</b>. Load it in another application with the theme editor or ' +
     'ThemeManager.CustomTheme.LoadFromFile.';
+  {$ENDIF}
 end;
 
 procedure TForm1.ThemeChanged(Sender: TObject);
