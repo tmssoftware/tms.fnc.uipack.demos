@@ -280,7 +280,7 @@ begin
   FLayout.AddText(FSettings, 'Drag a card to another column or lane: the status and the owner are written to the ' +
     'record and the planner, the timeline and the grid follow.', 24);
 
-  FLayout.AddCaption(FSettings, 'Planner day');
+  FLayout.AddCaption(FSettings, 'Day of the planner and the timeline');
   FDayText := FLayout.AddText(FSettings, '', 24);
   FLayout.AddButton(FSettings, 'Previous day', {$IFDEF WEBLIB}@{$ENDIF}PreviousDayClick);
   FLayout.AddButton(FSettings, 'Next day', {$IFDEF WEBLIB}@{$ENDIF}NextDayClick);
@@ -346,9 +346,9 @@ begin
   FTimeline := TTMSFNCTimeline.Create(Self);
   FTimeline.Parent := FContent;
   FLayout.Place(FTimeline, daClient, 0, 0, 0, 0, 0);
-  FTimeline.Range.RangeType := tlrDay;
-  FTimeline.Range.MinimumDate := FMonday - 1;
-  FTimeline.Range.MaximumDate := FMonday + 7;
+  { the working hours of the day of the planner (Previous / Next day): a week in one strip put every task in a few
+    pixels with the titles on top of each other }
+  FTimeline.Range.RangeType := tlrHour;
   FTimeline.DataOptions.KeyField := 'ID';
   FTimeline.DataOptions.StartField := 'StartTime';
   FTimeline.DataOptions.EndField := 'EndTime';
@@ -413,6 +413,8 @@ procedure TForm1.ShowDay;
 begin
   FPlanner.ModeSettings.StartTime := FDay;
   FPlanner.ModeSettings.EndTime := FDay;
+  FTimeline.Range.MinimumDate := FDay + 8 / 24;
+  FTimeline.Range.MaximumDate := FDay + 18 / 24;
   FDayText.Text := FormatDateTime('dddd d mmmm', FDay);
 end;
 
