@@ -153,7 +153,7 @@ procedure TForm1.CreateData;
 var
   names: TArray<string>;
   orders: TArray<TTMSFNCSampleOrder>;
-  I, L, c, p, lineID: Integer;
+  I, L, R, c, p, lineID, orderCount: Integer;
 begin
   { customers, the master table }
   names := TTMSFNCSampleData.Customers;
@@ -184,23 +184,38 @@ begin
   FOrders.FieldDefs.Add('OrderID', ftInteger);
   FOrders.FieldDefs.Add('CustomerID', ftInteger);
   FLayout.OpenDataSet(FOrders);
+  { two or three orders per customer: the sample order and older, shipped ones }
   orders := TTMSFNCSampleData.Orders;
-  for I := 0 to High(orders) do
-  begin
-    c := 1;
-    while (c <= Length(names)) and (names[c - 1] <> orders[I].Customer) do
-      Inc(c);
-    if c > Length(names) then
-      c := 1 + I mod Length(names);
-    FOrders.Append;
-    FOrders.FieldByName('OrderID').AsInteger := I + 1;
-    FOrders.FieldByName('CustomerID').AsInteger := c;
-    FOrders.FieldByName('Number').AsString := orders[I].Number;
-    FOrders.FieldByName('OrderDate').AsDateTime := orders[I].Date;
-    FOrders.FieldByName('Status').AsString := orders[I].Status;
-    FOrders.FieldByName('Total').AsFloat := orders[I].Total;
-    FOrders.Post;
-  end;
+  orderCount := 0;
+  for R := 0 to 2 do
+    for I := 0 to High(orders) do
+    begin
+      if (R > 0) and ((I + R) mod 3 = 0) then
+        Continue;
+      c := 1;
+      while (c <= Length(names)) and (names[c - 1] <> orders[I].Customer) do
+        Inc(c);
+      if c > Length(names) then
+        c := 1 + I mod Length(names);
+      Inc(orderCount);
+      FOrders.Append;
+      FOrders.FieldByName('OrderID').AsInteger := orderCount;
+      FOrders.FieldByName('CustomerID').AsInteger := c;
+      if R = 0 then
+      begin
+        FOrders.FieldByName('Number').AsString := orders[I].Number;
+        FOrders.FieldByName('Status').AsString := orders[I].Status;
+        FOrders.FieldByName('Total').AsFloat := orders[I].Total;
+      end
+      else
+      begin
+        FOrders.FieldByName('Number').AsString := orders[I].Number + '-' + IntToStr(R + 1);
+        FOrders.FieldByName('Status').AsString := 'Shipped';
+        FOrders.FieldByName('Total').AsFloat := Round(orders[I].Total * (0.4 + 0.35 * R));
+      end;
+      FOrders.FieldByName('OrderDate').AsDateTime := orders[I].Date - 19 * R;
+      FOrders.Post;
+    end;
   FOrders.FieldByName('OrderID').Visible := False;
   FOrders.FieldByName('Number').DisplayLabel := 'Order';
   FOrders.FieldByName('OrderDate').DisplayLabel := 'Date';
@@ -219,7 +234,7 @@ begin
   FLines.FieldDefs.Add('OrderID', ftInteger);
   FLayout.OpenDataSet(FLines);
   lineID := 0;
-  for I := 0 to High(orders) do
+  for I := 0 to orderCount - 1 do
     for L := 0 to 1 + I mod 3 do
     begin
       Inc(lineID);
@@ -331,7 +346,7 @@ begin
 
   {$IFNDEF WEBLIB}
   FDataGrid := NewGrid(FContent);
-  FDataGrid.MasterDetail.Summary := '%count% orders ' + MiddleDot + ' %sum:Total%';
+  FDataGrid.MasterDetail.Summary := '%count:order|orders% ' + MiddleDot + ' %sum:Total%';
   FDataGrid.MasterDetail.DrillDown.RootCaption := 'Customers';
   FDataGrid.MasterDetail.ToolBar.CountFormat := '%count:order|orders%';
   FDataGrid.DataSource := FCustomersSource;
@@ -566,8 +581,7 @@ begin
     FLineCardsCheck.Enabled := False;
     FEditingCheck.Enabled := False;
     FView.Visible := False;
-    FStatus.Text := 'Expand a project for its tasks; the hours of a project are the sum of its tasks. ' +
-      'Load children on expand fills a project the first time it opens.';
+    FStatus.Text := 'Expand a project for its tasks; its hours are the sum of the tasks.';
     Exit;
   end;
 
@@ -633,14 +647,14 @@ begin
 
   case p of
     mdpTarget: s := 'The detail view on the right follows the current customer. ';
-    mdpDrillDown: s := 'Click the arrow of a customer: its orders take the place of the list, the breadcrumb leads back. ';
+    mdpDrillDown: s := 'Click the arrow of a customer: its orders replace the list. ';
   else
-    s := 'Click the arrow of a customer to open its orders under the row. ';
+    s := 'Click the arrow of a customer to open its orders. ';
   end;
   if FPage = dpPlain then
-    FStatus.Text := s + 'The rows and their details come from code (OnGetDetailData).'
+    FStatus.Text := s + 'The details come from code (OnGetDetailData).'
   else
-    FStatus.Text := s + 'Three datasets linked through MasterSource: the grid finds the orders and lines by itself.';
+    FStatus.Text := s + 'Three datasets linked through MasterSource.';
 end;
 
 procedure TForm1.PageChanged(Sender: TObject);
