@@ -147,6 +147,8 @@ begin
     FGrid.Cells[3, I] := FormatFloat('0.00', 120 * I + 0.5);
   end;
   FGrid.EndUpdate;
+  { the columns as wide as their text }
+  FGrid.AutoSizeColumns;
   FStatus.Text := 'The sample grid. Import a file to replace it or to add rows.';
 end;
 
@@ -162,7 +164,10 @@ begin
   FDialog.HeaderRow := FHeaderCheck.Checked;
   FDialog.AllowColumnTypes := FTypesCheck.Checked;
   if FDialog.Execute then
-    FStatus.Text := '<b>' + IntToStr(FDialog.ImportedRows) + ' rows</b> imported from ' + ExtractFileName(FDialog.FileName)
+  begin
+    FGrid.AutoSizeColumns;
+    FStatus.Text := '<b>' + IntToStr(FDialog.ImportedRows) + ' rows</b> imported from ' + ExtractFileName(FDialog.FileName);
+  end
   else if FDialog.LastError <> '' then
     FStatus.Text := 'Import failed: ' + FDialog.LastError
   else

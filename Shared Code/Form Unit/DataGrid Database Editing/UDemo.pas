@@ -129,6 +129,11 @@ begin
   end;
   FTasks.First;
   FTasks.OnNewRecord := {$IFDEF WEBLIB}@{$ENDIF}NewRecord;
+  { column widths in characters, as TField.DisplayWidth, so no text is cut }
+  FTasks.FieldByName('Project').DisplayWidth := 22;
+  FTasks.FieldByName('Task').DisplayWidth := 20;
+  FTasks.FieldByName('Owner').DisplayWidth := 16;
+  FTasks.FieldByName('Status').DisplayWidth := 13;
   FSource := FLayout.NewSource(FTasks);
   FSource.OnDataChange := {$IFDEF WEBLIB}@{$ENDIF}DataChange;
 end;
