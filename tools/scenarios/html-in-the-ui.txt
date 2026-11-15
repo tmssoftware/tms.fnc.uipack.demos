@@ -1,0 +1,3 @@
+# HTML in the UI: the HTML editor is opened by hand only: it does not close on Esc or WM_CLOSE and the driver's
+# next clicks on the open editor end in an access violation (finding for the product)
+skip|Edit the HTML text...

@@ -16,7 +16,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCCustomControl,
   VCL.TMSFNCPanel, VCL.TMSFNCHTMLText, VCL.TMSFNCButton, VCL.TMSFNCCheckBox, VCL.TMSFNCRadioButton,
-  VCL.TMSFNCListBox, VCL.TMSFNCDataGrid, VCL.TMSFNCKanbanBoard, VCL.TMSFNCHTMLEditor, VCL.TMSFNCSampleData,
+  VCL.TMSFNCListBox, VCL.TMSFNCDataGrid, VCL.TMSFNCDataGridCore,
+  VCL.TMSFNCKanbanBoard, VCL.TMSFNCHTMLEditor, VCL.TMSFNCSampleData,
   VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector,
   {$ENDIF}
 
@@ -25,7 +26,8 @@ uses
   FMX.Types, FMX.Forms, FMX.Controls, FMX.Graphics, FMX.Dialogs,
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCCustomControl,
   FMX.TMSFNCPanel, FMX.TMSFNCHTMLText, FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCRadioButton,
-  FMX.TMSFNCListBox, FMX.TMSFNCDataGrid, FMX.TMSFNCKanbanBoard, FMX.TMSFNCHTMLEditor, FMX.TMSFNCSampleData,
+  FMX.TMSFNCListBox, FMX.TMSFNCDataGrid, FMX.TMSFNCDataGridCore,
+  FMX.TMSFNCKanbanBoard, FMX.TMSFNCHTMLEditor, FMX.TMSFNCSampleData,
   FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector,
   {$ENDIF}
 
@@ -33,7 +35,7 @@ uses
   SysUtils, Classes, WEBLib.Graphics, WEBLib.Controls, WEBLib.Forms, WEBLib.Dialogs,
   WEBLib.TMSFNCTypes, WEBLib.TMSFNCUtils, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCGraphicsTypes,
   WEBLib.TMSFNCCustomControl, WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCButton,
-  WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton, WEBLib.TMSFNCListBox, WEBLib.TMSFNCDataGrid,
+  WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton, WEBLib.TMSFNCListBox, WEBLib.TMSFNCDataGrid, WEBLib.TMSFNCDataGridCore,
   WEBLib.TMSFNCKanbanBoard, WEBLib.TMSFNCHTMLEditor, WEBLib.TMSFNCSampleData, WEBLib.TMSFNCTheme,
   WEBLib.TMSFNCThemeSelector,
   {$ENDIF}
@@ -163,7 +165,7 @@ end;
 
 procedure TForm1.CreateContent;
 var
-  left: TTMSFNCPanel;
+  left, right: TTMSFNCPanel;
 begin
   FContent := FLayout.AddContentPanel(Self);
 
@@ -185,16 +187,21 @@ begin
   FLayout.Place(FList, daClient, 0, 0, 0, 0, 0);
   FillList;
 
-  FLayout.AddCaption(FContent, 'Grid cells', 8);
+  { the grid and the board in a column of their own: top aligned controls of the content panel would take its whole
+    width above the left column }
+  right := FLayout.AddPanel(FContent, daClient, 0, 0, 0, 0, 0);
+  right.Fill.Kind := gfkNone;
+  right.Stroke.Kind := gskNone;
+  FLayout.AddCaption(right, 'Grid cells', 8);
   FGrid := TTMSFNCDataGrid.Create(Self);
-  FGrid.Parent := FContent;
+  FGrid.Parent := right;
   FLayout.Place(FGrid, daTop, 230, 0, 0, 0, 0);
   FGrid.OnCellAnchorClick := {$IFDEF WEBLIB}@{$ENDIF}CellAnchorClick;
   FillGrid;
 
-  FLayout.AddCaption(FContent, 'Kanban cards', 8);
+  FLayout.AddCaption(right, 'Kanban cards', 8);
   FBoard := TTMSFNCKanbanBoard.Create(Self);
-  FBoard.Parent := FContent;
+  FBoard.Parent := right;
   FLayout.Place(FBoard, daClient, 0, 0, 0, 0, 0);
   FillBoard;
 
@@ -282,8 +289,13 @@ begin
   FGrid.Cells[1, 0] := 'Customer';
   FGrid.Cells[2, 0] := 'Status';
   FGrid.Cells[3, 0] := 'Total';
-  FGrid.ColumnWidths[1] := 220;
-  FGrid.ColumnWidths[2] := 160;
+  FGrid.ColumnWidths[0] := FLayout.Size(80);
+  FGrid.ColumnWidths[2] := FLayout.Size(90);
+  FGrid.ColumnWidths[3] := FLayout.Size(100);
+  { the customer column takes the rest of the width }
+  FGrid.Options.Column.Stretching.Enabled := True;
+  FGrid.Options.Column.Stretching.Mode := gstmIndex;
+  FGrid.Options.Column.Stretching.Index := 1;
   for I := 0 to High(orders) do
   begin
     { a link per order, a bold customer and a status in the theme's status colour }
