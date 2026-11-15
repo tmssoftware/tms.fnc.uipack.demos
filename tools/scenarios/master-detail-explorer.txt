@@ -26,7 +26,8 @@ theme|Fluent Light
 segment|TTMSFNCSegmentedControl#2|0|3
 click|Order lines as cards
 click|Without a database
-click|TTMSFNCDataGrid#1|tl:32,55
+# no row indicator on this page: the expander of the first customer is at the left edge
+click|TTMSFNCDataGrid#1|tl:12,55
 segment|TTMSFNCSegmentedControl#1|2|4
 click|Tree grid
 click|Load children on expand

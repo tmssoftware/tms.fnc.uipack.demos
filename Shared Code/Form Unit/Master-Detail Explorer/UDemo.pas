@@ -20,7 +20,7 @@ uses
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   VCL.TMSFNCTypes, VCL.TMSFNCUtils, VCL.TMSFNCGraphics, VCL.TMSFNCGraphicsTypes, VCL.TMSFNCCustomControl,
   VCL.TMSFNCPanel, VCL.TMSFNCHTMLText, VCL.TMSFNCButton, VCL.TMSFNCCheckBox, VCL.TMSFNCRadioButton,
-  VCL.TMSFNCDataGrid, VCL.TMSFNCDataGridRenderer, VCL.TMSFNCMasterDetail, VCL.TMSFNCDetailView, VCL.TMSFNCSegmentedControl,
+  VCL.TMSFNCDataGrid, VCL.TMSFNCDataGridCore, VCL.TMSFNCDataGridRenderer, VCL.TMSFNCMasterDetail, VCL.TMSFNCDetailView, VCL.TMSFNCSegmentedControl,
   VCL.TMSFNCSampleData, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector,
   {$ENDIF}
 
@@ -31,7 +31,7 @@ uses
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics, FMX.TMSFNCGraphicsTypes, FMX.TMSFNCCustomControl,
   FMX.TMSFNCPanel, FMX.TMSFNCHTMLText, FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCRadioButton,
-  FMX.TMSFNCDataGrid, FMX.TMSFNCDataGridRenderer, FMX.TMSFNCMasterDetail, FMX.TMSFNCDetailView, FMX.TMSFNCSegmentedControl,
+  FMX.TMSFNCDataGrid, FMX.TMSFNCDataGridCore, FMX.TMSFNCDataGridRenderer, FMX.TMSFNCMasterDetail, FMX.TMSFNCDetailView, FMX.TMSFNCSegmentedControl,
   FMX.TMSFNCSampleData, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector,
   {$ENDIF}
 
@@ -39,7 +39,8 @@ uses
   SysUtils, Classes, WEBLib.Graphics, WEBLib.Controls, WEBLib.Forms, WEBLib.Dialogs, DB, WEBLib.DB, WEBLib.CDS,
   WEBLib.TMSFNCTypes, WEBLib.TMSFNCUtils, WEBLib.TMSFNCGraphics, WEBLib.TMSFNCGraphicsTypes,
   WEBLib.TMSFNCCustomControl, WEBLib.TMSFNCPanel, WEBLib.TMSFNCHTMLText, WEBLib.TMSFNCButton,
-  WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton, WEBLib.TMSFNCDataGrid, WEBLib.TMSFNCDataGridRenderer,
+  WEBLib.TMSFNCCheckBox, WEBLib.TMSFNCRadioButton, WEBLib.TMSFNCDataGrid, WEBLib.TMSFNCDataGridCore,
+  WEBLib.TMSFNCDataGridRenderer,
   WEBLib.TMSFNCMasterDetail, WEBLib.TMSFNCDetailView, WEBLib.TMSFNCSegmentedControl,
   WEBLib.TMSFNCSampleData, WEBLib.TMSFNCTheme, WEBLib.TMSFNCThemeSelector,
   {$ENDIF}
@@ -209,7 +210,9 @@ begin
       end
       else
       begin
-        FOrders.FieldByName('Number').AsString := orders[I].Number + '-' + IntToStr(R + 1);
+        { older orders: lower numbers than the sample orders, each its own (a '-2' suffix was cut off in the
+          order column) }
+        FOrders.FieldByName('Number').AsString := '#' + IntToStr(10240 - orderCount);
         FOrders.FieldByName('Status').AsString := 'Shipped';
         FOrders.FieldByName('Total').AsFloat := Round(orders[I].Total * (0.4 + 0.35 * R));
       end;
@@ -341,7 +344,7 @@ begin
   { the detail view next to the grid: it shows the detail of the current master record }
   FView := TTMSFNCDetailView.Create(Self);
   FView.Parent := FContent;
-  FLayout.Place(FView, daRight, 380, 16, 0, 0, 0);
+  FLayout.Place(FView, daRight, 420, 16, 0, 0, 0);
   FView.EmptyText := 'Select a customer to see its orders here';
 
   {$IFNDEF WEBLIB}
@@ -386,6 +389,10 @@ begin
   FPlainGrid.ColumnWidths[0] := 240;
   FPlainGrid.ColumnWidths[1] := 140;
   FPlainGrid.ColumnWidths[2] := 90;
+  { the customer column takes the rest of the width (the columns ended a third into the grid) }
+  FPlainGrid.Options.Column.Stretching.Enabled := True;
+  FPlainGrid.Options.Column.Stretching.Mode := gstmIndex;
+  FPlainGrid.Options.Column.Stretching.Index := 0;
 end;
 
 procedure TForm1.GetDetailData(Sender: TObject; AMaster: TTMSFNCDataGridRenderer; AMasterRow, ATab: Integer;
@@ -486,6 +493,9 @@ begin
   FTreeGrid.ColumnWidths[3] := 160;
   FTreeGrid.ColumnWidths[4] := 80;
   FTreeGrid.ColumnWidths[5] := 120;
+  FTreeGrid.Options.Column.Stretching.Enabled := True;
+  FTreeGrid.Options.Column.Stretching.Mode := gstmIndex;
+  FTreeGrid.Options.Column.Stretching.Index := 2;
   FTreeGrid.TreeOptions.KeyColumn := 0;
   FTreeGrid.TreeOptions.ParentColumn := 1;
   FTreeGrid.TreeOptions.TreeColumn := 2;
