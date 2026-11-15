@@ -40,6 +40,7 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
+        <Custom_Styles>&quot;Windows10|VCLSTYLE|$(BDS)\Redist\styles\vcl\Windows10.vsf&quot;;&quot;Windows10 Dark|VCLSTYLE|$(BDS)\Redist\styles\vcl\Windows10Dark.vsf&quot;</Custom_Styles>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
         <SanitizedProjectName>Demo</SanitizedProjectName>
@@ -55,7 +56,6 @@
         <VerInfo_Keys>CompanyName=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <Custom_Styles>&quot;Windows10|VCLSTYLE|$(BDS)\Redist\styles\vcl\Windows10.vsf&quot;;&quot;Windows10 Dark|VCLSTYLE|$(BDS)\Redist\styles\vcl\Windows10Dark.vsf&quot;</Custom_Styles>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <DCC_UsePackage>FMXTMSFNCChartPkgDXE7;TMSLoggingVCLPkgDXE7;FireDACSqliteDriver;DBXSqliteDriver;FireDACPgDriver;fmx;TMSFMXPackPkgDEDXE7_Development;IndySystem;TeeDB;tethering;TMSFMXWebOSMapsPkgDXE7;TMSCloudPkgDXE7;vclib;DBXInterBaseDriver;TMSFMXPackPkgDXE7_Development;ComponentExtensionsPkgDXE7;TMSFMXCloudPackPkgDXE7_Development;TMSaCLPkgDXE7_Development;DbxCommonDriver;vclimg;dbxcds;MetropolisUILiveTile;vcldb;vcldsnap;advchartdedxe7;fmxFireDAC;VCLTMSFNCChartPkgDXE7;CustomIPTransport;vclribbon;dsnap;IndyIPServer;TMSFMXChartPkgDXE7_Development;fmxase;vcl;IndyCore;IndyIPCommon;CloudService;TMSCloudPkgDEDXE7;FmxTeeUI;FireDACIBDriver;soapserver;tmsdXE7;inetdbxpress;ChromiumFMX;dsnapxml;TMSiCLPkgDXE7_Development;adortl;tmswizdXE7;FireDACASADriver;bindcompfmx;FireDACODBCDriver;RESTBackendComponents;emsclientfiredac;rtl;dbrtl;DbxClientDriver;TMSLoggingCorePkgDXE7;FireDACCommon;bindcomp;inetdb;Tee;vclFireDAC;xmlrtl;svnui;ibxpress;IndyProtocols;DBXMySQLDriver;FireDACCommonDriver;bindcompdbx;bindengine;vclactnband;soaprtl;FMXTee;TeeUI;bindcompvcl;VCLTMSFNCUIPackPkgDXE7;vclie;advchartdxe7;FireDACADSDriver;vcltouch;TMSFMXWebGMapsPkgDXE7;TMSmCLPkgDXE7;TMSLoggingFMXPkgDXE7;emsclient;FMXTMSFNCUIPackPkgDXE7;VCLRESTComponents;FireDAC;VclSmp;Intraweb;dsnapcon;tmsexdXE7;inet;fmxobj;FireDACMySQLDriver;soapmidas;vclx;tmsxlsdXE7;TMSFMXZBarReaderPkgDXE7;svn;fmxdae;RESTComponents;FireDACMSAccDriver;dbexpress;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
@@ -67,7 +67,6 @@
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
-        <Custom_Styles>&quot;Windows10|VCLSTYLE|$(BDS)\Redist\styles\vcl\Windows10.vsf&quot;;&quot;Windows10 Dark|VCLSTYLE|$(BDS)\Redist\styles\vcl\Windows10Dark.vsf&quot;</Custom_Styles>
         <DCC_UsePackage>FMXTMSFNCChartPkgDXE7;TMSLoggingVCLPkgDXE7;FireDACSqliteDriver;DBXSqliteDriver;FireDACPgDriver;fmx;IndySystem;TeeDB;tethering;vclib;DBXInterBaseDriver;TMSFMXPackPkgDXE7_Development;DbxCommonDriver;vclimg;dbxcds;MetropolisUILiveTile;vcldb;vcldsnap;fmxFireDAC;VCLTMSFNCChartPkgDXE7;CustomIPTransport;vclribbon;dsnap;IndyIPServer;fmxase;vcl;IndyCore;IndyIPCommon;CloudService;FmxTeeUI;FireDACIBDriver;soapserver;tmsdXE7;inetdbxpress;dsnapxml;adortl;FireDACASADriver;bindcompfmx;FireDACODBCDriver;RESTBackendComponents;emsclientfiredac;rtl;dbrtl;DbxClientDriver;TMSLoggingCorePkgDXE7;FireDACCommon;bindcomp;inetdb;Tee;vclFireDAC;xmlrtl;ibxpress;IndyProtocols;DBXMySQLDriver;FireDACCommonDriver;bindcompdbx;bindengine;vclactnband;soaprtl;FMXTee;TeeUI;bindcompvcl;VCLTMSFNCUIPackPkgDXE7;vclie;FireDACADSDriver;vcltouch;TMSLoggingFMXPkgDXE7;emsclient;FMXTMSFNCUIPackPkgDXE7;VCLRESTComponents;FireDAC;VclSmp;Intraweb;dsnapcon;tmsexdXE7;inet;fmxobj;FireDACMySQLDriver;soapmidas;vclx;fmxdae;RESTComponents;FireDACMSAccDriver;dbexpress;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
         <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
