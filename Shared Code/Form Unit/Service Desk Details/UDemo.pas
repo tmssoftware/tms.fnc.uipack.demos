@@ -343,20 +343,31 @@ end;
 procedure TForm1.PlaceDetail(AWhere: TDemoWhere);
 begin
   FView.DrillBack;
-  case AWhere of
-    dwBeside:
-    begin
-      FLayout.Place(FView, daRight, 480, 0, 0, 0, 0);
-      FLayout.Place(FSplitter, daRight, 8, 0, 0, 0, 0);
+  { the view and the splitter get their place in one go: aligned one after the other (a control that is shown again
+    is aligned on its own), VCL puts the one aligned last at the edge and the splitter ends up outside the view }
+  {$IFDEF VCL}
+  FContent.DisableAlign;
+  try
+  {$ENDIF}
+    FView.Visible := AWhere <> dwInPlace;
+    FSplitter.Visible := AWhere <> dwInPlace;
+    case AWhere of
+      dwBeside:
+      begin
+        FLayout.Place(FView, daRight, 480, 0, 0, 0, 0);
+        FLayout.Place(FSplitter, daRight, 8, 0, 0, 0, 0);
+      end;
+      dwBelow:
+      begin
+        FLayout.Place(FSplitter, daBottom, 8, 0, 0, 0, 0);
+        FLayout.Place(FView, daBottom, 280, 0, 0, 0, 0);
+      end;
     end;
-    dwBelow:
-    begin
-      FLayout.Place(FSplitter, daBottom, 8, 0, 0, 0, 0);
-      FLayout.Place(FView, daBottom, 280, 0, 0, 0, 0);
-    end;
+  {$IFDEF VCL}
+  finally
+    FContent.EnableAlign;
   end;
-  FView.Visible := AWhere <> dwInPlace;
-  FSplitter.Visible := AWhere <> dwInPlace;
+  {$ENDIF}
 end;
 
 procedure TForm1.ShowMaster(AMaster: TDemoMaster);
@@ -530,7 +541,10 @@ begin
   agent := FAgents.Items[FAgents.ItemIndex].Text;
   if FAgents.MasterDetail.Template = mdtForm then
   begin
+    // the form of an item has a line per field of the item: its text, called Agent here
     r := ADetail.RowCount;
+    if r > 0 then
+      ADetail.Cells[0, 0] := 'Agent';
     ADetail.RowCount := r + 2;
     ADetail.Cells[0, r] := 'Open tickets';
     ADetail.Cells[1, r] := AgentTickets(agent, False);
