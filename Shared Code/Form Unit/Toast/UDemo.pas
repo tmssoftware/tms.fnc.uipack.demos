@@ -187,7 +187,11 @@ var
 begin
   card := TTMSFNCCardPanel.Create(Self);
   card.Parent := AParent;
-  FLayout.Place(card, daTop, 100, 0, 8, 0, 0);
+  { a card with buttons is taller: at 100 the button row covered the owner and due date under the title }
+  if Tasks[AIndex].Done then
+    FLayout.Place(card, daTop, 76, 0, 8, 0, 0)
+  else
+    FLayout.Place(card, daTop, 124, 0, 8, 0, 0);
   card.Header.Text := Tasks[AIndex].Name;
   card.Header.Description := Tasks[AIndex].Owner + '  ·  Due ' + Tasks[AIndex].Due;
   card.Header.Height := FLayout.Size(56);
