@@ -8,7 +8,8 @@
   Page "Catalog": one self-referencing table (ID / ParentID) of categories and products. ColumnFields makes a
   column per field with an editor per field type, the Active field is the node check box, dragging a node onto
   another writes ParentID, dragging between siblings writes the Order field. A data navigator on the same data
-  source shows the selection in sync.
+  source shows the selection in sync. The Vendor column is a lookup field (VendorID into a vendors table): editing it
+  drops down the vendor names and writes the VendorID of the record (the adapter's UseLookupEditor, on by default).
 
   Page "Customers and orders": two linked tables as node levels (DataOptions.Levels), each with its own columns,
   the status drawn as pills (Columns[].StatusValues) and the company as an avatar (Columns[].Avatar)
@@ -67,6 +68,7 @@ type
     FTabs: TTMSFNCTabSet;
     FPages: array[0..1] of TTMSFNCPanel;
     FCatalog: TDemoDataSet;
+    FVendors: TDemoDataSet;
     FCatalogSource: TDataSource;
     FCustomers: TDemoDataSet;
     FCustomersSource: TDataSource;
@@ -145,6 +147,9 @@ begin
   if AStock >= 0 then
     FCatalog.FieldByName('Stock').AsInteger := AStock;
   FCatalog.FieldByName('Active').AsBoolean := AActive;
+  { categories have no vendor; a product gets one by its place in the list }
+  if AParentID > 0 then
+    FCatalog.FieldByName('VendorID').AsInteger := 1 + AID mod 3;
   FCatalog.Post;
 end;
 
@@ -158,7 +163,17 @@ var
   customers: TArray<string>;
   orders: TArray<TTMSFNCSampleOrder>;
   I, J, cust, no: Integer;
+  lookup: TStringField;
 begin
+  { the vendors a product comes from: the lookup table of the Vendor column }
+  FVendors := FLayout.NewDataSet;
+  FVendors.FieldDefs.Add('VendorID', ftInteger);
+  FVendors.FieldDefs.Add('Name', ftString, 30);
+  FLayout.OpenDataSet(FVendors);
+  FVendors.AppendRecord([1, 'TMS software']);
+  FVendors.AppendRecord([2, 'Partner network']);
+  FVendors.AppendRecord([3, 'Reseller']);
+
   { a self-referencing table: categories and the products under them }
   FCatalog := FLayout.NewDataSet;
   FCatalog.FieldDefs.Add('ID', ftInteger);
@@ -168,6 +183,19 @@ begin
   FCatalog.FieldDefs.Add('Price', ftFloat);
   FCatalog.FieldDefs.Add('Stock', ftInteger);
   FCatalog.FieldDefs.Add('Active', ftBoolean);
+  FCatalog.FieldDefs.Add('VendorID', ftInteger);
+  { a lookup field needs the stored fields as persistent fields next to it }
+  for I := 0 to FCatalog.FieldDefs.Count - 1 do
+    FCatalog.FieldDefs[I].CreateField(FCatalog);
+  lookup := TStringField.Create(FCatalog);
+  lookup.FieldName := 'Vendor';
+  lookup.FieldKind := fkLookup;
+  lookup.Size := 30;
+  lookup.KeyFields := 'VendorID';
+  lookup.LookupDataSet := FVendors;
+  lookup.LookupKeyFields := 'VendorID';
+  lookup.LookupResultField := 'Name';
+  lookup.DataSet := FCatalog;
   FLayout.OpenDataSet(FCatalog);
   AddItem(1, 0, 1, 'Components', 0, -1, True);
   AddItem(2, 1, 1, 'FNC UI Pack', 295, 120, True);
@@ -338,7 +366,7 @@ begin
   FCatalogTree.DataOptions.KeyField := 'ID';
   FCatalogTree.DataOptions.ParentField := 'ParentID';
   FCatalogTree.DataOptions.OrderField := 'SortOrder';
-  FCatalogTree.DataOptions.ColumnFields := 'Name;Price;Stock';
+  FCatalogTree.DataOptions.ColumnFields := 'Name;Vendor;Price;Stock';
   FCatalogTree.DataOptions.CheckField := 'Active';
   FCatalogTree.DataOptions.ExpandLevel := 1;
   FCatalogTree.DataSource := FCatalogSource;

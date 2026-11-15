@@ -1,0 +1,11 @@
+# TreeView Database: a person edits the vendor of a product (the lookup column drops down the vendor names),
+# then looks at the customers and their orders, in light and dark.
+click|TTMSFNCTreeView#1|tl:120,80
+dbl|TTMSFNCTreeView#1|tl:250,80
+wait|500
+shot|vendor lookup editor
+key|down
+key|enter
+shot|vendor changed
+theme|Fluent Dark
+theme|Fluent Light
