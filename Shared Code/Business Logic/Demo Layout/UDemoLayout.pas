@@ -160,6 +160,10 @@ begin
       daBottom: AControl.Align := TAlignLayout.Bottom;
       daClient: AControl.Align := TAlignLayout.Client;
     end;
+    { FMX orders right aligned controls by their current X, which the first alignment has already changed: a new
+      one gets an X left of every one placed before, so the first one placed stays furthest right (as in VCL) }
+    if AAlign = daRight then
+      AControl.Position.X := -FPlaceOrder * 1000;
   end;
   case AAlign of
     daTop, daBottom: AControl.Height := ASize;
