@@ -370,12 +370,15 @@ begin
       md.EndUpdate;
     end;
   end;
-  with FTree.DataOptions.Levels[0].MasterDetail do
-  begin
-    Template := FTree.MasterDetail.Template;
-    ToolBar.Visible := FToolBarCheck.Checked;
-    Editing := FEditingCheck.Checked;
-    Placement := FTree.MasterDetail.Placement;
+  md := FTree.DataOptions.Levels[0].MasterDetail;
+  md.BeginUpdate;
+  try
+    md.Template := FTree.MasterDetail.Template;
+    md.ToolBar.Visible := FToolBarCheck.Checked;
+    md.Editing := FEditingCheck.Checked;
+    md.Placement := FTree.MasterDetail.Placement;
+  finally
+    md.EndUpdate;
   end;
 
   case FMaster of
@@ -404,6 +407,10 @@ procedure TForm1.SettingChanged(Sender: TObject);
 var
   w: TDemoWhere;
 begin
+  // the radio button that lost its check tells it too: the one that got it applies the choice
+  if (Sender is TTMSFNCRadioButton) and not TTMSFNCRadioButton(Sender).Checked then
+    Exit;
+
   w := TDemoWhere(FPlacement.ItemIndex);
   if w <> FWhere then
   begin
