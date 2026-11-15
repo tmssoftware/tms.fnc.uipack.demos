@@ -18,9 +18,11 @@ Defaults: theming sources `E:/Delphi/tms.fnc.core-theming` and `tms.fnc.uipack-t
 `--uipack`), results `.../TMS FNC Theming/results/demos-pilot` (`--out`), scratch builds
 `%TEMP%/claude/democheck` (`--work`; FNC DCUs are cached per compiler and platform there).
 
-Machine rules (AGENTS.md): runs over more than a couple of demos go through the harness
-`tools/heavy.py` (`python -I ".../TMS FNC Theming/tools/heavy.py" python -I tools/democheck.py shoot ...`);
-demo executables only start through `hidden_desktop`.
+Machine rules (AGENTS.md): `democheck.py` takes the machine locks of the harness `tools/heavy.py` itself, a compile
+slot per build and the run lock per demo (the DPIs of one click-through), so a long list leaves room for the runs of
+other agents between two demos; started through `heavy.py` it runs without a lock around it. Demo executables only
+start through `hidden_desktop`. The command line builds link what the IDE links for a project: a manifest, its
+resource items (`<RcItem>`, also files below `$(BDS)`) and its VCL styles (`Custom_Styles`).
 
 Typical round for one demo: see the checklist at the end of `docs/DemoGuidelines.md`.
 

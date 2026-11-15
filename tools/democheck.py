@@ -41,6 +41,7 @@ Examples (from the demos repository root):
 """
 
 import argparse
+import contextlib
 import json
 import os
 import re
@@ -94,14 +95,25 @@ def work_root(args):
     return w
 
 
+_no_heavy = False
+
+
 def heavy_slot(kind):
     """A compile slot ('compile') or the run lock ('run') of the harness tools/heavy.py for a with block. A slot
     a parent process holds (gate.py, heavy.py --run) is shared."""
+    global _no_heavy
     tools = str(HARNESS / "tools")
     if tools not in sys.path:
         sys.path.insert(0, tools)
-    import heavy  # noqa: E402
-    return heavy.slot(kind)
+    try:
+        import heavy  # noqa: E402
+        return heavy.slot(kind)
+    except (ImportError, AttributeError):
+        # a machine without the harness checkout (or one from before the slots): compile and run as before, unlocked
+        if not _no_heavy:
+            _no_heavy = True
+            print(f"democheck: no tools/heavy.py with slots in {tools}: running without the machine locks", flush=True)
+        return contextlib.nullcontext()
 
 
 def run(cmd, log, cwd=None, timeout=1800):
@@ -264,7 +276,9 @@ def expand_macros(text, delphi="13"):
 
 def make_styles(proj, out, delphi="13"):
     """The VCL styles of the project (Project > Options > Application > Appearance, <Custom_Styles> in the .dproj:
-    "Name|VCLSTYLE|file" entries) as styles.res: the IDE links them, the command line does not. False without any."""
+    "Name|VCLSTYLE|file" entries) as styles.res: the IDE links them, the command line does not. False without any.
+    A style file that is not there is kept in the list: the resource compiler fails on it and, without styles.res,
+    the build, as in the IDE."""
     dproj = proj.dproj.read_text(encoding="utf-8-sig", errors="replace") if proj.dproj.exists() else ""
     lines, seen = [], set()
     for value in re.findall(r"<Custom_Styles>([^<]*)</Custom_Styles>", dproj):
@@ -275,16 +289,15 @@ def make_styles(proj, out, delphi="13"):
             path = Path(expand_macros(parts[2], delphi))
             if not path.is_absolute():
                 path = (proj.dir / path).resolve()
-            if path.exists():
-                seen.add(parts[0])
-                ident = re.sub(r"[^A-Za-z0-9]", "", parts[0]).upper()
-                lines.append(f'{ident} {parts[1]} "{str(path).replace(chr(92), "/")}"')
+            seen.add(parts[0])
+            ident = re.sub(r"[^A-Za-z0-9]", "", parts[0]).upper()
+            lines.append(f'{ident} {parts[1]} "{str(path).replace(chr(92), "/")}"')
     if not lines:
         return False
     rc = out / "styles.rc"
     rc.write_text("\n".join(lines) + "\n", encoding="ascii", errors="replace")
     run([STUDIO / DELPHI[delphi] / "bin" / "brcc32.exe", "-fo" + str(out / "styles.res"), rc], out / "brcc32-styles.log")
-    return (out / "styles.res").exists()
+    return True
 
 
 def make_dres(proj, out, delphi="13"):
@@ -300,9 +313,11 @@ def make_dres(proj, out, delphi="13"):
         rtype = re.search(r"<ResourceType>([^<]*)</ResourceType>", body)
         rid = re.search(r"<ResourceId>([^<]*)</ResourceId>", body)
         path = Path(expand_macros(inc, delphi))  # a file of the IDE: $(BDS)\Redist\styles\...
-        if not path.is_absolute():
+        ide_file = path.is_absolute()
+        if not ide_file:
             path = (proj.dir / path).resolve()
-        if rtype and rid and path.exists():
+        # a file of the IDE that is not there stays in the list: the resource compiler and the build fail, as in the IDE
+        if rtype and rid and (ide_file or path.exists()):
             lines.append(f'{rid.group(1)} {rtype.group(1)} "{str(path).replace(chr(92), "/")}"')
     rc = out / "resources.rc"
     rc.write_text("\n".join(lines) + "\n", encoding="ascii", errors="replace")
@@ -838,7 +853,12 @@ def cmd_click(args):
             continue
 
         def go(ppi, key=key, proj=proj, exe=b["exe"]):
-            return ppi, click_one(hidden_desktop, exe, proj, Path(args.out) / "click" / key / str(ppi), ppi,
+            # a copy of the executable per DPI: the runs go side by side, and a demo that keeps a working file next to
+            # its executable (the SQLite copy of the Theming Dashboard) would share it between two of them
+            own = Path(exe).parent / f"ppi{ppi}" / Path(exe).name
+            own.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(exe, own)
+            return ppi, click_one(hidden_desktop, str(own), proj, Path(args.out) / "click" / key / str(ppi), ppi,
                                   args.timeout, args.maxsteps)
 
         # the run lock per demo: free again between two demos of a long list
