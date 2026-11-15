@@ -312,8 +312,10 @@ begin
   bar := FLayout.AddPanel(AParent, daTop, 52, 0, 0, 0, 8);
   FAppMark := TTMSFNCBrandLogo.Create(Self);
   FAppMark.Parent := bar;
-  FLayout.Place(FAppMark, daLeft, 220, 12, 8, 0, 8);
+  { the whole bar, from the left: 220 px in the middle of the control cut the name ('Shopfro...') }
+  FLayout.Place(FAppMark, daClient, 0, 12, 8, 12, 8);
   FAppMark.Kind := blkMarkAndAppName;
+  FAppMark.HorizontalAlign := gtaLeading;
   FAppTitle := FLayout.AddText(bar, '<b>Table booking</b>', 0);
   FLayout.Place(FAppTitle, daClient, 0, 16, 8, 0, 8);
   FAppTitle.VerticalTextAlign := gtaCenter;
@@ -370,6 +372,7 @@ var
   colors: array[0..4] of TTMSFNCGraphicsColor;
   I: Integer;
   has: Boolean;
+  font: string;
 begin
   b := CurrentBrand;
   try
@@ -390,7 +393,20 @@ begin
     colors[4] := b.ErrorColor;
     for I := 0 to High(FSwatches) do
     begin
+      FSwatches[I].Stroke.Kind := gskSolid;
+      if colors[I] = gcNull then
+      begin
+        { a colour the brand leaves to the theme: an outline, no '#000000' on an empty swatch;
+          demo-colors: a gray that reads on the light and on the dark card }
+        FSwatches[I].Fill.Kind := gfkNone;
+        FSwatches[I].Stroke.Color := gcGray;
+        FSwatches[I].Font.Color := gcGray;
+        FSwatches[I].Text := '&nbsp;&nbsp;<b>' + SwatchNames[I] + '</b>&nbsp;&nbsp;of the theme';
+        Continue;
+      end;
+      FSwatches[I].Fill.Kind := gfkSolid;
       FSwatches[I].Fill.Color := colors[I];
+      FSwatches[I].Stroke.Color := colors[I];
       { demo-colors: the text on a swatch is black or white, whichever reads on the brand colour }
       if TTMSFNCBrand.ContrastRatio(gcWhite, colors[I]) >= 4.5 then
         FSwatches[I].Font.Color := gcWhite
@@ -398,7 +414,10 @@ begin
         FSwatches[I].Font.Color := gcBlack;
       FSwatches[I].Text := '&nbsp;&nbsp;<b>' + SwatchNames[I] + '</b>&nbsp;&nbsp;' + HexOf(colors[I]);
     end;
-    FInfo.Text := '<b>' + b.Name + '</b><br>Body font: ' + b.ResolveFont(False) + '<br>Themes: ' +
+    font := b.ResolveFont(False);
+    if font = '' then
+      font := 'of the theme';
+    FInfo.Text := '<b>' + b.Name + '</b><br>Body font: ' + font + '<br>Themes: ' +
       b.ThemeName(tmLight) + ', ' + b.ThemeName(tmDark);
     FStatus.Text := 'The brand <b>' + b.Name + '</b> makes the themes ' + b.ThemeName(tmLight) + ' and ' +
       b.ThemeName(tmDark) + '; the header switch and the light / dark choice pick one of the two.';
