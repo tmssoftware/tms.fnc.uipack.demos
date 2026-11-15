@@ -274,6 +274,11 @@ begin
   FLabel.WordWrapping := True;
   FLabel.HorizontalTextAlign := gtaLeading;
   FLabel.VerticalTextAlign := gtaLeading;
+  { the printed text keeps a margin from the edge of the label }
+  FLabel.TextIndentMargins.Left := FLayout.Size(16);
+  FLabel.TextIndentMargins.Top := FLayout.Size(12);
+  FLabel.TextIndentMargins.Right := FLayout.Size(64);
+  FLabel.TextIndentMargins.Bottom := FLayout.Size(12);
 
   FIcon := TTMSFNCImage.Create(Self);
   FIcon.Parent := FLabel;
