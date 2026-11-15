@@ -54,7 +54,7 @@ type
     FMaster: TDemoMaster;
     FWhere: TDemoWhere;
     FMasterRadios: array[TDemoMaster] of TTMSFNCRadioButton;
-    FTemplate: TTMSFNCSegmentedControl;
+    FTemplateRadios: array[0..3] of TTMSFNCRadioButton;
     FPlacement: TTMSFNCSegmentedControl;
     FToolBarCheck: TTMSFNCCheckBox;
     FEditingCheck: TTMSFNCCheckBox;
@@ -150,7 +150,7 @@ begin
   FTickets.FieldDefs.Add('Opened', ftDate);
   FLayout.OpenDataSet(FTickets);
   for I := 0 to High(Titles) do
-    FTickets.AppendRecord([101 + I, (I mod Length(Companies)) + 1, Titles[I], Statuses[(I * 3) mod Length(Statuses)],
+    FTickets.AppendRecord([101 + I, (I mod Length(Companies)) + 1, Titles[I], Statuses[(I * 3 + I div 4) mod Length(Statuses)],
       Priorities[(I * 2) mod Length(Priorities)], Agents[I mod Length(Agents)], Date - 20 + I]);
   FTickets.First;
 
@@ -165,6 +165,8 @@ begin
   FComments.FieldDefs.Add('Comment', ftString, 120);
   FComments.FieldDefs.Add('Posted', ftDateTime);
   FLayout.OpenDataSet(FComments);
+  // the number of a comment is no news to a reader of the detail
+  FComments.FieldByName('CommentID').Visible := False;
   c := 1;
   for t := 0 to High(Titles) do
     for I := 0 to (t mod 3) do
@@ -191,15 +193,10 @@ begin
   FMasterRadios[dmAgents] := FLayout.AddRadio(FSettings, 'Agents (no database)', 'master', False, MasterChanged);
 
   FLayout.AddCaption(FSettings, 'Show the detail as');
-  FTemplate := TTMSFNCSegmentedControl.Create(Self);
-  FTemplate.Parent := FSettings;
-  FLayout.Place(FTemplate, daTop, 32, 16, 0, 16, 0);
-  FTemplate.Items.AddItem('Grid');
-  FTemplate.Items.AddItem('Form');
-  FTemplate.Items.AddItem('Cards');
-  FTemplate.Items.AddItem('Tabs');
-  FTemplate.ItemIndex := 0;
-  FTemplate.OnChange := SettingChanged;
+  FTemplateRadios[0] := FLayout.AddRadio(FSettings, 'Grid of the detail records', 'template', True, SettingChanged);
+  FTemplateRadios[1] := FLayout.AddRadio(FSettings, 'Form of one record', 'template', False, SettingChanged);
+  FTemplateRadios[2] := FLayout.AddRadio(FSettings, 'Cards', 'template', False, SettingChanged);
+  FTemplateRadios[3] := FLayout.AddRadio(FSettings, 'Tabs', 'template', False, SettingChanged);
 
   FLayout.AddCaption(FSettings, 'Where');
   FPlacement := TTMSFNCSegmentedControl.Create(Self);
@@ -307,7 +304,7 @@ begin
   case AWhere of
     dwBeside:
     begin
-      FLayout.Place(FView, daRight, 420, 0, 0, 0, 0);
+      FLayout.Place(FView, daRight, 480, 0, 0, 0, 0);
       FLayout.Place(FSplitter, daRight, 8, 0, 0, 0, 0);
     end;
     dwBelow:
@@ -350,13 +347,19 @@ var
   m: TDemoMaster;
   md: TTMSFNCMasterDetail;
   s: string;
+  t, I: Integer;
 begin
+  t := 0;
+  for I := 0 to High(FTemplateRadios) do
+    if FTemplateRadios[I].Checked then
+      t := I;
+
   for m := Low(TDemoMaster) to High(TDemoMaster) do
   begin
     md := MasterSettings(m);
     md.BeginUpdate;
     try
-      md.Template := Templates[FTemplate.ItemIndex];
+      md.Template := Templates[t];
       md.ToolBar.Visible := FToolBarCheck.Checked;
       md.Editing := FEditingCheck.Checked;
       if FWhere = dwInPlace then
