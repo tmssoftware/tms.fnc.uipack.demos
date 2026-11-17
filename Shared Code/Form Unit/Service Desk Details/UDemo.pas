@@ -339,7 +339,7 @@ begin
   FGrid.Parent := FContent;
   FGrid.DataOptions.NewRowLine := False;
   FGrid.DataSource := FCustomersSource;
-  FGrid.MasterDetail.DetailHeight := 300;
+  FGrid.MasterDetail.DetailHeight := FLayout.Size(320);
   FGrid.ColumnGroups.Add('Customer', ['CustomerID', 'Company', 'Active']);
   FGrid.ColumnGroups.Add('Location', ['City', 'Country']);
 
