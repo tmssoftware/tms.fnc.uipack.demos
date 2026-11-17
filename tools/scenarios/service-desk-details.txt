@@ -1,6 +1,7 @@
 # Service Desk Details: a person opens a customer and a ticket in the tree, tries every template with and without the
 # tool bar, the places (beside, below, in place with Back), then the ticket board and the agents without a database,
-# in light and dark.
+# in light and dark; then the sections (the customer as a form, edited in place) and the data grid of customers with
+# column groups and the sections in its rows.
 click|TTMSFNCTreeView#1|tl:80,50
 wait|500
 shot|customer: its tickets in the view
@@ -82,3 +83,34 @@ theme|Fluent Light
 click|Tool bar
 click|Grid of the detail records
 click|Customers
+# sections: Tickets and Details; Details is the customer itself, a form edited in place
+click|TTMSFNCTreeView#1|tl:80,50
+wait|500
+shot|customer: the Tickets and Details sections
+click|TTMSFNCDetailView#1|tl:131,52
+wait|500
+shot|customer: Details, the form of the customer
+click|TTMSFNCDetailView#1|tl:300,130
+key|f2
+type| Group
+key|enter
+wait|500
+shot|customer: the company edited in the form, the tree follows
+theme|Fluent Dark
+shot|dark: the form
+theme|Fluent Light
+# a data grid of customers: captions over its columns, the sections in the rows
+click|Customers in a grid
+wait|600
+shot|grid: column groups
+click|TTMSFNCDataGrid#1|tl:200,80
+key|right
+wait|600
+shot|grid: a customer open on its tickets
+click|TTMSFNCDataGrid#1|tl:165,115
+wait|500
+shot|grid: the Details section in the row
+theme|Fluent Dark
+shot|dark: the grid with sections and column groups
+theme|Fluent Light
+click|Customers and their tickets

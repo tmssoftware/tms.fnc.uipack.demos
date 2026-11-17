@@ -65,7 +65,7 @@ object Form1: TForm1
       Trimming = gttCharacter
       Fill.Kind = gfkNone
       Stroke.Kind = gskNone
-      Text = 'A tree, a ticket board and a list as masters of one detail view: pick the master, how and where the detail shows'
+      Text = 'Tree, grid, board and list as masters: sections, a form edited in place, column groups; pick how and where the detail shows'
     end
   end
   object ThemeManager: TTMSFNCThemeManager

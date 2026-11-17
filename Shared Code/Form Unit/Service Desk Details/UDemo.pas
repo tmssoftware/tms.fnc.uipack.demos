@@ -5,11 +5,13 @@
   One detail view (TTMSFNCDetailView) beside the list controls of a service desk, each a master through its
   MasterDetail: a tree of customers with their tickets (a customer shows its tickets, a ticket its comments through
   the MasterDetail of the tree's ticket level), a ticket board (the comments of the selected card) and a list of
-  agents without a database (the tickets of an agent, filled in OnGetDetailData: open and done ones on two tabs).
-  Pick how the detail shows (grid, form, cards, tabs), where (beside, below or in place of the list, with Back to
-  return), the tool bar (search, the record count and Add through OnAddRecord) and editing. At design time the same
-  setup takes a few clicks: Data > Details in the context menu of a list control, or the Details section of its quick
-  setup. }
+  agents without a database (the tickets of an agent, filled in OnGetDetailData: open and done ones in two sections).
+  A data grid of customers shows its details in the rows, under captions over its columns (ColumnGroups).
+  Sections split a detail: the records and the record itself as a form that is edited in place (MasterDetail.Sections,
+  Ctrl+PgDn / Ctrl+PgUp change the section). Pick how the records show (grid, form, cards, tabs), where (beside,
+  below or in place of the list, with Back to return), the tool bar (search, the record count and Add through
+  OnAddRecord) and editing. At design time the same setup takes a few clicks: Data > Details in the context menu of a
+  list control, or the Details section of its quick setup. }
 
 interface
 
@@ -23,6 +25,7 @@ uses
   VCL.TMSFNCPanel, VCL.TMSFNCHTMLText, VCL.TMSFNCButton, VCL.TMSFNCCheckBox, VCL.TMSFNCRadioButton,
   VCL.TMSFNCSegmentedControl, VCL.TMSFNCSplitter, VCL.TMSFNCTreeView, VCL.TMSFNCKanbanBoard, VCL.TMSFNCListBox,
   VCL.TMSFNCDataGridRenderer, VCL.TMSFNCMasterDetail, VCL.TMSFNCDetailView, VCL.TMSFNCTheme, VCL.TMSFNCThemeSelector,
+  VCL.TMSFNCDataGrid,
   {$ENDIF}
 
   {$IFDEF FMX}
@@ -34,11 +37,12 @@ uses
   FMX.TMSFNCPanel, FMX.TMSFNCHTMLText, FMX.TMSFNCButton, FMX.TMSFNCCheckBox, FMX.TMSFNCRadioButton,
   FMX.TMSFNCSegmentedControl, FMX.TMSFNCSplitter, FMX.TMSFNCTreeView, FMX.TMSFNCKanbanBoard, FMX.TMSFNCListBox,
   FMX.TMSFNCDataGridRenderer, FMX.TMSFNCMasterDetail, FMX.TMSFNCDetailView, FMX.TMSFNCTheme, FMX.TMSFNCThemeSelector,
+  FMX.TMSFNCDataGrid,
   {$ENDIF}
   UDemoLayout;
 
 type
-  TDemoMaster = (dmCustomers, dmBoard, dmAgents);
+  TDemoMaster = (dmCustomers, dmGrid, dmBoard, dmAgents);
   TDemoWhere = (dwBeside, dwBelow, dwInPlace);
 
   TForm1 = class(TDemoForm)
@@ -60,17 +64,22 @@ type
     FPlacement: TTMSFNCSegmentedControl;
     FToolBarCheck: TTMSFNCCheckBox;
     FEditingCheck: TTMSFNCCheckBox;
+    FSectionsCheck: TTMSFNCCheckBox;
     FStatus: TTMSFNCHTMLText;
     FTree: TTMSFNCTreeView;
     FBoard: TTMSFNCKanbanBoard;
     FAgents: TTMSFNCListBox;
+    FGrid: TTMSFNCDataGrid;
     FSplitter: TTMSFNCSplitter;
     FView: TTMSFNCDetailView;
     FCustomers: TDemoDataSet;
     FTickets: TDemoDataSet;
     FCustomerTickets: TDemoDataSet;
     FComments: TDemoDataSet;
+    FGridTickets: TDemoDataSet;
+    FGridComments: TDemoDataSet;
     FCustomersSource: TDataSource;
+    FGridTicketsSource: TDataSource;
     FTicketsSource: TDataSource;
     FCustomerTicketsSource: TDataSource;
     FCommentsSource: TDataSource;
@@ -81,6 +90,7 @@ type
     procedure ShowMaster(AMaster: TDemoMaster);
     procedure PlaceDetail(AWhere: TDemoWhere);
     procedure ApplySettings;
+    procedure SetSections(AMaster: TDemoMaster; ASettings: TTMSFNCMasterDetail; ATemplate: TTMSFNCMasterDetailTemplate);
     function MasterControl(AMaster: TDemoMaster): TControl;
     function MasterSettings(AMaster: TDemoMaster): TTMSFNCMasterDetail;
     procedure MasterChanged(Sender: TObject);
@@ -109,6 +119,7 @@ const
   Companies: array[0..5] of string = ('Northwind Traders', 'Blue Harbor Hotels', 'Contoso Clinics', 'Fabrikam Labs',
     'Alpine Ski House', 'Tailspin Air');
   Cities: array[0..5] of string = ('Seattle', 'Ghent', 'Lyon', 'Graz', 'Innsbruck', 'Porto');
+  Countries: array[0..5] of string = ('United States', 'Belgium', 'France', 'Austria', 'Austria', 'Portugal');
   Agents: array[0..3] of string = ('Ann Peeters', 'Bart Claes', 'Chen Li', 'Dana Novak');
   Statuses: array[0..3] of string = ('Open', 'In progress', 'Waiting', 'Done');
   Priorities: array[0..2] of string = ('Low', 'Normal', 'High');
@@ -140,9 +151,12 @@ begin
   FCustomers.FieldDefs.Add('CustomerID', ftInteger);
   FCustomers.FieldDefs.Add('Company', ftString, 40);
   FCustomers.FieldDefs.Add('City', ftString, 30);
+  FCustomers.FieldDefs.Add('Country', ftString, 30);
+  FCustomers.FieldDefs.Add('Active', ftBoolean);
+  FCustomers.FieldDefs.Add('Since', ftDate);
   FLayout.OpenDataSet(FCustomers);
   for I := 0 to High(Companies) do
-    FCustomers.AppendRecord([I + 1, Companies[I], Cities[I]]);
+    FCustomers.AppendRecord([I + 1, Companies[I], Cities[I], Countries[I], I <> 4, EncodeDate(2018 + I, 1 + I * 2, 1)]);
   FCustomers.First;
 
   FTickets := FLayout.NewDataSet;
@@ -185,14 +199,33 @@ begin
     end;
   FComments.First;
 
+  FCustomersSource := FLayout.NewSource(FCustomers);
+
+  // the data grid: tables that follow the customers (MasterSource), the tickets with their comments
+  FGridTickets := FLayout.NewDataSet;
+  FGridTickets.CloneCursor(FTickets, False, False);
+  FGridTickets.Name := 'GridTickets';
+  FGridTickets.IndexFieldNames := 'CustomerID';
+  FGridTickets.MasterSource := FCustomersSource;
+  FGridTickets.MasterFields := 'CustomerID';
+  FGridTicketsSource := FLayout.NewSource(FGridTickets);
+  FGridComments := FLayout.NewDataSet;
+  FGridComments.CloneCursor(FComments, False, False);
+  FGridComments.Name := 'GridComments';
+  FGridComments.IndexFieldNames := 'TicketID';
+  FGridComments.MasterSource := FGridTicketsSource;
+  FGridComments.MasterFields := 'TicketID';
+
   SetFields(FCustomers);
   SetFields(FTickets);
   SetFields(FCustomerTickets);
   SetFields(FComments);
+  SetFields(FGridTickets);
+  SetFields(FGridComments);
   // the tickets of a customer fit the view beside the tree without the date
   FCustomerTickets.FieldByName('Opened').Visible := False;
+  FGridComments.FieldByName('CommentID').Visible := False;
 
-  FCustomersSource := FLayout.NewSource(FCustomers);
   FTicketsSource := FLayout.NewSource(FTickets);
   FCustomerTicketsSource := FLayout.NewSource(FCustomerTickets);
   FCommentsSource := FLayout.NewSource(FComments);
@@ -202,10 +235,11 @@ end;
   wide as the DisplayWidth of its field, and the size of a text field is more than its texts need }
 procedure TForm1.SetFields(ADataSet: TDataSet);
 const
-  Names: array[0..11] of string = ('CustomerID', 'TicketID', 'CommentID', 'Company', 'City', 'Title', 'Status',
-    'Priority', 'Agent', 'Author', 'Comment', 'Posted');
-  Labels: array[0..11] of string = ('Customer no.', 'Ticket', 'Comment no.', '', '', '', '', '', '', '', '', '');
-  Widths: array[0..11] of Integer = (6, 5, 6, 20, 12, 18, 9, 6, 10, 10, 34, 10);
+  Names: array[0..14] of string = ('CustomerID', 'TicketID', 'CommentID', 'Company', 'City', 'Title', 'Status',
+    'Priority', 'Agent', 'Author', 'Comment', 'Posted', 'Country', 'Active', 'Since');
+  Labels: array[0..14] of string = ('Customer no.', 'Ticket', 'Comment no.', '', '', '', '', '', '', '', '', '', '',
+    '', 'Customer since');
+  Widths: array[0..14] of Integer = (6, 5, 6, 20, 12, 18, 9, 6, 10, 10, 34, 10, 12, 6, 10);
 var
   I: Integer;
   f: TField;
@@ -230,10 +264,11 @@ begin
 
   FLayout.AddCaption(FSettings, 'Master');
   FMasterRadios[dmCustomers] := FLayout.AddRadio(FSettings, 'Customers and their tickets', 'master', True, MasterChanged);
+  FMasterRadios[dmGrid] := FLayout.AddRadio(FSettings, 'Customers in a grid (column groups)', 'master', False, MasterChanged);
   FMasterRadios[dmBoard] := FLayout.AddRadio(FSettings, 'Ticket board', 'master', False, MasterChanged);
   FMasterRadios[dmAgents] := FLayout.AddRadio(FSettings, 'Agents (no database)', 'master', False, MasterChanged);
 
-  FLayout.AddCaption(FSettings, 'Show the detail as');
+  FLayout.AddCaption(FSettings, 'Show the records as');
   FTemplateRadios[0] := FLayout.AddRadio(FSettings, 'Grid of the detail records', 'template', True, SettingChanged);
   FTemplateRadios[1] := FLayout.AddRadio(FSettings, 'Form of one record', 'template', False, SettingChanged);
   FTemplateRadios[2] := FLayout.AddRadio(FSettings, 'Cards', 'template', False, SettingChanged);
@@ -250,6 +285,7 @@ begin
   FPlacement.OnChange := SettingChanged;
 
   FLayout.AddCaption(FSettings, 'Detail');
+  FSectionsCheck := FLayout.AddCheck(FSettings, 'Sections: the records and the details', True, SettingChanged);
   FToolBarCheck := FLayout.AddCheck(FSettings, 'Tool bar: search, Add, count', False, SettingChanged);
   FEditingCheck := FLayout.AddCheck(FSettings, 'Edit in the detail', True, SettingChanged);
 
@@ -295,6 +331,15 @@ begin
     FAgents.EndUpdate;
   end;
 
+  // the details of a customer in the rows of the grid, its columns under two captions
+  FGrid := TTMSFNCDataGrid.Create(Self);
+  FGrid.Parent := FContent;
+  FGrid.DataOptions.NewRowLine := False;
+  FGrid.DataSource := FCustomersSource;
+  FGrid.MasterDetail.DetailHeight := 300;
+  FGrid.ColumnGroups.Add('Customer', ['CustomerID', 'Company', 'Active']);
+  FGrid.ColumnGroups.Add('Location', ['City', 'Country']);
+
   FView := TTMSFNCDetailView.Create(Self);
   FView.Parent := FContent;
   FView.OnGetDetailData := ViewGetDetailData;
@@ -323,6 +368,7 @@ end;
 function TForm1.MasterControl(AMaster: TDemoMaster): TControl;
 begin
   case AMaster of
+    dmGrid: Result := FGrid;
     dmBoard: Result := FBoard;
     dmAgents: Result := FAgents;
   else
@@ -333,6 +379,7 @@ end;
 function TForm1.MasterSettings(AMaster: TDemoMaster): TTMSFNCMasterDetail;
 begin
   case AMaster of
+    dmGrid: Result := FGrid.MasterDetail;
     dmBoard: Result := FBoard.MasterDetail;
     dmAgents: Result := FAgents.MasterDetail;
   else
@@ -349,8 +396,9 @@ begin
   FContent.DisableAlign;
   try
   {$ENDIF}
-    FView.Visible := AWhere <> dwInPlace;
-    FSplitter.Visible := AWhere <> dwInPlace;
+    // the grid shows the details in its rows: no view beside it
+    FView.Visible := (AWhere <> dwInPlace) and (FMaster <> dmGrid);
+    FSplitter.Visible := FView.Visible;
     case AWhere of
       dwBeside:
       begin
@@ -383,27 +431,51 @@ begin
       FLayout.Place(MasterControl(m), daClient, 0, 0, 0, 0, 0);
   end;
 
-  // one master at a time feeds the view
+  // one master at a time feeds the view; the grid shows its details itself
   FTree.MasterDetail.Enabled := AMaster = dmCustomers;
   FTree.DataOptions.Levels[0].MasterDetail.Enabled := AMaster = dmCustomers;
   FBoard.MasterDetail.Enabled := AMaster = dmBoard;
   FAgents.MasterDetail.Enabled := AMaster = dmAgents;
+  FGrid.MasterDetail.Enabled := AMaster = dmGrid;
   if (AMaster = dmAgents) and (FAgents.ItemIndex < 0) then
     FAgents.ItemIndex := 0;
 
-  // without a database the tabs are named here and filled in OnGetDetailData; a detail table names its own tab
-  FView.Tabs.BeginUpdate;
+  PlaceDetail(FWhere);
+  ApplySettings;
+end;
+
+{ the sections of a detail: the records (shown as the radio buttons say) and the record itself as a form that is
+  edited in place; an agent has the open and the done tickets, filled in OnGetDetailData (ATab is the section) }
+procedure TForm1.SetSections(AMaster: TDemoMaster; ASettings: TTMSFNCMasterDetail; ATemplate: TTMSFNCMasterDetailTemplate);
+var
+  s: TTMSFNCMasterDetailSection;
+begin
+  ASettings.Sections.BeginUpdate;
   try
-    FView.Tabs.Clear;
+    ASettings.Sections.Clear;
+    if not FSectionsCheck.Checked then
+      Exit;
+
     if AMaster = dmAgents then
     begin
-      FView.Tabs.Add('Open');
-      FView.Tabs.Add('Done');
+      s := ASettings.Sections.Add;
+      s.Caption := 'Open';
+      s.Content := mdscCustom;
+      s := ASettings.Sections.Add;
+      s.Caption := 'Done';
+      s.Content := mdscCustom;
+      Exit;
     end;
+
+    s := ASettings.Sections.Add;
+    if ATemplate <> mdtTabs then
+      s.Template := ATemplate;
+    s := ASettings.Sections.Add;
+    s.Caption := 'Details';
+    s.Content := mdscMasterRecord;
   finally
-    FView.Tabs.EndUpdate;
+    ASettings.Sections.EndUpdate;
   end;
-  ApplySettings;
 end;
 
 procedure TForm1.ApplySettings;
@@ -427,10 +499,13 @@ begin
       md.ToolBar.AddButton := m <> dmAgents;
       md.Cards.TitleField := 'Title';
       md.Editing := FEditingCheck.Checked;
-      if FWhere = dwInPlace then
+      if m = dmGrid then
+        md.Placement := mdpInline
+      else if FWhere = dwInPlace then
         md.Placement := mdpDrillDown
       else
         md.Placement := mdpTarget;
+      SetSections(m, md, Templates[t]);
     finally
       md.EndUpdate;
     end;
@@ -443,6 +518,7 @@ begin
     md.Cards.TitleField := 'Author';
     md.Editing := FEditingCheck.Checked;
     md.Placement := FTree.MasterDetail.Placement;
+    SetSections(dmCustomers, md, Templates[t]);
   finally
     md.EndUpdate;
   end;
@@ -450,12 +526,17 @@ begin
   FBoard.MasterDetail.Cards.TitleField := 'Author';
 
   case FMaster of
+    dmGrid: s := 'Expand a customer for its tickets in the row. Drag a caption over the columns to move its columns.';
     dmBoard: s := 'Select a card: the view shows its comments.';
     dmAgents: s := 'Select an agent: the tickets come from OnGetDetailData (no database).';
   else
     s := 'Select a customer for its tickets, a ticket for its comments.';
   end;
-  if FWhere = dwInPlace then
+  if FSectionsCheck.Checked then
+    s := s + ' Details is the record itself, edited in place; Ctrl+PgDn / Ctrl+PgUp change the section.';
+  if FMaster = dmGrid then
+    s := s + ' Enter moves the keyboard into the detail of the row.'
+  else if FWhere = dwInPlace then
     s := s + ' Enter or a double click opens the detail in place of the list; Back returns.'
   else
     s := s + ' Enter moves the keyboard into the detail.';
@@ -539,7 +620,7 @@ begin
     Exit;
 
   agent := FAgents.Items[FAgents.ItemIndex].Text;
-  if FAgents.MasterDetail.Template = mdtForm then
+  if (FAgents.MasterDetail.Template = mdtForm) and (FAgents.MasterDetail.Sections.Count = 0) then
   begin
     // the form of an item has a line per field of the item: its text, called Agent here
     r := ADetail.RowCount;
@@ -553,7 +634,8 @@ begin
     Exit;
   end;
 
-  done := (FAgents.MasterDetail.Template = mdtTabs) and (ATab = 1);
+  // with sections ATab is the section (Open, Done); the tabs template without sections has the same two
+  done := ((FAgents.MasterDetail.Sections.Count > 0) or (FAgents.MasterDetail.Template = mdtTabs)) and (ATab = 1);
   ADetail.ColumnCount := 4;
   ADetail.RowCount := 1;
   ADetail.Cells[0, 0] := 'Ticket';
