@@ -92,7 +92,7 @@ wait|500
 shot|customer: Details, the form of the customer
 click|TTMSFNCDetailView#1|tl:300,130
 key|f2
-type| Group
+type|Northwind Traders Ltd
 key|enter
 wait|500
 shot|customer: the company edited in the form, the tree follows
@@ -100,7 +100,7 @@ theme|Fluent Dark
 shot|dark: the form
 theme|Fluent Light
 # a data grid of customers: captions over its columns, the sections in the rows
-click|Customers in a grid
+click|Customer grid
 wait|600
 shot|grid: column groups
 click|TTMSFNCDataGrid#1|tl:200,80

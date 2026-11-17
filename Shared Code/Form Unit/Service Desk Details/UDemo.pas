@@ -90,7 +90,8 @@ type
     procedure ShowMaster(AMaster: TDemoMaster);
     procedure PlaceDetail(AWhere: TDemoWhere);
     procedure ApplySettings;
-    procedure SetSections(AMaster: TDemoMaster; ASettings: TTMSFNCMasterDetail; ATemplate: TTMSFNCMasterDetailTemplate);
+    procedure SetSections(AMaster: TDemoMaster; ASettings: TTMSFNCMasterDetail; ATemplate: TTMSFNCMasterDetailTemplate;
+      const ARecords: string);
     function MasterControl(AMaster: TDemoMaster): TControl;
     function MasterSettings(AMaster: TDemoMaster): TTMSFNCMasterDetail;
     procedure MasterChanged(Sender: TObject);
@@ -225,6 +226,8 @@ begin
   // the tickets of a customer fit the view beside the tree without the date
   FCustomerTickets.FieldByName('Opened').Visible := False;
   FGridComments.FieldByName('CommentID').Visible := False;
+  // the number of a ticket next to the button that opens its comments
+  FGridTickets.FieldByName('TicketID').DisplayWidth := 8;
 
   FTicketsSource := FLayout.NewSource(FTickets);
   FCustomerTicketsSource := FLayout.NewSource(FCustomerTickets);
@@ -264,7 +267,7 @@ begin
 
   FLayout.AddCaption(FSettings, 'Master');
   FMasterRadios[dmCustomers] := FLayout.AddRadio(FSettings, 'Customers and their tickets', 'master', True, MasterChanged);
-  FMasterRadios[dmGrid] := FLayout.AddRadio(FSettings, 'Customers in a grid (column groups)', 'master', False, MasterChanged);
+  FMasterRadios[dmGrid] := FLayout.AddRadio(FSettings, 'Customer grid', 'master', False, MasterChanged);
   FMasterRadios[dmBoard] := FLayout.AddRadio(FSettings, 'Ticket board', 'master', False, MasterChanged);
   FMasterRadios[dmAgents] := FLayout.AddRadio(FSettings, 'Agents (no database)', 'master', False, MasterChanged);
 
@@ -285,7 +288,7 @@ begin
   FPlacement.OnChange := SettingChanged;
 
   FLayout.AddCaption(FSettings, 'Detail');
-  FSectionsCheck := FLayout.AddCheck(FSettings, 'Sections: the records and the details', True, SettingChanged);
+  FSectionsCheck := FLayout.AddCheck(FSettings, 'Sections: records, details', True, SettingChanged);
   FToolBarCheck := FLayout.AddCheck(FSettings, 'Tool bar: search, Add, count', False, SettingChanged);
   FEditingCheck := FLayout.AddCheck(FSettings, 'Edit in the detail', True, SettingChanged);
 
@@ -446,7 +449,8 @@ end;
 
 { the sections of a detail: the records (shown as the radio buttons say) and the record itself as a form that is
   edited in place; an agent has the open and the done tickets, filled in OnGetDetailData (ATab is the section) }
-procedure TForm1.SetSections(AMaster: TDemoMaster; ASettings: TTMSFNCMasterDetail; ATemplate: TTMSFNCMasterDetailTemplate);
+procedure TForm1.SetSections(AMaster: TDemoMaster; ASettings: TTMSFNCMasterDetail; ATemplate: TTMSFNCMasterDetailTemplate;
+  const ARecords: string);
 var
   s: TTMSFNCMasterDetailSection;
 begin
@@ -468,6 +472,7 @@ begin
     end;
 
     s := ASettings.Sections.Add;
+    s.Caption := ARecords;
     if ATemplate <> mdtTabs then
       s.Template := ATemplate;
     s := ASettings.Sections.Add;
@@ -505,7 +510,10 @@ begin
         md.Placement := mdpDrillDown
       else
         md.Placement := mdpTarget;
-      SetSections(m, md, Templates[t]);
+      if m = dmBoard then
+        SetSections(m, md, Templates[t], 'Comments')
+      else
+        SetSections(m, md, Templates[t], 'Tickets');
     finally
       md.EndUpdate;
     end;
@@ -518,7 +526,7 @@ begin
     md.Cards.TitleField := 'Author';
     md.Editing := FEditingCheck.Checked;
     md.Placement := FTree.MasterDetail.Placement;
-    SetSections(dmCustomers, md, Templates[t]);
+    SetSections(dmCustomers, md, Templates[t], 'Comments');
   finally
     md.EndUpdate;
   end;
@@ -526,14 +534,14 @@ begin
   FBoard.MasterDetail.Cards.TitleField := 'Author';
 
   case FMaster of
-    dmGrid: s := 'Expand a customer for its tickets in the row. Drag a caption over the columns to move its columns.';
+    dmGrid: s := 'Expand a customer for its tickets. Drag a caption above the columns to move them.';
     dmBoard: s := 'Select a card: the view shows its comments.';
     dmAgents: s := 'Select an agent: the tickets come from OnGetDetailData (no database).';
   else
     s := 'Select a customer for its tickets, a ticket for its comments.';
   end;
   if FSectionsCheck.Checked then
-    s := s + ' Details is the record itself, edited in place; Ctrl+PgDn / Ctrl+PgUp change the section.';
+    s := s + ' Details: the record, edited in place (Ctrl+PgDn).';
   if FMaster = dmGrid then
     s := s + ' Enter moves the keyboard into the detail of the row.'
   else if FWhere = dwInPlace then
