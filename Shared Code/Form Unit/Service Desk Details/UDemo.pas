@@ -150,13 +150,13 @@ begin
   FCustomers := FLayout.NewDataSet;
   FCustomers.FieldDefs.Add('CustomerID', ftInteger);
   FCustomers.FieldDefs.Add('Company', ftString, 40);
+  FCustomers.FieldDefs.Add('Active', ftBoolean);
   FCustomers.FieldDefs.Add('City', ftString, 30);
   FCustomers.FieldDefs.Add('Country', ftString, 30);
-  FCustomers.FieldDefs.Add('Active', ftBoolean);
   FCustomers.FieldDefs.Add('Since', ftDate);
   FLayout.OpenDataSet(FCustomers);
   for I := 0 to High(Companies) do
-    FCustomers.AppendRecord([I + 1, Companies[I], Cities[I], Countries[I], I <> 4, EncodeDate(2018 + I, 1 + I * 2, 1)]);
+    FCustomers.AppendRecord([I + 1, Companies[I], I <> 4, Cities[I], Countries[I], EncodeDate(2018 + I, 1 + I * 2, 1)]);
   FCustomers.First;
 
   FTickets := FLayout.NewDataSet;
