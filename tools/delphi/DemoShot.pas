@@ -555,6 +555,18 @@ begin
   end;
 end;
 
+{$IFNDEF DEMOSHOT_FMX}
+{ a native window the demo's own thread draws with USER32 (the list of a standard combo box, a menu, a tooltip):
+  safe to copy, unlike a dialog of the shell }
+function OwnNativeWnd(AWnd: HWND): Boolean;
+var
+  cls: string;
+begin
+  cls := WndClass(AWnd);
+  Result := SameText(cls, 'ComboLBox') or (cls = '#32768') or SameText(cls, 'tooltips_class32');
+end;
+{$ENDIF}
+
 { the main form's client area, the whole window of the others (the hidden desktop draws no captions) }
 function ShotRect(AWnd: HWND): TRect;
 var
@@ -588,7 +600,6 @@ var
   bmp: TShot;
   png: TPngImage;
   dc: HDC;
-  cls, cap: string;
   {$ENDIF}
 begin
   all := TList<HWND>.Create;
@@ -644,12 +655,8 @@ begin
     { a window that is no form of the demo (a common file dialog of the shell): a copy of the screen around it can
       hold the visible desktop of the person at the machine, so the shot only names it }
     for w in all do
-      if (w <> MainWnd) and (FindControl(w) = nil) then
+      if (w <> MainWnd) and (FindControl(w) = nil) and not OwnNativeWnd(w) then
       begin
-        SetLength(cls, 256);
-        SetLength(cls, GetClassName(w, PChar(cls), 256));
-        SetLength(cap, 256);
-        SetLength(cap, GetWindowText(w, PChar(cap), 256));
         bmp := TShot.Create;
         png := TPngImage.Create;
         try
@@ -657,7 +664,8 @@ begin
           bmp.SetSize(640, 80);
           bmp.Canvas.Brush.Color := clSilver;
           bmp.Canvas.FillRect(Rect(0, 0, 640, 80));
-          bmp.Canvas.TextOut(12, 30, 'Not captured: window ' + cls + ' "' + cap + '" (not a form of the demo)');
+          bmp.Canvas.TextOut(12, 30, 'Not captured: window ' + WndClass(w) + ' "' + WndText(w) +
+            '" (not a form of the demo)');
           png.Assign(bmp);
           png.SaveToFile(TPath.Combine(OutDir, AName + '.png'));
         finally
