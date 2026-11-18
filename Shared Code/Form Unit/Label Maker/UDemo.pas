@@ -74,6 +74,7 @@ type
     procedure CreateContent;
     function AddRow(AParent: TTMSFNCPanel; const ACaption: string; AHeight: Integer): TTMSFNCPanel;
     procedure UpdateLabel;
+    function HTMLSize(APixels: Integer): string;
     procedure Changed(Sender: TObject);
     procedure FontSelected(Sender: TObject; AFontName: string);
     procedure ColorSelected(Sender: TObject; AColor: TTMSFNCGraphicsColor);
@@ -253,7 +254,7 @@ begin
   for I := 0 to High(IconNames) do
   begin
     it := FIcons.Items.Add;
-    TTMSFNCThemeIcons.LoadInto(it.Bitmap, IconNames[I], 24, gcDarkgray);
+    TTMSFNCThemeIcons.LoadInto(it.Bitmap, IconNames[I], FLayout.Size(24), gcDarkgray);
   end;
   FIcons.SelectedItemIndex := 0;
   FIcons.OnItemSelected := {$IFDEF WEBLIB}@{$ENDIF}IconSelected;
@@ -270,7 +271,11 @@ begin
   FLabel.Fill.Kind := gfkSolid;
   FLabel.Fill.Color := gcWhite;
   FLabel.Font.Color := MakeGraphicsColor(34, 34, 34);
+  {$IFDEF VCL}
+  FLabel.Font.Height := -FLayout.Size(13);
+  {$ELSE}
   FLabel.Font.Size := 13;
+  {$ENDIF}
   FLabel.WordWrapping := True;
   FLabel.HorizontalTextAlign := gtaLeading;
   FLabel.VerticalTextAlign := gtaLeading;
@@ -287,6 +292,16 @@ begin
   FIcon.Stretch := True;
 
   FSummary := FLayout.AddText(FContent, '', 60);
+end;
+
+{ the size attribute of a font tag for a text of APixels pixels at 96 DPI: points of the form's DPI in VCL }
+function TForm1.HTMLSize(APixels: Integer): string;
+begin
+  {$IFDEF VCL}
+  Result := IntToStr(Round(FLayout.Size(APixels) * 0.75));
+  {$ELSE}
+  Result := IntToStr(APixels);
+  {$ENDIF}
 end;
 
 procedure TForm1.UpdateLabel;
@@ -309,7 +324,7 @@ begin
       marks := marks + UpperCase(FHandling.Items[I]);
     end;
 
-  s := '<font face="' + FFontName + '"><font color="' + acc + '" size="11"><b>' +
+  s := '<font face="' + FFontName + '"><font color="' + acc + '" size="' + HTMLSize(11) + '"><b>' +
     UpperCase(FCarrier.Items[NotBelowZero(FCarrier.ItemIndex)]) + '</b></font><br><br>' +
     '<b>Northwind Traders</b><br>Ms. Maria Anders<br>Obere Str. 57<br>12209 Berlin, Germany';
   if FPrint.Checked[3] then
@@ -317,7 +332,8 @@ begin
   if FPrint.Checked[2] then
     s := s + '<br><br><font color="' + acc + '">Order SO-10248</font>';
   if FPrint.Checked[1] then
-    s := s + '<br><font size="9" color="#666666">Return: Label Maker Shop, Market Street 12, Ghent</font>';
+    s := s + '<br><font size="' + HTMLSize(9) + '" color="#666666">' +
+      'Return: Label Maker Shop, Market Street 12, Ghent</font>';
   if marks <> '' then
     s := s + '<br><br><font color="' + acc + '"><b>' + marks + '</b></font>';
   s := s + '</font>';
@@ -335,7 +351,7 @@ begin
     FLabel.Stroke.Kind := gskNone;
 
   if (FIcons.SelectedItemIndex >= 0) and (FIcons.SelectedItemIndex <= High(IconNames)) then
-    TTMSFNCThemeIcons.LoadInto(FIcon.Bitmap, IconNames[FIcons.SelectedItemIndex], 40, ink);
+    TTMSFNCThemeIcons.LoadInto(FIcon.Bitmap, IconNames[FIcons.SelectedItemIndex], FLayout.Size(40), ink);
   {$IFDEF FMX}
   FIcon.Position.X := FLabel.Width - FIcon.Width - 12;
   FIcon.Position.Y := 12;
