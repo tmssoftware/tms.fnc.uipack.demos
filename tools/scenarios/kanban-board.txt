@@ -1,0 +1,15 @@
+# Kanban Board: the cards with and without swimlanes through a theme switch (the card titles), then a card opened
+# in the details pane.
+shot|swimlanes on
+click|Swimlanes
+wait|300
+shot|swimlanes off
+theme|Fluent Dark
+wait|300
+shot|swimlanes off, dark
+theme|Fluent Light
+wait|300
+shot|swimlanes off, light again
+click|Swimlanes
+wait|300
+shot|swimlanes on again
