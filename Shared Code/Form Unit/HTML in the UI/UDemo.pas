@@ -282,17 +282,15 @@ begin
   orders := TTMSFNCSampleData.Orders;
   FGrid.BeginUpdate;
   FGrid.Clear;
-  FGrid.ColumnCount := 4;
+  FGrid.ColumnCount := 3;
   FGrid.RowCount := Length(orders) + 1;
   FGrid.FixedRowCount := 1;
   FGrid.Cells[0, 0] := 'Order';
   FGrid.Cells[1, 0] := 'Customer';
   FGrid.Cells[2, 0] := 'Status';
-  FGrid.Cells[3, 0] := 'Total';
-  FGrid.ColumnWidths[0] := FLayout.Size(80);
-  FGrid.ColumnWidths[2] := FLayout.Size(90);
-  FGrid.ColumnWidths[3] := FLayout.Size(100);
-  { the customer column takes the rest of the width }
+  FGrid.ColumnWidths[0] := FLayout.Size(72);
+  FGrid.ColumnWidths[2] := FLayout.Size(84);
+  { the customer column takes the rest of the width (with a total column as well it cut every name) }
   FGrid.Options.Column.Stretching.Enabled := True;
   FGrid.Options.Column.Stretching.Mode := gstmIndex;
   FGrid.Options.Column.Stretching.Index := 1;
@@ -309,7 +307,6 @@ begin
       cls := 'var(--text-secondary)';
     end;
     FGrid.Cells[2, I + 1] := '<span style="color:' + cls + '">' + orders[I].Status + '</span>';
-    FGrid.Cells[3, I + 1] := orders[I].TotalText;
   end;
   FGrid.EndUpdate;
 end;
