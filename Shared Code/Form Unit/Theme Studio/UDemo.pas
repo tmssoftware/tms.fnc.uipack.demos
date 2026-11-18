@@ -340,14 +340,14 @@ begin
   e := TEdit.Create(Self);
   e.Parent := card;
   FLayout.Place(e, daTop, 30, 16, 8, 16, 4);
-  e.Text := 'A standard edit';
+  e.Text := 'An edit';
   b := TButton.Create(Self);
   b.Parent := card;
   FLayout.Place(b, daTop, 32, 16, 4, 16, 4);
   {$IFDEF FMX}
-  b.Text := 'A standard button';
+  b.Text := 'A button';
   {$ELSE}
-  b.Caption := 'A standard button';
+  b.Caption := 'A button';
   {$ENDIF}
   c := TCheckBox.Create(Self);
   c.Parent := card;
