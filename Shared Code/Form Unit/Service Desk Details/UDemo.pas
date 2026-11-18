@@ -6,7 +6,8 @@
   MasterDetail: a tree of customers with their tickets (a customer shows its tickets, a ticket its comments through
   the MasterDetail of the tree's ticket level), a ticket board (the comments of the selected card) and a list of
   agents without a database (the tickets of an agent, filled in OnGetDetailData: open and done ones in two sections).
-  A data grid of customers shows its details in the rows, under captions over its columns (ColumnGroups).
+  A data grid of customers shows its details in the rows, under captions over its columns (ColumnGroups); the tree
+  shows them under its nodes too (Where: Rows), with a chip per section on each node (Ctrl+Enter or a chip opens it).
   Sections split a detail: the records and the record itself as a form that is edited in place (MasterDetail.Sections,
   Ctrl+PgDn / Ctrl+PgUp change the section). Pick how the records show (grid, form, cards, tabs), where (beside,
   below or in place of the list, with Back to return), the tool bar (search, the record count and Add through
@@ -43,7 +44,7 @@ uses
 
 type
   TDemoMaster = (dmCustomers, dmGrid, dmBoard, dmAgents);
-  TDemoWhere = (dwBeside, dwBelow, dwInPlace);
+  TDemoWhere = (dwBeside, dwBelow, dwInPlace, dwInline);
 
   TForm1 = class(TDemoForm)
     ThemeManager: TTMSFNCThemeManager;
@@ -89,6 +90,7 @@ type
     procedure LinkMasters;
     procedure ShowMaster(AMaster: TDemoMaster);
     procedure PlaceDetail(AWhere: TDemoWhere);
+    procedure ShowUnderNodes(ASettings: TTMSFNCTreeViewMasterDetail);
     procedure ApplySettings;
     procedure SetSections(AMaster: TDemoMaster; ASettings: TTMSFNCMasterDetail; ATemplate: TTMSFNCMasterDetailTemplate;
       const ARecords: string);
@@ -281,9 +283,12 @@ begin
   FPlacement := TTMSFNCSegmentedControl.Create(Self);
   FPlacement.Parent := FSettings;
   FLayout.Place(FPlacement, daTop, 32, 16, 0, 16, 0);
-  FPlacement.Items.AddItem('Beside');
+  FPlacement.Items.AddItem('Right');
   FPlacement.Items.AddItem('Below');
-  FPlacement.Items.AddItem('In place');
+  FPlacement.Items.AddItem('Replace');
+  FPlacement.Items.AddItem('Rows');
+  // four places side by side: less room around their captions
+  FPlacement.SegmentAppearance.HorizontalPadding := 2;
   FPlacement.ItemIndex := 0;
   FPlacement.OnChange := SettingChanged;
 
@@ -399,11 +404,12 @@ begin
   FContent.DisableAlign;
   try
   {$ENDIF}
-    // the grid shows the details in its rows: no view beside it
-    FView.Visible := (AWhere <> dwInPlace) and (FMaster <> dmGrid);
+    // the grid shows the details in its rows, the tree under its nodes: no view beside them
+    FView.Visible := (AWhere <> dwInPlace) and (FMaster <> dmGrid) and not ((AWhere = dwInline) and (FMaster = dmCustomers));
     FSplitter.Visible := FView.Visible;
     case AWhere of
-      dwBeside:
+      // a board or a list has no rows for a detail: the view beside it
+      dwBeside, dwInline:
       begin
         FLayout.Place(FView, daRight, 480, 0, 0, 0, 0);
         FLayout.Place(FSplitter, daRight, 8, 0, 0, 0, 0);
@@ -508,8 +514,13 @@ begin
         md.Placement := mdpInline
       else if FWhere = dwInPlace then
         md.Placement := mdpDrillDown
+      else if (FWhere = dwInline) and (m = dmCustomers) then
+        md.Placement := mdpInline
       else
         md.Placement := mdpTarget;
+      // under the nodes of the tree: no target, a chip per section on each node
+      if m = dmCustomers then
+        ShowUnderNodes(FTree.MasterDetail);
       if m = dmBoard then
         SetSections(m, md, Templates[t], 'Comments')
       else
@@ -526,6 +537,7 @@ begin
     md.Cards.TitleField := 'Author';
     md.Editing := FEditingCheck.Checked;
     md.Placement := FTree.MasterDetail.Placement;
+    ShowUnderNodes(FTree.DataOptions.Levels[0].MasterDetail);
     SetSections(dmCustomers, md, Templates[t], 'Comments');
   finally
     md.EndUpdate;
@@ -538,6 +550,8 @@ begin
     dmGrid: s := 'Drag a group caption to move its columns.';
     dmBoard: s := 'Pick a card: the view shows its comments.';
     dmAgents: s := 'Pick an agent: its tickets come from code.';
+  else if FWhere = dwInline then
+    s := 'Ctrl+Enter or a chip: the detail under the node.'
   else
     s := 'Pick a customer, then a ticket.';
   end;
@@ -548,6 +562,17 @@ begin
   else
     s := s + ' Enter: into the detail.';
   FStatus.Text := s;
+end;
+
+{ the detail of a customer and of a ticket under its node, or in the view }
+procedure TForm1.ShowUnderNodes(ASettings: TTMSFNCTreeViewMasterDetail);
+begin
+  if FWhere = dwInline then
+    ASettings.Target := nil
+  else
+    ASettings.Target := FView;
+  ASettings.SectionChips := FWhere = dwInline;
+  ASettings.DetailHeight := FLayout.Size(260);
 end;
 
 procedure TForm1.MasterChanged(Sender: TObject);
