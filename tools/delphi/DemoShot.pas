@@ -556,10 +556,6 @@ begin
 end;
 
 { the main form's client area, the whole window of the others (the hidden desktop draws no captions) }
-{$IFNDEF DEMOSHOT_FMX}
-function PrintWindow(AWnd: HWND; ADC: HDC; AFlags: UINT): BOOL; stdcall; external user32 name 'PrintWindow';
-{$ENDIF}
-
 function ShotRect(AWnd: HWND): TRect;
 var
   p: TPoint;
@@ -575,7 +571,7 @@ begin
     GetWindowRect(AWnd, Result);
 end;
 
-{ The main form and the given windows in one image: VCL and native windows rendered by PrintWindow, FMX
+{ The main form and the given windows in one image: VCL and native windows from their window DC, FMX
   forms painted (their window DC holds nothing on the hidden desktop). }
 procedure CaptureAll(AWnds: TList<HWND>; const AName: string);
 var
@@ -589,8 +585,9 @@ var
   s: Single;
   p: TPoint;
   {$ELSE}
-  bmp, part: TShot;
+  bmp: TShot;
   png: TPngImage;
+  dc: HDC;
   {$ENDIF}
 begin
   all := TList<HWND>.Create;
@@ -654,22 +651,17 @@ begin
       bmp.SetSize(u.Width, u.Height);
       bmp.Canvas.Brush.Color := clBlack;
       bmp.Canvas.FillRect(Rect(0, 0, u.Width, u.Height));
-      { each window renders itself (PrintWindow, full content): a copy from its window DC read the screen of the
-        visible desktop around a common file dialog }
       for w in all do
       begin
         r := ShotRect(w);
-        part := TShot.Create;
+        if w = MainWnd then
+          dc := GetDC(w)
+        else
+          dc := GetWindowDC(w);
         try
-          part.PixelFormat := pf24bit;
-          part.SetSize(Max(1, r.Width), Max(1, r.Height));
-          if w = MainWnd then
-            PrintWindow(w, part.Canvas.Handle, 3)
-          else
-            PrintWindow(w, part.Canvas.Handle, 2);
-          bmp.Canvas.Draw(r.Left - u.Left, r.Top - u.Top, part);
+          BitBlt(bmp.Canvas.Handle, r.Left - u.Left, r.Top - u.Top, r.Width, r.Height, dc, 0, 0, SRCCOPY);
         finally
-          part.Free;
+          ReleaseDC(w, dc);
         end;
       end;
       png.Assign(bmp);
