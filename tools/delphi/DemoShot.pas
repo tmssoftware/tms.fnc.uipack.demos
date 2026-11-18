@@ -576,7 +576,8 @@ end;
 procedure CaptureAll(AWnds: TList<HWND>; const AName: string);
 var
   all: TList<HWND>;
-  u, r: TRect;
+  u, r, near: TRect;
+  I: Integer;
   w: HWND;
   {$IFDEF DEMOSHOT_FMX}
   comp, b: TShot;
@@ -595,6 +596,13 @@ begin
     if Assigned(AWnds) then
       all.AddRange(AWnds);
     u := ShotRect(MainWnd);
+    { a window far from the form (a pop-up at the corner of the desktop) is left out: with it the shot would be
+      thousands of pixels each way, more than a 32-bit process can encode (EPNGOutMemory) }
+    near := u;
+    near.Inflate(1500, 1500);
+    for I := all.Count - 1 downto 1 do
+      if not near.IntersectsWith(ShotRect(all[I])) then
+        all.Delete(I);
     for w in all do
       u := TRect.Union(u, ShotRect(w));
     u.Width := Min(u.Width, 6000);
