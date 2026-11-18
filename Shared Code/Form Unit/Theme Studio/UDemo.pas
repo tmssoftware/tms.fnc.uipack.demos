@@ -146,7 +146,7 @@ begin
   FThemes.Header.Visible := False;
   FThemes.ItemsAppearance.Look := tnlFluent;
   FThemes.ItemsAppearance.HeightMode := lihmFixed;
-  FThemes.ItemsAppearance.FixedHeight := 26;
+  FThemes.ItemsAppearance.FixedHeight := FLayout.Size(26);
   FThemes.OnItemSelected := {$IFDEF WEBLIB}@{$ENDIF}ThemeSelected;
   {$IFDEF WEBLIB}
   FFollowCheck := FLayout.AddCheck(FSettings, 'Light or dark as the browser asks', False, @SettingChanged);

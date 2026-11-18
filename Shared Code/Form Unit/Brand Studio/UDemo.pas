@@ -209,7 +209,7 @@ begin
   FBrands.Header.Visible := False;
   FBrands.ItemsAppearance.Look := tnlFluent;
   FBrands.ItemsAppearance.HeightMode := lihmFixed;
-  FBrands.ItemsAppearance.FixedHeight := 28;
+  FBrands.ItemsAppearance.FixedHeight := FLayout.Size(28);
   FBrands.Items.Add.Text := 'No brand';
   names := TTMSFNCBrand.PresetNames;
   try
