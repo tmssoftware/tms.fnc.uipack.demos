@@ -588,6 +588,7 @@ var
   bmp: TShot;
   png: TPngImage;
   dc: HDC;
+  cls, cap: string;
   {$ENDIF}
 begin
   all := TList<HWND>.Create;
@@ -640,6 +641,31 @@ begin
       comp.Free;
     end;
     {$ELSE}
+    { a window that is no form of the demo (a common file dialog of the shell): a copy of the screen around it can
+      hold the visible desktop of the person at the machine, so the shot only names it }
+    for w in all do
+      if (w <> MainWnd) and (FindControl(w) = nil) then
+      begin
+        SetLength(cls, 256);
+        SetLength(cls, GetClassName(w, PChar(cls), 256));
+        SetLength(cap, 256);
+        SetLength(cap, GetWindowText(w, PChar(cap), 256));
+        bmp := TShot.Create;
+        png := TPngImage.Create;
+        try
+          bmp.PixelFormat := pf24bit;
+          bmp.SetSize(640, 80);
+          bmp.Canvas.Brush.Color := clSilver;
+          bmp.Canvas.FillRect(Rect(0, 0, 640, 80));
+          bmp.Canvas.TextOut(12, 30, 'Not captured: window ' + cls + ' "' + cap + '" (not a form of the demo)');
+          png.Assign(bmp);
+          png.SaveToFile(TPath.Combine(OutDir, AName + '.png'));
+        finally
+          png.Free;
+          bmp.Free;
+        end;
+        Exit;
+      end;
     for w in all do
       RedrawWindow(w, nil, 0, RDW_INVALIDATE or RDW_ERASE or RDW_FRAME or RDW_ALLCHILDREN or RDW_UPDATENOW);
     Pump(120);
