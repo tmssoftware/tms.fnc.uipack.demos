@@ -98,6 +98,7 @@ type
     procedure TreeSelected(Sender: TObject; ANode: TTMSFNCTreeViewVirtualNode);
     procedure PathClicked(Sender: TObject; AIndex: Integer);
     procedure PathTimer(Sender: TObject);
+    procedure JobDblClick(Sender: TObject; AColumn, ARow: Integer);
     procedure GetJobTasks(Sender: TObject; AMaster: TTMSFNCDataGridRenderer; AMasterRow, ATab: Integer;
       ADetail: TTMSFNCDataGridRenderer; var ANested: Boolean);
   public
@@ -300,6 +301,14 @@ begin
   FJobs.MasterDetail.MultipleExpand := False;
   FJobs.MasterDetail.Enabled := True;
   FJobs.MasterDetail.Load;
+  FJobs.OnCellDblClick := {$IFDEF WEBLIB}@{$ENDIF}JobDblClick;
+end;
+
+{ a double click (a tap twice) on a job opens it: under the row, or on a phone in place of the list }
+procedure TForm1.JobDblClick(Sender: TObject; AColumn, ARow: Integer);
+begin
+  if FJobs.MasterDetail.IsMasterRow(ARow) and not FJobs.MasterDetail.IsExpanded(ARow) then
+    FJobs.MasterDetail.Expand(ARow);
 end;
 
 procedure TForm1.GetJobTasks(Sender: TObject; AMaster: TTMSFNCDataGridRenderer; AMasterRow, ATab: Integer;
