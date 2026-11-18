@@ -187,14 +187,15 @@ var
 begin
   card := TTMSFNCCardPanel.Create(Self);
   card.Parent := AParent;
-  { a card with buttons is taller: at 100 the button row covered the owner and due date under the title }
+  { a card with buttons is taller: at 100 the button row covered the owner and due date under the title; at 124
+    the fourth card of To Do fell below the form }
   if Tasks[AIndex].Done then
     FLayout.Place(card, daTop, 76, 0, 8, 0, 0)
   else
-    FLayout.Place(card, daTop, 124, 0, 8, 0, 0);
+    FLayout.Place(card, daTop, 112, 0, 8, 0, 0);
   card.Header.Text := Tasks[AIndex].Name;
   card.Header.Description := Tasks[AIndex].Owner + '  ·  Due ' + Tasks[AIndex].Due;
-  card.Header.Height := FLayout.Size(56);
+  card.Header.Height := FLayout.Size(48);
   if Tasks[AIndex].Overdue then
   begin
     card.Appearance.AccentPosition := capLeft;
