@@ -124,7 +124,7 @@ begin
   FLayout.Place(Result, daClient, 0, 0, 0, 0, 0);
   Result.ColumnCount := 6;
   Result.RowCount := 20;
-  Result.DefaultColumnWidth := 110;
+  Result.DefaultColumnWidth := FLayout.Size(110);
   Result.CellNameMode := nmA1;
   Result.OnSelectedCell := CellSelected;
   Result.OnFormulaError := FormulaError;
@@ -198,7 +198,7 @@ begin
     FRates.Ints[2, 7] := 18;
     FRates.Cells[1, 8] := 'Expected (deg C)';
     FRates.Ints[2, 8] := 24;
-    FRates.ColumnWidths[1] := 170;
+    FRates.ColumnWidths[1] := FLayout.Size(170);
   finally
     FRates.EndUpdate;
   end;
@@ -240,8 +240,8 @@ begin
     FBudget.Cells[3, 11] := 'geometric mean';
     FBudget.Cells[1, 13] := 'Destination';
     FBudget.Cells[2, 13] := '=CAPITALIZE("lisbon")';
-    FBudget.ColumnWidths[1] := 150;
-    FBudget.ColumnWidths[3] := 170;
+    FBudget.ColumnWidths[1] := FLayout.Size(150);
+    FBudget.ColumnWidths[3] := FLayout.Size(170);
   finally
     FBudget.EndUpdate;
   end;
