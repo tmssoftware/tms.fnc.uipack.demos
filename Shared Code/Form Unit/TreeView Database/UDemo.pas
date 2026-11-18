@@ -14,7 +14,7 @@
   Page "Customers and orders": two linked tables as node levels (DataOptions.Levels), each with its own columns,
   the status drawn as pills (Columns[].StatusValues) and the company as an avatar (Columns[].Avatar)
   and a caption row (LevelHeaders); the lines of the selected order appear in a data grid through the level's
-  Detail options. }
+  MasterDetail. }
 
 interface
 
@@ -390,9 +390,10 @@ begin
   lv.KeyField := 'OrderNo';
   lv.MasterKeyField := 'CustNo';
   lv.ColumnFields := 'OrderNo;SaleDate;Total;Status';
-  lv.Detail.DataSource := FLinesSource;
-  lv.Detail.DetailField := 'OrderNo';
-  lv.Detail.Target := FLinesGrid;
+  lv.MasterDetail.DataSource := FLinesSource;
+  lv.MasterDetail.DetailFields := 'OrderNo';
+  lv.MasterDetail.Target := FLinesGrid;
+  lv.MasterDetail.Enabled := True;
   FOrdersTree.DataSource := FCustomersSource;
 
   { the bound columns: the status as pills coloured by the theme, the company as an avatar }
