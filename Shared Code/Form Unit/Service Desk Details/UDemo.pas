@@ -292,7 +292,7 @@ begin
   FToolBarCheck := FLayout.AddCheck(FSettings, 'Tool bar: search, Add, count', False, SettingChanged);
   FEditingCheck := FLayout.AddCheck(FSettings, 'Edit in the detail', True, SettingChanged);
 
-  FStatus := FLayout.AddText(FSettings, '', 112);
+  FStatus := FLayout.AddText(FSettings, '', 40);
 end;
 
 procedure TForm1.CreateContent;
@@ -339,7 +339,7 @@ begin
   FGrid.Parent := FContent;
   FGrid.DataOptions.NewRowLine := False;
   FGrid.DataSource := FCustomersSource;
-  FGrid.MasterDetail.DetailHeight := FLayout.Size(320);
+  FGrid.MasterDetail.DetailHeight := FLayout.Size(380);
   FGrid.ColumnGroups.Add('Customer', ['CustomerID', 'Company', 'Active']);
   FGrid.ColumnGroups.Add('Location', ['City', 'Country']);
 
@@ -533,30 +533,20 @@ begin
 
   FBoard.MasterDetail.Cards.TitleField := 'Author';
 
+  // two lines under the settings
   case FMaster of
-    dmGrid: s := 'Expand a customer for its tickets. Drag a caption above the columns to move them.';
-    dmBoard: s := 'Select a card: the view shows its comments.';
-    dmAgents: s := 'Select an agent: the tickets come from OnGetDetailData (no database).';
+    dmGrid: s := 'Drag a group caption to move its columns.';
+    dmBoard: s := 'Pick a card: the view shows its comments.';
+    dmAgents: s := 'Pick an agent: its tickets come from code.';
   else
-    s := 'Select a customer for its tickets, a ticket for its comments.';
+    s := 'Pick a customer, then a ticket.';
   end;
-  if FSectionsCheck.Checked then
-    s := s + ' Details: the record, edited in place (Ctrl+PgDn).';
-  if FMaster = dmGrid then
-    s := s + ' Enter moves the keyboard into the detail of the row.'
-  else if FWhere = dwInPlace then
-    s := s + ' Enter or a double click opens the detail in place of the list; Back returns.'
+  if FSectionsCheck.Checked and (FMaster in [dmCustomers, dmGrid]) then
+    s := s + ' Ctrl+PgDn: next section.'
+  else if (FWhere = dwInPlace) and (FMaster <> dmGrid) then
+    s := s + ' Enter opens, Back returns.'
   else
-    s := s + ' Enter moves the keyboard into the detail.';
-  if FToolBarCheck.Checked and (Templates[t] <> mdtForm) then
-  begin
-    if FMaster = dmAgents then
-      s := s + ' The tool bar searches and counts.'
-    else
-      s := s + ' The tool bar searches and counts; Add adds a record in OnAddRecord.';
-  end
-  else if (Templates[t] = mdtCards) and (FMaster <> dmAgents) then
-    s := s + ' Enter or a double click on a card shows its record.';
+    s := s + ' Enter: into the detail.';
   FStatus.Text := s;
 end;
 

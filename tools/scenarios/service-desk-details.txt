@@ -83,14 +83,15 @@ theme|Fluent Light
 click|Tool bar
 click|Grid of the detail records
 click|Customers
-# sections: Tickets and Details; Details is the customer itself, a form edited in place
+# sections: Tickets and Details; Details is the customer itself, a form edited in place (the clicks go to the grid in
+# the view: a VCL click goes to the window of its target)
 click|TTMSFNCTreeView#1|tl:80,50
 wait|500
 shot|customer: the Tickets and Details sections
-click|TTMSFNCDetailView#1|tl:131,52
+click|TTMSFNCDetailViewBodyGrid#1|tl:121,22
 wait|500
 shot|customer: Details, the form of the customer
-click|TTMSFNCDetailView#1|tl:300,130
+click|TTMSFNCDetailViewBodyGrid#1|tl:300,108
 key|f2
 type|Northwind Traders Ltd
 key|enter
