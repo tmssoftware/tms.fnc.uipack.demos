@@ -875,6 +875,8 @@ const
   SkipClasses: array[0..10] of string = ('TLabel', 'TImage', 'TText', 'TShape', 'TLine', 'TCircle', 'TRectangle',
     'TTMSFNCImage', 'TImageControl', 'TPaintBox', 'TStaticText');
   SkipCaptions: array[0..4] of string = ('close', 'exit', 'quit', 'log out', 'sign out');
+  // a click never sends a page to a printer
+  PrintWords: array[0..2] of string = ('print', 'afdruk', 'imprim');
 
 function HasWord(const AClass: string; const AWords: array of string): Boolean;
 var
@@ -913,6 +915,8 @@ begin
   for s in SkipClasses do
     if AControl.ClassName = s then
       Exit(True);
+  if HasWord(AControl.Name, PrintWords) then
+    Exit(True);
   Result := HasWord(AControl.ClassName, SkipWords);
 end;
 
@@ -920,6 +924,8 @@ function SkipByCaption(const ACaption: string): Boolean;
 var
   s: string;
 begin
+  if HasWord(ACaption, PrintWords) then
+    Exit(True);
   for s in SkipCaptions do
     if SameText(Trim(ACaption), s) or SameText(Trim(StringReplace(ACaption, '&', '', [rfReplaceAll])), s) then
       Exit(True);
