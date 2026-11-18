@@ -840,6 +840,7 @@ def cmd_click(args):
     from concurrent.futures import ThreadPoolExecutor
     probe = HERE / "delphi" / "DemoShot.pas"
     rc = 0
+    built = []
     for p in args.projects:
         proj = Project(p)
         if proj.fw == "web":
@@ -851,8 +852,12 @@ def cmd_click(args):
             print(f"{key:44} build FAILED {' | '.join(b.get('errors', [])[:3])}", flush=True)
             rc = 1
             continue
+        built.append((key, proj, b["exe"]))
 
-        def go(ppi, key=key, proj=proj, exe=b["exe"]):
+    def click_demo(key, proj, exe):
+        failed = False
+
+        def go(ppi):
             # a copy of the executable per DPI: the runs go side by side, and a demo that keeps a working file next to
             # its executable (the SQLite copy of the Theming Dashboard) would share it between two of them
             own = Path(exe).parent / f"ppi{ppi}" / Path(exe).name
@@ -866,10 +871,17 @@ def cmd_click(args):
             for ppi, s in ex.map(go, args.ppi):
                 errs = [t for sev, t in s["issues"] if sev == "error"]
                 warns = [t for sev, t in s["issues"] if sev == "warn"]
-                if errs:
-                    rc = 1
+                failed = failed or bool(errs)
                 print(f"{key:40} {ppi:>3} steps={s['steps']:<3} errors={len(errs)} warnings={len(warns)}"
                       + (f"  {errs[0][:150]}" if errs else ""), flush=True)
+        return failed
+
+    # --hold: the projects of this call (the FMX and the VCL project of a demo), all built by now, in one hold of
+    # the run lock; the lock per demo then shares it
+    with heavy_slot("run") if args.hold and built else contextlib.nullcontext():
+        for key, proj, exe in built:
+            if click_demo(key, proj, exe):
+                rc = 1
     return rc
 
 
@@ -1079,6 +1091,8 @@ def main():
     q.add_argument("--timeout", type=int, default=240)
     q.add_argument("--maxsteps", type=int, default=70)
     q.add_argument("--jobs", type=int, default=2)
+    q.add_argument("--hold", action="store_true", help="one hold of the run lock for all projects of this call "
+                                                       "(keep the list short: other runs wait meanwhile)")
     r = sub.add_parser("clicksheet")
     r.add_argument("--only", nargs="*")
     r.add_argument("--width", type=int, default=560)
