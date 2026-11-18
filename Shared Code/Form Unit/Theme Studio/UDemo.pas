@@ -353,10 +353,10 @@ begin
   c.Parent := card;
   FLayout.Place(c, daTop, 28, 16, 4, 16, 4);
   {$IFDEF FMX}
-  c.Text := 'A standard check box';
+  c.Text := 'A check box';
   c.IsChecked := True;
   {$ELSE}
-  c.Caption := 'A standard check box';
+  c.Caption := 'A check box';
   c.Checked := True;
   {$ENDIF}
   l := TListBox.Create(Self);
