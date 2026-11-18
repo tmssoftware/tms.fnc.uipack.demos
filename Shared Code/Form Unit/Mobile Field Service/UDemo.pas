@@ -449,9 +449,9 @@ begin
 
   { the Mobile preset of Quick setup, applied in code }
   if FPresetCheck.Checked then
-    rowH := 44
+    rowH := FLayout.Size(44)
   else
-    rowH := 30;
+    rowH := FLayout.Size(30);
   FJobs.BeginUpdate;
   try
     FJobs.DefaultRowHeight := rowH;
@@ -461,15 +461,15 @@ begin
     FJobs.Options.Mouse.TouchScrolling := FPresetCheck.Checked;
     if FPresetCheck.Checked then
     begin
-      FJobs.Options.Mouse.ClickMargin := 8;
-      FJobs.Options.Mouse.ColumnSizeMargin := 12;
-      FJobs.Options.Mouse.RowSizeMargin := 12;
+      FJobs.Options.Mouse.ClickMargin := FLayout.Size(8);
+      FJobs.Options.Mouse.ColumnSizeMargin := FLayout.Size(12);
+      FJobs.Options.Mouse.RowSizeMargin := FLayout.Size(12);
     end
     else
     begin
-      FJobs.Options.Mouse.ClickMargin := 2;
-      FJobs.Options.Mouse.ColumnSizeMargin := 6;
-      FJobs.Options.Mouse.RowSizeMargin := 6;
+      FJobs.Options.Mouse.ClickMargin := FLayout.Size(2);
+      FJobs.Options.Mouse.ColumnSizeMargin := FLayout.Size(6);
+      FJobs.Options.Mouse.RowSizeMargin := FLayout.Size(6);
     end;
     for c := 0 to High(Priorities) do
       if FHideCheck.Checked then
