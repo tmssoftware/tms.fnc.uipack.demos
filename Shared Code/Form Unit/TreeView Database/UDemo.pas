@@ -303,7 +303,6 @@ begin
   FExpandRadios[2] := FLayout.AddRadio(FSettings, 'Expand everything', 'Expand', False, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
   FHeadersCheck := FLayout.AddCheck(FSettings, 'Caption row per level (LevelHeaders)', True, {$IFDEF WEBLIB}@{$ENDIF}SettingChanged);
 
-  FLayout.AddCaption(FSettings, 'Catalog records');
   FStatus := FLayout.AddText(FSettings, 'Deleting a category moves its products to its parent ' +
     '(DeleteChildrenMode of the internal adapter).', 48);
 end;
