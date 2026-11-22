@@ -235,11 +235,11 @@ begin
   FLayout.Place(FFilter, daRight, 220, 8, 12, 16, 12);
   {$IFDEF FMX}
   FFilter.TextPrompt := 'Filter cards';
-  FFilter.ClearButton := True;
+  FFilter.ShowClearButton := True;
   {$ELSE}
   FFilter.TextHint := 'Filter cards';
   {$IFNDEF WEBLIB}
-  FFilter.ClearButton := True;
+  FFilter.ShowClearButton := True;
   {$ENDIF}
   {$ENDIF}
   FLanesCheck := FLayout.AddCheck(FToolBar, 'Swimlanes', True, {$IFDEF WEBLIB}@{$ENDIF}LanesChanged);

@@ -61,7 +61,7 @@ type
     procedure ApplySettings;
     procedure SettingChanged(Sender: TObject);
     procedure BoxChange(Sender: TObject);
-    procedure TemperatureValidate(Sender: TObject; AValue: Double; var AState: TTMSFNCNumberBoxValidationState);
+    procedure TemperatureValidate(Sender: TObject; AValue: Double; var AState: TTMSFNCValidationState);
     procedure UpdateTotal;
   public
   end;
@@ -212,14 +212,14 @@ begin
   UpdateTotal;
 end;
 
-procedure TForm1.TemperatureValidate(Sender: TObject; AValue: Double; var AState: TTMSFNCNumberBoxValidationState);
+procedure TForm1.TemperatureValidate(Sender: TObject; AValue: Double; var AState: TTMSFNCValidationState);
 begin
   if AValue >= 38 then
-    AState := nbvsWarning
+    AState := vlsWarning
   else if AValue < 35 then
-    AState := nbvsError
+    AState := vlsError
   else
-    AState := nbvsValid;
+    AState := vlsValid;
 end;
 
 procedure TForm1.UpdateTotal;

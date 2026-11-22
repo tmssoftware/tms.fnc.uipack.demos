@@ -60,7 +60,7 @@ type
     procedure ApplySettings;
     procedure SettingChanged(Sender: TObject);
     procedure EditChange(Sender: TObject);
-    procedure DateValidate(Sender: TObject; const AText: string; AComplete: Boolean; var AState: TTMSFNCMaskEditValidationState);
+    procedure DateValidate(Sender: TObject; const AText: string; AComplete: Boolean; var AState: TTMSFNCValidationState);
     procedure FillClick(Sender: TObject);
     procedure ClearClick(Sender: TObject);
     procedure UpdateValues;
@@ -179,7 +179,7 @@ begin
   UpdateValues;
 end;
 
-procedure TForm1.DateValidate(Sender: TObject; const AText: string; AComplete: Boolean; var AState: TTMSFNCMaskEditValidationState);
+procedure TForm1.DateValidate(Sender: TObject; const AText: string; AComplete: Boolean; var AState: TTMSFNCValidationState);
 var
   d: TDateTime;
   fs: TFormatSettings;
@@ -191,9 +191,9 @@ begin
   fs.DateSeparator := '/';
   fs.ShortDateFormat := 'dd/mm/yyyy';
   if TryStrToDate(AText, d, fs) and (d < Date) then
-    AState := mevsValid
+    AState := vlsValid
   else
-    AState := mevsError;
+    AState := vlsError;
 end;
 
 procedure TForm1.FillClick(Sender: TObject);
