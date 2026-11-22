@@ -319,9 +319,9 @@ procedure TForm1.ApplySettings;
 begin
   { the clear and reveal buttons of the edit are desktop only; the mask edit and number box have them everywhere }
   {$IFNDEF WEBLIB}
-  FName.ClearButton := FClearCheck.Checked;
-  FMail.ClearButton := FClearCheck.Checked;
-  FDepartment.ClearButton := FClearCheck.Checked;
+  FName.ShowClearButton := FClearCheck.Checked;
+  FMail.ShowClearButton := FClearCheck.Checked;
+  FDepartment.ShowClearButton := FClearCheck.Checked;
   FPassword.PasswordReveal := FRevealCheck.Checked;
   {$ENDIF}
   FPhone.ShowClearButton := FClearCheck.Checked;
@@ -371,21 +371,21 @@ begin
 
   { the mask edit and the number box show their state themselves }
   if FPhone.ValidateEdit then
-    FPhone.ValidationState := mevsValid
+    FPhone.ValidationState := vlsValid
   else
   begin
-    FPhone.ValidationState := mevsError;
+    FPhone.ValidationState := vlsError;
     errors := errors + '<li>The phone number is incomplete</li>';
   end;
   if (FSalary.Value < FSalary.MinValue) or (FSalary.Value > FSalary.MaxValue) then
   begin
-    FSalary.ValidationState := nbvsError;
+    FSalary.ValidationState := vlsError;
     errors := errors + '<li>The salary is outside 1,500 to 12,000</li>';
   end
   else if FSalary.Value > 10000 then
-    FSalary.ValidationState := nbvsWarning
+    FSalary.ValidationState := vlsWarning
   else
-    FSalary.ValidationState := nbvsValid;
+    FSalary.ValidationState := vlsValid;
 
   if FSkills.Tags.Count = 0 then
     errors := errors + '<li>Add at least one skill</li>';
@@ -411,9 +411,9 @@ begin
   FDepartment.Text := '';
   FPassword.Text := '';
   FPhone.Text := '';
-  FPhone.ValidationState := mevsNone;
+  FPhone.ValidationState := vlsNone;
   FSalary.Value := 4200;
-  FSalary.ValidationState := nbvsNone;
+  FSalary.ValidationState := vlsNone;
   FHours.Value := 38;
   FWorkload.Value := 80;
   FSkills.Tags.Clear;
