@@ -127,7 +127,7 @@ object Form1: TForm1
       Stroke.Color = -1
       Text = 'Bootstrap'
     end
-    object BootstrapModes: TTMSFNCSegmentedControl
+    object BootstrapModes: TTMSFNCThemeSelector
       AlignWithMargins = True
       Left = 84
       Top = 4
@@ -145,22 +145,8 @@ object Form1: TForm1
       SegmentAppearance.SelectedFont.Color = 2630431
       SegmentAppearance.SelectedFont.Height = -13
       SegmentAppearance.SelectedFont.Name = 'Segoe UI Semibold'
-      Items = <
-        item
-          Text = 'Light'
-          Bitmaps = <>
-          Selected = True
-        end
-        item
-          Text = 'Dark'
-          Bitmaps = <>
-        end
-        item
-          Text = 'Auto'
-          Hint = 'Follows prefers-color-scheme'
-          Bitmaps = <>
-        end>
-      OnAfterSelectItem = BootstrapModesAfterSelectItem
+      Kind = tskModes
+      ThemeManager = ThemeManager
     end
     object BootswatchCombo: TTMSFNCComboBox
       AlignWithMargins = True
@@ -1902,7 +1888,7 @@ object Form1: TForm1
       AlignWithMargins = True
       Left = 100
       Top = 0
-      Width = 756
+      Width = 852
       Height = 36
       Margins.Left = 0
       Margins.Top = 18
@@ -1922,7 +1908,8 @@ object Form1: TForm1
         'Fluent Dark'
         'Microsoft 365 Light'
         'Microsoft 365 Dark'
-        'High Contrast=High contrast')
+        'High Contrast=High contrast'
+        'Bootstrap')
       ShowFollowSystem = True
       FollowSystemAppearance.Font.Color = 7365723
       FollowSystemAppearance.Font.Height = -13
