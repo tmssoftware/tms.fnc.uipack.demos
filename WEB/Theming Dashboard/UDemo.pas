@@ -13,12 +13,14 @@ unit UDemo;
   cards (ChildLayout) and the accent selector hides in high contrast (HideInHighContrast). The demo
   only loads its icons in the colors of the current theme (WEB draws images as loaded): ThemeChanged.
 
-  Bootstrap: the page loads Bootstrap 5.3 (index.html, link 'bootstrap-css'). 'Bootstrap' is a theme read
-  from its CSS variables (TTMSFNCTheme.RegisterCSSTheme with TTMSFNCBootstrapCSSMapping), offered next to
-  the Fluent themes. While it is the theme, the Bootstrap bar shows its options: the color mode (Light,
-  Dark, or Auto following prefers-color-scheme) sets data-bs-theme on the page, the theme combo box loads
-  a Bootswatch style sheet (themes that have the color modes) in place of Bootstrap's own; the FNC controls
-  follow both live, as the native Bootstrap card of the template (UDemo.html) next to them does. The KPI
+  Bootstrap: the page loads Bootstrap 5.3 (index.html, link 'bootstrap-css'). 'Bootstrap' is a theme the
+  engine reads from the page's CSS variables: the theme selector offers it next to the Fluent themes (its
+  Themes in the form file), no code registers it. While it is the theme, the Bootstrap bar shows its
+  options: the mode selector (a TTMSFNCThemeSelector with Kind tskModes) gives the page its color mode
+  (Light, Dark, or Auto following prefers-color-scheme: the theme manager's PageMode sets data-bs-theme),
+  the theme combo box loads a Bootswatch style sheet (themes that have the color modes) in place of
+  Bootstrap's own; the FNC controls follow both live, as the native Bootstrap card of the template
+  (UDemo.html) next to them does. The KPI
   notes move right of their badges, which grow with Bootstrap's larger font (PlaceNotes). }
 
 interface
@@ -125,7 +127,7 @@ type
     ThemeSelector: TTMSFNCThemeSelector;
     BootstrapBar: TTMSFNCPanel;
     BootstrapLabel: TTMSFNCHTMLText;
-    BootstrapModes: TTMSFNCSegmentedControl;
+    BootstrapModes: TTMSFNCThemeSelector;
     BootswatchCombo: TTMSFNCComboBox;
     procedure WebFormCreate(Sender: TObject);
     procedure DataRequestResponse(Sender: TObject; AResponse: string);
@@ -148,16 +150,12 @@ type
     procedure DeleteButtonClick(Sender: TObject);
     procedure FulfilmentBarValueChanged(Sender: TObject; AValue: Single);
     procedure ProjectTreeNodeChecked(Sender: TObject; ANode: TTMSFNCTreeViewVirtualNode; AColumn: Integer);
-    procedure BootstrapModesAfterSelectItem(Sender: TObject; AItemIndex: Integer);
     procedure BootswatchComboItemSelected(Sender: TObject; AText: string; AItemIndex: Integer);
   private
     FData: TOrdersData;
     FLoading: Boolean;
-    FDarkQuery: TJSMediaQueryList;
     FBootstrapSample: TJSHTMLElement;
     procedure ThemeChanged(Sender: TObject);
-    procedure SystemSchemeChanged(Event: TJSEvent);
-    procedure ApplyBootstrapMode;
     procedure PlaceNotes;
     procedure ShowKpis;
     procedure FillProjects;
@@ -230,15 +228,10 @@ begin
   FormatSettings := TFormatSettings.Create('en-US');
   FormatSettings.ShortDateFormat := 'mmm d, yyyy';
   NavList.ItemIndex := 0;
-  { Bootstrap next to the Fluent themes; its native sample (UDemo.html) in the Bootstrap bar }
-  TTMSFNCTheme.RegisterCSSTheme(BootstrapTheme, TTMSFNCBootstrapCSSMapping);
-  ThemeSelector.Width := ThemeSelector.Width + 96;
-  ThemeSelector.Themes.Add(BootstrapTheme);
+  { the native Bootstrap sample of the template (UDemo.html) in the Bootstrap bar }
   FBootstrapSample := TJSHTMLElement(document.getElementById('bootstrap-sample'));
   if Assigned(FBootstrapSample) then
     BootstrapBar.ElementHandle.appendChild(FBootstrapSample);
-  FDarkQuery := window.matchMedia('(prefers-color-scheme: dark)');
-  TJSEventTarget(FDarkQuery).addEventListener('change', @SystemSchemeChanged);
   TTMSFNCTheme.AddChangeListener(@ThemeChanged);
   ThemeChanged(nil);
   { this tab's data, or orders.json }
@@ -295,32 +288,6 @@ begin
   Follow(OpenNote, OpenDelta);
   Follow(CustomersNote, CustomersDelta);
   Follow(AverageNote, AverageDelta);
-end;
-
-{ Bootstrap's color mode: data-bs-theme on the page (Auto: as prefers-color-scheme); the Bootstrap theme
-  and the FNC controls follow it }
-procedure TForm1.ApplyBootstrapMode;
-var
-  m: string;
-begin
-  case BootstrapModes.ItemIndex of
-    1: m := 'dark';
-    2: if FDarkQuery.matches then m := 'dark' else m := 'light';
-  else
-    m := 'light';
-  end;
-  document.documentElement.setAttribute('data-bs-theme', m);
-end;
-
-procedure TForm1.BootstrapModesAfterSelectItem(Sender: TObject; AItemIndex: Integer);
-begin
-  ApplyBootstrapMode;
-end;
-
-procedure TForm1.SystemSchemeChanged(Event: TJSEvent);
-begin
-  if BootstrapModes.ItemIndex = 2 then
-    ApplyBootstrapMode;
 end;
 
 { Bootstrap's own style sheet or a Bootswatch theme; the Bootstrap theme is read again once it is loaded }
