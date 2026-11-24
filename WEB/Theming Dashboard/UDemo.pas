@@ -155,6 +155,7 @@ type
     FData: TOrdersData;
     FLoading: Boolean;
     FBootstrapSample: TJSHTMLElement;
+    FProjectsHeight: Integer;
     procedure ThemeChanged(Sender: TObject);
     procedure PlaceNotes;
     procedure ShowKpis;
@@ -228,6 +229,8 @@ begin
   FormatSettings := TFormatSettings.Create('en-US');
   FormatSettings.ShortDateFormat := 'mmm d, yyyy';
   NavList.ItemIndex := 0;
+  if FProjectsHeight = 0 then
+    FProjectsHeight := ProjectsCard.Height;
   { the native Bootstrap sample of the template (UDemo.html) in the Bootstrap bar }
   FBootstrapSample := TJSHTMLElement(document.getElementById('bootstrap-sample'));
   if Assigned(FBootstrapSample) then
@@ -254,7 +257,16 @@ var
 begin
   b := SameText(TTMSFNCTheme.Current, BootstrapTheme);
   if BootstrapBar.Visible <> b then
+  begin
     BootstrapBar.Visible := b;
+    { the orders keep their rows: the projects card gives the bar its room }
+    if FProjectsHeight = 0 then
+      FProjectsHeight := ProjectsCard.Height;
+    if b then
+      ProjectsCard.Height := FProjectsHeight - BootstrapBar.Height - BootstrapBar.Margins.Top - BootstrapBar.Margins.Bottom
+    else
+      ProjectsCard.Height := FProjectsHeight;
+  end;
   if Assigned(FBootstrapSample) then
     FBootstrapSample.hidden := not b;
   t := Theme;
