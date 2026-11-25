@@ -137,3 +137,26 @@ click|Tool bar
 wait|600
 shot|grid: the tool bar with Open full
 click|Customers and their tickets
+# cards from the record layout: one row of cards in the rows of the grid, the form of a card in place, Arrange fields
+click|Customer grid
+click|Tool bar
+click|Cards
+wait|600
+click|TTMSFNCDataGrid#1|tl:200,80
+key|right
+wait|600
+shot|grid: the tickets as a strip of cards
+key|enter
+wait|400
+key|enter
+wait|600
+shot|grid: the form of a card in place
+key|escape
+wait|400
+shot|grid: back on the card
+click|Tool bar
+wait|600
+shot|grid: the tool bar with Arrange fields
+click|Tool bar
+click|Grid of the detail records
+click|Customers and their tickets

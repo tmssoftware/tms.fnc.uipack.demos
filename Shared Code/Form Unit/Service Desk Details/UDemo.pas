@@ -12,7 +12,9 @@
   Ctrl+PgDn / Ctrl+PgUp change the section), offered as tabs, as captions under each other or as a list at the left
   (SectionBar.Mode); a new detail opens on the section chosen last. The badge of the tickets counts the open ones in
   the warning colour (OnGetSectionBadge); the grid has a chip per section on every customer (SectionChips) and a
-  button in its tool bar that opens the detail in place of the list (ToolBar.PlacementSwitch). Pick how the records show (grid, form, cards, tabs), where (beside,
+  button in its tool bar that opens the detail in place of the list (ToolBar.PlacementSwitch). Cards show the roles of
+  the fields (title, status, note); Enter opens the form of a card in place (Cards.EditMode), the grid shows them in
+  one row that scrolls sideways (Cards.Flow), and Arrange fields in the tool bar orders and groups the fields. Pick how the records show (grid, form, cards, tabs), where (beside,
   below or in place of the list, with Back to return), the tool bar (search, the record count and Add through
   OnAddRecord) and editing. At design time the same setup takes a few clicks: Data > Details in the context menu of a
   list control, or the Details section of its quick setup. }
@@ -538,6 +540,14 @@ begin
       // of the list and back
       md.SectionChips := m = dmGrid;
       md.ToolBar.PlacementSwitch := m = dmGrid;
+      // cards: the roles of the fields (title, status badge, note), Enter opens the form of a card in place, Esc folds
+      // it; in the rows of the grid one row of cards that scrolls sideways; Arrange fields in the tool bar
+      md.Cards.EditMode := mdceInPlace;
+      if m = dmGrid then
+        md.Cards.Flow := mdcfStrip
+      else
+        md.Cards.Flow := mdcfGrid;
+      md.ToolBar.Arrange := True;
       if m = dmGrid then
         md.Placement := mdpInline
       else if FWhere = dwInPlace then
