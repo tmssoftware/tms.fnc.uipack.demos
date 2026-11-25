@@ -9,7 +9,10 @@
   A data grid of customers shows its details in the rows, under captions over its columns (ColumnGroups); the tree
   shows them under its nodes too (Where: Rows), with a chip per section on each node (Ctrl+Enter or a chip opens it).
   Sections split a detail: the records and the record itself as a form that is edited in place (MasterDetail.Sections,
-  Ctrl+PgDn / Ctrl+PgUp change the section). Pick how the records show (grid, form, cards, tabs), where (beside,
+  Ctrl+PgDn / Ctrl+PgUp change the section), offered as tabs, as captions under each other or as a list at the left
+  (SectionBar.Mode); a new detail opens on the section chosen last. The badge of the tickets counts the open ones in
+  the warning colour (OnGetSectionBadge); the grid has a chip per section on every customer (SectionChips) and a
+  button in its tool bar that opens the detail in place of the list (ToolBar.PlacementSwitch). Pick how the records show (grid, form, cards, tabs), where (beside,
   below or in place of the list, with Back to return), the tool bar (search, the record count and Add through
   OnAddRecord) and editing. At design time the same setup takes a few clicks: Data > Details in the context menu of a
   list control, or the Details section of its quick setup. }
@@ -65,7 +68,7 @@ type
     FPlacement: TTMSFNCSegmentedControl;
     FToolBarCheck: TTMSFNCCheckBox;
     FEditingCheck: TTMSFNCCheckBox;
-    FSectionsCheck: TTMSFNCCheckBox;
+    FBarMode: TTMSFNCSegmentedControl;
     FStatus: TTMSFNCHTMLText;
     FTree: TTMSFNCTreeView;
     FBoard: TTMSFNCKanbanBoard;
@@ -103,6 +106,8 @@ type
     procedure ViewAddRecord(Sender: TObject; ADetail: TTMSFNCDataGridRenderer; var AHandled: Boolean);
     procedure SetFields(ADataSet: TDataSet);
     function AgentTickets(const AAgent: string; ADone: Boolean): Integer;
+    procedure GetSectionBadge(Sender: TObject; ASection: TTMSFNCMasterDetailSection; ADataSet: TDataSet; ACount: Integer;
+      var AText: string; var AState: TTMSFNCMasterDetailBadgeState);
   public
   end;
 
@@ -117,6 +122,9 @@ implementation
 {$IFDEF VCL}
 {$R *.dfm}
 {$ENDIF}
+
+uses
+  System.Math;
 
 const
   Companies: array[0..5] of string = ('Northwind Traders', 'Blue Harbor Hotels', 'Contoso Clinics', 'Fabrikam Labs',
@@ -293,7 +301,18 @@ begin
   FPlacement.OnChange := SettingChanged;
 
   FLayout.AddCaption(FSettings, 'Detail');
-  FSectionsCheck := FLayout.AddCheck(FSettings, 'Sections: records, details', True, SettingChanged);
+  // the sections (the records and the record itself) offered as tabs above the detail, captions under each other or
+  // a list at the left; or no sections
+  FBarMode := TTMSFNCSegmentedControl.Create(Self);
+  FBarMode.Parent := FSettings;
+  FLayout.Place(FBarMode, daTop, 32, 16, 0, 16, 0);
+  FBarMode.Items.AddItem('No sections');
+  FBarMode.Items.AddItem('Tabs');
+  FBarMode.Items.AddItem('Stack');
+  FBarMode.Items.AddItem('List');
+  FBarMode.SegmentAppearance.HorizontalPadding := 2;
+  FBarMode.ItemIndex := 1;
+  FBarMode.OnChange := SettingChanged;
   FToolBarCheck := FLayout.AddCheck(FSettings, 'Tool bar: search, Add, count', False, SettingChanged);
   FEditingCheck := FLayout.AddCheck(FSettings, 'Edit in the detail', True, SettingChanged);
 
@@ -343,6 +362,8 @@ begin
   FGrid := TTMSFNCDataGrid.Create(Self);
   FGrid.Parent := FContent;
   FGrid.DataOptions.NewRowLine := False;
+  // the room right of the columns goes to the last one: the chips of the sections are drawn there
+  FGrid.DataOptions.ColumnStretch := gdcsLastColumn;
   FGrid.DataSource := FCustomersSource;
   FGrid.MasterDetail.DetailHeight := FLayout.Size(380);
   FGrid.ColumnGroups.Add('Customer', ['CustomerID', 'Company', 'Active']);
@@ -463,7 +484,7 @@ begin
   ASettings.Sections.BeginUpdate;
   try
     ASettings.Sections.Clear;
-    if not FSectionsCheck.Checked then
+    if (FBarMode.ItemIndex <= 0) then
       Exit;
 
     if AMaster = dmAgents then
@@ -492,6 +513,7 @@ end;
 procedure TForm1.ApplySettings;
 const
   Templates: array[0..3] of TTMSFNCMasterDetailTemplate = (mdtGrid, mdtForm, mdtCards, mdtTabs);
+  Modes: array[0..3] of TTMSFNCMasterDetailSectionBarMode = (mdbmTabs, mdbmTabs, mdbmStack, mdbmList);
 var
   m: TDemoMaster;
   md: TTMSFNCMasterDetail;
@@ -510,6 +532,12 @@ begin
       md.ToolBar.AddButton := m <> dmAgents;
       md.Cards.TitleField := 'Title';
       md.Editing := FEditingCheck.Checked;
+      md.SectionBar.Mode := Modes[Max(0, FBarMode.ItemIndex)];
+      md.OnGetSectionBadge := GetSectionBadge;
+      // the grid: a chip per section on every customer, and a button in the tool bar that opens the detail in place
+      // of the list and back
+      md.SectionChips := m = dmGrid;
+      md.ToolBar.PlacementSwitch := m = dmGrid;
       if m = dmGrid then
         md.Placement := mdpInline
       else if FWhere = dwInPlace then
@@ -537,6 +565,7 @@ begin
     md.Cards.TitleField := 'Author';
     md.Editing := FEditingCheck.Checked;
     md.Placement := FTree.MasterDetail.Placement;
+    md.SectionBar.Mode := FTree.MasterDetail.SectionBar.Mode;
     ShowUnderNodes(FTree.DataOptions.Levels[0].MasterDetail);
     SetSections(dmCustomers, md, Templates[t], 'Comments');
   finally
@@ -547,7 +576,7 @@ begin
 
   // two lines under the settings
   case FMaster of
-    dmGrid: s := 'Drag a group caption to move its columns.';
+    dmGrid: s := 'Click a chip or drag a group caption.';
     dmBoard: s := 'Pick a card: the view shows its comments.';
     dmAgents: s := 'Pick an agent: its tickets come from code.';
   else if FWhere = dwInline then
@@ -555,7 +584,7 @@ begin
   else
     s := 'Pick a customer, then a ticket.';
   end;
-  if FSectionsCheck.Checked and (FMaster in [dmCustomers, dmGrid]) then
+  if (FBarMode.ItemIndex > 0) and (FMaster in [dmCustomers, dmGrid]) then
     s := s + ' Ctrl+PgDn: next section.'
   else if (FWhere = dwInPlace) and (FMaster <> dmGrid) then
     s := s + ' Enter opens, Back returns.'
@@ -604,6 +633,47 @@ begin
     PlaceDetail(w);
   end;
   ApplySettings;
+end;
+
+{ the badge of the tickets of a customer: the tickets that are not done, in the warning colour; all done in the
+  success colour }
+procedure TForm1.GetSectionBadge(Sender: TObject; ASection: TTMSFNCMasterDetailSection; ADataSet: TDataSet; ACount: Integer;
+  var AText: string; var AState: TTMSFNCMasterDetailBadgeState);
+var
+  bm: TBookmark;
+  n: Integer;
+begin
+  if not Assigned(ADataSet) or not ADataSet.Active or (ADataSet.FindField('Status') = nil) or (ACount <= 0) then
+    Exit;
+
+  n := 0;
+  bm := ADataSet.GetBookmark;
+  ADataSet.DisableControls;
+  try
+    ADataSet.First;
+    while not ADataSet.Eof do
+    begin
+      if ADataSet.FieldByName('Status').AsString <> 'Done' then
+        Inc(n);
+      ADataSet.Next;
+    end;
+    if ADataSet.BookmarkValid(bm) then
+      ADataSet.GotoBookmark(bm);
+  finally
+    ADataSet.FreeBookmark(bm);
+    ADataSet.EnableControls;
+  end;
+
+  if n > 0 then
+  begin
+    AText := Format('%d open', [n]);
+    AState := mdbsWarning;
+  end
+  else
+  begin
+    AText := 'done';
+    AState := mdbsSuccess;
+  end;
 end;
 
 { the number of tickets of an agent that are done, or that are not }
