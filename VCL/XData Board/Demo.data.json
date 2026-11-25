@@ -1,0 +1,11 @@
+{
+  "profile": "",
+  "dsOrder": {
+    "Development": { "BaseURL": "http://127.0.0.1:8793/tms/xdata" },
+    "Production": { "BaseURL": "http://127.0.0.1:8793/tms/xdata" }
+  },
+  "dsTask": {
+    "Development": { "BaseURL": "http://127.0.0.1:8793/tms/xdata" },
+    "Production": { "BaseURL": "http://127.0.0.1:8793/tms/xdata" }
+  }
+}
