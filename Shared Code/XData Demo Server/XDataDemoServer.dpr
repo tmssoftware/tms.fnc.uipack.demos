@@ -5,7 +5,8 @@ program XDataDemoServer;
   XDataDemoServer [--port 8793] [--session <file>] [--until-killed]
 
   The tasks need a sign-in: user "demo" and the password the server shows when it starts (a new one every start).
-  --session writes the address, user and password of this run to a file for test tools (never into a repository);
+  --session writes the address, user and password of this run to a file for test tools (the password in plain text:
+  a temporary folder, never a repository; deleted when the server stops with Enter, an old one at the next start);
   --until-killed runs without waiting for Enter (started by a test tool). }
 
 {$APPTYPE CONSOLE}
@@ -60,10 +61,12 @@ var
 begin
   try
     MakeDemoSecrets;
+    session := OptionValue('--session', '');
+    if (session <> '') and TFile.Exists(session) then
+      TFile.Delete(session);
     server := TDemoServer.Create(nil, StrToIntDef(OptionValue('--port', '8793'), 8793));
     try
       server.Start;
-      session := OptionValue('--session', '');
       if session <> '' then
         WriteSession(session, server.BaseUrl);
       WriteLn('TMS XData demo server');

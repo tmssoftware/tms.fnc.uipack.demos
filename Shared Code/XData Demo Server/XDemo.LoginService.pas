@@ -43,14 +43,18 @@ const
 var
   I: Integer;
   g: TGUID;
+  b: TBytes;
 begin
-  Randomize;
+  // the password from the random bytes of a GUID (not from Random, which the clock seeds)
+  CreateGUID(g);
+  SetLength(b, SizeOf(g));
+  Move(g, b[0], SizeOf(g));
   DemoPassword := '';
   for I := 1 to 10 do
   begin
     if I = 6 then
       DemoPassword := DemoPassword + '-';
-    DemoPassword := DemoPassword + Chars[Random(Length(Chars)) + 1];
+    DemoPassword := DemoPassword + Chars[b[I + 5] mod Length(Chars) + 1];
   end;
   DemoSigningKey := '';
   for I := 1 to 2 do

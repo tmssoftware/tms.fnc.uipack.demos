@@ -9,7 +9,8 @@ customers, orders and the tasks of a team, on http://127.0.0.1:8793/tms/xdata.
   `Task` (an eager association to a customer; only for a signed-in user).
 - Sign-in: the service operation `LoginService/Login` with the parameters `User` and `Password` returns a JWT. The
   user is `demo`; the password is made when the server starts and shown in its window (a new one at every start).
-  Nothing secret is stored in a file: the key that signs the tokens is made at start too.
+  The key that signs the tokens is made at start too; neither is stored in a file (only `--session <file>`, an option
+  for test tools, writes the password into the file it names).
 - The server runs on 127.0.0.1 only, on Indy (`XDemo.IndyDispatcher.pas`), so it needs no administrator rights, no
   URL reservation and no firewall rule. A real server uses `TSparkleHttpSysDispatcher` or `TSparkleSocketDispatcher`.
 - The data is a SQLite database in the temporary folder, filled with the sample rows at every start.

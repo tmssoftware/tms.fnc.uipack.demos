@@ -1,6 +1,6 @@
 object AppData: TAppData
-  Height = 240
-  Width = 480
+  Height = 280
+  Width = 400
   object DataSettings: TTMSFNCDataSettings
     Left = 40
     Top = 24
@@ -57,7 +57,7 @@ object AppData: TAppData
         DataType = ftDateTime
       end>
     DataLink = linkOrder
-    Left = 224
+    Left = 40
     Top = 104
   end
   object linkOrder: TTMSFNCDataLinkREST
@@ -66,11 +66,13 @@ object AppData: TAppData
     Dialect = drdXData
     OrderBy = 'OrderDate desc'
     Expand = 'Customer'
+    Left = 160
+    Top = 104
   end
   object dsDsOrder: TDataSource
     DataSet = dsOrder
-    Left = 232
-    Top = 112
+    Left = 280
+    Top = 104
   end
   object dsTask: TTMSFNCDataSet
     Active = True
@@ -108,8 +110,8 @@ object AppData: TAppData
         DataType = ftInteger
       end>
     DataLink = linkTask
-    Left = 240
-    Top = 120
+    Left = 40
+    Top = 184
   end
   object linkTask: TTMSFNCDataLinkREST
     BaseURL = 'http://127.0.0.1:8793/tms/xdata'
@@ -120,10 +122,12 @@ object AppData: TAppData
     SignInResource = 'LoginService/Login'
     SignInUserField = 'User'
     SignInPasswordField = 'Password'
+    Left = 160
+    Top = 184
   end
   object dsDsTask: TDataSource
     DataSet = dsTask
-    Left = 248
-    Top = 128
+    Left = 280
+    Top = 184
   end
 end
