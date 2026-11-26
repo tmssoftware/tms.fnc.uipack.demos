@@ -143,6 +143,8 @@ click|Tool bar
 click|Cards
 wait|600
 click|TTMSFNCDataGrid#1|tl:200,80
+# the company cell may have been focused already: a second click edits it, Esc leaves the editor
+key|escape
 key|right
 wait|600
 shot|grid: the tickets as a strip of cards

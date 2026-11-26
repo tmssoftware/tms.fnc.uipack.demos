@@ -217,14 +217,15 @@ begin
   // the data grid: tables that follow the customers (MasterSource), the tickets with their comments
   FGridTickets := FLayout.NewDataSet;
   FGridTickets.CloneCursor(FTickets, False, False);
-  FGridTickets.Name := 'GridTickets';
+  // the names give the captions of the details (a chip per detail on the rows): Tickets, Comments
+  FGridTickets.Name := 'qryTickets';
   FGridTickets.IndexFieldNames := 'CustomerID';
   FGridTickets.MasterSource := FCustomersSource;
   FGridTickets.MasterFields := 'CustomerID';
   FGridTicketsSource := FLayout.NewSource(FGridTickets);
   FGridComments := FLayout.NewDataSet;
   FGridComments.CloneCursor(FComments, False, False);
-  FGridComments.Name := 'GridComments';
+  FGridComments.Name := 'qryComments';
   FGridComments.IndexFieldNames := 'TicketID';
   FGridComments.MasterSource := FGridTicketsSource;
   FGridComments.MasterFields := 'TicketID';
