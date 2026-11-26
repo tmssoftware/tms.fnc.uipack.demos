@@ -164,6 +164,9 @@ begin
   FFNCEdit.Text := FEdit.Text;
   FFNCButton := TTMSFNCButton.Create(Self);
   FFNCButton.Parent := Self;
+  {$IFDEF VCL}
+  FFNCButton.AdaptToStyle := True;
+  {$ENDIF}
   FFNCButton.Text := 'Create workspace';
   FFNCCheck := TTMSFNCCheckBox.Create(Self);
   FFNCCheck.Parent := Self;
