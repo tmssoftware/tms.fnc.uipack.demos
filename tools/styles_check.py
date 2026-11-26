@@ -21,18 +21,26 @@ for demo, builds in json.loads(args.builds.read_text()).items():
     for platform, build in builds.items():
         if not build['ok']:
             raise SystemExit(f'Build failed: {demo} {platform}')
-        for ppi in ([96, 120, 144, 192] if framework == 'VCL' and platform.endswith('win32') else [96]):
+        for ppi in ([96, 120, 144, 192] if platform.endswith('win32') else [96]):
             output = repo / framework / 'Styles' / 'output' / f'{platform}-{ppi}'
             output.mkdir(parents=True, exist_ok=True)
             for name in ('success.txt', 'error.txt'):
                 (output / name).unlink(missing_ok=True)
+            for capture in output.glob('[0-9][0-9]-*.png'):
+                capture.unlink()
             code = hidden_desktop.run([build['exe'], '--self-check', '--output', str(output), '--ppi', str(ppi)], timeout=90)
-            success = code == 0 and (output / 'success.txt').exists() and not (output / 'error.txt').exists()
+            captures = list(output.glob('[0-9][0-9]-*.png'))
+            marker = output / 'success.txt'
+            error = output / 'error.txt'
+            success = (
+                code == 0 and len(captures) == 4 and marker.is_file() and not error.exists()
+                and marker.read_text().strip() == f'{len(captures)} styles captured'
+            )
             record = dict(demo=demo, platform=platform, ppi=ppi, exit=code, ok=success, output=str(output))
             results.append(record)
             print(json.dumps(record), flush=True)
             if not success:
-                if (output / 'error.txt').exists():
-                    print((output / 'error.txt').read_text())
-                raise SystemExit(1)
+                if error.is_file():
+                    print(error.read_text())
 args.builds.with_name('self-check.json').write_text(json.dumps(results, indent=2))
+raise SystemExit(0 if results and all(record['ok'] for record in results) else 1)

@@ -8,12 +8,12 @@ uses
   Winapi.Windows, Vcl.Forms, Vcl.Controls, Vcl.StdCtrls, Vcl.ExtCtrls,
   Vcl.Graphics, Vcl.Imaging.pngimage, Vcl.Themes, Vcl.Styles,
   VCL.TMSFNCStyles, VCL.TMSFNCEdit, VCL.TMSFNCButton, VCL.TMSFNCCheckBox,
-  VCL.TMSFNCComboBox, VCL.TMSFNCGrid, VCL.TMSFNCTreeView;
+  VCL.TMSFNCComboBox, VCL.TMSFNCGrid, VCL.TMSFNCTreeView, VCL.TMSFNCTreeViewData;
   {$ELSE}
   System.UITypes, FMX.Forms, FMX.Types, FMX.Controls, FMX.StdCtrls, FMX.Edit,
-  FMX.ListBox, FMX.Graphics, FMX.Controls.Presentation,
+  FMX.ListBox, FMX.Graphics,
   FMX.TMSFNCStyles, FMX.TMSFNCEdit, FMX.TMSFNCButton, FMX.TMSFNCCheckBox,
-  FMX.TMSFNCComboBox, FMX.TMSFNCGrid, FMX.TMSFNCTreeView;
+  FMX.TMSFNCComboBox, FMX.TMSFNCGrid, FMX.TMSFNCTreeView, FMX.TMSFNCTreeViewData;
   {$ENDIF}
 
 type
@@ -35,10 +35,15 @@ type
     FTree: TTMSFNCTreeView;
     FTimer: TTimer;
     FStep: Integer;
+    {$IFDEF VCL}
     FCheckPPI: Integer;
+    {$ENDIF}
     FOutput: string;
     {$IFDEF FMX}
     FBooks: array[0..2] of TStyleBook;
+    {$ENDIF}
+    {$IFDEF VCL}
+    function LayoutPPI: Integer;
     {$ENDIF}
     procedure StyleChanged(Sender: TObject);
     procedure LayoutChanged(Sender: TObject);
@@ -78,6 +83,7 @@ end;
 procedure TForm1.FormCreate(Sender: TObject);
 var
   I: Integer;
+  Root: TTMSFNCTreeViewNode;
   {$IFDEF VCL}
   S: string;
   {$ENDIF}
@@ -85,11 +91,11 @@ var
   Stream: TResourceStream;
   {$ENDIF}
 begin
-  FTitle := AddLabel('One style, every control', 20);
-  FDescription := AddLabel('Choose a platform style. Native and FNC controls follow it together.', 10);
+  FTitle := AddLabel('Platform styles', 20);
+  FDescription := AddLabel('Choose a style to compare standard and TMS FNC controls side by side.', 10);
   FNativeTitle := AddLabel('Standard controls', 13);
   FFNCTitle := AddLabel('TMS FNC controls', 13);
-  FNote := AddLabel('FNC controls use AdaptToStyle. Edit, select and explore the same workspace.', 10);
+  FNote := AddLabel('The FNC check box, combo box, tree view, and grid use AdaptToStyle.', 10);
 
   FPicker := TComboBox.Create(Self);
   FPicker.Parent := Self;
@@ -169,6 +175,8 @@ begin
   FFNCCombo.ItemIndex := 0;
   FGrid := TTMSFNCGrid.Create(Self);
   FGrid.Parent := Self;
+  // Use the grid's style-derived appearance for all columns.
+  FGrid.UseColumns := False;
   FGrid.ColumnCount := 3;
   FGrid.RowCount := 6;
   FGrid.FixedColumns := 0;
@@ -187,11 +195,12 @@ begin
   end;
   FTree := TTMSFNCTreeView.Create(Self);
   FTree.Parent := Self;
-  FTree.AddNode.Text[0] := 'Workspace';
+  FTree.Columns.Add.Text := 'Workspace';
+  Root := FTree.AddNode;
+  Root.Text[0] := 'Design workspace';
   for I := 0 to FList.Items.Count - 1 do
-    FTree.AddNode.Text[0] := FList.Items[I];
-
-  // Native-based FNC edits and buttons inherit the platform style.
+    FTree.AddNode(Root).Text[0] := FList.Items[I];
+  FTree.ExpandAll;
 
   FFNCCheck.AdaptToStyle := True;
   FFNCCombo.AdaptToStyle := True;
@@ -222,11 +231,20 @@ begin
   end;
 end;
 
+{$IFDEF VCL}
+function TForm1.LayoutPPI: Integer;
+begin
+  Result := FCheckPPI;
+  if Result = 0 then
+    Result := CurrentPPI;
+end;
+{$ENDIF}
+
 procedure TForm1.Place(AControl: TControl; AX, AY, AWidth, AHeight: Integer);
 begin
   {$IFDEF VCL}
-  AControl.SetBounds(MulDiv(AX, CurrentPPI, 96), MulDiv(AY, CurrentPPI, 96),
-    MulDiv(AWidth, CurrentPPI, 96), MulDiv(AHeight, CurrentPPI, 96));
+  AControl.SetBounds(MulDiv(AX, LayoutPPI, 96), MulDiv(AY, LayoutPPI, 96),
+    MulDiv(AWidth, LayoutPPI, 96), MulDiv(AHeight, LayoutPPI, 96));
   {$ELSE}
   AControl.SetBounds(AX, AY, AWidth, AHeight);
   {$ENDIF}
@@ -234,13 +252,14 @@ end;
 
 procedure TForm1.LayoutChanged(Sender: TObject);
 var
-  W, H, LeftWidth, RightX, RightWidth: Integer;
+  W, H, LeftWidth, RightX, RightWidth, TreeWidth: Integer;
+  GridContentWidth: Single;
 begin
   if not Assigned(FTree) then
     Exit;
   {$IFDEF VCL}
-  W := MulDiv(ClientWidth, 96, CurrentPPI);
-  H := MulDiv(ClientHeight, 96, CurrentPPI);
+  W := MulDiv(ClientWidth, 96, LayoutPPI);
+  H := MulDiv(ClientHeight, 96, LayoutPPI);
   {$ELSE}
   W := ClientWidth;
   H := ClientHeight;
@@ -248,29 +267,40 @@ begin
   LeftWidth := (W - 72) div 3;
   RightX := LeftWidth + 48;
   RightWidth := W - RightX - 24;
+  TreeWidth := RightWidth div 3;
   Place(FTitle, 24, 16, W - 48, 40);
-  Place(FDescription, 24, 64, W - 48, 24);
-  Place(FPicker, 24, 104, W - 48, 32);
-  Place(FNativeTitle, 24, 160, LeftWidth, 32);
-  Place(FFNCTitle, RightX, 160, RightWidth, 32);
-  Place(FEdit, 24, 208, LeftWidth, 32);
-  Place(FButton, 24, 256, LeftWidth, 32);
-  Place(FCheck, 24, 304, LeftWidth, 32);
-  Place(FCombo, 24, 352, LeftWidth, 32);
-  Place(FList, 24, 408, LeftWidth, H - 472);
-  Place(FFNCEdit, RightX, 208, RightWidth, 32);
-  Place(FFNCButton, RightX, 256, RightWidth, 32);
-  Place(FFNCCheck, RightX, 304, RightWidth, 32);
-  Place(FFNCCombo, RightX, 352, RightWidth, 32);
-  Place(FTree, RightX, 408, RightWidth div 3, H - 472);
-  Place(FGrid, RightX + RightWidth div 3 + 16, 408, RightWidth * 2 div 3 - 16, H - 472);
-  for W := 0 to 2 do
-    FGrid.ColumnWidths[W] := (FGrid.Width - 24) / 3;
-  Place(FNote, 24, H - 48, LeftWidth + RightWidth + 24, 32);
+  Place(FDescription, 24, 58, W - 48, 26);
+  Place(FPicker, 24, 96, LeftWidth, 32);
+  Place(FNativeTitle, 24, 142, LeftWidth, 32);
+  Place(FFNCTitle, RightX, 142, RightWidth, 32);
+  Place(FEdit, 24, 184, LeftWidth, 32);
+  Place(FButton, 24, 228, LeftWidth, 32);
+  Place(FCheck, 24, 272, LeftWidth, 32);
+  Place(FCombo, 24, 316, LeftWidth, 32);
+  Place(FList, 24, 362, LeftWidth, H - 420);
+  Place(FFNCEdit, RightX, 184, RightWidth, 32);
+  Place(FFNCButton, RightX, 228, RightWidth, 32);
+  Place(FFNCCheck, RightX, 272, RightWidth, 32);
+  Place(FFNCCombo, RightX, 316, RightWidth, 32);
+  Place(FTree, RightX, 362, TreeWidth, H - 420);
+  FTree.Columns[0].Width := FTree.Width - 4;
+  FGrid.BeginUpdate;
+  try
+    Place(FGrid, RightX + TreeWidth + 16, 362, RightWidth - TreeWidth - 16, H - 420);
+    GridContentWidth := FGrid.Width - 4;
+    FGrid.ColumnWidths[0] := GridContentWidth * 0.44;
+    FGrid.ColumnWidths[1] := GridContentWidth * 0.23;
+    FGrid.ColumnWidths[2] := GridContentWidth * 0.33;
+  finally
+    FGrid.EndUpdate;
+  end;
+  Place(FNote, 24, H - 46, W - 48, 30);
 end;
 
 procedure TForm1.StyleChanged(Sender: TObject);
 begin
+  if FPicker.ItemIndex < 0 then
+    Exit;
   {$IFDEF VCL}
   TStyleManager.SetStyle(FPicker.Items[FPicker.ItemIndex]);
   {$ELSE}
@@ -279,6 +309,7 @@ begin
   else
     StyleBook := FBooks[FPicker.ItemIndex - 1];
   {$ENDIF}
+  LayoutChanged(Self);
 end;
 
 procedure TForm1.SaveImage(const AFileName: string);
@@ -287,6 +318,8 @@ var
   {$IFDEF VCL}
   P: TPngImage;
   DC: HDC;
+  {$ELSE}
+  Scale: Single;
   {$ENDIF}
 begin
   {$IFDEF VCL}
@@ -312,8 +345,10 @@ begin
     B.Free;
   end;
   {$ELSE}
-  B := TBitmap.Create(ClientWidth, ClientHeight);
+  Scale := (Self as IScene).GetSceneScale;
+  B := TBitmap.Create(Round(ClientWidth * Scale), Round(ClientHeight * Scale));
   try
+    B.BitmapScale := Scale;
     PaintTo(B.Canvas);
     B.SaveToFile(AFileName);
   finally
@@ -332,8 +367,8 @@ begin
   if (FStep = -1) and (FCheckPPI > 0) then
   begin
     ScaleForPPI(FCheckPPI);
-    ClientWidth := MulDiv(1100, FCheckPPI, 96);
-    ClientHeight := MulDiv(680, FCheckPPI, 96);
+    ClientWidth := MulDiv(1000, FCheckPPI, 96);
+    ClientHeight := MulDiv(620, FCheckPPI, 96);
     LayoutChanged(Self);
   end;
   {$ENDIF}
