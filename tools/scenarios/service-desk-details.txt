@@ -142,6 +142,9 @@ click|Customer grid
 click|Tool bar
 click|Cards
 wait|600
+# the tickets as a section (Tabs): their cards open the form of a ticket in place
+segment|TTMSFNCSegmentedControl#2|1|4
+wait|400
 click|TTMSFNCDataGrid#1|tl:200,80
 # the company cell may have been focused already: a second click edits it, Esc leaves the editor
 key|escape
@@ -160,5 +163,6 @@ click|Tool bar
 wait|600
 shot|grid: the tool bar with Arrange fields
 click|Tool bar
+segment|TTMSFNCSegmentedControl#2|0|4
 click|Grid of the detail records
 click|Customers and their tickets
