@@ -3,8 +3,8 @@
 Use the picker to switch the application style with `TStyleManager`. Compare
 standard VCL controls with their TMS FNC counterparts, a tree view, and a grid.
 
-The FNC button sets `AdaptToStyle := True` to use the Windows10 Dark style
-for its face and caption.
+The FNC button sets `AdaptToStyle := True` to use the active custom VCL
+style for its face and caption, including Windows10 and Windows10 Dark.
 
 Build `Demo.dproj` with Delphi 13 for Win32 or Win64. The project embeds the
 Windows10, Windows10 Dark, and Aqua Light Slate styles from the Delphi

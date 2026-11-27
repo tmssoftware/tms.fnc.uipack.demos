@@ -95,7 +95,11 @@ begin
   FDescription := AddLabel('Choose a style to compare standard and TMS FNC controls side by side.', 10);
   FNativeTitle := AddLabel('Standard controls', 13);
   FFNCTitle := AddLabel('TMS FNC controls', 13);
+  {$IFDEF VCL}
+  FNote := AddLabel('The FNC button, check box, combo box, tree view, and grid use AdaptToStyle.', 10);
+  {$ELSE}
   FNote := AddLabel('The FNC check box, combo box, tree view, and grid use AdaptToStyle.', 10);
+  {$ENDIF}
 
   FPicker := TComboBox.Create(Self);
   FPicker.Parent := Self;

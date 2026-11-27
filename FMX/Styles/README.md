@@ -2,6 +2,7 @@
 
 Use the picker to change the form's FireMonkey style book. Compare standard
 FMX controls with their TMS FNC counterparts, a tree view, and a grid.
+The FNC button follows the form's FMX style book.
 
 Build `Demo.dproj` with Delphi 13 for Win32 or Win64. The project embeds the
 Windows modern, Windows modern dark, and Aqua graphite style books from the
