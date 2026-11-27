@@ -88,7 +88,7 @@ click|Customers
 click|TTMSFNCTreeView#1|tl:80,50
 wait|500
 shot|customer: the Tickets and Details sections
-click|TTMSFNCDetailViewBodyGrid#1|tl:121,22
+click|TTMSFNCDetailViewBodyGrid#1|tl:150,22
 wait|500
 shot|customer: Details, the form of the customer
 click|TTMSFNCDetailViewBodyGrid#1|tl:300,108
@@ -114,4 +114,44 @@ shot|grid: the Details section in the row
 theme|Fluent Dark
 shot|dark: the grid with sections and column groups
 theme|Fluent Light
+click|Customers and their tickets
+# wave 2: a chip per section on the rows of the grid, the badge of the open tickets in the warning colour, the
+# section bar as captions under each other and as a list, the placement switch of the tool bar
+click|Customer grid
+wait|600
+shot|grid: a chip per section on every customer
+segment|TTMSFNCSegmentedControl#2|2|4
+wait|400
+click|TTMSFNCDataGrid#1|tl:200,80
+key|right
+wait|600
+shot|grid: the sections under each other
+segment|TTMSFNCSegmentedControl#2|3|4
+wait|600
+shot|grid: the sections in a list
+theme|Fluent Dark
+shot|dark: the list and the chips
+theme|Fluent Light
+segment|TTMSFNCSegmentedControl#2|1|4
+click|Tool bar
+wait|600
+shot|grid: the tool bar with Open full
+click|Customers and their tickets
+# cards from the record layout: one row of cards in the rows of the grid, Arrange fields in the tool bar (the form
+# of a card in place needs a section and the detail opens on the section chosen last: covered by the tests)
+click|Customer grid
+click|Tool bar
+click|Cards
+wait|600
+click|TTMSFNCDataGrid#1|tl:200,80
+# the company cell may have been focused already: a second click edits it, Esc leaves the editor
+key|escape
+key|right
+wait|600
+shot|grid: the tickets as a strip of cards
+click|Tool bar
+wait|600
+shot|grid: the tool bar with Arrange fields
+click|Tool bar
+click|Grid of the detail records
 click|Customers and their tickets
