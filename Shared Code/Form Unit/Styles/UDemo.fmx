@@ -1,0 +1,9 @@
+object Form1: TForm1
+  Caption = 'TMS FNC UI Pack - Styles'
+  ClientHeight = 620
+  ClientWidth = 1000
+  Constraints.MinHeight = 592.000000000000000000
+  Constraints.MinWidth = 920.000000000000000000
+  Position = ScreenCenter
+  OnCreate = FormCreate
+end
