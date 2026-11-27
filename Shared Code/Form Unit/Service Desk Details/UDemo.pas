@@ -255,7 +255,8 @@ const
     'Priority', 'Agent', 'Author', 'Comment', 'Posted', 'Country', 'Active', 'Since');
   Labels: array[0..14] of string = ('Customer no.', 'Ticket', 'Comment no.', '', '', '', '', '', '', '', '', '', '',
     '', 'Customer since');
-  Widths: array[0..14] of Integer = (6, 5, 6, 20, 12, 18, 9, 6, 10, 10, 34, 10, 12, 6, 10);
+  // the columns of a customer no wider than their texts: the room right of the last column is for the section chips
+  Widths: array[0..14] of Integer = (6, 5, 6, 18, 9, 18, 9, 6, 10, 10, 34, 10, 10, 5, 10);
 var
   I: Integer;
   f: TField;
