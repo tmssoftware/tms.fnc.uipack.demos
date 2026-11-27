@@ -493,11 +493,13 @@ begin
   ShellLog := TJSONArray.Create;
   Detour('shell32.dll', 'ShellExecuteW', @FakeShellExecuteW);
   Detour('shell32.dll', 'ShellExecuteExW', @FakeShellExecuteExW);
-  if ClickPPI <= 96 then
+  if ClickPPI < 96 then
     Exit;
   {$IFDEF DEMOSHOT_FMX}
-  TWinWindowHandle.SetForcedScale(ClickPPI / 96);
+  if ClickPPI > 96 then
+    TWinWindowHandle.SetForcedScale(ClickPPI / 96);
   {$ELSE}
+  { 96 is emulated too: on a display at 150 % the run at 96 came out at 144 }
   Detour('shcore.dll', 'GetDpiForMonitor', @FakeGetDpiForMonitor);
   Detour('user32.dll', 'GetDpiForWindow', @FakeGetDpiForWindow);
   { the system DPI a per monitor aware process gets on a primary monitor with this DPI: forms scale to it when
@@ -1859,7 +1861,7 @@ begin
     res.AddPair('screenPPI', TJSONNumber.Create(Screen.PixelsPerInch));
     { the form scaled to the emulated DPI when it loaded; one that did not is scaled as when it moves to a monitor
       with that DPI (scaledAfterStart in click.json) }
-    if (ClickPPI > 96) and (TCustomForm(AForm).PixelsPerInch <> ClickPPI) then
+    if (ClickPPI >= 96) and (TCustomForm(AForm).PixelsPerInch <> ClickPPI) then
     begin
       TCustomForm(AForm).ScaleForPPI(ClickPPI);
       res.AddPair('scaledAfterStart', TJSONBool.Create(True));
