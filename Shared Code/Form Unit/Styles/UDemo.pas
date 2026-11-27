@@ -289,6 +289,11 @@ begin
   Place(FFNCButton, RightX, 228, RightWidth, 32);
   Place(FFNCCheck, RightX, 272, RightWidth, 32);
   Place(FFNCCombo, RightX, 316, RightWidth, 32);
+  {$IFDEF VCL}
+  // The standard combo box takes its height from its font; the FNC combo box follows it.
+  FCombo.HandleNeeded;
+  FFNCCombo.Height := FCombo.Height;
+  {$ENDIF}
   Place(FTree, RightX, 362, TreeWidth, H - 420);
   FTree.Columns[0].Width := FTree.Width - 4;
   FGrid.BeginUpdate;
