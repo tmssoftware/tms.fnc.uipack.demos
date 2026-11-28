@@ -36,6 +36,7 @@ type
     FTimer: TTimer;
     FStep: Integer;
     FLightIndex: Integer;
+    FThemeDark: Boolean; // the application theme was in dark mode at the last change
     FThemeStep: Integer;
     {$IFDEF VCL}
     FCheckPPI: Integer;
@@ -325,9 +326,11 @@ begin
   inherited;
 end;
 
+{ a style of the list with a dark window: "... Dark", and the FMX Aqua graphite style }
 function TForm1.IsDarkStyle(AIndex: Integer): Boolean;
 begin
-  Result := (AIndex >= 0) and FPicker.Items[AIndex].ToLower.Contains('dark');
+  Result := (AIndex >= 0) and (FPicker.Items[AIndex].ToLower.Contains('dark')
+    or FPicker.Items[AIndex].ToLower.Contains('graphite'));
 end;
 
 procedure TForm1.PickStyle(AIndex: Integer);
@@ -343,19 +346,25 @@ end;
 
 { An application theme (a TTMSFNCThemeManager) in dark mode over a light platform style leaves the standard
   controls light on a dark form: the demo then picks the dark style of the list, and the light one picked before
-  when the theme turns light again. }
+  when the theme turns light again or goes. Only a flip of the theme's mode changes the style: another theme of the
+  same mode, or an accent, keeps the style the user picked. }
 procedure TForm1.ThemeChanged(Sender: TObject);
 var
   Theme: TTMSFNCThemeDefinition;
   Dark: Boolean;
   I: Integer;
 begin
-  if TTMSFNCTheme.Current = '' then
+  Dark := False;
+  if TTMSFNCTheme.Current <> '' then
+  begin
+    Theme := TTMSFNCTheme.FindTheme(TTMSFNCTheme.Current);
+    if Assigned(Theme) and (Theme.Mode = tmHighContrast) then
+      Exit;
+    Dark := Assigned(Theme) and (Theme.Mode = tmDark);
+  end;
+  if Dark = FThemeDark then
     Exit;
-  Theme := TTMSFNCTheme.FindTheme(TTMSFNCTheme.Current);
-  if not Assigned(Theme) or (Theme.Mode = tmHighContrast) then
-    Exit;
-  Dark := Theme.Mode = tmDark;
+  FThemeDark := Dark;
   if Dark = IsDarkStyle(FPicker.ItemIndex) then
     Exit;
   if not Dark then
