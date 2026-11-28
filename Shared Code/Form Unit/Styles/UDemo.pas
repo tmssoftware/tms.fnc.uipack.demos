@@ -3,16 +3,16 @@ unit UDemo;
 interface
 
 uses
-  System.SysUtils, System.Classes, System.Types, System.IOUtils,
+  System.SysUtils, System.Classes, System.Types, System.IOUtils, System.Math,
   {$IFDEF VCL}
   Winapi.Windows, Vcl.Forms, Vcl.Controls, Vcl.StdCtrls, Vcl.ExtCtrls,
   Vcl.Graphics, Vcl.Imaging.pngimage, Vcl.Themes, Vcl.Styles,
-  VCL.TMSFNCStyles, VCL.TMSFNCEdit, VCL.TMSFNCButton, VCL.TMSFNCCheckBox,
+  VCL.TMSFNCStyles, VCL.TMSFNCTheme, VCL.TMSFNCEdit, VCL.TMSFNCButton, VCL.TMSFNCCheckBox,
   VCL.TMSFNCComboBox, VCL.TMSFNCGrid, VCL.TMSFNCTreeView, VCL.TMSFNCTreeViewData;
   {$ELSE}
   System.UITypes, FMX.Forms, FMX.Types, FMX.Controls, FMX.StdCtrls, FMX.Edit,
   FMX.ListBox, FMX.Graphics,
-  FMX.TMSFNCStyles, FMX.TMSFNCEdit, FMX.TMSFNCButton, FMX.TMSFNCCheckBox,
+  FMX.TMSFNCStyles, FMX.TMSFNCTheme, FMX.TMSFNCEdit, FMX.TMSFNCButton, FMX.TMSFNCCheckBox,
   FMX.TMSFNCComboBox, FMX.TMSFNCGrid, FMX.TMSFNCTreeView, FMX.TMSFNCTreeViewData;
   {$ENDIF}
 
@@ -35,6 +35,8 @@ type
     FTree: TTMSFNCTreeView;
     FTimer: TTimer;
     FStep: Integer;
+    FLightIndex: Integer;
+    FThemeStep: Integer;
     {$IFDEF VCL}
     FCheckPPI: Integer;
     {$ENDIF}
@@ -45,13 +47,18 @@ type
     {$IFDEF VCL}
     function LayoutPPI: Integer;
     {$ENDIF}
+    function IsDarkStyle(AIndex: Integer): Boolean;
+    procedure PickStyle(AIndex: Integer);
     procedure StyleChanged(Sender: TObject);
+    procedure ThemeChanged(Sender: TObject);
     procedure LayoutChanged(Sender: TObject);
     procedure CheckStep(Sender: TObject);
     procedure ApplicationException(Sender: TObject; E: Exception);
     procedure SaveImage(const AFileName: string);
     procedure Place(AControl: TControl; AX, AY, AWidth, AHeight: Integer);
     function AddLabel(const AText: string; ASize: Integer): TLabel;
+  public
+    destructor Destroy; override;
   end;
 
 var
@@ -126,6 +133,7 @@ begin
   FPicker.ItemIndex := 0;
   {$ENDIF}
   FPicker.OnChange := StyleChanged;
+  FLightIndex := Max(FPicker.ItemIndex, 0);
 
   FEdit := TEdit.Create(Self);
   FEdit.Parent := Self;
@@ -216,6 +224,8 @@ begin
   OnResize := LayoutChanged;
   OnShow := LayoutChanged;
   LayoutChanged(Self);
+  TTMSFNCTheme.AddChangeListener(ThemeChanged);
+  ThemeChanged(Self);
 
   if FindCmdLineSwitch('self-check') or FindCmdLineSwitch('-self-check') then
   begin
@@ -309,10 +319,64 @@ begin
   Place(FNote, 24, H - 46, W - 48, 30);
 end;
 
+destructor TForm1.Destroy;
+begin
+  TTMSFNCTheme.RemoveChangeListener(ThemeChanged);
+  inherited;
+end;
+
+function TForm1.IsDarkStyle(AIndex: Integer): Boolean;
+begin
+  Result := (AIndex >= 0) and FPicker.Items[AIndex].ToLower.Contains('dark');
+end;
+
+procedure TForm1.PickStyle(AIndex: Integer);
+begin
+  FPicker.OnChange := nil;
+  try
+    FPicker.ItemIndex := AIndex;
+  finally
+    FPicker.OnChange := StyleChanged;
+  end;
+  StyleChanged(Self);
+end;
+
+{ An application theme (a TTMSFNCThemeManager) in dark mode over a light platform style leaves the standard
+  controls light on a dark form: the demo then picks the dark style of the list, and the light one picked before
+  when the theme turns light again. }
+procedure TForm1.ThemeChanged(Sender: TObject);
+var
+  Theme: TTMSFNCThemeDefinition;
+  Dark: Boolean;
+  I: Integer;
+begin
+  if TTMSFNCTheme.Current = '' then
+    Exit;
+  Theme := TTMSFNCTheme.FindTheme(TTMSFNCTheme.Current);
+  if not Assigned(Theme) or (Theme.Mode = tmHighContrast) then
+    Exit;
+  Dark := Theme.Mode = tmDark;
+  if Dark = IsDarkStyle(FPicker.ItemIndex) then
+    Exit;
+  if not Dark then
+  begin
+    PickStyle(FLightIndex);
+    Exit;
+  end;
+  for I := 0 to FPicker.Items.Count - 1 do
+    if IsDarkStyle(I) then
+    begin
+      PickStyle(I);
+      Exit;
+    end;
+end;
+
 procedure TForm1.StyleChanged(Sender: TObject);
 begin
   if FPicker.ItemIndex < 0 then
     Exit;
+  if not IsDarkStyle(FPicker.ItemIndex) then
+    FLightIndex := FPicker.ItemIndex;
   {$IFDEF VCL}
   TStyleManager.SetStyle(FPicker.Items[FPicker.ItemIndex]);
   {$ELSE}
@@ -384,7 +448,7 @@ begin
     LayoutChanged(Self);
   end;
   {$ENDIF}
-  if FStep >= 0 then
+  if (FStep >= 0) and (FThemeStep = 0) then
   begin
     Name := FPicker.Items[FPicker.ItemIndex];
     for C in TPath.GetInvalidFileNameChars do
@@ -394,9 +458,25 @@ begin
   Inc(FStep);
   if FStep = FPicker.Items.Count then
   begin
-    TFile.WriteAllText(TPath.Combine(FOutput, 'success.txt'),
-      IntToStr(FStep) + ' styles captured');
-    Application.Terminate;
+    { then an application theme in dark and in light mode: the demo follows with the dark style and back }
+    case FThemeStep of
+      0: TTMSFNCTheme.Apply('Fluent Dark');
+      1:
+        begin
+          SaveImage(TPath.Combine(FOutput, 'theme-dark.png'));
+          TTMSFNCTheme.Apply('Fluent Light');
+        end;
+    else
+      SaveImage(TPath.Combine(FOutput, 'theme-light.png'));
+      TTMSFNCTheme.Apply('');
+      TFile.WriteAllText(TPath.Combine(FOutput, 'success.txt'),
+        IntToStr(FStep) + ' styles captured');
+      Application.Terminate;
+      Exit;
+    end;
+    Inc(FThemeStep);
+    Dec(FStep);
+    FTimer.Enabled := True;
     Exit;
   end;
   FPicker.ItemIndex := FStep;
