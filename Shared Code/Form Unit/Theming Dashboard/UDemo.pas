@@ -189,11 +189,15 @@ begin
   FBrandCombo.Style := csDropDownList;
   {$IFDEF FMX}
   FBrandCombo.SetBounds(ThemeSelector.Position.X - 176, ThemeSelector.Position.Y, 164, ThemeSelector.Height);
-  {$ELSE}
-  FBrandCombo.SetBounds(ThemeSelector.Left - Round(176 * CurrentPPI / 96), ThemeSelector.Top,
-    Round(164 * CurrentPPI / 96), ThemeSelector.Height);
-  {$ENDIF}
   FBrandCombo.Anchors := [TAnchorKind.akTop, TAnchorKind.akRight];
+  {$ELSE}
+  { aligned right like the theme selector, left of it: the top bar has not aligned its controls yet, so their
+    positions are not known here }
+  FBrandCombo.AlignWithMargins := True;
+  FBrandCombo.Margins.Assign(ThemeSelector.Margins);
+  FBrandCombo.SetBounds(ThemeSelector.Left - 1, ThemeSelector.Top, Round(164 * CurrentPPI / 96), ThemeSelector.Height);
+  FBrandCombo.Align := alRight;
+  {$ENDIF}
   FBrandCombo.Items.Add('No brand');
   names := TTMSFNCBrand.PresetNames;
   try
