@@ -1531,6 +1531,7 @@ object Form1: TForm1
           Top = 154
           Width = 135
           Height = 32
+          AutoSize = False
           TabOrder = 6
           Text = '0,00'
           EditType = etFloat
